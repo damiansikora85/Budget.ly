@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:HomeBudget"
+             x:Class="HomeBudget.MainPage">
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="2*" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<Button Text="Zapisz" Grid.Row="0" Grid.Column="1" FontSize="Large" TextColor="White" BackgroundColor="#88f1b0" Clicked="OnWrite"/>
+		<Button Text="Planuj" Grid.Row="1" Grid.Column="1" FontSize="Large" TextColor="White" BackgroundColor="#88f1b0" Clicked="OnTest"/>
+		<Button x:Name="LoginBtn" Text="Analizuj" Grid.Row="2" Grid.Column="1" FontSize="Large" TextColor="White" BackgroundColor="#88f1b0" Clicked="loginButton_Clicked"/>
+
+	</Grid>
+
+</ContentPage>

@@ -1,0 +1,117 @@
+{
+    "name":"template",
+    "categories":[
+        {"name":"Jedzenie",
+			"sub":[
+			"Jedzenie dom",
+			"Jedzenie miasto",
+			"Jedzenie praca",
+			"Alkohol",
+			"Inne"
+			]},
+        {"name":"Mieszkanie",
+			"sub":[
+			"Czynsz",
+			"Prad",
+			"Gaz",
+			"Smieci",
+			"Naprawy",
+			"Wyposazenie",
+			"Ubezpieczenie",
+			"Inne"
+			]},
+        {"name":"Transport",
+		"sub":[
+			"Paliwo",
+			"Przeglady/naprawa",
+			"Wyposazenie",
+			"Ubezpieczenie",
+			"Bilety",
+			"PKP/PKS",
+			"Taxi",
+			"Inne"
+			]},
+        {"name":"Telekomunikacja",
+		"sub":[
+			"Telefon",
+			"TV/internet",
+			"Inne"
+			]},
+        {"name":"Opieka zdrowotna",
+		"sub":[
+			"Lekarz",
+			"Badania",
+			"Lekarstwa",
+			"Inne"
+			]},
+        {"name":"Ubrania",
+		"sub":[
+			"Ubrania zwykle",
+			"Ubrania sportowe",
+			"Buty",
+			"Dodatki",
+			"Inne"
+			]},
+        {"name":"Higiena",
+		"sub":[
+			"Kosmetyki",
+			"Srodki czystosci",
+			"Fryzjer",
+			"Kosmetyczka",
+			"Pieluchy",
+			"Inne"
+			]},
+        {"name":"Dzieci",
+		"sub":[
+			"Art szkolne",
+			"Przedszkole",
+			"Opieka",
+			"Zabawki",
+			"Inne"
+			]},
+		{"name":"Rozrywka",
+		"sub":[
+			"Silownia/basen",
+			"Kino/teatr",
+			"Koncerty",
+			"Czasopisma",
+			"Ksiazki",
+			"Hobby",
+			"Hotel/turystyka",
+			"Giereczki",
+			"Inne"
+			]},
+		{"name":"Inne",
+		"sub":[
+			"Ubezpieczenia",
+			"Dobroczynnosc",
+			"Prezenty",
+			"RTV",
+			"Oprogramowanie",
+			"Edukacja",
+			"Uslugi",
+			"Podatki",
+			"Inne"
+			]},
+		{"name":"Splata dlugow",
+		"sub":[
+			"Kredyt hipoteczny PKO",
+			"Kredyt hipoteczny Pekao",
+			"Kredyt konsumencki",
+			"Pozyczka",
+			"Karta kredytowa",
+			"Inne"
+			]},
+		{"name":"Oszczednosci",
+		"sub":[
+			"Fundusz awaryjny",
+			"Fundusz wyd niereg",
+			"Poduszka finansowa",
+			"IKE/IKZE",
+			"Nadplata dlugow",
+			"Wakacje",
+			"Swieta",
+			"Inne"
+			]}
+    ]
+}
