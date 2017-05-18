@@ -9,12 +9,12 @@ namespace HomeBudget.Code
 {
 	public class SubcategoryView
 	{
-		public int Category;
+		/*public int Category;
 		public int Subcategory;
 
 		public void OnClick(object sender, EventArgs e)
 		{
 			MainBudget.Instance.SetCurrentExpenseData(Category, Subcategory);
-		}
+		}*/
 	}
 }

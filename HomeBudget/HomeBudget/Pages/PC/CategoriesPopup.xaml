@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+				 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:xToggleButton="clr-namespace:HomeBudget"
+                 x:Class="HomeBudget.Pages.PC.CategoriesPopup">
+
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+      PositionIn="Center"
+      PositionOut="Center"
+      ScaleIn="1.2"
+      ScaleOut="0.8"
+      DurationIn="400"
+      DurationOut="300"
+      EasingIn="SinOut"
+      EasingOut="SinIn"
+      HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <!-- Content -->
+
+
+    <Grid BackgroundColor="#A0FAFAFA">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="4*" />
+        </Grid.RowDefinitions>
+
+        <Label Text="Jedzenie" FontSize="Large" Grid.Column="0" Grid.Row="0"/>
+
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <xToggleButton:XToggleButtonControl Grid.Column="0" Grid.Row="0" Checked="False" CheckedImage="Assets/Icons/foodHighlight.png" HeightRequest="50" UnCheckedImage="Assets/Icons/food.png" WidthRequest="50" />
+            <xToggleButton:XToggleButtonControl Grid.Column="1" Grid.Row="0" Checked="False" CheckedImage="Assets/Icons/homeHighlight.png" HeightRequest="50" UnCheckedImage="Assets/Icons/home.png" WidthRequest="50" />
+            <xToggleButton:XToggleButtonControl Grid.Column="2" Grid.Row="0" Checked="False" CheckedImage="Assets/Icons/transportHighlight.png" HeightRequest="50" UnCheckedImage="Assets/Icons/transport.png" WidthRequest="50" />
+            <xToggleButton:XToggleButtonControl Grid.Column="3" Grid.Row="0" Checked="False" CheckedImage="Assets/Icons/telokomHighlight.png" HeightRequest="50" UnCheckedImage="Assets/Icons/telokom.png" WidthRequest="50" />
+            <xToggleButton:XToggleButtonControl Grid.Column="4" Grid.Row="0" Checked="False" CheckedImage="Assets/Icons/clothesHighlight.png" HeightRequest="50" UnCheckedImage="Assets/Icons/clothes.png" WidthRequest="50" />
+            <xToggleButton:XToggleButtonControl Grid.Column="0" Grid.Row="1" Checked="False" CheckedImage="Assets/Icons/beautyHighlight.png" HeightRequest="50" UnCheckedImage="Assets/Icons/beauty.png" WidthRequest="50" />
+            <xToggleButton:XToggleButtonControl Grid.Column="1" Grid.Row="1" Checked="False" CheckedImage="Assets/Icons/medicineHighlight.png" HeightRequest="50" UnCheckedImage="Assets/Icons/medicine.png" WidthRequest="50" />
+            <xToggleButton:XToggleButtonControl Grid.Column="2" Grid.Row="1" Checked="False" CheckedImage="Assets/Icons/kidsHighlight.png" HeightRequest="50" UnCheckedImage="Assets/Icons/kids.png" WidthRequest="50" />
+            <xToggleButton:XToggleButtonControl Grid.Column="3" Grid.Row="1" Checked="False" CheckedImage="Assets/Icons/theatreHighlight.png" HeightRequest="50" UnCheckedImage="Assets/Icons/theatre-masks.png" WidthRequest="50" />
+            <xToggleButton:XToggleButtonControl Grid.Column="4" Grid.Row="1" Checked="False" CheckedImage="Assets/Icons/savingsHighlight.png" HeightRequest="50" UnCheckedImage="Assets/Icons/savings.png" WidthRequest="50" />
+
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="2">
+            
+        </Grid>
+        
+        
+    </Grid>
+
+
+</pages:PopupPage>

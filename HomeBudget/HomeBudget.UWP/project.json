@@ -1,12 +1,16 @@
 ﻿{
   "dependencies": {
+    "Dropbox.Api": "4.2.4",
     "Microsoft.Azure.Mobile.Client": "3.1.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "Newtonsoft.Json": "9.0.1",
+    "PCLStorage": "1.0.2",
     "Rg.Plugins.Popup": "1.0.4",
     "WindowsAzure.Storage": "8.1.0",
     "Xam.FormsPlugin.CrossPieChart": "2.1.15",
-    "Xamarin.Forms": "2.3.3.180"
+    "Xam.Plugins.Settings": "2.6.0.12-beta",
+    "Xamarin.Dropbox.Api": "4.2.3",
+    "Xamarin.Forms": "2.3.4.231"
   },
   "frameworks": {
     "uap10.0": {}

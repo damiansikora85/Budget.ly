@@ -1,0 +1,2 @@
+MainPackage=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\ARM\Release\HomeBudget.UWP_1.0.2.0_ARM.appx
+SymbolPackage=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\AppPackages\HomeBudget.UWP_1.0.2.0_Test\HomeBudget.UWP_1.0.2.0_ARM.appxsym

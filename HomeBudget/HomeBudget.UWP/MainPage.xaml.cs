@@ -13,58 +13,24 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-using Microsoft.WindowsAzure.MobileServices;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
+using Windows.UI.ViewManagement;
 
 namespace HomeBudget.UWP
 {
-	public sealed partial class MainPage : IAuthenticate
-	{
-		// Define a authenticated user.
-		private MobileServiceUser user;
-
-		public async Task<bool> Authenticate()
-		{
-			string message = string.Empty;
-			var success = false;
-
-			try
-			{
-				// Sign in with Google login using a server-managed flow.
-				if (user == null)
-				{
-					user = await HomeBudget.Code.AzureTest.MobileService
-						.LoginAsync(MobileServiceAuthenticationProvider.Facebook);
-					if (user != null)
-					{
-						success = true;
-						message = string.Format("You are now signed-in as {0}.", user.UserId);
-					}
-				}
-
-			}
-			catch (Exception ex)
-			{
-				message = string.Format("Authentication Failed: {0}", ex.Message);
-			}
-
-			// Display the success or failure message.
-			await new MessageDialog(message, "Sign-in result").ShowAsync();
-
-			return success;
-		}
-
+	public sealed partial class MainPage
+    {
 		public MainPage()
 		{
 			new Syncfusion.SfChart.XForms.UWP.SfChartRenderer();
 
 			this.InitializeComponent();
 
-			// Initialize the authenticator before loading the app.
-			HomeBudget.App.Init(this);
+            ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
-			LoadApplication(new HomeBudget.App());
+            LoadApplication(new HomeBudget.App());
 		}
 	}
 }

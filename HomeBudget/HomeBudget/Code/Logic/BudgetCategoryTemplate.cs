@@ -12,7 +12,13 @@ namespace HomeBudget.Code
 		[JsonProperty("name")]
 		public string Name;
 
-		[JsonProperty("sub")]
+        [JsonProperty("id")]
+        public int Id;
+
+        [JsonProperty("icon")]
+        public string IconFileName;
+
+        [JsonProperty("sub")]
 		public List<string> subcategories;
 	}
 }

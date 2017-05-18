@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             x:Class="HomeBudget.AnalizePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Button Text="Chart1" Grid.Row="0" Grid.Column="0" FontSize="Large" TextColor="White" BackgroundColor="#88f1b0" Clicked="OnChart1"/>
+            <Button Text="Chart2" Grid.Row="0" Grid.Column="1" FontSize="Large" TextColor="White" BackgroundColor="#88f1b0" Clicked="OnChart2"/>
+            <Button Text="Chart3" Grid.Row="0" Grid.Column="2" FontSize="Large" TextColor="White" BackgroundColor="#88f1b0" Clicked="OnChart3"/>
+            
+        </Grid>
+        
+
+
+        <chart:SfChart x:Name="chart" Grid.Row="1">
+            <chart:SfChart.Title>
+                <chart:ChartTitle Text="Chart"/>
+            </chart:SfChart.Title>
+
+            <chart:SfChart.Legend>
+                <chart:ChartLegend/>
+            </chart:SfChart.Legend>
+
+            <chart:SfChart.PrimaryAxis>
+                <chart:CategoryAxis>
+                    <chart:CategoryAxis></chart:CategoryAxis>
+                </chart:CategoryAxis>
+            </chart:SfChart.PrimaryAxis>
+
+            <chart:SfChart.SecondaryAxis>
+                <chart:NumericalAxis>
+                    <chart:NumericalAxis></chart:NumericalAxis>
+                </chart:NumericalAxis>
+            </chart:SfChart.SecondaryAxis>
+        </chart:SfChart>
+
+
+        <Button Text="Back" Grid.Row="2" FontSize="Large" TextColor="White" BackgroundColor="#88f1b0" Clicked="OnBack"/>
+    </Grid>
+</ContentPage>

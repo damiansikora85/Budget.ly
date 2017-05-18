@@ -17,7 +17,11 @@
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>Windows_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>HomeBudget.UWP_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>1392791276DE6D33FFBC923C83567119077F4E79</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -90,12 +94,14 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="HomeBudget.UWP_TemporaryKey.pfx" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Code\DropboxHandlerUWP.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -108,6 +114,33 @@
     <None Include="Windows_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\analysis.png" />
+    <Content Include="Assets\document.png" />
+    <Content Include="Assets\expense.png" />
+    <Content Include="Assets\Icons\beauty.png" />
+    <Content Include="Assets\Icons\beautyHighlight.png" />
+    <Content Include="Assets\Icons\clothes.png" />
+    <Content Include="Assets\Icons\clothesHighlight.png" />
+    <Content Include="Assets\Icons\food.png" />
+    <Content Include="Assets\Icons\foodHighlight.png" />
+    <Content Include="Assets\Icons\home.png" />
+    <Content Include="Assets\Icons\homeHighlight.png" />
+    <Content Include="Assets\Icons\kids.png" />
+    <Content Include="Assets\Icons\kidsHighlight.png" />
+    <Content Include="Assets\Icons\medicine.png" />
+    <Content Include="Assets\Icons\medicineHighlight.png" />
+    <Content Include="Assets\Icons\savings.png" />
+    <Content Include="Assets\Icons\savingsHighlight.png" />
+    <Content Include="Assets\Icons\telokom.png" />
+    <Content Include="Assets\Icons\telokomHighlight.png" />
+    <Content Include="Assets\Icons\theatre-masks.png" />
+    <Content Include="Assets\Icons\theatreHighlight.png" />
+    <Content Include="Assets\Icons\transport.png" />
+    <Content Include="Assets\Icons\transportHighlight.png" />
+    <Content Include="Assets\income.png" />
+    <Content Include="Assets\incomes.png" />
+    <Content Include="Assets\restaurant.png" />
+    <Content Include="Assets\restaurantHighlight.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -134,6 +167,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Syncfusion.SfCalendar.XForms">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.1.0.33\Xamarin\lib\uwp\Syncfusion.SfCalendar.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfCalendar.XForms.UWP">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.1.0.33\Xamarin\lib\uwp\Syncfusion.SfCalendar.XForms.UWP.dll</HintPath>
+    </Reference>
     <Reference Include="Syncfusion.SfChart.UWP">
       <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.1.0.33\Xamarin\lib\uwp\Syncfusion.SfChart.UWP.dll</HintPath>
     </Reference>
@@ -142,6 +181,12 @@
     </Reference>
     <Reference Include="Syncfusion.SfChart.XForms.UWP">
       <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.1.0.33\Xamarin\lib\uwp\Syncfusion.SfChart.XForms.UWP.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfInput.UWP">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.1.0.33\Xamarin\lib\uwp\Syncfusion.SfInput.UWP.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfShared.UWP">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.1.0.33\Xamarin\lib\uwp\Syncfusion.SfShared.UWP.dll</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

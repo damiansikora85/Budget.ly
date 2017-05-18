@@ -2,6 +2,18 @@
   "version": 2,
   "targets": {
     "UAP,Version=v10.0": {
+      "Dropbox.Api/4.2.4": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "7.0.1"
+        },
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+        }
+      },
       "Microsoft.Azure.Mobile.Client/3.1.0": {
         "type": "package",
         "dependencies": {
@@ -404,6 +416,17 @@
         },
         "runtime": {
           "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll": {}
+        }
+      },
+      "PCLStorage/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
         }
       },
       "Rg.Plugins.Popup/1.0.4": {
@@ -2099,7 +2122,25 @@
           "lib/uap/CrossPieCharts.ClassLibrary.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.180": {
+      "Xam.Plugins.Settings/2.6.0.12-beta": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        }
+      },
+      "Xamarin.Dropbox.Api/4.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Dropbox.Api": "4.2.3",
+          "Microsoft.Bcl.Build": "1.0.21"
+        }
+      },
+      "Xamarin.Forms/2.3.4.231": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -2122,6 +2163,18 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "Dropbox.Api/4.2.4": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "7.0.1"
+        },
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+        }
+      },
       "Microsoft.Azure.Mobile.Client/3.1.0": {
         "type": "package",
         "dependencies": {
@@ -2517,6 +2570,17 @@
         },
         "runtime": {
           "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll": {}
+        }
+      },
+      "PCLStorage/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
         }
       },
       "Rg.Plugins.Popup/1.0.4": {
@@ -4076,7 +4140,25 @@
           "lib/uap/CrossPieCharts.ClassLibrary.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.180": {
+      "Xam.Plugins.Settings/2.6.0.12-beta": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        }
+      },
+      "Xamarin.Dropbox.Api/4.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Dropbox.Api": "4.2.3",
+          "Microsoft.Bcl.Build": "1.0.21"
+        }
+      },
+      "Xamarin.Forms/2.3.4.231": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -4099,6 +4181,18 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "Dropbox.Api/4.2.4": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "7.0.1"
+        },
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+        }
+      },
       "Microsoft.Azure.Mobile.Client/3.1.0": {
         "type": "package",
         "dependencies": {
@@ -4480,6 +4574,17 @@
         },
         "runtime": {
           "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll": {}
+        }
+      },
+      "PCLStorage/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
         }
       },
       "Rg.Plugins.Popup/1.0.4": {
@@ -6016,7 +6121,25 @@
           "lib/uap/CrossPieCharts.ClassLibrary.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.180": {
+      "Xam.Plugins.Settings/2.6.0.12-beta": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        }
+      },
+      "Xamarin.Dropbox.Api/4.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Dropbox.Api": "4.2.3",
+          "Microsoft.Bcl.Build": "1.0.21"
+        }
+      },
+      "Xamarin.Forms/2.3.4.231": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -6039,6 +6162,18 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "Dropbox.Api/4.2.4": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "7.0.1"
+        },
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+        }
+      },
       "Microsoft.Azure.Mobile.Client/3.1.0": {
         "type": "package",
         "dependencies": {
@@ -6443,6 +6578,17 @@
           "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll": {}
         }
       },
+      "PCLStorage/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        }
+      },
       "Rg.Plugins.Popup/1.0.4": {
         "type": "package",
         "dependencies": {
@@ -8000,7 +8146,25 @@
           "lib/uap/CrossPieCharts.ClassLibrary.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.180": {
+      "Xam.Plugins.Settings/2.6.0.12-beta": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        }
+      },
+      "Xamarin.Dropbox.Api/4.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Dropbox.Api": "4.2.3",
+          "Microsoft.Bcl.Build": "1.0.21"
+        }
+      },
+      "Xamarin.Forms/2.3.4.231": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -8023,6 +8187,18 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "Dropbox.Api/4.2.4": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "7.0.1"
+        },
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+        }
+      },
       "Microsoft.Azure.Mobile.Client/3.1.0": {
         "type": "package",
         "dependencies": {
@@ -8404,6 +8580,17 @@
         },
         "runtime": {
           "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll": {}
+        }
+      },
+      "PCLStorage/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
         }
       },
       "Rg.Plugins.Popup/1.0.4": {
@@ -9940,7 +10127,25 @@
           "lib/uap/CrossPieCharts.ClassLibrary.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.180": {
+      "Xam.Plugins.Settings/2.6.0.12-beta": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        }
+      },
+      "Xamarin.Dropbox.Api/4.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Dropbox.Api": "4.2.3",
+          "Microsoft.Bcl.Build": "1.0.21"
+        }
+      },
+      "Xamarin.Forms/2.3.4.231": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -9963,6 +10168,18 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "Dropbox.Api/4.2.4": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "7.0.1"
+        },
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+        }
+      },
       "Microsoft.Azure.Mobile.Client/3.1.0": {
         "type": "package",
         "dependencies": {
@@ -10367,6 +10584,17 @@
           "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll": {}
         }
       },
+      "PCLStorage/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        }
+      },
       "Rg.Plugins.Popup/1.0.4": {
         "type": "package",
         "dependencies": {
@@ -11924,7 +12152,25 @@
           "lib/uap/CrossPieCharts.ClassLibrary.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.180": {
+      "Xam.Plugins.Settings/2.6.0.12-beta": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        }
+      },
+      "Xamarin.Dropbox.Api/4.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Dropbox.Api": "4.2.3",
+          "Microsoft.Bcl.Build": "1.0.21"
+        }
+      },
+      "Xamarin.Forms/2.3.4.231": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -11947,6 +12193,18 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "Dropbox.Api/4.2.4": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "7.0.1"
+        },
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+        }
+      },
       "Microsoft.Azure.Mobile.Client/3.1.0": {
         "type": "package",
         "dependencies": {
@@ -12328,6 +12586,17 @@
         },
         "runtime": {
           "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll": {}
+        }
+      },
+      "PCLStorage/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
         }
       },
       "Rg.Plugins.Popup/1.0.4": {
@@ -13864,7 +14133,25 @@
           "lib/uap/CrossPieCharts.ClassLibrary.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.180": {
+      "Xam.Plugins.Settings/2.6.0.12-beta": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        }
+      },
+      "Xamarin.Dropbox.Api/4.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Dropbox.Api": "4.2.3",
+          "Microsoft.Bcl.Build": "1.0.21"
+        }
+      },
+      "Xamarin.Forms/2.3.4.231": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -13888,6 +14175,21 @@
     }
   },
   "libraries": {
+    "Dropbox.Api/4.2.4": {
+      "sha512": "5mLRLix+bUqJHIBK354PUD6FuOBVXpo/0/Dmpo0Wj9pQHTIj0XvtFuZy7RW1WKNQTHGOurH7WTWrlujOfRyqOg==",
+      "type": "package",
+      "path": "dropbox.api/4.2.4",
+      "files": [
+        "dropbox.api.4.2.4.nupkg.sha512",
+        "dropbox.api.nuspec",
+        "lib/net45/Dropbox.Api.dll",
+        "lib/net45/Dropbox.Api.xml",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Dropbox.Api.dll",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Dropbox.Api.xml",
+        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll",
+        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.xml"
+      ]
+    },
     "Microsoft.Azure.Mobile.Client/3.1.0": {
       "sha512": "L/RF/9A/mMFifQsTBRmSPV3UpvG11LR+0vsm7KKkOW7pLeRmsAWFtfKRUKoEfgdi2XoOFSLkXk88w8jVXV5uJA==",
       "type": "package",
@@ -14886,6 +15188,51 @@
         "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll",
         "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.xml",
         "tools/install.ps1"
+      ]
+    },
+    "PCLStorage/1.0.2": {
+      "sha512": "9If+1ZFCk3QaT/asfiL+J9FMnx2CTMrLCU8tDMUOI/aCGWGWl9vJ1/KcMkjf92op23ZknenvYJZBLDAqE3sFlg==",
+      "type": "package",
+      "path": "pclstorage/1.0.2",
+      "files": [
+        "lib/monoandroid/PCLStorage.Abstractions.dll",
+        "lib/monoandroid/PCLStorage.Abstractions.xml",
+        "lib/monoandroid/PCLStorage.dll",
+        "lib/monoandroid/PCLStorage.xml",
+        "lib/monotouch/PCLStorage.Abstractions.dll",
+        "lib/monotouch/PCLStorage.Abstractions.xml",
+        "lib/monotouch/PCLStorage.dll",
+        "lib/monotouch/PCLStorage.xml",
+        "lib/net45/PCLStorage.Abstractions.dll",
+        "lib/net45/PCLStorage.Abstractions.xml",
+        "lib/net45/PCLStorage.dll",
+        "lib/net45/PCLStorage.xml",
+        "lib/portable-Xamarin.iOS+Xamarin.Mac/PCLStorage.Abstractions.dll",
+        "lib/portable-Xamarin.iOS+Xamarin.Mac/PCLStorage.Abstractions.xml",
+        "lib/portable-Xamarin.iOS+Xamarin.Mac/PCLStorage.dll",
+        "lib/portable-Xamarin.iOS+Xamarin.Mac/PCLStorage.xml",
+        "lib/portable-net45+sl5+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac/PCLStorage.Abstractions.dll",
+        "lib/portable-net45+sl5+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac/PCLStorage.Abstractions.xml",
+        "lib/portable-net45+sl5+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac/PCLStorage.dll",
+        "lib/portable-net45+sl5+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac/PCLStorage.xml",
+        "lib/portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac/PCLStorage.Abstractions.dll",
+        "lib/portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac/PCLStorage.Abstractions.xml",
+        "lib/portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac/PCLStorage.dll",
+        "lib/portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac/PCLStorage.xml",
+        "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll",
+        "lib/portable-win8+wpa81/PCLStorage.Abstractions.xml",
+        "lib/portable-win8+wpa81/PCLStorage.dll",
+        "lib/portable-win8+wpa81/PCLStorage.xml",
+        "lib/sl5/PCLStorage.Abstractions.dll",
+        "lib/sl5/PCLStorage.Abstractions.xml",
+        "lib/sl5/PCLStorage.dll",
+        "lib/sl5/PCLStorage.xml",
+        "lib/wp8/PCLStorage.Abstractions.dll",
+        "lib/wp8/PCLStorage.Abstractions.xml",
+        "lib/wp8/PCLStorage.dll",
+        "lib/wp8/PCLStorage.xml",
+        "pclstorage.1.0.2.nupkg.sha512",
+        "pclstorage.nuspec"
       ]
     },
     "Rg.Plugins.Popup/1.0.4": {
@@ -17626,18 +17973,70 @@
         "lib/uap/CrossPieCharts.ClassLibrary.dll"
       ]
     },
-    "Xamarin.Forms/2.3.3.180": {
-      "sha512": "n4zTnWMDmtWnLqD8duenKd4Ofk8NmklPHHFRIMx+BuUuzX9ZOJFGWun6RCgzok54UBWQgX38Mf80Hvh7v3GYzQ==",
+    "Xam.Plugins.Settings/2.6.0.12-beta": {
+      "sha512": "7ZFJ8u1qxdfgUI5zij8s2a8cf5sL3dQdpeewOSuiah4HqT3kC13dD5GV1btdZ6f6WL10gQD7yYz+z7tVMBtH5w==",
       "type": "package",
-      "path": "xamarin.forms/2.3.3.180",
+      "path": "xam.plugins.settings/2.6.0.12-beta",
       "files": [
-        "Xamarin.Forms.2.3.3.180.nupkg.sha512",
-        "Xamarin.Forms.nuspec",
-        "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/ICSharpCode.Decompiler.dll",
-        "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/ICSharpCode.NRefactory.CSharp.dll",
-        "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/ICSharpCode.NRefactory.Cecil.dll",
-        "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/ICSharpCode.NRefactory.Xml.dll",
-        "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/ICSharpCode.NRefactory.dll",
+        "content/MonoAndroid10/Helpers/Settings.cs.pp",
+        "content/UAP10/Helpers/Settings.cs.pp",
+        "content/Xamarin.iOS10/Helpers/Settings.cs.pp",
+        "content/net45/Helpers/Settings.cs.pp",
+        "content/portable-net45+wp80+win8+wpa81/Helpers/Settings.cs.pp",
+        "content/win8/Helpers/Settings.cs.pp",
+        "content/wp8/Helpers/Settings.cs.pp",
+        "content/wpa81/Helpers/Settings.cs.pp",
+        "lib/MonoAndroid10/Plugin.Settings.Abstractions.dll",
+        "lib/MonoAndroid10/Plugin.Settings.Abstractions.xml",
+        "lib/MonoAndroid10/Plugin.Settings.dll",
+        "lib/MonoAndroid10/Plugin.Settings.xml",
+        "lib/UAP10/Plugin.Settings.Abstractions.dll",
+        "lib/UAP10/Plugin.Settings.Abstractions.xml",
+        "lib/UAP10/Plugin.Settings.dll",
+        "lib/UAP10/Plugin.Settings.xml",
+        "lib/Xamarin.iOS10/Plugin.Settings.Abstractions.dll",
+        "lib/Xamarin.iOS10/Plugin.Settings.Abstractions.xml",
+        "lib/Xamarin.iOS10/Plugin.Settings.dll",
+        "lib/Xamarin.iOS10/Plugin.Settings.xml",
+        "lib/net45/Plugin.Settings.Abstractions.dll",
+        "lib/net45/Plugin.Settings.Abstractions.xml",
+        "lib/net45/Plugin.Settings.dll",
+        "lib/net45/Plugin.Settings.xml",
+        "lib/portable-net45+wp80+win8+wpa81/Plugin.Settings.Abstractions.dll",
+        "lib/portable-net45+wp80+win8+wpa81/Plugin.Settings.Abstractions.xml",
+        "lib/portable-net45+wp80+win8+wpa81/Plugin.Settings.dll",
+        "lib/portable-net45+wp80+win8+wpa81/Plugin.Settings.xml",
+        "lib/win8/Plugin.Settings.Abstractions.dll",
+        "lib/win8/Plugin.Settings.Abstractions.xml",
+        "lib/win8/Plugin.Settings.dll",
+        "lib/win8/Plugin.Settings.xml",
+        "lib/wp8/Plugin.Settings.Abstractions.dll",
+        "lib/wp8/Plugin.Settings.Abstractions.xml",
+        "lib/wp8/Plugin.Settings.dll",
+        "lib/wp8/Plugin.Settings.xml",
+        "lib/wpa81/Plugin.Settings.Abstractions.dll",
+        "lib/wpa81/Plugin.Settings.Abstractions.xml",
+        "lib/wpa81/Plugin.Settings.dll",
+        "lib/wpa81/Plugin.Settings.xml",
+        "readme.txt",
+        "xam.plugins.settings.2.6.0.12-beta.nupkg.sha512",
+        "xam.plugins.settings.nuspec"
+      ]
+    },
+    "Xamarin.Dropbox.Api/4.2.3": {
+      "sha512": "SwKUlifcqNsTVvB4V+jLRaH1yV7viBy4IJVA/MSoArAQgYDpTEsrGBsGRGjuhWqrtWEA+QSrgGHR69JGbKzR9Q==",
+      "type": "package",
+      "path": "xamarin.dropbox.api/4.2.3",
+      "files": [
+        "xamarin.dropbox.api.4.2.3.nupkg.sha512",
+        "xamarin.dropbox.api.nuspec"
+      ]
+    },
+    "Xamarin.Forms/2.3.4.231": {
+      "sha512": "Tar4nHke8Rl0Mz2Y1MdNAMvo8wKc/wVVW2rN7loXMc+2R1ex3n/fzs7eD2F7gDw3TceGLQku52kyc5LuN8Hlgw==",
+      "type": "package",
+      "path": "xamarin.forms/2.3.4.231",
+      "files": [
         "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Mono.Cecil.Mdb.dll",
         "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Mono.Cecil.Pdb.dll",
         "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Mono.Cecil.Rocks.dll",
@@ -17786,7 +18185,9 @@
         "lib/wpa81/Xamarin.Forms.Platform.WinRT/Xamarin.Forms.Platform.WinRT.xr.xml",
         "lib/wpa81/Xamarin.Forms.Platform.dll",
         "lib/wpa81/Xamarin.Forms.Xaml.dll",
-        "lib/wpa81/Xamarin.Forms.Xaml.xml"
+        "lib/wpa81/Xamarin.Forms.Xaml.xml",
+        "xamarin.forms.2.3.4.231.nupkg.sha512",
+        "xamarin.forms.nuspec"
       ]
     },
     "HomeBudget/1.0.0": {
@@ -17797,13 +18198,17 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "Dropbox.Api >= 4.2.4",
       "Microsoft.Azure.Mobile.Client >= 3.1.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
       "Newtonsoft.Json >= 9.0.1",
+      "PCLStorage >= 1.0.2",
       "Rg.Plugins.Popup >= 1.0.4",
       "WindowsAzure.Storage >= 8.1.0",
       "Xam.FormsPlugin.CrossPieChart >= 2.1.15",
-      "Xamarin.Forms >= 2.3.3.180"
+      "Xam.Plugins.Settings >= 2.6.0.12-beta",
+      "Xamarin.Dropbox.Api >= 4.2.3",
+      "Xamarin.Forms >= 2.3.4.231"
     ],
     "UAP,Version=v10.0": []
   },
@@ -17828,13 +18233,17 @@
       }
     },
     "dependencies": {
+      "Dropbox.Api": "4.2.4",
       "Microsoft.Azure.Mobile.Client": "3.1.0",
       "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
       "Newtonsoft.Json": "9.0.1",
+      "PCLStorage": "1.0.2",
       "Rg.Plugins.Popup": "1.0.4",
       "WindowsAzure.Storage": "8.1.0",
       "Xam.FormsPlugin.CrossPieChart": "2.1.15",
-      "Xamarin.Forms": "2.3.3.180"
+      "Xam.Plugins.Settings": "2.6.0.12-beta",
+      "Xamarin.Dropbox.Api": "4.2.3",
+      "Xamarin.Forms": "2.3.4.231"
     },
     "frameworks": {
       "uap10.0": {}

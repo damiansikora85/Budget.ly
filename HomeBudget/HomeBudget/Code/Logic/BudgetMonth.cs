@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Runtime.Serialization;
+using System.Diagnostics;
+
 namespace HomeBudget.Code
 {
 	public class BudgetMonth
@@ -26,9 +29,9 @@ namespace HomeBudget.Code
         public class BudgetChartData
         {
             public string CategoryName { get; set; }
-            public float ExpensesSum { get; set; }
+            public double ExpensesSum { get; set; }
 
-            public BudgetChartData(string name, float sum)
+            public BudgetChartData(string name, double sum)
             {
                 CategoryName = name;
                 ExpensesSum = sum;
@@ -44,16 +47,29 @@ namespace HomeBudget.Code
 			return month;
 		}
 
-		public void AddExpense(float value, int categoryID, int subcategoryID, int dayOfMonth)
+        public static BudgetMonth CreateFromBinaryData(BinaryData binaryData)
+        {
+            BudgetMonth month = new BudgetMonth();
+            month.Deserialize(binaryData);
+
+            return month;
+        }
+
+		public void AddExpense(float value, ExpenseSaveData expenseSaveData)
 		{
-			if (categoryID < categories.Count)
-				categories[categoryID].AddExpense(value, subcategoryID, dayOfMonth);
+            GetCategoryByID(expenseSaveData.Category.Id).AddExpense(value, expenseSaveData.Subcategory.Id, expenseSaveData.Date);
 		}
+
+        private BudgetCategory GetCategoryByID(int id)
+        {
+            BudgetCategory category = categories.Find(element => element.Id == id);
+            return category;
+        }
 
 		private BudgetMonth()
 		{
-
-		}
+            categories = new List<BudgetCategory>();
+        }
 
 		private void SetupDate(DateTime date)
 		{
@@ -63,12 +79,9 @@ namespace HomeBudget.Code
 
 		private void SetupCategories(List<BudgetCategoryTemplate> categoriesDesc)
 		{
-			categories = new List<BudgetCategory>();
-
 			foreach(BudgetCategoryTemplate category in categoriesDesc)
 			{
 				BudgetCategory budgetCategory = BudgetCategory.Create(category);
-				budgetCategory.Name = category.Name;
 				categories.Add(budgetCategory);
 			}
 		}
@@ -84,5 +97,29 @@ namespace HomeBudget.Code
 			return monthData;
 		}
 
+        public byte[] Serialize()
+        {
+            List<byte> bytes = new List<byte>();
+            bytes.AddRange(BitConverter.GetBytes(month));
+            bytes.AddRange(BitConverter.GetBytes(year));
+            bytes.AddRange(BitConverter.GetBytes(categories.Count));
+            foreach (BudgetCategory category in categories)
+                bytes.AddRange(category.Serialize());
+
+            return bytes.ToArray();
+        }
+
+        private void Deserialize(BinaryData binaryData)
+        {
+            month = binaryData.GetInt();
+            year = binaryData.GetInt();
+            int categoriesNum = binaryData.GetInt();
+
+            for(int i=0; i<categoriesNum; i++)
+            {
+                BudgetCategory budgetCategory = BudgetCategory.CreateFromBinaryData(binaryData);
+                categories.Add(budgetCategory);
+            }
+        }
 	}
 }

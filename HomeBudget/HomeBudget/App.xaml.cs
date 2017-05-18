@@ -15,18 +15,24 @@ namespace HomeBudget
 
 	public partial class App : Application
 	{
-		public static IAuthenticate Authenticator { get; private set; }
-
-		public static void Init(IAuthenticate authenticator)
-		{
-			Authenticator = authenticator;
-		}
-
 		public App()
 		{
 			InitializeComponent();
 
-			MainPage = new HomeBudget.MainPage();
+            if (Device.Idiom == TargetIdiom.Phone)
+            {
+                MainPage = new HomeBudget.MainPage();
+            }
+            if (Device.Idiom == TargetIdiom.Tablet)
+            {
+                MainPage = new HomeBudget.MainPage();
+            }
+            else
+            {
+                MainPage = new HomeBudget.MainPagePC();
+            }
+
+            
 		}
 
 		protected override void OnStart()

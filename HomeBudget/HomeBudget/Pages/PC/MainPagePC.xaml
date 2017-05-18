@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:HomeBudget"
+             xmlns:xToggleButton="clr-namespace:HomeBudget"
+             x:Class="HomeBudget.MainPagePC">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="7*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+
+        <Grid x:Name="sideBar" Grid.Column="0" Grid.Row="0" BackgroundColor="#407153">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Image BackgroundColor="#D2F3DF" Grid.ColumnSpan="3" Grid.RowSpan="2" />
+                <Image Grid.Row="0" Grid.Column="1" Source="Assets/incomes.png" IsOpaque="True" VerticalOptions="Center" />
+                <Label Grid.Row="1" Grid.ColumnSpan="3" Text="Home" FontSize="Medium" HorizontalOptions="Center" />
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0" Grid.Column="1" Source="Assets/analysis.png" BackgroundColor="Transparent" IsOpaque="True" VerticalOptions="Center"/>
+                <Label Grid.Row="1" Grid.ColumnSpan="3" Text="Analize" FontSize="Medium" HorizontalOptions="Center" />
+                <Button Grid.RowSpan="2" Grid.ColumnSpan="3" BackgroundColor="Transparent" Clicked="OnAnalyticsClick"/>
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0" Grid.Column="1" Source="Assets/document.png" BackgroundColor="Transparent" IsOpaque="True" VerticalOptions="Center"/>
+                <Label Grid.Row="1" Grid.ColumnSpan="3" Text="Plan" FontSize="Medium" HorizontalOptions="Center" />
+                <Button Grid.RowSpan="2" Grid.ColumnSpan="3" BackgroundColor="Transparent" Clicked="OnPlanClick"/>
+            </Grid>
+            
+        </Grid>
+
+
+        <Grid Grid.Column="1" Grid.Row="0" BackgroundColor="#f9f9f9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label Text="1000,00zl" FontSize="Large" Grid.Column="0" Grid.Row="0"/>
+
+            <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="1" HorizontalOptions="CenterAndExpand">
+                <Button Image="Assets/income.png" FontSize="Large" BackgroundColor="#88f1b0" Clicked="OnIncomeClick" />
+                <Button Image="Assets/expense.png" FontSize="Large" BackgroundColor="#88f1b0" Clicked="OnExpenseClick" />
+                <!--
+                <xToggleButton:XToggleButtonControl x:Name="ToggleOne" Checked="True" CheckedImage="Assets/restaurantHighlight.png" HeightRequest="50" UnCheckedImage="Assets/restaurant.png" WidthRequest="50" />
+                <xToggleButton:XToggleButtonControl x:Name="ToggleTwo" Checked="False" CheckedImage="Assets/restaurantHighlight.png" HeightRequest="50" HorizontalOptions="Center" UnCheckedImage="Assets/restaurant.png" WidthRequest="50" />-->
+            </StackLayout>
+
+        </Grid>
+
+        <AbsoluteLayout>
+            <StackLayout x:Name="subcat" BackgroundColor="#6BBE8B" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.85, 1" TranslationX="-185"/>
+        </AbsoluteLayout>
+
+        <AbsoluteLayout>
+            <ScrollView x:Name="categoriesScroll" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.5, 1" TranslationX="-150">
+                <StackLayout x:Name="categories" BackgroundColor="#407153" />
+
+            </ScrollView>
+        </AbsoluteLayout>
+
+    </Grid>
+</ContentPage>
