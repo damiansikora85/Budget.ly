@@ -132,7 +132,7 @@ namespace HomeBudget
                 string subcategoryName = category.subcategories[i];
                 btn.Text = subcategoryName;
                 btn.Command = expensesCategoriesViewModel.ButtonClicked;
-                btn.CommandParameter = CreateExpenseData(category, subcategoryName, i);
+                
                 btn.Style = App.Current.Resources["ButtonStyleSub"] as Style;
 
                 grid.Children.Add(btn, col, row);
@@ -146,16 +146,6 @@ namespace HomeBudget
             }
         }
 
-        private Code.ExpenseSaveData CreateExpenseData(BudgetCategoryTemplate category, string subcategoryName, int subcategoryID)
-        {
-            Code.ExpenseSaveData expenseData = new Code.ExpenseSaveData()
-            {
-                Category = new CategoryData(category.Name, category.Id),
-                Subcategory = new CategoryData(subcategoryName, subcategoryID),
-                Date = DateTime.Now
-            };
-            return expenseData;
-        }
 
         private async void OnBack(object sender, EventArgs e)
         {
@@ -175,16 +165,11 @@ namespace HomeBudget
 
         public ExpensesCategoriesViewModel()
         {
-            ButtonClicked = new Command<Code.ExpenseSaveData>(HandleButtonClicked);
+            
             shouldAutoLaunchPopup = false;
         }
 
-        private async void HandleButtonClicked(Code.ExpenseSaveData expenseSaveData)
-        {
-            Code.MainBudget.Instance.CurrentExpenseSaveData = expenseSaveData;
-            //var popup = new AddExpensePopup(SetAutoLaunchPopup);
-            //await Navigation.PushPopupAsync(popup);
-        }
+
 
         protected virtual void OnPropertyChanged(string propertyName)
         {

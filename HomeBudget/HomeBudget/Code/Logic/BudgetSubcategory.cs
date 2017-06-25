@@ -10,13 +10,19 @@ namespace HomeBudget.Code
 	public class BudgetSubcategory
 	{
 		double[] expense = new double[31];
+        double expensePlanned;
 
-		public void AddExpense(float value, int dayOfMonth)
+		public void AddExpense(double value, int dayOfMonth)
 		{
 			expense[dayOfMonth] += value;
 		}
 
-		public double GetSum()
+        public void SetPlannedExpense(float value)
+        {
+            expensePlanned = value;
+        }
+
+        public double GetSum()
 		{
 			double result = 0;
 			for(int i=0; i<31; i++)
@@ -24,18 +30,22 @@ namespace HomeBudget.Code
 				result += expense[i];
 			}
 
-            //Random rand = new Random();
-            //result = (float)rand.NextDouble() * 100;
-
 			return result;
 		}
+
+        public double GetExpenseDay(int dayNum)
+        {
+            return expense[dayNum];
+        }
 
         public byte[] Serialize()
         {
             var byteArray = new byte[31 * sizeof(double)];
             Buffer.BlockCopy(expense, 0, byteArray, 0, byteArray.Length);
+            List<byte> bytes = new List<byte>(byteArray);
+            bytes.AddRange(BitConverter.GetBytes(expensePlanned));
 
-            return byteArray;
+            return bytes.ToArray();
         }
 
         public void Deserialize(BinaryData binaryData)
@@ -44,6 +54,7 @@ namespace HomeBudget.Code
             {
                 expense[i] = binaryData.GetDouble();
             }
+            expensePlanned = binaryData.GetDouble();
         }
-	}
+    }
 }

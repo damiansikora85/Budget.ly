@@ -15,9 +15,15 @@ namespace HomeBudget
 {
     public partial class CalendarPopup : ContentPage
     {
-        Action OnDateChanged;
+        Action<DateTime> OnDateChanged;
 
-        public CalendarPopup(Action callback)
+        public CalendarPopup()
+        {
+            InitializeComponent();
+            calendar.OnCalendarTapped += OnDaySelected;
+        }
+
+        public CalendarPopup(Action<DateTime> callback)
         {
             InitializeComponent();
             calendar.OnCalendarTapped += OnDaySelected;
@@ -26,14 +32,12 @@ namespace HomeBudget
 
         private async void OnDaySelected(object sender, CalendarTappedEventArgs args)
         {
-            Code.MainBudget.Instance.CurrentExpenseSaveData.Date = args.datetime;
-            OnDateChanged();
+            OnDateChanged(args.datetime);
             await Navigation.PopModalAsync();
         }
 
         private async void OnBack(object sender, EventArgs e)
         {
-            OnDateChanged(); 
             await Navigation.PopModalAsync();
         }
     }

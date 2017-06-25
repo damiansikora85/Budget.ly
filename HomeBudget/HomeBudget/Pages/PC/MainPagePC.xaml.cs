@@ -18,29 +18,47 @@ using Xamarin.Forms.Xaml;
 
 namespace HomeBudget
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPagePC : ContentPage
     {
+        public enum EMode
+        {
+            Expense,
+            Income,
+            Planning
+        }
+
+        private EMode mode;
+
         private const string TEMPLATE_FILENAME = "HomeBudget.template.json";
         private string selectedCategoryName;
         private int selectedCategoryId;
+        private DateTime selectedDate;
         private CategoryElement lastCategorySelected;
         private bool shouldAutoLaunchPopup;
+        private MainPagePCViewModel viewModel;
+        private int selectedSubcatId;
 
         public ICommand SubcatClicked { get; private set; }
 
         public MainPagePC()
         {
             InitializeComponent();
-            //BindingContext = new MainPagePCViewModel();
-
-            //SubcatClicked = new Command<Code.ExpenseSaveData>(HandleSubcatClicked);
+            viewModel = new MainPagePCViewModel();
+            BindingContext = viewModel;
 
             InitBudget();
             CreateCategoriesBar();
+            CreateIncomesBar();
+
+            DateTime currentDate = DateTime.Now;
+            dateText.Text = currentDate.ToString("MMMM") + " " + currentDate.Year;
         }
 
         private void InitBudget()
         {
+            Calculator.IsVisible = false;
+            MainBudget.Instance.onBudgetLoaded += OnBudgetLoaded;
             var assembly = typeof(MainPage).GetTypeInfo().Assembly;
 
             Stream stream = assembly.GetManifestResourceStream(TEMPLATE_FILENAME);
@@ -52,9 +70,15 @@ namespace HomeBudget
             }
         }
 
+        private void OnBudgetLoaded()
+        {
+            SetupBudgetSummary();
+        }
+
         private async void OnPlanClick(object sender, EventArgs args)
         {
-
+            NavigationPage planPage = new NavigationPage(new PlanningPage());
+            await Navigation.PushModalAsync(planPage);
         }
 
         private async void OnAnalyticsClick(object sender, EventArgs e)
@@ -63,29 +87,40 @@ namespace HomeBudget
             await Navigation.PushModalAsync(analizePage);
         }
 
-        protected override void OnAppearing()
-        {
-            if (shouldAutoLaunchPopup)
-            {
-                shouldAutoLaunchPopup = false;
-                var popup = new AddExpensePopup(selectedCategoryName, "test", DateTime.Now, SetAutoLaunchPopup);
-                Navigation.PushPopupAsync(popup);
-            }
-        }
-
         private async void OnIncomeClick(object sender, EventArgs e)
-        {   
-            /*if (show)
-                await categoriesScroll.TranslateTo(-150, 0);
-            else
-                await categoriesScroll.TranslateTo(0, 0);
-
-            show = !show;*/
+        {
+            mode = EMode.Income;
+            await incomes.TranslateTo(0, 0);
         }
 
         private async void OnExpenseClick(object sender, EventArgs e)
         {
+            mode = EMode.Expense;
             await categoriesScroll.TranslateTo(0, 0);
+        }
+
+        private void CreateIncomesBar()
+        {
+            string iconsPathPrefix = "Assets\\";
+            int incomesNum = MainBudget.Instance.BudgetDescription.Incomes.Count;
+            for(int i=0; i<incomesNum; i++)
+            {
+                Grid grid = CreateCategoryGrid();
+                BudgetIncomeTemplate incomeTemplate = MainBudget.Instance.BudgetDescription.Incomes[i];
+                CategoryElement element = CategoryElement.CreateAndAddToGrid(incomeTemplate.Id, incomeTemplate.Name, iconsPathPrefix+incomeTemplate.IconFileName, grid);
+                element.onClickFunc += OnIncomeCategoryClick;
+                incomes.Children.Add(grid);
+            }
+        }
+
+        private async Task OnIncomeCategoryClick(int incomeCategoryID, CategoryElement categoryElement)
+        {
+            selectedCategoryId = incomeCategoryID;
+            selectedDate = DateTime.Now;
+            categoryElement.Deselect();
+            await incomes.TranslateTo(-150, 0);
+
+            ShowCalculatorView("Dochód", selectedDate);
         }
 
         private void CreateCategoriesBar()
@@ -105,8 +140,10 @@ namespace HomeBudget
 
         private async Task OnCategoryClicked(int categoryID, CategoryElement categoryElement)
         {
+            mode = EMode.Expense;
             selectedCategoryName = categoryElement.Name;
             selectedCategoryId = categoryElement.Id;
+            selectedDate = DateTime.Now;
             CreateSubCat(categoryID);
             await subcat.TranslateTo(150, 0);
 
@@ -169,67 +206,179 @@ namespace HomeBudget
             return grid;
         }
 
-        private ExpenseSaveData CreateExpenseData(BudgetCategoryTemplate category, string subcategoryName, int subcategoryID)
-        {
-            ExpenseSaveData expenseData = new Code.ExpenseSaveData()
-            {
-                Category = new CategoryData(category.Name, category.Id),
-                Subcategory = new CategoryData(subcategoryName, subcategoryID),
-                Date = DateTime.Now
-            };
-            return expenseData;
-        }
-
         private async Task OnSubcatClicked(int id, CategoryElement element)
         {
-            ExpenseSaveData expenseData = new Code.ExpenseSaveData()
-            {
-                Category = new CategoryData(selectedCategoryName, selectedCategoryId),
-                Subcategory = new CategoryData(element.Name, element.Id),
-                Date = DateTime.Now
-            };
-
-            Code.MainBudget.Instance.CurrentExpenseSaveData = expenseData;
-
+            selectedSubcatId = id;
+            lastCategorySelected.Deselect();
+            element.Deselect();
             await subcat.TranslateTo(-185, 0);
             await categoriesScroll.TranslateTo(-150, 0);
 
-            var popup = new AddExpensePopup(selectedCategoryName, element.Name, DateTime.Now, SetAutoLaunchPopup);
-            await Navigation.PushPopupAsync(popup);   
+            ShowCalculatorView(lastCategorySelected.Name, selectedDate);
         }
 
-        public void SetAutoLaunchPopup()
+        private void SetupBudgetSummary()
         {
-            shouldAutoLaunchPopup = true;
+            BudgetMonth budgetMonth = MainBudget.Instance.GetCurrentMonthData();
+            double monthExpenses = budgetMonth.GetTotalExpense();
+            double monthIncomes = budgetMonth.GetTotalIncome();
+            double diff = monthIncomes - monthExpenses;
+            expansesText.Text = "Wydatki: " + monthExpenses;
+            incomeText.Text = "Dochody: " + monthIncomes;
+            diffText.Text = "Różnica: " + diff;
+        }
+
+        private async void OnOk(object sender, EventArgs e)
+        {
+            Calculator.IsVisible = false;
+            if (mode == EMode.Income)
+                await MainBudget.Instance.AddIncome(float.Parse(viewModel.CalculationText), selectedDate, selectedCategoryId);
+            else if (mode == EMode.Expense)
+                await MainBudget.Instance.AddExpense(float.Parse(viewModel.CalculationText), selectedDate, selectedCategoryId, selectedSubcatId);
+
+            SetupBudgetSummary();
+        }
+
+        private async void OnCancel(object sender, EventArgs e)
+        {
+            Calculator.IsVisible = false;
+        }
+
+        private async void OnChangeDate(object sender, EventArgs e)
+        {
+            var calendar = new CalendarPopup(SelectedDateChanged);
+            await Navigation.PushModalAsync(calendar);
+        }
+
+        private void ShowCalculatorView(string header, DateTime date)
+        {
+            Calculator.IsVisible = true;
+
+            Header.Text = header;
+            DateButton.Text = date.ToString("d");
+        }
+
+        private void SelectedDateChanged(DateTime newDate)
+        {
+            selectedDate = newDate;
+            DateButton.Text = selectedDate.ToString("d");
         }
     }
 
-    class MainPagePCViewModel : INotifyPropertyChanged
+
+
+    public class MainPagePCViewModel : INotifyPropertyChanged
     {
+        public enum CalculatorKey
+        {
+            Zero = 0,
+            One = 1,
+            Two = 2,
+            Three = 3,
+            Four = 4,
+            Five = 5,
+            Six = 6,
+            Seven = 7,
+            Eight = 8,
+            Nine = 9,
+            Backspace = 20,
+            Clear,
+            PlusMinus,
+            Divide,
+            Multiply,
+            Minus,
+            Plus,
+            Equal,
+            Point,
+            Ok,
+            Cancel,
+            Calendar
+        }
+
+        public ICommand KeyPressed { get; private set; }
+        private String calculationText;
+        private string categoryText;
+        private string dateText;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public string CategoryText
+        {
+            get { return categoryText; }
+            set
+            {
+                categoryText = value;
+                if (string.IsNullOrEmpty(categoryText))
+                {
+                    categoryText = " ";
+                }
+                OnPropertyChanged("CategoryText");
+            }
+        }
 
         public MainPagePCViewModel()
         {
-            IncreaseCountCommand = new Command(IncreaseCount);
+            KeyPressed = new Command<string>(HandleKeyPressed);
+            CalculationText = "";
         }
 
-        int count;
-
-        string countDisplay = "You clicked 0 times.";
-        public string CountDisplay
+        public string CalculationText
         {
-            get { return countDisplay; }
-            set { countDisplay = value; OnPropertyChanged(); }
+            get { return calculationText; }
+            set
+            {
+                calculationText = value;
+                if (string.IsNullOrEmpty(calculationText))
+                {
+                    calculationText = " "; // HACK to force grid view to allocate space.
+                }
+                OnPropertyChanged("CalculationText");
+            }
         }
 
-        public ICommand IncreaseCountCommand { get; }
+        public string DateText
+        {
+            get { return dateText; }
+            set
+            {
+                dateText = value;
+                if (string.IsNullOrEmpty(dateText))
+                {
+                    dateText = " ";
+                }
+            }
+        }
 
-        void IncreaseCount() =>
-            CountDisplay = $"You clicked {++count} times";
+        void HandleKeyPressed(string value)
+        {
+            var calculatorKey = (CalculatorKey)Enum.Parse(typeof(CalculatorKey), value, true);
 
+            switch (calculatorKey)
+            {
+                case CalculatorKey.One:
+                case CalculatorKey.Two:
+                case CalculatorKey.Three:
+                case CalculatorKey.Four:
+                case CalculatorKey.Five:
+                case CalculatorKey.Six:
+                case CalculatorKey.Seven:
+                case CalculatorKey.Eight:
+                case CalculatorKey.Nine:
+                case CalculatorKey.Zero:
+                    CalculationText += ((int)calculatorKey).ToString();
+                    break;
+                case CalculatorKey.Equal:
+                    break;
+                case CalculatorKey.Point:
+                    CalculationText += '.';
+                    break;
+            }
+            return;
+        }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged([CallerMemberName]string propertyName = "") =>
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
+        }
     }
 }

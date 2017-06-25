@@ -86,13 +86,19 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Label Text="1000,00zl" FontSize="Large" Grid.Column="0" Grid.Row="0"/>
+            <Label x:Name="dateText"  Text="Data" FontSize="Large" Grid.Column="0" Grid.Row="0"/>
+            <Label x:Name="expansesText"  Text="Wydatki:" FontSize="Large" Grid.Column="0" Grid.Row="1"/>
+            <Label x:Name="incomeText" Text="Dochody:" FontSize="Large" Grid.Column="0" Grid.Row="2"/>
+            <Label x:Name="diffText" Text="Różnica:" FontSize="Large" Grid.Column="0" Grid.Row="3"/>
 
-            <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="1" HorizontalOptions="CenterAndExpand">
-                <Button Image="Assets/income.png" FontSize="Large" BackgroundColor="#88f1b0" Clicked="OnIncomeClick" />
-                <Button Image="Assets/expense.png" FontSize="Large" BackgroundColor="#88f1b0" Clicked="OnExpenseClick" />
+            <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="4" HorizontalOptions="CenterAndExpand">
+                <Button Image="Assets/New/income.png" FontSize="Large" BackgroundColor="#88f1b0" Clicked="OnIncomeClick" />
+                <Button Image="Assets/New/expense.png" FontSize="Large" BackgroundColor="#88f1b0" Clicked="OnExpenseClick" />
                 <!--
                 <xToggleButton:XToggleButtonControl x:Name="ToggleOne" Checked="True" CheckedImage="Assets/restaurantHighlight.png" HeightRequest="50" UnCheckedImage="Assets/restaurant.png" WidthRequest="50" />
                 <xToggleButton:XToggleButtonControl x:Name="ToggleTwo" Checked="False" CheckedImage="Assets/restaurantHighlight.png" HeightRequest="50" HorizontalOptions="Center" UnCheckedImage="Assets/restaurant.png" WidthRequest="50" />-->
@@ -107,9 +113,263 @@
         <AbsoluteLayout>
             <ScrollView x:Name="categoriesScroll" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.5, 1" TranslationX="-150">
                 <StackLayout x:Name="categories" BackgroundColor="#407153" />
-
             </ScrollView>
         </AbsoluteLayout>
 
+        <AbsoluteLayout>
+            <StackLayout x:Name="incomes" BackgroundColor="#407153" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.5, 1" TranslationX="-150"/>
+        </AbsoluteLayout>
+
+        <AbsoluteLayout x:Name="Calculator" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Grid.ColumnSpan="2">
+            <StackLayout VerticalOptions="Center"
+			HorizontalOptions="FillAndExpand"
+			Opacity="0.9">
+                <StackLayout.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <OnPlatform.Android>15, 10, 15, 20</OnPlatform.Android>
+                    </OnPlatform>
+                </StackLayout.Margin>
+
+                <Grid BackgroundColor="White" Opacity="0.9">
+                    <Grid.Padding>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <OnPlatform.iOS>10, 20, 10, 0</OnPlatform.iOS>
+                            <OnPlatform.Android>0, 0, 0, 0</OnPlatform.Android>
+                        </OnPlatform>
+                    </Grid.Padding>
+                    <Grid.ColumnSpacing>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <OnPlatform.iOS>30</OnPlatform.iOS>
+                            <OnPlatform.Android>0</OnPlatform.Android>
+                        </OnPlatform>
+                    </Grid.ColumnSpacing>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+				    StyleId="calculationText"
+				    Grid.Row="0"
+				    Grid.ColumnSpan="3"
+				    Text=" "
+                    x:Name="Header"
+				    Font="Large"
+				    HorizontalOptions="CenterAndExpand" />
+                    <Label
+				    StyleId="calculationText"
+				    Grid.Row="1"
+				    Grid.ColumnSpan="3"
+				    Text=" "
+                     x:Name="Description"
+				    Font="Large"
+				    HorizontalOptions="CenterAndExpand" />
+                    <Button
+				Grid.Column="3"
+                Grid.RowSpan="2"
+				Font="Large"
+				Clicked="OnChangeDate"
+				Text=""
+                x:Name="DateButton"
+				BackgroundColor="#D2F3DF"/>
+                    <Label
+				StyleId="calculationText"
+				Grid.Row="2"
+				Grid.ColumnSpan="4"
+				Text="{Binding Path=CalculationText}"
+				Font="Large"
+				HorizontalOptions="EndAndExpand" />
+                    <Label
+				x:Name="Result"
+				StyleId="resultText"
+				Grid.Row="3"
+				Grid.ColumnSpan="4"
+				Text="{Binding Path=CalculationText}"
+				Font="Large"
+				HorizontalOptions="EndAndExpand" />
+
+                    <Button
+				Grid.Row="4"
+				Grid.Column="0"
+				Font="Large"
+				Command="{Binding KeyPressed}"
+				CommandParameter="Backspace"
+				Text="←" 
+				BackgroundColor="#6BBE8B"/>
+                    <Button
+				Grid.Row="4"
+				Grid.Column="1"
+				Font="Large"
+				Command="{Binding KeyPressed}"
+				CommandParameter="Clear"
+				Text="C" 
+				BackgroundColor="#6BBE8B"/>
+                    <Button
+				Grid.Row="4"
+				Grid.Column="2"
+				Font="Large"
+				Clicked="OnCancel"
+				Text="Back" 
+				BackgroundColor="#6BBE8B"/>
+                    <Button
+				Grid.Row="4"
+				Grid.Column="3"
+				Font="Large"
+				Command="{Binding KeyPressed}"
+				CommandParameter="Divide"
+				Text="/" 
+				BackgroundColor="#6BBE8B"/>
+
+                    <Button
+				Grid.Row="5"
+				Grid.Column="0"
+				Font="Large"
+				Command="{Binding KeyPressed}"
+				CommandParameter="Seven"
+        BackgroundColor="#D2F3DF"
+				Text="7" />
+                    <Button
+				Grid.Row="5"
+				Grid.Column="1"
+				Font="Large"
+				Command="{Binding KeyPressed}"
+				CommandParameter="Eight"
+        BackgroundColor="#D2F3DF"
+				Text="8" />
+                    <Button
+				Grid.Row="5"
+				Grid.Column="2"
+				Font="Large"
+				Command="{Binding KeyPressed}"
+				CommandParameter="Nine"
+        BackgroundColor="#D2F3DF"
+				Text="9" />
+                    <Button
+				Grid.Row="5"
+				Grid.Column="3"
+				Font="Large"
+				Command="{Binding KeyPressed}"
+				CommandParameter="Multiply"
+				Text="*" 
+				BackgroundColor="#6BBE8B"/>
+
+                    <Button
+				Grid.Row="6"
+				Grid.Column="0"
+				Font="Large"
+				Command="{Binding KeyPressed}"
+				CommandParameter="Four"
+        BackgroundColor="#D2F3DF"
+				Text="4" />
+                    <Button
+				Grid.Row="6"
+				Grid.Column="1"
+				Font="Large"
+				Command="{Binding KeyPressed}"
+				CommandParameter="Five"
+        BackgroundColor="#D2F3DF"
+				Text="5" />
+                    <Button
+				Grid.Row="6"
+				Grid.Column="2"
+				Font="Large"
+				Command="{Binding KeyPressed}"
+				CommandParameter="Six"
+        BackgroundColor="#D2F3DF"
+				Text="6" />
+                    <Button
+				Grid.Row="6"
+				Grid.Column="3"
+				Font="Large"
+				Command="{Binding KeyPressed}"
+				CommandParameter="Minus"
+				Text="-" 
+				BackgroundColor="#6BBE8B"/>
+
+                    <Button
+				Grid.Row="7"
+				Grid.Column="0"
+				Font="Large"
+				Command="{Binding KeyPressed}"
+				CommandParameter="One"
+        BackgroundColor="#D2F3DF"
+				Text="1" />
+                    <Button
+				Grid.Row="7"
+				Grid.Column="1"
+				Font="Large"
+				Command="{Binding KeyPressed}"
+				CommandParameter="Two"
+        BackgroundColor="#D2F3DF"
+				Text="2" />
+                    <Button
+				Grid.Row="7"
+				Grid.Column="2"
+				Font="Large"
+				Command="{Binding KeyPressed}"
+				CommandParameter="Three"
+        BackgroundColor="#D2F3DF"
+				Text="3" />
+                    <Button
+				Grid.Row="7"
+				Grid.Column="3"
+				Font="Large"
+				Command="{Binding KeyPressed}"
+				CommandParameter="Plus"
+				Text="+" 
+				BackgroundColor="#6BBE8B"/>
+
+                    <Button
+				Grid.Row="8"
+				Grid.Column="0"
+				Font="Large"
+				Command="{Binding KeyPressed}"
+				CommandParameter="Zero"
+        BackgroundColor="#D2F3DF"
+				Text="0" />
+                    <Button
+				Grid.Row="8"
+				Grid.Column="1"
+				Font="Large"
+				Command="{Binding KeyPressed}"
+				CommandParameter="Point"
+				Text="." 
+				BackgroundColor="#6BBE8B"/>
+                    <Button
+				Grid.Row="8"
+				Grid.Column="2"
+				Font="Large"
+				Command="{Binding KeyPressed}"
+				CommandParameter="Equal"
+				Text="=" 
+				BackgroundColor="#6BBE8B"/>
+                    <Button
+				Grid.Row="8"
+				Grid.Column="3"
+				Font="Large"
+                Clicked="OnOk"
+				Text="OK" 
+				BackgroundColor="#6BBE8B"/>
+                </Grid>
+
+            </StackLayout>
+        </AbsoluteLayout>
+
     </Grid>
+
+
+
 </ContentPage>

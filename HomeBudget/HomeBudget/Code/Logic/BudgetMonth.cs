@@ -14,6 +14,7 @@ namespace HomeBudget.Code
 	public class BudgetMonth
 	{
 		private List<BudgetCategory> categories;
+        private List<BudgetIncome> incomes;
 		private int month;
 		public int Month
 		{
@@ -38,10 +39,11 @@ namespace HomeBudget.Code
             }
         }
 
-		public static BudgetMonth Create(List<BudgetCategoryTemplate> categories, DateTime date)
+		public static BudgetMonth Create(List<BudgetCategoryTemplate> categories, List<BudgetIncomeTemplate> incomes, DateTime date)
 		{
 			BudgetMonth month = new BudgetMonth();
 			month.SetupCategories(categories);
+            month.SetupIncomes(incomes);
 			month.SetupDate(date);
 
 			return month;
@@ -55,10 +57,25 @@ namespace HomeBudget.Code
             return month;
         }
 
-		public void AddExpense(float value, ExpenseSaveData expenseSaveData)
-		{
-            GetCategoryByID(expenseSaveData.Category.Id).AddExpense(value, expenseSaveData.Subcategory.Id, expenseSaveData.Date);
-		}
+        public void AddExpense(double value, DateTime date, int categoryID, int subcatID)
+        {
+            GetCategoryByID(categoryID).AddExpense(value, subcatID, date);
+        }
+
+        public void AddIncome(double value, DateTime date, int incomeCategoryID)
+        {
+            GetIncomeByID(incomeCategoryID).AddIncome(value, date);
+        }
+
+        public void SetPlannedIncome(float value, int incomeCategoryID)
+        {
+            GetIncomeByID(incomeCategoryID).SetPlannedIncome(value);
+        }
+
+        public void SetPlannedExpense(float value, int categoryID, int subcatID)
+        {
+            GetCategoryByID(categoryID).SetPlannedExpense(value, subcatID);
+        }
 
         private BudgetCategory GetCategoryByID(int id)
         {
@@ -66,9 +83,16 @@ namespace HomeBudget.Code
             return category;
         }
 
+        private BudgetIncome GetIncomeByID(int incomeID)
+        {
+            BudgetIncome income = incomes.Find(element => element.Id == incomeID);
+            return income;
+        }
+
 		private BudgetMonth()
 		{
             categories = new List<BudgetCategory>();
+            incomes = new List<BudgetIncome>();
         }
 
 		private void SetupDate(DateTime date)
@@ -86,6 +110,15 @@ namespace HomeBudget.Code
 			}
 		}
 
+        private void SetupIncomes(List<BudgetIncomeTemplate> incomesDesc)
+        {
+            foreach(BudgetIncomeTemplate incomeDesc in incomesDesc)
+            {
+                BudgetIncome income = BudgetIncome.Create(incomeDesc);
+                incomes.Add(income);
+            }
+        }
+
 		public ObservableCollection<BudgetChartData> GetData()
 		{
 			ObservableCollection<BudgetChartData> monthData = new ObservableCollection<BudgetChartData>();
@@ -97,6 +130,11 @@ namespace HomeBudget.Code
 			return monthData;
 		}
 
+        public BudgetCategory GetCategory(int id)
+        {
+            return GetCategoryByID(id);
+        }
+
         public byte[] Serialize()
         {
             List<byte> bytes = new List<byte>();
@@ -105,6 +143,10 @@ namespace HomeBudget.Code
             bytes.AddRange(BitConverter.GetBytes(categories.Count));
             foreach (BudgetCategory category in categories)
                 bytes.AddRange(category.Serialize());
+
+            bytes.AddRange(BitConverter.GetBytes(incomes.Count));
+            foreach (BudgetIncome income in incomes)
+                bytes.AddRange(income.Serialize());
 
             return bytes.ToArray();
         }
@@ -120,6 +162,31 @@ namespace HomeBudget.Code
                 BudgetCategory budgetCategory = BudgetCategory.CreateFromBinaryData(binaryData);
                 categories.Add(budgetCategory);
             }
+
+            int incomesNum = binaryData.GetInt();
+            for(int i=0; i< incomesNum; i++)
+            {
+                BudgetIncome income = BudgetIncome.CreateWithBinaryData(binaryData);
+                incomes.Add(income);
+            }
         }
-	}
+
+        public double GetTotalIncome()
+        {
+            double totalIncome = 0.0;
+            foreach (BudgetIncome income in incomes)
+                totalIncome += income.GetTotal();
+
+            return totalIncome;
+        }
+
+        public double GetTotalExpense()
+        {
+            double totalExpense = 0.0;
+            foreach (BudgetCategory expenseCategory in categories)
+                totalExpense += expenseCategory.GetTotalExpense();
+
+            return totalExpense;
+        }
+    }
 }

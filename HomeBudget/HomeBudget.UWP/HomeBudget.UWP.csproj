@@ -95,6 +95,7 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="HomeBudget.UWP_TemporaryKey.pfx" />
+    <None Include="packages.config" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +140,8 @@
     <Content Include="Assets\Icons\transportHighlight.png" />
     <Content Include="Assets\income.png" />
     <Content Include="Assets\incomes.png" />
+    <Content Include="Assets\New\expense.png" />
+    <Content Include="Assets\New\income.png" />
     <Content Include="Assets\restaurant.png" />
     <Content Include="Assets\restaurantHighlight.png" />
     <Content Include="Properties\Default.rd.xml" />

@@ -1,5 +1,37 @@
 {
-    "name":"template",
+	"name": "template",
+	"incomes": [
+		{
+			"name": "Wynagrodzenie Damian",
+			"id": "0",
+			"icon": "incomes.png"
+		},
+		{
+			"name": "Wynagrodzenie Ola",
+			"id": "1",
+			"icon": "incomes.png"
+		},
+		{
+			"name": "500+",
+			"id": "2",
+			"icon": "incomes.png"
+		},
+		{
+			"name": "Odsetki bankowe",
+			"id": "3",
+			"icon": "incomes.png"
+		},
+		{
+			"name": "Wynajem",
+			"id": "4",
+			"icon": "incomes.png"
+		},
+		{
+			"name": "Inne",
+			"id": "5",
+			"icon": "incomes.png"
+		}
+	],
     "categories":[
 					{
 											"name": "Jedzenie",

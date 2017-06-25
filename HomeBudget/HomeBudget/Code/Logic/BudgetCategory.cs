@@ -10,6 +10,10 @@ namespace HomeBudget.Code
 	public class BudgetCategory
 	{
 		private List<BudgetSubcategory> subcategories;
+        public List<BudgetSubcategory> Subcategories
+        {
+            get { return subcategories; }
+        }
 		public string Name;
         public int Id;
 
@@ -45,13 +49,19 @@ namespace HomeBudget.Code
 			}
 		}
 
-		public void AddExpense(float value, int subcategoryID, DateTime date)
+		public void AddExpense(double value, int subcategoryID, DateTime date)
 		{
 			if (subcategoryID < subcategories.Count)
 				subcategories[subcategoryID].AddExpense(value, date.Day);
 		}
 
-		public double GetExpensesSum()
+        public void SetPlannedExpense(float value, int subcatID)
+        {
+            if (subcatID < subcategories.Count)
+                subcategories[subcatID].SetPlannedExpense(value);
+        }
+
+        public double GetExpensesSum()
 		{
 			double result = 0;
 			foreach (BudgetSubcategory subcategory in subcategories)
@@ -85,5 +95,15 @@ namespace HomeBudget.Code
                 subcategories.Add(subcategory);
             }
         }
-	}
+
+        public double GetTotalExpense()
+        {
+            double expenseSum = 0;
+
+            foreach (BudgetSubcategory subcat in subcategories)
+                expenseSum += subcat.GetSum();
+
+            return expenseSum;
+        }
+    }
 }

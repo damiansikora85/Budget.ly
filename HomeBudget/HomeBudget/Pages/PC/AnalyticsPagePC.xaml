@@ -82,8 +82,8 @@
 
         <Grid Grid.Column="1" Grid.Row="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="5*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="7*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
@@ -130,6 +130,397 @@
                     </chart:NumericalAxis>
                 </chart:SfChart.SecondaryAxis>
             </chart:SfChart>
+
+            <!--
+            <Grid x:Name="table"  Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>-->
+
+
+            <ScrollView Grid.Row="1" Orientation="Both">
+                <StackLayout x:Name="table" WidthRequest="2000">
+                    <Grid x:Name="grid22">
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                       
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="1" Grid.Column="1" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="2" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="3" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="4" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="5" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="6" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="7" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="8" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="9" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="10" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="11" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="12" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="13" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="14" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="15" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="16" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="17" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="18" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="19" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="20" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="21" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="22" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="23" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="24" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="25" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="26" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="27" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="28" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="29" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="30" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="31" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+
+                        <Label Grid.Row="2" Grid.Column="1" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="2" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="3" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="4" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="5" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="6" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="7" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="8" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="9" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="10" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="11" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="12" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="13" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="14" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="15" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="16" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="17" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="18" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="19" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="20" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="21" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="22" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="23" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="24" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="25" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="26" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="27" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="28" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="29" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="30" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="2" Grid.Column="31" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+
+                        <Label Grid.Row="3" Grid.Column="1" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="2" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="3" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="4" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="5" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="6" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="7" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="8" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="9" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="10" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="11" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="12" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="13" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="14" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="15" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="16" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="17" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="18" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="19" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="20" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="21" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="22" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="23" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="24" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="25" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="26" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="27" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="28" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="29" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="30" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="3" Grid.Column="31" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+
+                        <Label Grid.Row="4" Grid.Column="1" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="2" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="3" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="4" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="5" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="6" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="7" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="8" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="9" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="10" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="11" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="12" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="13" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="14" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="15" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="16" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="17" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="18" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="19" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="20" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="21" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="22" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="23" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="24" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="25" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="26" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="27" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="28" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="29" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="30" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="4" Grid.Column="31" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+
+                        <Label Grid.Row="5" Grid.Column="1" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="2" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="3" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="4" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="5" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="6" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="7" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="8" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="9" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="10" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="11" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="12" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="13" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="14" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="15" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="16" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="17" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="18" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="19" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="20" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="21" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="22" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="23" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="24" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="25" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="26" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="27" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="28" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="29" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="30" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="5" Grid.Column="31" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+
+
+                        <Label Grid.Row="8" Grid.Column="1" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="2" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="3" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="4" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="5" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="6" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="7" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="8" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="9" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="10" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="11" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="12" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="13" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="14" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="15" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="16" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="17" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="18" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="19" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="20" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="21" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="22" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="23" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="24" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="25" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="26" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="27" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="28" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="29" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="30" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="8" Grid.Column="31" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+
+                        <Label Grid.Row="9" Grid.Column="1" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="2" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="3" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="4" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="5" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="6" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="7" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="8" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="9" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="10" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="11" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="12" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="13" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="14" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="15" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="16" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="17" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="18" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="19" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="20" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="21" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="22" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="23" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="24" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="25" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="26" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="27" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="28" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="29" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="30" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+                        <Label Grid.Row="9" Grid.Column="31" Text="0zl" FontSize="Small" HorizontalOptions="Center" />
+
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+                
 
         </Grid>
     </Grid>

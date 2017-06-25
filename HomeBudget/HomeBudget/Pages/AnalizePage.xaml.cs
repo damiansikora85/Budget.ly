@@ -26,7 +26,7 @@ namespace HomeBudget
         {
             BarSeries barSeries = new BarSeries()
             {
-                ItemsSource = Code.MainBudget.Instance.GetCurrentMonthData(),
+                ItemsSource = Code.MainBudget.Instance.GetCurrentMonthChartData(),
                 XBindingPath = "CategoryName",
                 YBindingPath = "ExpensesSum"
             };
@@ -44,7 +44,7 @@ namespace HomeBudget
             chart.Series.Clear();
             BarSeries barSeries = new BarSeries()
             {
-                ItemsSource = Code.MainBudget.Instance.GetCurrentMonthData(),
+                ItemsSource = Code.MainBudget.Instance.GetCurrentMonthChartData(),
                 XBindingPath = "CategoryName",
                 YBindingPath = "ExpensesSum"
             };
@@ -58,7 +58,7 @@ namespace HomeBudget
             chart.Series.Clear();
             PieSeries pieSeries = new PieSeries()
             {
-                ItemsSource = Code.MainBudget.Instance.GetCurrentMonthData(),
+                ItemsSource = Code.MainBudget.Instance.GetCurrentMonthChartData(),
                 XBindingPath = "CategoryName",
                 YBindingPath = "ExpensesSum",
                 ExplodeAll = true

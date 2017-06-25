@@ -11,8 +11,8 @@ using Xamarin.Forms;
 
 namespace HomeBudget
 {
-	public partial class AddExpensePopup : PopupPage
-	{
+    public partial class CalculatorPopup :  PopupPage
+    {
         public enum EMode
         {
             Expense,
@@ -20,22 +20,61 @@ namespace HomeBudget
             Planning
         }
 
-        public AddExpensePopup(string categoryName, string subcatName, DateTime date, Action<DateTime> callback)
-		{
-			InitializeComponent();
-            var viewModel = new AddExpenseViewModel(callback)
-            {
-                Navigation = Navigation
-            };
-            BindingContext = viewModel;
+        private EMode mode;
+        private DateTime date;
+        private CalculatorViewModel calculatorViewModel;
+        private int incomeID;
+
+        public Action<float,DateTime,int> OnCompleted;
+
+        public CalculatorPopup(EMode _mode, string incomeCategoryName, DateTime _date, int incomeCategoryID)
+        {
+            InitializeComponent();
+            mode = _mode;
+            calculatorViewModel = new CalculatorViewModel();// callback);
+
+            BindingContext = calculatorViewModel;
+
+            category.Text = "Dochód";
+            subcategory.Text = incomeCategoryName;
+            DateButton.Text = _date.ToString("d");
+        }
+
+
+        public CalculatorPopup(EMode _mode, string categoryName, string subcatName, DateTime _date, int expenseCategoryID)
+        {
+            InitializeComponent();
+            mode = _mode;
+            calculatorViewModel = new CalculatorViewModel();// callback);
+
+            BindingContext = calculatorViewModel;
 
             category.Text = categoryName;
             subcategory.Text = subcatName;
-            DateButton.Text = date.ToString("d"); 
+            DateButton.Text = _date.ToString("d");
         }
-	}
 
-    public class AddExpenseViewModel : INotifyPropertyChanged
+        private async void OnOk(object sender, EventArgs e)
+        {
+            //add expense/income/plan
+            OnCompleted(float.Parse(calculatorViewModel.CalculationText), date, incomeID);
+            await Navigation.PopPopupAsync();
+        }
+
+        private async void OnCancel(object sender, EventArgs e)
+        {
+            await Navigation.PopPopupAsync();
+        }
+
+        private async void OnChangeDate(object sender, EventArgs e)
+        {
+            var page = new CalendarPopup();// calendarCallback);
+            await Navigation.PushModalAsync(page);
+            await Navigation.PopPopupAsync();
+        }
+    }
+
+    public class CalculatorViewModel : INotifyPropertyChanged
     {
         Action<DateTime> calendarCallback;
 
@@ -65,8 +104,6 @@ namespace HomeBudget
             Calendar
         }
 
-        public INavigation Navigation;
-
         public ICommand KeyPressed { get; private set; }
         private String calculationText;
         private string categoryText;
@@ -80,7 +117,7 @@ namespace HomeBudget
             set
             {
                 categoryText = value;
-                if(string.IsNullOrEmpty(categoryText))
+                if (string.IsNullOrEmpty(categoryText))
                 {
                     categoryText = " ";
                 }
@@ -88,7 +125,13 @@ namespace HomeBudget
             }
         }
 
-        public AddExpenseViewModel(Action<DateTime> callback)
+        public CalculatorViewModel()
+        {
+            KeyPressed = new Command<string>(HandleKeyPressed);
+            CalculationText = "";
+        }
+
+        public CalculatorViewModel(Action<DateTime> callback)
         {
             KeyPressed = new Command<string>(HandleKeyPressed);
             CalculationText = "";
@@ -115,7 +158,7 @@ namespace HomeBudget
             set
             {
                 dateText = value;
-                if(string.IsNullOrEmpty(dateText))
+                if (string.IsNullOrEmpty(dateText))
                 {
                     dateText = " ";
                 }
@@ -146,15 +189,6 @@ namespace HomeBudget
                 case CalculatorKey.Point:
                     CalculationText += '.';
                     break;
-                case CalculatorKey.Ok:
-                    SaveValue();
-                    break;
-                case CalculatorKey.Cancel:
-                    Navigation.PopPopupAsync();
-                    break;
-                case CalculatorKey.Calendar:
-                    OpenCalendar();
-                    break;
             }
             return;
         }
@@ -162,19 +196,6 @@ namespace HomeBudget
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private async void SaveValue()
-        {
-            //await Code.MainBudget.Instance.AddExpense(float.Parse(calculationText));
-            await Navigation.PopPopupAsync();
-        }
-
-        private async void OpenCalendar()
-        {
-            var page = new CalendarPopup(calendarCallback);
-            await Navigation.PushModalAsync(page);
-            await Navigation.PopPopupAsync();
         }
     }
 }

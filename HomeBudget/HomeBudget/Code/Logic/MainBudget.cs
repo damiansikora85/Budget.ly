@@ -22,11 +22,18 @@ namespace HomeBudget.Code
         }
     }
 
-    public class ExpenseSaveData
-    { 
-        public CategoryData Category;
-        public CategoryData Subcategory;
-        public DateTime Date;
+    public class GroupedCategory : ObservableCollection<SimpleCategory>
+    {
+        public string Name { get; set; }
+        public double Total { get; set; }
+        public int Id;
+    }
+
+    public class SimpleCategory
+    {
+        public string Name { get; set; }
+        public int Value { get; set; }
+        public int Id;
     }
 
 
@@ -34,10 +41,12 @@ namespace HomeBudget.Code
 	{
         private const string SAVE_DIRECTORY_NAME = "save";
         private const string SAVE_FILE_NAME = "budget.data";
+        public const int INCOME_CATEGORY_ID = 777;
 		private List<BudgetMonth> months;
-        public ExpenseSaveData CurrentExpenseSaveData;
 
-		private BudgetDescription budgetDescription;
+        public Action onBudgetLoaded = delegate { };
+
+        private BudgetDescription budgetDescription;
 		public BudgetDescription BudgetDescription
 		{
 			get { return budgetDescription; }
@@ -110,13 +119,16 @@ namespace HomeBudget.Code
             return true;
         }
 
-        public async Task<bool> Load()
+        public async Task Load()
         {
             IFolder rootFolder = FileSystem.Current.LocalStorage;
             ExistenceCheckResult result = await rootFolder.CheckExistsAsync(SAVE_DIRECTORY_NAME);
-            
+
             if (result == ExistenceCheckResult.NotFound)
-                return false;
+            {
+                onBudgetLoaded();
+                return;
+            }
 
             IFolder folder = await rootFolder.GetFolderAsync(SAVE_DIRECTORY_NAME);
             string path = folder.Path;
@@ -133,9 +145,9 @@ namespace HomeBudget.Code
                     BudgetMonth month = BudgetMonth.CreateFromBinaryData(binaryData);
                     months.Add(month);
                 }
-                return true;
             }
-            else return false;
+
+            onBudgetLoaded();
         }
 
         private void SynchronizeData(byte[] data)
@@ -152,28 +164,100 @@ namespace HomeBudget.Code
             Save(false);
         }
 
-        public async Task AddExpense(float value)
-		{
-			BudgetMonth month = GetMonth(CurrentExpenseSaveData.Date);
-			month.AddExpense(value, CurrentExpenseSaveData);
+        public async Task AddExpense(float value, DateTime date, int categoryID, int subcatID)
+        {
+            BudgetMonth month = GetMonth(date);
+            month.AddExpense(value, date, categoryID, subcatID);
             await Save();
-		}
+        }
 
-		private BudgetMonth GetMonth(DateTime date)
+        public async Task AddIncome(float value, DateTime date, int incomeCategoryId)
+        {
+            BudgetMonth month = GetMonth(date);
+            month.AddIncome(value, date, incomeCategoryId);
+            await Save();
+        }
+
+        public async Task AddPlanedExpense(float value, int categoryID, int subcatID)
+        {
+            BudgetMonth month = GetCurrentMonthData();
+            month.SetPlannedExpense(value, categoryID, subcatID);
+            await Save();
+        }
+
+        public async Task SetPlanedIncome(float value, int incomeCategoryID)
+        {
+            BudgetMonth month = GetCurrentMonthData();
+            month.SetPlannedIncome(value, incomeCategoryID);
+            await Save();
+        }
+
+        private BudgetMonth GetMonth(DateTime date)
 		{
 			BudgetMonth month = months.Find(x => x.Month == date.Month && x.Year == date.Year);
 			if (month == null)
 			{
-				month = BudgetMonth.Create(budgetDescription.Categories, date);
+				month = BudgetMonth.Create(budgetDescription.Categories, budgetDescription.Incomes, date);
 				months.Add(month);
 			}
 
 			return month;
 		}
 
-		public ObservableCollection<BudgetMonth.BudgetChartData> GetCurrentMonthData()
+		public ObservableCollection<BudgetMonth.BudgetChartData> GetCurrentMonthChartData()
 		{
 			return GetMonth(DateTime.Now).GetData();
 		}
-	}
+
+        public BudgetMonth GetCurrentMonthData()
+        {
+            return GetMonth(DateTime.Now);
+        }
+
+        public ObservableCollection<GroupedCategory> GetPlanningData()
+        {
+            ObservableCollection<GroupedCategory> collection = new ObservableCollection<GroupedCategory>();
+
+            GroupedCategory incomeGroup = new GroupedCategory()
+            {
+                Name = "Przychód",
+                Id = INCOME_CATEGORY_ID
+            };
+            foreach (BudgetIncomeTemplate income in budgetDescription.Incomes)
+            {
+                incomeGroup.Add(new SimpleCategory()
+                {
+                    Name = income.Name,
+                    Id = income.Id
+                });
+            }
+
+            collection.Add(incomeGroup);
+
+            foreach(BudgetCategoryTemplate category in budgetDescription.Categories)
+            {
+                GroupedCategory categoryCollection = new GroupedCategory()
+                {
+                    Name = category.Name,
+                    Id = category.Id
+                };
+
+                int subcatId = 0;
+                foreach(string subcat in category.subcategories)
+                {
+                    categoryCollection.Add(new SimpleCategory()
+                    {
+                        Name = subcat,
+                        Value = 5,
+                        Id = subcatId
+                    });
+                    subcatId++;
+                }
+
+                collection.Add(categoryCollection);
+            }
+
+            return collection;
+        }
+    }
 }

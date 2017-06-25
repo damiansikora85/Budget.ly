@@ -1,44 +1,83 @@
-﻿using Rg.Plugins.Popup.Extensions;
-using Rg.Plugins.Popup.Pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace HomeBudget
+namespace HomeBudget.Pages.PC
 {
-	public partial class AddExpensePopup : PopupPage
-	{
-        public enum EMode
-        {
-            Expense,
-            Income,
-            Planning
-        }
-
-        public AddExpensePopup(string categoryName, string subcatName, DateTime date, Action<DateTime> callback)
-		{
-			InitializeComponent();
-            var viewModel = new AddExpenseViewModel(callback)
-            {
-                Navigation = Navigation
-            };
-            BindingContext = viewModel;
-
-            category.Text = categoryName;
-            subcategory.Text = subcatName;
-            DateButton.Text = date.ToString("d"); 
-        }
-	}
-
-    public class AddExpenseViewModel : INotifyPropertyChanged
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class PlanningPage : ContentPage
     {
-        Action<DateTime> calendarCallback;
+        private int selectedCategory;
+        private int selectedSubcat;
+        private PlanningPageViewModel viewModel;
 
+        public PlanningPage()
+        {
+            InitializeComponent();
+            viewModel = new PlanningPageViewModel();
+            BindingContext = viewModel;
+            Calculator.IsVisible = false;
+
+            listView.ItemsSource = Code.MainBudget.Instance.GetPlanningData();
+        }
+
+        private async void OnHomeClick(object sender, EventArgs args)
+        {
+            NavigationPage mainPage = new NavigationPage(new MainPagePC());
+            await Navigation.PushModalAsync(mainPage);
+        }
+
+        private async void OnAnalizeClick(object sender, EventArgs e)
+        {
+            NavigationPage analizePage = new NavigationPage(new AnalyticsPagePC());
+            await Navigation.PushModalAsync(analizePage);
+        }
+
+        private async void OnElementClick(object sender, EventArgs e)
+        {
+            Calculator.IsVisible = true;
+        }
+
+        private async void OnOk(object sender, EventArgs e)
+        {
+            Calculator.IsVisible = false;
+            bool isIncome = selectedCategory == Code.MainBudget.INCOME_CATEGORY_ID;
+            if (isIncome)
+                await Code.MainBudget.Instance.SetPlanedIncome(float.Parse(viewModel.CalculationText), selectedSubcat);
+            else
+                await Code.MainBudget.Instance.AddPlanedExpense(float.Parse(viewModel.CalculationText), selectedCategory, selectedSubcat);
+        }
+
+        private async void OnCancel(object sender, EventArgs e)
+        {
+            Calculator.IsVisible = false;
+        }
+
+        void OnElementSelected(object sender, ItemTappedEventArgs e)
+        {
+            Calculator.IsVisible = true;
+
+            Code.GroupedCategory group = e.Group as Code.GroupedCategory;
+            Code.SimpleCategory element = e.Item as Code.SimpleCategory;
+            Header.Text = group.Name;
+            Description.Text = element.Name;
+
+            selectedCategory = group.Id;
+            selectedSubcat = element.Id;
+
+            ((ListView)sender).SelectedItem = null;
+        }
+    }
+
+    public class PlanningPageViewModel
+    {
         public enum CalculatorKey
         {
             Zero = 0,
@@ -65,8 +104,6 @@ namespace HomeBudget
             Calendar
         }
 
-        public INavigation Navigation;
-
         public ICommand KeyPressed { get; private set; }
         private String calculationText;
         private string categoryText;
@@ -80,7 +117,7 @@ namespace HomeBudget
             set
             {
                 categoryText = value;
-                if(string.IsNullOrEmpty(categoryText))
+                if (string.IsNullOrEmpty(categoryText))
                 {
                     categoryText = " ";
                 }
@@ -88,11 +125,10 @@ namespace HomeBudget
             }
         }
 
-        public AddExpenseViewModel(Action<DateTime> callback)
+        public PlanningPageViewModel()
         {
             KeyPressed = new Command<string>(HandleKeyPressed);
             CalculationText = "";
-            calendarCallback = callback;
         }
 
         public string CalculationText
@@ -115,12 +151,11 @@ namespace HomeBudget
             set
             {
                 dateText = value;
-                if(string.IsNullOrEmpty(dateText))
+                if (string.IsNullOrEmpty(dateText))
                 {
                     dateText = " ";
                 }
             }
-            //OnPropertyChanged("DateText");
         }
 
         void HandleKeyPressed(string value)
@@ -146,15 +181,6 @@ namespace HomeBudget
                 case CalculatorKey.Point:
                     CalculationText += '.';
                     break;
-                case CalculatorKey.Ok:
-                    SaveValue();
-                    break;
-                case CalculatorKey.Cancel:
-                    Navigation.PopPopupAsync();
-                    break;
-                case CalculatorKey.Calendar:
-                    OpenCalendar();
-                    break;
             }
             return;
         }
@@ -162,19 +188,6 @@ namespace HomeBudget
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private async void SaveValue()
-        {
-            //await Code.MainBudget.Instance.AddExpense(float.Parse(calculationText));
-            await Navigation.PopPopupAsync();
-        }
-
-        private async void OpenCalendar()
-        {
-            var page = new CalendarPopup(calendarCallback);
-            await Navigation.PushModalAsync(page);
-            await Navigation.PopPopupAsync();
         }
     }
 }

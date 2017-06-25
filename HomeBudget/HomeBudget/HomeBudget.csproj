@@ -36,6 +36,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Code\Dropbox\DropboxManager.cs" />
+    <Compile Include="Code\Logic\BudgetIncome.cs" />
+    <Compile Include="Code\Logic\BudgetIncomeTemplate.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\XToggleButtonControl.cs" />
     <Compile Include="Pages\AnalizePage.xaml.cs">
@@ -57,6 +59,9 @@
     </Compile>
     <Compile Include="Pages\PC\MainPagePC.xaml.cs">
       <DependentUpon>MainPagePC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PC\PlanningPage.xaml.cs">
+      <DependentUpon>PlanningPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Phone\MainPagePhone.xaml.cs">
       <DependentUpon>MainPagePhone.xaml</DependentUpon>
@@ -83,6 +88,12 @@
     <Compile Include="CrossPieCharts\CrossPieChartsView.cs" />
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Popups\AddIncomePopup.xaml.cs">
+      <DependentUpon>AddIncomePopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Popups\CalculatorPopup.xaml.cs">
+      <DependentUpon>CalculatorPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Popups\CalendarPopup.xaml.cs">
       <DependentUpon>CalendarPopup.xaml</DependentUpon>
@@ -270,6 +281,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\PC\AnalyticsPagePC.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Popups\AddIncomePopup.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Popups\CalculatorPopup.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\PC\PlanningPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
