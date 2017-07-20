@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Syncfusion.SfNumericTextBox.iOS</name>
+    </assembly>
+    <members>
+        <member name="T:Syncfusion.SfNumericTextBox.iOS.SfNumericTextBox.ValueEventHandler">
+            <summary>
+            Represents the method that will handle the SfNumericTextBox.Value event of a SfNumericTextBox.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The data for the event.</param>
+        </member>
+        <member name="E:Syncfusion.SfNumericTextBox.iOS.SfNumericTextBox.ValueChanged">
+            <summary>
+            Occurs when value changed.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.SfNumericTextBox.iOS.SfNumericTextBox.OnValueChanged(Syncfusion.SfNumericTextBox.iOS.ValueEventArgs)">
+            <summary>
+            Raises the value changing.
+            </summary>
+            <param name="args">Arguments.</param>
+        </member>
+        <member name="T:Syncfusion.SfNumericTextBox.iOS.ValueEventArgs">
+            <summary>
+            Value event arguments.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.iOS.SFNumericTextBoxParsers.Double">
+            		 Represents Double Parsers
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.iOS.SFNumericTextBoxParsers.Decimal">
+            		 Represents Decimal Parsers
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.iOS.SFNumericTextBoxPercentDisplayMode.Value">
+            		 Represents Value DisplayMode
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.iOS.SFNumericTextBoxPercentDisplayMode.Compute">
+            		 Represents Compute DisplayMode
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.iOS.SFNumericTextBoxValueChangeMode.OnLostFocus">
+            		 Represents OnLostFocus ValueChange
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.iOS.SFNumericTextBoxValueChangeMode.OnKeyFocus">
+            		 Represents OnKeyFocus ValueChange
+        </member>
+    </members>
+</doc>

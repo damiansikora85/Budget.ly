@@ -1,4 +1,5 @@
-﻿using HomeBudget.Code;
+﻿using Dropbox.Api;
+using HomeBudget.Code;
 using HomeBudget.Pages;
 using HomeBudget.Pages.PC;
 using Rg.Plugins.Popup.Extensions;
@@ -30,14 +31,18 @@ namespace HomeBudget
 
         private EMode mode;
 
-        private const string TEMPLATE_FILENAME = "HomeBudget.template.json";
+        
         private string selectedCategoryName;
         private int selectedCategoryId;
         private DateTime selectedDate;
         private CategoryElement lastCategorySelected;
-        private bool shouldAutoLaunchPopup;
         private MainPagePCViewModel viewModel;
         private int selectedSubcatId;
+
+        //Dropbox variables
+        private const string RedirectUri = "https://localhost/authorize";
+        private string appKey = "p6cayskxetnkx1a";
+        private string oauth2State;
 
         public ICommand SubcatClicked { get; private set; }
 
@@ -58,21 +63,42 @@ namespace HomeBudget
         private void InitBudget()
         {
             Calculator.IsVisible = false;
-            MainBudget.Instance.onBudgetLoaded += OnBudgetLoaded;
+   
             var assembly = typeof(MainPage).GetTypeInfo().Assembly;
 
-            Stream stream = assembly.GetManifestResourceStream(TEMPLATE_FILENAME);
-            string jsonString = "";
-            using (var reader = new System.IO.StreamReader(stream))
+            MainBudget.Instance.Init(assembly);
+            MainBudget.Instance.onBudgetLoaded += OnBudgetLoaded;
+
+            if (Helpers.Settings.DropboxAccessToken != string.Empty)
             {
-                jsonString = reader.ReadToEnd();
-                MainBudget.Instance.InitWithJson(jsonString);
+                DropboxLoginElement.IsVisible = false;
+                DropboxManager.Instance.DownloadData();
             }
+            else
+                MainBudget.Instance.Load();
         }
 
         private void OnBudgetLoaded()
         {
             SetupBudgetSummary();
+        }
+
+        private void SetupBudgetSummary()
+        {
+            BudgetMonth budgetMonth = MainBudget.Instance.GetCurrentMonthData();
+            double monthExpenses = budgetMonth.GetTotalExpense();
+            double monthIncomes = budgetMonth.GetTotalIncome();
+            double diff = monthIncomes - monthExpenses;
+            expansesText.Text = "Wydatki: " + monthExpenses;
+            incomeText.Text = "Dochody: " + monthIncomes;
+            diffText.Text = "Różnica: " + diff;
+
+            double monthExpensesPlanned = budgetMonth.GetTotalPlannedExpenses();
+            double monthIncomePlanned = budgetMonth.GetTotalPlannedIncome();
+            double diffPlanned = monthIncomePlanned - monthExpensesPlanned;
+            expansesPlannedText.Text = "Wydatki: " + monthExpensesPlanned;
+            incomePlannedText.Text = "Dochody: " + monthIncomePlanned;
+            diffPlannedText.Text = "Różnica: " + diffPlanned;
         }
 
         private async void OnPlanClick(object sender, EventArgs args)
@@ -217,17 +243,6 @@ namespace HomeBudget
             ShowCalculatorView(lastCategorySelected.Name, selectedDate);
         }
 
-        private void SetupBudgetSummary()
-        {
-            BudgetMonth budgetMonth = MainBudget.Instance.GetCurrentMonthData();
-            double monthExpenses = budgetMonth.GetTotalExpense();
-            double monthIncomes = budgetMonth.GetTotalIncome();
-            double diff = monthIncomes - monthExpenses;
-            expansesText.Text = "Wydatki: " + monthExpenses;
-            incomeText.Text = "Dochody: " + monthIncomes;
-            diffText.Text = "Różnica: " + diff;
-        }
-
         private async void OnOk(object sender, EventArgs e)
         {
             Calculator.IsVisible = false;
@@ -252,6 +267,7 @@ namespace HomeBudget
 
         private void ShowCalculatorView(string header, DateTime date)
         {
+            viewModel.CalculationText = " ";
             Calculator.IsVisible = true;
 
             Header.Text = header;
@@ -262,6 +278,52 @@ namespace HomeBudget
         {
             selectedDate = newDate;
             DateButton.Text = selectedDate.ToString("d");
+        }
+
+        private async void OnDropboxClick(object sender, EventArgs e)
+        {
+            this.oauth2State = Guid.NewGuid().ToString("N");
+            var authorizeUri = DropboxOAuth2Helper.GetAuthorizeUri(OAuthResponseType.Token, appKey, new Uri(RedirectUri), state: oauth2State);
+
+            var webView = new WebView { Source = new UrlWebViewSource { Url = authorizeUri.AbsoluteUri } };
+            webView.Navigating += this.WebViewOnNavigating;
+            var contentPage = new ContentPage { Content = webView };
+            await Navigation.PushModalAsync(contentPage);
+        }
+
+        private async void WebViewOnNavigating(object sender, WebNavigatingEventArgs e)
+        {
+            if (!e.Url.StartsWith(RedirectUri, StringComparison.OrdinalIgnoreCase))
+            {
+                // we need to ignore all navigation that isn't to the redirect uri.
+                return;
+            }
+
+            try
+            {
+                var result = DropboxOAuth2Helper.ParseTokenFragment(new Uri(e.Url));
+
+                if (result.State != this.oauth2State)
+                {
+                    return;
+                }
+
+                Helpers.Settings.DropboxAccessToken = result.AccessToken;
+                DropboxManager.Instance.Init();
+                DropboxLoginElement.IsVisible = false;
+                await DropboxManager.Instance.DownloadData();
+            }
+            catch (ArgumentException argExc)
+            {
+                string msg = argExc.Message;
+                msg += "error";
+                // There was an error in the URI passed to ParseTokenFragment
+            }
+            finally
+            {
+                e.Cancel = true;
+                await Application.Current.MainPage.Navigation.PopModalAsync();
+            }
         }
     }
 

@@ -105,5 +105,14 @@ namespace HomeBudget.Code
 
             return expenseSum;
         }
+
+        public double GetTotalPlannedExpense()
+        {
+            double totalExpense = 0;
+            foreach (BudgetSubcategory subcat in subcategories)
+                totalExpense += subcat.GetPlannedExpense();
+
+            return totalExpense;
+        }
     }
 }

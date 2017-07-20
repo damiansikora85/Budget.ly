@@ -85,5 +85,10 @@ namespace HomeBudget.Code
         {
             incomes[date.Day] += value;
         }
+
+        public double GetTotalPlannedIncome()
+        {
+            return incomesPlanned;
+        }
     }
 }

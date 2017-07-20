@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Syncfusion.SfDataGrid.XForms;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,6 +12,17 @@ using Xamarin.Forms.Xaml;
 
 namespace HomeBudget.Pages.PC
 {
+    public class CustomStyle : DataGridStyle
+    {
+        public CustomStyle()
+        {
+        }
+        public override GridLinesVisibility GetGridLinesVisibility()
+        {
+            return GridLinesVisibility.None;
+        }
+    }
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlanningPage : ContentPage
     {
@@ -25,7 +37,9 @@ namespace HomeBudget.Pages.PC
             BindingContext = viewModel;
             Calculator.IsVisible = false;
 
+            
             listView.ItemsSource = Code.MainBudget.Instance.GetPlanningData();
+            listView.GridStyle = new CustomStyle();
         }
 
         private async void OnHomeClick(object sender, EventArgs args)
@@ -76,7 +90,7 @@ namespace HomeBudget.Pages.PC
         }
     }
 
-    public class PlanningPageViewModel
+    public class PlanningPageViewModel : INotifyPropertyChanged
     {
         public enum CalculatorKey
         {

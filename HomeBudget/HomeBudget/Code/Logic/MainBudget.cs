@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,9 +38,18 @@ namespace HomeBudget.Code
         public int Id;
     }
 
+    public class NewCategoryData
+    {
+        public string Name { get; set; }
+        public int Value { get; set; }
+        public int Id;
+        public string CategoryName { get; set; }
+    }
+
 
     public class MainBudget
 	{
+        private const string TEMPLATE_FILENAME = "HomeBudget.template.json";
         private const string SAVE_DIRECTORY_NAME = "save";
         private const string SAVE_FILE_NAME = "budget.data";
         public const int INCOME_CATEGORY_ID = 777;
@@ -69,13 +80,19 @@ namespace HomeBudget.Code
 			months = new List<BudgetMonth>();
 
             DropboxManager.Instance.onDownloadFinished += SynchronizeData;
+            DropboxManager.Instance.onDownloadError += SynchronizeError;
 		}
 
-        public void InitWithJson(string jsonString)
-		{
-            budgetDescription = JsonConvert.DeserializeObject<BudgetDescription>(jsonString);
-            Load();
-		}
+        public void Init(Assembly assembly)
+        {
+            Stream stream = assembly.GetManifestResourceStream(TEMPLATE_FILENAME);
+            string jsonString = "";
+            using (var reader = new System.IO.StreamReader(stream))
+            {
+                jsonString = reader.ReadToEnd();
+                budgetDescription = JsonConvert.DeserializeObject<BudgetDescription>(jsonString);
+            }
+        }
 
         public byte[] GetData()
         {
@@ -161,7 +178,13 @@ namespace HomeBudget.Code
                 months.Add(month);
             }
 
+            onBudgetLoaded();
             Save(false);
+        }
+
+        private void SynchronizeError()
+        {
+            Load();
         }
 
         public async Task AddExpense(float value, DateTime date, int categoryID, int subcatID)
@@ -192,6 +215,16 @@ namespace HomeBudget.Code
             await Save();
         }
 
+        public double GetTotalPlannedExpensesForCurrentMonth()
+        {
+            return GetCurrentMonthData().GetTotalPlannedExpenses();
+        }
+
+        public double GetTotalPlannedIncomeForCurrentMonth()
+        {
+            return GetCurrentMonthData().GetTotalPlannedIncome();
+        }
+
         private BudgetMonth GetMonth(DateTime date)
 		{
 			BudgetMonth month = months.Find(x => x.Month == date.Month && x.Year == date.Year);
@@ -214,7 +247,32 @@ namespace HomeBudget.Code
             return GetMonth(DateTime.Now);
         }
 
-        public ObservableCollection<GroupedCategory> GetPlanningData()
+        public ObservableCollection<NewCategoryData> GetPlanningData()
+        {
+            ObservableCollection<NewCategoryData> collection = new ObservableCollection<NewCategoryData>();
+
+            foreach (BudgetCategoryTemplate category in budgetDescription.Categories)
+            {
+
+                int subcatId = 0;
+                foreach (string subcat in category.subcategories)
+                {
+                    collection.Add(new NewCategoryData()
+                    {
+                        Name = subcat,
+                        Value = 5,
+                        Id = subcatId,
+                        CategoryName = category.Name
+                    });
+                    subcatId++;
+                }
+
+            }
+
+            return collection;
+        }
+
+       /* public ObservableCollection<GroupedCategory> GetPlanningData()
         {
             ObservableCollection<GroupedCategory> collection = new ObservableCollection<GroupedCategory>();
 
@@ -258,6 +316,6 @@ namespace HomeBudget.Code
             }
 
             return collection;
-        }
+        }*/
     }
 }

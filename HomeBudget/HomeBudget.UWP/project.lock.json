@@ -43,6 +43,20 @@
           "lib/win8/_._": {}
         }
       },
+      "Microsoft.Bcl.Async/1.0.168": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.8"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Threading.Tasks.Extensions.dll": {},
+          "lib/win8/Microsoft.Threading.Tasks.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Threading.Tasks.Extensions.dll": {},
+          "lib/win8/Microsoft.Threading.Tasks.dll": {}
+        }
+      },
       "Microsoft.Bcl.Build/1.0.21": {
         "type": "package",
         "build": {
@@ -443,6 +457,66 @@
           "lib/uap10.0/Rg.Plugins.Popup.Platform.dll": {},
           "lib/uap10.0/Rg.Plugins.Popup.UWP.dll": {},
           "lib/uap10.0/Rg.Plugins.Popup.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfCalendar/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfDataGrid/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -2140,6 +2214,20 @@
           "Microsoft.Bcl.Build": "1.0.21"
         }
       },
+      "Xamarin.FFImageLoading/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Net.Http": "2.2.29"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.231": {
         "type": "package",
         "compile": {
@@ -2202,6 +2290,20 @@
         },
         "runtime": {
           "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Async/1.0.168": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.8"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Threading.Tasks.Extensions.dll": {},
+          "lib/win8/Microsoft.Threading.Tasks.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Threading.Tasks.Extensions.dll": {},
+          "lib/win8/Microsoft.Threading.Tasks.dll": {}
         }
       },
       "Microsoft.Bcl.Build/1.0.21": {
@@ -2597,6 +2699,66 @@
           "lib/uap10.0/Rg.Plugins.Popup.Platform.dll": {},
           "lib/uap10.0/Rg.Plugins.Popup.UWP.dll": {},
           "lib/uap10.0/Rg.Plugins.Popup.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfCalendar/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfDataGrid/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -4158,6 +4320,20 @@
           "Microsoft.Bcl.Build": "1.0.21"
         }
       },
+      "Xamarin.FFImageLoading/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Net.Http": "2.2.29"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.231": {
         "type": "package",
         "compile": {
@@ -4220,6 +4396,20 @@
         },
         "runtime": {
           "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Async/1.0.168": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.8"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Threading.Tasks.Extensions.dll": {},
+          "lib/win8/Microsoft.Threading.Tasks.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Threading.Tasks.Extensions.dll": {},
+          "lib/win8/Microsoft.Threading.Tasks.dll": {}
         }
       },
       "Microsoft.Bcl.Build/1.0.21": {
@@ -4601,6 +4791,66 @@
           "lib/uap10.0/Rg.Plugins.Popup.Platform.dll": {},
           "lib/uap10.0/Rg.Plugins.Popup.UWP.dll": {},
           "lib/uap10.0/Rg.Plugins.Popup.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfCalendar/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfDataGrid/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -6139,6 +6389,20 @@
           "Microsoft.Bcl.Build": "1.0.21"
         }
       },
+      "Xamarin.FFImageLoading/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Net.Http": "2.2.29"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.231": {
         "type": "package",
         "compile": {
@@ -6201,6 +6465,20 @@
         },
         "runtime": {
           "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Async/1.0.168": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.8"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Threading.Tasks.Extensions.dll": {},
+          "lib/win8/Microsoft.Threading.Tasks.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Threading.Tasks.Extensions.dll": {},
+          "lib/win8/Microsoft.Threading.Tasks.dll": {}
         }
       },
       "Microsoft.Bcl.Build/1.0.21": {
@@ -6605,6 +6883,66 @@
           "lib/uap10.0/Rg.Plugins.Popup.dll": {}
         }
       },
+      "Syncfusion.Xamarin.SfCalendar/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfDataGrid/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        }
+      },
       "System.AppContext/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -8164,6 +8502,20 @@
           "Microsoft.Bcl.Build": "1.0.21"
         }
       },
+      "Xamarin.FFImageLoading/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Net.Http": "2.2.29"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.231": {
         "type": "package",
         "compile": {
@@ -8226,6 +8578,20 @@
         },
         "runtime": {
           "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Async/1.0.168": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.8"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Threading.Tasks.Extensions.dll": {},
+          "lib/win8/Microsoft.Threading.Tasks.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Threading.Tasks.Extensions.dll": {},
+          "lib/win8/Microsoft.Threading.Tasks.dll": {}
         }
       },
       "Microsoft.Bcl.Build/1.0.21": {
@@ -8607,6 +8973,66 @@
           "lib/uap10.0/Rg.Plugins.Popup.Platform.dll": {},
           "lib/uap10.0/Rg.Plugins.Popup.UWP.dll": {},
           "lib/uap10.0/Rg.Plugins.Popup.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfCalendar/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfDataGrid/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -10145,6 +10571,20 @@
           "Microsoft.Bcl.Build": "1.0.21"
         }
       },
+      "Xamarin.FFImageLoading/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Net.Http": "2.2.29"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.231": {
         "type": "package",
         "compile": {
@@ -10207,6 +10647,20 @@
         },
         "runtime": {
           "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Async/1.0.168": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.8"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Threading.Tasks.Extensions.dll": {},
+          "lib/win8/Microsoft.Threading.Tasks.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Threading.Tasks.Extensions.dll": {},
+          "lib/win8/Microsoft.Threading.Tasks.dll": {}
         }
       },
       "Microsoft.Bcl.Build/1.0.21": {
@@ -10611,6 +11065,66 @@
           "lib/uap10.0/Rg.Plugins.Popup.dll": {}
         }
       },
+      "Syncfusion.Xamarin.SfCalendar/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfDataGrid/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        }
+      },
       "System.AppContext/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -12170,6 +12684,20 @@
           "Microsoft.Bcl.Build": "1.0.21"
         }
       },
+      "Xamarin.FFImageLoading/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Net.Http": "2.2.29"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.231": {
         "type": "package",
         "compile": {
@@ -12232,6 +12760,20 @@
         },
         "runtime": {
           "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Async/1.0.168": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.8"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Threading.Tasks.Extensions.dll": {},
+          "lib/win8/Microsoft.Threading.Tasks.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Threading.Tasks.Extensions.dll": {},
+          "lib/win8/Microsoft.Threading.Tasks.dll": {}
         }
       },
       "Microsoft.Bcl.Build/1.0.21": {
@@ -12613,6 +13155,66 @@
           "lib/uap10.0/Rg.Plugins.Popup.Platform.dll": {},
           "lib/uap10.0/Rg.Plugins.Popup.UWP.dll": {},
           "lib/uap10.0/Rg.Plugins.Popup.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfCalendar/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfCalendar.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfDataGrid/15.2.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.3.180"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -14151,6 +14753,20 @@
           "Microsoft.Bcl.Build": "1.0.21"
         }
       },
+      "Xamarin.FFImageLoading/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Net.Http": "2.2.29"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.231": {
         "type": "package",
         "compile": {
@@ -14320,6 +14936,60 @@
         "lib/win8/_._",
         "lib/wp8/_._",
         "lib/wpa81/_._"
+      ]
+    },
+    "Microsoft.Bcl.Async/1.0.168": {
+      "sha512": "tUNC02eBwDKpGre0BcNIvblLv1q0Q3DnS/vtkRHj2FE1sXwt386HAudztyl5C0U88hllrqHDvtlz8bK0Y8cHDA==",
+      "type": "package",
+      "path": "microsoft.bcl.async/1.0.168",
+      "files": [
+        "License-Stable.rtf",
+        "lib/net40/Microsoft.Threading.Tasks.Extensions.Desktop.dll",
+        "lib/net40/Microsoft.Threading.Tasks.Extensions.Desktop.xml",
+        "lib/net40/Microsoft.Threading.Tasks.Extensions.dll",
+        "lib/net40/Microsoft.Threading.Tasks.Extensions.xml",
+        "lib/net40/Microsoft.Threading.Tasks.dll",
+        "lib/net40/Microsoft.Threading.Tasks.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/Microsoft.Threading.Tasks.Extensions.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/Microsoft.Threading.Tasks.Extensions.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/Microsoft.Threading.Tasks.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/Microsoft.Threading.Tasks.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Microsoft.Threading.Tasks.Extensions.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Microsoft.Threading.Tasks.Extensions.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Microsoft.Threading.Tasks.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Microsoft.Threading.Tasks.xml",
+        "lib/portable-net45+win8+wpa81/Microsoft.Threading.Tasks.Extensions.dll",
+        "lib/portable-net45+win8+wpa81/Microsoft.Threading.Tasks.Extensions.xml",
+        "lib/portable-net45+win8+wpa81/Microsoft.Threading.Tasks.dll",
+        "lib/portable-net45+win8+wpa81/Microsoft.Threading.Tasks.xml",
+        "lib/sl4-windowsphone71/Microsoft.Threading.Tasks.Extensions.Phone.dll",
+        "lib/sl4-windowsphone71/Microsoft.Threading.Tasks.Extensions.Phone.xml",
+        "lib/sl4-windowsphone71/Microsoft.Threading.Tasks.Extensions.dll",
+        "lib/sl4-windowsphone71/Microsoft.Threading.Tasks.Extensions.xml",
+        "lib/sl4-windowsphone71/Microsoft.Threading.Tasks.dll",
+        "lib/sl4-windowsphone71/Microsoft.Threading.Tasks.xml",
+        "lib/sl4/Microsoft.Threading.Tasks.Extensions.Silverlight.dll",
+        "lib/sl4/Microsoft.Threading.Tasks.Extensions.Silverlight.xml",
+        "lib/sl4/Microsoft.Threading.Tasks.Extensions.dll",
+        "lib/sl4/Microsoft.Threading.Tasks.Extensions.xml",
+        "lib/sl4/Microsoft.Threading.Tasks.dll",
+        "lib/sl4/Microsoft.Threading.Tasks.xml",
+        "lib/win8/Microsoft.Threading.Tasks.Extensions.dll",
+        "lib/win8/Microsoft.Threading.Tasks.Extensions.xml",
+        "lib/win8/Microsoft.Threading.Tasks.dll",
+        "lib/win8/Microsoft.Threading.Tasks.xml",
+        "lib/wp8/Microsoft.Threading.Tasks.Extensions.Phone.dll",
+        "lib/wp8/Microsoft.Threading.Tasks.Extensions.Phone.xml",
+        "lib/wp8/Microsoft.Threading.Tasks.Extensions.dll",
+        "lib/wp8/Microsoft.Threading.Tasks.Extensions.xml",
+        "lib/wp8/Microsoft.Threading.Tasks.dll",
+        "lib/wp8/Microsoft.Threading.Tasks.xml",
+        "lib/wpa81/Microsoft.Threading.Tasks.Extensions.dll",
+        "lib/wpa81/Microsoft.Threading.Tasks.Extensions.xml",
+        "lib/wpa81/Microsoft.Threading.Tasks.dll",
+        "lib/wpa81/Microsoft.Threading.Tasks.xml",
+        "microsoft.bcl.async.1.0.168.nupkg.sha512",
+        "microsoft.bcl.async.nuspec"
       ]
     },
     "Microsoft.Bcl.Build/1.0.21": {
@@ -15259,6 +15929,180 @@
         "lib/wpa81/Rg.Plugins.Popup.Platform.dll",
         "lib/wpa81/Rg.Plugins.Popup.WinPhone.dll",
         "lib/wpa81/Rg.Plugins.Popup.dll"
+      ]
+    },
+    "Syncfusion.Xamarin.SfCalendar/15.2.0.46": {
+      "sha512": "lyY3GBJPqoxu4yJkY1WzirwVtYcsrjSLI2/kNlcxrexKSQSXD1vBylHBp2NZiPisyEXMhrPIkVLmoio9HNO4RQ==",
+      "type": "package",
+      "path": "syncfusion.xamarin.sfcalendar/15.2.0.46",
+      "files": [
+        "lib/MonoAndroid10/Syncfusion.SfCalendar.Android.dll",
+        "lib/MonoAndroid10/Syncfusion.SfCalendar.Android.xml",
+        "lib/MonoAndroid10/Syncfusion.SfCalendar.XForms.Android.dll",
+        "lib/MonoAndroid10/Syncfusion.SfCalendar.XForms.dll",
+        "lib/MonoAndroid10/Syncfusion.SfCalendar.XForms.xml",
+        "lib/Xamarin.iOS10/Syncfusion.SfCalendar.XForms.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfCalendar.XForms.iOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfCalendar.XForms.xml",
+        "lib/Xamarin.iOS10/Syncfusion.SfCalendar.iOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfCalendar.iOS.xml",
+        "lib/portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Syncfusion.SfCalendar.XForms.dll",
+        "lib/portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Syncfusion.SfCalendar.XForms.xml",
+        "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll",
+        "lib/uap10.0/Syncfusion.SfCalendar.XForms.dll",
+        "lib/uap10.0/Syncfusion.SfCalendar.XForms.xml",
+        "lib/uap10.0/Syncfusion.SfInput.UWP.XML",
+        "lib/uap10.0/Syncfusion.SfInput.UWP.dll",
+        "lib/uap10.0/Syncfusion.SfInput.UWP.pri",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/DeviceFamily-Mobile/Themes/InputStyles.xaml",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/DeviceFamily-Mobile/Themes/InputStyles.xbf",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/Properties/Syncfusion.SfInput.UWP.rd.xml",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/Syncfusion.SfInput.UWP.XML",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/Syncfusion.SfInput.UWP.xr.xml",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/Syncfusion.SfShared.UWP.xml",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/Themes/InputStyles.xaml",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/Themes/InputStyles.xbf",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/Themes/generic.xaml",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/Themes/generic.xbf",
+        "lib/uap10.0/Syncfusion.SfShared.UWP.XML",
+        "lib/uap10.0/Syncfusion.SfShared.UWP.dll",
+        "lib/uap10.0/Syncfusion.SfShared.UWP.pri",
+        "lib/uap10.0/Syncfusion.SfShared.UWP/Properties/Syncfusion.SfShared.UWP.rd.xml",
+        "lib/uap10.0/Syncfusion.SfShared.UWP/Syncfusion.SfShared.UWP.XML",
+        "lib/uap10.0/Syncfusion.SfShared.UWP/Syncfusion.SfShared.UWP.xr.xml",
+        "lib/uap10.0/Syncfusion.SfShared.UWP/Themes/generic.xaml",
+        "lib/uap10.0/Syncfusion.SfShared.UWP/Themes/generic.xbf",
+        "syncfusion.xamarin.sfcalendar.15.2.0.46.nupkg.sha512",
+        "syncfusion.xamarin.sfcalendar.nuspec"
+      ]
+    },
+    "Syncfusion.Xamarin.SfChart/15.2.0.46": {
+      "sha512": "CSDZpqmrvj40Gvz1X3erTnzc3b7Wav9Wj6DVZBz1rXDJkvG2qZ+7+F5dARiEdJUsJkxG8SnknWv5hdYVuI0dVw==",
+      "type": "package",
+      "path": "syncfusion.xamarin.sfchart/15.2.0.46",
+      "files": [
+        "lib/MonoAndroid10/Syncfusion.SfChart.Android.XML",
+        "lib/MonoAndroid10/Syncfusion.SfChart.Android.dll",
+        "lib/MonoAndroid10/Syncfusion.SfChart.XForms.Android.dll",
+        "lib/MonoAndroid10/Syncfusion.SfChart.XForms.dll",
+        "lib/MonoAndroid10/Syncfusion.SfChart.XForms.xml",
+        "lib/Xamarin.iOS10/Syncfusion.SFChart.iOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SFChart.iOS.xml",
+        "lib/Xamarin.iOS10/Syncfusion.SfChart.XForms.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfChart.XForms.iOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfChart.XForms.xml",
+        "lib/portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Syncfusion.SfChart.XForms.dll",
+        "lib/portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Syncfusion.SfChart.XForms.xml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP.dll",
+        "lib/uap10.0/Syncfusion.SfChart.UWP.pri",
+        "lib/uap10.0/Syncfusion.SfChart.UWP.xml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/3D/ChartArea/Themes/SfChart3D.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/3D/ChartArea/Themes/SfChart3D.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/3D/ChartSeries/Themes/ChartSeries.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/3D/ChartSeries/Themes/ChartSeries.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/ChartArea/Themes/ChartArea.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/ChartArea/Themes/ChartArea.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/ChartAxis/Themes/ChartAxis.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/ChartAxis/Themes/ChartAxis.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/ChartSeries/Themes/ChartSeries.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/ChartSeries/Themes/ChartSeries.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/ChartToolBar.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/ChartToolBar.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/ResizableScrollBar.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/ResizableScrollBar.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/Resizer.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/Resizer.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/SfRangeNavigator.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/SfRangeNavigator.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Properties/Syncfusion.SfChart.UWP_2015.rd.xml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Sparkline/Themes/Sparkline.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Sparkline/Themes/Sparkline.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Syncfusion.SfChart.UWP.xml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Syncfusion.SfChart.UWP.xr.xml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/Generic.Common.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/Generic.Common.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/Generic.Legend.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/Generic.Legend.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/Generic.Symbol.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/Generic.Symbol.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/generic.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/generic.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll",
+        "lib/uap10.0/Syncfusion.SfChart.XForms.dll",
+        "lib/uap10.0/Syncfusion.SfChart.XForms.xml",
+        "syncfusion.xamarin.sfchart.15.2.0.46.nupkg.sha512",
+        "syncfusion.xamarin.sfchart.nuspec"
+      ]
+    },
+    "Syncfusion.Xamarin.SfDataGrid/15.2.0.46": {
+      "sha512": "s93UL0MXdk5/ATe1ziPJrHCAD35q4OaKzk4cJWuW3YMcCJK+8XnQW246obKWRjWLk3T2N/t7Yk++7gQ8P/Eg8Q==",
+      "type": "package",
+      "path": "syncfusion.xamarin.sfdatagrid/15.2.0.46",
+      "files": [
+        "lib/MonoAndroid10/Syncfusion.Data.Portable.XML",
+        "lib/MonoAndroid10/Syncfusion.Data.Portable.dll",
+        "lib/MonoAndroid10/Syncfusion.GridCommon.Portable.XML",
+        "lib/MonoAndroid10/Syncfusion.GridCommon.Portable.dll",
+        "lib/MonoAndroid10/Syncfusion.SfDataGrid.XForms.Android.dll",
+        "lib/MonoAndroid10/Syncfusion.SfDataGrid.XForms.dll",
+        "lib/MonoAndroid10/Syncfusion.SfDataGrid.XForms.xml",
+        "lib/MonoAndroid10/Syncfusion.SfNumericTextBox.Android.dll",
+        "lib/MonoAndroid10/Syncfusion.SfNumericTextBox.XForms.Android.dll",
+        "lib/MonoAndroid10/Syncfusion.SfNumericTextBox.XForms.dll",
+        "lib/MonoAndroid10/Syncfusion.SfNumericTextBox.XForms.xml",
+        "lib/Xamarin.iOS10/Syncfusion.Data.Portable.XML",
+        "lib/Xamarin.iOS10/Syncfusion.Data.Portable.dll",
+        "lib/Xamarin.iOS10/Syncfusion.GridCommon.Portable.XML",
+        "lib/Xamarin.iOS10/Syncfusion.GridCommon.Portable.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.iOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.xml",
+        "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.iOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.xml",
+        "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.iOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.iOS.xml",
+        "lib/portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Syncfusion.Data.Portable.XML",
+        "lib/portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Syncfusion.Data.Portable.dll",
+        "lib/portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Syncfusion.GridCommon.Portable.XML",
+        "lib/portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Syncfusion.GridCommon.Portable.dll",
+        "lib/portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.dll",
+        "lib/portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.xml",
+        "lib/portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.dll",
+        "lib/portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.xml",
+        "lib/uap10.0/Syncfusion.Data.Portable.XML",
+        "lib/uap10.0/Syncfusion.Data.Portable.dll",
+        "lib/uap10.0/Syncfusion.GridCommon.Portable.XML",
+        "lib/uap10.0/Syncfusion.GridCommon.Portable.dll",
+        "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP.dll",
+        "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll",
+        "lib/uap10.0/Syncfusion.SfDataGrid.XForms.xml",
+        "lib/uap10.0/Syncfusion.SfInput.UWP.XML",
+        "lib/uap10.0/Syncfusion.SfInput.UWP.dll",
+        "lib/uap10.0/Syncfusion.SfInput.UWP.pri",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/DeviceFamily-Mobile/Themes/InputStyles.xaml",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/DeviceFamily-Mobile/Themes/InputStyles.xbf",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/Properties/Syncfusion.SfInput.UWP.rd.xml",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/Syncfusion.SfInput.UWP.XML",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/Syncfusion.SfInput.UWP.xr.xml",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/Syncfusion.SfShared.UWP.xml",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/Themes/InputStyles.xaml",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/Themes/InputStyles.xbf",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/Themes/generic.xaml",
+        "lib/uap10.0/Syncfusion.SfInput.UWP/Themes/generic.xbf",
+        "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.UWP.dll",
+        "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.dll",
+        "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.xml",
+        "lib/uap10.0/Syncfusion.SfShared.UWP.XML",
+        "lib/uap10.0/Syncfusion.SfShared.UWP.dll",
+        "lib/uap10.0/Syncfusion.SfShared.UWP.pri",
+        "lib/uap10.0/Syncfusion.SfShared.UWP/Properties/Syncfusion.SfShared.UWP.rd.xml",
+        "lib/uap10.0/Syncfusion.SfShared.UWP/Syncfusion.SfShared.UWP.XML",
+        "lib/uap10.0/Syncfusion.SfShared.UWP/Syncfusion.SfShared.UWP.xr.xml",
+        "lib/uap10.0/Syncfusion.SfShared.UWP/Themes/generic.xaml",
+        "lib/uap10.0/Syncfusion.SfShared.UWP/Themes/generic.xbf",
+        "syncfusion.xamarin.sfdatagrid.15.2.0.46.nupkg.sha512",
+        "syncfusion.xamarin.sfdatagrid.nuspec"
       ]
     },
     "System.AppContext/4.0.0": {
@@ -18032,6 +18876,38 @@
         "xamarin.dropbox.api.nuspec"
       ]
     },
+    "Xamarin.FFImageLoading/2.2.9": {
+      "sha512": "+ynlYKS42vQdVUzBTydlw+DyyagQ2GOqjaHjMI7ekHD21ituiRwljkepphAi5YXFepNEODXsuRBEFOF+714fgg==",
+      "type": "package",
+      "path": "xamarin.ffimageloading/2.2.9",
+      "files": [
+        "lib/MonoAndroid10/FFImageLoading.Platform.dll",
+        "lib/MonoAndroid10/FFImageLoading.Platform.pdb",
+        "lib/MonoAndroid10/FFImageLoading.Platform.xml",
+        "lib/MonoAndroid10/FFImageLoading.dll",
+        "lib/MonoAndroid10/FFImageLoading.pdb",
+        "lib/MonoAndroid10/FFImageLoading.xml",
+        "lib/Xamarin.iOS10/FFImageLoading.Platform.dll",
+        "lib/Xamarin.iOS10/FFImageLoading.Platform.pdb",
+        "lib/Xamarin.iOS10/FFImageLoading.Platform.xml",
+        "lib/Xamarin.iOS10/FFImageLoading.dll",
+        "lib/Xamarin.iOS10/FFImageLoading.pdb",
+        "lib/Xamarin.iOS10/FFImageLoading.xml",
+        "lib/portable-net45+win8+wpa81+wp8/FFImageLoading.Platform.dll",
+        "lib/portable-net45+win8+wpa81+wp8/FFImageLoading.Platform.xml",
+        "lib/portable-net45+win8+wpa81+wp8/FFImageLoading.dll",
+        "lib/portable-net45+win8+wpa81+wp8/FFImageLoading.pdb",
+        "lib/portable-net45+win8+wpa81+wp8/FFImageLoading.xml",
+        "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll",
+        "lib/portable-netcore45+wpa81/FFImageLoading.Platform.pdb",
+        "lib/portable-netcore45+wpa81/FFImageLoading.Platform.xml",
+        "lib/portable-netcore45+wpa81/FFImageLoading.dll",
+        "lib/portable-netcore45+wpa81/FFImageLoading.pdb",
+        "lib/portable-netcore45+wpa81/FFImageLoading.xml",
+        "xamarin.ffimageloading.2.2.9.nupkg.sha512",
+        "xamarin.ffimageloading.nuspec"
+      ]
+    },
     "Xamarin.Forms/2.3.4.231": {
       "sha512": "Tar4nHke8Rl0Mz2Y1MdNAMvo8wKc/wVVW2rN7loXMc+2R1ex3n/fzs7eD2F7gDw3TceGLQku52kyc5LuN8Hlgw==",
       "type": "package",
@@ -18200,14 +19076,21 @@
     "": [
       "Dropbox.Api >= 4.2.4",
       "Microsoft.Azure.Mobile.Client >= 3.1.0",
+      "Microsoft.Bcl >= 1.1.10",
+      "Microsoft.Bcl.Async >= 1.0.168",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
+      "Microsoft.Net.Http >= 2.2.29",
       "Newtonsoft.Json >= 9.0.1",
       "PCLStorage >= 1.0.2",
       "Rg.Plugins.Popup >= 1.0.4",
+      "Syncfusion.Xamarin.SfCalendar >= 15.2.0.46",
+      "Syncfusion.Xamarin.SfChart >= 15.2.0.46",
+      "Syncfusion.Xamarin.SfDataGrid >= 15.2.0.46",
       "WindowsAzure.Storage >= 8.1.0",
       "Xam.FormsPlugin.CrossPieChart >= 2.1.15",
       "Xam.Plugins.Settings >= 2.6.0.12-beta",
       "Xamarin.Dropbox.Api >= 4.2.3",
+      "Xamarin.FFImageLoading >= 2.2.9",
       "Xamarin.Forms >= 2.3.4.231"
     ],
     "UAP,Version=v10.0": []
@@ -18235,14 +19118,21 @@
     "dependencies": {
       "Dropbox.Api": "4.2.4",
       "Microsoft.Azure.Mobile.Client": "3.1.0",
+      "Microsoft.Bcl": "1.1.10",
+      "Microsoft.Bcl.Async": "1.0.168",
+      "Microsoft.Net.Http": "2.2.29",
       "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
       "Newtonsoft.Json": "9.0.1",
       "PCLStorage": "1.0.2",
       "Rg.Plugins.Popup": "1.0.4",
+      "Syncfusion.Xamarin.SfCalendar": "15.2.0.46",
+      "Syncfusion.Xamarin.SfChart": "15.2.0.46",
+      "Syncfusion.Xamarin.SfDataGrid": "15.2.0.46",
       "WindowsAzure.Storage": "8.1.0",
       "Xam.FormsPlugin.CrossPieChart": "2.1.15",
       "Xam.Plugins.Settings": "2.6.0.12-beta",
       "Xamarin.Dropbox.Api": "4.2.3",
+      "Xamarin.FFImageLoading": "2.2.9",
       "Xamarin.Forms": "2.3.4.231"
     },
     "frameworks": {

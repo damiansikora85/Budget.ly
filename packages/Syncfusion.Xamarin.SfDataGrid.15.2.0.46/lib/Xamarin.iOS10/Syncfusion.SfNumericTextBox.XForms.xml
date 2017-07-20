@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Syncfusion.SfNumericTextBox.XForms</name>
+    </assembly>
+    <members>
+        <member name="T:Syncfusion.SfNumericTextBox.XForms.Parsers">
+            <summary>
+            Represents the Parsers of <see cref="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox"/> control.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.Parsers.Decimal">
+            <summary>
+            Parses the value as Decimal.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.Parsers.Double">
+            <summary>
+            Parses the value as Double.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.SfNumericTextBox.XForms.PercentDisplayMode">
+            <summary>
+            Represents the PercentDisplayMode of <see cref="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox"/> control.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.PercentDisplayMode.Value">
+            <summary>
+            Displays the entered value with percentage symbol.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.PercentDisplayMode.Compute">
+            <summary>
+            Computes the entered value as percentage and displays with percentage symbol.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox">
+            <summary>
+            SfNumericTextBox�control allows the user
+            to enter only numeric values in an application. This control has additional functionality that
+            is not found in the entry control, including Watermark
+            support.
+            </summary>
+            <remarks>
+            The SfNumericTextBox is inherited from <see
+            cref="T:Xamarin.Forms.View"/>
+            </remarks>
+        </member>
+        <member name="M:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox"/> class.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.ParserMode">
+            <summary>
+            Gets or sets the parser mode that parses the entered text in specified mode.
+            </summary>
+            <value>The default value is Decimal.</value>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.ParserModeProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for ParserMode property.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.PercentDisplayMode">
+            <summary>
+            Gets or sets the percent display mode that parses the entered text as percentage in specified mode.
+            </summary>
+            <value>The default value is <see cref="F:Syncfusion.SfNumericTextBox.XForms.PercentDisplayMode.Compute"/>.</value>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.PercentDisplayModeProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for PercentDisplayMode property.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.ValueChangeMode">
+            <summary>
+            Gets or sets the value change mode in which entered text is parsed to set as <see cref="P:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.Value"/>.
+            </summary>
+            <value>The default value is <see cref="F:Syncfusion.SfNumericTextBox.XForms.ValueChangeMode.OnLostFocus"/>.</value>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.ValueChangeModeProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for ValueChangeMode property.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.MaximumNumberDecimalDigits">
+            <summary>
+            Gets or sets the maximum number of allowed decimal digits in <see cref="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox"/> control.
+            </summary>
+            <value>The default value is 2.</value>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.MaximumNumberDecimalDigitsProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for MaximumNumberDecimalDigits property.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.Value">
+            <summary>
+            Gets or sets the value of <see cref="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox"/> control.
+            </summary>
+            <value>The default value is null.</value>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.ValueProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for Value property.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.AllowNull">
+            <summary>
+            Gets or sets the value indicating whether null value can be set in <see cref="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox"/> control.
+            </summary>
+            <value>The default value is false.</value>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.AllowNullProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for AllowNull property.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.TextAlignment">
+            <summary>
+            Gets or sets the text alignment of <see cref="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox"/> control.
+            </summary>
+            <value>The default value is <see cref="F:Xamarin.Forms.TextAlignment.Start"/>.</value>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.TextAlignmentProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for TextAlignment property.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.Watermark">
+            <summary>
+            Gets or sets the watermark text of <see cref="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox"/> control.
+            </summary>
+            <value>The default value is empty string</value>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.WatermarkProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for Watermark property.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.FormatString">
+            <summary>
+            Gets or sets the format string of <see cref="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox"/> control.
+            </summary>
+            <value>The default value is 'n'</value>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.FormatStringProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for FormatString property.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.Culture">
+            <summary>
+            Gets or sets the culture of <see cref="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox"/> control.
+            </summary>
+            <value>The default value is CultureInfo.CurrentUICulture</value>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.CultureProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for Culture property.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.ValueEventHandler">
+            <summary>
+            Handles the ValueChanged event of <see cref="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox"/> control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The data for the event.</param>
+        </member>
+        <member name="E:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.ValueChanged">
+            <summary>
+            Occurs when <see cref="P:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.Value"/> is changed.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.RaiseValueChanging(Syncfusion.SfNumericTextBox.XForms.ValueEventArgs)">
+            <summary>
+            Raises the value changing event.
+            </summary>
+            <param name="args">Arguments.</param>
+        </member>
+        <member name="P:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.FontSize">
+            <summary>
+            Gets or sets the font size of <see cref="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox"/> control.
+            </summary>
+            <value>The default value is 20</value>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.FontSizeProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for FontSize property.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.TextColor">
+            <summary>
+            Gets or sets the text color of <see cref="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox"/> control.
+            </summary>
+            <value>The default value is Gray</value>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.TextColorProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for TextColor property.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.WatermarkColor">
+            <summary>
+            Gets or sets the watermark text color of <see cref="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox"/> control.
+            </summary>
+            <value>The default value is Gray</value>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.WatermarkColorProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for WatermarkColor property.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.BorderColor">
+            <summary>
+            Gets or sets the border color of <see cref="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox"/> control.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.BorderColorProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for BorderColor property.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.FontAttributes">
+            <summary>
+            Gets or sets the font attribute of <see cref="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox"/> control.
+            </summary>
+            <value>The default value is Gray</value>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.FontAttributesProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for FontAttributes property.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.SfNumericTextBox.XForms.ValueEventArgs">
+            <summary>
+            Represents the arguments for <see 
+            cref="E:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox.ValueChanged"/> event.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.SfNumericTextBox.XForms.ValueEventArgs.Value">
+            <summary>
+            Gets the value
+            of <see cref="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox"/> control.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.SfNumericTextBox.XForms.ValueChangeMode">
+            <summary>
+            Represents the ValueChangeMode of <see cref="T:Syncfusion.SfNumericTextBox.XForms.SfNumericTextBox"/> control.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.ValueChangeMode.OnLostFocus">
+            <summary>
+            Value change is updated after the control loses focus.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.SfNumericTextBox.XForms.ValueChangeMode.OnKeyFocus">
+            <summary>
+            Value change is updated on every key press.
+            </summary>
+        </member>
+    </members>
+</doc>

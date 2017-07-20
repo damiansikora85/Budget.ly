@@ -72,7 +72,7 @@ namespace HomeBudget
 			{
 				jsonString = reader.ReadToEnd();
 
-				MainBudget.Instance.InitWithJson(jsonString);
+				//MainBudget.Instance.InitWithJson(jsonString);
 			}
 		}
 	}

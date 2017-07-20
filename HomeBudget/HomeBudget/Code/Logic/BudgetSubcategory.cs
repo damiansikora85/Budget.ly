@@ -56,5 +56,10 @@ namespace HomeBudget.Code
             }
             expensePlanned = binaryData.GetDouble();
         }
+
+        public double GetPlannedExpense()
+        {
+            return expensePlanned;
+        }
     }
 }

@@ -24,8 +24,9 @@ namespace HomeBudget.UWP
 		public MainPage()
 		{
 			new Syncfusion.SfChart.XForms.UWP.SfChartRenderer();
+            Syncfusion.SfDataGrid.XForms.UWP.SfDataGridRenderer.Init();
 
-			this.InitializeComponent();
+            this.InitializeComponent();
 
             ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;

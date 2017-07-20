@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:HomeBudget"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
              x:Class="HomeBudget.Pages.PC.PlanningPage">
     <ContentPage.Content>
 
@@ -101,18 +103,29 @@
                         <ColumnDefinition Width="5*" />
                     </Grid.ColumnDefinitions>
 
-                    <Label Text="Planowane Przychody" Grid.Row="0" Grid.Column="0" BackgroundColor="#D2F3DF"/>
-                    <Label x:Name="plannedIncomes" Text="0zl" Grid.Row="0" Grid.Column="1" BackgroundColor="#D2F3DF"/>
+                    <Label Text="Planowane Przychody" Grid.Row="0" Grid.Column="0" BackgroundColor="#D2F3DF" TextColor="#232825"/>
+                    <Label x:Name="plannedIncomes" Text="0zl" Grid.Row="0" Grid.Column="1" BackgroundColor="#D2F3DF" TextColor="#232825"/>
 
-                    <Label Text="Planowane Wydatki" Grid.Row="1" Grid.Column="0" BackgroundColor="#D2F3DF" />
-                    <Label x:Name="plannedExpenses" Text="0zl" Grid.Row="1" Grid.Column="1" BackgroundColor="#D2F3DF"/>
+                    <Label Text="Planowane Wydatki" Grid.Row="1" Grid.Column="0" BackgroundColor="#D2F3DF" TextColor="#232825"/>
+                    <Label x:Name="plannedExpenses" Text="0zl" Grid.Row="1" Grid.Column="1" BackgroundColor="#D2F3DF" TextColor="#232825"/>
 
-                    <Label Text="Pozostaje" Grid.Row="2" Grid.Column="0" FontAttributes="Bold" BackgroundColor="#88F1B0"/>
-                    <Label x:Name="plannedDiff" Text="0zl" Grid.Row="2" Grid.Column="1" FontAttributes="Bold" BackgroundColor="#88F1B0"/>
+                    <Label Text="Pozostaje" Grid.Row="2" Grid.Column="0" FontAttributes="Bold" BackgroundColor="#88F1B0" TextColor="#232825"/>
+                    <Label x:Name="plannedDiff" Text="0zl" Grid.Row="2" Grid.Column="1" FontAttributes="Bold" BackgroundColor="#88F1B0" TextColor="#232825"/>
                 </Grid>
 
 
-                <ListView x:Name="listView" Grid.Column="0" Grid.Row="1" IsGroupingEnabled="true" ItemTapped="OnElementSelected">
+                <syncfusion:SfDataGrid x:Name="listView" Grid.Column="0" Grid.Row="1" AutoGenerateColumns="False">
+                    <syncfusion:SfDataGrid.GroupColumnDescriptions>
+                        <syncfusion:GroupColumnDescription ColumnName="CategoryName" />
+                    </syncfusion:SfDataGrid.GroupColumnDescriptions>
+
+                    <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                        <syncfusion:GridTextColumn MappingName="Name" Width="100" />
+                        <syncfusion:GridTextColumn MappingName="Value" Format="C" Width="100"/>
+                    </syncfusion:SfDataGrid.Columns >
+                </syncfusion:SfDataGrid>
+                
+                <!--<ListView x:Name="listView" Grid.Column="0" Grid.Row="1" IsGroupingEnabled="true" ItemTapped="OnElementSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -125,8 +138,8 @@
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
 
-                                    <Label Grid.Column="0" Text="{Binding Name}" FontSize="Small" />
-                                    <Label Grid.Column="1" Text="0zl" FontSize="Small" />
+                                    <Label Grid.Column="0" Text="{Binding Name}" FontSize="Small" TextColor="#232825" />
+                                    <Label Grid.Column="1" Text="0zl" FontSize="Small" TextColor="#232825" />
 
                                 </Grid>
                             </ViewCell>
@@ -144,20 +157,20 @@
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
 
-                                    <Label Grid.Column="0" Text="{Binding Name}" FontSize="Small" FontAttributes="Bold"/>
-                                    <Label Grid.Column="1" Text="0zl" FontSize="Small" FontAttributes="Bold"/>
+                                    <Label Grid.Column="0" Text="{Binding Name}" FontSize="Small" FontAttributes="Bold" TextColor="#232825" />
+                                    <Label Grid.Column="1" Text="0zl" FontSize="Small" FontAttributes="Bold" TextColor="#232825" />
 
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.GroupHeaderTemplate>
-                </ListView>
+                </ListView>-->
         
 
             </Grid>
 
 
-            <AbsoluteLayout x:Name="Calculator" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Grid.ColumnSpan="2">
+            <AbsoluteLayout x:Name="Calculator" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 0.75, 1" Grid.ColumnSpan="2" >
                 <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Opacity="0.9">
                     <StackLayout.Margin>
                         <OnPlatform x:TypeArguments="Thickness">
@@ -214,11 +227,12 @@
                         
                     <Button Grid.Column="3" Grid.RowSpan="2" Font="Large" Text=""  x:Name="DateButton" BackgroundColor="#D2F3DF"/>
 
-                    <Entry
+                    <Label
 				    StyleId="calculationText"
 				    Grid.Row="2"
 				    Grid.ColumnSpan="4"
 				    Text="{Binding Path=CalculationText}"
+				    Font="Large"
 				    HorizontalOptions="EndAndExpand" />
 
                     <Label
@@ -230,29 +244,31 @@
 				    Font="Large"
 				    HorizontalOptions="EndAndExpand" />
 
-                        <Button
-				Grid.Row="4"
-				Grid.Column="0"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="Backspace"
-				Text="←" 
-				BackgroundColor="#6BBE8B"/>
                     <Button
-				Grid.Row="4"
-				Grid.Column="1"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="Clear"
-				Text="C" 
-				BackgroundColor="#6BBE8B"/>
+				    Grid.Row="4"
+				    Grid.Column="0"
+				    Font="Large"
+				    Command="{Binding KeyPressed}"
+				    CommandParameter="Backspace"
+				    Text="←" 
+				    BackgroundColor="#6BBE8B"/>
+                        
                     <Button
-				Grid.Row="4"
-				Grid.Column="2"
-				Font="Large"
-				Clicked="OnCancel"
-				Text="Back" 
-				BackgroundColor="#6BBE8B"/>
+				    Grid.Row="4"
+				    Grid.Column="1"
+				    Font="Large"
+				    Command="{Binding KeyPressed}"
+				    CommandParameter="Clear"
+				    Text="C" 
+				    BackgroundColor="#6BBE8B"/>
+                        
+                    <Button
+				    Grid.Row="4"
+				    Grid.Column="2"
+				    Font="Large"
+				    Clicked="OnCancel"
+				    Text="Back" 
+				    BackgroundColor="#6BBE8B"/>
                     <Button
 				Grid.Row="4"
 				Grid.Column="3"

@@ -188,5 +188,25 @@ namespace HomeBudget.Code
 
             return totalExpense;
         }
+
+        public double GetTotalPlannedExpenses()
+        {
+            double totalPlannedExpenses = 0;
+
+            foreach (BudgetCategory category in categories)
+                totalPlannedExpenses += category.GetTotalPlannedExpense();
+
+            return totalPlannedExpenses;
+        }
+
+        public double GetTotalPlannedIncome()
+        {
+            double totalPlannedIncome = 0;
+
+            foreach (BudgetIncome income in incomes)
+                totalPlannedIncome += income.GetTotalPlannedIncome();
+
+            return totalPlannedIncome;
+        }
     }
 }

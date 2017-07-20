@@ -116,7 +116,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\analysis.png" />
+    <Content Include="Assets\Checkmark.png" />
+    <Content Include="Assets\Circle_light.png" />
     <Content Include="Assets\document.png" />
+    <Content Include="Assets\Dropbox.png" />
+    <Content Include="Assets\DropboxSync.png" />
     <Content Include="Assets\expense.png" />
     <Content Include="Assets\Icons\beauty.png" />
     <Content Include="Assets\Icons\beautyHighlight.png" />
@@ -144,6 +148,7 @@
     <Content Include="Assets\New\income.png" />
     <Content Include="Assets\restaurant.png" />
     <Content Include="Assets\restaurantHighlight.png" />
+    <Content Include="Assets\sync_black.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -168,29 +173,6 @@
       <Project>{d9790901-488a-4acb-87d5-29d232071ed0}</Project>
       <Name>HomeBudget</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Syncfusion.SfCalendar.XForms">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.1.0.33\Xamarin\lib\uwp\Syncfusion.SfCalendar.XForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.SfCalendar.XForms.UWP">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.1.0.33\Xamarin\lib\uwp\Syncfusion.SfCalendar.XForms.UWP.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.SfChart.UWP">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.1.0.33\Xamarin\lib\uwp\Syncfusion.SfChart.UWP.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.SfChart.XForms">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.1.0.33\Xamarin\lib\uwp\Syncfusion.SfChart.XForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.SfChart.XForms.UWP">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.1.0.33\Xamarin\lib\uwp\Syncfusion.SfChart.XForms.UWP.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.SfInput.UWP">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.1.0.33\Xamarin\lib\uwp\Syncfusion.SfInput.UWP.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.SfShared.UWP">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.1.0.33\Xamarin\lib\uwp\Syncfusion.SfShared.UWP.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

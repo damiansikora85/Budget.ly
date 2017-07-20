@@ -59,7 +59,7 @@ namespace HomeBudget.UWP
 
 				rootFrame.NavigationFailed += OnNavigationFailed;
 
-				List<Assembly> assembliesToInclude = new List<Assembly>();
+                List<Assembly> assembliesToInclude = new List<Assembly>();
 				assembliesToInclude.Add(typeof(Syncfusion.SfChart.XForms.UWP.SfChartRenderer).GetTypeInfo().Assembly);
 				assembliesToInclude.AddRange(Rg.Plugins.Popup.Windows.Popup.GetExtraAssemblies());
 				Xamarin.Forms.Forms.Init(e, assembliesToInclude);

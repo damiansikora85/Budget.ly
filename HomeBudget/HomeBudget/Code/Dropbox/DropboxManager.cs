@@ -30,9 +30,20 @@ namespace HomeBudget.Code
 
         public Action onLogedIn;
         public Action<byte[]> onDownloadFinished;
+        public Action onDownloadError;
         public Action onUploadFinished;
 
         private DropboxManager()
+        {
+            dropboxClient = null;
+            if (Helpers.Settings.DropboxAccessToken != string.Empty)
+            {
+                accessToken = Helpers.Settings.DropboxAccessToken;
+                dropboxClient = new DropboxClient(accessToken);
+            }
+        }
+
+        public void Init()
         {
             dropboxClient = null;
             if (Helpers.Settings.DropboxAccessToken != string.Empty)
@@ -46,11 +57,18 @@ namespace HomeBudget.Code
         {
             if (dropboxClient == null)
                 return;
-
-            using (var response = await dropboxClient.Files.DownloadAsync(DROPBOX_DATA_FILE_PATH))
+            try
             {
-                byte[] data = await response.GetContentAsByteArrayAsync();
-                onDownloadFinished?.Invoke(data);
+                Metadata metadata = await dropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH);
+                using (var response = await dropboxClient.Files.DownloadAsync(DROPBOX_DATA_FILE_PATH))
+                {
+                    byte[] data = await response.GetContentAsByteArrayAsync();
+                    onDownloadFinished?.Invoke(data);
+                }
+            }
+            catch
+            {
+                onDownloadError?.Invoke();
             }
         }
 
