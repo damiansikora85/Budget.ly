@@ -32,178 +32,204 @@
 			"icon": "incomes.png"
 		}
 	],
-    "categories":[
-					{
-											"name": "Jedzenie",
-											"id": "0",
-											"icon": "food.png",
-											"sub": [
-												"Jedzenie dom",
-												"Jedzenie miasto",
-												"Jedzenie praca",
-												"Alkohol",
-												"Inne"
-											]
+	"categories": [
+			{
+				"name": "Dochód",
+				"id": "0",
+				"isIncome": "true",
+				"icon": "incomes.png",
+				"sub": [
+					"Wynagrodzenie Damian",
+					"Wynagrodzenie Ola",
+					"500+",
+					"Odsetki bankowe",
+					"Wynajem",
+					"Inne"
+				]
+			},
+			{
+				"name": "Jedzenie",
+				"id": "1",
+				"isIncome": "false",
+				"icon": "food.png",
+				"sub": [
+					"Jedzenie dom",
+					"Jedzenie miasto",
+					"Jedzenie praca",
+					"Alkohol",
+					"Inne"
+				]
 
-					},
-					{
-											"name": "Mieszkanie",
-											"id": "1",
-											"icon": "home.png",
-											"sub": [
-												"Czynsz",
-												"Prad",
-												"Gaz",
-												"Smieci",
-												"Naprawy",
-												"Wyposazenie",
-												"Ubezpieczenie",
-												"Inne"
-											]
+			},
+			{
+				"name": "Mieszkanie",
+				"id": "2",
+				"isIncome": "false",
+				"icon": "home.png",
+				"sub": [
+					"Czynsz",
+					"Prad",
+					"Gaz",
+					"Smieci",
+					"Naprawy",
+					"Wyposazenie",
+					"Ubezpieczenie",
+					"Inne"
+				]
 
-					},
-					{
-											"name": "Transport",
-											"id": "2",
-											"icon": "transport.png",
-											"sub": [
-												"Paliwo",
-												"Przeglady/naprawa",
-												"Wyposazenie",
-												"Ubezpieczenie",
-												"Bilety",
-												"PKP/PKS",
-												"Taxi",
-												"Inne"
-											]
+			},
+			{
+				"name": "Transport",
+				"id": "3",
+				"isIncome": "false",
+				"icon": "transport.png",
+				"sub": [
+					"Paliwo",
+					"Przeglady/naprawa",
+					"Wyposazenie",
+					"Ubezpieczenie",
+					"Bilety",
+					"PKP/PKS",
+					"Taxi",
+					"Inne"
+				]
 
-					},
-					{
-											"name": "Telekomunikacja",
-											"id": "3",
-											"icon": "telokom.png",
-											"sub": [
-												"Telefon",
-												"TV/internet",
-												"Inne"
-											]
+			},
+			{
+				"name": "Telekomunikacja",
+				"id": "4",
+				"isIncome": "false",
+				"icon": "telokom.png",
+				"sub": [
+					"Telefon",
+					"TV/internet",
+					"Inne"
+				]
 
-					},
-					{
-											"name": "Opieka zdrowotna",
-											"id": "4",
-											"icon": "medicine.png",
-											"sub": [
-												"Lekarz",
-												"Badania",
-												"Lekarstwa",
-												"Inne"
-											]
+			},
+			{
+				"name": "Opieka zdrowotna",
+				"id": "5",
+				"isIncome": "false",
+				"icon": "medicine.png",
+				"sub": [
+					"Lekarz",
+					"Badania",
+					"Lekarstwa",
+					"Inne"
+				]
 
-					},
-					{
-											"name": "Ubrania",
-											"id": "5",
-											"icon": "clothes.png",
-											"sub": [
-												"Ubrania zwykle",
-												"Ubrania sportowe",
-												"Buty",
-												"Dodatki",
-												"Inne"
-											]
+			},
+			{
+				"name": "Ubrania",
+				"id": "6",
+				"isIncome": "false",
+				"icon": "clothes.png",
+				"sub": [
+					"Ubrania zwykle",
+					"Ubrania sportowe",
+					"Buty",
+					"Dodatki",
+					"Inne"
+				]
 
-					},
-					{
-											"name": "Higiena",
-											"id": "6",
-											"icon": "beauty.png",
-											"sub": [
-												"Kosmetyki",
-												"Srodki czystosci",
-												"Fryzjer",
-												"Kosmetyczka",
-												"Pieluchy",
-												"Inne"
-											]
+			},
+			{
+				"name": "Higiena",
+				"id": "7",
+				"isIncome": "false",
+				"icon": "beauty.png",
+				"sub": [
+					"Kosmetyki",
+					"Srodki czystosci",
+					"Fryzjer",
+					"Kosmetyczka",
+					"Pieluchy",
+					"Inne"
+				]
 
-					},
-					{
-											"name": "Dzieci",
-											"id": "7",
-											"icon": "kids.png",
-											"sub": [
-												"Art szkolne",
-												"Przedszkole",
-												"Opieka",
-												"Zabawki",
-												"Inne"
-											]
+			},
+			{
+				"name": "Dzieci",
+				"id": "8",
+				"isIncome": "false",
+				"icon": "kids.png",
+				"sub": [
+					"Art szkolne",
+					"Przedszkole",
+					"Opieka",
+					"Zabawki",
+					"Inne"
+				]
 
-					},
-					{
-											"name": "Rozrywka",
-											"id": "8",
-											"icon": "theatre-masks.png",
-											"sub": [
-												"Silownia/basen",
-												"Kino/teatr",
-												"Koncerty",
-												"Czasopisma",
-												"Ksiazki",
-												"Hobby",
-												"Hotel/turystyka",
-												"Giereczki",
-												"Inne"
-											]
+			},
+			{
+				"name": "Rozrywka",
+				"id": "9",
+				"isIncome": "false",
+				"icon": "theatre-masks.png",
+				"sub": [
+					"Silownia/basen",
+					"Kino/teatr",
+					"Koncerty",
+					"Czasopisma",
+					"Ksiazki",
+					"Hobby",
+					"Hotel/turystyka",
+					"Giereczki",
+					"Inne"
+				]
 
-					},
-					{
-											"name": "Inne",
-											"id": "9",
-											"icon": "savings.png",
-											"sub": [
-												"Ubezpieczenia",
-												"Dobroczynnosc",
-												"Prezenty",
-												"RTV",
-												"Oprogramowanie",
-												"Edukacja",
-												"Uslugi",
-												"Podatki",
-												"Inne"
-											]
+			},
+			{
+				"name": "Inne",
+				"id": "10",
+				"isIncome": "false",
+				"icon": "savings.png",
+				"sub": [
+					"Ubezpieczenia",
+					"Dobroczynnosc",
+					"Prezenty",
+					"RTV",
+					"Oprogramowanie",
+					"Edukacja",
+					"Uslugi",
+					"Podatki",
+					"Inne"
+				]
 
-					},
-					{
-											"name": "Splata dlugow",
-											"id": "10",
-											"icon": "savings.png",
-											"sub": [
-												"Kredyt hipoteczny PKO",
-												"Kredyt hipoteczny Pekao",
-												"Kredyt konsumencki",
-												"Pozyczka",
-												"Karta kredytowa",
-												"Inne"
-											]
+			},
+			{
+				"name": "Splata dlugow",
+				"id": "11",
+				"isIncome": "false",
+				"icon": "savings.png",
+				"sub": [
+					"Kredyt hipoteczny PKO",
+					"Kredyt hipoteczny Pekao",
+					"Kredyt konsumencki",
+					"Pozyczka",
+					"Karta kredytowa",
+					"Inne"
+				]
 
-					},
-					{
-											"name": "Oszczednosci",
-											"id": "11",
-											"icon": "savings.png",
-											"sub": [
-												"Fundusz awaryjny",
-												"Fundusz wyd niereg",
-												"Poduszka finansowa",
-												"IKE/IKZE",
-												"Nadplata dlugow",
-												"Wakacje",
-												"Swieta",
-												"Inne"
-											]
+			},
+			{
+				"name": "Oszczednosci",
+				"id": "12",
+				"isIncome": "false",
+				"icon": "savings.png",
+				"sub": [
+					"Fundusz awaryjny",
+					"Fundusz wyd niereg",
+					"Poduszka finansowa",
+					"IKE/IKZE",
+					"Nadplata dlugow",
+					"Wakacje",
+					"Swieta",
+					"Inne"
+				]
 
-					}
-    ]
+			}
+	]
 }

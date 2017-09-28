@@ -8,13 +8,15 @@ using System.Threading.Tasks;
 
 using System.Runtime.Serialization;
 using System.Diagnostics;
+using HomeBudget.Code.Logic;
 
 namespace HomeBudget.Code
 {
 	public class BudgetMonth
 	{
-		private List<BudgetCategory> categories;
-        private List<BudgetIncome> incomes;
+        public BudgetPlanned BudgetPlanned { get; private set; }
+        private BudgetReal budgetReal;
+
 		private int month;
 		public int Month
 		{
@@ -26,6 +28,8 @@ namespace HomeBudget.Code
 		{
 			get { return year; }
 		}
+
+        public event Action onBudgetPlannedChanged;
 
         public class BudgetChartData
         {
@@ -43,8 +47,7 @@ namespace HomeBudget.Code
 		{
 			BudgetMonth month = new BudgetMonth();
 			month.SetupCategories(categories);
-            month.SetupIncomes(incomes);
-			month.SetupDate(date);
+            month.SetupDate(date);
 
 			return month;
 		}
@@ -59,43 +62,37 @@ namespace HomeBudget.Code
 
         public void AddExpense(double value, DateTime date, int categoryID, int subcatID)
         {
-            GetCategoryByID(categoryID).AddExpense(value, subcatID, date);
+            budgetReal.AddExpense(value, date, categoryID, subcatID);
         }
 
         public void AddIncome(double value, DateTime date, int incomeCategoryID)
         {
-            GetIncomeByID(incomeCategoryID).AddIncome(value, date);
+            budgetReal.AddIncome(value, date, incomeCategoryID);
         }
 
         public void SetPlannedIncome(float value, int incomeCategoryID)
         {
-            GetIncomeByID(incomeCategoryID).SetPlannedIncome(value);
+            //GetIncomeByID(incomeCategoryID).SetPlannedIncome(value);
         }
 
         public void SetPlannedExpense(float value, int categoryID, int subcatID)
         {
-            GetCategoryByID(categoryID).SetPlannedExpense(value, subcatID);
-        }
-
-        private BudgetCategory GetCategoryByID(int id)
-        {
-            BudgetCategory category = categories.Find(element => element.Id == id);
-            return category;
-        }
-
-        private BudgetIncome GetIncomeByID(int incomeID)
-        {
-            BudgetIncome income = incomes.Find(element => element.Id == incomeID);
-            return income;
+            //GetCategoryByID(categoryID).SetPlannedExpense(value, subcatID);
         }
 
 		private BudgetMonth()
 		{
-            categories = new List<BudgetCategory>();
-            incomes = new List<BudgetIncome>();
+            budgetReal = new BudgetReal();
+            BudgetPlanned = new BudgetPlanned();
+            BudgetPlanned.onBudgetPlannedChanged += OnBudgetPlannedChanged;
         }
 
-		private void SetupDate(DateTime date)
+        private void OnBudgetPlannedChanged()
+        {
+            onBudgetPlannedChanged();
+        }
+
+        private void SetupDate(DateTime date)
 		{
 			month = date.Month;
 			year = date.Year;
@@ -103,50 +100,33 @@ namespace HomeBudget.Code
 
 		private void SetupCategories(List<BudgetCategoryTemplate> categoriesDesc)
 		{
-			foreach(BudgetCategoryTemplate category in categoriesDesc)
-			{
-				BudgetCategory budgetCategory = BudgetCategory.Create(category);
-				categories.Add(budgetCategory);
-			}
+            BudgetPlanned.Setup(categoriesDesc);
+            budgetReal.Setup(categoriesDesc);
 		}
 
-        private void SetupIncomes(List<BudgetIncomeTemplate> incomesDesc)
-        {
-            foreach(BudgetIncomeTemplate incomeDesc in incomesDesc)
-            {
-                BudgetIncome income = BudgetIncome.Create(incomeDesc);
-                incomes.Add(income);
-            }
-        }
-
-		public ObservableCollection<BudgetChartData> GetData()
+        public ObservableCollection<BudgetChartData> GetData()
 		{
 			ObservableCollection<BudgetChartData> monthData = new ObservableCollection<BudgetChartData>();
-			foreach (BudgetCategory category in categories)
+			/*foreach (ExpenseCategory category in Categories)
 			{
 				monthData.Add(new BudgetChartData(category.Name, category.GetExpensesSum()));
-			}
+			}*/
 
 			return monthData;
 		}
 
-        public BudgetCategory GetCategory(int id)
+        /*public ExpenseCategory GetCategory(int id)
         {
             return GetCategoryByID(id);
-        }
+        }*/
 
         public byte[] Serialize()
         {
             List<byte> bytes = new List<byte>();
             bytes.AddRange(BitConverter.GetBytes(month));
             bytes.AddRange(BitConverter.GetBytes(year));
-            bytes.AddRange(BitConverter.GetBytes(categories.Count));
-            foreach (BudgetCategory category in categories)
-                bytes.AddRange(category.Serialize());
-
-            bytes.AddRange(BitConverter.GetBytes(incomes.Count));
-            foreach (BudgetIncome income in incomes)
-                bytes.AddRange(income.Serialize());
+            bytes.AddRange(BudgetPlanned.Serialize());
+            bytes.AddRange(budgetReal.Serialize());
 
             return bytes.ToArray();
         }
@@ -155,58 +135,33 @@ namespace HomeBudget.Code
         {
             month = binaryData.GetInt();
             year = binaryData.GetInt();
-            int categoriesNum = binaryData.GetInt();
-
-            for(int i=0; i<categoriesNum; i++)
-            {
-                BudgetCategory budgetCategory = BudgetCategory.CreateFromBinaryData(binaryData);
-                categories.Add(budgetCategory);
-            }
-
-            int incomesNum = binaryData.GetInt();
-            for(int i=0; i< incomesNum; i++)
-            {
-                BudgetIncome income = BudgetIncome.CreateWithBinaryData(binaryData);
-                incomes.Add(income);
-            }
+            BudgetPlanned.Deserialize(binaryData);
+            budgetReal.Deserialize(binaryData);
         }
 
-        public double GetTotalIncome()
+        public double GetTotalIncomeReal()
         {
-            double totalIncome = 0.0;
-            foreach (BudgetIncome income in incomes)
-                totalIncome += income.GetTotal();
-
-            return totalIncome;
+            return budgetReal.GetTotalIncome();
         }
 
-        public double GetTotalExpense()
+        public double GetTotalExpenseReal()
         {
-            double totalExpense = 0.0;
-            foreach (BudgetCategory expenseCategory in categories)
-                totalExpense += expenseCategory.GetTotalExpense();
-
-            return totalExpense;
+            return budgetReal.GetTotalExpenses();
         }
 
-        public double GetTotalPlannedExpenses()
+        public double GetTotalExpensesPlanned()
         {
-            double totalPlannedExpenses = 0;
-
-            foreach (BudgetCategory category in categories)
-                totalPlannedExpenses += category.GetTotalPlannedExpense();
-
-            return totalPlannedExpenses;
+            return BudgetPlanned.GetTotalExpenses();
         }
 
-        public double GetTotalPlannedIncome()
+        public double GetTotalIncomePlanned()
         {
-            double totalPlannedIncome = 0;
+            return BudgetPlanned.GetTotalIncome();
+        }
 
-            foreach (BudgetIncome income in incomes)
-                totalPlannedIncome += income.GetTotalPlannedIncome();
-
-            return totalPlannedIncome;
+        public void UpdatePlannedBudget(BudgetPlanned newBudgetPlanned)
+        {
+            BudgetPlanned = newBudgetPlanned;
         }
     }
 }

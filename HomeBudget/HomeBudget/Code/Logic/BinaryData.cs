@@ -17,6 +17,13 @@ namespace HomeBudget.Code
             currentIndex = 0;
         }
 
+        public bool GetBool()
+        {
+            bool value = BitConverter.ToBoolean(dataArray, currentIndex);
+            currentIndex += sizeof(bool);
+            return value;
+        }
+
         public int GetInt()
         {
             int value = BitConverter.ToInt32(dataArray, currentIndex);

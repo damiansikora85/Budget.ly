@@ -78,7 +78,9 @@
 
 
         <Grid Grid.Column="1" Grid.Row="0" BackgroundColor="#f9f9f9">
-
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnTap" />
+            </Grid.GestureRecognizers>
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*" />
                 <RowDefinition Height="*" />
@@ -108,13 +110,13 @@
                 <Label Text="Budzet zaplanowany" FontSize="Medium" Grid.Column="1" Grid.Row="1" TextColor="#232825"  />
                 <Label Text="Budzet rzeczywisty" FontSize="Medium" Grid.Column="2" Grid.Row="1" TextColor="#232825"/>
 
-                <Label x:Name="expansesText"  Text="Wydatki:" FontSize="Small" Grid.Column="1" Grid.Row="2" TextColor="#232825"/>
-                <Label x:Name="incomeText" Text="Dochody:" FontSize="Small" Grid.Column="1" Grid.Row="3" TextColor="#232825"/>
-                <Label x:Name="diffText" Text="Różnica:" FontSize="Small" Grid.Column="1" Grid.Row="4" TextColor="#232825" BackgroundColor="#D2F3DF"/>
+                <Label x:Name="expansesPlannedText"  Text="Wydatki:" FontSize="Small" Grid.Column="1" Grid.Row="2" TextColor="#232825"/>
+                <Label x:Name="incomePlannedText" Text="Dochody:" FontSize="Small" Grid.Column="1" Grid.Row="3" TextColor="#232825"/>
+                <Label x:Name="diffPlannedText" Text="Różnica:" FontSize="Small" Grid.Column="1" Grid.Row="4" TextColor="#232825" BackgroundColor="#D2F3DF"/>
 
-                <Label x:Name="expansesPlannedText"  Text="Wydatki:" FontSize="Small" Grid.Column="2" Grid.Row="2" TextColor="#232825"/>
-                <Label x:Name="incomePlannedText" Text="Dochody:" FontSize="Small" Grid.Column="2" Grid.Row="3" TextColor="#232825"/>
-                <Label x:Name="diffPlannedText" Text="Różnica:" FontSize="Small" Grid.Column="2" Grid.Row="4" TextColor="#232825" BackgroundColor="#D2F3DF"/>
+                <Label x:Name="expansesText"  Text="Wydatki:" FontSize="Small" Grid.Column="2" Grid.Row="2" TextColor="#232825"/>
+                <Label x:Name="incomeText" Text="Dochody:" FontSize="Small" Grid.Column="2" Grid.Row="3" TextColor="#232825"/>
+                <Label x:Name="diffText" Text="Różnica:" FontSize="Small" Grid.Column="2" Grid.Row="4" TextColor="#232825" BackgroundColor="#D2F3DF"/>
 
                 
 

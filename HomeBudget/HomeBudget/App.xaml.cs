@@ -29,7 +29,8 @@ namespace HomeBudget
             }
             else
             {
-                MainPage = new HomeBudget.MainPagePC();
+                MainPage = new HomeBudget.MainPagePC();// new NavigationPage(new HomeBudget.MainPagePC());
+                //MainPage = new HomeBudget.Pages.PC.MainPagePCNew();
             }
 
             

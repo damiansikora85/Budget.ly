@@ -1,25 +1,103 @@
-﻿using Syncfusion.SfDataGrid.XForms;
+﻿using HomeBudget.Code;
+using HomeBudget.Code.Logic;
+using HomeBudget.Utils;
+using Syncfusion.Data;
+using Syncfusion.SfChart.XForms;
+using Syncfusion.SfDataGrid.XForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Collections.Specialized;
+using HomeBudget.Code.Logic.Temp;
 
 namespace HomeBudget.Pages.PC
 {
-    public class CustomStyle : DataGridStyle
+    public class BudgetPlannedModel : INotifyPropertyChanged
     {
-        public CustomStyle()
+        public string CategoryName { get; set; }
+        private PlannedSubcat subcat;
+        public PlannedSubcat Subcat
         {
+            get { return subcat; }
+            set
+            {
+                subcat = value;
+                subcat.PropertyChanged += (object sender, PropertyChangedEventArgs args) =>
+                {
+                    RaisePropertyChanged("Subcat.Value");
+                };
+            }
         }
-        public override GridLinesVisibility GetGridLinesVisibility()
+        public event PropertyChangedEventHandler PropertyChanged;
+        void RaisePropertyChanged(string name)
         {
-            return GridLinesVisibility.None;
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+        }
+    }
+
+    public class BudgetCategoryOverallData : INotifyPropertyChanged
+    {
+        public string Name { get; set; }
+        //public double Value { get; set; }
+        private BaseBudgetCategory category;
+        public BaseBudgetCategory Category
+        {
+            get { return category; }
+            set
+            {
+                category = value;
+                category.onSubcatChanged += OnChanged;
+            }
+        }
+        public BudgetCategoryOverallData Thiz { get { return this; } }
+
+        private void OnChanged()
+        {
+            RaisePropertyChanged("Category");
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        void RaisePropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+        }
+    }
+
+    public class BudgetCategoryOverallIncomesData : INotifyPropertyChanged
+    {
+        public string Name { get; set; }
+        private PlannedSubcat subcat;
+        public PlannedSubcat Subcat
+        {
+            get { return subcat; }
+            set
+            {
+                subcat = value;
+                subcat.PropertyChanged += OnChanged;
+            }
+        }
+        public BudgetCategoryOverallIncomesData Thiz { get { return this; } }
+
+        private void OnChanged(object sender, PropertyChangedEventArgs e)
+        {
+            RaisePropertyChanged("Subcat");
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        void RaisePropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
     }
 
@@ -28,180 +106,238 @@ namespace HomeBudget.Pages.PC
     {
         private int selectedCategory;
         private int selectedSubcat;
-        private PlanningPageViewModel viewModel;
 
         public PlanningPage()
         {
             InitializeComponent();
-            viewModel = new PlanningPageViewModel();
-            BindingContext = viewModel;
-            Calculator.IsVisible = false;
+            UpdateSummary();
+            //MainBudget.Instance.onPlannedBudgetChanged += OnPlannedBudgetChanged;
 
-            
-            listView.ItemsSource = Code.MainBudget.Instance.GetPlanningData();
-            listView.GridStyle = new CustomStyle();
+            SetupDataGrid();
+            SetupChart(chartIncome, GetIncomesData());
+            SetupChart(chartExpense, GetExpensesData());
+        }
+
+        private void SetupDataGrid()
+        {
+            ObservableCollection<BudgetPlannedModel> plannedModel = new ObservableCollection<BudgetPlannedModel>();
+            BudgetPlanned budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
+            foreach (BudgetPlannedCategory category in budgetPlanned.Categories)
+            {
+                foreach (PlannedSubcat subcat in category.subcats)
+                {
+                    BudgetPlannedModel model = new BudgetPlannedModel()
+                    {
+                        CategoryName = category.Name,
+                        Subcat = subcat
+                    };
+                    plannedModel.Add(model);
+                }
+            }
+
+            listView.GridStyle = new BudgetDataGridStyle();
+            listView.ItemsSource = plannedModel;
+            listView.HeaderRowHeight = 0;
+
+            listView.Columns.Add(new GridTextColumn()
+            {
+                MappingName = "Subcat.Name",
+                HeaderText = "Kategoria",
+                ColumnSizer = ColumnSizer.Auto
+            });
+
+            listView.Columns.Add(new GridTextColumn()
+            {
+                MappingName = "Subcat.Value",
+                HeaderText = "Suma",
+                AllowEditing = true,
+                ColumnSizer = ColumnSizer.LastColumnFill,
+                Format = "C",
+                CultureInfo = new CultureInfo("pl-PL")
+            });
+
+            listView.GroupColumnDescriptions.Add(new GroupColumnDescription()
+            {
+                ColumnName = "CategoryName",
+            });
+
+            GridSummaryRow summaryRow = new GridSummaryRow
+            {
+                ShowSummaryInRow = true,
+                Title = "{Key}: {Total}"
+            };
+
+            summaryRow.SummaryColumns.Add(new GridSummaryColumn
+            {
+                Name = "Total",
+                CustomAggregate = new CurrencyDataGridHeader(),
+                MappingName = "Subcat.Value",
+                Format = "{Currency}",
+                SummaryType = Syncfusion.Data.SummaryType.Custom,
+
+            });
+
+            listView.CaptionSummaryRow = summaryRow;
+            listView.GridViewCreated += (object sender, GridViewCreatedEventArgs e) =>
+            {
+                listView.View.LiveDataUpdateMode = LiveDataUpdateMode.AllowSummaryUpdate;
+                listView.View.RecordPropertyChanged += (object recordSender, PropertyChangedEventArgs args) =>
+                {
+                    UpdateSummary();
+                    var recordentry = listView.View.Records.GetRecord(recordSender);
+                    listView.View.TopLevelGroup.UpdateSummaries(recordentry.Parent as Group);
+                };
+            };
+
+           
+        }
+
+        private void RecordChanged(object sender, PropertyChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private ObservableCollection<BudgetCategoryOverallData> GetExpensesData()
+        {
+            BudgetPlanned budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
+            ObservableCollection<BudgetCategoryOverallData> chartData = new ObservableCollection<BudgetCategoryOverallData>();
+            foreach (BudgetPlannedCategory category in budgetPlanned.Categories)
+            {
+                if (category.IsIncome == false)
+                {
+                    BudgetCategoryOverallData data = new BudgetCategoryOverallData()
+                    {
+                        Name = category.Name,
+                        //Value = decimal.ToDouble(category.GetTotalValues())
+                        Category = category
+                    };
+                    chartData.Add(data);
+                }
+            }
+            SetupChart(chartExpense, chartData);
+            return chartData;
+        }
+
+        private ObservableCollection<BudgetCategoryOverallIncomesData> GetIncomesData()
+        {
+            BudgetPlanned budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
+            ObservableCollection<BudgetCategoryOverallIncomesData> chartData = new ObservableCollection<BudgetCategoryOverallIncomesData>();
+            BudgetPlannedCategory incomeCategory = budgetPlanned.GetIncomesCategories()[0];
+
+            foreach (PlannedSubcat category in incomeCategory.subcats)
+            {
+                BudgetCategoryOverallIncomesData data = new BudgetCategoryOverallIncomesData()
+                {
+                    Name = category.Name,
+                    //Value = category.Value
+                    Subcat = category
+                };
+                chartData.Add(data);
+            }
+            return chartData;
+        }
+
+        private void SetupChart(SfChart chart, ObservableCollection<BudgetCategoryOverallIncomesData> data)
+        {
+            PieSeries pieSeries = new PieSeries()
+            {
+                ItemsSource = data,
+                XBindingPath = "Name",
+                YBindingPath = "Subcat.Value",
+                EnableSmartLabels = true,
+                DataMarkerPosition = CircularSeriesDataMarkerPosition.OutsideExtended,
+                ListenPropertyChange = true
+            };
+
+            DataTemplate dataMarkerTemplate = new DataTemplate(() =>
+            {
+                Label label = new Label();
+                label.SetBinding(Label.TextProperty, "Thiz", BindingMode.Default, new ChartCategoryNameConverter());
+                label.FontSize = 10;
+                label.VerticalOptions = LayoutOptions.Center;
+
+                return label;
+            });
+
+            pieSeries.DataMarker = new ChartDataMarker
+            {
+                LabelContent = LabelContent.YValue,
+                LabelTemplate = dataMarkerTemplate
+            };
+
+            //chart.Series.CollectionChanged += OnDataGridChanged;
+            chart.Series.Clear();
+            chart.Series.Add(pieSeries);
+        }
+
+        private void SetupChart(SfChart chart, ObservableCollection<BudgetCategoryOverallData> data)
+        {
+            PieSeries pieSeries = new PieSeries()
+            {
+                ItemsSource = data,
+                XBindingPath = "Name",
+                YBindingPath = "Category.TotalValues",
+                EnableSmartLabels = true,
+                DataMarkerPosition = CircularSeriesDataMarkerPosition.OutsideExtended,
+                ListenPropertyChange = true
+            };
+
+            DataTemplate dataMarkerTemplate = new DataTemplate(() =>
+            {
+                Label label = new Label();
+                label.SetBinding(Label.TextProperty, "Thiz", BindingMode.Default, new ChartCategoryNameConverter());
+                label.FontSize = 10;
+                label.VerticalOptions = LayoutOptions.Center;
+               
+                return label;
+            });
+
+            pieSeries.DataMarker = new ChartDataMarker
+            {
+                LabelContent = LabelContent.YValue,
+                LabelTemplate = dataMarkerTemplate
+            };
+
+            chart.Series.Clear();
+            chart.Series.Add(pieSeries);
+        }
+
+        private void UpdateSummary()
+        {
+            BudgetMonth budgetMonth = MainBudget.Instance.GetCurrentMonthData();
+            double monthExpensesPlanned = budgetMonth.GetTotalExpensesPlanned();
+            double monthIncomePlanned = budgetMonth.GetTotalIncomePlanned();
+            double diffPlanned = monthIncomePlanned - monthExpensesPlanned;
+
+            CultureInfo cultureInfoPL = new CultureInfo("pl-PL");
+            plannedExpenses.Text = string.Format(cultureInfoPL, "{0:c}", monthExpensesPlanned);
+            plannedIncomes.Text = string.Format(cultureInfoPL, "{0:c}", monthIncomePlanned);
+            plannedDiff.Text = string.Format(cultureInfoPL, "{0:c}", diffPlanned);
+        }
+        
+        private void OnPlannedBudgetChanged()
+        {
+            UpdateSummary();
         }
 
         private async void OnHomeClick(object sender, EventArgs args)
-        {
-            NavigationPage mainPage = new NavigationPage(new MainPagePC());
-            await Navigation.PushModalAsync(mainPage);
+        { 
+            await Navigation.PushModalAsync(new MainPagePC());
         }
 
         private async void OnAnalizeClick(object sender, EventArgs e)
         {
-            NavigationPage analizePage = new NavigationPage(new AnalyticsPagePC());
-            await Navigation.PushModalAsync(analizePage);
+            await Navigation.PushModalAsync(new AnalyticsPagePC());
         }
 
-        private async void OnElementClick(object sender, EventArgs e)
+        private async void OnOnlyThisMonth(object sender, EventArgs args)
         {
-            Calculator.IsVisible = true;
+            await MainBudget.Instance.Save();
         }
 
-        private async void OnOk(object sender, EventArgs e)
+        private async void OnSaveForAll(object sender, EventArgs args)
         {
-            Calculator.IsVisible = false;
-            bool isIncome = selectedCategory == Code.MainBudget.INCOME_CATEGORY_ID;
-            if (isIncome)
-                await Code.MainBudget.Instance.SetPlanedIncome(float.Parse(viewModel.CalculationText), selectedSubcat);
-            else
-                await Code.MainBudget.Instance.AddPlanedExpense(float.Parse(viewModel.CalculationText), selectedCategory, selectedSubcat);
-        }
-
-        private async void OnCancel(object sender, EventArgs e)
-        {
-            Calculator.IsVisible = false;
-        }
-
-        void OnElementSelected(object sender, ItemTappedEventArgs e)
-        {
-            Calculator.IsVisible = true;
-
-            Code.GroupedCategory group = e.Group as Code.GroupedCategory;
-            Code.SimpleCategory element = e.Item as Code.SimpleCategory;
-            Header.Text = group.Name;
-            Description.Text = element.Name;
-
-            selectedCategory = group.Id;
-            selectedSubcat = element.Id;
-
-            ((ListView)sender).SelectedItem = null;
-        }
-    }
-
-    public class PlanningPageViewModel : INotifyPropertyChanged
-    {
-        public enum CalculatorKey
-        {
-            Zero = 0,
-            One = 1,
-            Two = 2,
-            Three = 3,
-            Four = 4,
-            Five = 5,
-            Six = 6,
-            Seven = 7,
-            Eight = 8,
-            Nine = 9,
-            Backspace = 20,
-            Clear,
-            PlusMinus,
-            Divide,
-            Multiply,
-            Minus,
-            Plus,
-            Equal,
-            Point,
-            Ok,
-            Cancel,
-            Calendar
-        }
-
-        public ICommand KeyPressed { get; private set; }
-        private String calculationText;
-        private string categoryText;
-        private string dateText;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public string CategoryText
-        {
-            get { return categoryText; }
-            set
-            {
-                categoryText = value;
-                if (string.IsNullOrEmpty(categoryText))
-                {
-                    categoryText = " ";
-                }
-                OnPropertyChanged("CategoryText");
-            }
-        }
-
-        public PlanningPageViewModel()
-        {
-            KeyPressed = new Command<string>(HandleKeyPressed);
-            CalculationText = "";
-        }
-
-        public string CalculationText
-        {
-            get { return calculationText; }
-            set
-            {
-                calculationText = value;
-                if (string.IsNullOrEmpty(calculationText))
-                {
-                    calculationText = " "; // HACK to force grid view to allocate space.
-                }
-                OnPropertyChanged("CalculationText");
-            }
-        }
-
-        public string DateText
-        {
-            get { return dateText; }
-            set
-            {
-                dateText = value;
-                if (string.IsNullOrEmpty(dateText))
-                {
-                    dateText = " ";
-                }
-            }
-        }
-
-        void HandleKeyPressed(string value)
-        {
-            var calculatorKey = (CalculatorKey)Enum.Parse(typeof(CalculatorKey), value, true);
-
-            switch (calculatorKey)
-            {
-                case CalculatorKey.One:
-                case CalculatorKey.Two:
-                case CalculatorKey.Three:
-                case CalculatorKey.Four:
-                case CalculatorKey.Five:
-                case CalculatorKey.Six:
-                case CalculatorKey.Seven:
-                case CalculatorKey.Eight:
-                case CalculatorKey.Nine:
-                case CalculatorKey.Zero:
-                    CalculationText += ((int)calculatorKey).ToString();
-                    break;
-                case CalculatorKey.Equal:
-                    break;
-                case CalculatorKey.Point:
-                    CalculationText += '.';
-                    break;
-            }
-            return;
-        }
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            await MainBudget.Instance.UpdateMainPlannedBudget();
         }
     }
 }

@@ -92,7 +92,7 @@
 				HorizontalOptions="EndAndExpand" />
             <Label
 				x:Name="Result"
-				StyleId="resultText"
+				StyleId="resultText" 
 				Grid.Row="3"
 				Grid.ColumnSpan="4"
 				Text="{Binding Path=CalculationText}"

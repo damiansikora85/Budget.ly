@@ -41,88 +41,22 @@ namespace HomeBudget
             BudgetDescription budget = MainBudget.Instance.BudgetDescription;
             BudgetMonth budgetMonth = MainBudget.Instance.GetCurrentMonthData();
 
-            /*Grid grid = new Grid();
-
-            ColumnDefinition col0 = new ColumnDefinition()
-            {
-                Width = new GridLength(3, GridUnitType.Star)
-            };
-            grid.ColumnDefinitions.Add(col0);
-
-            
-
-            for (int i = 0; i < 31; i++)
-            {
-                ColumnDefinition col = new ColumnDefinition()
-                {
-                    Width = new GridLength(1, GridUnitType.Star)
-                };
-                grid.ColumnDefinitions.Add(col);
-            }
-            */
-
-
             int rowIndex = 0;
-            foreach (BudgetCategoryTemplate category in budget.Categories)
-            {
+           /* foreach (BudgetCategoryTemplate category in budget.Categories)
+            { 
 
-                /*RowDefinition row0 = new RowDefinition()
-                {
-                    Height = new GridLength(1, GridUnitType.Star)
-                };
-                grid.RowDefinitions.Add(row0);
-
-                RowDefinition row1 = new RowDefinition()
-                {
-                    Height = new GridLength(1, GridUnitType.Star)
-                };
-                grid.RowDefinitions.Add(row1);*/
-
-                BudgetCategory budgetCategory = budgetMonth.GetCategory(category.Id);
+                ExpenseCategory budgetCategory = budgetMonth.GetCategory(category.Id);
                 CreateCategoryTable(category, budgetCategory, grid22, rowIndex);
 
                 rowIndex = rowIndex + 2 + category.subcategories.Count;
-
-                /*Button button = new Button()
-                {
-                    Text = category.Name
-                };
-
-                
-                //Grid.SetRow(button, rowIndex);
-                //Grid.SetColumn(button, 0);
-                rowIndex++;
-                //rowIndex++;
-
-                BudgetCategory budgetCategory = budgetMonth.GetCategory(category.Id);
-
-                table.Children.Add(button);
-
-                int subcatID = 0;
-                foreach (string subcat in category.subcategories)
-                {
-                    table.Children.Add(CreateSubcat(subcat, budgetCategory.Subcategories[subcatID++]));
-
-                }*/
-            }
+            }*/
 
             //table.Children.Add(grid);
 
         }
 
-        private void CreateCategoryTable(BudgetCategoryTemplate categoryTemplate, BudgetCategory category, Grid grid, int row)
+        /*private void CreateCategoryTable(BudgetCategoryTemplate categoryTemplate, ExpenseCategory category, Grid grid, int row)
         {
-            /*RowDefinition row0 = new RowDefinition()
-            {
-                Height = new GridLength(1, GridUnitType.Star)
-            };
-            grid.RowDefinitions.Add(row0);
-
-            RowDefinition row1 = new RowDefinition()
-            {
-                Height = new GridLength(1, GridUnitType.Star)
-            };
-            grid.RowDefinitions.Add(row1);*/
 
             Button button = new Button()
             {
@@ -154,16 +88,16 @@ namespace HomeBudget
                     Grid.SetColumn(value, i);
                     Grid.SetRow(value, row + 1 + subcatID);
                     grid.Children.Add(value);
-                }*/
+                }
 
 
                 subcatID++;
             }
 
            
-        }
+        }*/
 
-        private Grid CreateSubcat(string name, BudgetSubcategory subcategory)
+        /*private Grid CreateSubcat(string name, ExpenseSubcat subcategory)
         {
             Grid grid = new Grid();
 
@@ -210,7 +144,7 @@ namespace HomeBudget
             }
 
             return grid;
-        }
+        }*/
 
         void OnClick(object sender, EventArgs args)
         {

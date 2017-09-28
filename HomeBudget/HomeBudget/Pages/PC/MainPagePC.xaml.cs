@@ -6,11 +6,13 @@ using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -38,6 +40,7 @@ namespace HomeBudget
         private CategoryElement lastCategorySelected;
         private MainPagePCViewModel viewModel;
         private int selectedSubcatId;
+        private bool lockTapGesture;
 
         //Dropbox variables
         private const string RedirectUri = "https://localhost/authorize";
@@ -56,8 +59,18 @@ namespace HomeBudget
             CreateCategoriesBar();
             CreateIncomesBar();
 
+            lockTapGesture = false;
+
+            /*CultureInfo ci = CultureInfo.CurrentCulture;
+            ci = CultureInfo.CurrentUICulture;
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pl-PL");
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("pl-PL");*/
+
+            CultureInfo cultureInfoPL = new CultureInfo("pl-PL");
             DateTime currentDate = DateTime.Now;
-            dateText.Text = currentDate.ToString("MMMM") + " " + currentDate.Year;
+            dateText.Text = currentDate.ToString("MMMM", cultureInfoPL) + " " + currentDate.Year;
+
+            
         }
 
         private void InitBudget()
@@ -86,25 +99,26 @@ namespace HomeBudget
         private void SetupBudgetSummary()
         {
             BudgetMonth budgetMonth = MainBudget.Instance.GetCurrentMonthData();
-            double monthExpenses = budgetMonth.GetTotalExpense();
-            double monthIncomes = budgetMonth.GetTotalIncome();
+            double monthExpenses = budgetMonth.GetTotalExpenseReal();
+            double monthIncomes = budgetMonth.GetTotalIncomeReal();
             double diff = monthIncomes - monthExpenses;
-            expansesText.Text = "Wydatki: " + monthExpenses;
-            incomeText.Text = "Dochody: " + monthIncomes;
-            diffText.Text = "Różnica: " + diff;
+            CultureInfo cultureInfoPL = new CultureInfo("pl-PL");
+            expansesText.Text = string.Format(cultureInfoPL, "Wydatki: {0:c}", monthExpenses);
+            incomeText.Text = string.Format(cultureInfoPL, "Dochody: {0:c}", monthIncomes);
+            diffText.Text = string.Format(cultureInfoPL, "Różnica: {0:c}", diff);
 
-            double monthExpensesPlanned = budgetMonth.GetTotalPlannedExpenses();
-            double monthIncomePlanned = budgetMonth.GetTotalPlannedIncome();
+            double monthExpensesPlanned = budgetMonth.GetTotalExpensesPlanned();
+            double monthIncomePlanned = budgetMonth.GetTotalIncomePlanned();
             double diffPlanned = monthIncomePlanned - monthExpensesPlanned;
-            expansesPlannedText.Text = "Wydatki: " + monthExpensesPlanned;
-            incomePlannedText.Text = "Dochody: " + monthIncomePlanned;
-            diffPlannedText.Text = "Różnica: " + diffPlanned;
+            expansesPlannedText.Text = string.Format(cultureInfoPL, "Wydatki: {0:c}", monthExpensesPlanned);
+            incomePlannedText.Text = string.Format(cultureInfoPL, "Dochody: {0:c}", monthIncomePlanned);
+            diffPlannedText.Text = string.Format(cultureInfoPL, "Różnica: {0:c}", diffPlanned);
         }
 
         private async void OnPlanClick(object sender, EventArgs args)
         {
-            NavigationPage planPage = new NavigationPage(new PlanningPage());
-            await Navigation.PushModalAsync(planPage);
+            //NavigationPage planPage = new NavigationPage(new PlanningPage());
+            await Navigation.PushModalAsync(new PlanningPage());
         }
 
         private async void OnAnalyticsClick(object sender, EventArgs e)
@@ -116,26 +130,39 @@ namespace HomeBudget
         private async void OnIncomeClick(object sender, EventArgs e)
         {
             mode = EMode.Income;
+            lockTapGesture = true;
             await incomes.TranslateTo(0, 0);
+            lockTapGesture = false;
         }
 
         private async void OnExpenseClick(object sender, EventArgs e)
         {
             mode = EMode.Expense;
+            lockTapGesture = true;
             await categoriesScroll.TranslateTo(0, 0);
+            lockTapGesture = false;
         }
 
         private void CreateIncomesBar()
         {
             string iconsPathPrefix = "Assets\\";
-            int incomesNum = MainBudget.Instance.BudgetDescription.Incomes.Count;
-            for(int i=0; i<incomesNum; i++)
+            int categoriesNum = MainBudget.Instance.BudgetDescription.Categories.Count;
+            List<BudgetCategoryTemplate> categoriesDesc = MainBudget.Instance.BudgetDescription.Categories;
+
+            for (int i = 0; i < categoriesNum; i++)
             {
-                Grid grid = CreateCategoryGrid();
-                BudgetIncomeTemplate incomeTemplate = MainBudget.Instance.BudgetDescription.Incomes[i];
-                CategoryElement element = CategoryElement.CreateAndAddToGrid(incomeTemplate.Id, incomeTemplate.Name, iconsPathPrefix+incomeTemplate.IconFileName, grid);
-                element.onClickFunc += OnIncomeCategoryClick;
-                incomes.Children.Add(grid);
+                if (categoriesDesc[i].IsIncome)
+                {
+                    BudgetCategoryTemplate incomeTemplate = categoriesDesc[i];
+                    int index = 0;
+                    foreach (string subcatName in incomeTemplate.subcategories)
+                    {
+                        Grid grid = CreateCategoryGrid();
+                        CategoryElement element = CategoryElement.CreateAndAddToGrid(index++, subcatName, iconsPathPrefix + incomeTemplate.IconFileName, grid);
+                        element.onClickFunc += OnIncomeCategoryClick;
+                        incomes.Children.Add(grid);
+                    }
+                }
             }
         }
 
@@ -152,15 +179,18 @@ namespace HomeBudget
         private void CreateCategoriesBar()
         {
             int categoriesNum = MainBudget.Instance.BudgetDescription.Categories.Count;
+            List<BudgetCategoryTemplate> categoriesDesc = MainBudget.Instance.BudgetDescription.Categories;
             string iconsPathPrefix = "Assets\\Icons\\";
             for(int i=0; i< categoriesNum; i++)
             {
-                Grid grid = CreateCategoryGrid();
+                if (categoriesDesc[i].IsIncome == false)
+                {
+                    Grid grid = CreateCategoryGrid();
+                    CategoryElement element = CategoryElement.CreateAndAddToGrid(categoriesDesc[i].Id, categoriesDesc[i].Name, iconsPathPrefix + categoriesDesc[i].IconFileName, grid);
+                    element.onClickFunc += OnCategoryClicked;
 
-                CategoryElement element = CategoryElement.CreateAndAddToGrid(MainBudget.Instance.BudgetDescription.Categories[i].Id, MainBudget.Instance.BudgetDescription.Categories[i].Name, iconsPathPrefix + MainBudget.Instance.BudgetDescription.Categories[i].IconFileName, grid);
-                element.onClickFunc += OnCategoryClicked;
-
-                categories.Children.Add(grid); 
+                    categories.Children.Add(grid);
+                }
             }
         }
 
@@ -257,6 +287,19 @@ namespace HomeBudget
         private async void OnCancel(object sender, EventArgs e)
         {
             Calculator.IsVisible = false;
+        }
+
+        private void OnTap(object sender, EventArgs args)
+        {
+            if (lockTapGesture)
+                return;
+
+            if (lastCategorySelected != null)
+                lastCategorySelected.Deselect();
+
+            subcat.TranslateTo(-185, 0);
+            categoriesScroll.TranslateTo(-150, 0);
+            incomes.TranslateTo(-150, 0);
         }
 
         private async void OnChangeDate(object sender, EventArgs e)

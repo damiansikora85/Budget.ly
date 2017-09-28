@@ -1,10 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using HomeBudget.Code.Logic;
+using Newtonsoft.Json;
 using PCLStorage;
 using Syncfusion.SfChart.XForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -34,16 +37,86 @@ namespace HomeBudget.Code
     public class SimpleCategory
     {
         public string Name { get; set; }
-        public int Value { get; set; }
+        public double Value { get; set; }
         public int Id;
     }
 
-    public class NewCategoryData
+    public class NewCategoryData : INotifyPropertyChanged, IEditableObject
     {
-        public string Name { get; set; }
-        public int Value { get; set; }
-        public int Id;
-        public string CategoryName { get; set; }
+        private string name;
+        private double total;
+        private string categoryName;
+        private int id;
+        private int categoryID;
+        private int subcatID;
+
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                this.name = value;
+                RaisePropertyChanged("Name");
+            }
+        }
+
+        public double Value
+        {
+            get { return total; }
+            set
+            {
+                this.total = value;
+                RaisePropertyChanged("Value");
+            }
+        }
+
+        public string CategoryName
+        {
+            get { return categoryName; }
+            set
+            {
+                this.categoryName = value;
+                RaisePropertyChanged("CategoryName");
+            }
+        }
+
+        public bool IsIncome { get; set; }
+        public int CategoryID
+        {
+            get { return categoryID; }
+            set { categoryID = value; }
+        }
+        public int SubcatID
+        {
+            get { return subcatID; }
+            set { subcatID = value; }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void RaisePropertyChanged(String Name)
+        {
+            if (PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(Name));
+        }
+
+        public void BeginEdit()
+        {
+            Debug.WriteLine("BeginEdit");
+        }
+
+        public void CancelEdit()
+        {
+            Debug.WriteLine("CancelEdit");
+        }
+
+        public void EndEdit()
+        {
+            /*Debug.WriteLine("EndEdit");
+            if (IsIncome)
+                MainBudget.Instance.SetPlanedIncome((float)total, categoryID);
+            else
+                MainBudget.Instance.SetPlanedExpense((float)total, categoryID, subcatID);*/
+        }
     }
 
 
@@ -54,14 +127,19 @@ namespace HomeBudget.Code
         private const string SAVE_FILE_NAME = "budget.data";
         public const int INCOME_CATEGORY_ID = 777;
 		private List<BudgetMonth> months;
+        private BudgetPlanned budgetPlanned;
 
-        public Action onBudgetLoaded = delegate { };
+        public event Action onBudgetLoaded = delegate { };
+        public event Action onPlannedBudgetChanged;
 
         private BudgetDescription budgetDescription;
 		public BudgetDescription BudgetDescription
 		{
 			get { return budgetDescription; }
 		}
+
+        //public BudgetMonth TemplateMonth { get; private set; }
+        //public BudgetMonth TempBudgetMonth { get; private set; }
 
 		static MainBudget instance;
 		public static MainBudget Instance
@@ -78,6 +156,7 @@ namespace HomeBudget.Code
 		private MainBudget()
 		{
 			months = new List<BudgetMonth>();
+            budgetPlanned = new BudgetPlanned();
 
             DropboxManager.Instance.onDownloadFinished += SynchronizeData;
             DropboxManager.Instance.onDownloadError += SynchronizeError;
@@ -91,6 +170,7 @@ namespace HomeBudget.Code
             {
                 jsonString = reader.ReadToEnd();
                 budgetDescription = JsonConvert.DeserializeObject<BudgetDescription>(jsonString);
+                budgetPlanned.Setup(budgetDescription.Categories);
             }
         }
 
@@ -118,6 +198,7 @@ namespace HomeBudget.Code
             IFile file = await folder.CreateFileAsync(SAVE_FILE_NAME, CreationCollisionOption.ReplaceExisting);
 
             List<byte> byteList = new List<byte>();
+            byteList.AddRange(budgetPlanned.Serialize());
             byteList.AddRange(BitConverter.GetBytes(months.Count));
             foreach (BudgetMonth month in months)
             {
@@ -125,7 +206,7 @@ namespace HomeBudget.Code
             }
 
             byte[] data = byteList.ToArray();
-            char[] chars = new char[data.Length / sizeof(char)];
+            char[] chars = new char[data.Length / sizeof(char)+1];
             Buffer.BlockCopy(data, 0, chars, 0, data.Length);
 
             await file.WriteAllTextAsync(new string(chars));
@@ -156,15 +237,23 @@ namespace HomeBudget.Code
                 byte[] data = new byte[dataString.Length * sizeof(char)];
                 Buffer.BlockCopy(dataString.ToCharArray(), 0, data, 0, dataString.Length*sizeof(char));
                 BinaryData binaryData = new BinaryData(data);
+                budgetPlanned.Deserialize(binaryData);
                 int numMonths = binaryData.GetInt();
                 for (int i = 0; i < numMonths; i++)
                 {
                     BudgetMonth month = BudgetMonth.CreateFromBinaryData(binaryData);
+                    month.onBudgetPlannedChanged += OnPlannedBudgetChanged;
                     months.Add(month);
                 }
             }
 
             onBudgetLoaded();
+        }
+
+        private void OnPlannedBudgetChanged()
+        {
+            if(onPlannedBudgetChanged != null)
+                onPlannedBudgetChanged();
         }
 
         private void SynchronizeData(byte[] data)
@@ -175,6 +264,7 @@ namespace HomeBudget.Code
             for (int i = 0; i < numMonths; i++)
             {
                 BudgetMonth month = BudgetMonth.CreateFromBinaryData(binaryData);
+                month.onBudgetPlannedChanged += OnPlannedBudgetChanged;
                 months.Add(month);
             }
 
@@ -201,28 +291,20 @@ namespace HomeBudget.Code
             await Save();
         }
 
-        public async Task AddPlanedExpense(float value, int categoryID, int subcatID)
+        public async Task UpdateMainPlannedBudget()
         {
-            BudgetMonth month = GetCurrentMonthData();
-            month.SetPlannedExpense(value, categoryID, subcatID);
-            await Save();
-        }
-
-        public async Task SetPlanedIncome(float value, int incomeCategoryID)
-        {
-            BudgetMonth month = GetCurrentMonthData();
-            month.SetPlannedIncome(value, incomeCategoryID);
+            budgetPlanned = GetCurrentMonthData().BudgetPlanned;
             await Save();
         }
 
         public double GetTotalPlannedExpensesForCurrentMonth()
         {
-            return GetCurrentMonthData().GetTotalPlannedExpenses();
+            return GetCurrentMonthData().GetTotalExpensesPlanned();
         }
 
         public double GetTotalPlannedIncomeForCurrentMonth()
         {
-            return GetCurrentMonthData().GetTotalPlannedIncome();
+            return GetCurrentMonthData().GetTotalIncomePlanned();
         }
 
         private BudgetMonth GetMonth(DateTime date)
@@ -231,7 +313,9 @@ namespace HomeBudget.Code
 			if (month == null)
 			{
 				month = BudgetMonth.Create(budgetDescription.Categories, budgetDescription.Incomes, date);
-				months.Add(month);
+                month.onBudgetPlannedChanged += OnPlannedBudgetChanged;
+                month.UpdatePlannedBudget(budgetPlanned);
+                months.Add(month);
 			}
 
 			return month;
@@ -247,75 +331,10 @@ namespace HomeBudget.Code
             return GetMonth(DateTime.Now);
         }
 
-        public ObservableCollection<NewCategoryData> GetPlanningData()
+        public ObservableCollection<BudgetPlannedCategory> GetPlanningData()
         {
-            ObservableCollection<NewCategoryData> collection = new ObservableCollection<NewCategoryData>();
-
-            foreach (BudgetCategoryTemplate category in budgetDescription.Categories)
-            {
-
-                int subcatId = 0;
-                foreach (string subcat in category.subcategories)
-                {
-                    collection.Add(new NewCategoryData()
-                    {
-                        Name = subcat,
-                        Value = 5,
-                        Id = subcatId,
-                        CategoryName = category.Name
-                    });
-                    subcatId++;
-                }
-
-            }
-
-            return collection;
+            BudgetMonth currentMonth = GetCurrentMonthData();
+            return currentMonth.BudgetPlanned.Categories;
         }
-
-       /* public ObservableCollection<GroupedCategory> GetPlanningData()
-        {
-            ObservableCollection<GroupedCategory> collection = new ObservableCollection<GroupedCategory>();
-
-            GroupedCategory incomeGroup = new GroupedCategory()
-            {
-                Name = "Przychód",
-                Id = INCOME_CATEGORY_ID
-            };
-            foreach (BudgetIncomeTemplate income in budgetDescription.Incomes)
-            {
-                incomeGroup.Add(new SimpleCategory()
-                {
-                    Name = income.Name,
-                    Id = income.Id
-                });
-            }
-
-            collection.Add(incomeGroup);
-
-            foreach(BudgetCategoryTemplate category in budgetDescription.Categories)
-            {
-                GroupedCategory categoryCollection = new GroupedCategory()
-                {
-                    Name = category.Name,
-                    Id = category.Id
-                };
-
-                int subcatId = 0;
-                foreach(string subcat in category.subcategories)
-                {
-                    categoryCollection.Add(new SimpleCategory()
-                    {
-                        Name = subcat,
-                        Value = 5,
-                        Id = subcatId
-                    });
-                    subcatId++;
-                }
-
-                collection.Add(categoryCollection);
-            }
-
-            return collection;
-        }*/
     }
 }
