@@ -117,14 +117,12 @@ namespace HomeBudget
 
         private async void OnPlanClick(object sender, EventArgs args)
         {
-            //NavigationPage planPage = new NavigationPage(new PlanningPage());
             await Navigation.PushModalAsync(new PlanningPage());
         }
 
         private async void OnAnalyticsClick(object sender, EventArgs e)
         {
-            NavigationPage analizePage = new NavigationPage(new AnalyticsPagePC());
-            await Navigation.PushModalAsync(analizePage);
+            await Navigation.PushModalAsync(new AnalyticsPagePC());
         }
 
         private async void OnIncomeClick(object sender, EventArgs e)
