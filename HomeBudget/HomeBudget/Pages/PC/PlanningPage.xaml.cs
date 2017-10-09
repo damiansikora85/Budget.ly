@@ -22,76 +22,11 @@ namespace HomeBudget.Pages.PC
 {
     public class BudgetPlannedModel : INotifyPropertyChanged
     {
-        public string CategoryName { get; set; }
-        private PlannedSubcat subcat;
-        public PlannedSubcat Subcat
-        {
-            get { return subcat; }
-            set
-            {
-                subcat = value;
-                subcat.PropertyChanged += (object sender, PropertyChangedEventArgs args) =>
-                {
-                    RaisePropertyChanged("Subcat.Value");
-                };
-            }
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-        void RaisePropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-        }
-    }
-
-    public class BudgetCategoryOverallData : INotifyPropertyChanged
-    {
         public string Name { get; set; }
-        //public double Value { get; set; }
-        private BaseBudgetCategory category;
-        public BaseBudgetCategory Category
-        {
-            get { return category; }
-            set
-            {
-                category = value;
-                category.onSubcatChanged += OnChanged;
-            }
-        }
-        public BudgetCategoryOverallData Thiz { get { return this; } }
+        public BudgetPlannedCategory Category { get; set; }
+        public PlannedSubcat Subcat { get; set; }
 
-        private void OnChanged()
-        {
-            RaisePropertyChanged("Category");
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        void RaisePropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-        }
-    }
-
-    public class BudgetCategoryOverallIncomesData : INotifyPropertyChanged
-    {
-        public string Name { get; set; }
-        private PlannedSubcat subcat;
-        public PlannedSubcat Subcat
-        {
-            get { return subcat; }
-            set
-            {
-                subcat = value;
-                subcat.PropertyChanged += OnChanged;
-            }
-        }
-        public BudgetCategoryOverallIncomesData Thiz { get { return this; } }
-
-        private void OnChanged(object sender, PropertyChangedEventArgs e)
-        {
-            RaisePropertyChanged("Subcat");
-        }
+        public BudgetPlannedModel Thiz { get { return this; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         void RaisePropertyChanged(string name)
@@ -104,31 +39,29 @@ namespace HomeBudget.Pages.PC
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlanningPage : ContentPage
     {
-        private int selectedCategory;
-        private int selectedSubcat;
+        ObservableCollection<BudgetPlannedModel> plannedModel;
 
         public PlanningPage()
         {
             InitializeComponent();
-            UpdateSummary();
-            //MainBudget.Instance.onPlannedBudgetChanged += OnPlannedBudgetChanged;
-
+            
             SetupDataGrid();
-            SetupChart(chartIncome, GetIncomesData());
-            SetupChart(chartExpense, GetExpensesData());
+            SetupCharts();
+            UpdateSummary(null, null);
         }
 
         private void SetupDataGrid()
         {
-            ObservableCollection<BudgetPlannedModel> plannedModel = new ObservableCollection<BudgetPlannedModel>();
+            plannedModel = new ObservableCollection<BudgetPlannedModel>();
             BudgetPlanned budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
+            budgetPlanned.PropertyChanged += UpdateSummary;
             foreach (BudgetPlannedCategory category in budgetPlanned.Categories)
             {
                 foreach (PlannedSubcat subcat in category.subcats)
                 {
                     BudgetPlannedModel model = new BudgetPlannedModel()
                     {
-                        CategoryName = category.Name,
+                        Category = category,
                         Subcat = subcat
                     };
                     plannedModel.Add(model);
@@ -158,7 +91,7 @@ namespace HomeBudget.Pages.PC
 
             listView.GroupColumnDescriptions.Add(new GroupColumnDescription()
             {
-                ColumnName = "CategoryName",
+                ColumnName = "Category.Name",
             });
 
             GridSummaryRow summaryRow = new GridSummaryRow
@@ -183,100 +116,66 @@ namespace HomeBudget.Pages.PC
                 listView.View.LiveDataUpdateMode = LiveDataUpdateMode.AllowSummaryUpdate;
                 listView.View.RecordPropertyChanged += (object recordSender, PropertyChangedEventArgs args) =>
                 {
-                    UpdateSummary();
+                    //UpdateSummary();
                     var recordentry = listView.View.Records.GetRecord(recordSender);
                     listView.View.TopLevelGroup.UpdateSummaries(recordentry.Parent as Group);
                 };
             };
-
-           
         }
 
-        private void RecordChanged(object sender, PropertyChangedEventArgs e)
+        private void SetupCharts()
         {
-            throw new NotImplementedException();
-        }
-
-        private ObservableCollection<BudgetCategoryOverallData> GetExpensesData()
-        {
+            ObservableCollection<BudgetPlannedModel> expensesData = new ObservableCollection<BudgetPlannedModel>();
+            ObservableCollection<BudgetPlannedModel> incomesData = new ObservableCollection<BudgetPlannedModel>();
             BudgetPlanned budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
-            ObservableCollection<BudgetCategoryOverallData> chartData = new ObservableCollection<BudgetCategoryOverallData>();
             foreach (BudgetPlannedCategory category in budgetPlanned.Categories)
             {
-                if (category.IsIncome == false)
-                {
-                    BudgetCategoryOverallData data = new BudgetCategoryOverallData()
-                    {
-                        Name = category.Name,
-                        //Value = decimal.ToDouble(category.GetTotalValues())
-                        Category = category
-                    };
-                    chartData.Add(data);
-                }
-            }
-            SetupChart(chartExpense, chartData);
-            return chartData;
-        }
-
-        private ObservableCollection<BudgetCategoryOverallIncomesData> GetIncomesData()
-        {
-            BudgetPlanned budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
-            ObservableCollection<BudgetCategoryOverallIncomesData> chartData = new ObservableCollection<BudgetCategoryOverallIncomesData>();
-            BudgetPlannedCategory incomeCategory = budgetPlanned.GetIncomesCategories()[0];
-
-            foreach (PlannedSubcat category in incomeCategory.subcats)
-            {
-                BudgetCategoryOverallIncomesData data = new BudgetCategoryOverallIncomesData()
+                BudgetPlannedModel model = new BudgetPlannedModel()
                 {
                     Name = category.Name,
-                    //Value = category.Value
-                    Subcat = category
+                    Category = category,
                 };
-                chartData.Add(data);
+                if (category.IsIncome == false)
+                    expensesData.Add(model);
             }
-            return chartData;
+
+            List<BudgetPlannedCategory> incomesCategories = budgetPlanned.GetIncomesCategories();
+            foreach (BudgetPlannedCategory category in incomesCategories)
+            {
+                foreach(BaseBudgetSubcat subcat in category.subcats)
+                {
+                    BudgetPlannedModel model = new BudgetPlannedModel()
+                    {
+                        Name = subcat.Name,
+                        Category = category,
+                        Subcat = subcat as PlannedSubcat
+                    };
+                    incomesData.Add(model);
+                }
+            }
+
+            SetupIncomesChart(incomesData);
+            SetupExpensesChart(expensesData);
         }
 
-        private void SetupChart(SfChart chart, ObservableCollection<BudgetCategoryOverallIncomesData> data)
+
+        private void SetupIncomesChart(ObservableCollection<BudgetPlannedModel> data)
+        {
+            SetupChart(chartIncome, data, "Name", "Subcat.Value");
+        }
+
+        private void SetupExpensesChart(ObservableCollection<BudgetPlannedModel> data)
+        {
+            SetupChart(chartExpense, data, "Name", "Category.TotalValues");
+        }
+
+        private void SetupChart(SfChart chart, ObservableCollection<BudgetPlannedModel> data, string xBindingPath, string yBindingPath)
         {
             PieSeries pieSeries = new PieSeries()
             {
                 ItemsSource = data,
-                XBindingPath = "Name",
-                YBindingPath = "Subcat.Value",
-                EnableSmartLabels = true,
-                DataMarkerPosition = CircularSeriesDataMarkerPosition.OutsideExtended,
-                ListenPropertyChange = true
-            };
-
-            DataTemplate dataMarkerTemplate = new DataTemplate(() =>
-            {
-                Label label = new Label();
-                label.SetBinding(Label.TextProperty, "Thiz", BindingMode.Default, new ChartCategoryNameConverter());
-                label.FontSize = 10;
-                label.VerticalOptions = LayoutOptions.Center;
-
-                return label;
-            });
-
-            pieSeries.DataMarker = new ChartDataMarker
-            {
-                LabelContent = LabelContent.YValue,
-                LabelTemplate = dataMarkerTemplate
-            };
-
-            //chart.Series.CollectionChanged += OnDataGridChanged;
-            chart.Series.Clear();
-            chart.Series.Add(pieSeries);
-        }
-
-        private void SetupChart(SfChart chart, ObservableCollection<BudgetCategoryOverallData> data)
-        {
-            PieSeries pieSeries = new PieSeries()
-            {
-                ItemsSource = data,
-                XBindingPath = "Name",
-                YBindingPath = "Category.TotalValues",
+                XBindingPath = xBindingPath,
+                YBindingPath = yBindingPath,
                 EnableSmartLabels = true,
                 DataMarkerPosition = CircularSeriesDataMarkerPosition.OutsideExtended,
                 ListenPropertyChange = true
@@ -297,12 +196,10 @@ namespace HomeBudget.Pages.PC
                 LabelContent = LabelContent.YValue,
                 LabelTemplate = dataMarkerTemplate
             };
-
-            chart.Series.Clear();
             chart.Series.Add(pieSeries);
         }
 
-        private void UpdateSummary()
+        private void UpdateSummary(object sender, PropertyChangedEventArgs e)
         {
             BudgetMonth budgetMonth = MainBudget.Instance.GetCurrentMonthData();
             double monthExpensesPlanned = budgetMonth.GetTotalExpensesPlanned();
@@ -313,11 +210,6 @@ namespace HomeBudget.Pages.PC
             plannedExpenses.Text = string.Format(cultureInfoPL, "{0:c}", monthExpensesPlanned);
             plannedIncomes.Text = string.Format(cultureInfoPL, "{0:c}", monthIncomePlanned);
             plannedDiff.Text = string.Format(cultureInfoPL, "{0:c}", diffPlanned);
-        }
-        
-        private void OnPlannedBudgetChanged()
-        {
-            UpdateSummary();
         }
 
         private async void OnHomeClick(object sender, EventArgs args)

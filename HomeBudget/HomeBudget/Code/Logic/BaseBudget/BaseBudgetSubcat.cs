@@ -7,13 +7,21 @@ using System.Threading.Tasks;
 
 namespace HomeBudget.Code.Logic
 {
-    public class BaseBudgetSubcat : INotifyPropertyChanged, IEditableObject
+    public class BaseBudgetSubcat : INotifyPropertyChanged
     {
         public string Name { get; protected set; }
         public int Id { get; protected set; }
 
         public virtual double Value { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public BaseBudgetSubcat() { }
+
+        public BaseBudgetSubcat(BaseBudgetSubcat subcat)
+        {
+            Name = subcat.Name;
+            Id = subcat.Id;
+        }
 
         public virtual byte[] Serialize()
         {
@@ -33,21 +41,6 @@ namespace HomeBudget.Code.Logic
         {
             Name = binaryData.GetString();
             Id = binaryData.GetInt();
-        }
-
-        public void BeginEdit()
-        {
-            
-        }
-
-        public void CancelEdit()
-        {
-            
-        }
-
-        public void EndEdit()
-        {
-           
         }
 
         protected void RaisePropertyChanged(string name)

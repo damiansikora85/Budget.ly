@@ -316,6 +316,7 @@ namespace HomeBudget.Code
                 month.onBudgetPlannedChanged += OnPlannedBudgetChanged;
                 month.UpdatePlannedBudget(budgetPlanned);
                 months.Add(month);
+                Save();
 			}
 
 			return month;

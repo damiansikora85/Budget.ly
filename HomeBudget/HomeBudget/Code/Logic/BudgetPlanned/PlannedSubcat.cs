@@ -10,6 +10,13 @@ namespace HomeBudget.Code.Logic
     {
         private double plannedValue;
 
+        public PlannedSubcat() { }
+
+        public PlannedSubcat(BaseBudgetSubcat subcat) : base(subcat)
+        {
+            Value = subcat.Value;
+        }
+
         public override double Value
         {
             get

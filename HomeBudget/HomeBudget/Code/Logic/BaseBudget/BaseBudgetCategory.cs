@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace HomeBudget.Code.Logic
 {
-    public class BaseBudgetCategory
+    public class BaseBudgetCategory : INotifyPropertyChanged
     {
-        public string Name { get; protected set; }
+        public string Name { get; set; }
         public int Id { get; protected set; }
         public bool IsIncome { get; protected set; }
         public List<BaseBudgetSubcat> subcats;
-        public event Action onSubcatChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public double TotalValues
         {
@@ -30,6 +30,14 @@ namespace HomeBudget.Code.Logic
         public BaseBudgetCategory()
         {
             subcats = new List<BaseBudgetSubcat>();
+        }
+
+        public BaseBudgetCategory(BaseBudgetCategory category)
+        {
+            subcats = new List<BaseBudgetSubcat>();
+            Name = category.Name;
+            Id = category.Id;
+            IsIncome = category.IsIncome;
         }
 
         public virtual byte[] Serialize()
@@ -52,14 +60,15 @@ namespace HomeBudget.Code.Logic
             IsIncome = binaryData.GetBool();
         }
 
-        /*public decimal GetTotalValues()
-        {
-            return subcats.Sum(elem => Convert.ToDecimal(elem.Value));
-        }*/
-
         public void OnSubcatChanged(object sender, PropertyChangedEventArgs e)
         {
-            onSubcatChanged();
+            RaisePropertyChanged("TotalValues");
+        }
+
+        protected void RaisePropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
     }
 }

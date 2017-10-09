@@ -9,6 +9,18 @@ namespace HomeBudget.Code.Logic
 {
     public class BudgetPlannedCategory : BaseBudgetCategory
     {
+        public BudgetPlannedCategory() : base() { }
+
+        public BudgetPlannedCategory(BudgetPlannedCategory category) : base(category)
+        {
+            foreach (BaseBudgetSubcat subcat in category.subcats)
+            {
+                PlannedSubcat plannedSubcat = new PlannedSubcat(subcat);
+                plannedSubcat.PropertyChanged += OnSubcatChanged;
+                subcats.Add(new PlannedSubcat(subcat));
+            }
+        }
+
         public static BudgetPlannedCategory Create(BudgetCategoryTemplate categoryDesc)
         {
             BudgetPlannedCategory category = new BudgetPlannedCategory()
@@ -22,7 +34,6 @@ namespace HomeBudget.Code.Logic
             foreach (string subcatName in categoryDesc.subcategories)
             {
                 PlannedSubcat subcat = PlannedSubcat.Create(subcatName, index++);
-                subcat.PropertyChanged += category.OnSubcatChanged;
                 category.subcats.Add(subcat);
             }
 
@@ -41,8 +52,8 @@ namespace HomeBudget.Code.Logic
             for (int i = 0; i < subcatNum; i++)
             {
                 PlannedSubcat subcat = new PlannedSubcat();
-                subcat.Deserialize(binaryData);
                 subcat.PropertyChanged += OnSubcatChanged;
+                subcat.Deserialize(binaryData);
                 subcats.Add(subcat);
             }
         }

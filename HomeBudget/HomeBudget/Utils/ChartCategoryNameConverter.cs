@@ -14,7 +14,13 @@ namespace HomeBudget.Utils
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string name = "";
-            if (value is BudgetCategoryOverallData)
+            BudgetPlannedModel data = (BudgetPlannedModel)value;
+            if(data.Category.IsIncome)
+                name = data.Subcat.Value > 0 ? data.Subcat.Name : "";
+            else
+                name = data.Category.TotalValues > 0 ? data.Category.Name : "";
+
+            /*if (value is BudgetCategoryOverallData)
             {
                 BudgetCategoryOverallData data = (BudgetCategoryOverallData)value;
                 name = data.Category.TotalValues > 0 ? data.Name : "";
@@ -23,7 +29,8 @@ namespace HomeBudget.Utils
             {
                 BudgetCategoryOverallIncomesData data = (BudgetCategoryOverallIncomesData)value;
                 name = data.Subcat.Value > 0 ? data.Name : "";
-            }
+            }*/
+
 
             return name;
         }

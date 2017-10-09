@@ -84,7 +84,6 @@ namespace HomeBudget.Code
 		{
             budgetReal = new BudgetReal();
             BudgetPlanned = new BudgetPlanned();
-            BudgetPlanned.onBudgetPlannedChanged += OnBudgetPlannedChanged;
         }
 
         private void OnBudgetPlannedChanged()
@@ -161,7 +160,7 @@ namespace HomeBudget.Code
 
         public void UpdatePlannedBudget(BudgetPlanned newBudgetPlanned)
         {
-            BudgetPlanned = newBudgetPlanned;
+            BudgetPlanned = new BudgetPlanned(newBudgetPlanned);
         }
     }
 }
