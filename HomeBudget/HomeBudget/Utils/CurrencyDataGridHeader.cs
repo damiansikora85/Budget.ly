@@ -22,10 +22,10 @@ namespace HomeBudget.Utils
         {
             return (items, property, pd) =>
             {
-                var enumerableItems = items as IEnumerable<BudgetPlannedModel>;
+                var enumerableItems = items as IEnumerable<BudgetViewModelData>;
                 if (pd.Name == "Currency")
                 {
-                    this.Currency = enumerableItems.Currency<BudgetPlannedModel>(q => q.Subcat.Value);
+                    this.Currency = enumerableItems.Currency<BudgetViewModelData>(q => q.Subcat.Value);
                 }
             };
         }

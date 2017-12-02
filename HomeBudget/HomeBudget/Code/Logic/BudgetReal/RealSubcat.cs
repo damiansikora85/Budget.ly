@@ -21,11 +21,27 @@ namespace HomeBudget.Code.Logic
             return subcat;
         }
 
+        public double[] Values
+        {
+            get
+            {
+                return values;
+            }
+            set
+            {
+                values = value;
+            }
+        }
+
         public override double Value
         {
             get
             {
                 return values.Sum();
+            }
+            set
+            {
+                values[0] = value;
             }
         }
 

@@ -13,6 +13,7 @@ namespace HomeBudget.Code.Logic
         public int Id { get; protected set; }
         public bool IsIncome { get; protected set; }
         public List<BaseBudgetSubcat> subcats;
+        public string IconName { get; protected set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public double TotalValues
@@ -46,6 +47,7 @@ namespace HomeBudget.Code.Logic
             bytes.AddRange(BinaryData.GetBytes(Name));
             bytes.AddRange(BitConverter.GetBytes(Id));
             bytes.AddRange(BitConverter.GetBytes(IsIncome));
+            bytes.AddRange(BinaryData.GetBytes(IconName));
             bytes.AddRange(BitConverter.GetBytes(subcats.Count));
             foreach (BaseBudgetSubcat subcat in subcats)
                 bytes.AddRange(subcat.Serialize());
@@ -58,6 +60,7 @@ namespace HomeBudget.Code.Logic
             Name = binaryData.GetString();
             Id = binaryData.GetInt();
             IsIncome = binaryData.GetBool();
+            IconName = binaryData.GetString();
         }
 
         public void OnSubcatChanged(object sender, PropertyChangedEventArgs e)

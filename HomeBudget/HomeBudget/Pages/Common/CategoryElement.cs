@@ -41,12 +41,15 @@ namespace HomeBudget.Pages
                 icon = new Image()
                 {
                     Source = categoryIconFile,
-                    VerticalOptions = LayoutOptions.End
+                    VerticalOptions = LayoutOptions.EndAndExpand,
+                    HorizontalOptions = LayoutOptions.CenterAndExpand
                 },
                 label = new Label
                 {
                     Text = categoryName,
                     FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
+                    FontFamily = "Cambria",
+                    TextColor = Color.White,
                     VerticalOptions = LayoutOptions.Start,
                     HorizontalOptions = LayoutOptions.Center,
                 },
@@ -58,17 +61,57 @@ namespace HomeBudget.Pages
             };
             categoryElement.button.Clicked += categoryElement.OnClicked;
 
-            Grid.SetColumnSpan(categoryElement.background, 3);
+            //Grid.SetColumnSpan(categoryElement.background, 3);
             Grid.SetRowSpan(categoryElement.background, 2);
-            Grid.SetColumnSpan(categoryElement.label, 3);
+           // Grid.SetColumnSpan(categoryElement.label, 3);
             Grid.SetRow(categoryElement.label, 1);
             Grid.SetRow(categoryElement.icon, 0);
-            Grid.SetColumn(categoryElement.icon, 1);
-            Grid.SetColumnSpan(categoryElement.button, 3);
+            Grid.SetColumn(categoryElement.icon, 0);
+           // Grid.SetColumnSpan(categoryElement.button, 3);
             Grid.SetRowSpan(categoryElement.button, 2);
 
             grid.Children.Add(categoryElement.background);
             grid.Children.Add(categoryElement.icon);
+            grid.Children.Add(categoryElement.label);
+            grid.Children.Add(categoryElement.button);
+
+            return categoryElement;
+        }
+
+        public static CategoryElement CreateAndAddToGrid(int categoryID, string categoryName, Grid grid)
+        {
+            CategoryElement categoryElement = new CategoryElement()
+            {
+                id = categoryID,
+                name = categoryName,
+
+                background = new Image()
+                {
+                    BackgroundColor = Color.Transparent
+                },
+
+                label = new Label
+                {
+                    Text = categoryName,
+                    FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
+                    FontFamily = "Cambria",
+                    TextColor = Color.White,
+                    VerticalOptions = LayoutOptions.Start,
+                    HorizontalOptions = LayoutOptions.Center,
+                },
+                button = new Button()
+                {
+                    BackgroundColor = Color.Transparent,
+
+                }
+            };
+            categoryElement.button.Clicked += categoryElement.OnClicked;
+
+            Grid.SetRowSpan(categoryElement.background, 2);
+            Grid.SetRow(categoryElement.label, 1);
+            Grid.SetRowSpan(categoryElement.button, 2);
+
+            grid.Children.Add(categoryElement.background);
             grid.Children.Add(categoryElement.label);
             grid.Children.Add(categoryElement.button);
 

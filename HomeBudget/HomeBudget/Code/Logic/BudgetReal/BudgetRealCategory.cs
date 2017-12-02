@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeBudget.Code.Logic
 {
-    public class BudgetRealCategory : BaseBudgetCategory
+    public sealed class BudgetRealCategory : BaseBudgetCategory
     {
         public static BudgetRealCategory Create(BudgetCategoryTemplate categoryDesc)
         {
@@ -14,7 +14,8 @@ namespace HomeBudget.Code.Logic
             {
                 Name = categoryDesc.Name,
                 Id = categoryDesc.Id,
-                IsIncome = categoryDesc.IsIncome
+                IsIncome = categoryDesc.IsIncome,
+                IconName = categoryDesc.IconFileName
             };
 
             int index = 0;
@@ -25,11 +26,6 @@ namespace HomeBudget.Code.Logic
             }
 
             return category;
-        }
-
-        public override byte[] Serialize()
-        {
-            return base.Serialize();
         }
 
         public override void Deserialize(BinaryData binaryData)

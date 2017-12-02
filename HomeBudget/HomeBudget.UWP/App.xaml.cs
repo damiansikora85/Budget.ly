@@ -1,4 +1,8 @@
-﻿using System;
+﻿using FFImageLoading;
+using FFImageLoading.Forms;
+using FFImageLoading.Forms.WinUWP;
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -59,12 +63,18 @@ namespace HomeBudget.UWP
 
 				rootFrame.NavigationFailed += OnNavigationFailed;
 
-                List<Assembly> assembliesToInclude = new List<Assembly>();
-				assembliesToInclude.Add(typeof(Syncfusion.SfChart.XForms.UWP.SfChartRenderer).GetTypeInfo().Assembly);
+                FFImageLoading.Forms.WinUWP.CachedImageRenderer.Init();
+
+                //List<Assembly> assembliesToInclude = new List<Assembly>();
+                var assembliesToInclude = new List<Assembly>()
+                {
+                    typeof(CachedImage).GetTypeInfo().Assembly,
+                    typeof(CachedImageRenderer).GetTypeInfo().Assembly,
+                    typeof(Syncfusion.SfChart.XForms.UWP.SfChartRenderer).GetTypeInfo().Assembly
+                };
 				assembliesToInclude.AddRange(Rg.Plugins.Popup.Windows.Popup.GetExtraAssemblies());
 				Xamarin.Forms.Forms.Init(e, assembliesToInclude);
-				//Xamarin.Forms.Forms.Init(e, Rg.Plugins.Popup.Windows.Popup.GetExtraAssemblies());
-				//Xamarin.Forms.Forms.Init(e);
+
 
 				if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
 				{

@@ -31,7 +31,7 @@ namespace HomeBudget
                 YBindingPath = "ExpensesSum"
             };
 
-            chart.Series.Add(barSeries);
+            //chart.Series.Add(barSeries);
         }
 
         private async void OnBack(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace HomeBudget
 
         private async void OnChart1(object sender, EventArgs e)
         {
-            chart.Series.Clear();
+            /*chart.Series.Clear();
             BarSeries barSeries = new BarSeries()
             {
                 ItemsSource = Code.MainBudget.Instance.GetCurrentMonthChartData(),
@@ -49,13 +49,13 @@ namespace HomeBudget
                 YBindingPath = "ExpensesSum"
             };
 
-            chart.Series.Add(barSeries);
+            chart.Series.Add(barSeries);*/
 
         }
 
         private async void OnChart2(object sender, EventArgs e)
         {
-            chart.Series.Clear();
+            /*chart.Series.Clear();
             PieSeries pieSeries = new PieSeries()
             {
                 ItemsSource = Code.MainBudget.Instance.GetCurrentMonthChartData(),
@@ -67,7 +67,7 @@ namespace HomeBudget
             pieSeries.DataMarker = new ChartDataMarker();
             pieSeries.DataMarker.ShowLabel = true;
             pieSeries.DataMarker.LabelContent = LabelContent.Percentage;
-            chart.Series.Add(pieSeries);
+            chart.Series.Add(pieSeries);*/
 
         }
 

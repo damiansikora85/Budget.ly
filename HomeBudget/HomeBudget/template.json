@@ -34,10 +34,10 @@
 	],
 	"categories": [
 			{
-				"name": "Dochód",
+				"name": "DochÃ³d",
 				"id": "0",
 				"isIncome": "true",
-				"icon": "incomes.png",
+				"icon": "income.png",
 				"sub": [
 					"Wynagrodzenie Damian",
 					"Wynagrodzenie Ola",
@@ -185,7 +185,7 @@
 				"name": "Inne",
 				"id": "10",
 				"isIncome": "false",
-				"icon": "savings.png",
+				"icon": "other.png",
 				"sub": [
 					"Ubezpieczenia",
 					"Dobroczynnosc",
@@ -203,7 +203,7 @@
 				"name": "Splata dlugow",
 				"id": "11",
 				"isIncome": "false",
-				"icon": "savings.png",
+				"icon": "debt.png",
 				"sub": [
 					"Kredyt hipoteczny PKO",
 					"Kredyt hipoteczny Pekao",

@@ -9,15 +9,17 @@
     "Newtonsoft.Json": "9.0.1",
     "PCLStorage": "1.0.2",
     "Rg.Plugins.Popup": "1.0.4",
-    "Syncfusion.Xamarin.SfCalendar": "15.3.0.33",
-    "Syncfusion.Xamarin.SfChart": "15.3.0.33",
-    "Syncfusion.Xamarin.SfDataGrid": "15.3.0.33",
+    "Syncfusion.Xamarin.SfCalendar": "15.4.0.17",
+    "Syncfusion.Xamarin.SfChart": "15.4.0.17",
+    "Syncfusion.Xamarin.SfDataGrid": "15.4.0.17",
     "WindowsAzure.Storage": "8.1.0",
     "Xam.FormsPlugin.CrossPieChart": "2.1.15",
     "Xam.Plugins.Settings": "2.6.0.12-beta",
     "Xamarin.Dropbox.Api": "4.2.3",
-    "Xamarin.FFImageLoading": "2.2.9",
-    "Xamarin.Forms": "2.3.4.270"
+    "Xamarin.FFImageLoading": "2.2.22",
+    "Xamarin.FFImageLoading.Forms": "2.2.22",
+    "Xamarin.FFImageLoading.Transformations": "2.2.22",
+    "Xamarin.Forms": "2.4.0.282"
   },
   "frameworks": {
     "uap10.0.14393": {}

@@ -15,7 +15,7 @@ namespace HomeBudget.Code
 	public class BudgetMonth
 	{
         public BudgetPlanned BudgetPlanned { get; private set; }
-        private BudgetReal budgetReal;
+        public BudgetReal BudgetReal { get; private set; }
 
 		private int month;
 		public int Month
@@ -62,12 +62,12 @@ namespace HomeBudget.Code
 
         public void AddExpense(double value, DateTime date, int categoryID, int subcatID)
         {
-            budgetReal.AddExpense(value, date, categoryID, subcatID);
+            BudgetReal.AddExpense(value, date, categoryID, subcatID);
         }
 
         public void AddIncome(double value, DateTime date, int incomeCategoryID)
         {
-            budgetReal.AddIncome(value, date, incomeCategoryID);
+            BudgetReal.AddIncome(value, date, incomeCategoryID);
         }
 
         public void SetPlannedIncome(float value, int incomeCategoryID)
@@ -82,7 +82,7 @@ namespace HomeBudget.Code
 
 		private BudgetMonth()
 		{
-            budgetReal = new BudgetReal();
+            BudgetReal = new BudgetReal();
             BudgetPlanned = new BudgetPlanned();
         }
 
@@ -100,7 +100,7 @@ namespace HomeBudget.Code
 		private void SetupCategories(List<BudgetCategoryTemplate> categoriesDesc)
 		{
             BudgetPlanned.Setup(categoriesDesc);
-            budgetReal.Setup(categoriesDesc);
+            BudgetReal.Setup(categoriesDesc);
 		}
 
         public ObservableCollection<BudgetChartData> GetData()
@@ -125,7 +125,7 @@ namespace HomeBudget.Code
             bytes.AddRange(BitConverter.GetBytes(month));
             bytes.AddRange(BitConverter.GetBytes(year));
             bytes.AddRange(BudgetPlanned.Serialize());
-            bytes.AddRange(budgetReal.Serialize());
+            bytes.AddRange(BudgetReal.Serialize());
 
             return bytes.ToArray();
         }
@@ -135,17 +135,17 @@ namespace HomeBudget.Code
             month = binaryData.GetInt();
             year = binaryData.GetInt();
             BudgetPlanned.Deserialize(binaryData);
-            budgetReal.Deserialize(binaryData);
+            BudgetReal.Deserialize(binaryData);
         }
 
         public double GetTotalIncomeReal()
         {
-            return budgetReal.GetTotalIncome();
+            return BudgetReal.GetTotalIncome();
         }
 
         public double GetTotalExpenseReal()
         {
-            return budgetReal.GetTotalExpenses();
+            return BudgetReal.GetTotalExpenses();
         }
 
         public double GetTotalExpensesPlanned()

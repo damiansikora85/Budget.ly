@@ -19,7 +19,17 @@
 				<Setter Property="FontSize" Value="Medium" />
 				<Setter Property="BackgroundColor" Value="#88f1b0" />
 			</Style>
-		</ResourceDictionary>
+
+            <Style x:Key="BudgetFont" TargetType="Label">
+                <Setter Property="FontFamily" Value="Cambria" />
+            </Style>
+
+            <Style x:Key="BudgetSummaryFont" TargetType="Label">
+                <Setter Property="FontFamily" Value="Cambria" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="TextColor" Value="#232825" />
+            </Style>
+        </ResourceDictionary>
 
 	</Application.Resources>
 </Application>

@@ -332,10 +332,10 @@ namespace HomeBudget.Code
             return GetMonth(DateTime.Now);
         }
 
-        public ObservableCollection<BudgetPlannedCategory> GetPlanningData()
+        /*public ObservableCollection<BudgetPlannedCategory> GetPlanningData()
         {
             BudgetMonth currentMonth = GetCurrentMonthData();
             return currentMonth.BudgetPlanned.Categories;
-        }
+        }*/
     }
 }

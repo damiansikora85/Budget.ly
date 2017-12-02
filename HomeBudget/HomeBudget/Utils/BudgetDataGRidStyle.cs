@@ -24,5 +24,10 @@ namespace HomeBudget.Utils
         {
             return GridLinesVisibility.None;
         }
+
+        public override Color GetRecordBackgroundColor()
+        {
+            return Color.FromHex("f9f9f9");
+        }
     }
 }

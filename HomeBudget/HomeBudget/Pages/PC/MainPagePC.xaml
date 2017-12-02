@@ -2,99 +2,39 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:HomeBudget"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+	         xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
              x:Class="HomeBudget.MainPagePC">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="7*" />
-        </Grid.ColumnDefinitions>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="calculatorButtonDark" TargetType="Button">
+                <Setter Property="FontSize" Value="Large" />
+                <Setter Property="BackgroundColor" Value="#6BBE8B" />
+                <Setter Property="FontFamily" Value="Cambria" />
+            </Style>
+            <Style x:Key="calculatorButtonLight" TargetType="Button">
+                <Setter Property="FontSize" Value="Large" />
+                <Setter Property="BackgroundColor" Value="#D2F3DF" />
+                <Setter Property="FontFamily" Value="Cambria" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-
-        <Grid x:Name="sideBar" Grid.Column="0" Grid.Row="0" BackgroundColor="#407153">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="10*" />
+            </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
 
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <Image BackgroundColor="#D2F3DF" Grid.ColumnSpan="3" Grid.RowSpan="2" />
-                <Image Grid.Row="0" Grid.Column="1" Source="Assets/incomes.png" IsOpaque="True" VerticalOptions="Center" />
-                <Label Grid.Row="1" Grid.ColumnSpan="3" Text="Home" FontSize="Medium" HorizontalOptions="Center" />
-            </Grid>
-
-            <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <Image Grid.Row="0" Grid.Column="1" Source="Assets/analysis.png" BackgroundColor="Transparent" IsOpaque="True" VerticalOptions="Center"/>
-                <Label Grid.Row="1" Grid.ColumnSpan="3" Text="Analize" FontSize="Medium" HorizontalOptions="Center" />
-                <Button Grid.RowSpan="2" Grid.ColumnSpan="3" BackgroundColor="Transparent" Clicked="OnAnalyticsClick"/>
-            </Grid>
-
-            <Grid Grid.Row="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <Image Grid.Row="0" Grid.Column="1" Source="Assets/document.png" BackgroundColor="Transparent" IsOpaque="True" VerticalOptions="Center"/>
-                <Label Grid.Row="1" Grid.ColumnSpan="3" Text="Plan" FontSize="Medium" HorizontalOptions="Center" />
-                <Button Grid.RowSpan="2" Grid.ColumnSpan="3" BackgroundColor="Transparent" Clicked="OnPlanClick"/>
-            </Grid>
-            
-        </Grid>
-
-
-        <Grid Grid.Column="1" Grid.Row="0" BackgroundColor="#f9f9f9">
-            <Grid.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnTap" />
-            </Grid.GestureRecognizers>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            
-            
-            <Grid Grid.Row="0" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+            <Grid x:Name="sideBar" Grid.Column="0" Grid.Row="0" BackgroundColor="#407153">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -102,353 +42,263 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Label x:Name="dateText" Text="Data" FontSize="Large" Grid.ColumnSpan="4" Grid.Row="0" HorizontalTextAlignment="Center" TextColor="#232825"/>
-                
-                <Label Text="Budzet zaplanowany" FontSize="Medium" Grid.Column="1" Grid.Row="1" TextColor="#232825"  />
-                <Label Text="Budzet rzeczywisty" FontSize="Medium" Grid.Column="2" Grid.Row="1" TextColor="#232825"/>
 
-                <Label x:Name="expansesPlannedText"  Text="Wydatki:" FontSize="Small" Grid.Column="1" Grid.Row="2" TextColor="#232825"/>
-                <Label x:Name="incomePlannedText" Text="Dochody:" FontSize="Small" Grid.Column="1" Grid.Row="3" TextColor="#232825"/>
-                <Label x:Name="diffPlannedText" Text="Różnica:" FontSize="Small" Grid.Column="1" Grid.Row="4" TextColor="#232825" BackgroundColor="#D2F3DF"/>
-
-                <Label x:Name="expansesText"  Text="Wydatki:" FontSize="Small" Grid.Column="2" Grid.Row="2" TextColor="#232825"/>
-                <Label x:Name="incomeText" Text="Dochody:" FontSize="Small" Grid.Column="2" Grid.Row="3" TextColor="#232825"/>
-                <Label x:Name="diffText" Text="Różnica:" FontSize="Small" Grid.Column="2" Grid.Row="4" TextColor="#232825" BackgroundColor="#D2F3DF"/>
-
-                
-
-               <!-- <Grid Grid.Column="1" Grid.Row="7">
+                <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <Label Text="Connect with" TextColor="#232825" Grid.Row="0" HorizontalOptions="EndAndExpand"/>
-                    <Image Source="Assets/Dropbox.png" Grid.Row="1" HorizontalOptions="EndAndExpand"/>
-                    <Button BackgroundColor="Transparent" Clicked="OnDropboxClick" Grid.RowSpan="2"/>
-                </Grid>-->
+                    <Image Grid.Row="1" Grid.Column="1" Source="Assets/home.png" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="1" Grid.Column="1" Source="Assets/analyze_inactive.png" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    <Button Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundColor="Transparent" Clicked="OnAnalyticsClick"/>
+                </Grid>
+
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="1" Grid.Column="1" Source="Assets/planning_inactive.png" />
+                    <Button Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundColor="Transparent" Clicked="OnPlanClick"/>
+                </Grid>
 
             </Grid>
 
-            <Grid Grid.Row="1" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="2*" />
-                </Grid.ColumnDefinitions>
-                
+
+            <Grid Grid.Column="1" Grid.Row="0" BackgroundColor="#f9f9f9">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTap" />
+                </Grid.GestureRecognizers>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Image Source="Assets/Circle_light.png" Grid.Column="1" IsOpaque="True" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
 
-                <Image Source="Assets/Circle_light.png" Grid.Column="2" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>
-
-                <Button Image="Assets/New/income.png" BackgroundColor="Transparent" Clicked="OnIncomeClick" Grid.Column="1"/>
-                <Button Image="Assets/New/expense.png" BackgroundColor="Transparent" Clicked="OnExpenseClick" Grid.Column="2"/>
-
-                <!--<StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="6" HorizontalOptions="Center">
-                    <Button Image="Assets/New/income.png" FontSize="Large" BackgroundColor="#88f1b0" Clicked="OnIncomeClick" HorizontalOptions="Center"/>
-                    <Button Image="Assets/New/expense.png" FontSize="Large" BackgroundColor="#88f1b0" Clicked="OnExpenseClick" HorizontalOptions="Center"/>
-                
-               
-                </StackLayout>-->
-
-                
-
-            </Grid>
-
-            <AbsoluteLayout >
-                <Grid x:Name="DropboxLoginElement" AbsoluteLayout.LayoutBounds="1, 1.85, 0.25, 0.165" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#D2F3DF" IsVisible="True">
+                <Grid Grid.Row="0">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
                         <RowDefinition Height="2*" />
                         <RowDefinition Height="4*" />
                     </Grid.RowDefinitions>
-                    <Label Text="Connect with" FontSize="Micro" FontAttributes="Bold" TextColor="#232825" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    <Image Source="Assets/Dropbox.png" HorizontalOptions="Center" Grid.Row="1"/>
-                    <Button BackgroundColor="Transparent" Clicked="OnDropboxClick" Grid.RowSpan="2"/>
+
+                    <Label x:Name="dateText" Grid.Row="0" Text="Data" FontSize="Large" Style="{StaticResource BudgetFont}" HorizontalTextAlignment="Center" TextColor="#232825" VerticalTextAlignment="Center"/>
+
+                    <Grid Grid.Row="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="1" Text="Rzeczywiste" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End" />
+                        <Label Grid.Row="0" Grid.Column="2" Text="Planowane"  Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End" />
+
+                        <Label Grid.Row="1" Grid.Column="0" Text="Dochód:" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End" />
+                        <Label Grid.Row="2" Grid.Column="0" Text="Wydatki:" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End" />
+
+                        <Label x:Name="incomeText" Grid.Column="1" Grid.Row="1" Text="0zl" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End"/>
+                        <Label x:Name="expansesText" Grid.Column="1" Grid.Row="2" Text="0zl" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End"/>
+                        <Label x:Name="diffText" Grid.Column="1" Grid.Row="3" Text="0zl" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End"/>
+
+                        <Label x:Name="incomePlannedText" Grid.Column="2" Grid.Row="1" Text="0zl" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End"/>
+                        <Label x:Name="expansesPlannedText" Grid.Column="2" Grid.Row="2" Text="0zl" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End"/>
+                        <Label x:Name="diffPlannedText" Grid.Column="2" Grid.Row="3" Text="0zl" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End"/>
+
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <syncfusion:SfDataGrid x:Name="listView" AutoGenerateColumns="False" Grid.Column="1" />
+                        <ffimageloading:CachedImage Source="Assets/circle.png" Grid.Column="3" HorizontalOptions="End" VerticalOptions="End">
+                            <ffimageloading:CachedImage.Transformations>
+                                <!-- First two digits from HexColor = ALPHA channel -->
+                                <fftransformations:TintTransformation HexColor="#6BBE8B" EnableSolidColor="true"/>
+                            </ffimageloading:CachedImage.Transformations>
+                        </ffimageloading:CachedImage>
+                        <Image x:Name="addButton" Source="Assets/Plus.png" Grid.Column="3" HorizontalOptions="End" VerticalOptions="End" />
+                    </Grid>
                 </Grid>
-                <Image x:Name="DropboxSyncComplete" Source="Assets/Checkmark.png"  AbsoluteLayout.LayoutBounds="1, 1.85, 0.25, 0.165" AbsoluteLayout.LayoutFlags="All" IsVisible="False"/>
-                <Image x:Name="DropboxSyncing" Source="Assets/DropboxSync.png" AbsoluteLayout.LayoutBounds="1, 1.85, 0.25, 0.165" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="EndAndExpand" IsVisible="False"/>
+
+                <AbsoluteLayout >
+                    <Grid x:Name="DropboxLoginElement" AbsoluteLayout.LayoutBounds="1, 1.85, 0.25, 0.165" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#D2F3DF" IsVisible="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="4*" />
+                        </Grid.RowDefinitions>
+                        <Label Text="Connect with" FontSize="Micro" FontAttributes="Bold" TextColor="#232825" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Image Source="Assets/Dropbox.png" HorizontalOptions="Center" Grid.Row="1"/>
+                        <Button BackgroundColor="Transparent" Clicked="OnDropboxClick" Grid.RowSpan="2"/>
+                    </Grid>
+                    <Image x:Name="DropboxSyncComplete" Source="Assets/Checkmark.png"  AbsoluteLayout.LayoutBounds="1, 1.85, 0.25, 0.165" AbsoluteLayout.LayoutFlags="All" IsVisible="False"/>
+                    <Image x:Name="DropboxSyncing" Source="Assets/DropboxSync.png" AbsoluteLayout.LayoutBounds="1, 1.85, 0.25, 0.165" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="EndAndExpand" IsVisible="False"/>
+                </AbsoluteLayout>
+
+            </Grid>
+
+
+
+            <AbsoluteLayout>
+                <ListView  HasUnevenRows="True" x:Name="subcat" BackgroundColor="#6BBE8B" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 2.5, 1" TranslationX="-250" ItemSelected="OnSubcatClicked">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label Text="{Binding Subcat.Name}" TextColor="White" Style="{StaticResource BudgetSummaryFont}" FontSize="Small"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </AbsoluteLayout>
+
+            <AbsoluteLayout>
+                <ListView x:Name="categories" HasUnevenRows="True" BackgroundColor="#407153" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 2.0, 1" TranslationX="-200" ItemSelected="OnCategorySelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Image Source="{Binding Category.IconName, StringFormat='Assets/Categories/{0}'}" HorizontalOptions="CenterAndExpand" VerticalOptions="End" HeightRequest="75"/>
+                                    <Label Text="{Binding Category.Name}" TextColor="White" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="Center" FontSize="Small" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </AbsoluteLayout>
+
+            <AbsoluteLayout>
+                <StackLayout x:Name="incomes" BackgroundColor="#407153" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.5, 1" TranslationX="-150"/>
+            </AbsoluteLayout>
+
+            <AbsoluteLayout x:Name="background" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Grid.ColumnSpan="2" BackgroundColor="Black" Opacity="0.5" IsVisible="False" />
+
+            <AbsoluteLayout x:Name="Calculator" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Grid.Column="1" IsVisible="False" >
+                <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                    <StackLayout.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <OnPlatform.Android>15, 10, 15, 20</OnPlatform.Android>
+                        </OnPlatform>
+                    </StackLayout.Margin>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="10*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Row="1" Grid.Column="1" BackgroundColor="#f9f9f9">
+                            <Grid.Padding>
+                                <OnPlatform x:TypeArguments="Thickness">
+                                    <OnPlatform.iOS>10, 20, 10, 0</OnPlatform.iOS>
+                                    <OnPlatform.Android>0, 0, 0, 0</OnPlatform.Android>
+                                </OnPlatform>
+                            </Grid.Padding>
+                            <Grid.ColumnSpacing>
+                                <OnPlatform x:TypeArguments="x:Double">
+                                    <OnPlatform.iOS>30</OnPlatform.iOS>
+                                    <OnPlatform.Android>0</OnPlatform.Android>
+                                </OnPlatform>
+                            </Grid.ColumnSpacing>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Style="{StaticResource BudgetSummaryFont}" FontSize="Large" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text=" " x:Name="Header" HorizontalOptions="CenterAndExpand" />
+                            <Label Style="{StaticResource BudgetSummaryFont}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Text=" " x:Name="Description" HorizontalOptions="CenterAndExpand" />
+                            <Button Grid.Column="3" Grid.RowSpan="1" Style="{StaticResource calculatorButtonLight}" FontSize="Small" Clicked="OnChangeDate" Text="" x:Name="DateButton" />
+                            <Entry FontSize="Medium" FontFamily="Cambria" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Path=FormulaText}" HorizontalTextAlignment="End" Completed="OnValueEdited"/>
+                            <Label x:Name="Result" Style="{StaticResource BudgetSummaryFont}" FontSize="Large" FontAttributes="Bold" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Path=CalculationResultText}" HorizontalTextAlignment="End" BackgroundColor="#D2F3DF"/>
+
+                            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource calculatorButtonDark}" Command="{Binding KeyPressed}" CommandParameter="Backspace" Text="←" />
+                            <!--<Button Grid.Row="4" Grid.Column="1" Style="{StaticResource calculatorButtonDark}" Command="{Binding KeyPressed}" CommandParameter="Clear" Text="C"/>-->
+                            <Button Grid.Row="4" Grid.Column="2" Style="{StaticResource calculatorButtonDark}" Clicked="OnCancel" Text="Back" />
+                            <Button Grid.Row="4" Grid.Column="3" Style="{StaticResource calculatorButtonDark}" Command="{Binding KeyPressed}" CommandParameter="Divide" Text="÷" />
+
+                            <Button Grid.Row="5" Grid.Column="0" Style="{StaticResource calculatorButtonLight}" Command="{Binding KeyPressed}" CommandParameter="Seven" Text="7" />
+                            <Button Grid.Row="5" Grid.Column="1" Style="{StaticResource calculatorButtonLight}" Command="{Binding KeyPressed}" CommandParameter="Eight" Text="8" />
+                            <Button Grid.Row="5" Grid.Column="2" Style="{StaticResource calculatorButtonLight}" Command="{Binding KeyPressed}" CommandParameter="Nine" Text="9" />
+                            <Button Grid.Row="5" Grid.Column="3" Style="{StaticResource calculatorButtonDark}" Command="{Binding KeyPressed}" CommandParameter="Multiply" Text="*"/>
+
+                            <Button Grid.Row="6" Grid.Column="0" Style="{StaticResource calculatorButtonLight}" Command="{Binding KeyPressed}" CommandParameter="Four" Text="4" />
+                            <Button Grid.Row="6" Grid.Column="1" Style="{StaticResource calculatorButtonLight}" Command="{Binding KeyPressed}" CommandParameter="Five" Text="5" />
+                            <Button Grid.Row="6" Grid.Column="2" Style="{StaticResource calculatorButtonLight}" Command="{Binding KeyPressed}" CommandParameter="Six" Text="6" />
+                            <Button Grid.Row="6" Grid.Column="3" Style="{StaticResource calculatorButtonDark}" Command="{Binding KeyPressed}" CommandParameter="Minus" Text="-" />
+
+                            <Button Grid.Row="7" Grid.Column="0" Style="{StaticResource calculatorButtonLight}" Command="{Binding KeyPressed}" CommandParameter="One" Text="1" />
+                            <Button Grid.Row="7" Grid.Column="1" Style="{StaticResource calculatorButtonLight}" Command="{Binding KeyPressed}" CommandParameter="Two" Text="2" />
+                            <Button Grid.Row="7" Grid.Column="2" Style="{StaticResource calculatorButtonLight}" Command="{Binding KeyPressed}" CommandParameter="Three" Text="3" />
+                            <Button Grid.Row="7" Grid.Column="3" Style="{StaticResource calculatorButtonDark}" Command="{Binding KeyPressed}" CommandParameter="Plus" Text="+" />
+
+                            <Button Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource calculatorButtonLight}" Command="{Binding KeyPressed}" CommandParameter="Zero" Text="0" />
+                            <Button Grid.Row="8" Grid.Column="2" Style="{StaticResource calculatorButtonDark}" Command="{Binding KeyPressed}" CommandParameter="Point" Text="." />
+                            <!--<Button Grid.Row="8" Grid.Column="2" Style="{StaticResource calculatorButtonDark}" Command="{Binding KeyPressed}" CommandParameter="Equal" Text="=" />-->
+                            <Button Grid.Row="8" Grid.Column="3" Style="{StaticResource calculatorButtonDark}" Command="{Binding KeyPressed}" CommandParameter="Equal" Text="=" />
+                        </Grid>
+                    </Grid>
+                </StackLayout>
             </AbsoluteLayout>
 
         </Grid>
-
-
-
-        <AbsoluteLayout>
-            <StackLayout x:Name="subcat" BackgroundColor="#6BBE8B" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.85, 1" TranslationX="-185"/>
-        </AbsoluteLayout>
-
-        <AbsoluteLayout>
-            <ScrollView x:Name="categoriesScroll" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.5, 1" TranslationX="-150">
-                <StackLayout x:Name="categories" BackgroundColor="#407153" />
-            </ScrollView>
-        </AbsoluteLayout>
-
-        <AbsoluteLayout>
-            <StackLayout x:Name="incomes" BackgroundColor="#407153" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1.5, 1" TranslationX="-150"/>
-        </AbsoluteLayout>
-
-        <AbsoluteLayout x:Name="Calculator" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Grid.ColumnSpan="2">
-            <StackLayout VerticalOptions="Center"
-			HorizontalOptions="FillAndExpand"
-			Opacity="0.9">
-                <StackLayout.Margin>
-                    <OnPlatform x:TypeArguments="Thickness">
-                        <OnPlatform.Android>15, 10, 15, 20</OnPlatform.Android>
-                    </OnPlatform>
-                </StackLayout.Margin>
-
-                <Grid BackgroundColor="White" Opacity="0.9">
-                    <Grid.Padding>
-                        <OnPlatform x:TypeArguments="Thickness">
-                            <OnPlatform.iOS>10, 20, 10, 0</OnPlatform.iOS>
-                            <OnPlatform.Android>0, 0, 0, 0</OnPlatform.Android>
-                        </OnPlatform>
-                    </Grid.Padding>
-                    <Grid.ColumnSpacing>
-                        <OnPlatform x:TypeArguments="x:Double">
-                            <OnPlatform.iOS>30</OnPlatform.iOS>
-                            <OnPlatform.Android>0</OnPlatform.Android>
-                        </OnPlatform>
-                    </Grid.ColumnSpacing>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Label
-				    StyleId="calculationText"
-				    Grid.Row="0"
-				    Grid.ColumnSpan="3"
-				    Text=" "
-                    x:Name="Header"
-				    Font="Large"
-				    HorizontalOptions="CenterAndExpand" />
-                    <Label
-				    StyleId="calculationText"
-				    Grid.Row="1"
-				    Grid.ColumnSpan="3"
-				    Text=" "
-                     x:Name="Description"
-				    Font="Large"
-				    HorizontalOptions="CenterAndExpand" />
-                    <Button
-				Grid.Column="3"
-                Grid.RowSpan="2"
-				Font="Large"
-				Clicked="OnChangeDate"
-				Text=""
-                x:Name="DateButton"
-				BackgroundColor="#D2F3DF"/>
-                    <Label
-				StyleId="calculationText"
-				Grid.Row="2"
-				Grid.ColumnSpan="4"
-				Text="{Binding Path=CalculationText}"
-				Font="Large"
-				HorizontalOptions="EndAndExpand" />
-                    <Label
-				x:Name="Result"
-				StyleId="resultText"
-				Grid.Row="3"
-				Grid.ColumnSpan="4"
-				Text="{Binding Path=CalculationText}"
-				Font="Large"
-				HorizontalOptions="EndAndExpand" />
-
-                    <Button
-				Grid.Row="4"
-				Grid.Column="0"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="Backspace"
-				Text="←" 
-				BackgroundColor="#6BBE8B"/>
-                    <Button
-				Grid.Row="4"
-				Grid.Column="1"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="Clear"
-				Text="C" 
-				BackgroundColor="#6BBE8B"/>
-                    <Button
-				Grid.Row="4"
-				Grid.Column="2"
-				Font="Large"
-				Clicked="OnCancel"
-				Text="Back" 
-				BackgroundColor="#6BBE8B"/>
-                    <Button
-				Grid.Row="4"
-				Grid.Column="3"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="Divide"
-				Text="/" 
-				BackgroundColor="#6BBE8B"/>
-
-                    <Button
-				Grid.Row="5"
-				Grid.Column="0"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="Seven"
-        BackgroundColor="#D2F3DF"
-				Text="7" />
-                    <Button
-				Grid.Row="5"
-				Grid.Column="1"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="Eight"
-        BackgroundColor="#D2F3DF"
-				Text="8" />
-                    <Button
-				Grid.Row="5"
-				Grid.Column="2"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="Nine"
-        BackgroundColor="#D2F3DF"
-				Text="9" />
-                    <Button
-				Grid.Row="5"
-				Grid.Column="3"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="Multiply"
-				Text="*" 
-				BackgroundColor="#6BBE8B"/>
-
-                    <Button
-				Grid.Row="6"
-				Grid.Column="0"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="Four"
-        BackgroundColor="#D2F3DF"
-				Text="4" />
-                    <Button
-				Grid.Row="6"
-				Grid.Column="1"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="Five"
-        BackgroundColor="#D2F3DF"
-				Text="5" />
-                    <Button
-				Grid.Row="6"
-				Grid.Column="2"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="Six"
-        BackgroundColor="#D2F3DF"
-				Text="6" />
-                    <Button
-				Grid.Row="6"
-				Grid.Column="3"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="Minus"
-				Text="-" 
-				BackgroundColor="#6BBE8B"/>
-
-                    <Button
-				Grid.Row="7"
-				Grid.Column="0"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="One"
-        BackgroundColor="#D2F3DF"
-				Text="1" />
-                    <Button
-				Grid.Row="7"
-				Grid.Column="1"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="Two"
-        BackgroundColor="#D2F3DF"
-				Text="2" />
-                    <Button
-				Grid.Row="7"
-				Grid.Column="2"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="Three"
-        BackgroundColor="#D2F3DF"
-				Text="3" />
-                    <Button
-				Grid.Row="7"
-				Grid.Column="3"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="Plus"
-				Text="+" 
-				BackgroundColor="#6BBE8B"/>
-
-                    <Button
-				Grid.Row="8"
-				Grid.Column="0"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="Zero"
-        BackgroundColor="#D2F3DF"
-				Text="0" />
-                    <Button
-				Grid.Row="8"
-				Grid.Column="1"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="Point"
-				Text="." 
-				BackgroundColor="#6BBE8B"/>
-                    <Button
-				Grid.Row="8"
-				Grid.Column="2"
-				Font="Large"
-				Command="{Binding KeyPressed}"
-				CommandParameter="Equal"
-				Text="=" 
-				BackgroundColor="#6BBE8B"/>
-                    <Button
-				Grid.Row="8"
-				Grid.Column="3"
-				Font="Large"
-                Clicked="OnOk"
-				Text="OK" 
-				BackgroundColor="#6BBE8B"/>
-                </Grid>
-
-            </StackLayout>
-        </AbsoluteLayout>
-
-    </Grid>
-
-
-
+    </ContentPage.Content>
 </ContentPage>

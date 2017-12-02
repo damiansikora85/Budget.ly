@@ -1,10 +1,20 @@
 ﻿using Dropbox.Api;
+using FFImageLoading.Forms;
+using FFImageLoading.Transformations;
+using FFImageLoading.Work;
 using HomeBudget.Code;
+using HomeBudget.Code.Logic;
 using HomeBudget.Pages;
 using HomeBudget.Pages.PC;
+using HomeBudget.Pages.Utils;
+using HomeBudget.Utils;
+using HomeBudget.ViewModels;
 using Rg.Plugins.Popup.Extensions;
+using Syncfusion.Calculate;
+using Syncfusion.SfDataGrid.XForms;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
@@ -31,14 +41,16 @@ namespace HomeBudget
             Planning
         }
 
-        private EMode mode;
+        private BudgetSummaryListView budgetSummaryElement;
+        //private BudgetSideBar categoriesSideBar;
 
-        
+        private EMode mode;
         private string selectedCategoryName;
         private int selectedCategoryId;
         private DateTime selectedDate;
         private CategoryElement lastCategorySelected;
-        private MainPagePCViewModel viewModel;
+        private MainPagePcViewModel viewModel;
+        private CalculatorViewModel calculatorViewModel;
         private int selectedSubcatId;
         private bool lockTapGesture;
 
@@ -52,8 +64,11 @@ namespace HomeBudget
         public MainPagePC()
         {
             InitializeComponent();
-            viewModel = new MainPagePCViewModel();
+            viewModel = new MainPagePcViewModel();
             BindingContext = viewModel;
+            addButton.GestureRecognizers.Add(new TapGestureRecognizer(OnAddClick));
+
+            calculatorViewModel = new CalculatorViewModel();
 
             InitBudget();
             CreateCategoriesBar();
@@ -61,22 +76,13 @@ namespace HomeBudget
 
             lockTapGesture = false;
 
-            /*CultureInfo ci = CultureInfo.CurrentCulture;
-            ci = CultureInfo.CurrentUICulture;
-            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pl-PL");
-            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("pl-PL");*/
-
             CultureInfo cultureInfoPL = new CultureInfo("pl-PL");
             DateTime currentDate = DateTime.Now;
-            dateText.Text = currentDate.ToString("MMMM", cultureInfoPL) + " " + currentDate.Year;
-
-            
+            dateText.Text = currentDate.ToString("dd MMMM yyyy", cultureInfoPL);            
         }
 
         private void InitBudget()
         {
-            Calculator.IsVisible = false;
-   
             var assembly = typeof(MainPage).GetTypeInfo().Assembly;
 
             MainBudget.Instance.Init(assembly);
@@ -94,6 +100,8 @@ namespace HomeBudget
         private void OnBudgetLoaded()
         {
             SetupBudgetSummary();
+            budgetSummaryElement = new BudgetSummaryListView();
+            budgetSummaryElement.Setup(listView);
         }
 
         private void SetupBudgetSummary()
@@ -103,17 +111,18 @@ namespace HomeBudget
             double monthIncomes = budgetMonth.GetTotalIncomeReal();
             double diff = monthIncomes - monthExpenses;
             CultureInfo cultureInfoPL = new CultureInfo("pl-PL");
-            expansesText.Text = string.Format(cultureInfoPL, "Wydatki: {0:c}", monthExpenses);
-            incomeText.Text = string.Format(cultureInfoPL, "Dochody: {0:c}", monthIncomes);
-            diffText.Text = string.Format(cultureInfoPL, "Różnica: {0:c}", diff);
+            expansesText.Text = string.Format(cultureInfoPL, "{0:c}", monthExpenses);
+            incomeText.Text = string.Format(cultureInfoPL, "{0:c}", monthIncomes);
+            diffText.Text = string.Format(cultureInfoPL, "{0:c}", diff);
 
             double monthExpensesPlanned = budgetMonth.GetTotalExpensesPlanned();
             double monthIncomePlanned = budgetMonth.GetTotalIncomePlanned();
             double diffPlanned = monthIncomePlanned - monthExpensesPlanned;
-            expansesPlannedText.Text = string.Format(cultureInfoPL, "Wydatki: {0:c}", monthExpensesPlanned);
-            incomePlannedText.Text = string.Format(cultureInfoPL, "Dochody: {0:c}", monthIncomePlanned);
-            diffPlannedText.Text = string.Format(cultureInfoPL, "Różnica: {0:c}", diffPlanned);
+            expansesPlannedText.Text = string.Format(cultureInfoPL, "{0:c}", monthExpensesPlanned);
+            incomePlannedText.Text = string.Format(cultureInfoPL, "{0:c}", monthIncomePlanned);
+            diffPlannedText.Text = string.Format(cultureInfoPL, "{0:c}", diffPlanned);
         }
+
 
         private async void OnPlanClick(object sender, EventArgs args)
         {
@@ -123,6 +132,14 @@ namespace HomeBudget
         private async void OnAnalyticsClick(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new AnalyticsPagePC());
+        }
+
+        private async void OnAddClick(View arg1, object arg2)
+        {
+            mode = EMode.Expense;
+            lockTapGesture = true;
+            await categories.TranslateTo(0, 0);
+            lockTapGesture = false;
         }
 
         private async void OnIncomeClick(object sender, EventArgs e)
@@ -137,7 +154,7 @@ namespace HomeBudget
         {
             mode = EMode.Expense;
             lockTapGesture = true;
-            await categoriesScroll.TranslateTo(0, 0);
+            await categories.TranslateTo(0, 0);
             lockTapGesture = false;
         }
 
@@ -176,12 +193,26 @@ namespace HomeBudget
 
         private void CreateCategoriesBar()
         {
-            int categoriesNum = MainBudget.Instance.BudgetDescription.Categories.Count;
+            ObservableCollection<BudgetViewModelData> catagoriesData = new ObservableCollection<BudgetViewModelData>();
+            BudgetReal budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
+            foreach(BaseBudgetCategory category in budgetReal.Categories)
+            {
+                BudgetViewModelData model = new BudgetViewModelData()
+                {
+                    Name = category.Name,
+                    Category = category
+                };
+                catagoriesData.Add(model);
+            }
+
+            categories.ItemsSource = catagoriesData;
+
+            /*int categoriesNum = MainBudget.Instance.BudgetDescription.Categories.Count;
             List<BudgetCategoryTemplate> categoriesDesc = MainBudget.Instance.BudgetDescription.Categories;
-            string iconsPathPrefix = "Assets\\Icons\\";
+            string iconsPathPrefix = "Assets\\Categories\\";
             for(int i=0; i< categoriesNum; i++)
             {
-                if (categoriesDesc[i].IsIncome == false)
+                //if (categoriesDesc[i].IsIncome == false)
                 {
                     Grid grid = CreateCategoryGrid();
                     CategoryElement element = CategoryElement.CreateAndAddToGrid(categoriesDesc[i].Id, categoriesDesc[i].Name, iconsPathPrefix + categoriesDesc[i].IconFileName, grid);
@@ -189,7 +220,23 @@ namespace HomeBudget
 
                     categories.Children.Add(grid);
                 }
+            }*/
+        }
+
+        void OnCategorySelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem == null)
+            {
+                return; //ItemSelected is called on deselection, which results in SelectedItem being set to null
             }
+
+            //DisplayAlert("Item Selected", e.SelectedItem.ToString(), "Ok");
+            //((ListView)sender).SelectedItem = null; //uncomment line if you want to disable the visual selection state.
+            selectedDate = DateTime.Now;
+            BudgetViewModelData selectedCategory = (BudgetViewModelData)e.SelectedItem;
+            CreateSubcatsList(selectedCategory.Category.Id);
+            Header.Text = selectedCategory.Name;
+            subcat.TranslateTo(150, 0);
         }
 
         private async Task OnCategoryClicked(int categoryID, CategoryElement categoryElement)
@@ -198,7 +245,7 @@ namespace HomeBudget
             selectedCategoryName = categoryElement.Name;
             selectedCategoryId = categoryElement.Id;
             selectedDate = DateTime.Now;
-            CreateSubCat(categoryID);
+            CreateSubcatsList(categoryID);
             await subcat.TranslateTo(150, 0);
 
             if (lastCategorySelected != null)
@@ -207,44 +254,37 @@ namespace HomeBudget
             lastCategorySelected = categoryElement;
         }
 
-        private void CreateSubCat(int categoryID)
+        private void CreateSubcatsList(int categoryID)
         {
-            subcat.Children.Clear();
-
-            string iconsPathPrefix = "Assets\\Icons\\";
-            int subcatNum = MainBudget.Instance.BudgetDescription.Categories[categoryID].subcategories.Count;
-
-            for(int i=0; i<subcatNum; i++)
+            ObservableCollection<BudgetViewModelData> subcatsData = new ObservableCollection<BudgetViewModelData>();
+            BudgetReal budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
+            BaseBudgetCategory category = budgetReal.GetBudgetCategory(categoryID);
+            foreach (BaseBudgetSubcat subcat in category.subcats)
             {
-                Grid grid = CreateCategoryGrid();
-                CategoryElement element = CategoryElement.CreateAndAddToGrid(i, MainBudget.Instance.BudgetDescription.Categories[categoryID].subcategories[i], iconsPathPrefix + MainBudget.Instance.BudgetDescription.Categories[categoryID].IconFileName, grid);
-                element.onClickFunc += OnSubcatClicked;
-
-                subcat.Children.Add(grid);
+                BudgetViewModelData model = new BudgetViewModelData()
+                {
+                    Name = subcat.Name,
+                    Category = category,
+                    Subcat = subcat
+                };
+                subcatsData.Add(model);
             }
+
+            subcat.ItemsSource = subcatsData;
         }
 
         private Grid CreateCategoryGrid()
         {
             Grid grid = new Grid()
             {
-                HeightRequest = 100,
+                HeightRequest = 150,
             };
             ColumnDefinition c0 = new ColumnDefinition()
             {
                 Width = new GridLength(1, GridUnitType.Star)
             };
-            ColumnDefinition c1 = new ColumnDefinition()
-            {
-                Width = new GridLength(2, GridUnitType.Star)
-            };
-            ColumnDefinition c2 = new ColumnDefinition()
-            {
-                Width = new GridLength(1, GridUnitType.Star)
-            };
+
             grid.ColumnDefinitions.Add(c0);
-            grid.ColumnDefinitions.Add(c1);
-            grid.ColumnDefinitions.Add(c2);
 
             RowDefinition r0 = new RowDefinition()
             {
@@ -260,30 +300,43 @@ namespace HomeBudget
             return grid;
         }
 
-        private async Task OnSubcatClicked(int id, CategoryElement element)
+        private async Task OnSubcatClicked(object sender, SelectedItemChangedEventArgs e)
         {
-            selectedSubcatId = id;
-            lastCategorySelected.Deselect();
-            element.Deselect();
-            await subcat.TranslateTo(-185, 0);
-            await categoriesScroll.TranslateTo(-150, 0);
+            ((ListView)sender).SelectedItem = null;
+            categories.SelectedItem = null;
+            await subcat.TranslateTo(-250, 0);
+            await categories.TranslateTo(-200, 0);
 
-            ShowCalculatorView(lastCategorySelected.Name, selectedDate);
+            BudgetViewModelData selectedCategory = (BudgetViewModelData)e.SelectedItem;
+
+            ShowCalculatorView(selectedCategory.Name, selectedDate);
         }
 
         private async void OnOk(object sender, EventArgs e)
         {
-            Calculator.IsVisible = false;
+            HideCalculator();
             if (mode == EMode.Income)
-                await MainBudget.Instance.AddIncome(float.Parse(viewModel.CalculationText), selectedDate, selectedCategoryId);
+                await MainBudget.Instance.AddIncome(float.Parse(viewModel.CalculationResultText), selectedDate, selectedCategoryId);
             else if (mode == EMode.Expense)
-                await MainBudget.Instance.AddExpense(float.Parse(viewModel.CalculationText), selectedDate, selectedCategoryId, selectedSubcatId);
+                await MainBudget.Instance.AddExpense(float.Parse(viewModel.CalculationResultText), selectedDate, selectedCategoryId, selectedSubcatId);
 
             SetupBudgetSummary();
         }
 
         private async void OnCancel(object sender, EventArgs e)
         {
+            HideCalculator();
+        }
+
+        private void ShowCalculator()
+        {
+            background.IsVisible = true;
+            Calculator.IsVisible = true;
+        }
+
+        private void HideCalculator()
+        {
+            background.IsVisible = false;
             Calculator.IsVisible = false;
         }
 
@@ -296,7 +349,7 @@ namespace HomeBudget
                 lastCategorySelected.Deselect();
 
             subcat.TranslateTo(-185, 0);
-            categoriesScroll.TranslateTo(-150, 0);
+            categories.TranslateTo(-150, 0);
             incomes.TranslateTo(-150, 0);
         }
 
@@ -306,19 +359,28 @@ namespace HomeBudget
             await Navigation.PushModalAsync(calendar);
         }
 
-        private void ShowCalculatorView(string header, DateTime date)
+        private void ShowCalculatorView(string subcat, DateTime date)
         {
-            viewModel.CalculationText = " ";
-            Calculator.IsVisible = true;
+            viewModel.CalculationResultText = "0";
+            ShowCalculator();
 
-            Header.Text = header;
-            DateButton.Text = date.ToString("d");
+            Description.Text = subcat;
+
+            CultureInfo cultureInfoPL = new CultureInfo("pl-PL");
+            DateButton.Text = date.ToString("dd.MM.yyyy", cultureInfoPL);
         }
 
         private void SelectedDateChanged(DateTime newDate)
         {
             selectedDate = newDate;
             DateButton.Text = selectedDate.ToString("d");
+        }
+
+        private void OnValueEdited(object sender, EventArgs e)
+        {
+            //var formula = ((Entry)sender).Text;
+            //viewModel.FormulaText = formula;
+            viewModel.ForceCalculateFormula();
         }
 
         private async void OnDropboxClick(object sender, EventArgs e)
@@ -365,123 +427,6 @@ namespace HomeBudget
                 e.Cancel = true;
                 await Application.Current.MainPage.Navigation.PopModalAsync();
             }
-        }
-    }
-
-
-
-    public class MainPagePCViewModel : INotifyPropertyChanged
-    {
-        public enum CalculatorKey
-        {
-            Zero = 0,
-            One = 1,
-            Two = 2,
-            Three = 3,
-            Four = 4,
-            Five = 5,
-            Six = 6,
-            Seven = 7,
-            Eight = 8,
-            Nine = 9,
-            Backspace = 20,
-            Clear,
-            PlusMinus,
-            Divide,
-            Multiply,
-            Minus,
-            Plus,
-            Equal,
-            Point,
-            Ok,
-            Cancel,
-            Calendar
-        }
-
-        public ICommand KeyPressed { get; private set; }
-        private String calculationText;
-        private string categoryText;
-        private string dateText;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public string CategoryText
-        {
-            get { return categoryText; }
-            set
-            {
-                categoryText = value;
-                if (string.IsNullOrEmpty(categoryText))
-                {
-                    categoryText = " ";
-                }
-                OnPropertyChanged("CategoryText");
-            }
-        }
-
-        public MainPagePCViewModel()
-        {
-            KeyPressed = new Command<string>(HandleKeyPressed);
-            CalculationText = "";
-        }
-
-        public string CalculationText
-        {
-            get { return calculationText; }
-            set
-            {
-                calculationText = value;
-                if (string.IsNullOrEmpty(calculationText))
-                {
-                    calculationText = " "; // HACK to force grid view to allocate space.
-                }
-                OnPropertyChanged("CalculationText");
-            }
-        }
-
-        public string DateText
-        {
-            get { return dateText; }
-            set
-            {
-                dateText = value;
-                if (string.IsNullOrEmpty(dateText))
-                {
-                    dateText = " ";
-                }
-            }
-        }
-
-        void HandleKeyPressed(string value)
-        {
-            var calculatorKey = (CalculatorKey)Enum.Parse(typeof(CalculatorKey), value, true);
-
-            switch (calculatorKey)
-            {
-                case CalculatorKey.One:
-                case CalculatorKey.Two:
-                case CalculatorKey.Three:
-                case CalculatorKey.Four:
-                case CalculatorKey.Five:
-                case CalculatorKey.Six:
-                case CalculatorKey.Seven:
-                case CalculatorKey.Eight:
-                case CalculatorKey.Nine:
-                case CalculatorKey.Zero:
-                    CalculationText += ((int)calculatorKey).ToString();
-                    break;
-                case CalculatorKey.Equal:
-                    break;
-                case CalculatorKey.Point:
-                    CalculationText += '.';
-                    break;
-            }
-            return;
-        }
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

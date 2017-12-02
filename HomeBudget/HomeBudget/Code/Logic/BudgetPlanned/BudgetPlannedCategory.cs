@@ -27,7 +27,8 @@ namespace HomeBudget.Code.Logic
             {
                 Name = categoryDesc.Name,
                 Id = categoryDesc.Id,
-                IsIncome = categoryDesc.IsIncome
+                IsIncome = categoryDesc.IsIncome,
+                IconName = categoryDesc.IconFileName
             };
 
             int index = 0;
@@ -38,11 +39,6 @@ namespace HomeBudget.Code.Logic
             }
 
             return category;
-        }
-
-        public override byte[] Serialize()
-        {
-            return base.Serialize();
         }
 
         public override void Deserialize(BinaryData binaryData)

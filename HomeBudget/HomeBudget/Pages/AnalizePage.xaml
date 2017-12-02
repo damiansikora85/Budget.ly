@@ -33,28 +33,6 @@
         
 
 
-        <chart:SfChart x:Name="chart" Grid.Row="1">
-            <chart:SfChart.Title>
-                <chart:ChartTitle Text="Chart"/>
-            </chart:SfChart.Title>
-
-            <chart:SfChart.Legend>
-                <chart:ChartLegend/>
-            </chart:SfChart.Legend>
-
-            <chart:SfChart.PrimaryAxis>
-                <chart:CategoryAxis>
-                    <chart:CategoryAxis></chart:CategoryAxis>
-                </chart:CategoryAxis>
-            </chart:SfChart.PrimaryAxis>
-
-            <chart:SfChart.SecondaryAxis>
-                <chart:NumericalAxis>
-                    <chart:NumericalAxis></chart:NumericalAxis>
-                </chart:NumericalAxis>
-            </chart:SfChart.SecondaryAxis>
-        </chart:SfChart>
-
 
         <Button Text="Back" Grid.Row="2" FontSize="Large" TextColor="White" BackgroundColor="#88f1b0" Clicked="OnBack"/>
     </Grid>

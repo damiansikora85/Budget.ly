@@ -20,26 +20,10 @@ using HomeBudget.Code.Logic.Temp;
 
 namespace HomeBudget.Pages.PC
 {
-    public class BudgetPlannedModel : INotifyPropertyChanged
-    {
-        public string Name { get; set; }
-        public BudgetPlannedCategory Category { get; set; }
-        public PlannedSubcat Subcat { get; set; }
-
-        public BudgetPlannedModel Thiz { get { return this; } }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        void RaisePropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-        }
-    }
-
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlanningPage : ContentPage
     {
-        ObservableCollection<BudgetPlannedModel> plannedModel;
+        ObservableCollection<BudgetViewModelData> plannedModel;
 
         public PlanningPage()
         {
@@ -52,14 +36,14 @@ namespace HomeBudget.Pages.PC
 
         private void SetupDataGrid()
         {
-            plannedModel = new ObservableCollection<BudgetPlannedModel>();
+            plannedModel = new ObservableCollection<BudgetViewModelData>();
             BudgetPlanned budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
             budgetPlanned.PropertyChanged += UpdateSummary;
             foreach (BudgetPlannedCategory category in budgetPlanned.Categories)
             {
                 foreach (PlannedSubcat subcat in category.subcats)
                 {
-                    BudgetPlannedModel model = new BudgetPlannedModel()
+                    BudgetViewModelData model = new BudgetViewModelData()
                     {
                         Category = category,
                         Subcat = subcat
@@ -125,12 +109,12 @@ namespace HomeBudget.Pages.PC
 
         private void SetupCharts()
         {
-            ObservableCollection<BudgetPlannedModel> expensesData = new ObservableCollection<BudgetPlannedModel>();
-            ObservableCollection<BudgetPlannedModel> incomesData = new ObservableCollection<BudgetPlannedModel>();
+            ObservableCollection<BudgetViewModelData> expensesData = new ObservableCollection<BudgetViewModelData>();
+            ObservableCollection<BudgetViewModelData> incomesData = new ObservableCollection<BudgetViewModelData>();
             BudgetPlanned budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
             foreach (BudgetPlannedCategory category in budgetPlanned.Categories)
             {
-                BudgetPlannedModel model = new BudgetPlannedModel()
+                BudgetViewModelData model = new BudgetViewModelData()
                 {
                     Name = category.Name,
                     Category = category,
@@ -139,12 +123,12 @@ namespace HomeBudget.Pages.PC
                     expensesData.Add(model);
             }
 
-            List<BudgetPlannedCategory> incomesCategories = budgetPlanned.GetIncomesCategories();
-            foreach (BudgetPlannedCategory category in incomesCategories)
+            List<BaseBudgetCategory> incomesCategories = budgetPlanned.GetIncomesCategories();
+            foreach (BaseBudgetCategory category in incomesCategories)
             {
                 foreach(BaseBudgetSubcat subcat in category.subcats)
                 {
-                    BudgetPlannedModel model = new BudgetPlannedModel()
+                    BudgetViewModelData model = new BudgetViewModelData()
                     {
                         Name = subcat.Name,
                         Category = category,
@@ -158,18 +142,17 @@ namespace HomeBudget.Pages.PC
             SetupExpensesChart(expensesData);
         }
 
-
-        private void SetupIncomesChart(ObservableCollection<BudgetPlannedModel> data)
+        private void SetupIncomesChart(ObservableCollection<BudgetViewModelData> data)
         {
             SetupChart(chartIncome, data, "Name", "Subcat.Value");
         }
 
-        private void SetupExpensesChart(ObservableCollection<BudgetPlannedModel> data)
+        private void SetupExpensesChart(ObservableCollection<BudgetViewModelData> data)
         {
             SetupChart(chartExpense, data, "Name", "Category.TotalValues");
         }
 
-        private void SetupChart(SfChart chart, ObservableCollection<BudgetPlannedModel> data, string xBindingPath, string yBindingPath)
+        private void SetupChart(SfChart chart, ObservableCollection<BudgetViewModelData> data, string xBindingPath, string yBindingPath)
         {
             PieSeries pieSeries = new PieSeries()
             {
