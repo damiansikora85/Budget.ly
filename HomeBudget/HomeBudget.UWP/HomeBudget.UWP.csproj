@@ -108,6 +108,8 @@
     <Content Include="Assets\Categories\theatre-masks.png" />
     <Content Include="Assets\Categories\transport.png" />
     <Content Include="Assets\circle.png" />
+    <Content Include="Assets\DropboxLogo.png" />
+    <Content Include="Assets\DropboxLogoOrg.png" />
     <Content Include="Assets\Fonts\Cambria.ttf" />
     <None Include="HomeBudget.UWP_TemporaryKey.pfx" />
     <None Include="packages.config" />
@@ -141,6 +143,7 @@
     <Content Include="Assets\DropboxSync.png" />
     <Content Include="Assets\expense.png" />
     <Content Include="Assets\home.png" />
+    <Content Include="Assets\home_inactive.png" />
     <Content Include="Assets\Icons\beauty.png" />
     <Content Include="Assets\Icons\beautyHighlight.png" />
     <Content Include="Assets\Icons\clothes.png" />

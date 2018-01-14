@@ -33,7 +33,6 @@ namespace HomeBudget
         {
             ObservableCollection<BudgetViewModelData> data = new ObservableCollection<BudgetViewModelData>();
             BudgetReal budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
-            //budgetPlanned.PropertyChanged += UpdateSummary;
             foreach (BudgetRealCategory category in budgetReal.Categories)
             {
                 foreach (RealSubcat subcat in category.subcats)
@@ -41,6 +40,7 @@ namespace HomeBudget
                     BudgetViewModelData model = new BudgetViewModelData()
                     {
                         Category = category,
+                        SubcatReal = subcat,
                         Subcat = subcat
                     };
                     data.Add(model);
@@ -54,6 +54,8 @@ namespace HomeBudget
             {
                 MappingName = "Subcat.Name",
                 HeaderText = "Kategoria",
+                HeaderFont = "Cambria",
+                RecordFont = "Cambria",
                 ColumnSizer = ColumnSizer.Auto
             });
 
@@ -68,8 +70,10 @@ namespace HomeBudget
             {
                 MappingName = "Subcat.Value",
                 HeaderText = "Suma",
+                HeaderFont = "Cambria",
                 ColumnSizer = ColumnSizer.Auto,
                 Format = "C",
+                RecordFont = "Cambria",
                 CultureInfo = new CultureInfo("pl-PL"),
                 CellStyle = cellStyle
             });
@@ -78,11 +82,13 @@ namespace HomeBudget
             {
                 listView.Columns.Add(new GridTextColumn()
                 {
-                    MappingName = "Subcat.Values["+i.ToString()+"]",
+                    MappingName = "SubcatReal.Values["+i.ToString()+"].Value",
                     HeaderText = (i+1).ToString(),
+                    HeaderFont = "Cambria",
                     ColumnSizer = ColumnSizer.LastColumnFill,
                     AllowEditing = true,
                     Format = "C",
+                    RecordFont = "Cambria",
                     CultureInfo = new CultureInfo("pl-PL")
                 });
             }
@@ -90,6 +96,7 @@ namespace HomeBudget
             listView.GroupColumnDescriptions.Add(new GroupColumnDescription()
             {
                 ColumnName = "Category.Name",
+               
             });
 
             GridSummaryRow summaryRow = new GridSummaryRow
@@ -105,7 +112,7 @@ namespace HomeBudget
                 MappingName = "Subcat.Value",
                 Format = "{Currency}",
                 SummaryType = Syncfusion.Data.SummaryType.Custom,
-
+                
             });
 
             listView.CaptionSummaryRow = summaryRow;
@@ -118,6 +125,11 @@ namespace HomeBudget
                     var recordentry = listView.View.Records.GetRecord(recordSender);
                     listView.View.TopLevelGroup.UpdateSummaries(recordentry.Parent as Group);
                 };
+            };
+
+            listView.CurrentCellEndEdit += (object sender, GridCurrentCellEndEditEventArgs args) =>
+            {
+                //MainBudget.Instance.Save();
             };
         }
 
@@ -196,10 +208,9 @@ namespace HomeBudget
             chart.Series.Add(pieSeries);
         }
 
-        void OnHomeClick(object sender, EventArgs args)
+        private async void OnHomeClick(object sender, EventArgs args)
         {
-            NavigationPage mainPage = new NavigationPage(new MainPagePC());
-            Navigation.PushModalAsync(mainPage);
+            await Navigation.PushModalAsync(new MainPagePC());
         }
 
         private async void OnPlanClick(object sender, EventArgs args)

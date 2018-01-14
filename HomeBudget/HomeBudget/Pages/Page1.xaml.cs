@@ -54,8 +54,8 @@ namespace HomeBudget
 
         private async void Upload(object sender, EventArgs e)
         {
-            MemoryStream data = new MemoryStream(Code.MainBudget.Instance.GetData());
-            await dropboxClient.Files.UploadAsync("/test22.dat", WriteMode.Overwrite.Instance, false, null, false, data);
+            //MemoryStream data = new MemoryStream(Code.MainBudget.Instance.GetData());
+            //await dropboxClient.Files.UploadAsync("/test22.dat", WriteMode.Overwrite.Instance, false, null, false, data);
         }
 
         private async void Download(object sender, EventArgs e)
@@ -74,8 +74,8 @@ namespace HomeBudget
 
         async Task Upload()
         {
-            MemoryStream data = new MemoryStream(Code.MainBudget.Instance.GetData());
-            await dropboxClient.Files.UploadAsync("/budget/test.dat", null, false, null, false, data);
+            //MemoryStream data = new MemoryStream(Code.MainBudget.Instance.GetData());
+            //await dropboxClient.Files.UploadAsync("/budget/test.dat", null, false, null, false, data);
         }
 
         async Task Download(DropboxClient dbx, string folder, string file)

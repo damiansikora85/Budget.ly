@@ -41,93 +41,20 @@ namespace HomeBudget.Code
         public int Id;
     }
 
-    public class NewCategoryData : INotifyPropertyChanged, IEditableObject
-    {
-        private string name;
-        private double total;
-        private string categoryName;
-        private int id;
-        private int categoryID;
-        private int subcatID;
-
-        public string Name
-        {
-            get { return name; }
-            set
-            {
-                this.name = value;
-                RaisePropertyChanged("Name");
-            }
-        }
-
-        public double Value
-        {
-            get { return total; }
-            set
-            {
-                this.total = value;
-                RaisePropertyChanged("Value");
-            }
-        }
-
-        public string CategoryName
-        {
-            get { return categoryName; }
-            set
-            {
-                this.categoryName = value;
-                RaisePropertyChanged("CategoryName");
-            }
-        }
-
-        public bool IsIncome { get; set; }
-        public int CategoryID
-        {
-            get { return categoryID; }
-            set { categoryID = value; }
-        }
-        public int SubcatID
-        {
-            get { return subcatID; }
-            set { subcatID = value; }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void RaisePropertyChanged(String Name)
-        {
-            if (PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(Name));
-        }
-
-        public void BeginEdit()
-        {
-            Debug.WriteLine("BeginEdit");
-        }
-
-        public void CancelEdit()
-        {
-            Debug.WriteLine("CancelEdit");
-        }
-
-        public void EndEdit()
-        {
-            /*Debug.WriteLine("EndEdit");
-            if (IsIncome)
-                MainBudget.Instance.SetPlanedIncome((float)total, categoryID);
-            else
-                MainBudget.Instance.SetPlanedExpense((float)total, categoryID, subcatID);*/
-        }
-    }
-
-
     public class MainBudget
 	{
         private const string TEMPLATE_FILENAME = "HomeBudget.template.json";
         private const string SAVE_DIRECTORY_NAME = "save";
         private const string SAVE_FILE_NAME = "budget.data";
         public const int INCOME_CATEGORY_ID = 777;
-		private List<BudgetMonth> months;
+        private const int VERSION = 1;
+        private List<BudgetMonth> months;
         private BudgetPlanned budgetPlanned;
+        private bool initialized;
+        public bool IsInitialized
+        {
+            get { return initialized; }
+        }
 
         public event Action onBudgetLoaded = delegate { };
         public event Action onPlannedBudgetChanged;
@@ -137,9 +64,6 @@ namespace HomeBudget.Code
 		{
 			get { return budgetDescription; }
 		}
-
-        //public BudgetMonth TemplateMonth { get; private set; }
-        //public BudgetMonth TempBudgetMonth { get; private set; }
 
 		static MainBudget instance;
 		public static MainBudget Instance
@@ -157,6 +81,7 @@ namespace HomeBudget.Code
 		{
 			months = new List<BudgetMonth>();
             budgetPlanned = new BudgetPlanned();
+            initialized = false;
 
             DropboxManager.Instance.onDownloadFinished += SynchronizeData;
             DropboxManager.Instance.onDownloadError += SynchronizeError;
@@ -198,6 +123,7 @@ namespace HomeBudget.Code
             IFile file = await folder.CreateFileAsync(SAVE_FILE_NAME, CreationCollisionOption.ReplaceExisting);
 
             List<byte> byteList = new List<byte>();
+            byteList.AddRange(BitConverter.GetBytes(VERSION));
             byteList.AddRange(budgetPlanned.Serialize());
             byteList.AddRange(BitConverter.GetBytes(months.Count));
             foreach (BudgetMonth month in months)
@@ -224,6 +150,7 @@ namespace HomeBudget.Code
 
             if (result == ExistenceCheckResult.NotFound)
             {
+                initialized = true;
                 onBudgetLoaded();
                 return;
             }
@@ -237,6 +164,7 @@ namespace HomeBudget.Code
                 byte[] data = new byte[dataString.Length * sizeof(char)];
                 Buffer.BlockCopy(dataString.ToCharArray(), 0, data, 0, dataString.Length*sizeof(char));
                 BinaryData binaryData = new BinaryData(data);
+                int version = binaryData.GetInt();
                 budgetPlanned.Deserialize(binaryData);
                 int numMonths = binaryData.GetInt();
                 for (int i = 0; i < numMonths; i++)
@@ -247,6 +175,7 @@ namespace HomeBudget.Code
                 }
             }
 
+            initialized = true;
             onBudgetLoaded();
         }
 
@@ -307,7 +236,7 @@ namespace HomeBudget.Code
             return GetCurrentMonthData().GetTotalIncomePlanned();
         }
 
-        private BudgetMonth GetMonth(DateTime date)
+        public BudgetMonth GetMonth(DateTime date)
 		{
 			BudgetMonth month = months.Find(x => x.Month == date.Month && x.Year == date.Year);
 			if (month == null)
@@ -331,11 +260,5 @@ namespace HomeBudget.Code
         {
             return GetMonth(DateTime.Now);
         }
-
-        /*public ObservableCollection<BudgetPlannedCategory> GetPlanningData()
-        {
-            BudgetMonth currentMonth = GetCurrentMonthData();
-            return currentMonth.BudgetPlanned.Categories;
-        }*/
     }
 }

@@ -13,6 +13,7 @@ namespace HomeBudget.Utils
         public string Name { get; set; }
         public BaseBudgetCategory Category { get; set; }
         public BaseBudgetSubcat Subcat { get; set; }
+        public RealSubcat SubcatReal { get; set; }
 
         public BudgetViewModelData Thiz { get { return this; } }
 

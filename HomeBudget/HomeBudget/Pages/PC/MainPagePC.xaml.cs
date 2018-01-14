@@ -1,7 +1,4 @@
 ﻿using Dropbox.Api;
-using FFImageLoading.Forms;
-using FFImageLoading.Transformations;
-using FFImageLoading.Work;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages;
@@ -9,25 +6,18 @@ using HomeBudget.Pages.PC;
 using HomeBudget.Pages.Utils;
 using HomeBudget.Utils;
 using HomeBudget.ViewModels;
-using Rg.Plugins.Popup.Extensions;
-using Syncfusion.Calculate;
-using Syncfusion.SfDataGrid.XForms;
+using Syncfusion.SfCalendar.XForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Globalization;
-using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Acr.UserDialogs;
 
 namespace HomeBudget
 {
@@ -67,18 +57,38 @@ namespace HomeBudget
             viewModel = new MainPagePcViewModel();
             BindingContext = viewModel;
             addButton.GestureRecognizers.Add(new TapGestureRecognizer(OnAddClick));
-
             calculatorViewModel = new CalculatorViewModel();
 
-            InitBudget();
-            CreateCategoriesBar();
-            CreateIncomesBar();
+            UserDialogs.Instance.ShowLoading("Loading...");
 
+            if (MainBudget.Instance.IsInitialized == false)
+                InitBudget();
+            else
+                OnBudgetLoaded();
+            
             lockTapGesture = false;
 
             CultureInfo cultureInfoPL = new CultureInfo("pl-PL");
             DateTime currentDate = DateTime.Now;
-            dateText.Text = currentDate.ToString("dd MMMM yyyy", cultureInfoPL);            
+            dateText.Text = currentDate.ToString("dd MMMM yyyy", cultureInfoPL);
+
+            calendar.Locale = cultureInfoPL;
+            //calendar.ShowHeader = false;
+            MonthViewSettings monthViewSettings = new MonthViewSettings
+            {
+                HeaderBackgroundColor = Color.FromHex("#D2F3DF"),
+                //HeaderFont = Font.,
+                HeaderTextColor = Color.FromHex("#232825")
+            };
+            calendar.MonthViewSettings = monthViewSettings;
+            calendar.OnCalendarTapped += SelectedDateChanged;
+            calendar.MonthChanged += SelectedMonthChanged;
+
+        }
+
+        private void SelectedMonthChanged(object sender, MonthChangedEventArgs args)
+        {
+            DateTime d = args.args.CurrentValue;
         }
 
         private void InitBudget()
@@ -88,20 +98,30 @@ namespace HomeBudget
             MainBudget.Instance.Init(assembly);
             MainBudget.Instance.onBudgetLoaded += OnBudgetLoaded;
 
-            if (Helpers.Settings.DropboxAccessToken != string.Empty)
+            if (string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken) == false)
             {
+                DropboxButon.IsVisible = false;
+                DropboxIcon.IsVisible = false;
                 DropboxLoginElement.IsVisible = false;
                 DropboxManager.Instance.DownloadData();
             }
             else
+            {
+                DropboxButon.IsVisible = true;
+                DropboxIcon.IsVisible = true;
                 MainBudget.Instance.Load();
+            }
         }
 
         private void OnBudgetLoaded()
         {
+            CreateCategoriesBar();
+            CreateIncomesBar();
             SetupBudgetSummary();
             budgetSummaryElement = new BudgetSummaryListView();
             budgetSummaryElement.Setup(listView);
+
+            UserDialogs.Instance.HideLoading();
         }
 
         private void SetupBudgetSummary()
@@ -188,7 +208,7 @@ namespace HomeBudget
             categoryElement.Deselect();
             await incomes.TranslateTo(-150, 0);
 
-            ShowCalculatorView("Dochód", selectedDate);
+            //ShowCalculatorView("Dochód", selectedDate);
         }
 
         private void CreateCategoriesBar()
@@ -230,8 +250,6 @@ namespace HomeBudget
                 return; //ItemSelected is called on deselection, which results in SelectedItem being set to null
             }
 
-            //DisplayAlert("Item Selected", e.SelectedItem.ToString(), "Ok");
-            //((ListView)sender).SelectedItem = null; //uncomment line if you want to disable the visual selection state.
             selectedDate = DateTime.Now;
             BudgetViewModelData selectedCategory = (BudgetViewModelData)e.SelectedItem;
             CreateSubcatsList(selectedCategory.Category.Id);
@@ -309,12 +327,13 @@ namespace HomeBudget
 
             BudgetViewModelData selectedCategory = (BudgetViewModelData)e.SelectedItem;
 
-            ShowCalculatorView(selectedCategory.Name, selectedDate);
+            ShowCalculatorView(selectedCategory.Name, selectedCategory);
         }
 
         private async void OnOk(object sender, EventArgs e)
         {
             HideCalculator();
+
             if (mode == EMode.Income)
                 await MainBudget.Instance.AddIncome(float.Parse(viewModel.CalculationResultText), selectedDate, selectedCategoryId);
             else if (mode == EMode.Expense)
@@ -353,27 +372,44 @@ namespace HomeBudget
             incomes.TranslateTo(-150, 0);
         }
 
-        private async void OnChangeDate(object sender, EventArgs e)
+        private async void OnChangeDateClicked(object sender, EventArgs e)
         {
-            var calendar = new CalendarPopup(SelectedDateChanged);
-            await Navigation.PushModalAsync(calendar);
+            BudgetDatePicker.IsVisible = true;
         }
 
-        private void ShowCalculatorView(string subcat, DateTime date)
+        private void ShowCalculatorView(string subcatName, BudgetViewModelData data)
         {
             viewModel.CalculationResultText = "0";
+            viewModel.FormulaText = "0";
+            viewModel.OnSaveValue = (double calculationResult) =>
+            {
+                var subcat = (RealSubcat)data.Subcat;
+                subcat.AddValue(calculationResult, selectedDate);
+
+                HideCalculator();
+                MainBudget.Instance.Save();
+                SetupBudgetSummary();
+
+                //if month changed
+                //var budgetMonth = MainBudget.Instance.GetMonth(selectedDate);
+                //var subcatNew = (RealSubcat)budgetMonth.BudgetReal.Categories[data.Category.Id].subcats[data.Subcat.Id];
+                //subcatNew.AddValue(calculationResult, selectedDate); 
+            };
+
             ShowCalculator();
 
-            Description.Text = subcat;
+            Description.Text = subcatName;
 
             CultureInfo cultureInfoPL = new CultureInfo("pl-PL");
-            DateButton.Text = date.ToString("dd.MM.yyyy", cultureInfoPL);
+            DateButton.Text = selectedDate.ToString("dd.MM.yyyy", cultureInfoPL);
         }
 
-        private void SelectedDateChanged(DateTime newDate)
+        private void SelectedDateChanged(object sender, CalendarTappedEventArgs args)
         {
-            selectedDate = newDate;
-            DateButton.Text = selectedDate.ToString("d");
+            selectedDate = args.datetime;
+            CultureInfo cultureInfoPL = new CultureInfo("pl-PL");
+            DateButton.Text = selectedDate.ToString("dd.MM.yyyy", cultureInfoPL);
+            BudgetDatePicker.IsVisible = false;
         }
 
         private void OnValueEdited(object sender, EventArgs e)

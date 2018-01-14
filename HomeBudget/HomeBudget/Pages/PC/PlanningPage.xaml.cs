@@ -90,7 +90,7 @@ namespace HomeBudget.Pages.PC
                 CustomAggregate = new CurrencyDataGridHeader(),
                 MappingName = "Subcat.Value",
                 Format = "{Currency}",
-                SummaryType = Syncfusion.Data.SummaryType.Custom,
+                SummaryType = SummaryType.Custom,
 
             });
 
@@ -104,6 +104,11 @@ namespace HomeBudget.Pages.PC
                     var recordentry = listView.View.Records.GetRecord(recordSender);
                     listView.View.TopLevelGroup.UpdateSummaries(recordentry.Parent as Group);
                 };
+            };
+
+            listView.CurrentCellEndEdit += (object sender, GridCurrentCellEndEditEventArgs args) =>
+            {
+                MainBudget.Instance.Save();
             };
         }
 

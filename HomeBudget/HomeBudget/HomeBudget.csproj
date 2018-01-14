@@ -133,8 +133,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Acr.UserDialogs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Acr.UserDialogs.6.4.1\lib\portable-net45+wp8+win8+wpa81\Acr.UserDialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.UserDialogs.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Acr.UserDialogs.6.4.1\lib\portable-net45+wp8+win8+wpa81\Acr.UserDialogs.Interface.dll</HintPath>
+    </Reference>
     <Reference Include="Dropbox.Api, Version=4.0.0.0, Culture=neutral, PublicKeyToken=310f0e82fbb45d01, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Dropbox.Api.4.3.1\lib\portable-net40+sl5+wp80+win8+wpa81\Dropbox.Api.dll</HintPath>
+      <HintPath>..\..\packages\Dropbox.Api.4.7.0\lib\portable-net40+sl5+wp80+win8+wpa81\Dropbox.Api.dll</HintPath>
     </Reference>
     <Reference Include="ExifLib, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ExifLib.PCL.1.0.1\lib\portable-net45+sl50+win+WindowsPhoneApp81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\ExifLib.dll</HintPath>
@@ -202,29 +208,32 @@
       <HintPath>..\..\packages\Rg.Plugins.Popup.1.0.4\lib\portable-win+net45+wp8+win8+wpa81\Rg.Plugins.Popup.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Splat.1.6.2\lib\Portable-net45+win+wpa81+wp80\Splat.dll</HintPath>
+    </Reference>
     <Reference Include="Syncfusion.Calculate.Portable">
       <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.2.0.40\Xamarin\lib\pcl\Syncfusion.Calculate.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Core.XForms, Version=15.4451.0.17, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.Core.15.4.0.17\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.Core.XForms.dll</HintPath>
+    <Reference Include="Syncfusion.Core.XForms, Version=15.4451.0.20, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.Core.15.4.0.20\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.Core.XForms.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Data.Portable, Version=15.4451.0.17, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfDataGrid.15.4.0.17\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.Data.Portable.dll</HintPath>
+    <Reference Include="Syncfusion.Data.Portable, Version=15.4451.0.20, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfDataGrid.15.4.0.20\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.Data.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.GridCommon.Portable, Version=15.4451.0.17, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.GridCommon.15.4.0.17\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.GridCommon.Portable.dll</HintPath>
+    <Reference Include="Syncfusion.GridCommon.Portable, Version=15.4451.0.20, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.GridCommon.15.4.0.20\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.GridCommon.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfCalendar.XForms, Version=15.4451.0.17, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfCalendar.15.4.0.17\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.SfCalendar.XForms.dll</HintPath>
+    <Reference Include="Syncfusion.SfCalendar.XForms, Version=15.4451.0.20, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfCalendar.15.4.0.20\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.SfCalendar.XForms.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfChart.XForms, Version=15.4451.0.17, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfChart.15.4.0.17\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.SfChart.XForms.dll</HintPath>
+    <Reference Include="Syncfusion.SfChart.XForms, Version=15.4451.0.20, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfChart.15.4.0.20\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.SfChart.XForms.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfDataGrid.XForms, Version=15.4451.0.17, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfDataGrid.15.4.0.17\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.SfDataGrid.XForms.dll</HintPath>
+    <Reference Include="Syncfusion.SfDataGrid.XForms, Version=15.4451.0.20, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfDataGrid.15.4.0.20\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.SfDataGrid.XForms.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfNumericTextBox.XForms, Version=15.4451.0.17, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericTextBox.15.4.0.17\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.SfNumericTextBox.XForms.dll</HintPath>
+    <Reference Include="Syncfusion.SfNumericTextBox.XForms, Version=15.4451.0.20, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericTextBox.15.4.0.20\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.SfNumericTextBox.XForms.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>

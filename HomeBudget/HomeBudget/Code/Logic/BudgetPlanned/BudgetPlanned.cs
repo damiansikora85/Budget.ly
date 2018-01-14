@@ -17,7 +17,7 @@ namespace HomeBudget.Code.Logic
             foreach (BudgetPlannedCategory category in budgetPlanned.Categories)
             {
                 BudgetPlannedCategory newCategory = new BudgetPlannedCategory(category);
-                newCategory.PropertyChanged += OnBudgetPlannedChanged;
+                newCategory.PropertyChanged += OnCategoryModified;
                 Categories.Add(newCategory);
             }
         }
@@ -27,7 +27,7 @@ namespace HomeBudget.Code.Logic
             foreach (BudgetCategoryTemplate categoryDesc in categoriesDesc)
             {
                 BudgetPlannedCategory plannedCategory = BudgetPlannedCategory.Create(categoryDesc);
-                plannedCategory.PropertyChanged += OnBudgetPlannedChanged;
+                plannedCategory.PropertyChanged += OnCategoryModified;
                 Categories.Add(plannedCategory);
             }
         }
@@ -40,15 +40,9 @@ namespace HomeBudget.Code.Logic
             {
                 BudgetPlannedCategory category = new BudgetPlannedCategory();
                 category.Deserialize(binaryData);
-                category.PropertyChanged += OnBudgetPlannedChanged;
+                category.PropertyChanged += OnCategoryModified;
                 Categories.Add(category);
             }
-        }
-
-        private void OnBudgetPlannedChanged(object sender, PropertyChangedEventArgs e)
-        {
-            /*if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs("budgetPlanned"));*/
         }
     }
 }

@@ -40,6 +40,8 @@ namespace HomeBudget.ViewModels
         }
 
         public ICommand KeyPressed { get; private set; }
+        public ICommand Save { get; private set; }
+        public Action<double> OnSaveValue;
         private String calculationResultText;
         private String formulaText;
         private string categoryText;
@@ -117,7 +119,16 @@ namespace HomeBudget.ViewModels
         public MainPagePcViewModel()
         {
             KeyPressed = new Command<string>(HandleKeyPressed);
+            Save = new Command(OnSave);
             calculationResultText = "0";
+        }
+
+        void OnSave()
+        {
+            CalcQuickBase calcQuick = new CalcQuickBase();
+            CalculationResultText = calcQuick.ParseAndCompute(formulaText);
+            OnPropertyChanged("CategoryReal.TotalValues");
+            OnSaveValue?.Invoke(double.Parse(calculationResultText));
         }
 
         void HandleKeyPressed(string value)

@@ -22,6 +22,7 @@ namespace HomeBudget.Code.Logic
             foreach (string subcatName in categoryDesc.subcategories)
             {
                 RealSubcat subcat = RealSubcat.Create(subcatName, index++);
+                subcat.PropertyChanged += category.OnSubcatChanged;
                 category.subcats.Add(subcat);
             }
 

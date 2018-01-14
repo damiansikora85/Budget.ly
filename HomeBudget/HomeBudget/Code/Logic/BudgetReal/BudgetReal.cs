@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace HomeBudget.Code.Logic
             foreach (BudgetCategoryTemplate categoryDesc in categoriesDesc)
             {
                 BudgetRealCategory realCategory = BudgetRealCategory.Create(categoryDesc);
+                realCategory.PropertyChanged += OnCategoryModified;
                 Categories.Add(realCategory);
             }
         }
@@ -26,6 +28,7 @@ namespace HomeBudget.Code.Logic
             {
                 BudgetRealCategory category = new BudgetRealCategory();
                 category.Deserialize(binaryData);
+                category.PropertyChanged += OnCategoryModified;
                 Categories.Add(category);
             }
         }

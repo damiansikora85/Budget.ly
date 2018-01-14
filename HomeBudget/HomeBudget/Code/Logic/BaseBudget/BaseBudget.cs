@@ -31,6 +31,11 @@ namespace HomeBudget.Code.Logic.BaseBudget
             return bytes.ToArray();
         }
 
+        protected void OnCategoryModified(object sender, PropertyChangedEventArgs e)
+        {
+            
+        }
+
         public List<BaseBudgetCategory> GetIncomesCategories()
         {
             return Categories.Where<BaseBudgetCategory>((elem) => elem.IsIncome == true).ToList();

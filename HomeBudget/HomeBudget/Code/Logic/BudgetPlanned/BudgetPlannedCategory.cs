@@ -35,6 +35,7 @@ namespace HomeBudget.Code.Logic
             foreach (string subcatName in categoryDesc.subcategories)
             {
                 PlannedSubcat subcat = PlannedSubcat.Create(subcatName, index++);
+                subcat.PropertyChanged += category.OnSubcatChanged;
                 category.subcats.Add(subcat);
             }
 

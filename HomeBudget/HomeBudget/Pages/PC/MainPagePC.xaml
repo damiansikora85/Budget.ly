@@ -2,9 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:HomeBudget"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
 	         xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:sf="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
              x:Class="HomeBudget.MainPagePC">
 
     <ContentPage.Resources>
@@ -50,12 +52,12 @@
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="4*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="2*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
@@ -113,8 +115,21 @@
                         <RowDefinition Height="4*" />
                     </Grid.RowDefinitions>
 
-                    <Label x:Name="dateText" Grid.Row="0" Text="Data" FontSize="Large" Style="{StaticResource BudgetFont}" HorizontalTextAlignment="Center" TextColor="#232825" VerticalTextAlignment="Center"/>
-
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="dateText" Grid.ColumnSpan="2" Text="Data" FontSize="Large" Style="{StaticResource BudgetFont}" HorizontalTextAlignment="Center" TextColor="#232825" VerticalTextAlignment="Center"/>
+                        <!--<ffimageloading:CachedImage  Source="Assets/DropboxLogo.png" Grid.Column="1" Margin="5">
+                            <ffimageloading:CachedImage.Transformations>
+                                <fftransformations:TintTransformation HexColor="#007EE5" EnableSolidColor="true"/>
+                            </ffimageloading:CachedImage.Transformations>
+                        </ffimageloading:CachedImage>-->
+                        <Image x:Name="DropboxIcon" Source="Assets/DropboxLogoOrg.png" Grid.Column="1" Margin="5"/>
+                        <Button x:Name="DropboxButon" BackgroundColor="Transparent" Clicked="OnDropboxClick" Grid.Column="1"/>
+                    </Grid>
+                    
                     <Grid Grid.Row="1" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
@@ -153,10 +168,9 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <syncfusion:SfDataGrid x:Name="listView" AutoGenerateColumns="False" Grid.Column="1" />
+                        <syncfusion:SfDataGrid x:Name="listView" AutoGenerateColumns="False" Grid.Column="1" BackgroundColor="#f9f9f9"/>
                         <ffimageloading:CachedImage Source="Assets/circle.png" Grid.Column="3" HorizontalOptions="End" VerticalOptions="End">
                             <ffimageloading:CachedImage.Transformations>
-                                <!-- First two digits from HexColor = ALPHA channel -->
                                 <fftransformations:TintTransformation HexColor="#6BBE8B" EnableSolidColor="true"/>
                             </ffimageloading:CachedImage.Transformations>
                         </ffimageloading:CachedImage>
@@ -264,9 +278,10 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <Label Style="{StaticResource BudgetSummaryFont}" FontSize="Large" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text=" " x:Name="Header" HorizontalOptions="CenterAndExpand" />
-                            <Label Style="{StaticResource BudgetSummaryFont}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Text=" " x:Name="Description" HorizontalOptions="CenterAndExpand" />
-                            <Button Grid.Column="3" Grid.RowSpan="1" Style="{StaticResource calculatorButtonLight}" FontSize="Small" Clicked="OnChangeDate" Text="" x:Name="DateButton" />
+                            <Label Style="{StaticResource BudgetSummaryFont}" FontSize="Large" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text=" " x:Name="Header" HorizontalOptions="CenterAndExpand" />
+                            <Label Style="{StaticResource BudgetSummaryFont}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text=" " x:Name="Description" HorizontalOptions="CenterAndExpand" />
+                            <Button Grid.Column="3" Grid.Row="0" Style="{StaticResource calculatorButtonDark}" FontAttributes="Bold" FontSize="Small" Command="{Binding Save}" Text="Zapisz" />
+                            <Button Grid.Column="0" Grid.Row="0" Style="{StaticResource calculatorButtonDark}" FontSize="Small" Clicked="OnChangeDateClicked" Text="" x:Name="DateButton" />
                             <Entry FontSize="Medium" FontFamily="Cambria" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Path=FormulaText}" HorizontalTextAlignment="End" Completed="OnValueEdited"/>
                             <Label x:Name="Result" Style="{StaticResource BudgetSummaryFont}" FontSize="Large" FontAttributes="Bold" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Path=CalculationResultText}" HorizontalTextAlignment="End" BackgroundColor="#D2F3DF"/>
 
@@ -297,6 +312,10 @@
                         </Grid>
                     </Grid>
                 </StackLayout>
+            </AbsoluteLayout>
+
+            <AbsoluteLayout x:Name="BudgetDatePicker" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Grid.Column="1" IsVisible="False">
+                <sf:SfCalendar x:Name="calendar" FirstDayofWeek="1" AbsoluteLayout.LayoutBounds=".5, .5, .75, .8" AbsoluteLayout.LayoutFlags="All" />
             </AbsoluteLayout>
 
         </Grid>

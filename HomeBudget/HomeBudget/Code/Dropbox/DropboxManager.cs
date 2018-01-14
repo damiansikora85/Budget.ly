@@ -65,7 +65,7 @@ namespace HomeBudget.Code
                     byte[] data = await response.GetContentAsByteArrayAsync();
                     onDownloadFinished?.Invoke(data);
                 }
-            }
+            }      
             catch
             {
                 onDownloadError?.Invoke();
@@ -78,7 +78,7 @@ namespace HomeBudget.Code
                 return;
 
             MemoryStream memoryStream = new MemoryStream(data);
-            await dropboxClient.Files.UploadAsync(DROPBOX_DATA_FILE_PATH, WriteMode.Overwrite.Instance, false, null, false, memoryStream);
+            await dropboxClient.Files.UploadAsync(DROPBOX_DATA_FILE_PATH, WriteMode.Overwrite.Instance, body: memoryStream);
             onUploadFinished?.Invoke();
         }
     }

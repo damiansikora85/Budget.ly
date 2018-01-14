@@ -43,10 +43,10 @@ namespace HomeBudget.Code.Logic
             Id = binaryData.GetInt();
         }
 
-        protected void RaisePropertyChanged(string name)
+        protected void RaiseValueChanged()
         {
             if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
+                PropertyChanged(this, new PropertyChangedEventArgs("Value"));
         }
     }
 }

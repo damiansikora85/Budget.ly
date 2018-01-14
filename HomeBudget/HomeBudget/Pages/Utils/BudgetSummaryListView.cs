@@ -8,6 +8,7 @@ using Syncfusion.SfDataGrid.XForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -16,17 +17,39 @@ using Xamarin.Forms;
 
 namespace HomeBudget.Pages.Utils
 {
-    public class BudgetSummaryDataViewModel
+    public class BudgetSummaryDataViewModel : INotifyPropertyChanged
     {
-        public BaseBudgetCategory CategoryPlanned { get; set; }
-        public BaseBudgetCategory CategoryReal { get; set; }
+        public BaseBudgetCategory CategoryPlanned
+        {
+            get;
+            set;
+        }
+
+        private BaseBudgetCategory categoryReal;
+        public BaseBudgetCategory CategoryReal
+        {
+            get { return categoryReal; }
+            set
+            {
+                categoryReal = value;
+                categoryReal.PropertyChanged += OnCategoryChanged;
+            }
+        }
+
+        private void OnCategoryChanged(object sender, PropertyChangedEventArgs e)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CategoryReal.TotalValues"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpendPercentage"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpendPercentageInt"));
+        }
+
         public string IconFile { get; set; }
         public double SpendPercentage
         {
             get
             {
-                Random rand = new Random();
-                return rand.NextDouble();//CategoryPlanned.TotalValues > 0 ? (CategoryReal.TotalValues / CategoryPlanned.TotalValues) : 0;
+                //Random rand = new Random();
+                return CategoryPlanned.TotalValues > 0 ? (CategoryReal.TotalValues / CategoryPlanned.TotalValues) : 0; //rand.NextDouble();
             }
         }
 
@@ -36,6 +59,13 @@ namespace HomeBudget.Pages.Utils
             {
                 return (int)(SpendPercentage * 100);
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public BudgetSummaryDataViewModel()
+        {
+
         }
     }
 
@@ -51,6 +81,7 @@ namespace HomeBudget.Pages.Utils
             progressBgColor = Color.FromHex("E3CC00");
             progressColor = Color.FromHex("12B0AE");
             dataGrid = _dataGrid;
+         
 
             dataGrid.HeaderRowHeight = 0;
             dataGrid.GridStyle = new BudgetDataGridStyle();

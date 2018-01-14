@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HomeBudget.Code.Logic
 {
@@ -26,7 +23,7 @@ namespace HomeBudget.Code.Logic
             set
             {
                 plannedValue = value;
-                RaisePropertyChanged("Value");
+                RaiseValueChanged();
             }
         }
 

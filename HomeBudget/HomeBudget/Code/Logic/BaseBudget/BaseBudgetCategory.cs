@@ -15,6 +15,7 @@ namespace HomeBudget.Code.Logic
         public List<BaseBudgetSubcat> subcats;
         public string IconName { get; protected set; }
         public event PropertyChangedEventHandler PropertyChanged;
+        public Action onCategoryValueChanged;
 
         public double TotalValues
         {
@@ -39,6 +40,7 @@ namespace HomeBudget.Code.Logic
             Name = category.Name;
             Id = category.Id;
             IsIncome = category.IsIncome;
+            IconName = category.IconName;
         }
 
         public virtual byte[] Serialize()
@@ -63,7 +65,7 @@ namespace HomeBudget.Code.Logic
             IconName = binaryData.GetString();
         }
 
-        public void OnSubcatChanged(object sender, PropertyChangedEventArgs e)
+        protected void OnSubcatChanged(object sender, PropertyChangedEventArgs e)
         {
             RaisePropertyChanged("TotalValues");
         }

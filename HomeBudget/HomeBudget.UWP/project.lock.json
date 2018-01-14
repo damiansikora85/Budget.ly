@@ -2,16 +2,42 @@
   "version": 3,
   "targets": {
     "UAP,Version=v10.0.14393": {
-      "Dropbox.Api/4.3.1": {
+      "Acr.UserDialogs/6.5.1": {
+        "type": "package",
+        "dependencies": {
+          "Coding4Fun.Toolkit.Controls": "[2.1.8, 3.0.0)",
+          "Splat": "[2.0.0, 3.0.0)"
+        },
+        "compile": {
+          "lib/uap10.0/Acr.UserDialogs.Interface.dll": {},
+          "lib/uap10.0/Acr.UserDialogs.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Acr.UserDialogs.Interface.dll": {},
+          "lib/uap10.0/Acr.UserDialogs.dll": {}
+        }
+      },
+      "Coding4Fun.Toolkit.Controls/2.1.8": {
+        "type": "package",
+        "compile": {
+          "lib/netcore451/Coding4Fun.Toolkit.Controls.dll": {},
+          "lib/netcore451/Coding4Fun.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Coding4Fun.Toolkit.Controls.dll": {},
+          "lib/netcore451/Coding4Fun.Toolkit.dll": {}
+        }
+      },
+      "Dropbox.Api/4.7.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "7.0.1"
         },
         "compile": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+          "lib/portable-net45+win8+wpa81/Dropbox.Api.dll": {}
         },
         "runtime": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+          "lib/portable-net45+win8+wpa81/Dropbox.Api.dll": {}
         }
       },
       "Microsoft.Azure.Mobile.Client/3.1.0": {
@@ -459,7 +485,16 @@
           "lib/uap10.0/Rg.Plugins.Popup.dll": {}
         }
       },
-      "Syncfusion.Xamarin.Core/15.4.0.17": {
+      "Splat/2.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/Portable-Win81+Wpa81/Splat.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Win81+Wpa81/Splat.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/15.4.0.20": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
@@ -468,7 +503,7 @@
           "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.GridCommon/15.4.0.17": {
+      "Syncfusion.Xamarin.GridCommon/15.4.0.20": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {}
@@ -477,10 +512,10 @@
           "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfCalendar/15.4.0.17": {
+      "Syncfusion.Xamarin.SfCalendar/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
@@ -495,10 +530,10 @@
           "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfChart/15.4.0.17": {
+      "Syncfusion.Xamarin.SfChart/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
@@ -511,13 +546,13 @@
           "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfDataGrid/15.4.0.17": {
+      "Syncfusion.Xamarin.SfDataGrid/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Syncfusion.Xamarin.Core": "15.4.0.17",
-          "Syncfusion.Xamarin.GridCommon": "15.4.0.17",
-          "Syncfusion.Xamarin.SfNumericTextBox": "15.4.0.17",
-          "Xamarin.Forms": "2.3.3.180"
+          "Syncfusion.Xamarin.Core": "15.4.0.20",
+          "Syncfusion.Xamarin.GridCommon": "15.4.0.20",
+          "Syncfusion.Xamarin.SfNumericTextBox": "15.4.0.20",
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
@@ -530,10 +565,10 @@
           "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfNumericTextBox/15.4.0.17": {
+      "Syncfusion.Xamarin.SfNumericTextBox/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
@@ -2305,16 +2340,42 @@
       }
     },
     "UAP,Version=v10.0.14393/win10-arm": {
-      "Dropbox.Api/4.3.1": {
+      "Acr.UserDialogs/6.5.1": {
+        "type": "package",
+        "dependencies": {
+          "Coding4Fun.Toolkit.Controls": "[2.1.8, 3.0.0)",
+          "Splat": "[2.0.0, 3.0.0)"
+        },
+        "compile": {
+          "lib/uap10.0/Acr.UserDialogs.Interface.dll": {},
+          "lib/uap10.0/Acr.UserDialogs.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Acr.UserDialogs.Interface.dll": {},
+          "lib/uap10.0/Acr.UserDialogs.dll": {}
+        }
+      },
+      "Coding4Fun.Toolkit.Controls/2.1.8": {
+        "type": "package",
+        "compile": {
+          "lib/netcore451/Coding4Fun.Toolkit.Controls.dll": {},
+          "lib/netcore451/Coding4Fun.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Coding4Fun.Toolkit.Controls.dll": {},
+          "lib/netcore451/Coding4Fun.Toolkit.dll": {}
+        }
+      },
+      "Dropbox.Api/4.7.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "7.0.1"
         },
         "compile": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+          "lib/portable-net45+win8+wpa81/Dropbox.Api.dll": {}
         },
         "runtime": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+          "lib/portable-net45+win8+wpa81/Dropbox.Api.dll": {}
         }
       },
       "Microsoft.Azure.Mobile.Client/3.1.0": {
@@ -2755,7 +2816,16 @@
           "lib/uap10.0/Rg.Plugins.Popup.dll": {}
         }
       },
-      "Syncfusion.Xamarin.Core/15.4.0.17": {
+      "Splat/2.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/Portable-Win81+Wpa81/Splat.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Win81+Wpa81/Splat.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/15.4.0.20": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
@@ -2764,7 +2834,7 @@
           "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.GridCommon/15.4.0.17": {
+      "Syncfusion.Xamarin.GridCommon/15.4.0.20": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {}
@@ -2773,10 +2843,10 @@
           "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfCalendar/15.4.0.17": {
+      "Syncfusion.Xamarin.SfCalendar/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
@@ -2791,10 +2861,10 @@
           "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfChart/15.4.0.17": {
+      "Syncfusion.Xamarin.SfChart/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
@@ -2807,13 +2877,13 @@
           "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfDataGrid/15.4.0.17": {
+      "Syncfusion.Xamarin.SfDataGrid/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Syncfusion.Xamarin.Core": "15.4.0.17",
-          "Syncfusion.Xamarin.GridCommon": "15.4.0.17",
-          "Syncfusion.Xamarin.SfNumericTextBox": "15.4.0.17",
-          "Xamarin.Forms": "2.3.3.180"
+          "Syncfusion.Xamarin.Core": "15.4.0.20",
+          "Syncfusion.Xamarin.GridCommon": "15.4.0.20",
+          "Syncfusion.Xamarin.SfNumericTextBox": "15.4.0.20",
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
@@ -2826,10 +2896,10 @@
           "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfNumericTextBox/15.4.0.17": {
+      "Syncfusion.Xamarin.SfNumericTextBox/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
@@ -4465,16 +4535,42 @@
       }
     },
     "UAP,Version=v10.0.14393/win10-arm-aot": {
-      "Dropbox.Api/4.3.1": {
+      "Acr.UserDialogs/6.5.1": {
+        "type": "package",
+        "dependencies": {
+          "Coding4Fun.Toolkit.Controls": "[2.1.8, 3.0.0)",
+          "Splat": "[2.0.0, 3.0.0)"
+        },
+        "compile": {
+          "lib/uap10.0/Acr.UserDialogs.Interface.dll": {},
+          "lib/uap10.0/Acr.UserDialogs.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Acr.UserDialogs.Interface.dll": {},
+          "lib/uap10.0/Acr.UserDialogs.dll": {}
+        }
+      },
+      "Coding4Fun.Toolkit.Controls/2.1.8": {
+        "type": "package",
+        "compile": {
+          "lib/netcore451/Coding4Fun.Toolkit.Controls.dll": {},
+          "lib/netcore451/Coding4Fun.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Coding4Fun.Toolkit.Controls.dll": {},
+          "lib/netcore451/Coding4Fun.Toolkit.dll": {}
+        }
+      },
+      "Dropbox.Api/4.7.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "7.0.1"
         },
         "compile": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+          "lib/portable-net45+win8+wpa81/Dropbox.Api.dll": {}
         },
         "runtime": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+          "lib/portable-net45+win8+wpa81/Dropbox.Api.dll": {}
         }
       },
       "Microsoft.Azure.Mobile.Client/3.1.0": {
@@ -4901,7 +4997,16 @@
           "lib/uap10.0/Rg.Plugins.Popup.dll": {}
         }
       },
-      "Syncfusion.Xamarin.Core/15.4.0.17": {
+      "Splat/2.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/Portable-Win81+Wpa81/Splat.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Win81+Wpa81/Splat.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/15.4.0.20": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
@@ -4910,7 +5015,7 @@
           "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.GridCommon/15.4.0.17": {
+      "Syncfusion.Xamarin.GridCommon/15.4.0.20": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {}
@@ -4919,10 +5024,10 @@
           "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfCalendar/15.4.0.17": {
+      "Syncfusion.Xamarin.SfCalendar/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
@@ -4937,10 +5042,10 @@
           "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfChart/15.4.0.17": {
+      "Syncfusion.Xamarin.SfChart/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
@@ -4953,13 +5058,13 @@
           "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfDataGrid/15.4.0.17": {
+      "Syncfusion.Xamarin.SfDataGrid/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Syncfusion.Xamarin.Core": "15.4.0.17",
-          "Syncfusion.Xamarin.GridCommon": "15.4.0.17",
-          "Syncfusion.Xamarin.SfNumericTextBox": "15.4.0.17",
-          "Xamarin.Forms": "2.3.3.180"
+          "Syncfusion.Xamarin.Core": "15.4.0.20",
+          "Syncfusion.Xamarin.GridCommon": "15.4.0.20",
+          "Syncfusion.Xamarin.SfNumericTextBox": "15.4.0.20",
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
@@ -4972,10 +5077,10 @@
           "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfNumericTextBox/15.4.0.17": {
+      "Syncfusion.Xamarin.SfNumericTextBox/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
@@ -6588,16 +6693,42 @@
       }
     },
     "UAP,Version=v10.0.14393/win10-x64": {
-      "Dropbox.Api/4.3.1": {
+      "Acr.UserDialogs/6.5.1": {
+        "type": "package",
+        "dependencies": {
+          "Coding4Fun.Toolkit.Controls": "[2.1.8, 3.0.0)",
+          "Splat": "[2.0.0, 3.0.0)"
+        },
+        "compile": {
+          "lib/uap10.0/Acr.UserDialogs.Interface.dll": {},
+          "lib/uap10.0/Acr.UserDialogs.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Acr.UserDialogs.Interface.dll": {},
+          "lib/uap10.0/Acr.UserDialogs.dll": {}
+        }
+      },
+      "Coding4Fun.Toolkit.Controls/2.1.8": {
+        "type": "package",
+        "compile": {
+          "lib/netcore451/Coding4Fun.Toolkit.Controls.dll": {},
+          "lib/netcore451/Coding4Fun.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Coding4Fun.Toolkit.Controls.dll": {},
+          "lib/netcore451/Coding4Fun.Toolkit.dll": {}
+        }
+      },
+      "Dropbox.Api/4.7.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "7.0.1"
         },
         "compile": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+          "lib/portable-net45+win8+wpa81/Dropbox.Api.dll": {}
         },
         "runtime": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+          "lib/portable-net45+win8+wpa81/Dropbox.Api.dll": {}
         }
       },
       "Microsoft.Azure.Mobile.Client/3.1.0": {
@@ -7045,7 +7176,16 @@
           "lib/uap10.0/Rg.Plugins.Popup.dll": {}
         }
       },
-      "Syncfusion.Xamarin.Core/15.4.0.17": {
+      "Splat/2.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/Portable-Win81+Wpa81/Splat.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Win81+Wpa81/Splat.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/15.4.0.20": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
@@ -7054,7 +7194,7 @@
           "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.GridCommon/15.4.0.17": {
+      "Syncfusion.Xamarin.GridCommon/15.4.0.20": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {}
@@ -7063,10 +7203,10 @@
           "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfCalendar/15.4.0.17": {
+      "Syncfusion.Xamarin.SfCalendar/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
@@ -7081,10 +7221,10 @@
           "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfChart/15.4.0.17": {
+      "Syncfusion.Xamarin.SfChart/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
@@ -7097,13 +7237,13 @@
           "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfDataGrid/15.4.0.17": {
+      "Syncfusion.Xamarin.SfDataGrid/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Syncfusion.Xamarin.Core": "15.4.0.17",
-          "Syncfusion.Xamarin.GridCommon": "15.4.0.17",
-          "Syncfusion.Xamarin.SfNumericTextBox": "15.4.0.17",
-          "Xamarin.Forms": "2.3.3.180"
+          "Syncfusion.Xamarin.Core": "15.4.0.20",
+          "Syncfusion.Xamarin.GridCommon": "15.4.0.20",
+          "Syncfusion.Xamarin.SfNumericTextBox": "15.4.0.20",
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
@@ -7116,10 +7256,10 @@
           "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfNumericTextBox/15.4.0.17": {
+      "Syncfusion.Xamarin.SfNumericTextBox/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
@@ -8755,16 +8895,42 @@
       }
     },
     "UAP,Version=v10.0.14393/win10-x64-aot": {
-      "Dropbox.Api/4.3.1": {
+      "Acr.UserDialogs/6.5.1": {
+        "type": "package",
+        "dependencies": {
+          "Coding4Fun.Toolkit.Controls": "[2.1.8, 3.0.0)",
+          "Splat": "[2.0.0, 3.0.0)"
+        },
+        "compile": {
+          "lib/uap10.0/Acr.UserDialogs.Interface.dll": {},
+          "lib/uap10.0/Acr.UserDialogs.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Acr.UserDialogs.Interface.dll": {},
+          "lib/uap10.0/Acr.UserDialogs.dll": {}
+        }
+      },
+      "Coding4Fun.Toolkit.Controls/2.1.8": {
+        "type": "package",
+        "compile": {
+          "lib/netcore451/Coding4Fun.Toolkit.Controls.dll": {},
+          "lib/netcore451/Coding4Fun.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Coding4Fun.Toolkit.Controls.dll": {},
+          "lib/netcore451/Coding4Fun.Toolkit.dll": {}
+        }
+      },
+      "Dropbox.Api/4.7.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "7.0.1"
         },
         "compile": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+          "lib/portable-net45+win8+wpa81/Dropbox.Api.dll": {}
         },
         "runtime": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+          "lib/portable-net45+win8+wpa81/Dropbox.Api.dll": {}
         }
       },
       "Microsoft.Azure.Mobile.Client/3.1.0": {
@@ -9191,7 +9357,16 @@
           "lib/uap10.0/Rg.Plugins.Popup.dll": {}
         }
       },
-      "Syncfusion.Xamarin.Core/15.4.0.17": {
+      "Splat/2.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/Portable-Win81+Wpa81/Splat.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Win81+Wpa81/Splat.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/15.4.0.20": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
@@ -9200,7 +9375,7 @@
           "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.GridCommon/15.4.0.17": {
+      "Syncfusion.Xamarin.GridCommon/15.4.0.20": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {}
@@ -9209,10 +9384,10 @@
           "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfCalendar/15.4.0.17": {
+      "Syncfusion.Xamarin.SfCalendar/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
@@ -9227,10 +9402,10 @@
           "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfChart/15.4.0.17": {
+      "Syncfusion.Xamarin.SfChart/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
@@ -9243,13 +9418,13 @@
           "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfDataGrid/15.4.0.17": {
+      "Syncfusion.Xamarin.SfDataGrid/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Syncfusion.Xamarin.Core": "15.4.0.17",
-          "Syncfusion.Xamarin.GridCommon": "15.4.0.17",
-          "Syncfusion.Xamarin.SfNumericTextBox": "15.4.0.17",
-          "Xamarin.Forms": "2.3.3.180"
+          "Syncfusion.Xamarin.Core": "15.4.0.20",
+          "Syncfusion.Xamarin.GridCommon": "15.4.0.20",
+          "Syncfusion.Xamarin.SfNumericTextBox": "15.4.0.20",
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
@@ -9262,10 +9437,10 @@
           "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfNumericTextBox/15.4.0.17": {
+      "Syncfusion.Xamarin.SfNumericTextBox/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
@@ -10878,16 +11053,42 @@
       }
     },
     "UAP,Version=v10.0.14393/win10-x86": {
-      "Dropbox.Api/4.3.1": {
+      "Acr.UserDialogs/6.5.1": {
+        "type": "package",
+        "dependencies": {
+          "Coding4Fun.Toolkit.Controls": "[2.1.8, 3.0.0)",
+          "Splat": "[2.0.0, 3.0.0)"
+        },
+        "compile": {
+          "lib/uap10.0/Acr.UserDialogs.Interface.dll": {},
+          "lib/uap10.0/Acr.UserDialogs.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Acr.UserDialogs.Interface.dll": {},
+          "lib/uap10.0/Acr.UserDialogs.dll": {}
+        }
+      },
+      "Coding4Fun.Toolkit.Controls/2.1.8": {
+        "type": "package",
+        "compile": {
+          "lib/netcore451/Coding4Fun.Toolkit.Controls.dll": {},
+          "lib/netcore451/Coding4Fun.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Coding4Fun.Toolkit.Controls.dll": {},
+          "lib/netcore451/Coding4Fun.Toolkit.dll": {}
+        }
+      },
+      "Dropbox.Api/4.7.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "7.0.1"
         },
         "compile": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+          "lib/portable-net45+win8+wpa81/Dropbox.Api.dll": {}
         },
         "runtime": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+          "lib/portable-net45+win8+wpa81/Dropbox.Api.dll": {}
         }
       },
       "Microsoft.Azure.Mobile.Client/3.1.0": {
@@ -11335,7 +11536,16 @@
           "lib/uap10.0/Rg.Plugins.Popup.dll": {}
         }
       },
-      "Syncfusion.Xamarin.Core/15.4.0.17": {
+      "Splat/2.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/Portable-Win81+Wpa81/Splat.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Win81+Wpa81/Splat.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/15.4.0.20": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
@@ -11344,7 +11554,7 @@
           "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.GridCommon/15.4.0.17": {
+      "Syncfusion.Xamarin.GridCommon/15.4.0.20": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {}
@@ -11353,10 +11563,10 @@
           "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfCalendar/15.4.0.17": {
+      "Syncfusion.Xamarin.SfCalendar/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
@@ -11371,10 +11581,10 @@
           "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfChart/15.4.0.17": {
+      "Syncfusion.Xamarin.SfChart/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
@@ -11387,13 +11597,13 @@
           "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfDataGrid/15.4.0.17": {
+      "Syncfusion.Xamarin.SfDataGrid/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Syncfusion.Xamarin.Core": "15.4.0.17",
-          "Syncfusion.Xamarin.GridCommon": "15.4.0.17",
-          "Syncfusion.Xamarin.SfNumericTextBox": "15.4.0.17",
-          "Xamarin.Forms": "2.3.3.180"
+          "Syncfusion.Xamarin.Core": "15.4.0.20",
+          "Syncfusion.Xamarin.GridCommon": "15.4.0.20",
+          "Syncfusion.Xamarin.SfNumericTextBox": "15.4.0.20",
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
@@ -11406,10 +11616,10 @@
           "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfNumericTextBox/15.4.0.17": {
+      "Syncfusion.Xamarin.SfNumericTextBox/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
@@ -13045,16 +13255,42 @@
       }
     },
     "UAP,Version=v10.0.14393/win10-x86-aot": {
-      "Dropbox.Api/4.3.1": {
+      "Acr.UserDialogs/6.5.1": {
+        "type": "package",
+        "dependencies": {
+          "Coding4Fun.Toolkit.Controls": "[2.1.8, 3.0.0)",
+          "Splat": "[2.0.0, 3.0.0)"
+        },
+        "compile": {
+          "lib/uap10.0/Acr.UserDialogs.Interface.dll": {},
+          "lib/uap10.0/Acr.UserDialogs.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Acr.UserDialogs.Interface.dll": {},
+          "lib/uap10.0/Acr.UserDialogs.dll": {}
+        }
+      },
+      "Coding4Fun.Toolkit.Controls/2.1.8": {
+        "type": "package",
+        "compile": {
+          "lib/netcore451/Coding4Fun.Toolkit.Controls.dll": {},
+          "lib/netcore451/Coding4Fun.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Coding4Fun.Toolkit.Controls.dll": {},
+          "lib/netcore451/Coding4Fun.Toolkit.dll": {}
+        }
+      },
+      "Dropbox.Api/4.7.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "7.0.1"
         },
         "compile": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+          "lib/portable-net45+win8+wpa81/Dropbox.Api.dll": {}
         },
         "runtime": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll": {}
+          "lib/portable-net45+win8+wpa81/Dropbox.Api.dll": {}
         }
       },
       "Microsoft.Azure.Mobile.Client/3.1.0": {
@@ -13481,7 +13717,16 @@
           "lib/uap10.0/Rg.Plugins.Popup.dll": {}
         }
       },
-      "Syncfusion.Xamarin.Core/15.4.0.17": {
+      "Splat/2.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/Portable-Win81+Wpa81/Splat.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Win81+Wpa81/Splat.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/15.4.0.20": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
@@ -13490,7 +13735,7 @@
           "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.GridCommon/15.4.0.17": {
+      "Syncfusion.Xamarin.GridCommon/15.4.0.20": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {}
@@ -13499,10 +13744,10 @@
           "lib/uap10.0/Syncfusion.GridCommon.Portable.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfCalendar/15.4.0.17": {
+      "Syncfusion.Xamarin.SfCalendar/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfCalendar.XForms.UWP.dll": {},
@@ -13517,10 +13762,10 @@
           "lib/uap10.0/Syncfusion.SfShared.UWP.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfChart/15.4.0.17": {
+      "Syncfusion.Xamarin.SfChart/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
@@ -13533,13 +13778,13 @@
           "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfDataGrid/15.4.0.17": {
+      "Syncfusion.Xamarin.SfDataGrid/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Syncfusion.Xamarin.Core": "15.4.0.17",
-          "Syncfusion.Xamarin.GridCommon": "15.4.0.17",
-          "Syncfusion.Xamarin.SfNumericTextBox": "15.4.0.17",
-          "Xamarin.Forms": "2.3.3.180"
+          "Syncfusion.Xamarin.Core": "15.4.0.20",
+          "Syncfusion.Xamarin.GridCommon": "15.4.0.20",
+          "Syncfusion.Xamarin.SfNumericTextBox": "15.4.0.20",
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.Data.Portable.dll": {},
@@ -13552,10 +13797,10 @@
           "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll": {}
         }
       },
-      "Syncfusion.Xamarin.SfNumericTextBox/15.4.0.17": {
+      "Syncfusion.Xamarin.SfNumericTextBox/15.4.0.20": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Forms": "2.3.3.180"
+          "Xamarin.Forms": "2.4.0.280"
         },
         "compile": {
           "lib/uap10.0/Syncfusion.SfInput.UWP.dll": {},
@@ -15169,19 +15414,92 @@
     }
   },
   "libraries": {
-    "Dropbox.Api/4.3.1": {
-      "sha512": "TqGLvj4y1eysGiXwFxMfm996dON3dQ+VqBTCoPAPcF1mhKYRU9ZVqHcWBH8jrpsgLySniEOREUYOuOKCoyYrWg==",
+    "Acr.UserDialogs/6.5.1": {
+      "sha512": "Y0GGF+TuG+JOMe//LiNlrr2Hf+nD3/Irlie15pjkzspcR59WEi6N1UT4ZZNaQVE7fYrddTTnAsSco9XD6TbvNg==",
       "type": "package",
-      "path": "dropbox.api/4.3.1",
+      "path": "acr.userdialogs/6.5.1",
       "files": [
-        "dropbox.api.4.3.1.nupkg.sha512",
+        "acr.userdialogs.6.5.1.nupkg.sha512",
+        "acr.userdialogs.nuspec",
+        "lib/MonoAndroid10/Acr.UserDialogs.Interface.dll",
+        "lib/MonoAndroid10/Acr.UserDialogs.Interface.pdb",
+        "lib/MonoAndroid10/Acr.UserDialogs.dll",
+        "lib/MonoAndroid10/Acr.UserDialogs.pdb",
+        "lib/Xamarin.iOS10/Acr.UserDialogs.Interface.dll",
+        "lib/Xamarin.iOS10/Acr.UserDialogs.Interface.pdb",
+        "lib/Xamarin.iOS10/Acr.UserDialogs.dll",
+        "lib/Xamarin.iOS10/Acr.UserDialogs.pdb",
+        "lib/netstandard1.1/Acr.UserDialogs.Interface.dll",
+        "lib/netstandard1.1/Acr.UserDialogs.Interface.pdb",
+        "lib/netstandard1.1/Acr.UserDialogs.deps.json",
+        "lib/netstandard1.1/Acr.UserDialogs.dll",
+        "lib/netstandard1.1/Acr.UserDialogs.pdb",
+        "lib/uap10.0/Acr.UserDialogs.Interface.dll",
+        "lib/uap10.0/Acr.UserDialogs.Interface.pdb",
+        "lib/uap10.0/Acr.UserDialogs.dll",
+        "lib/uap10.0/Acr.UserDialogs.pdb",
+        "lib/uap10.0/Acr.UserDialogs.pri",
+        "lib/uap10.0/Acr.UserDialogs/Acr.UserDialogs.xr.xml",
+        "lib/uap10.0/Acr.UserDialogs/ActionSheetContentDialog.xaml",
+        "lib/uap10.0/Acr.UserDialogs/DatePickerControl.xaml",
+        "lib/uap10.0/Acr.UserDialogs/LoginContentDialog.xaml",
+        "lib/uap10.0/Acr.UserDialogs/ProgressContentDialog.xaml",
+        "lib/uap10.0/Acr.UserDialogs/Properties/Acr.UserDialogs.rd.xml",
+        "lib/uap10.0/Acr.UserDialogs/TimePickerControl.xaml"
+      ]
+    },
+    "Coding4Fun.Toolkit.Controls/2.1.8": {
+      "sha512": "PCRWgCiW9H8qzT8xYxNtpq4ZWpvh2gtrKAnWtEOXzapyXTEt8esCt0cqRwvosW+bytyfohonmB7UxB0EGXmdsQ==",
+      "type": "package",
+      "path": "coding4fun.toolkit.controls/2.1.8",
+      "files": [
+        "coding4fun.toolkit.controls.2.1.8.nupkg.sha512",
+        "coding4fun.toolkit.controls.nuspec",
+        "content/ReadMe.Coding4Fun.Toolkit.txt",
+        "content/windowsphone8/Toolkit.Content/ApplicationBar.Cancel.png",
+        "content/windowsphone8/Toolkit.Content/ApplicationBar.Check.png",
+        "lib/netcore451/Coding4Fun.Toolkit.Controls.dll",
+        "lib/netcore451/Coding4Fun.Toolkit.Controls.pri",
+        "lib/netcore451/Coding4Fun.Toolkit.Controls/Coding4Fun.Toolkit.Controls.xr.xml",
+        "lib/netcore451/Coding4Fun.Toolkit.Controls/Themes/Generic.xbf",
+        "lib/netcore451/Coding4Fun.Toolkit.dll",
+        "lib/netcore451/Coding4Fun.Toolkit.pri",
+        "lib/windowsphone8/Coding4Fun.Toolkit.Controls.dll",
+        "lib/windowsphone8/Coding4Fun.Toolkit.dll",
+        "lib/windowsphone8/cs/Coding4Fun.Toolkit.Controls.resources.dll",
+        "lib/windowsphone8/da/Coding4Fun.Toolkit.Controls.resources.dll",
+        "lib/windowsphone8/de/Coding4Fun.Toolkit.Controls.resources.dll",
+        "lib/windowsphone8/es/Coding4Fun.Toolkit.Controls.resources.dll",
+        "lib/windowsphone8/fr/Coding4Fun.Toolkit.Controls.resources.dll",
+        "lib/windowsphone8/fr/hu/Coding4Fun.Toolkit.Controls.resources.dll",
+        "lib/windowsphone8/it/Coding4Fun.Toolkit.Controls.resources.dll",
+        "lib/windowsphone8/ko/Coding4Fun.Toolkit.Controls.resources.dll",
+        "lib/windowsphone8/no/Coding4Fun.Toolkit.Controls.resources.dll",
+        "lib/windowsphone8/pl/Coding4Fun.Toolkit.Controls.resources.dll",
+        "lib/windowsphone8/pt/Coding4Fun.Toolkit.Controls.resources.dll",
+        "lib/windowsphone8/ru/Coding4Fun.Toolkit.Controls.resources.dll",
+        "lib/windowsphone8/sk/Coding4Fun.Toolkit.Controls.resources.dll",
+        "lib/wpa81/Coding4Fun.Toolkit.Controls.dll",
+        "lib/wpa81/Coding4Fun.Toolkit.Controls.pri",
+        "lib/wpa81/Coding4Fun.Toolkit.Controls/Coding4Fun.Toolkit.Controls.xr.xml",
+        "lib/wpa81/Coding4Fun.Toolkit.Controls/Themes/Generic.xbf",
+        "lib/wpa81/Coding4Fun.Toolkit.dll",
+        "lib/wpa81/Coding4Fun.Toolkit.pri"
+      ]
+    },
+    "Dropbox.Api/4.7.0": {
+      "sha512": "FI6ZDiDu1M3gdvjblJngKfCExnN2dh1S+t8V3zn8MBJBV6ncLU99b9ByypEKYMHN/mDj5bRYVeLtZibm+qE7Hg==",
+      "type": "package",
+      "path": "dropbox.api/4.7.0",
+      "files": [
+        "dropbox.api.4.7.0.nupkg.sha512",
         "dropbox.api.nuspec",
         "lib/net45/Dropbox.Api.dll",
         "lib/net45/Dropbox.Api.xml",
         "lib/portable-net40+sl5+wp80+win8+wpa81/Dropbox.Api.dll",
         "lib/portable-net40+sl5+wp80+win8+wpa81/Dropbox.Api.xml",
-        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.dll",
-        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Dropbox.Api.xml"
+        "lib/portable-net45+win8+wpa81/Dropbox.Api.dll",
+        "lib/portable-net45+win8+wpa81/Dropbox.Api.xml"
       ]
     },
     "Microsoft.Azure.Mobile.Client/3.1.0": {
@@ -16309,10 +16627,37 @@
         "lib/wpa81/Rg.Plugins.Popup.dll"
       ]
     },
-    "Syncfusion.Xamarin.Core/15.4.0.17": {
-      "sha512": "Xh0xv6QqYPhQTodU6S10D6vQOFIUeP409wPoIYypqpe4/a/l+Kc6OpKE+Bg2kKTcwmffZQOOIslOiHeLHz+TCw==",
+    "Splat/2.0.0": {
+      "sha512": "nu/hT3AaKHJvMlCTrbR2EG1n6nzOejbJsvx/LWiy7kM4PK7R/GdrtP5KN8VcXfi1x+mbPA3Mqcbe992D7DppyA==",
       "type": "package",
-      "path": "syncfusion.xamarin.core/15.4.0.17",
+      "path": "splat/2.0.0",
+      "files": [
+        "lib/MonoAndroid403/Splat.dll",
+        "lib/Net45/Splat.dll",
+        "lib/Portable-Win81+Wpa81/Splat.dll",
+        "lib/Xamarin.Mac20/Splat.dll",
+        "lib/Xamarin.iOS10/Splat.dll",
+        "lib/netstandard1.1/Splat.dll",
+        "splat.2.0.0.nupkg.sha512",
+        "splat.nuspec",
+        "src/AssemblyFinder.cs",
+        "src/Bitmaps.cs",
+        "src/Logging.cs",
+        "src/MemoizingMRUCache.cs",
+        "src/ModeDetector.cs",
+        "src/PlatformModeDetector.cs",
+        "src/PointExtensions.cs",
+        "src/RectangleExtensions.cs",
+        "src/ReflectionStubs.cs",
+        "src/ServiceLocation.cs",
+        "src/SizeExtensions.cs",
+        "src/TypeForwardedSystemDrawing.cs"
+      ]
+    },
+    "Syncfusion.Xamarin.Core/15.4.0.20": {
+      "sha512": "Gg7o8wQqjpkobfSFFRoMavXlTakXPitT8plNlpe9Y8FC60hl2yJJq0k/NZb8VXO1c0D/B84BP4h8OXNXDr7dRQ==",
+      "type": "package",
+      "path": "syncfusion.xamarin.core/15.4.0.20",
       "files": [
         "lib/MonoAndroid10/Syncfusion.Core.XForms.XML",
         "lib/MonoAndroid10/Syncfusion.Core.XForms.dll",
@@ -16324,14 +16669,14 @@
         "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Core.XForms.dll",
         "lib/uap10.0/Syncfusion.Core.XForms.XML",
         "lib/uap10.0/Syncfusion.Core.XForms.dll",
-        "syncfusion.xamarin.core.15.4.0.17.nupkg.sha512",
+        "syncfusion.xamarin.core.15.4.0.20.nupkg.sha512",
         "syncfusion.xamarin.core.nuspec"
       ]
     },
-    "Syncfusion.Xamarin.GridCommon/15.4.0.17": {
-      "sha512": "gNl+8ikLBNpa2Q+9sfo35nrkRt1Kagy8EzpkIbfHtBHtMSjE28bkkyfYrQpRIvNAQAQfmo7+kYnx/K2/UmeqZA==",
+    "Syncfusion.Xamarin.GridCommon/15.4.0.20": {
+      "sha512": "1yniwfwT2/WBPUcDjmKtLNIV8jOseE3hkNeZ6PSJz7l451c+Np1LkHId7ZKHvDWb5dp9+MOJD/bsBq6Z7m9bAg==",
       "type": "package",
-      "path": "syncfusion.xamarin.gridcommon/15.4.0.17",
+      "path": "syncfusion.xamarin.gridcommon/15.4.0.20",
       "files": [
         "lib/MonoAndroid10/Syncfusion.GridCommon.Portable.XML",
         "lib/MonoAndroid10/Syncfusion.GridCommon.Portable.dll",
@@ -16343,14 +16688,14 @@
         "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.GridCommon.Portable.dll",
         "lib/uap10.0/Syncfusion.GridCommon.Portable.XML",
         "lib/uap10.0/Syncfusion.GridCommon.Portable.dll",
-        "syncfusion.xamarin.gridcommon.15.4.0.17.nupkg.sha512",
+        "syncfusion.xamarin.gridcommon.15.4.0.20.nupkg.sha512",
         "syncfusion.xamarin.gridcommon.nuspec"
       ]
     },
-    "Syncfusion.Xamarin.SfCalendar/15.4.0.17": {
-      "sha512": "5tagEzqCf387gbpa5hTBEl13AZqv/ittYQZ0FtYLOdTTLqccPyw0F0gMDt3BPozjuc4OqBr4G2iKpedt+CITtQ==",
+    "Syncfusion.Xamarin.SfCalendar/15.4.0.20": {
+      "sha512": "5mT3t6QrTis/75vjsL9HRD07WAy7LIJ6BgbuQaDAznLzsrzfK7XjuJp2pXoKIE2T9AZTHautJcDg0gh2MhtuOw==",
       "type": "package",
-      "path": "syncfusion.xamarin.sfcalendar/15.4.0.17",
+      "path": "syncfusion.xamarin.sfcalendar/15.4.0.20",
       "files": [
         "lib/MonoAndroid10/Syncfusion.SfCalendar.Android.dll",
         "lib/MonoAndroid10/Syncfusion.SfCalendar.Android.xml",
@@ -16390,14 +16735,14 @@
         "lib/uap10.0/Syncfusion.SfShared.UWP/Syncfusion.SfShared.UWP.xr.xml",
         "lib/uap10.0/Syncfusion.SfShared.UWP/Themes/generic.xaml",
         "lib/uap10.0/Syncfusion.SfShared.UWP/Themes/generic.xbf",
-        "syncfusion.xamarin.sfcalendar.15.4.0.17.nupkg.sha512",
+        "syncfusion.xamarin.sfcalendar.15.4.0.20.nupkg.sha512",
         "syncfusion.xamarin.sfcalendar.nuspec"
       ]
     },
-    "Syncfusion.Xamarin.SfChart/15.4.0.17": {
-      "sha512": "8kS0qPQEVJNfY0OV+teDQ0v72UxgHGpun1jE0HinKZSXGoze6MKVNydPQtveLmGwH43dfLVxIcj8PIqxIL6y6A==",
+    "Syncfusion.Xamarin.SfChart/15.4.0.20": {
+      "sha512": "mZYLH4QlvefXvqgw3xon4o13ZsJUlSkPFAzlU6DqOh+T6P/tIczSAStb0vksQo+muMG5ksgq+kbOxuQFMQlQ2w==",
       "type": "package",
-      "path": "syncfusion.xamarin.sfchart/15.4.0.17",
+      "path": "syncfusion.xamarin.sfchart/15.4.0.20",
       "files": [
         "lib/MonoAndroid10/Syncfusion.SfChart.XForms.Android.dll",
         "lib/MonoAndroid10/Syncfusion.SfChart.XForms.dll",
@@ -16446,14 +16791,14 @@
         "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll",
         "lib/uap10.0/Syncfusion.SfChart.XForms.dll",
         "lib/uap10.0/Syncfusion.SfChart.XForms.xml",
-        "syncfusion.xamarin.sfchart.15.4.0.17.nupkg.sha512",
+        "syncfusion.xamarin.sfchart.15.4.0.20.nupkg.sha512",
         "syncfusion.xamarin.sfchart.nuspec"
       ]
     },
-    "Syncfusion.Xamarin.SfDataGrid/15.4.0.17": {
-      "sha512": "jPO5sfncy4THpLVsH2zd9HT5TGQR7MJ9QTiudJOwhv69Dl/NGOyyuxLi/sHifvszeDUtgZ2T37eEsbLvwbn5Tg==",
+    "Syncfusion.Xamarin.SfDataGrid/15.4.0.20": {
+      "sha512": "MzEMvrQhWXo3UlsSS1Kwv9bgwc86/jfuu5ZVtL9/n9KtMxyCY8HIBNkzcQXPMHEzdgkeqGZzhXM2ozWhwqL0IA==",
       "type": "package",
-      "path": "syncfusion.xamarin.sfdatagrid/15.4.0.17",
+      "path": "syncfusion.xamarin.sfdatagrid/15.4.0.20",
       "files": [
         "lib/MonoAndroid10/Syncfusion.Data.Portable.XML",
         "lib/MonoAndroid10/Syncfusion.Data.Portable.dll",
@@ -16478,14 +16823,14 @@
         "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP.dll",
         "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll",
         "lib/uap10.0/Syncfusion.SfDataGrid.XForms.xml",
-        "syncfusion.xamarin.sfdatagrid.15.4.0.17.nupkg.sha512",
+        "syncfusion.xamarin.sfdatagrid.15.4.0.20.nupkg.sha512",
         "syncfusion.xamarin.sfdatagrid.nuspec"
       ]
     },
-    "Syncfusion.Xamarin.SfNumericTextBox/15.4.0.17": {
-      "sha512": "he5HTpwtPbUqfj6Ce7O55PVtme+iZ3qQPksSsG43shw/OOBldv5r0mIU4od2d35ewgfTIrTw+cEhckRXytAbkw==",
+    "Syncfusion.Xamarin.SfNumericTextBox/15.4.0.20": {
+      "sha512": "tsB8S6rjTUxw/0kZGq6K22gazEP9XIWskcJBdlXEXQUpwrBr5oS28Weoi6BUFQe+Oh5akG4YxC29gt1QK1Ld4A==",
       "type": "package",
-      "path": "syncfusion.xamarin.sfnumerictextbox/15.4.0.17",
+      "path": "syncfusion.xamarin.sfnumerictextbox/15.4.0.20",
       "files": [
         "lib/MonoAndroid10/Syncfusion.SfNumericTextBox.Android.dll",
         "lib/MonoAndroid10/Syncfusion.SfNumericTextBox.XForms.Android.dll",
@@ -16524,7 +16869,7 @@
         "lib/uap10.0/Syncfusion.SfShared.UWP/Syncfusion.SfShared.UWP.xr.xml",
         "lib/uap10.0/Syncfusion.SfShared.UWP/Themes/generic.xaml",
         "lib/uap10.0/Syncfusion.SfShared.UWP/Themes/generic.xbf",
-        "syncfusion.xamarin.sfnumerictextbox.15.4.0.17.nupkg.sha512",
+        "syncfusion.xamarin.sfnumerictextbox.15.4.0.20.nupkg.sha512",
         "syncfusion.xamarin.sfnumerictextbox.nuspec"
       ]
     },
@@ -19628,7 +19973,8 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "Dropbox.Api >= 4.3.1",
+      "Acr.UserDialogs >= 6.5.1",
+      "Dropbox.Api >= 4.7.0",
       "Microsoft.Azure.Mobile.Client >= 3.1.0",
       "Microsoft.Bcl >= 1.1.10",
       "Microsoft.Bcl.Async >= 1.0.168",
@@ -19637,9 +19983,9 @@
       "Newtonsoft.Json >= 9.0.1",
       "PCLStorage >= 1.0.2",
       "Rg.Plugins.Popup >= 1.0.4",
-      "Syncfusion.Xamarin.SfCalendar >= 15.4.0.17",
-      "Syncfusion.Xamarin.SfChart >= 15.4.0.17",
-      "Syncfusion.Xamarin.SfDataGrid >= 15.4.0.17",
+      "Syncfusion.Xamarin.SfCalendar >= 15.4.0.20",
+      "Syncfusion.Xamarin.SfChart >= 15.4.0.20",
+      "Syncfusion.Xamarin.SfDataGrid >= 15.4.0.20",
       "WindowsAzure.Storage >= 8.1.0",
       "Xam.FormsPlugin.CrossPieChart >= 2.1.15",
       "Xam.Plugins.Settings >= 2.6.0.12-beta",
@@ -19652,7 +19998,8 @@
     "UAP,Version=v10.0.14393": []
   },
   "packageFolders": {
-    "C:\\Users\\Damian\\.nuget\\packages\\": {}
+    "C:\\Users\\Damian\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {}
   },
   "project": {
     "restore": {
@@ -19663,9 +20010,13 @@
       "packagesPath": "C:\\Users\\Damian\\.nuget\\packages\\",
       "outputPath": "C:\\Projekty\\XamarinTest\\HomeBudget\\HomeBudget\\HomeBudget.UWP\\obj\\",
       "projectStyle": "ProjectJson",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\"
+      ],
       "configFilePaths": [
         "C:\\Users\\Damian\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -19683,26 +20034,27 @@
       }
     },
     "dependencies": {
-      "Dropbox.Api": "4.3.1",
-      "Microsoft.Azure.Mobile.Client": "3.1.0",
-      "Microsoft.Bcl": "1.1.10",
-      "Microsoft.Bcl.Async": "1.0.168",
-      "Microsoft.Net.Http": "2.2.29",
-      "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-      "Newtonsoft.Json": "9.0.1",
-      "PCLStorage": "1.0.2",
-      "Rg.Plugins.Popup": "1.0.4",
-      "Syncfusion.Xamarin.SfCalendar": "15.4.0.17",
-      "Syncfusion.Xamarin.SfChart": "15.4.0.17",
-      "Syncfusion.Xamarin.SfDataGrid": "15.4.0.17",
-      "WindowsAzure.Storage": "8.1.0",
-      "Xam.FormsPlugin.CrossPieChart": "2.1.15",
-      "Xam.Plugins.Settings": "2.6.0.12-beta",
-      "Xamarin.Dropbox.Api": "4.2.3",
-      "Xamarin.FFImageLoading": "2.2.22",
-      "Xamarin.FFImageLoading.Forms": "2.2.22",
-      "Xamarin.FFImageLoading.Transformations": "2.2.22",
-      "Xamarin.Forms": "2.4.0.282"
+      "Acr.UserDialogs": "[6.5.1, )",
+      "Dropbox.Api": "[4.7.0, )",
+      "Microsoft.Azure.Mobile.Client": "[3.1.0, )",
+      "Microsoft.Bcl": "[1.1.10, )",
+      "Microsoft.Bcl.Async": "[1.0.168, )",
+      "Microsoft.NETCore.UniversalWindowsPlatform": "[5.0.0, )",
+      "Microsoft.Net.Http": "[2.2.29, )",
+      "Newtonsoft.Json": "[9.0.1, )",
+      "PCLStorage": "[1.0.2, )",
+      "Rg.Plugins.Popup": "[1.0.4, )",
+      "Syncfusion.Xamarin.SfCalendar": "[15.4.0.20, )",
+      "Syncfusion.Xamarin.SfChart": "[15.4.0.20, )",
+      "Syncfusion.Xamarin.SfDataGrid": "[15.4.0.20, )",
+      "WindowsAzure.Storage": "[8.1.0, )",
+      "Xam.FormsPlugin.CrossPieChart": "[2.1.15, )",
+      "Xam.Plugins.Settings": "[2.6.0.12-beta, )",
+      "Xamarin.Dropbox.Api": "[4.2.3, )",
+      "Xamarin.FFImageLoading": "[2.2.22, )",
+      "Xamarin.FFImageLoading.Forms": "[2.2.22, )",
+      "Xamarin.FFImageLoading.Transformations": "[2.2.22, )",
+      "Xamarin.Forms": "[2.4.0.282, )"
     },
     "frameworks": {
       "uap10.0.14393": {}

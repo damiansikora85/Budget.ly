@@ -6,10 +6,10 @@
              x:Class="HomeBudget.AnalyticsPagePC">
 
     <ContentPage.Content>
-        <Grid HeightRequest="100000">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="7*" />
+                <ColumnDefinition Width="10*" />
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -17,13 +17,9 @@
             </Grid.RowDefinitions>
 
             <Grid x:Name="sideBar" Grid.Column="0" Grid.Row="0" BackgroundColor="#407153">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
@@ -32,7 +28,7 @@
                 </Grid.RowDefinitions>
 
 
-                <Grid Grid.Row="1" Grid.ColumnSpan="3">
+                <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="2*" />
@@ -41,30 +37,29 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <Image Grid.Row="0" Grid.Column="1" Source="Assets/incomes.png" IsOpaque="True" VerticalOptions="Center" />
-                    <Label Grid.Row="1" Grid.ColumnSpan="3" Text="Home" FontSize="Medium" HorizontalOptions="Center" />
-                    <Button Grid.RowSpan="2" Grid.ColumnSpan="3" BackgroundColor="Transparent" Clicked="OnHomeClick"/>
+                    <Image Grid.Row="1" Grid.Column="1" Source="Assets/home_inactive.png" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                    <Button Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundColor="Transparent" Clicked="OnHomeClick"/>
                 </Grid>
 
-                <Grid Grid.ColumnSpan="3" Grid.Row="2">
+                <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="4*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="2*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <Image BackgroundColor="#D2F3DF" Grid.ColumnSpan="3" Grid.RowSpan="2" />
-                    <Image Grid.Row="0" Grid.Column="1" Source="Assets/analysis.png" BackgroundColor="Transparent" IsOpaque="True" VerticalOptions="Center"/>
-                    <Label Grid.Row="1" Grid.ColumnSpan="3" Text="Analize" FontSize="Medium" HorizontalOptions="Center" />
+                    <Image Grid.Row="1" Grid.Column="1" Source="Assets/analyze_active.png" VerticalOptions="Center" HorizontalOptions="Center"/>
                 </Grid>
 
-                <Grid Grid.ColumnSpan="3" Grid.Row="3">
+                <Grid Grid.Row="4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="2*" />
@@ -73,11 +68,11 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <Image Grid.Row="0" Grid.Column="1" Source="Assets/document.png" BackgroundColor="Transparent" IsOpaque="True" VerticalOptions="Center"/>
-                    <Label Grid.Row="1" Grid.ColumnSpan="3" Text="Plan" FontSize="Medium" HorizontalOptions="Center" />
-                    <Button Grid.RowSpan="2" Grid.ColumnSpan="3" BackgroundColor="Transparent" Clicked="OnPlanClick"/>
+                    <Image Grid.Row="1" Grid.Column="1" Source="Assets/planning_inactive.png" />
+                    <Button Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundColor="Transparent" Clicked="OnPlanClick"/>
                 </Grid>
 
             </Grid>
@@ -94,7 +89,7 @@
                 </Grid.RowDefinitions>
 
                 <StackLayout Grid.Column="0" Grid.Row="0">
-                    <Label Text="Plan budżetu" Grid.Row="0" FontSize="Large" FontAttributes="Bold" TextColor="#232825"/>
+                    <Label Text="Realizacja budżetu" Grid.Row="0" FontSize="Large" Style="{StaticResource BudgetSummaryFont}" FontAttributes="Bold" TextColor="#232825"/>
 
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -113,14 +108,14 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <Label Text="Planowane Przychody" Grid.Row="0" Grid.Column="0" BackgroundColor="#D2F3DF" TextColor="#232825"/>
-                            <Label x:Name="plannedIncomes" Text="0zl" Grid.Row="0" Grid.Column="1" BackgroundColor="#D2F3DF" TextColor="#232825"/>
+                            <Label Text="Rzeczywiste Przychody" Grid.Row="0" Grid.Column="0" Style="{StaticResource BudgetSummaryFont}" BackgroundColor="#D2F3DF" TextColor="#232825"/>
+                            <Label x:Name="plannedIncomes" Text="0zl" Grid.Row="0" Grid.Column="1" Style="{StaticResource BudgetSummaryFont}" BackgroundColor="#D2F3DF" TextColor="#232825"/>
 
-                            <Label Text="Planowane Wydatki" Grid.Row="1" Grid.Column="0" BackgroundColor="#D2F3DF" TextColor="#232825"/>
-                            <Label x:Name="plannedExpenses" Text="0zl" Grid.Row="1" Grid.Column="1" BackgroundColor="#D2F3DF" TextColor="#232825"/>
+                            <Label Text="Rzeczywiste Wydatki" Grid.Row="1" Grid.Column="0" Style="{StaticResource BudgetSummaryFont}" BackgroundColor="#D2F3DF" TextColor="#232825"/>
+                            <Label x:Name="plannedExpenses" Text="0zl" Grid.Row="1" Grid.Column="1" Style="{StaticResource BudgetSummaryFont}" BackgroundColor="#D2F3DF" TextColor="#232825"/>
 
-                            <Label Text="Pozostaje" Grid.Row="2" Grid.Column="0" FontAttributes="Bold" BackgroundColor="#88F1B0" TextColor="#232825" />
-                            <Label x:Name="plannedDiff" Text="0zl" Grid.Row="2" Grid.Column="1" FontAttributes="Bold" BackgroundColor="#88F1B0" TextColor="#232825"/>
+                            <Label Text="Pozostaje" Grid.Row="2" Grid.Column="0" FontAttributes="Bold" Style="{StaticResource BudgetSummaryFont}" BackgroundColor="#88F1B0" TextColor="#232825" />
+                            <Label x:Name="plannedDiff" Text="0zl" Grid.Row="2" Grid.Column="1" FontAttributes="Bold" Style="{StaticResource BudgetSummaryFont}" BackgroundColor="#88F1B0" TextColor="#232825"/>
                         </Grid>
                     </Grid>
                 </StackLayout>
@@ -134,7 +129,7 @@
                     <chart:SfChart x:Name="chartExpense" Grid.Column="1"/>
                 </Grid>
 
-                <syncfusion:SfDataGrid x:Name="listView" Grid.Column="0" Grid.Row="2" AutoGenerateColumns="False" AllowGroupExpandCollapse="True" AutoExpandGroups="False"/>
+                <syncfusion:SfDataGrid x:Name="listView" Grid.Column="0" Grid.Row="2" AutoGenerateColumns="False" AllowGroupExpandCollapse="True" AutoExpandGroups="False" />
             </Grid>
         </Grid>
     </ContentPage.Content>
