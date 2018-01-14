@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Syncfusion.SfCalendar.iOS</name>
+    </assembly>
+    <members>
+        <member name="T:Syncfusion.SfCalendar.iOS.SFCalendarViewMode">
+             <summary>
+             This is an Enum. It provides a two types of views to display the month and year view of calendar.
+             </summary>
+            </member>
+        <member name="F:Syncfusion.SfCalendar.iOS.SFCalendarViewMode.SFCalendarViewModeMonth">
+             <summary>
+             Displays the dates are in month visual representation. It is default mode,
+             </summary>
+            </member>
+        <member name="F:Syncfusion.SfCalendar.iOS.SFCalendarViewMode.SFCalendarViewModeYear">
+             <summary>
+            Displays the dates of calendar in year visual representation.
+             </summary>
+            </member>
+        <member name="T:Syncfusion.SfCalendar.iOS.SFCalendarDayLabelTextAlignment">
+             <summary>
+             Aligns the label in the Calendar control in either of the directions.
+             </summary>
+            </member>
+        <member name="F:Syncfusion.SfCalendar.iOS.SFCalendarDayLabelTextAlignment.SFCalendarDayLabelTextAlignmentRight">
+             <summary>
+             Aligns the label towards the right.
+             </summary>
+            </member>
+        <member name="F:Syncfusion.SfCalendar.iOS.SFCalendarDayLabelTextAlignment.SFCalendarDayLabelTextAlignmentCenter">
+             <summary>
+             Aligns the label towards the center.
+             </summary>
+            </member>
+        <member name="F:Syncfusion.SfCalendar.iOS.SFCalendarDayLabelTextAlignment.SFCalendarDayLabelTextAlignmentLeft">
+             <summary>
+             Aligns the label towards the left.
+             </summary>
+            </member>
+        <member name="T:Syncfusion.SfCalendar.iOS.SFCalenderSelectionMode">
+             <summary>
+             This is an Enum. It represents the count of date cell has been selected. It has three values namely SingleSelection,MultiSelection and RangeSelection.
+             </summary>
+            </member>
+        <member name="F:Syncfusion.SfCalendar.iOS.SFCalenderSelectionMode.SFCalenderSelectionModeSingle">
+             <summary>
+             Allows to select only one date in month.
+             </summary>
+            </member>
+        <member name="F:Syncfusion.SfCalendar.iOS.SFCalenderSelectionMode.SFCalenderSelectionModeMultiple">
+             <summary>
+             Allows to select the multiple dates in month.
+             </summary>
+            </member>
+        <member name="F:Syncfusion.SfCalendar.iOS.SFCalenderSelectionMode.SFCalenderSelectionModeRange">
+             <summary>
+             Allows to select the continuous range of dates in month.
+             </summary>
+            </member>
+        <member name="T:Syncfusion.SfCalendar.iOS.SFCalendarTransitionType">
+             <summary>
+             This is an Enum. It provides a four types of transition animations while changing month.
+             </summary>
+            </member>
+        <member name="F:Syncfusion.SfCalendar.iOS.SFCalendarTransitionType.SFCalendarTransitionTypeScroll">
+             <summary>
+             The scroll transition animation will appear while changing month.
+             </summary>
+            </member>
+        <member name="F:Syncfusion.SfCalendar.iOS.SFCalendarTransitionType.SFCalendarTransitionTypeReveal">
+             <summary>
+             The reveal transition animation will appear while changing month.
+             </summary>
+            </member>
+        <member name="F:Syncfusion.SfCalendar.iOS.SFCalendarTransitionType.SFCalendarTransitionTypeCard">
+             <summary>
+             The card transition animation will appear while changing month.
+             </summary>
+            </member>
+        <member name="F:Syncfusion.SfCalendar.iOS.SFCalendarTransitionType.SFCalendarTransitionTypeFloat">
+             <summary>
+             The float transition animation will appear while changing month.
+             </summary>
+            </member>
+        <member name="T:Syncfusion.SfCalendar.iOS.NSTextAlignment">
+             <summary>
+             This is an Enum. It represents the alignment position of day label in calendar month view and yearview.
+             </summary>
+            </member>
+        <member name="F:Syncfusion.SfCalendar.iOS.NSTextAlignment.NSTextAlignmentLeft">
+             <summary>
+             Aligns the label towards the left.
+             </summary>
+            </member>
+        <member name="F:Syncfusion.SfCalendar.iOS.NSTextAlignment.NSTextAlignmentCenter">
+             <summary>
+             Aligns the label towards the center.
+             </summary>
+            </member>
+        <member name="F:Syncfusion.SfCalendar.iOS.NSTextAlignment.NSTextAlignmentRight">
+             <summary>
+             Aligns the label towards the right.
+             </summary>
+            </member>
+    </members>
+</doc>
