@@ -147,16 +147,16 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="FFImageLoading, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.2.22\lib\portable-win+net45+wp80+win81+wpa81\FFImageLoading.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.3.4\lib\portable-win+net45+wp80+win81+wpa81\FFImageLoading.dll</HintPath>
     </Reference>
     <Reference Include="FFImageLoading.Forms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.FFImageLoading.Forms.2.2.22\lib\portable-win+net45+wp80+win81+wpa81\FFImageLoading.Forms.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Forms.2.3.4\lib\portable-win+net45+wp80+win81+wpa81\FFImageLoading.Forms.dll</HintPath>
     </Reference>
     <Reference Include="FFImageLoading.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.2.22\lib\portable-win+net45+wp80+win81+wpa81\FFImageLoading.Platform.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.3.4\lib\portable-win+net45+wp80+win81+wpa81\FFImageLoading.Platform.dll</HintPath>
     </Reference>
     <Reference Include="FFImageLoading.Transformations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.FFImageLoading.Transformations.2.2.22\lib\portable-win+net45+wp80+win81+wpa81\FFImageLoading.Transformations.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Transformations.2.3.4\lib\portable-win+net45+wp80+win81+wpa81\FFImageLoading.Transformations.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Data.Edm, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Data.Edm.5.8.2\lib\portable-net45+wp8+win8+wpa\Microsoft.Data.Edm.dll</HintPath>

@@ -17,9 +17,9 @@
     "Xam.FormsPlugin.CrossPieChart": "2.1.15",
     "Xam.Plugins.Settings": "2.6.0.12-beta",
     "Xamarin.Dropbox.Api": "4.2.3",
-    "Xamarin.FFImageLoading": "2.2.22",
-    "Xamarin.FFImageLoading.Forms": "2.2.22",
-    "Xamarin.FFImageLoading.Transformations": "2.2.22",
+    "Xamarin.FFImageLoading": "2.3.4",
+    "Xamarin.FFImageLoading.Forms": "2.3.4",
+    "Xamarin.FFImageLoading.Transformations": "2.3.4",
     "Xamarin.Forms": "2.4.0.282"
   },
   "frameworks": {

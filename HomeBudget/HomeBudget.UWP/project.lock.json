@@ -2278,7 +2278,7 @@
           "Microsoft.Bcl.Build": "1.0.21"
         }
       },
-      "Xamarin.FFImageLoading/2.2.22": {
+      "Xamarin.FFImageLoading/2.3.4": {
         "type": "package",
         "compile": {
           "lib/uap/FFImageLoading.Platform.dll": {},
@@ -2289,11 +2289,11 @@
           "lib/uap/FFImageLoading.dll": {}
         }
       },
-      "Xamarin.FFImageLoading.Forms/2.2.22": {
+      "Xamarin.FFImageLoading.Forms/2.3.4": {
         "type": "package",
         "dependencies": {
-          "Xamarin.FFImageLoading": "2.2.22",
-          "Xamarin.Forms": "2.0.0"
+          "Xamarin.FFImageLoading": "2.3.4",
+          "Xamarin.Forms": "2.4.0"
         },
         "compile": {
           "lib/uap/FFImageLoading.Forms.WinUWP.dll": {},
@@ -2304,10 +2304,10 @@
           "lib/uap/FFImageLoading.Forms.dll": {}
         }
       },
-      "Xamarin.FFImageLoading.Transformations/2.2.22": {
+      "Xamarin.FFImageLoading.Transformations/2.3.4": {
         "type": "package",
         "dependencies": {
-          "Xamarin.FFImageLoading": "2.2.22"
+          "Xamarin.FFImageLoading": "2.3.4"
         },
         "compile": {
           "lib/uap/FFImageLoading.Transformations.dll": {}
@@ -4473,7 +4473,7 @@
           "Microsoft.Bcl.Build": "1.0.21"
         }
       },
-      "Xamarin.FFImageLoading/2.2.22": {
+      "Xamarin.FFImageLoading/2.3.4": {
         "type": "package",
         "compile": {
           "lib/uap/FFImageLoading.Platform.dll": {},
@@ -4484,11 +4484,11 @@
           "lib/uap/FFImageLoading.dll": {}
         }
       },
-      "Xamarin.FFImageLoading.Forms/2.2.22": {
+      "Xamarin.FFImageLoading.Forms/2.3.4": {
         "type": "package",
         "dependencies": {
-          "Xamarin.FFImageLoading": "2.2.22",
-          "Xamarin.Forms": "2.0.0"
+          "Xamarin.FFImageLoading": "2.3.4",
+          "Xamarin.Forms": "2.4.0"
         },
         "compile": {
           "lib/uap/FFImageLoading.Forms.WinUWP.dll": {},
@@ -4499,10 +4499,10 @@
           "lib/uap/FFImageLoading.Forms.dll": {}
         }
       },
-      "Xamarin.FFImageLoading.Transformations/2.2.22": {
+      "Xamarin.FFImageLoading.Transformations/2.3.4": {
         "type": "package",
         "dependencies": {
-          "Xamarin.FFImageLoading": "2.2.22"
+          "Xamarin.FFImageLoading": "2.3.4"
         },
         "compile": {
           "lib/uap/FFImageLoading.Transformations.dll": {}
@@ -6631,7 +6631,7 @@
           "Microsoft.Bcl.Build": "1.0.21"
         }
       },
-      "Xamarin.FFImageLoading/2.2.22": {
+      "Xamarin.FFImageLoading/2.3.4": {
         "type": "package",
         "compile": {
           "lib/uap/FFImageLoading.Platform.dll": {},
@@ -6642,11 +6642,11 @@
           "lib/uap/FFImageLoading.dll": {}
         }
       },
-      "Xamarin.FFImageLoading.Forms/2.2.22": {
+      "Xamarin.FFImageLoading.Forms/2.3.4": {
         "type": "package",
         "dependencies": {
-          "Xamarin.FFImageLoading": "2.2.22",
-          "Xamarin.Forms": "2.0.0"
+          "Xamarin.FFImageLoading": "2.3.4",
+          "Xamarin.Forms": "2.4.0"
         },
         "compile": {
           "lib/uap/FFImageLoading.Forms.WinUWP.dll": {},
@@ -6657,10 +6657,10 @@
           "lib/uap/FFImageLoading.Forms.dll": {}
         }
       },
-      "Xamarin.FFImageLoading.Transformations/2.2.22": {
+      "Xamarin.FFImageLoading.Transformations/2.3.4": {
         "type": "package",
         "dependencies": {
-          "Xamarin.FFImageLoading": "2.2.22"
+          "Xamarin.FFImageLoading": "2.3.4"
         },
         "compile": {
           "lib/uap/FFImageLoading.Transformations.dll": {}
@@ -8833,7 +8833,7 @@
           "Microsoft.Bcl.Build": "1.0.21"
         }
       },
-      "Xamarin.FFImageLoading/2.2.22": {
+      "Xamarin.FFImageLoading/2.3.4": {
         "type": "package",
         "compile": {
           "lib/uap/FFImageLoading.Platform.dll": {},
@@ -8844,11 +8844,11 @@
           "lib/uap/FFImageLoading.dll": {}
         }
       },
-      "Xamarin.FFImageLoading.Forms/2.2.22": {
+      "Xamarin.FFImageLoading.Forms/2.3.4": {
         "type": "package",
         "dependencies": {
-          "Xamarin.FFImageLoading": "2.2.22",
-          "Xamarin.Forms": "2.0.0"
+          "Xamarin.FFImageLoading": "2.3.4",
+          "Xamarin.Forms": "2.4.0"
         },
         "compile": {
           "lib/uap/FFImageLoading.Forms.WinUWP.dll": {},
@@ -8859,10 +8859,10 @@
           "lib/uap/FFImageLoading.Forms.dll": {}
         }
       },
-      "Xamarin.FFImageLoading.Transformations/2.2.22": {
+      "Xamarin.FFImageLoading.Transformations/2.3.4": {
         "type": "package",
         "dependencies": {
-          "Xamarin.FFImageLoading": "2.2.22"
+          "Xamarin.FFImageLoading": "2.3.4"
         },
         "compile": {
           "lib/uap/FFImageLoading.Transformations.dll": {}
@@ -10991,7 +10991,7 @@
           "Microsoft.Bcl.Build": "1.0.21"
         }
       },
-      "Xamarin.FFImageLoading/2.2.22": {
+      "Xamarin.FFImageLoading/2.3.4": {
         "type": "package",
         "compile": {
           "lib/uap/FFImageLoading.Platform.dll": {},
@@ -11002,11 +11002,11 @@
           "lib/uap/FFImageLoading.dll": {}
         }
       },
-      "Xamarin.FFImageLoading.Forms/2.2.22": {
+      "Xamarin.FFImageLoading.Forms/2.3.4": {
         "type": "package",
         "dependencies": {
-          "Xamarin.FFImageLoading": "2.2.22",
-          "Xamarin.Forms": "2.0.0"
+          "Xamarin.FFImageLoading": "2.3.4",
+          "Xamarin.Forms": "2.4.0"
         },
         "compile": {
           "lib/uap/FFImageLoading.Forms.WinUWP.dll": {},
@@ -11017,10 +11017,10 @@
           "lib/uap/FFImageLoading.Forms.dll": {}
         }
       },
-      "Xamarin.FFImageLoading.Transformations/2.2.22": {
+      "Xamarin.FFImageLoading.Transformations/2.3.4": {
         "type": "package",
         "dependencies": {
-          "Xamarin.FFImageLoading": "2.2.22"
+          "Xamarin.FFImageLoading": "2.3.4"
         },
         "compile": {
           "lib/uap/FFImageLoading.Transformations.dll": {}
@@ -13193,7 +13193,7 @@
           "Microsoft.Bcl.Build": "1.0.21"
         }
       },
-      "Xamarin.FFImageLoading/2.2.22": {
+      "Xamarin.FFImageLoading/2.3.4": {
         "type": "package",
         "compile": {
           "lib/uap/FFImageLoading.Platform.dll": {},
@@ -13204,11 +13204,11 @@
           "lib/uap/FFImageLoading.dll": {}
         }
       },
-      "Xamarin.FFImageLoading.Forms/2.2.22": {
+      "Xamarin.FFImageLoading.Forms/2.3.4": {
         "type": "package",
         "dependencies": {
-          "Xamarin.FFImageLoading": "2.2.22",
-          "Xamarin.Forms": "2.0.0"
+          "Xamarin.FFImageLoading": "2.3.4",
+          "Xamarin.Forms": "2.4.0"
         },
         "compile": {
           "lib/uap/FFImageLoading.Forms.WinUWP.dll": {},
@@ -13219,10 +13219,10 @@
           "lib/uap/FFImageLoading.Forms.dll": {}
         }
       },
-      "Xamarin.FFImageLoading.Transformations/2.2.22": {
+      "Xamarin.FFImageLoading.Transformations/2.3.4": {
         "type": "package",
         "dependencies": {
-          "Xamarin.FFImageLoading": "2.2.22"
+          "Xamarin.FFImageLoading": "2.3.4"
         },
         "compile": {
           "lib/uap/FFImageLoading.Transformations.dll": {}
@@ -15351,7 +15351,7 @@
           "Microsoft.Bcl.Build": "1.0.21"
         }
       },
-      "Xamarin.FFImageLoading/2.2.22": {
+      "Xamarin.FFImageLoading/2.3.4": {
         "type": "package",
         "compile": {
           "lib/uap/FFImageLoading.Platform.dll": {},
@@ -15362,11 +15362,11 @@
           "lib/uap/FFImageLoading.dll": {}
         }
       },
-      "Xamarin.FFImageLoading.Forms/2.2.22": {
+      "Xamarin.FFImageLoading.Forms/2.3.4": {
         "type": "package",
         "dependencies": {
-          "Xamarin.FFImageLoading": "2.2.22",
-          "Xamarin.Forms": "2.0.0"
+          "Xamarin.FFImageLoading": "2.3.4",
+          "Xamarin.Forms": "2.4.0"
         },
         "compile": {
           "lib/uap/FFImageLoading.Forms.WinUWP.dll": {},
@@ -15377,10 +15377,10 @@
           "lib/uap/FFImageLoading.Forms.dll": {}
         }
       },
-      "Xamarin.FFImageLoading.Transformations/2.2.22": {
+      "Xamarin.FFImageLoading.Transformations/2.3.4": {
         "type": "package",
         "dependencies": {
-          "Xamarin.FFImageLoading": "2.2.22"
+          "Xamarin.FFImageLoading": "2.3.4"
         },
         "compile": {
           "lib/uap/FFImageLoading.Transformations.dll": {}
@@ -19644,10 +19644,10 @@
         "xamarin.dropbox.api.nuspec"
       ]
     },
-    "Xamarin.FFImageLoading/2.2.22": {
-      "sha512": "Qs83U3MPib36L1C427FgqJ/l7L/eYtvKkxdbaa9f+wY0kxmQU1ebkLD8pbL+oQV36jvFajuU6OB27O677cvYiw==",
+    "Xamarin.FFImageLoading/2.3.4": {
+      "sha512": "sSVVqOPFK7zsJXIX5cVSV6omjSejOjgzYvo8Nu+WJEeJUTqDw8inmlf74eaY9265ULHezW54K+ZMN3H4Iiwnbg==",
       "type": "package",
-      "path": "xamarin.ffimageloading/2.2.22",
+      "path": "xamarin.ffimageloading/2.3.4",
       "files": [
         "lib/MonoAndroid10/FFImageLoading.Platform.dll",
         "lib/MonoAndroid10/FFImageLoading.Platform.pdb",
@@ -19677,6 +19677,12 @@
         "lib/portable-win+net45+wp80+win81+wpa81/FFImageLoading.dll",
         "lib/portable-win+net45+wp80+win81+wpa81/FFImageLoading.pdb",
         "lib/portable-win+net45+wp80+win81+wpa81/FFImageLoading.xml",
+        "lib/tizen40/FFImageLoading.Platform.dll",
+        "lib/tizen40/FFImageLoading.Platform.pdb",
+        "lib/tizen40/FFImageLoading.Platform.xml",
+        "lib/tizen40/FFImageLoading.dll",
+        "lib/tizen40/FFImageLoading.pdb",
+        "lib/tizen40/FFImageLoading.xml",
         "lib/uap/FFImageLoading.Platform.dll",
         "lib/uap/FFImageLoading.Platform.pdb",
         "lib/uap/FFImageLoading.Platform.xml",
@@ -19695,14 +19701,14 @@
         "lib/wpa81/FFImageLoading.dll",
         "lib/wpa81/FFImageLoading.pdb",
         "lib/wpa81/FFImageLoading.xml",
-        "xamarin.ffimageloading.2.2.22.nupkg.sha512",
+        "xamarin.ffimageloading.2.3.4.nupkg.sha512",
         "xamarin.ffimageloading.nuspec"
       ]
     },
-    "Xamarin.FFImageLoading.Forms/2.2.22": {
-      "sha512": "SdqZBP+nqpNI6deycBLYCOGzcUsEA4ONjT7fwjho/xk/JuXO/wpIldcAjo0M7Bu+DajXEJzlUywmaBLyIdwYoQ==",
+    "Xamarin.FFImageLoading.Forms/2.3.4": {
+      "sha512": "EajjgBJCVzvU0A7vbs1inGOlGtYd46cH498piXLz9pgkeOEslUHKccWBtBaXbDGsxEnry2jlIcL9WjRfOyOCDQ==",
       "type": "package",
-      "path": "xamarin.ffimageloading.forms/2.2.22",
+      "path": "xamarin.ffimageloading.forms/2.3.4",
       "files": [
         "lib/MonoAndroid10/FFImageLoading.Forms.Droid.dll",
         "lib/MonoAndroid10/FFImageLoading.Forms.Droid.pdb",
@@ -19728,6 +19734,12 @@
         "lib/portable-win+net45+wp80+win81+wpa81/FFImageLoading.Forms.dll",
         "lib/portable-win+net45+wp80+win81+wpa81/FFImageLoading.Forms.pdb",
         "lib/portable-win+net45+wp80+win81+wpa81/FFImageLoading.Forms.xml",
+        "lib/tizen40/FFImageLoading.Forms.Tizen.dll",
+        "lib/tizen40/FFImageLoading.Forms.Tizen.pdb",
+        "lib/tizen40/FFImageLoading.Forms.Tizen.xml",
+        "lib/tizen40/FFImageLoading.Forms.dll",
+        "lib/tizen40/FFImageLoading.Forms.pdb",
+        "lib/tizen40/FFImageLoading.Forms.xml",
         "lib/uap/FFImageLoading.Forms.WinUWP.dll",
         "lib/uap/FFImageLoading.Forms.WinUWP.pdb",
         "lib/uap/FFImageLoading.Forms.WinUWP.xml",
@@ -19746,18 +19758,21 @@
         "lib/wpa81/FFImageLoading.Forms.dll",
         "lib/wpa81/FFImageLoading.Forms.pdb",
         "lib/wpa81/FFImageLoading.Forms.xml",
-        "xamarin.ffimageloading.forms.2.2.22.nupkg.sha512",
+        "xamarin.ffimageloading.forms.2.3.4.nupkg.sha512",
         "xamarin.ffimageloading.forms.nuspec"
       ]
     },
-    "Xamarin.FFImageLoading.Transformations/2.2.22": {
-      "sha512": "BAsthb2wOGOw/AbQOcwPiD6tK1WavUNvW/KTn3xqRnEunKjvFKzCOaUmbxLl2Ns3y1DJAUStw+n875IlvZtLPQ==",
+    "Xamarin.FFImageLoading.Transformations/2.3.4": {
+      "sha512": "017cte8e2JSIz/H8NaAiZFIq0SaLNeXyiQ8mGAML7p2VXDDigys7sHJRaw9Ck3dmC874VPOUir1BaIFrpig1rA==",
       "type": "package",
-      "path": "xamarin.ffimageloading.transformations/2.2.22",
+      "path": "xamarin.ffimageloading.transformations/2.3.4",
       "files": [
         "lib/MonoAndroid10/FFImageLoading.Transformations.dll",
         "lib/MonoAndroid10/FFImageLoading.Transformations.pdb",
         "lib/MonoAndroid10/FFImageLoading.Transformations.xml",
+        "lib/Xamarin.Mac20/FFImageLoading.Transformations.dll",
+        "lib/Xamarin.Mac20/FFImageLoading.Transformations.pdb",
+        "lib/Xamarin.Mac20/FFImageLoading.Transformations.xml",
         "lib/Xamarin.iOS10/FFImageLoading.Transformations.dll",
         "lib/Xamarin.iOS10/FFImageLoading.Transformations.pdb",
         "lib/Xamarin.iOS10/FFImageLoading.Transformations.xml",
@@ -19765,6 +19780,9 @@
         "lib/netstandard1.0/FFImageLoading.Transformations.xml",
         "lib/portable-win+net45+wp80+win81+wpa81/FFImageLoading.Transformations.dll",
         "lib/portable-win+net45+wp80+win81+wpa81/FFImageLoading.Transformations.xml",
+        "lib/tizen40/FFImageLoading.Transformations.dll",
+        "lib/tizen40/FFImageLoading.Transformations.pdb",
+        "lib/tizen40/FFImageLoading.Transformations.xml",
         "lib/uap/FFImageLoading.Transformations.dll",
         "lib/uap/FFImageLoading.Transformations.pdb",
         "lib/uap/FFImageLoading.Transformations.xml",
@@ -19774,7 +19792,7 @@
         "lib/wpa81/FFImageLoading.Transformations.dll",
         "lib/wpa81/FFImageLoading.Transformations.pdb",
         "lib/wpa81/FFImageLoading.Transformations.xml",
-        "xamarin.ffimageloading.transformations.2.2.22.nupkg.sha512",
+        "xamarin.ffimageloading.transformations.2.3.4.nupkg.sha512",
         "xamarin.ffimageloading.transformations.nuspec"
       ]
     },
@@ -19990,9 +20008,9 @@
       "Xam.FormsPlugin.CrossPieChart >= 2.1.15",
       "Xam.Plugins.Settings >= 2.6.0.12-beta",
       "Xamarin.Dropbox.Api >= 4.2.3",
-      "Xamarin.FFImageLoading >= 2.2.22",
-      "Xamarin.FFImageLoading.Forms >= 2.2.22",
-      "Xamarin.FFImageLoading.Transformations >= 2.2.22",
+      "Xamarin.FFImageLoading >= 2.3.4",
+      "Xamarin.FFImageLoading.Forms >= 2.3.4",
+      "Xamarin.FFImageLoading.Transformations >= 2.3.4",
       "Xamarin.Forms >= 2.4.0.282"
     ],
     "UAP,Version=v10.0.14393": []
@@ -20051,9 +20069,9 @@
       "Xam.FormsPlugin.CrossPieChart": "[2.1.15, )",
       "Xam.Plugins.Settings": "[2.6.0.12-beta, )",
       "Xamarin.Dropbox.Api": "[4.2.3, )",
-      "Xamarin.FFImageLoading": "[2.2.22, )",
-      "Xamarin.FFImageLoading.Forms": "[2.2.22, )",
-      "Xamarin.FFImageLoading.Transformations": "[2.2.22, )",
+      "Xamarin.FFImageLoading": "[2.3.4, )",
+      "Xamarin.FFImageLoading.Forms": "[2.3.4, )",
+      "Xamarin.FFImageLoading.Transformations": "[2.3.4, )",
       "Xamarin.Forms": "[2.4.0.282, )"
     },
     "frameworks": {
