@@ -2335,8 +2335,9 @@
           "build/netstandard1.0/Xamarin.Forms.targets": {}
         }
       },
-      "HomeBudget/1.0.0": {
-        "type": "project"
+      "HomeBudgeStandard/1.0.0": {
+        "type": "project",
+        "framework": "Unsupported,Version=v0.0"
       }
     },
     "UAP,Version=v10.0.14393/win10-arm": {
@@ -4530,8 +4531,9 @@
           "build/netstandard1.0/Xamarin.Forms.targets": {}
         }
       },
-      "HomeBudget/1.0.0": {
-        "type": "project"
+      "HomeBudgeStandard/1.0.0": {
+        "type": "project",
+        "framework": "Unsupported,Version=v0.0"
       }
     },
     "UAP,Version=v10.0.14393/win10-arm-aot": {
@@ -6688,8 +6690,9 @@
           "build/netstandard1.0/Xamarin.Forms.targets": {}
         }
       },
-      "HomeBudget/1.0.0": {
-        "type": "project"
+      "HomeBudgeStandard/1.0.0": {
+        "type": "project",
+        "framework": "Unsupported,Version=v0.0"
       }
     },
     "UAP,Version=v10.0.14393/win10-x64": {
@@ -8890,8 +8893,9 @@
           "build/netstandard1.0/Xamarin.Forms.targets": {}
         }
       },
-      "HomeBudget/1.0.0": {
-        "type": "project"
+      "HomeBudgeStandard/1.0.0": {
+        "type": "project",
+        "framework": "Unsupported,Version=v0.0"
       }
     },
     "UAP,Version=v10.0.14393/win10-x64-aot": {
@@ -11048,8 +11052,9 @@
           "build/netstandard1.0/Xamarin.Forms.targets": {}
         }
       },
-      "HomeBudget/1.0.0": {
-        "type": "project"
+      "HomeBudgeStandard/1.0.0": {
+        "type": "project",
+        "framework": "Unsupported,Version=v0.0"
       }
     },
     "UAP,Version=v10.0.14393/win10-x86": {
@@ -13250,8 +13255,9 @@
           "build/netstandard1.0/Xamarin.Forms.targets": {}
         }
       },
-      "HomeBudget/1.0.0": {
-        "type": "project"
+      "HomeBudgeStandard/1.0.0": {
+        "type": "project",
+        "framework": "Unsupported,Version=v0.0"
       }
     },
     "UAP,Version=v10.0.14393/win10-x86-aot": {
@@ -15408,8 +15414,9 @@
           "build/netstandard1.0/Xamarin.Forms.targets": {}
         }
       },
-      "HomeBudget/1.0.0": {
-        "type": "project"
+      "HomeBudgeStandard/1.0.0": {
+        "type": "project",
+        "framework": "Unsupported,Version=v0.0"
       }
     }
   },
@@ -19983,10 +19990,10 @@
         "xamarin.forms.nuspec"
       ]
     },
-    "HomeBudget/1.0.0": {
+    "HomeBudgeStandard/1.0.0": {
       "type": "project",
-      "path": "../HomeBudget/HomeBudget.csproj",
-      "msbuildProject": "../HomeBudget/HomeBudget.csproj"
+      "path": "../../HomeBudgeStandard/HomeBudgeStandard.csproj",
+      "msbuildProject": "../../HomeBudgeStandard/HomeBudgeStandard.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -20044,8 +20051,8 @@
       "frameworks": {
         "uap10.0.14393": {
           "projectReferences": {
-            "C:\\Projekty\\XamarinTest\\HomeBudget\\HomeBudget\\HomeBudget\\HomeBudget.csproj": {
-              "projectPath": "C:\\Projekty\\XamarinTest\\HomeBudget\\HomeBudget\\HomeBudget\\HomeBudget.csproj"
+            "C:\\Projekty\\XamarinTest\\HomeBudget\\HomeBudgeStandard\\HomeBudgeStandard.csproj": {
+              "projectPath": "C:\\Projekty\\XamarinTest\\HomeBudget\\HomeBudgeStandard\\HomeBudgeStandard.csproj"
             }
           }
         }
@@ -20097,5 +20104,70 @@
         "#import": []
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project HomeBudgeStandard is not compatible with uap10.0.14393 (UAP,Version=v10.0.14393). Project HomeBudgeStandard supports: netstandard2.0 (.NETStandard,Version=v2.0)",
+      "libraryId": "HomeBudgeStandard",
+      "targetGraphs": [
+        "UAP,Version=v10.0.14393"
+      ]
+    },
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project HomeBudgeStandard is not compatible with uap10.0.14393 (UAP,Version=v10.0.14393) / win10-arm. Project HomeBudgeStandard supports: netstandard2.0 (.NETStandard,Version=v2.0)",
+      "libraryId": "HomeBudgeStandard",
+      "targetGraphs": [
+        "UAP,Version=v10.0.14393/win10-arm"
+      ]
+    },
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project HomeBudgeStandard is not compatible with uap10.0.14393 (UAP,Version=v10.0.14393) / win10-arm-aot. Project HomeBudgeStandard supports: netstandard2.0 (.NETStandard,Version=v2.0)",
+      "libraryId": "HomeBudgeStandard",
+      "targetGraphs": [
+        "UAP,Version=v10.0.14393/win10-arm-aot"
+      ]
+    },
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project HomeBudgeStandard is not compatible with uap10.0.14393 (UAP,Version=v10.0.14393) / win10-x64. Project HomeBudgeStandard supports: netstandard2.0 (.NETStandard,Version=v2.0)",
+      "libraryId": "HomeBudgeStandard",
+      "targetGraphs": [
+        "UAP,Version=v10.0.14393/win10-x64"
+      ]
+    },
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project HomeBudgeStandard is not compatible with uap10.0.14393 (UAP,Version=v10.0.14393) / win10-x64-aot. Project HomeBudgeStandard supports: netstandard2.0 (.NETStandard,Version=v2.0)",
+      "libraryId": "HomeBudgeStandard",
+      "targetGraphs": [
+        "UAP,Version=v10.0.14393/win10-x64-aot"
+      ]
+    },
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project HomeBudgeStandard is not compatible with uap10.0.14393 (UAP,Version=v10.0.14393) / win10-x86. Project HomeBudgeStandard supports: netstandard2.0 (.NETStandard,Version=v2.0)",
+      "libraryId": "HomeBudgeStandard",
+      "targetGraphs": [
+        "UAP,Version=v10.0.14393/win10-x86"
+      ]
+    },
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project HomeBudgeStandard is not compatible with uap10.0.14393 (UAP,Version=v10.0.14393) / win10-x86-aot. Project HomeBudgeStandard supports: netstandard2.0 (.NETStandard,Version=v2.0)",
+      "libraryId": "HomeBudgeStandard",
+      "targetGraphs": [
+        "UAP,Version=v10.0.14393/win10-x86-aot"
+      ]
+    }
+  ]
 }
