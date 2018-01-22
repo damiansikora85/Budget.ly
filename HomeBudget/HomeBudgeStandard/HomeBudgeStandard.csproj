@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="template.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="template.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs" Version="7.0.0" />
+    <PackageReference Include="Dropbox.Api" Version="4.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="PCLStorage" Version="1.0.2" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.0.4" />
+    <PackageReference Include="Syncfusion.Xamarin.Calculate" Version="15.4.0.20" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="15.4.0.20" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="15.4.0.20" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="15.4.0.20" />
+    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="15.4.0.20" />
+    <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.4" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.3.4" />
+    <PackageReference Include="Xamarin.Forms" Version="2.4.0.91020" />
+  </ItemGroup>
+
+</Project>

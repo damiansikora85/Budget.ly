@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:HomeBudget"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             x:Class="HomeBudget.Pages.PC.PlanningPage">
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="10*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="sideBar" Grid.Column="0" Grid.Row="0" BackgroundColor="#407153">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="1" Grid.Column="1" Source="Assets/home_inactive.png" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                    <Button Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundColor="Transparent" Clicked="OnHomeClick"/>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="1" Grid.Column="1" Source="Assets/analyze_inactive.png" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    <Button Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundColor="Transparent" Clicked="OnAnalizeClick"/>
+                </Grid>
+
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="1" Grid.Column="1" Source="Assets/planning_active.png" />
+                </Grid>
+
+            </Grid>
+
+            <Grid Grid.Column="1" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                
+                <StackLayout Grid.Column="0" Grid.Row="0">
+                    <Label Text="Plan budżetu" Grid.Row="0" FontSize="Large" FontAttributes="Bold" TextColor="#232825"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="Planowane Przychody" Grid.Row="0" Grid.Column="0" BackgroundColor="#D2F3DF" TextColor="#232825"/>
+                            <Label x:Name="plannedIncomes" Text="0zl" Grid.Row="0" Grid.Column="1" BackgroundColor="#D2F3DF" TextColor="#232825"/>
+
+                            <Label Text="Planowane Wydatki" Grid.Row="1" Grid.Column="0" BackgroundColor="#D2F3DF" TextColor="#232825"/>
+                            <Label x:Name="plannedExpenses" Text="0zl" Grid.Row="1" Grid.Column="1" BackgroundColor="#D2F3DF" TextColor="#232825"/>
+
+                            <Label Text="Pozostaje" Grid.Row="2" Grid.Column="0" FontAttributes="Bold" BackgroundColor="#88F1B0" TextColor="#232825" />
+                            <Label x:Name="plannedDiff" Text="0zl" Grid.Row="2" Grid.Column="1" FontAttributes="Bold" BackgroundColor="#88F1B0" TextColor="#232825"/>
+                        </Grid>
+                        <StackLayout Grid.Column="1">
+                            <Button Text="Użyj tylko w tym miesiącu" Clicked="OnOnlyThisMonth"/>
+                            <Button Text="Zapisz jako szablon" Clicked="OnSaveForAll"/>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <chart:SfChart x:Name="chartIncome" Grid.Column="0"/>
+                    <chart:SfChart x:Name="chartExpense" Grid.Column="1"/>
+                </Grid>
+
+                <syncfusion:SfDataGrid x:Name="listView" Grid.Column="0" Grid.Row="2" AutoGenerateColumns="False" AllowGroupExpandCollapse="True" AutoExpandGroups="False"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
