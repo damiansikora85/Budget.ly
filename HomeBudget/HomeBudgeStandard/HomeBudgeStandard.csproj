@@ -24,8 +24,6 @@
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="15.4.0.20" />
     <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="15.4.0.20" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
-    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.4" />
-    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.3.4" />
     <PackageReference Include="Xamarin.Forms" Version="2.4.0.91020" />
   </ItemGroup>
 
