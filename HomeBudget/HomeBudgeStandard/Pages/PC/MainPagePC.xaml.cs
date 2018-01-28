@@ -1,4 +1,5 @@
-﻿using Dropbox.Api;
+﻿using Acr.UserDialogs;
+using Dropbox.Api;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages;
@@ -14,10 +15,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Input;
-
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Acr.UserDialogs;
 
 namespace HomeBudget
 {
@@ -421,13 +419,13 @@ namespace HomeBudget
 
         private async void OnDropboxClick(object sender, EventArgs e)
         {
-            this.oauth2State = Guid.NewGuid().ToString("N");
+            /*this.oauth2State = Guid.NewGuid().ToString("N");
             var authorizeUri = DropboxOAuth2Helper.GetAuthorizeUri(OAuthResponseType.Token, appKey, new Uri(RedirectUri), state: oauth2State);
 
             var webView = new WebView { Source = new UrlWebViewSource { Url = authorizeUri.AbsoluteUri } };
             webView.Navigating += this.WebViewOnNavigating;
             var contentPage = new ContentPage { Content = webView };
-            await Navigation.PushModalAsync(contentPage);
+            await Navigation.PushModalAsync(contentPage);*/
         }
 
         private async void WebViewOnNavigating(object sender, WebNavigatingEventArgs e)
