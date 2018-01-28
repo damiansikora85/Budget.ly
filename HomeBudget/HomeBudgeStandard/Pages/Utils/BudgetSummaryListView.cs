@@ -1,4 +1,6 @@
-﻿
+﻿using FFImageLoading.Forms;
+using FFImageLoading.Transformations;
+using FFImageLoading.Work;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Utils;
@@ -142,14 +144,14 @@ namespace HomeBudget.Pages.Utils
             {
                 Grid grid = CreateGrid(1, 1);
 
-                var background = new Image()
+                var background = new CachedImage()
                 {
-                    Source = "Assets/circle.png"
-                    //Transformations = new List<ITransformation> {new TintTransformation {
-                    //HexColor = circleColor,
-                    //EnableSolidColor = true
-                    //}
-                    //}
+                    Source = "Assets/circle.png",
+                    Transformations = new List<ITransformation> {new TintTransformation {
+                    HexColor = circleColor,
+                    EnableSolidColor = true
+                    }
+                    }
                 };
                 var icon = new Image()
                 {

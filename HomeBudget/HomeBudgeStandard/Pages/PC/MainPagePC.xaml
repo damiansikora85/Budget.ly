@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:HomeBudget"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+	         xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
              xmlns:sf="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
              x:Class="HomeBudget.MainPagePC">
@@ -167,9 +169,11 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <syncfusion:SfDataGrid x:Name="listView" AutoGenerateColumns="False" Grid.Column="1" BackgroundColor="#f9f9f9"/>
-                        <Image Source="Assets/circle.png" Grid.Column="3" HorizontalOptions="End" VerticalOptions="End"/>
-
-
+                        <ffimageloading:CachedImage Source="Assets/circle.png" Grid.Column="3" HorizontalOptions="End" VerticalOptions="End">
+                            <ffimageloading:CachedImage.Transformations>
+                                <fftransformations:TintTransformation HexColor="#6BBE8B" EnableSolidColor="true"/>
+                            </ffimageloading:CachedImage.Transformations>
+                        </ffimageloading:CachedImage>
                         <Image x:Name="addButton" Source="Assets/Plus.png" Grid.Column="3" HorizontalOptions="End" VerticalOptions="End" />
                     </Grid>
                 </Grid>
