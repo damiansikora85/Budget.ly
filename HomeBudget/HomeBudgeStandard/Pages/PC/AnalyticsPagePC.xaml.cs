@@ -10,21 +10,19 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
-namespace HomeBudget
+namespace HomeBudget.Pages.PC
 {
     //[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AnalyticsPagePC : ContentPage
     {
+        
         public AnalyticsPagePC()
         {
             InitializeComponent();
+            sideBar.SetMode(Views.SideBarPC.EMode.Analize);
             SetupDataGrid();
             SetupCharts();
         }
@@ -50,45 +48,93 @@ namespace HomeBudget
             listView.GridStyle = new BudgetDataGridStyle();
             listView.ItemsSource = data;
 
+            /*listView.Columns.Add(new GridTextColumn()
+            {
+                MappingName = "Category.Id",
+                HeaderText="Id",
+                ColumnSizer = ColumnSizer.Auto
+            });*/
+
+
             listView.Columns.Add(new GridTextColumn()
             {
                 MappingName = "Subcat.Name",
                 HeaderText = "Kategoria",
-                HeaderFont = "Cambria",
-                RecordFont = "Cambria",
+                HeaderTemplate = new DataTemplate(() =>
+                {
+                    Label label = new Label()
+                    {
+                        Text = "Kategoria",
+                        FontSize = 12,
+                        TextColor = Color.Gray,
+                        HorizontalOptions = LayoutOptions.Start,
+                        VerticalOptions = LayoutOptions.Center
+                    };
+                    return label;
+                }),
+                //HeaderFont = "Cambria",
+                //RecordFont = "Cambria",
+
                 ColumnSizer = ColumnSizer.Auto
             });
 
             Style cellStyle = new Style(typeof(GridCell))
             {
-                Setters = 
+                Setters =
                 {
-                    new Setter { Property = Label.BackgroundColorProperty, Value = Color.FromHex("D2F3DF")  }
+                    //new Setter { Property = Label.BackgroundColorProperty, Value = Color.FromHex("D2F3DF")  }
+                    new Setter {Property = Label.FontAttributesProperty, Value = FontAttributes.Bold }
                 }
             };
             listView.Columns.Add(new GridTextColumn()
             {
                 MappingName = "Subcat.Value",
                 HeaderText = "Suma",
-                HeaderFont = "Cambria",
+                HeaderTemplate = new DataTemplate(() =>
+                {
+                    Label label = new Label()
+                    {
+                        Text = "Suma",
+                        FontSize = 12,
+                        TextColor = Color.Gray,
+                        HorizontalOptions = LayoutOptions.Start,
+                        VerticalOptions = LayoutOptions.Center
+                    };
+                    return label;
+                }),
+                //HeaderFont = "Cambria",
                 ColumnSizer = ColumnSizer.Auto,
                 Format = "C",
-                RecordFont = "Cambria",
+                FontAttribute = FontAttributes.Bold,
+                //RecordFont = "Cambria",
                 CultureInfo = new CultureInfo("pl-PL"),
-                CellStyle = cellStyle
+                //CellStyle = cellStyle
             });
 
-            for(int i=0; i<31; i++)
+            for (int i = 0; i < 31; i++)
             {
+                var header = (i + 1).ToString();
                 listView.Columns.Add(new GridTextColumn()
                 {
-                    MappingName = "SubcatReal.Values["+i.ToString()+"].Value",
-                    HeaderText = (i+1).ToString(),
-                    HeaderFont = "Cambria",
+                    MappingName = "SubcatReal.Values[" + i.ToString() + "].Value",
+                    //HeaderText = (i+1).ToString(),
+                    HeaderTemplate = new DataTemplate(() =>
+                    {
+                        Label label = new Label()
+                        {
+                            Text = header,
+                            FontSize = 12,
+                            TextColor = Color.Gray,
+                            HorizontalOptions = LayoutOptions.Start,
+                            VerticalOptions = LayoutOptions.Center
+                        };
+                        return label;
+                    }),
+                    //HeaderFont = "Cambria",
                     ColumnSizer = ColumnSizer.LastColumnFill,
                     AllowEditing = true,
                     Format = "C",
-                    RecordFont = "Cambria",
+                    //RecordFont = "Cambria",
                     CultureInfo = new CultureInfo("pl-PL")
                 });
             }
@@ -96,26 +142,11 @@ namespace HomeBudget
             listView.GroupColumnDescriptions.Add(new GroupColumnDescription()
             {
                 ColumnName = "Category.Name",
-               
+
             });
 
-            GridSummaryRow summaryRow = new GridSummaryRow
-            {
-                ShowSummaryInRow = true,
-                Title = "{Key}: {Total}"
-            };
+            listView.CaptionSummaryRow = SetupSummaryRow();
 
-            summaryRow.SummaryColumns.Add(new GridSummaryColumn
-            {
-                Name = "Total",
-                CustomAggregate = new CurrencyDataGridHeader(),
-                MappingName = "Subcat.Value",
-                Format = "{Currency}",
-                SummaryType = Syncfusion.Data.SummaryType.Custom,
-                
-            });
-
-            listView.CaptionSummaryRow = summaryRow;
             listView.GridViewCreated += (object sender, GridViewCreatedEventArgs e) =>
             {
                 listView.View.LiveDataUpdateMode = LiveDataUpdateMode.AllowSummaryUpdate;
@@ -131,6 +162,25 @@ namespace HomeBudget
             {
                 //MainBudget.Instance.Save();
             };
+        }
+
+        private static GridSummaryRow SetupSummaryRow()
+        {
+            GridSummaryRow summaryRow = new GridSummaryRow
+            {
+                ShowSummaryInRow = true,
+                Title = "{Key}: {Total}"
+            };
+
+            summaryRow.SummaryColumns.Add(new GridSummaryColumn
+            {
+                Name = "Total",
+                CustomAggregate = new CurrencyDataGridHeader(),
+                MappingName = "Subcat.Value",
+                Format = "{Currency}",
+                SummaryType = SummaryType.Custom,
+            });
+            return summaryRow;
         }
 
         private void SetupCharts()

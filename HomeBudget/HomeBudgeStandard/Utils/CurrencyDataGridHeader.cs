@@ -25,7 +25,7 @@ namespace HomeBudget.Utils
                 var enumerableItems = items as IEnumerable<BudgetViewModelData>;
                 if (pd.Name == "Currency")
                 {
-                    this.Currency = enumerableItems.Currency<BudgetViewModelData>(q => q.Subcat.Value);
+                    this.Currency = enumerableItems.Currency(q => q.Subcat.Value);
                 }
             };
         }

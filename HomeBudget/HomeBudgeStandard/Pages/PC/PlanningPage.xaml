@@ -1,10 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:HomeBudget"
+             xmlns:local="clr-namespace:HomeBudget.Utils"
+             xmlns:custom="clr-namespace:HomeBudget.Views"
              xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
              xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
              x:Class="HomeBudget.Pages.PC.PlanningPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:CurrencyDataGridHeader x:Key="CurrencyDataGridHeader" />
+            <local:GroupCaptionConverter x:Key="SummaryConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
 
         <Grid>
@@ -17,66 +26,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Grid x:Name="sideBar" Grid.Column="0" Grid.Row="0" BackgroundColor="#407153">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <Image Grid.Row="1" Grid.Column="1" Source="Assets/home_inactive.png" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-                    <Button Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundColor="Transparent" Clicked="OnHomeClick"/>
-                </Grid>
-
-                <Grid Grid.Row="3">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <Image Grid.Row="1" Grid.Column="1" Source="Assets/analyze_inactive.png" VerticalOptions="Center" HorizontalOptions="Center"/>
-                    <Button Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundColor="Transparent" Clicked="OnAnalizeClick"/>
-                </Grid>
-
-                <Grid Grid.Row="4">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="4*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="2*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <Image Grid.Row="1" Grid.Column="1" Source="Assets/planning_active.png" />
-                </Grid>
-
-            </Grid>
+            <custom:SideBarPC x:Name="sideBar"/>
 
             <Grid Grid.Column="1" Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -90,7 +40,7 @@
                 </Grid.RowDefinitions>
                 
                 <StackLayout Grid.Column="0" Grid.Row="0">
-                    <Label Text="Plan budżetu" Grid.Row="0" FontSize="Large" FontAttributes="Bold" TextColor="#232825"/>
+                    <Label Text="Plan budżetu" Grid.Row="0" FontSize="Large" Style="{StaticResource BudgetSummaryFont}" TextColor="#232825"/>
 
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -98,26 +48,28 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <Grid Grid.Column="0" >
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                        <Frame Grid.Column="0" Style="{StaticResource BudgetFrameStyle}" Margin="1" WidthRequest="600" HeightRequest="300">
+                            <Grid  >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                            <Label Text="Planowane Przychody" Grid.Row="0" Grid.Column="0" BackgroundColor="#D2F3DF" TextColor="#232825"/>
-                            <Label x:Name="plannedIncomes" Text="0zl" Grid.Row="0" Grid.Column="1" BackgroundColor="#D2F3DF" TextColor="#232825"/>
+                                <Label Text="Planowane Przychody" Grid.Row="0" Grid.Column="0" Style="{StaticResource BudgetSummaryFont}" TextColor="#232825"/>
+                                <Label x:Name="plannedIncomes" Text="0zl" Grid.Row="0" Grid.Column="1" Style="{StaticResource BudgetSummaryFont}" TextColor="#232825"/>
 
-                            <Label Text="Planowane Wydatki" Grid.Row="1" Grid.Column="0" BackgroundColor="#D2F3DF" TextColor="#232825"/>
-                            <Label x:Name="plannedExpenses" Text="0zl" Grid.Row="1" Grid.Column="1" BackgroundColor="#D2F3DF" TextColor="#232825"/>
+                                <Label Text="Planowane Wydatki" Grid.Row="1" Grid.Column="0" Style="{StaticResource BudgetSummaryFont}" TextColor="#232825"/>
+                                <Label x:Name="plannedExpenses" Text="0zl" Grid.Row="1" Grid.Column="1" Style="{StaticResource BudgetSummaryFont}" TextColor="#232825"/>
 
-                            <Label Text="Pozostaje" Grid.Row="2" Grid.Column="0" FontAttributes="Bold" BackgroundColor="#88F1B0" TextColor="#232825" />
-                            <Label x:Name="plannedDiff" Text="0zl" Grid.Row="2" Grid.Column="1" FontAttributes="Bold" BackgroundColor="#88F1B0" TextColor="#232825"/>
-                        </Grid>
+                                <Label Text="Pozostaje" Grid.Row="2" Grid.Column="0" FontAttributes="Bold"  Style="{StaticResource BudgetSummaryFont}" TextColor="#232825" />
+                                <Label x:Name="plannedDiff" Text="0zl" Grid.Row="2" Grid.Column="1" FontAttributes="Bold" Style="{StaticResource BudgetSummaryFont}" TextColor="#232825"/>
+                            </Grid>     
+                        </Frame>
                         <StackLayout Grid.Column="1">
                             <Button Text="Użyj tylko w tym miesiącu" Clicked="OnOnlyThisMonth"/>
                             <Button Text="Zapisz jako szablon" Clicked="OnSaveForAll"/>
@@ -130,11 +82,30 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <chart:SfChart x:Name="chartIncome" Grid.Column="0"/>
-                    <chart:SfChart x:Name="chartExpense" Grid.Column="1"/>
+
+                    <Image Source="Assets/emptyChart.png" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="25" />
+                    <Label Text="Brak danych" Grid.Column="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <chart:SfChart x:Name="chartIncome" Grid.Column="0" />
+
+                    <Image Source="Assets/emptyChart.png" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="25"/>
+                    <Label Text="Brak danych" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <chart:SfChart x:Name="chartExpense" Grid.Column="1" />
                 </Grid>
 
-                <syncfusion:SfDataGrid x:Name="listView" Grid.Column="0" Grid.Row="2" AutoGenerateColumns="False" AllowGroupExpandCollapse="True" AutoExpandGroups="False"/>
+                <!--<syncfusion:SfDataGrid x:Name="listView" Grid.Column="0" Grid.Row="2" AutoGenerateColumns="False" AllowGroupExpandCollapse="True" AutoExpandGroups="False">
+                    <syncfusion:SfDataGrid.CaptionSummaryTemplate>
+                        <DataTemplate>
+                            <Label Text="{Binding Converter={StaticResource SummaryConverter}, ConverterParameter = {x:Reference listView} }"
+                                    FontAttributes="Bold"
+                                    FontFamily="Lato"
+                                   TextColor="#232825"
+                                   VerticalTextAlignment="Center"/>
+                        </DataTemplate>
+                    </syncfusion:SfDataGrid.CaptionSummaryTemplate>
+                </syncfusion:SfDataGrid>-->
+                <ScrollView Grid.Column="0" Grid.Row="2">
+                    <StackLayout x:Name="tableLayout" Spacing="25" />
+                </ScrollView>
             </Grid>
         </Grid>
     </ContentPage.Content>

@@ -21,13 +21,23 @@
 			</Style>
 
             <Style x:Key="BudgetFont" TargetType="Label">
-                <Setter Property="FontFamily" Value="Cambria" />
+                <Setter Property="FontFamily" Value="Lato" />
             </Style>
 
             <Style x:Key="BudgetSummaryFont" TargetType="Label">
-                <Setter Property="FontFamily" Value="Cambria" />
+                <Setter Property="FontFamily" Value="Lato" />
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="TextColor" Value="#232825" />
+            </Style>
+
+            <Style x:Key="BudgetFrameStyle" TargetType="Frame">
+                <Setter Property="OutlineColor" Value="#C0C0C0"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="Padding" Value="5"/>
             </Style>
         </ResourceDictionary>
 

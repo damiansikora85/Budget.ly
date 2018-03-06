@@ -18,15 +18,24 @@
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="PCLStorage" Version="1.0.2" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.0.4" />
-    <PackageReference Include="Syncfusion.Xamarin.Calculate" Version="15.4.0.20" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="15.4.0.20" />
-    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="15.4.0.20" />
-    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="15.4.0.20" />
-    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="15.4.0.20" />
+    <PackageReference Include="Syncfusion.Xamarin.Calculate" Version="16.1.0.24" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="16.1.0.24" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="16.1.0.24" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="16.1.0.24" />
+    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="16.1.0.24" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.4" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.3.4" />
-    <PackageReference Include="Xamarin.Forms" Version="2.4.0.91020" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Pages\Common\CategoryPlanDataGrid.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SideBarPC.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

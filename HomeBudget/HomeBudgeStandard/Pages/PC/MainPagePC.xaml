@@ -2,12 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:HomeBudget"
+             xmlns:custom="clr-namespace:HomeBudget.Views"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
 	         xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
              xmlns:sf="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
-             x:Class="HomeBudget.MainPagePC">
+             x:Class="HomeBudget.Pages.PC.MainPagePC">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -35,69 +36,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-
-            <Grid x:Name="sideBar" Grid.Column="0" Grid.Row="0" BackgroundColor="#407153">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="4*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="2*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <Image Grid.Row="1" Grid.Column="1" Source="Assets/home.png" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-                </Grid>
-
-                <Grid Grid.Row="3">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <Image Grid.Row="1" Grid.Column="1" Source="Assets/analyze_inactive.png" VerticalOptions="Center" HorizontalOptions="Center"/>
-                    <Button Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundColor="Transparent" Clicked="OnAnalyticsClick"/>
-                </Grid>
-
-                <Grid Grid.Row="4">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <Image Grid.Row="1" Grid.Column="1" Source="Assets/planning_inactive.png" />
-                    <Button Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundColor="Transparent" Clicked="OnPlanClick"/>
-                </Grid>
-
-            </Grid>
-
+            <custom:SideBarPC x:Name="sideBar"/>
 
             <Grid Grid.Column="1" Grid.Row="0" BackgroundColor="#f9f9f9">
                 <Grid.GestureRecognizers>
@@ -126,45 +65,46 @@
                                 <fftransformations:TintTransformation HexColor="#007EE5" EnableSolidColor="true"/>
                             </ffimageloading:CachedImage.Transformations>
                         </ffimageloading:CachedImage>-->
-                        <Image x:Name="DropboxIcon" Source="Assets/DropboxLogoOrg.png" Grid.Column="1" Margin="5"/>
-                        <Button x:Name="DropboxButon" BackgroundColor="Transparent" Clicked="OnDropboxClick" Grid.Column="1"/>
+                        <Image x:Name="DropboxIcon" Source="Assets/DropboxLogoOrg.png" Grid.Column="1" Margin="0,24,24,0"/>
+                        <Button x:Name="DropboxButon" BackgroundColor="Transparent" Clicked="OnDropboxClick" Grid.Column="1" Margin="0,24,24,0"/>
                     </Grid>
-                    
-                    <Grid Grid.Row="1" >
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
+                    <Frame Grid.Row="1" Style="{StaticResource BudgetFrameStyle}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="1" Text="Rzeczywiste" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End" />
+                            <Label Grid.Row="0" Grid.Column="2" Text="Planowane"  Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End" />
+
+                            <Label Grid.Row="1" Grid.Column="0" Text="Dochód:" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="Start" />
+                            <Label Grid.Row="2" Grid.Column="0" Text="Wydatki:" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="Start" />
+
+                            <Label x:Name="incomeText" Grid.Column="1" Grid.Row="1" Text="0zl" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End"/>
+                            <Label x:Name="expansesText" Grid.Column="1" Grid.Row="2" Text="0zl" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End"/>
+                            <Label x:Name="diffText" Grid.Column="1" Grid.Row="3" Text="0zl" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End"/>
+
+                            <Label x:Name="incomePlannedText" Grid.Column="2" Grid.Row="1" Text="0zl" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End"/>
+                            <Label x:Name="expansesPlannedText" Grid.Column="2" Grid.Row="2" Text="0zl" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End"/>
+                            <Label x:Name="diffPlannedText" Grid.Column="2" Grid.Row="3" Text="0zl" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End"/>
+
+                        </Grid>
+                    </Frame>
+
+                    <Grid Grid.Row="2" Padding="24">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Label Grid.Row="0" Grid.Column="1" Text="Rzeczywiste" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End" />
-                        <Label Grid.Row="0" Grid.Column="2" Text="Planowane"  Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End" />
-
-                        <Label Grid.Row="1" Grid.Column="0" Text="Dochód:" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End" />
-                        <Label Grid.Row="2" Grid.Column="0" Text="Wydatki:" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End" />
-
-                        <Label x:Name="incomeText" Grid.Column="1" Grid.Row="1" Text="0zl" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End"/>
-                        <Label x:Name="expansesText" Grid.Column="1" Grid.Row="2" Text="0zl" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End"/>
-                        <Label x:Name="diffText" Grid.Column="1" Grid.Row="3" Text="0zl" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End"/>
-
-                        <Label x:Name="incomePlannedText" Grid.Column="2" Grid.Row="1" Text="0zl" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End"/>
-                        <Label x:Name="expansesPlannedText" Grid.Column="2" Grid.Row="2" Text="0zl" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End"/>
-                        <Label x:Name="diffPlannedText" Grid.Column="2" Grid.Row="3" Text="0zl" Style="{StaticResource BudgetSummaryFont}" HorizontalTextAlignment="End"/>
-
-                    </Grid>
-
-                    <Grid Grid.Row="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="4*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
@@ -178,7 +118,7 @@
                     </Grid>
                 </Grid>
 
-                <AbsoluteLayout >
+                <!--<AbsoluteLayout >
                     <Grid x:Name="DropboxLoginElement" AbsoluteLayout.LayoutBounds="1, 1.85, 0.25, 0.165" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#D2F3DF" IsVisible="True">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="2*" />
@@ -190,7 +130,7 @@
                     </Grid>
                     <Image x:Name="DropboxSyncComplete" Source="Assets/Checkmark.png"  AbsoluteLayout.LayoutBounds="1, 1.85, 0.25, 0.165" AbsoluteLayout.LayoutFlags="All" IsVisible="False"/>
                     <Image x:Name="DropboxSyncing" Source="Assets/DropboxSync.png" AbsoluteLayout.LayoutBounds="1, 1.85, 0.25, 0.165" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="EndAndExpand" IsVisible="False"/>
-                </AbsoluteLayout>
+                </AbsoluteLayout>-->
 
             </Grid>
 

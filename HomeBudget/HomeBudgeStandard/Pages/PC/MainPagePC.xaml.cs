@@ -2,8 +2,6 @@
 using Dropbox.Api;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
-using HomeBudget.Pages;
-using HomeBudget.Pages.PC;
 using HomeBudget.Pages.Utils;
 using HomeBudget.Utils;
 using HomeBudget.ViewModels;
@@ -17,7 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace HomeBudget
+namespace HomeBudget.Pages.PC
 {
     //[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPagePC : ContentPage
@@ -56,6 +54,7 @@ namespace HomeBudget
             BindingContext = viewModel;
             addButton.GestureRecognizers.Add(new TapGestureRecognizer(OnAddClick));
             calculatorViewModel = new CalculatorViewModel();
+            sideBar.SetMode(Views.SideBarPC.EMode.Home);
 
             UserDialogs.Instance.ShowLoading("Loading...");
 
@@ -98,17 +97,21 @@ namespace HomeBudget
 
             if (string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken) == false)
             {
-                DropboxButon.IsVisible = false;
-                DropboxIcon.IsVisible = false;
-                DropboxLoginElement.IsVisible = false;
+                DropboxButtonChangeVisibility(false);
+                //DropboxLoginElement.IsVisible = false;
                 DropboxManager.Instance.DownloadData();
             }
             else
             {
-                DropboxButon.IsVisible = true;
-                DropboxIcon.IsVisible = true;
+                DropboxButtonChangeVisibility(true);
                 MainBudget.Instance.Load();
             }
+        }
+
+        private void DropboxButtonChangeVisibility(bool isVisible)
+        {
+            DropboxButon.IsVisible = isVisible;
+            DropboxIcon.IsVisible = isVisible;
         }
 
         private void OnBudgetLoaded()
@@ -118,6 +121,7 @@ namespace HomeBudget
             SetupBudgetSummary();
             budgetSummaryElement = new BudgetSummaryListView();
             budgetSummaryElement.Setup(listView);
+            DropboxButtonChangeVisibility(false);
 
             UserDialogs.Instance.HideLoading();
         }
@@ -447,7 +451,8 @@ namespace HomeBudget
 
                 Helpers.Settings.DropboxAccessToken = result.AccessToken;
                 DropboxManager.Instance.Init();
-                DropboxLoginElement.IsVisible = false;
+                //DropboxLoginElement.IsVisible = false;
+                DropboxButtonChangeVisibility(false);
                 await DropboxManager.Instance.DownloadData();
             }
             catch (ArgumentException argExc)

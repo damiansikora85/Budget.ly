@@ -10,9 +10,14 @@ namespace HomeBudget.Utils
 {
     public class BudgetDataGridStyle : DataGridStyle
     {
+        public override Color GetHeaderBackgroundColor()
+        {
+            return Color.White;
+        }
+
         public override Color GetCaptionSummaryRowBackgroundColor()
         {
-            return Color.FromHex("D2F3DF"); 
+            return Color.FromHex("f5f5f5"); 
         }
 
         public override Color GetCaptionSummaryRowForegroundColor()
@@ -22,12 +27,20 @@ namespace HomeBudget.Utils
 
         public override GridLinesVisibility GetGridLinesVisibility()
         {
-            return GridLinesVisibility.None;
+            return GridLinesVisibility.Horizontal;
         }
 
         public override Color GetRecordBackgroundColor()
         {
+            return Color.FromHex("f5f5f5");
+        }
+
+        public override Color GetAlternatingRowBackgroundColor()
+        {
+            
             return Color.FromHex("f9f9f9");
         }
+
+        
     }
 }

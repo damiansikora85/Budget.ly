@@ -5,6 +5,7 @@ using System.Text;
 
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using HomeBudget.Pages.PC;
 
 namespace HomeBudget
 {
@@ -19,7 +20,7 @@ namespace HomeBudget
 		{
 			InitializeComponent();
 
-            MainPage = new HomeBudget.MainPagePC();
+            MainPage = new MainPagePC();
 
             /*if (Device.Idiom == TargetIdiom.Phone)
             {

@@ -20,8 +20,8 @@
     <PackageCertificateKeyFile>HomeBudget.UWP_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>1392791276DE6D33FFBC923C83567119077F4E79</PackageCertificateThumbprint>
+    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>491CBEA35C1A9EC94BE8389ACCBDAEA152A99D0F</PackageCertificateThumbprint>
     <RuntimeIdentifiers>win10-arm;win10-arm-aot;win10-x86;win10-x86-aot;win10-x64;win10-x64-aot</RuntimeIdentifiers>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
@@ -111,9 +111,12 @@
     <Content Include="Assets\circle.png" />
     <Content Include="Assets\DropboxLogo.png" />
     <Content Include="Assets\DropboxLogoOrg.png" />
+    <Content Include="Assets\emptyChart.png" />
     <Content Include="Assets\Fonts\Cambria.ttf" />
     <None Include="HomeBudget.UWP_TemporaryKey.pfx" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -225,13 +228,13 @@
       <Version>1.0.4</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar">
-      <Version>15.4.0.20</Version>
+      <Version>16.1.0.24</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfChart">
-      <Version>15.4.0.20</Version>
+      <Version>16.1.0.24</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfDataGrid">
-      <Version>15.4.0.20</Version>
+      <Version>16.1.0.24</Version>
     </PackageReference>
     <PackageReference Include="WindowsAzure.Storage">
       <Version>8.1.0</Version>
@@ -255,7 +258,7 @@
       <Version>2.3.4</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>2.4.0.91020</Version>
+      <Version>2.5.0.122203</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

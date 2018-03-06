@@ -12,6 +12,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -75,8 +76,7 @@ namespace HomeBudget.UWP
 				assembliesToInclude.AddRange(Rg.Plugins.Popup.Windows.Popup.GetExtraAssemblies());
 				Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 
-
-				if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
 				{
 					//TODO: Load state from previously suspended application
 				}
@@ -92,8 +92,14 @@ namespace HomeBudget.UWP
 				// parameter
 				rootFrame.Navigate(typeof(MainPage), e.Arguments);
 			}
-			// Ensure the current window is active
-			Window.Current.Activate();
+
+            ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(800, 600));
+            //ApplicationView.GetForCurrentView().
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+
+            // Ensure the current window is active
+            Window.Current.Activate();
 		}
 
 		/// <summary>

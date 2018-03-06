@@ -17,6 +17,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Collections.Specialized;
 using HomeBudget.Code.Logic.Temp;
+using HomeBudgeStandard.Pages.Common;
 
 namespace HomeBudget.Pages.PC
 {
@@ -28,8 +29,9 @@ namespace HomeBudget.Pages.PC
         public PlanningPage()
         {
             InitializeComponent();
-            
-            SetupDataGrid();
+            sideBar.SetMode(Views.SideBarPC.EMode.Planning);
+            SetupTable();
+            //SetupDataGrid();
             SetupCharts();
             UpdateSummary(null, null);
         }
@@ -52,7 +54,7 @@ namespace HomeBudget.Pages.PC
                 }
             }
 
-            listView.GridStyle = new BudgetDataGridStyle();
+            /*listView.GridStyle = new BudgetDataGridStyle();
             listView.ItemsSource = plannedModel;
             listView.HeaderRowHeight = 0;
 
@@ -60,6 +62,22 @@ namespace HomeBudget.Pages.PC
             {
                 MappingName = "Subcat.Name",
                 HeaderText = "Kategoria",
+                HeaderTemplate = new DataTemplate(() =>
+                {
+                    Label label = new Label()
+                    {
+                        Text = "Kategoria",
+                        //FontSize = 12,
+                        TextColor = Color.Gray,
+                        HorizontalOptions = LayoutOptions.Start,
+                        VerticalOptions = LayoutOptions.Center
+                    };
+                    return label;
+                }),
+                //HeaderFont = "Cambria",
+                //RecordFont = "Cambria",
+                //CellTextSize = 12,
+                
                 ColumnSizer = ColumnSizer.Auto
             });
 
@@ -67,8 +85,22 @@ namespace HomeBudget.Pages.PC
             {
                 MappingName = "Subcat.Value",
                 HeaderText = "Suma",
+                HeaderTemplate = new DataTemplate(() =>
+                {
+                    Label label = new Label()
+                    {
+                        Text = "Suma",
+                        //FontSize = 12,
+                        TextColor = Color.Gray,
+                        HorizontalOptions = LayoutOptions.Start,
+                        VerticalOptions = LayoutOptions.Center
+                    };
+                    return label;
+                }),
                 AllowEditing = true,
                 ColumnSizer = ColumnSizer.LastColumnFill,
+                //HeaderFont = "Cambria",
+                //RecordFont = "Cambria",
                 Format = "C",
                 CultureInfo = new CultureInfo("pl-PL")
             });
@@ -87,10 +119,12 @@ namespace HomeBudget.Pages.PC
             summaryRow.SummaryColumns.Add(new GridSummaryColumn
             {
                 Name = "Total",
-                CustomAggregate = new CurrencyDataGridHeader(),
+                //CustomAggregate = new CurrencyDataGridHeader(),
                 MappingName = "Subcat.Value",
-                Format = "{Currency}",
-                SummaryType = SummaryType.Custom,
+                //Format = "{Currency}",
+                Format = "{Sum:c}",
+                SummaryType = SummaryType.DoubleAggregate
+                //SummaryType = SummaryType.Custom,
 
             });
 
@@ -109,7 +143,39 @@ namespace HomeBudget.Pages.PC
             listView.CurrentCellEndEdit += (object sender, GridCurrentCellEndEditEventArgs args) =>
             {
                 MainBudget.Instance.Save();
-            };
+            };*/
+        }
+
+        private void SetupTable()
+        {
+            plannedModel = new ObservableCollection<BudgetViewModelData>();
+            BudgetPlanned budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
+            budgetPlanned.PropertyChanged += UpdateSummary;
+            foreach (BudgetPlannedCategory category in budgetPlanned.Categories)
+            {
+                /*var categorySummaryLabel = new Label()
+                {
+                    Text = category.Name
+                };
+                tableLayout.Children.Add(categorySummaryLabel);*/
+
+                /*foreach (PlannedSubcat subcat in category.subcats)
+                {
+                    BudgetViewModelData model = new BudgetViewModelData()
+                    {
+                        Category = category,
+                        Subcat = subcat
+                    };
+                    plannedModel.Add(model);
+                }*/
+
+                var categoryTable = new CategoryPlanDataGrid();
+                categoryTable.Setup(category);
+                tableLayout.Children.Add(categoryTable);
+
+            }
+
+
         }
 
         private void SetupCharts()
@@ -185,6 +251,8 @@ namespace HomeBudget.Pages.PC
                 LabelTemplate = dataMarkerTemplate
             };
             chart.Series.Add(pieSeries);
+
+            
         }
 
         private void UpdateSummary(object sender, PropertyChangedEventArgs e)
