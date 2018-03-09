@@ -3,6 +3,7 @@ using HomeBudget.Utils;
 using Syncfusion.SfDataGrid.XForms;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Globalization;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,22 +13,42 @@ namespace HomeBudgeStandard.Pages.Common
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CategoryPlanDataGrid : ContentView
 	{
-        private double totalRowHeight = 0;
+        private double _totalRowHeight;
+        private BudgetPlannedCategory _category;
+        private ObservableCollection<BudgetViewModelData> plannedModel;
 
         public CategoryPlanDataGrid ()
 		{
 			InitializeComponent ();
             SizeChanged += DataGrid_SizeChanged;
+            //DataGrid.CurrentCellEndEdit += OnEditCompleted;
+            //DataGrid.HeightRequest = 200;
+        }
+
+        private void OnEditCompleted(object sender, GridCurrentCellEndEditEventArgs e)
+        {
+            if(!e.Cancel)
+            {
+                var cultureInfoPL = new CultureInfo("pl-PL");
+                var ccc = plannedModel[0].Category;
+                Name.Text = $"{_category.Name}: {string.Format(cultureInfoPL, "{0:c}", _category.TotalValues)}";
+            }
         }
 
         public void Setup(BudgetPlannedCategory category)
         {
-            var plannedModel = new ObservableCollection<BudgetViewModelData>();
-            CultureInfo cultureInfoPL = new CultureInfo("pl-PL");
+            _category = category;
+            _category.PropertyChanged += OnValueChanged;
+
+            plannedModel = new ObservableCollection<BudgetViewModelData>();
+            var cultureInfoPL = new CultureInfo("pl-PL");
             Name.Text = $"{category.Name}: {string.Format(cultureInfoPL, "{0:c}", category.TotalValues)}";
+
+            Icon.Source = $"Assets/Categories/{_category.IconName}";
+
             foreach(var subcat in category.subcats)
             {
-                BudgetViewModelData model = new BudgetViewModelData()
+                var model = new BudgetViewModelData
                 {
                     Category = category,
                     Subcat = subcat
@@ -40,7 +61,7 @@ namespace HomeBudgeStandard.Pages.Common
             DataGrid.HeaderRowHeight = 0;
             //HeightRequest = category.subcats.Count * 25;
 
-            DataGrid.Columns.Add(new GridTextColumn()
+            using (var gridTextColumn = new GridTextColumn
             {
                 MappingName = "Subcat.Name",
                 TextAlignment = TextAlignment.Start,
@@ -48,7 +69,7 @@ namespace HomeBudgeStandard.Pages.Common
                 Padding = new Thickness(24, 0),
                 HeaderTemplate = new DataTemplate(() =>
                 {
-                    Label label = new Label()
+                    var label = new Label
                     {
                         Text = "Kategoria",
                         //FontSize = 12,
@@ -63,15 +84,18 @@ namespace HomeBudgeStandard.Pages.Common
                 //CellTextSize = 12,
 
                 ColumnSizer = ColumnSizer.Auto
-            });
+            })
 
-            DataGrid.Columns.Add(new GridTextColumn()
+            DataGrid.Columns.Add(gridTextColumn);
+
+
+            using (var gridTextColumn = new GridTextColumn
             {
                 MappingName = "Subcat.Value",
                 HeaderText = "Suma",
                 HeaderTemplate = new DataTemplate(() =>
                 {
-                    Label label = new Label()
+                    var label = new Label
                     {
                         Text = "Suma",
                         //FontSize = 12,
@@ -87,26 +111,30 @@ namespace HomeBudgeStandard.Pages.Common
                 //RecordFont = "Cambria",
                 Format = "C",
                 CultureInfo = new CultureInfo("pl-PL")
-            });
+            })
+                DataGrid.Columns.Add(gridTextColumn);
+        }
+
+        private void OnValueChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var cultureInfoPL = new CultureInfo("pl-PL");
+            Name.Text = $"{_category.Name}: {string.Format(cultureInfoPL, "{0:c}", _category.TotalValues)}";
         }
 
         private void OnHide(object sender, EventArgs args)
         {
-            DataGrid.IsVisible = !DataGrid.IsVisible;
-            ((Button)sender).Text = DataGrid.IsVisible ? "Hide" : "Show";
+            DataGridView.IsVisible = !DataGridView.IsVisible;
+            ((Button)sender).Text = DataGridView.IsVisible ? "Hide" : "Show";
         }
     
         private void DataGrid_SizeChanged(object sender, EventArgs e)
         {
-            if (totalRowHeight == 0)
+            if (_totalRowHeight == 0)
             {
-                for (int i = 0; i <= DataGrid.View.Records.Count; i++)
-                    totalRowHeight += DataGrid.RowHeight;
+                for (int i = 0; i < DataGrid.View.Records.Count; i++)
+                    _totalRowHeight += DataGrid.RowHeight;
 
-                /*for (int i = 0; i < this.DataGrid.Columns.Count; i++)
-                    totalColumnWidth += DataGrid.Columns[i].ActualWidth + (DataGrid.ShowRowHeader ? DataGrid.RowHeaderWidth : 0);*/
-                //contentView.WidthRequest = Math.Min(totalColumnWidth, DataGrid.Width);
-                DataGrid.HeightRequest = totalRowHeight;//Math.Min(totalRowHeight, DataGrid.Height);
+                DataGridView.HeightRequest = _totalRowHeight;//Math.Min(totalRowHeight, DataGrid.Height);
             }
         }
     }

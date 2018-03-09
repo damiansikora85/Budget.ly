@@ -1,11 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+	         xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
              x:Class="HomeBudgeStandard.Pages.Common.CategoryPlanDataGrid">
   <ContentView.Content>
       <StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" WidthRequest="999">
+                <ffimageloading:CachedImage x:Name="Icon" HeightRequest="50">
+                    <ffimageloading:CachedImage.Transformations>
+                        <fftransformations:TintTransformation HexColor="#232825" EnableSolidColor="true"/>
+                    </ffimageloading:CachedImage.Transformations>
+                </ffimageloading:CachedImage>
                 <Label x:Name="Name" FontAttributes="Bold"  Style="{StaticResource BudgetSummaryFont}" TextColor="#232825" VerticalTextAlignment="Center" />
                 <Button Text="Hide" Clicked="OnHide" HorizontalOptions="EndAndExpand" Margin="24,0"/>
             </StackLayout>
@@ -15,7 +22,9 @@
                     <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <syncfusion:SfDataGrid VerticalOptions="StartAndExpand" x:Name="DataGrid" AutoGenerateColumns="False" Grid.Column="1" />
+                <ContentView x:Name="DataGridView" Grid.Column="1" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                    <syncfusion:SfDataGrid  x:Name="DataGrid" AutoGenerateColumns="False" />
+                </ContentView>
             </Grid>
         </StackLayout>
   </ContentView.Content>

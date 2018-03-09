@@ -5,14 +5,10 @@ using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Utils;
 using Syncfusion.SfDataGrid.XForms;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace HomeBudget.Pages.Utils
@@ -103,15 +99,15 @@ namespace HomeBudget.Pages.Utils
 
         private ObservableCollection<BudgetSummaryDataViewModel> GetBudgetSummaryData()
         {
-            ObservableCollection<BudgetSummaryDataViewModel> budgetSummaryCollection = new ObservableCollection<BudgetSummaryDataViewModel>();
-            BudgetReal budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
-            List<BudgetCategoryTemplate> categoriesDesc = MainBudget.Instance.BudgetDescription.Categories;
-            BudgetPlanned budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
+            var budgetSummaryCollection = new ObservableCollection<BudgetSummaryDataViewModel>();
+            var budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
+            var categoriesDesc = MainBudget.Instance.BudgetDescription.Categories;
+            var budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
             for (int i = 0; i < budgetReal.Categories.Count; i++)
             {
-                if (budgetReal.Categories[i].IsIncome == false)
+                if (!budgetReal.Categories[i].IsIncome)
                 {
-                    BudgetSummaryDataViewModel budgetSummaryData = new BudgetSummaryDataViewModel()
+                    var budgetSummaryData = new BudgetSummaryDataViewModel
                     {
                         CategoryReal = budgetReal.Categories[i],
                         CategoryPlanned = budgetPlanned.Categories[i],
@@ -127,13 +123,12 @@ namespace HomeBudget.Pages.Utils
 
         private GridColumn CreateIconColumn()
         {
-            GridTemplateColumn iconColumn = new GridTemplateColumn()
+            var iconColumn = new GridTemplateColumn
             {
                 MappingName = "CategoryReal",
-                ColumnSizer = ColumnSizer.Auto
+                ColumnSizer = ColumnSizer.Auto,
+                CellTemplate = CreateCategoryIconDataTemplate()
             };
-
-            iconColumn.CellTemplate = CreateCategoryIconDataTemplate();
 
             return iconColumn;
         }
@@ -142,7 +137,7 @@ namespace HomeBudget.Pages.Utils
         {
             var dataTemplate = new DataTemplate(() =>
             {
-                Grid grid = CreateGrid(1, 1);
+                var grid = CreateGrid(1, 1);
 
                 var background = new CachedImage()
                 {

@@ -1,23 +1,14 @@
-﻿using HomeBudget.Code;
+﻿using HomeBudgeStandard.Pages.Common;
+using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Utils;
-using Syncfusion.Data;
 using Syncfusion.SfChart.XForms;
-using Syncfusion.SfDataGrid.XForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using System.Collections.Specialized;
-using HomeBudget.Code.Logic.Temp;
-using HomeBudgeStandard.Pages.Common;
 
 namespace HomeBudget.Pages.PC
 {
@@ -39,13 +30,13 @@ namespace HomeBudget.Pages.PC
         private void SetupDataGrid()
         {
             plannedModel = new ObservableCollection<BudgetViewModelData>();
-            BudgetPlanned budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
+            var budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
             budgetPlanned.PropertyChanged += UpdateSummary;
             foreach (BudgetPlannedCategory category in budgetPlanned.Categories)
             {
                 foreach (PlannedSubcat subcat in category.subcats)
                 {
-                    BudgetViewModelData model = new BudgetViewModelData()
+                    var model = new BudgetViewModelData()
                     {
                         Category = category,
                         Subcat = subcat
@@ -149,57 +140,38 @@ namespace HomeBudget.Pages.PC
         private void SetupTable()
         {
             plannedModel = new ObservableCollection<BudgetViewModelData>();
-            BudgetPlanned budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
+            var budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
             budgetPlanned.PropertyChanged += UpdateSummary;
             foreach (BudgetPlannedCategory category in budgetPlanned.Categories)
             {
-                /*var categorySummaryLabel = new Label()
-                {
-                    Text = category.Name
-                };
-                tableLayout.Children.Add(categorySummaryLabel);*/
-
-                /*foreach (PlannedSubcat subcat in category.subcats)
-                {
-                    BudgetViewModelData model = new BudgetViewModelData()
-                    {
-                        Category = category,
-                        Subcat = subcat
-                    };
-                    plannedModel.Add(model);
-                }*/
-
                 var categoryTable = new CategoryPlanDataGrid();
                 categoryTable.Setup(category);
                 tableLayout.Children.Add(categoryTable);
-
             }
-
-
         }
 
         private void SetupCharts()
         {
-            ObservableCollection<BudgetViewModelData> expensesData = new ObservableCollection<BudgetViewModelData>();
-            ObservableCollection<BudgetViewModelData> incomesData = new ObservableCollection<BudgetViewModelData>();
-            BudgetPlanned budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
+            var expensesData = new ObservableCollection<BudgetViewModelData>();
+            var incomesData = new ObservableCollection<BudgetViewModelData>();
+            var budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
             foreach (BudgetPlannedCategory category in budgetPlanned.Categories)
             {
-                BudgetViewModelData model = new BudgetViewModelData()
+                var model = new BudgetViewModelData
                 {
                     Name = category.Name,
                     Category = category,
                 };
-                if (category.IsIncome == false)
+                if (!category.IsIncome)
                     expensesData.Add(model);
             }
 
-            List<BaseBudgetCategory> incomesCategories = budgetPlanned.GetIncomesCategories();
+            var incomesCategories = budgetPlanned.GetIncomesCategories();
             foreach (BaseBudgetCategory category in incomesCategories)
             {
                 foreach(BaseBudgetSubcat subcat in category.subcats)
                 {
-                    BudgetViewModelData model = new BudgetViewModelData()
+                    var model = new BudgetViewModelData
                     {
                         Name = subcat.Name,
                         Category = category,
@@ -225,7 +197,7 @@ namespace HomeBudget.Pages.PC
 
         private void SetupChart(SfChart chart, ObservableCollection<BudgetViewModelData> data, string xBindingPath, string yBindingPath)
         {
-            PieSeries pieSeries = new PieSeries()
+            var pieSeries = new PieSeries
             {
                 ItemsSource = data,
                 XBindingPath = xBindingPath,
@@ -235,9 +207,9 @@ namespace HomeBudget.Pages.PC
                 ListenPropertyChange = true
             };
 
-            DataTemplate dataMarkerTemplate = new DataTemplate(() =>
+            var dataMarkerTemplate = new DataTemplate(() =>
             {
-                Label label = new Label();
+                var label = new Label();
                 label.SetBinding(Label.TextProperty, "Thiz", BindingMode.Default, new ChartCategoryNameConverter());
                 label.FontSize = 10;
                 label.VerticalOptions = LayoutOptions.Center;
@@ -251,18 +223,16 @@ namespace HomeBudget.Pages.PC
                 LabelTemplate = dataMarkerTemplate
             };
             chart.Series.Add(pieSeries);
-
-            
         }
 
         private void UpdateSummary(object sender, PropertyChangedEventArgs e)
         {
-            BudgetMonth budgetMonth = MainBudget.Instance.GetCurrentMonthData();
-            double monthExpensesPlanned = budgetMonth.GetTotalExpensesPlanned();
-            double monthIncomePlanned = budgetMonth.GetTotalIncomePlanned();
-            double diffPlanned = monthIncomePlanned - monthExpensesPlanned;
+            var budgetMonth = MainBudget.Instance.GetCurrentMonthData();
+            var monthExpensesPlanned = budgetMonth.GetTotalExpensesPlanned();
+            var monthIncomePlanned = budgetMonth.GetTotalIncomePlanned();
+            var diffPlanned = monthIncomePlanned - monthExpensesPlanned;
 
-            CultureInfo cultureInfoPL = new CultureInfo("pl-PL");
+            var cultureInfoPL = new CultureInfo("pl-PL");
             plannedExpenses.Text = string.Format(cultureInfoPL, "{0:c}", monthExpensesPlanned);
             plannedIncomes.Text = string.Format(cultureInfoPL, "{0:c}", monthIncomePlanned);
             plannedDiff.Text = string.Format(cultureInfoPL, "{0:c}", diffPlanned);
