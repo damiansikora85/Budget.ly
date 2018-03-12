@@ -108,6 +108,8 @@
     <Content Include="Assets\Categories\telokom.png" />
     <Content Include="Assets\Categories\theatre-masks.png" />
     <Content Include="Assets\Categories\transport.png" />
+    <Content Include="Assets\chevron-down.png" />
+    <Content Include="Assets\chevron-up.png" />
     <Content Include="Assets\circle.png" />
     <Content Include="Assets\DropboxLogo.png" />
     <Content Include="Assets\DropboxLogoOrg.png" />
@@ -219,7 +221,7 @@
       <Version>6.0.6</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>10.0.3</Version>
+      <Version>11.0.1</Version>
     </PackageReference>
     <PackageReference Include="PCLStorage">
       <Version>1.0.2</Version>

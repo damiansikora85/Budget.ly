@@ -21,8 +21,6 @@ namespace HomeBudgeStandard.Pages.Common
 		{
 			InitializeComponent ();
             SizeChanged += DataGrid_SizeChanged;
-            //DataGrid.CurrentCellEndEdit += OnEditCompleted;
-            //DataGrid.HeightRequest = 200;
         }
 
         private void OnEditCompleted(object sender, GridCurrentCellEndEditEventArgs e)
@@ -65,9 +63,9 @@ namespace HomeBudgeStandard.Pages.Common
             {
                 MappingName = "Subcat.Name",
                 TextAlignment = TextAlignment.Start,
-                HeaderText = "Kategoria",
                 Padding = new Thickness(24, 0),
-                HeaderTemplate = new DataTemplate(() =>
+                
+                /*HeaderTemplate = new DataTemplate(() =>
                 {
                     var label = new Label
                     {
@@ -78,11 +76,8 @@ namespace HomeBudgeStandard.Pages.Common
                         VerticalOptions = LayoutOptions.Center
                     };
                     return label;
-                }),
-                //HeaderFont = "Cambria",
-                //RecordFont = "Cambria",
-                //CellTextSize = 12,
-
+                }),*/
+                RecordFont = "Lato",
                 ColumnSizer = ColumnSizer.Auto
             })
 
@@ -92,8 +87,7 @@ namespace HomeBudgeStandard.Pages.Common
             using (var gridTextColumn = new GridTextColumn
             {
                 MappingName = "Subcat.Value",
-                HeaderText = "Suma",
-                HeaderTemplate = new DataTemplate(() =>
+                /*HeaderTemplate = new DataTemplate(() =>
                 {
                     var label = new Label
                     {
@@ -104,15 +98,16 @@ namespace HomeBudgeStandard.Pages.Common
                         VerticalOptions = LayoutOptions.Center
                     };
                     return label;
-                }),
+                }),*/
+                TextAlignment = TextAlignment.End,
+                Padding = new Thickness(0,0,24,0),
                 AllowEditing = true,
                 ColumnSizer = ColumnSizer.LastColumnFill,
-                //HeaderFont = "Cambria",
-                //RecordFont = "Cambria",
+                RecordFont = "Lato",
                 Format = "C",
                 CultureInfo = new CultureInfo("pl-PL")
             })
-                DataGrid.Columns.Add(gridTextColumn);
+            DataGrid.Columns.Add(gridTextColumn);
         }
 
         private void OnValueChanged(object sender, PropertyChangedEventArgs e)
@@ -124,7 +119,7 @@ namespace HomeBudgeStandard.Pages.Common
         private void OnHide(object sender, EventArgs args)
         {
             DataGridView.IsVisible = !DataGridView.IsVisible;
-            ((Button)sender).Text = DataGridView.IsVisible ? "Hide" : "Show";
+            ((Button)sender).Image = DataGridView.IsVisible ? "Assets/chevron-up.png" : "Assets/chevron-down.png";
         }
     
         private void DataGrid_SizeChanged(object sender, EventArgs e)

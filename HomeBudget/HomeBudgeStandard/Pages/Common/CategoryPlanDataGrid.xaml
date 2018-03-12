@@ -13,8 +13,8 @@
                         <fftransformations:TintTransformation HexColor="#232825" EnableSolidColor="true"/>
                     </ffimageloading:CachedImage.Transformations>
                 </ffimageloading:CachedImage>
-                <Label x:Name="Name" FontAttributes="Bold"  Style="{StaticResource BudgetSummaryFont}" TextColor="#232825" VerticalTextAlignment="Center" />
-                <Button Text="Hide" Clicked="OnHide" HorizontalOptions="EndAndExpand" Margin="24,0"/>
+                <Label x:Name="Name" Style="{StaticResource BudgetSummaryFont}" FontSize="Small" TextColor="#232825" VerticalTextAlignment="Center" />
+                <Button BackgroundColor="Transparent" Image="Assets/chevron-up.png" Clicked="OnHide" HorizontalOptions="EndAndExpand" Margin="24,0"/>
             </StackLayout>
             <Grid>
                 <Grid.ColumnDefinitions>
