@@ -22,19 +22,24 @@ namespace HomeBudget.Views
             currentMode = EMode.Home;
 		}
 
+        
+
         private async void OnHomeClick(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new MainPagePC());
+            //App.Current.s
+            //await Navigation.PushModalAsync(new MainPagePC());
         }
 
         private async void OnPlanClick(object sender, EventArgs args)
         {
-            await Navigation.PushModalAsync(new PlanningPage());
+            //Application.Current.MainPage = PlanningPage;
+            //await Navigation.PushModalAsync(new PlanningPage());
         }
 
         private async void OnAnalyticsClick(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new AnalyticsPagePC());
+            //Application.Current.MainPage = AnalyticsPage;
+            //await Navigation.PushModalAsync(new AnalyticsPagePC());
         }
 
         public void SetMode(EMode newMode)

@@ -1,4 +1,6 @@
-﻿using HomeBudget.Code;
+﻿using Acr.UserDialogs;
+using HomeBudgeStandard.Pages.Common;
+using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages.PC;
 using HomeBudget.Utils;
@@ -10,7 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace HomeBudget.Pages.PC
@@ -23,11 +25,28 @@ namespace HomeBudget.Pages.PC
         {
             InitializeComponent();
             sideBar.SetMode(Views.SideBarPC.EMode.Analize);
-            SetupDataGrid();
+            //SetupDataGrid();
+
+            UserDialogs.Instance.ShowLoading();
+            SetupCategories();
             SetupCharts();
         }
 
-        private void SetupDataGrid()
+        private void SetupCategories()
+        {
+            var budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
+            //budgetPlanned.PropertyChanged += UpdateSummary;
+            foreach (var category in budgetReal.Categories)
+            {
+                var categoryTable = new CategoryRealDataGrid();
+                categoryTable.Setup(category);
+                tableLayout.Children.Add(categoryTable);
+            }
+
+            UserDialogs.Instance.HideLoading();
+        }
+
+        /*private void SetupDataGrid()
         {
             ObservableCollection<BudgetViewModelData> data = new ObservableCollection<BudgetViewModelData>();
             BudgetReal budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
@@ -48,12 +67,7 @@ namespace HomeBudget.Pages.PC
             listView.GridStyle = new BudgetDataGridStyle();
             listView.ItemsSource = data;
 
-            /*listView.Columns.Add(new GridTextColumn()
-            {
-                MappingName = "Category.Id",
-                HeaderText="Id",
-                ColumnSizer = ColumnSizer.Auto
-            });*/
+
 
 
             listView.Columns.Add(new GridTextColumn()
@@ -162,35 +176,38 @@ namespace HomeBudget.Pages.PC
             {
                 //MainBudget.Instance.Save();
             };
-        }
+        }*/
 
         private static GridSummaryRow SetupSummaryRow()
         {
-            GridSummaryRow summaryRow = new GridSummaryRow
+            var summaryRow = new GridSummaryRow
             {
                 ShowSummaryInRow = true,
                 Title = "{Key}: {Total}"
             };
 
-            summaryRow.SummaryColumns.Add(new GridSummaryColumn
+            using (var gridSummaryColumn = new GridSummaryColumn
             {
                 Name = "Total",
                 CustomAggregate = new CurrencyDataGridHeader(),
                 MappingName = "Subcat.Value",
                 Format = "{Currency}",
                 SummaryType = SummaryType.Custom,
-            });
+            })
+            {
+                summaryRow.SummaryColumns.Add(gridSummaryColumn);
+            }
             return summaryRow;
         }
 
         private void SetupCharts()
         {
-            ObservableCollection<BudgetViewModelData> expensesData = new ObservableCollection<BudgetViewModelData>();
-            ObservableCollection<BudgetViewModelData> incomesData = new ObservableCollection<BudgetViewModelData>();
-            BudgetReal budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
+            var expensesData = new ObservableCollection<BudgetViewModelData>();
+            var incomesData = new ObservableCollection<BudgetViewModelData>();
+            var budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
             foreach (BudgetRealCategory category in budgetReal.Categories)
             {
-                BudgetViewModelData model = new BudgetViewModelData()
+                var model = new BudgetViewModelData()
                 {
                     Name = category.Name,
                     Category = category,
@@ -199,12 +216,12 @@ namespace HomeBudget.Pages.PC
                     expensesData.Add(model);
             }
 
-            List<BaseBudgetCategory> incomesCategories = budgetReal.GetIncomesCategories();
+            var incomesCategories = budgetReal.GetIncomesCategories();
             foreach (BaseBudgetCategory category in incomesCategories)
             {
                 foreach (BaseBudgetSubcat subcat in category.subcats)
                 {
-                    BudgetViewModelData model = new BudgetViewModelData()
+                    var model = new BudgetViewModelData()
                     {
                         Name = subcat.Name,
                         Category = category,

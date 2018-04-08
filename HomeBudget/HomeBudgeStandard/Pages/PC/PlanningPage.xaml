@@ -7,13 +7,6 @@
              xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
              x:Class="HomeBudget.Pages.PC.PlanningPage">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <local:CurrencyDataGridHeader x:Key="CurrencyDataGridHeader" />
-            <local:GroupCaptionConverter x:Key="SummaryConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
-    
     <ContentPage.Content>
 
         <Grid>
@@ -91,18 +84,6 @@
                     <Label Text="Brak danych" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     <chart:SfChart x:Name="chartExpense" Grid.Column="1" />
                 </Grid>
-
-                <!--<syncfusion:SfDataGrid x:Name="listView" Grid.Column="0" Grid.Row="2" AutoGenerateColumns="False" AllowGroupExpandCollapse="True" AutoExpandGroups="False">
-                    <syncfusion:SfDataGrid.CaptionSummaryTemplate>
-                        <DataTemplate>
-                            <Label Text="{Binding Converter={StaticResource SummaryConverter}, ConverterParameter = {x:Reference listView} }"
-                                    FontAttributes="Bold"
-                                    FontFamily="Lato"
-                                   TextColor="#232825"
-                                   VerticalTextAlignment="Center"/>
-                        </DataTemplate>
-                    </syncfusion:SfDataGrid.CaptionSummaryTemplate>
-                </syncfusion:SfDataGrid>-->
                 <ScrollView Grid.Column="0" Grid.Row="2">
                     <StackLayout x:Name="tableLayout" Spacing="25" />
                 </ScrollView>

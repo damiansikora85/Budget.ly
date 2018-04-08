@@ -15,6 +15,8 @@ namespace HomeBudget.Pages.Utils
 {
     public class BudgetSummaryDataViewModel : INotifyPropertyChanged
     {
+        public string CategoryName => CategoryReal.Name;
+
         public BaseBudgetCategory CategoryPlanned
         {
             get;
@@ -39,7 +41,12 @@ namespace HomeBudget.Pages.Utils
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpendPercentageInt"));
         }
 
-        public string IconFile { get; set; }
+        private string icon;
+        public string IconFile
+        {
+            get => "ms-appx:///" + icon;
+            set => icon = value;
+        }
         public double SpendPercentage
         {
             get

@@ -26,6 +26,6 @@
                     <syncfusion:SfDataGrid  x:Name="DataGrid" AutoGenerateColumns="False" />
                 </ContentView>
             </Grid>
-        </StackLayout>
+      </StackLayout>
   </ContentView.Content>
 </ContentView>

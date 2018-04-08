@@ -54,24 +54,24 @@ namespace HomeBudget.Pages.PC
             BindingContext = viewModel;
             addButton.GestureRecognizers.Add(new TapGestureRecognizer(OnAddClick));
             calculatorViewModel = new CalculatorViewModel();
-            sideBar.SetMode(Views.SideBarPC.EMode.Home);
+            //sideBar.SetMode(Views.SideBarPC.EMode.Home);
 
             UserDialogs.Instance.ShowLoading("Loading...");
 
-            if (MainBudget.Instance.IsInitialized == false)
+            if (!MainBudget.Instance.IsInitialized)
                 InitBudget();
             else
                 OnBudgetLoaded();
             
             lockTapGesture = false;
 
-            CultureInfo cultureInfoPL = new CultureInfo("pl-PL");
-            DateTime currentDate = DateTime.Now;
+            var cultureInfoPL = new CultureInfo("pl-PL");
+            var currentDate = DateTime.Now;
             dateText.Text = currentDate.ToString("dd MMMM yyyy", cultureInfoPL);
 
             calendar.Locale = cultureInfoPL;
             //calendar.ShowHeader = false;
-            MonthViewSettings monthViewSettings = new MonthViewSettings
+            var monthViewSettings = new MonthViewSettings
             {
                 HeaderBackgroundColor = Color.FromHex("#D2F3DF"),
                 //HeaderFont = Font.,
@@ -85,14 +85,12 @@ namespace HomeBudget.Pages.PC
 
         private void SelectedMonthChanged(object sender, MonthChangedEventArgs args)
         {
-            DateTime d = args.args.CurrentValue;
+            var d = args.args.CurrentValue;
         }
 
         private void InitBudget()
         {
-            var assembly = typeof(MainPagePC).GetTypeInfo().Assembly;
-
-            MainBudget.Instance.Init(assembly);
+            MainBudget.Instance.Init();
             MainBudget.Instance.onBudgetLoaded += OnBudgetLoaded;
 
             if (string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken) == false)
@@ -215,11 +213,11 @@ namespace HomeBudget.Pages.PC
 
         private void CreateCategoriesBar()
         {
-            ObservableCollection<BudgetViewModelData> catagoriesData = new ObservableCollection<BudgetViewModelData>();
-            BudgetReal budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
+            var catagoriesData = new ObservableCollection<BudgetViewModelData>();
+            var budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
             foreach(BaseBudgetCategory category in budgetReal.Categories)
             {
-                BudgetViewModelData model = new BudgetViewModelData()
+                var model = new BudgetViewModelData()
                 {
                     Name = category.Name,
                     Category = category

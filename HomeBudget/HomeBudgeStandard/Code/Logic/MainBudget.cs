@@ -81,10 +81,12 @@ namespace HomeBudget.Code
             DropboxManager.Instance.onDownloadError += SynchronizeError;
 		}
 
-        public void Init(Assembly assembly)
+        public void Init()
         {
-            Stream stream = assembly.GetManifestResourceStream(TEMPLATE_FILENAME);
-            string jsonString = "";
+            var assembly = typeof(MainBudget).GetTypeInfo().Assembly;
+            //var names = ass.GetManifestResourceNames();
+            var stream = assembly.GetManifestResourceStream(TEMPLATE_FILENAME);
+            var jsonString = "";
             using (var reader = new System.IO.StreamReader(stream))
             {
                 jsonString = reader.ReadToEnd();
@@ -95,7 +97,7 @@ namespace HomeBudget.Code
 
         public byte[] GetData()
         {
-            List<byte> byteList = new List<byte>();
+            var byteList = new List<byte>();
             byteList.AddRange(BitConverter.GetBytes(months.Count));
             foreach (BudgetMonth month in months)
             {
@@ -107,16 +109,16 @@ namespace HomeBudget.Code
 
         public async Task<bool> Save(bool upload = true)
         {
-            IFolder rootFolder = FileSystem.Current.LocalStorage;
-            ExistenceCheckResult result = await rootFolder.CheckExistsAsync(SAVE_DIRECTORY_NAME);
+            var rootFolder = FileSystem.Current.LocalStorage;
+            var result = await rootFolder.CheckExistsAsync(SAVE_DIRECTORY_NAME);
             if(result == ExistenceCheckResult.NotFound)
                 await rootFolder.CreateFolderAsync(SAVE_DIRECTORY_NAME, CreationCollisionOption.OpenIfExists);
 
-            IFolder folder = await rootFolder.GetFolderAsync(SAVE_DIRECTORY_NAME);
+            var folder = await rootFolder.GetFolderAsync(SAVE_DIRECTORY_NAME);
 
-            IFile file = await folder.CreateFileAsync(SAVE_FILE_NAME, CreationCollisionOption.ReplaceExisting);
+            var file = await folder.CreateFileAsync(SAVE_FILE_NAME, CreationCollisionOption.ReplaceExisting);
 
-            List<byte> byteList = new List<byte>();
+            var byteList = new List<byte>();
             byteList.AddRange(BitConverter.GetBytes(VERSION));
             byteList.AddRange(budgetPlanned.Serialize());
             byteList.AddRange(BitConverter.GetBytes(months.Count));
@@ -125,8 +127,8 @@ namespace HomeBudget.Code
                 byteList.AddRange(month.Serialize());
             }
 
-            byte[] data = byteList.ToArray();
-            char[] chars = new char[data.Length / sizeof(char)+1];
+            var data = byteList.ToArray();
+            var chars = new char[data.Length / sizeof(char)+1];
             Buffer.BlockCopy(data, 0, chars, 0, data.Length);
 
             await file.WriteAllTextAsync(new string(chars));
@@ -139,8 +141,8 @@ namespace HomeBudget.Code
 
         public async Task Load()
         {
-            IFolder rootFolder = FileSystem.Current.LocalStorage;
-            ExistenceCheckResult result = await rootFolder.CheckExistsAsync(SAVE_DIRECTORY_NAME);
+            var rootFolder = FileSystem.Current.LocalStorage;
+            var result = await rootFolder.CheckExistsAsync(SAVE_DIRECTORY_NAME);
 
             if (result == ExistenceCheckResult.NotFound)
             {
@@ -149,28 +151,28 @@ namespace HomeBudget.Code
                 return;
             }
 
-            IFolder folder = await rootFolder.GetFolderAsync(SAVE_DIRECTORY_NAME);
-            string path = folder.Path;
-            IFile file = await folder.CreateFileAsync(SAVE_FILE_NAME, CreationCollisionOption.OpenIfExists);
-            string dataString = await file.ReadAllTextAsync();
+            var folder = await rootFolder.GetFolderAsync(SAVE_DIRECTORY_NAME);
+            var path = folder.Path;
+            var file = await folder.CreateFileAsync(SAVE_FILE_NAME, CreationCollisionOption.OpenIfExists);
+            var dataString = await file.ReadAllTextAsync();
             if (dataString.Length > 0)
             {
-                byte[] data = new byte[dataString.Length * sizeof(char)];
+                var data = new byte[dataString.Length * sizeof(char)];
                 Buffer.BlockCopy(dataString.ToCharArray(), 0, data, 0, dataString.Length*sizeof(char));
-                BinaryData binaryData = new BinaryData(data);
-                int version = binaryData.GetInt();
+                var binaryData = new BinaryData(data);
+                var version = binaryData.GetInt();
                 budgetPlanned.Deserialize(binaryData);
-                int numMonths = binaryData.GetInt();
+                var numMonths = binaryData.GetInt();
                 for (int i = 0; i < numMonths; i++)
                 {
-                    BudgetMonth month = BudgetMonth.CreateFromBinaryData(binaryData);
+                    var month = BudgetMonth.CreateFromBinaryData(binaryData);
                     month.onBudgetPlannedChanged += OnPlannedBudgetChanged;
                     months.Add(month);
                 }
             }
 
             initialized = true;
-            onBudgetLoaded();
+            onBudgetLoaded?.Invoke();
         }
 
         private void OnPlannedBudgetChanged()
@@ -182,16 +184,16 @@ namespace HomeBudget.Code
         private void SynchronizeData(byte[] data)
         {
             months.Clear();
-            BinaryData binaryData = new BinaryData(data);
-            int numMonths = binaryData.GetInt();
+            var binaryData = new BinaryData(data);
+            var numMonths = binaryData.GetInt();
             for (int i = 0; i < numMonths; i++)
             {
-                BudgetMonth month = BudgetMonth.CreateFromBinaryData(binaryData);
+                var month = BudgetMonth.CreateFromBinaryData(binaryData);
                 month.onBudgetPlannedChanged += OnPlannedBudgetChanged;
                 months.Add(month);
             }
 
-            onBudgetLoaded();
+            onBudgetLoaded?.Invoke();
             Save(false);
         }
 
@@ -202,14 +204,14 @@ namespace HomeBudget.Code
 
         public async Task AddExpense(float value, DateTime date, int categoryID, int subcatID)
         {
-            BudgetMonth month = GetMonth(date);
+            var month = GetMonth(date);
             month.AddExpense(value, date, categoryID, subcatID);
             await Save();
         }
 
         public async Task AddIncome(float value, DateTime date, int incomeCategoryId)
         {
-            BudgetMonth month = GetMonth(date);
+            var month = GetMonth(date);
             month.AddIncome(value, date, incomeCategoryId);
             await Save();
         }
@@ -232,7 +234,7 @@ namespace HomeBudget.Code
 
         public BudgetMonth GetMonth(DateTime date)
 		{
-			BudgetMonth month = months.Find(x => x.Month == date.Month && x.Year == date.Year);
+			var month = months.Find(x => x.Month == date.Month && x.Year == date.Year);
 			if (month == null)
 			{
 				month = BudgetMonth.Create(budgetDescription.Categories, budgetDescription.Incomes, date);

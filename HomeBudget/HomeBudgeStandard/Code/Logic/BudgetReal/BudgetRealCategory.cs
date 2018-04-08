@@ -10,7 +10,7 @@ namespace HomeBudget.Code.Logic
     {
         public static BudgetRealCategory Create(BudgetCategoryTemplate categoryDesc)
         {
-            BudgetRealCategory category = new BudgetRealCategory()
+            var category = new BudgetRealCategory()
             {
                 Name = categoryDesc.Name,
                 Id = categoryDesc.Id,
@@ -21,7 +21,7 @@ namespace HomeBudget.Code.Logic
             int index = 0;
             foreach (string subcatName in categoryDesc.subcategories)
             {
-                RealSubcat subcat = RealSubcat.Create(subcatName, index++);
+                var subcat = RealSubcat.Create(subcatName, index++);
                 subcat.PropertyChanged += category.OnSubcatChanged;
                 category.subcats.Add(subcat);
             }
@@ -32,10 +32,11 @@ namespace HomeBudget.Code.Logic
         public override void Deserialize(BinaryData binaryData)
         {
             base.Deserialize(binaryData);
-            int subcatNum = binaryData.GetInt();
+            var subcatNum = binaryData.GetInt();
             for (int i = 0; i < subcatNum; i++)
             {
-                RealSubcat subcat = new RealSubcat();
+                var subcat = new RealSubcat();
+                subcat.PropertyChanged += OnSubcatChanged;
                 subcat.Deserialize(binaryData);
                 subcats.Add(subcat);
             }
@@ -43,7 +44,7 @@ namespace HomeBudget.Code.Logic
 
         public void AddValue(double value, DateTime date, int subcatId)
         {
-            RealSubcat subcat = subcats.Find(elem => elem.Id == subcatId) as RealSubcat;
+            var subcat = subcats.Find(elem => elem.Id == subcatId) as RealSubcat;
             subcat.AddValue(value, date);
         }
     }

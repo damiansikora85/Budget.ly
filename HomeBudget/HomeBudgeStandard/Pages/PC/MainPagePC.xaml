@@ -29,16 +29,16 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="10*" />
+                
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <custom:SideBarPC x:Name="sideBar"/>
+            
 
-            <Grid Grid.Column="1" Grid.Row="0" BackgroundColor="#f9f9f9">
+            <Grid Grid.Column="0" Grid.Row="0" BackgroundColor="#f9f9f9">
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnTap" />
                 </Grid.GestureRecognizers>
@@ -194,12 +194,7 @@
                                     <OnPlatform.Android>0, 0, 0, 0</OnPlatform.Android>
                                 </OnPlatform>
                             </Grid.Padding>
-                            <!--<Grid.ColumnSpacing>
-                                <OnPlatform x:TypeArguments="x:Double">
-                                    <OnPlatform.iOS>30</OnPlatform.iOS>
-                                    <OnPlatform.Android>0</OnPlatform.Android>
-                                </OnPlatform>
-                            </Grid.ColumnSpacing>-->
+
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />

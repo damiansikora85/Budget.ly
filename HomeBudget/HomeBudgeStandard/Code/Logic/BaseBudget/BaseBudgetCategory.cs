@@ -45,7 +45,7 @@ namespace HomeBudget.Code.Logic
 
         public virtual byte[] Serialize()
         {
-            List<byte> bytes = new List<byte>();
+            var bytes = new List<byte>();
             bytes.AddRange(BinaryData.GetBytes(Name));
             bytes.AddRange(BitConverter.GetBytes(Id));
             bytes.AddRange(BitConverter.GetBytes(IsIncome));
