@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -17,12 +18,14 @@ namespace HomeBudget.UWP
             //new Syncfusion.SfChart.XForms.UWP.SfChartRenderer();
             //Syncfusion.SfDataGrid.XForms.UWP.SfDataGridRenderer.Init();
 
-            this.InitializeComponent();
+            InitializeComponent();
 
             //ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
             //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
             //LoadApplication(new HomeBudget.App());
+
+            ContentFrame.Content = new ProgressRing { IsActive = true };
 
 
             if (!MainBudget.Instance.IsInitialized)
@@ -36,50 +39,34 @@ namespace HomeBudget.UWP
             MainBudget.Instance.Init();
             MainBudget.Instance.onBudgetLoaded += OnBudgetLoaded;
 
-            /*if (!string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken))
+            if (!string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken))
             {
-                //DropboxButtonChangeVisibility(false);
-                //DropboxLoginElement.IsVisible = false;
-                DropboxManager.Instance.DownloadData();
+                Task.Run(() => DropboxManager.Instance.DownloadData());
             }
-            else*/
+            else
             {
-                //DropboxButtonChangeVisibility(true);
-                MainBudget.Instance.Load();
+                Task.Run(() => MainBudget.Instance.Load());
             }
         }
 
         private void OnBudgetLoaded()
         {
-            //SetupBudgetSummary();
-            /*CreateCategoriesBar();
-            CreateIncomesBar();
-            SetupBudgetSummary();
-            budgetSummaryElement = new BudgetSummaryListView();
-            budgetSummaryElement.Setup(listView);
-            DropboxButtonChangeVisibility(false);
-
-            UserDialogs.Instance.HideLoading();*/
-
-            foreach (NavigationViewItemBase item in NavView.MenuItems)
-            {
-                if (item is NavigationViewItem && item.Tag.ToString() == "home")
+            Task.Run(async () =>
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => 
                 {
-                    NavView.SelectedItem = item;
-                    break;
-                }
-            }
+                    foreach (NavigationViewItemBase item in NavView.MenuItems)
+                    {
+                        if (item is NavigationViewItem && item.Tag.ToString() == "home")
+                        {
+                            NavView.SelectedItem = item;
+                            break;
+                        }
+                    }
+                }));
         }
-
-        
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
-
-            // set the initial SelectedItem 
-            
-
-            //ContentFrame.Navigate(typeof(HomePage));
 
         }
 

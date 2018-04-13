@@ -147,7 +147,7 @@ namespace HomeBudget.Code
             if (result == ExistenceCheckResult.NotFound)
             {
                 initialized = true;
-                onBudgetLoaded();
+                onBudgetLoaded?.Invoke();
                 return;
             }
 
@@ -177,24 +177,30 @@ namespace HomeBudget.Code
 
         private void OnPlannedBudgetChanged()
         {
-            if(onPlannedBudgetChanged != null)
-                onPlannedBudgetChanged();
+            onPlannedBudgetChanged?.Invoke();
         }
 
         private void SynchronizeData(byte[] data)
         {
-            months.Clear();
-            var binaryData = new BinaryData(data);
-            var numMonths = binaryData.GetInt();
-            for (int i = 0; i < numMonths; i++)
+            if (data.Length == 0)
             {
-                var month = BudgetMonth.CreateFromBinaryData(binaryData);
-                month.onBudgetPlannedChanged += OnPlannedBudgetChanged;
-                months.Add(month);
+                Task.Run(() => Load());
             }
+            else
+            {
+                months.Clear();
+                var binaryData = new BinaryData(data);
+                var numMonths = binaryData.GetInt();
+                for (int i = 0; i < numMonths; i++)
+                {
+                    var month = BudgetMonth.CreateFromBinaryData(binaryData);
+                    month.onBudgetPlannedChanged += OnPlannedBudgetChanged;
+                    months.Add(month);
+                }
 
-            onBudgetLoaded?.Invoke();
-            Save(false);
+                onBudgetLoaded?.Invoke();
+                Task.Run(() => Save(false));
+            }
         }
 
         private void SynchronizeError()

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeBudget.Droid", "HomeBud
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeBudget.iOS", "HomeBudget\HomeBudget.iOS\HomeBudget.iOS.csproj", "{4D992DAD-7731-4679-8C61-49226EF81A8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeBudget.UWP.Xamarin", "HomeBudget\HomeBudget.UWP\HomeBudget.UWP.Xamarin.csproj", "{FCE03966-2366-4666-AF73-137733EDFB00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeBudget.UWP", "HomeBudget\HomeBudget.UWP\HomeBudget.UWP.csproj", "{FCE03966-2366-4666-AF73-137733EDFB00}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeBudgeStandard", "HomeBudget\HomeBudgeStandard\HomeBudgeStandard.csproj", "{27E2BC12-14A4-4811-9A83-A349E4608287}"
 EndProject
@@ -15,7 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeBudget.UnitTests", "Hom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeBudget.UITests", "HomeBudget.UITests\HomeBudget.UITests.csproj", "{06C7ECE6-4F00-4B25-8E31-9BC49149E656}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HomeBudgetShared", "HomeBudgetShared\HomeBudgetShared.shproj", "{CE69FA3F-90B4-4F8F-8F90-64913D25A155}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		HomeBudgetShared\HomeBudgetShared.projitems*{ce69fa3f-90b4-4f8f-8f90-64913d25a155}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
 		Ad-Hoc|ARM = Ad-Hoc|ARM

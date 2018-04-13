@@ -1,7 +1,10 @@
-﻿using FFImageLoading;
+﻿using Autofac;
+using FFImageLoading;
 using FFImageLoading.Forms;
 using FFImageLoading.Forms.WinUWP;
-
+using HomeBudgeStandard.Code.Dropbox;
+using HomeBudgeStandard.Code.Logic;
+using HomeBudget.Code;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -36,7 +39,13 @@ namespace HomeBudget.UWP
 		{
 			this.InitializeComponent();
 			this.Suspending += OnSuspending;
-		}
+
+            //Ioc
+            /*var builder = new ContainerBuilder();
+            builder.RegisterType<DropboxManager>().As<IDropbox>();
+            builder.RegisterType<MainBudget>().As<IMainBudget>().SingleInstance();
+            var container = builder.Build();*/
+        }
 
 		/// <summary>
 		/// Invoked when the application is launched normally by the end user.  Other entry points

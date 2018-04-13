@@ -1,5 +1,9 @@
-﻿using System;
+﻿using HomeBudget.Code;
+using HomeBudget.Utils;
+using Syncfusion.UI.Xaml.Grid;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,9 +26,50 @@ namespace HomeBudget.UWP.Pages
     /// </summary>
     public sealed partial class AnalyticsPage : Page
     {
+        ObservableCollection<BudgetViewModelData> Budget = new ObservableCollection<BudgetViewModelData>();
+
         public AnalyticsPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+
+            var budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
+
+            foreach (var category in budgetReal.Categories)
+            {
+                foreach (var subcat in category.subcats)
+                {
+                    var model = new BudgetViewModelData
+                    {
+                        Category = category,
+                        Subcat = subcat
+                    };
+                    Budget.Add(model);
+                }
+            }
+
+            var gridTextColumn = new GridTextColumn
+            {
+                MappingName = "Subcat.Name",
+                TextAlignment = TextAlignment.Start,
+                //Padding = new Thickness(24, 0),
+
+                /*HeaderTemplate = new DataTemplate(() =>
+                {
+                    var label = new Label
+                    {
+                        Text = "Kategoria",
+                        //FontSize = 12,
+                        TextColor = Color.Gray,
+                        HorizontalTextAlignment = TextAlignment.Start,
+                        VerticalOptions = LayoutOptions.Center
+                    };
+                    return label;
+                }),*/
+                //RecordFont = "Lato",
+                //ColumnSizer = ColumnSizer.Auto
+            };
+
+            DataGrid.Columns.Add(gridTextColumn);
         }
     }
 }

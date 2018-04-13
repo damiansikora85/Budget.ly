@@ -7,10 +7,11 @@ using Dropbox.Api;
 using Dropbox.Api.Files;
 using Xamarin.Forms;
 using System.IO;
+using HomeBudgeStandard.Code.Dropbox;
 
 namespace HomeBudget.Code
 {
-    public class DropboxManager
+    public class DropboxManager : IDropbox
     {
         private static DropboxManager instance;
         public static DropboxManager Instance
@@ -59,14 +60,20 @@ namespace HomeBudget.Code
                 return;
             try
             {
-                Metadata metadata = await dropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH);
+                var metadata = await dropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH);
                 using (var response = await dropboxClient.Files.DownloadAsync(DROPBOX_DATA_FILE_PATH))
                 {
-                    byte[] data = await response.GetContentAsByteArrayAsync();
+                    var data = await response.GetContentAsByteArrayAsync();
                     onDownloadFinished?.Invoke(data);
+                    response.Dispose();
                 }
             }      
-            catch
+            catch(ApiException<GetMetadataError>)
+            {
+                //file not found
+                onDownloadFinished?.Invoke(new byte[0]);
+            }
+            catch(Exception)
             {
                 onDownloadError?.Invoke();
             }
@@ -77,7 +84,7 @@ namespace HomeBudget.Code
             if (dropboxClient == null)
                 return;
 
-            MemoryStream memoryStream = new MemoryStream(data);
+            var memoryStream = new MemoryStream(data);
             await dropboxClient.Files.UploadAsync(DROPBOX_DATA_FILE_PATH, WriteMode.Overwrite.Instance, body: memoryStream);
             onUploadFinished?.Invoke();
         }

@@ -57,11 +57,9 @@ namespace HomeBudget.UWP.Pages
             flyout.Closed += ShowSubcats;
 
             SummaryListViewItems = GetBudgetSummaryData();
-            SelectedCategorySubcats = new ObservableCollection<BaseBudgetSubcat>();// SummaryListViewItems[0].CategoryReal.subcats);
+            SelectedCategorySubcats = new ObservableCollection<BaseBudgetSubcat>();
 
-            SetupBudgetSummary();
-
-            
+            SetupBudgetSummary();   
         }
 
         private void SetupBudgetSummary()
@@ -115,6 +113,7 @@ namespace HomeBudget.UWP.Pages
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            SelectedCategorySubcats.Clear();
             FlyoutBase.ShowAttachedFlyout(MainPanel);
         }
 
@@ -123,7 +122,7 @@ namespace HomeBudget.UWP.Pages
             var flyout = FlyoutBase.GetAttachedFlyout(MainPanel);
             var listView = (ListView)sender;
             var selectedCategory = (BudgetSummaryDataViewModel)listView.SelectedItem;
-            SelectedCategorySubcats.Clear();
+            
             foreach(var item in selectedCategory.CategoryReal.subcats)
                 SelectedCategorySubcats.Add(item);
 
@@ -153,12 +152,6 @@ namespace HomeBudget.UWP.Pages
 
                 SetupBudgetSummary();
                 calc.Hide();
-
-
-                    //if month changed
-                    //var budgetMonth = MainBudget.Instance.GetMonth(selectedDate);
-                    //var subcatNew = (RealSubcat)budgetMonth.BudgetReal.Categories[data.Category.Id].subcats[data.Subcat.Id];
-                    //subcatNew.AddValue(calculationResult, selectedDate); 
             };
             
             calc.ShowAsync();
@@ -166,7 +159,8 @@ namespace HomeBudget.UWP.Pages
 
         private void ShowSubcats(object sender, object e)
         {
-            FlyoutBase.ShowAttachedFlyout(MainGrid);
+            if(SelectedCategorySubcats.Count() > 0)
+                FlyoutBase.ShowAttachedFlyout(MainGrid);
         }
     }
 }

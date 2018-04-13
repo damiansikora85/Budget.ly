@@ -432,9 +432,9 @@ namespace HomeBudget.Pages.PC
 
         private async void WebViewOnNavigating(object sender, WebNavigatingEventArgs e)
         {
-            if (!e.Url.StartsWith(RedirectUri, StringComparison.OrdinalIgnoreCase))
+            if (!e.Url.StartsWith(RedirectUri.ToString(), StringComparison.OrdinalIgnoreCase))
             {
-                // we need to ignore all navigation that isn't to the redirect uri.
+                // we need to ignore all navigation that isn't to the redirect uri.  
                 return;
             }
 

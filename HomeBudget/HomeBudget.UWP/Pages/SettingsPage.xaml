@@ -7,7 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    </Grid>
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Spacing="5">
+            <TextBlock Text="Dropbox" FontSize="24" FontWeight="Bold"/>
+            <Button Click="ConnectWithDropbox" Background="Transparent">
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <Image Source="ms-appx:///Assets/dropbox-icon.png" Height="30"/>
+                    <TextBlock Text="Connect with Dropbox" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </StackPanel>
 </Page>
