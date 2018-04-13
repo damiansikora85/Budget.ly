@@ -80,7 +80,7 @@ namespace HomeBudget.UWP
                 {
                     typeof(CachedImage).GetTypeInfo().Assembly,
                     typeof(CachedImageRenderer).GetTypeInfo().Assembly,
-                    typeof(Syncfusion.SfChart.XForms.UWP.SfChartRenderer).GetTypeInfo().Assembly
+                    //typeof(Syncfusion.SfChart.XForms.UWP.SfChartRenderer).GetTypeInfo().Assembly
                 };
 				assembliesToInclude.AddRange(Rg.Plugins.Popup.Windows.Popup.GetExtraAssemblies());
 				Xamarin.Forms.Forms.Init(e, assembliesToInclude);
