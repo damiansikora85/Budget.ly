@@ -148,6 +148,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\DelegateCommnd.cs" />
+    <Compile Include="Utils\Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -270,11 +271,11 @@
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>1.0.4</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Calculate.UWP">
+      <Version>16.1.0.32</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.SfGrid.UWP46">
       <Version>16.1.0.26</Version>
-    </PackageReference>
-    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid">
-      <Version>16.1.0.32</Version>
     </PackageReference>
     <PackageReference Include="WindowsAzure.Storage">
       <Version>8.1.0</Version>
@@ -301,12 +302,7 @@
       <Version>2.5.0.122203</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HomeBudgeStandard\HomeBudgeStandard.csproj">
-      <Project>{27e2bc12-14a4-4811-9a83-a349e4608287}</Project>
-      <Name>HomeBudgeStandard</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <Import Project="..\..\HomeBudgetShared\HomeBudgetShared.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

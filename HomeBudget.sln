@@ -20,6 +20,7 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		HomeBudgetShared\HomeBudgetShared.projitems*{ce69fa3f-90b4-4f8f-8f90-64913d25a155}*SharedItemsImports = 13
+		HomeBudgetShared\HomeBudgetShared.projitems*{fce03966-2366-4666-af73-137733edfb00}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU

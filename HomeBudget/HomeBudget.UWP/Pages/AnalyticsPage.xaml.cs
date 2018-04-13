@@ -51,6 +51,7 @@ namespace HomeBudget.UWP.Pages
             {
                 MappingName = "Subcat.Name",
                 TextAlignment = TextAlignment.Start,
+                
                 //Padding = new Thickness(24, 0),
 
                 /*HeaderTemplate = new DataTemplate(() =>
@@ -70,6 +71,7 @@ namespace HomeBudget.UWP.Pages
             };
 
             DataGrid.Columns.Add(gridTextColumn);
+            DataGrid.ItemsSource = Budget;
         }
     }
 }

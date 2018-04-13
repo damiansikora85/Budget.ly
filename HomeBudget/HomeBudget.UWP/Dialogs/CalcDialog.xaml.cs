@@ -4,10 +4,8 @@ using System.Globalization;
 using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using HomeBudget.ViewModels;
-using static HomeBudget.ViewModels.MainPagePcViewModel;
 using System.ComponentModel;
-using Syncfusion.Calculate;
+using Syncfusion.Calculate.Helpers;
 
 // The Content Dialog item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -15,6 +13,32 @@ namespace HomeBudget.UWP
 {
     public sealed partial class CalcDialog : ContentDialog, INotifyPropertyChanged
     {
+        public enum CalculatorKey
+        {
+            Zero = 0,
+            One = 1,
+            Two = 2,
+            Three = 3,
+            Four = 4,
+            Five = 5,
+            Six = 6,
+            Seven = 7,
+            Eight = 8,
+            Nine = 9,
+            Backspace = 20,
+            Clear,
+            PlusMinus,
+            Divide,
+            Multiply,
+            Minus,
+            Plus,
+            Equal,
+            Point,
+            Ok,
+            Cancel,
+            Calendar
+        }
+
         public DelegateCommand KeyPressed { get; private set; }
         public Action<double, DateTime> OnSaveValue;
 
