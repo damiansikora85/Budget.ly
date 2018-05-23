@@ -4,18 +4,20 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProtoBuf;
 
 namespace HomeBudget.Code.Logic
 {
+    [ProtoContract]
     public class BudgetPlannedCategory : BaseBudgetCategory
     {
         public BudgetPlannedCategory() : base() { }
 
         public BudgetPlannedCategory(BudgetPlannedCategory category) : base(category)
         {
-            foreach (BaseBudgetSubcat subcat in category.subcats)
+            foreach (var subcat in category.subcats)
             {
-                PlannedSubcat plannedSubcat = new PlannedSubcat(subcat);
+                var plannedSubcat = new PlannedSubcat(subcat);
                 plannedSubcat.PropertyChanged += OnSubcatChanged;
                 subcats.Add(new PlannedSubcat(subcat));
             }
@@ -23,7 +25,7 @@ namespace HomeBudget.Code.Logic
 
         public static BudgetPlannedCategory Create(BudgetCategoryTemplate categoryDesc)
         {
-            BudgetPlannedCategory category = new BudgetPlannedCategory()
+            var category = new BudgetPlannedCategory()
             {
                 Name = categoryDesc.Name,
                 Id = categoryDesc.Id,
@@ -34,7 +36,7 @@ namespace HomeBudget.Code.Logic
             int index = 0;
             foreach (string subcatName in categoryDesc.subcategories)
             {
-                PlannedSubcat subcat = PlannedSubcat.Create(subcatName, index++);
+                var subcat = PlannedSubcat.Create(subcatName, index++);
                 subcat.PropertyChanged += category.OnSubcatChanged;
                 category.subcats.Add(subcat);
             }
@@ -48,7 +50,7 @@ namespace HomeBudget.Code.Logic
             int subcatNum = binaryData.GetInt();
             for (int i = 0; i < subcatNum; i++)
             {
-                PlannedSubcat subcat = new PlannedSubcat();
+                var subcat = new PlannedSubcat();
                 subcat.PropertyChanged += OnSubcatChanged;
                 subcat.Deserialize(binaryData);
                 subcats.Add(subcat);

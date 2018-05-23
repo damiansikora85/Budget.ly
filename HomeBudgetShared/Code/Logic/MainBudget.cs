@@ -1,10 +1,9 @@
 ﻿using HomeBudget.Code.Logic;
+using HomeBudgetShared.Code.Interfaces;
 using Newtonsoft.Json;
-using PCLStorage;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -44,6 +43,9 @@ namespace HomeBudget.Code
         private const int VERSION = 1;
         private List<BudgetMonth> months;
         private BudgetPlanned budgetPlanned;
+
+        private IFileManager _fileManager;
+        private ICloudStorage _cloudStorage;
         private bool initialized;
         public bool IsInitialized
         {
@@ -76,13 +78,20 @@ namespace HomeBudget.Code
 			months = new List<BudgetMonth>();
             budgetPlanned = new BudgetPlanned();
             initialized = false;
-
-            DropboxManager.Instance.onDownloadFinished += SynchronizeData;
-            DropboxManager.Instance.onDownloadError += SynchronizeError;
 		}
 
-        public void Init()
+        public void CloudStorageConnected()
         {
+            Task.Run(() => _cloudStorage.DownloadData());
+        }
+
+        public void Init(IFileManager fileManager, ICloudStorage cloudStorage)
+        {
+            _fileManager = fileManager;
+            _cloudStorage = cloudStorage;
+            _cloudStorage.OnDownloadFinished += SynchronizeData;
+            _cloudStorage.OnDownloadError += SynchronizeError;
+
             var assembly = typeof(MainBudget).GetTypeInfo().Assembly;
             //var names = assembly.GetManifestResourceNames();
             var stream = assembly.GetManifestResourceStream(TEMPLATE_FILENAME);
@@ -92,6 +101,15 @@ namespace HomeBudget.Code
                 jsonString = reader.ReadToEnd();
                 budgetDescription = JsonConvert.DeserializeObject<BudgetDescription>(jsonString);
                 budgetPlanned.Setup(budgetDescription.Categories);
+            }
+
+            if (!string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken))
+            {
+                Task.Run(() => _cloudStorage.DownloadData());
+            }
+            else
+            {
+                Task.Run(() => LoadAsync());
             }
         }
 
@@ -109,66 +127,36 @@ namespace HomeBudget.Code
 
         public async Task<bool> Save(bool upload = true)
         {
-            var rootFolder = FileSystem.Current.LocalStorage;
-            var result = await rootFolder.CheckExistsAsync(SAVE_DIRECTORY_NAME);
-            if(result == ExistenceCheckResult.NotFound)
-                await rootFolder.CreateFolderAsync(SAVE_DIRECTORY_NAME, CreationCollisionOption.OpenIfExists);
-
-            var folder = await rootFolder.GetFolderAsync(SAVE_DIRECTORY_NAME);
-
-            var file = await folder.CreateFileAsync(SAVE_FILE_NAME, CreationCollisionOption.ReplaceExisting);
-
-            var byteList = new List<byte>();
-            byteList.AddRange(BitConverter.GetBytes(VERSION));
-            byteList.AddRange(budgetPlanned.Serialize());
-            byteList.AddRange(BitConverter.GetBytes(months.Count));
-            foreach (BudgetMonth month in months)
+            try
             {
-                byteList.AddRange(month.Serialize());
+                var saveData = new BudgetData
+                {
+                    Version = VERSION,
+                    TimeStamp = DateTime.Now,
+                    BudgetPlanned = budgetPlanned,
+                    Months = months
+                };
+                await _fileManager.Save(saveData);
+
+                if(upload)
+                    await _cloudStorage.UploadData(saveData);
+
             }
-
-            var data = byteList.ToArray();
-            var chars = new char[data.Length / sizeof(char)+1];
-            Buffer.BlockCopy(data, 0, chars, 0, data.Length);
-
-            await file.WriteAllTextAsync(new string(chars));
-
-            if(upload)
-                await DropboxManager.Instance.UploadData(data);
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
 
             return true;
-        }
+        }                                                                                                                                                                                                         
 
-        public async Task Load()
+        public async Task LoadAsync()
         {
-            var rootFolder = FileSystem.Current.LocalStorage;
-            var result = await rootFolder.CheckExistsAsync(SAVE_DIRECTORY_NAME);
-
-            if (result == ExistenceCheckResult.NotFound)
+            var data = await _fileManager.Load();
+            if (data != null)
             {
-                initialized = true;
-                onBudgetLoaded?.Invoke();
-                return;
-            }
-
-            var folder = await rootFolder.GetFolderAsync(SAVE_DIRECTORY_NAME);
-            var path = folder.Path;
-            var file = await folder.CreateFileAsync(SAVE_FILE_NAME, CreationCollisionOption.OpenIfExists);
-            var dataString = await file.ReadAllTextAsync();
-            if (dataString.Length > 0)
-            {
-                var data = new byte[dataString.Length * sizeof(char)];
-                Buffer.BlockCopy(dataString.ToCharArray(), 0, data, 0, dataString.Length*sizeof(char));
-                var binaryData = new BinaryData(data);
-                var version = binaryData.GetInt();
-                budgetPlanned.Deserialize(binaryData);
-                var numMonths = binaryData.GetInt();
-                for (int i = 0; i < numMonths; i++)
-                {
-                    var month = BudgetMonth.CreateFromBinaryData(binaryData);
-                    month.onBudgetPlannedChanged += OnPlannedBudgetChanged;
-                    months.Add(month);
-                }
+                budgetPlanned = data.BudgetPlanned;
+                months = data.Months;
             }
 
             initialized = true;
@@ -180,23 +168,28 @@ namespace HomeBudget.Code
             onPlannedBudgetChanged?.Invoke();
         }
 
-        private void SynchronizeData(byte[] data)
+        private void SynchronizeData(BudgetData data)
         {
-            if (data.Length == 0)
+            if (data == null)
             {
-                Task.Run(() => Load());
+                Task.Run(() => LoadAsync());
             }
             else
             {
                 months.Clear();
-                var binaryData = new BinaryData(data);
+                if(data.Months != null)
+                    months = data.Months;
+                if(data.BudgetPlanned != null)
+                    budgetPlanned = data.BudgetPlanned;
+
+                /*var binaryData = new BinaryData(data);
                 var numMonths = binaryData.GetInt();
                 for (int i = 0; i < numMonths; i++)
                 {
                     var month = BudgetMonth.CreateFromBinaryData(binaryData);
                     month.onBudgetPlannedChanged += OnPlannedBudgetChanged;
                     months.Add(month);
-                }
+                */
 
                 onBudgetLoaded?.Invoke();
                 Task.Run(() => Save(false));
@@ -205,27 +198,27 @@ namespace HomeBudget.Code
 
         private void SynchronizeError()
         {
-            Load();
+            LoadAsync();
         }
 
         public async Task AddExpense(float value, DateTime date, int categoryID, int subcatID)
         {
             var month = GetMonth(date);
             month.AddExpense(value, date, categoryID, subcatID);
-            await Save();
+            Save();
         }
 
         public async Task AddIncome(float value, DateTime date, int incomeCategoryId)
         {
             var month = GetMonth(date);
             month.AddIncome(value, date, incomeCategoryId);
-            await Save();
+            Save();
         }
 
         public async Task UpdateMainPlannedBudget()
         {
             budgetPlanned = GetCurrentMonthData().BudgetPlanned;
-            await Save();
+            Save();
         }
 
         public double GetTotalPlannedExpensesForCurrentMonth()
@@ -243,7 +236,7 @@ namespace HomeBudget.Code
 			var month = months.Find(x => x.Month == date.Month && x.Year == date.Year);
 			if (month == null)
 			{
-				month = BudgetMonth.Create(budgetDescription.Categories, budgetDescription.Incomes, date);
+				month = BudgetMonth.Create(budgetDescription.Categories, date);
                 month.onBudgetPlannedChanged += OnPlannedBudgetChanged;
                 month.UpdatePlannedBudget(budgetPlanned);
                 months.Add(month);

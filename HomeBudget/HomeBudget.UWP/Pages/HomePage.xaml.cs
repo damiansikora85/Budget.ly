@@ -49,10 +49,10 @@ namespace HomeBudget.UWP.Pages
 
         public HomePage()
         {
-            this.InitializeComponent();
-            this.DataContext = this;
+            InitializeComponent();
+            DataContext = this;
 
-            var flyout = Flyout.GetAttachedFlyout(MainPanel);
+            var flyout = FlyoutBase.GetAttachedFlyout(MainPanel);
 
             flyout.Closed += ShowSubcats;
 
@@ -84,25 +84,17 @@ namespace HomeBudget.UWP.Pages
             var budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
             for (int i = 0; i < budgetReal.Categories.Count; i++)
             {
-                if (!budgetReal.Categories[i].IsIncome)
+                var budgetSummaryData = new BudgetSummaryDataViewModel
                 {
-                    var budgetSummaryData = new BudgetSummaryDataViewModel
-                    {
-                        CategoryReal = budgetReal.Categories[i],
-                        CategoryPlanned = budgetPlanned.Categories[i],
-                        IconFile = "Assets/Categories/" + categoriesDesc[i].IconFileName
-                    };
+                    CategoryReal = budgetReal.Categories[i],
+                    CategoryPlanned = budgetPlanned.Categories[i],
+                    IconFile = "Assets/Categories/" + categoriesDesc[i].IconFileName
+                };
 
-                    budgetSummaryCollection.Add(budgetSummaryData);
-                }
+                budgetSummaryCollection.Add(budgetSummaryData);
             }
 
             return budgetSummaryCollection;
-        }
-
-        private void OnDropboxClick(object obj, RoutedEventArgs args)
-        {
-
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)

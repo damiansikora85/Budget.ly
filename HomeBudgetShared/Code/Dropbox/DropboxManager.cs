@@ -1,92 +1,110 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dropbox.Api;
+﻿using Dropbox.Api;
 using Dropbox.Api.Files;
-using Xamarin.Forms;
-using System.IO;
 using HomeBudgeStandard.Code.Dropbox;
+using HomeBudget.Code.Logic;
+using HomeBudgetShared.Code.Interfaces;
+using ProtoBuf;
+using System;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace HomeBudget.Code
 {
-    public class DropboxManager : IDropbox
+    public class DropboxManager : ICloudStorage
     {
-        private static DropboxManager instance;
-        public static DropboxManager Instance
+        private DropboxClient _dropboxClient;
+        public DropboxClient DropboxClient
         {
             get
             {
-                if (instance == null)
-                    instance = new DropboxManager();
-
-                return instance;
+                if (Helpers.Settings.DropboxAccessToken != string.Empty && _dropboxClient == null)
+                {
+                    var accessToken = Helpers.Settings.DropboxAccessToken;
+                    _dropboxClient = new DropboxClient(accessToken);
+                }
+                return _dropboxClient;
             }
         }
-
-        private DropboxClient dropboxClient;
-        private string accessToken;
         private const string DROPBOX_DATA_FILE_PATH = "/budget_data.dat";
 
         public Action onLogedIn;
-        public Action<byte[]> onDownloadFinished;
-        public Action onDownloadError;
         public Action onUploadFinished;
 
-        private DropboxManager()
+        private bool _isSynchronized;
+        private const int SYNCHRO_DELAY_MS = 5*1000;
+
+        public Action<BudgetData> OnDownloadFinished { get; set; }
+        public Action OnDownloadError { get; set; }
+
+        public DropboxManager()
         {
-            dropboxClient = null;
-            if (Helpers.Settings.DropboxAccessToken != string.Empty)
-            {
-                accessToken = Helpers.Settings.DropboxAccessToken;
-                dropboxClient = new DropboxClient(accessToken);
-            }
+            _dropboxClient = null;
         }
 
-        public void Init()
+        /*private async Task Synchronize(CancellationToken token)
         {
-            dropboxClient = null;
-            if (Helpers.Settings.DropboxAccessToken != string.Empty)
+            while (!token.IsCancellationRequested)
             {
-                accessToken = Helpers.Settings.DropboxAccessToken;
-                dropboxClient = new DropboxClient(accessToken);
+                try
+                {
+                    if(_isSynchronized)
+                    {
+                        _isSynchronized = true;
+                        await UploadData(MainBudget.Instance)
+                    }
+                    await Task.Delay(SYNCHRO_DELAY_MS, token);
+                }
+                catch
+                {
+                    await Task.Delay(5000, token);
+                }
             }
-        }
+        }*/
 
         public async Task DownloadData()
         {
-            if (dropboxClient == null)
+            if (DropboxClient == null)
                 return;
             try
             {
-                var metadata = await dropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH);
-                using (var response = await dropboxClient.Files.DownloadAsync(DROPBOX_DATA_FILE_PATH))
+                var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH);
+                using (var response = await DropboxClient.Files.DownloadAsync(DROPBOX_DATA_FILE_PATH))
                 {
-                    var data = await response.GetContentAsByteArrayAsync();
-                    onDownloadFinished?.Invoke(data);
+                    var stream = await response.GetContentAsStreamAsync();
+                    var budgetData = Serializer.Deserialize<BudgetData>(stream);
+                    OnDownloadFinished?.Invoke(budgetData);
                     response.Dispose();
                 }
             }      
             catch(ApiException<GetMetadataError>)
             {
                 //file not found
-                onDownloadFinished?.Invoke(new byte[0]);
+                OnDownloadFinished?.Invoke(null);
             }
-            catch(Exception)
+            catch(Exception e)
             {
-                onDownloadError?.Invoke();
+                OnDownloadError?.Invoke();
             }
         }
 
-        public async Task UploadData(byte[] data)
+        public async Task UploadData(BudgetData budgetData)
         {
-            if (dropboxClient == null)
+            if (DropboxClient == null)
                 return;
 
-            var memoryStream = new MemoryStream(data);
-            await dropboxClient.Files.UploadAsync(DROPBOX_DATA_FILE_PATH, WriteMode.Overwrite.Instance, body: memoryStream);
-            onUploadFinished?.Invoke();
+            using (MemoryStream stream = new MemoryStream())
+            {
+                Serializer.Serialize(stream, budgetData);
+                await stream.FlushAsync();
+                var bytes = stream.GetBuffer();
+
+                using (var memoryStream = new MemoryStream(bytes))
+                {
+                    var metadata = await DropboxClient.Files.UploadAsync(DROPBOX_DATA_FILE_PATH, WriteMode.Overwrite.Instance, body: memoryStream);
+                    onUploadFinished?.Invoke();
+                }
+            }
         }
     }
 }

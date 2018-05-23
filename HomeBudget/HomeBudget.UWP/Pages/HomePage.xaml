@@ -8,11 +8,14 @@
     xmlns:uwp="using:HomeBudget.UWP"
     xmlns:utils="using:HomeBudget.Pages.Utils"
     xmlns:logic="using:HomeBudget.Code.Logic"
+    xmlns:syncfusion="using:Syncfusion.UI.Xaml.Converters"
+    xmlns:converters="using:HomeBudget.UWP.Converters"
     mc:Ignorable="d">
 
     <Page.Resources>
         <uwp:CurrencyValueConverter x:Key="CurrencyValueConverter"/>
-       
+        <syncfusion:StringFormatConverter x:Key="StringFormatConverter"/>
+        <converters:BudgetProgressConverter x:Key="ProgressConverter" />
     </Page.Resources>
 
     <Frame x:Name="MainPanel">
@@ -55,17 +58,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" x:Name="dateText" Grid.ColumnSpan="2" Text="{x:Bind Today}" Style="{StaticResource HeaderTextBlockStyle}" HorizontalTextAlignment="Center" />
 
-                <TextBlock x:Name="dateText" Grid.ColumnSpan="2" Text="{x:Bind Today}" Style="{StaticResource HeaderTextBlockStyle}" HorizontalTextAlignment="Center" />
-
-                <Image x:Name="DropboxIcon" Source="Assets/DropboxLogoOrg.png" Grid.Column="1" Margin="0,24,24,0"/>
-                <Button x:Name="DropboxButon" Background="Transparent" Click="OnDropboxClick" Grid.Column="1" Margin="0,24,24,0"/>
-            </Grid>
             <Frame Grid.Row="1" >
                 <Grid >
                     <Grid.RowDefinitions>
@@ -99,15 +93,23 @@
             </Frame>
 
             <ScrollViewer Grid.Row="2">
-                <ListView x:Name="SummaryListView" ItemsSource="{x:Bind SummaryListViewItems}">
+                <ListView x:Name="SummaryListView" ItemsSource="{x:Bind SummaryListViewItems}" IsHitTestVisible="False">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="utils:BudgetSummaryDataViewModel">
-                            <StackPanel Orientation="Horizontal" Spacing="5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                
                                 <BitmapIcon Height="50" UriSource="{x:Bind IconFile}" Foreground="Black" />
-                                <TextBlock Text="{x:Bind CategoryName}"/>
-                                <TextBlock Text="{x:Bind CategoryReal.TotalValues, Mode=OneWay}" />
-                                <TextBlock Text="{x:Bind SpendPercentage}" />
-                            </StackPanel>
+                                <TextBlock Grid.Column="1" Text="{x:Bind CategoryName}" VerticalAlignment="Center" Margin="24,0"/>
+                                <!--<Rectangle Grid.Column="2" Height="10" Width="100" Fill="{ThemeResource SystemAccentColor}"/>-->
+                                <ProgressBar Grid.Column="2" Value="{x:Bind SpendPercentageInt, Converter={StaticResource ProgressConverter}}" />
+                                <TextBlock Grid.Column="3" Text="{x:Bind SpendPercentage, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:P1}'}" VerticalAlignment="Center" Margin="24,0"/>
+                            </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

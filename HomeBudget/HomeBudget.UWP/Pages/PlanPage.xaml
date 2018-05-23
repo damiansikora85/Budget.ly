@@ -5,9 +5,97 @@
     xmlns:local="using:HomeBudget.UWP.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="using:Syncfusion.UI.Xaml.Grid"
+    xmlns:uwp="using:HomeBudget.UWP"
+    xmlns:charts="using:Syncfusion.UI.Xaml.Charts"
+    xmlns:sfutils="using:Syncfusion.UI.Xaml.Utils"
+    xmlns:converters="using:HomeBudget.UWP.Converters"
+    xmlns:data="using:Syncfusion.Data"
     mc:Ignorable="d">
+    <Page.Resources>
+        <uwp:CurrencyValueConverter x:Key="CurrencyValueConverter"/>
+        <converters:ChartLabelConverter x:Key="ChartLabelConverter"/>
+        <converters:ValueLabelColorConverter x:Key="ValueLabelColorConverter"/>
+        <converters:BudgetCategorySortComparer x:Key="SortComparer"/>
+        <converters:ChartLabelVisibilityConverter x:Key="VisibilityConverter"/>
+    </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="Planning"/>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Maj 2018" Style="{StaticResource HeaderTextBlockStyle}" TextAlignment="Center"/>
+        <TextBlock Grid.Row="1" Text="Planowanie budżetu" FontSize="28" TextAlignment="Center"/>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <charts:SfChart x:Name="IncomesChart" Header="Dochody" BorderBrush="Transparent" >
+                <charts:PieSeries XBindingPath="Name" YBindingPath="Subcat.Value" ItemsSource="{x:Bind IncomesData, Mode=OneWay}" ExplodeAll="True" ExplodeRadius="3" ListenPropertyChange="True">
+                    <charts:PieSeries.AdornmentsInfo>
+                        <charts:ChartAdornmentInfo ShowLabel="True" ConnectorHeight="25" ShowConnectorLine="True" SegmentLabelContent="LabelContentPath" >
+                            <charts:ChartAdornmentInfo.LabelTemplate>
+                                <DataTemplate >
+                                    <StackPanel Background="{Binding Interior}" Visibility="{Binding YData, Converter={StaticResource VisibilityConverter}}">
+                                        <TextBlock HorizontalAlignment="Center" FontSize="11" Foreground="Black" Text="{Binding Converter={StaticResource ChartLabelConverter}}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+
+                            </charts:ChartAdornmentInfo.LabelTemplate>
+                        </charts:ChartAdornmentInfo>
+                    </charts:PieSeries.AdornmentsInfo>
+                </charts:PieSeries>
+            </charts:SfChart>
+
+            <charts:SfChart x:Name="ExpensesChart" Grid.Column="1" Header="Wydatki">
+                <charts:PieSeries XBindingPath="Name" YBindingPath="Category.TotalValues" ItemsSource="{x:Bind ExpensesData, Mode=OneWay}" ExplodeAll="True" ExplodeRadius="3" LabelPosition="Outside" EnableSmartLabels="True" ListenPropertyChange="True" ShowEmptyPoints="False">
+                    <charts:PieSeries.AdornmentsInfo>
+                        <charts:ChartAdornmentInfo ShowLabel="True" ConnectorHeight="25" ShowConnectorLine="True" SegmentLabelContent="LabelContentPath">
+                            <charts:ChartAdornmentInfo.LabelTemplate>
+                                <DataTemplate >
+                                    <StackPanel Background="{Binding Interior}" Visibility="{Binding YData, Converter={StaticResource VisibilityConverter}}">
+                                        <TextBlock HorizontalAlignment="Center" FontSize="11" Foreground="Black" Text="{Binding Converter={StaticResource ChartLabelConverter}}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </charts:ChartAdornmentInfo.LabelTemplate>
+                        </charts:ChartAdornmentInfo>
+                    </charts:PieSeries.AdornmentsInfo>
+                </charts:PieSeries>
+            </charts:SfChart>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            
+            <syncfusion:SfDataGrid x:Name="DataGrid"  AutoGenerateColumns="False" AllowGrouping="True" AutoExpandGroups="True" Margin="0,24" GroupCaptionTextFormat="{}{Key}" LiveDataUpdateMode="AllowSummaryUpdate" CurrentCellEndEdit="DataGrid_CurrentCellEndEdit" BorderBrush="Transparent" >
+                <syncfusion:SfDataGrid.SortComparers>
+                    <data:SortComparer Comparer="{StaticResource SortComparer}" PropertyName="Category.Name"/>
+                </syncfusion:SfDataGrid.SortComparers>
+
+                <syncfusion:SfDataGrid.Columns>
+                    <syncfusion:GridTextColumn MappingName="Subcat.Name" HeaderText="Kategoria"/>
+                    <syncfusion:GridNumericColumn MappingName="Subcat.Value" HeaderText="Suma" DisplayBinding="{Binding Subcat.Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True" ColumnSizer="AutoLastColumnFill"/>
+                </syncfusion:SfDataGrid.Columns>
+            </syncfusion:SfDataGrid>
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
+                <Button Margin="24" Click="OnSave">
+                    <TextBlock Text="Użyj w kolejnych miesiącach" TextWrapping="Wrap"/>
+                </Button> 
+                <TextBlock Text="Ten plan budżetu będzie używany tylko w tym miesiącu, aby użyć go również w kolejnych kliknij Zapisz." TextWrapping="WrapWholeWords" Margin="24,0" Foreground="Gray"/>
+            </StackPanel>
+        </Grid>
+
     </Grid>
 </Page>

@@ -14,6 +14,7 @@ namespace HomeBudget.Pages.Utils
     public class BudgetSummaryDataViewModel : INotifyPropertyChanged
     {
         public string CategoryName => CategoryReal.Name;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public BaseBudgetCategory CategoryPlanned
         {
@@ -62,12 +63,8 @@ namespace HomeBudget.Pages.Utils
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        public BudgetSummaryDataViewModel()
-        {
 
-        }
     }
 
 }

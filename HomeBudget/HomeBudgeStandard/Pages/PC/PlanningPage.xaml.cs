@@ -139,7 +139,7 @@ namespace HomeBudget.Pages.PC
 
         private async void OnOnlyThisMonth(object sender, EventArgs args)
         {
-            await MainBudget.Instance.Save();
+            await MainBudget.Instance.SaveAsync();
         }
 
         private async void OnSaveForAll(object sender, EventArgs args)

@@ -2,25 +2,21 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using ProtoBuf;
 
 namespace HomeBudget.Code
 {
+    [ProtoContract]
     public class BudgetMonth
 	{
-        public BudgetPlanned BudgetPlanned { get; private set; }
-        public BudgetReal BudgetReal { get; private set; }
-
-		private int month;
-		public int Month
-		{
-			get { return month; }
-		}
-
-		private int year;
-		public int Year
-		{
-			get { return year; }
-		}
+        [ProtoMember(1)]
+        public BudgetPlanned BudgetPlanned { get; set; }
+        [ProtoMember(2)]
+        public BudgetReal BudgetReal { get; set; }
+        [ProtoMember(3)]
+        public int Month { get; set; }
+        [ProtoMember(4)]
+        public int Year { get; set; }
 
         public event Action onBudgetPlannedChanged;
 
@@ -36,9 +32,9 @@ namespace HomeBudget.Code
             }
         }
 
-		public static BudgetMonth Create(List<BudgetCategoryTemplate> categories, List<BudgetIncomeTemplate> incomes, DateTime date)
+		public static BudgetMonth Create(List<BudgetCategoryTemplate> categories, DateTime date)
 		{
-			BudgetMonth month = new BudgetMonth();
+			var month = new BudgetMonth();
 			month.SetupCategories(categories);
             month.SetupDate(date);
 
@@ -47,7 +43,7 @@ namespace HomeBudget.Code
 
         public static BudgetMonth CreateFromBinaryData(BinaryData binaryData)
         {
-            BudgetMonth month = new BudgetMonth();
+            var month = new BudgetMonth();
             month.Deserialize(binaryData);
 
             return month;
@@ -86,8 +82,8 @@ namespace HomeBudget.Code
 
         private void SetupDate(DateTime date)
 		{
-			month = date.Month;
-			year = date.Year;
+			Month = date.Month;
+			Year = date.Year;
 		}
 
 		private void SetupCategories(List<BudgetCategoryTemplate> categoriesDesc)
@@ -98,7 +94,7 @@ namespace HomeBudget.Code
 
         public ObservableCollection<BudgetChartData> GetData()
 		{
-			ObservableCollection<BudgetChartData> monthData = new ObservableCollection<BudgetChartData>();
+			var monthData = new ObservableCollection<BudgetChartData>();
 			/*foreach (ExpenseCategory category in Categories)
 			{
 				monthData.Add(new BudgetChartData(category.Name, category.GetExpensesSum()));
@@ -107,16 +103,11 @@ namespace HomeBudget.Code
 			return monthData;
 		}
 
-        /*public ExpenseCategory GetCategory(int id)
-        {
-            return GetCategoryByID(id);
-        }*/
-
         public byte[] Serialize()
         {
-            List<byte> bytes = new List<byte>();
-            bytes.AddRange(BitConverter.GetBytes(month));
-            bytes.AddRange(BitConverter.GetBytes(year));
+            var bytes = new List<byte>();
+            bytes.AddRange(BitConverter.GetBytes(Month));
+            bytes.AddRange(BitConverter.GetBytes(Year));
             bytes.AddRange(BudgetPlanned.Serialize());
             bytes.AddRange(BudgetReal.Serialize());
 
@@ -125,8 +116,8 @@ namespace HomeBudget.Code
 
         private void Deserialize(BinaryData binaryData)
         {
-            month = binaryData.GetInt();
-            year = binaryData.GetInt();
+            Month = binaryData.GetInt();
+            Year = binaryData.GetInt();
             BudgetPlanned.Deserialize(binaryData);
             BudgetReal.Deserialize(binaryData);
         }

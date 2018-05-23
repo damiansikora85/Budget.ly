@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using ProtoBuf;
 
 namespace HomeBudget.Code.Logic
 {
+    [ProtoContract]
     public class PlannedSubcat : BaseBudgetSubcat
     {
         private double plannedValue;
@@ -14,6 +16,7 @@ namespace HomeBudget.Code.Logic
             Value = subcat.Value;
         }
 
+        [ProtoMember(1)]
         public override double Value
         {
             get
@@ -29,7 +32,7 @@ namespace HomeBudget.Code.Logic
 
         public static PlannedSubcat Create(string subcatName, int id)
         {
-            PlannedSubcat subcat = new PlannedSubcat()
+            var subcat = new PlannedSubcat
             {
                 Name = subcatName,
                 Id = id
@@ -40,7 +43,7 @@ namespace HomeBudget.Code.Logic
 
         public override byte[] Serialize()
         {
-            List<byte> bytes = new List<byte>();
+            var bytes = new List<byte>();
             bytes.AddRange(base.Serialize());
             bytes.AddRange(BitConverter.GetBytes(plannedValue));
 

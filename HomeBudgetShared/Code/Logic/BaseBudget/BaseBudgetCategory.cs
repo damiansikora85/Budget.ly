@@ -4,16 +4,25 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProtoBuf;
 
 namespace HomeBudget.Code.Logic
 {
+    [ProtoContract]
+    [ProtoInclude(7, typeof(BudgetPlannedCategory))]
+    [ProtoInclude(8, typeof(BudgetRealCategory))]
     public class BaseBudgetCategory : INotifyPropertyChanged
     {
+        [ProtoMember(1)]
         public string Name { get; set; }
-        public int Id { get; protected set; }
-        public bool IsIncome { get; protected set; }
+        [ProtoMember(2)]
+        public int Id { get; set; }
+        [ProtoMember(3)]
+        public bool IsIncome { get; set; }
+        [ProtoMember(4)]
         public List<BaseBudgetSubcat> subcats;
-        public string IconName { get; protected set; }
+        [ProtoMember(5)]
+        public string IconName { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         public Action onCategoryValueChanged;
 

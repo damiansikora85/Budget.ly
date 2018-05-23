@@ -1,5 +1,6 @@
 ﻿using HomeBudget.Code;
 using HomeBudget.UWP.Pages;
+using HomeBudget.UWP.Utils;
 using System;
 using System.ComponentModel;
 using System.Globalization;
@@ -36,17 +37,8 @@ namespace HomeBudget.UWP
 
         private void InitBudget()
         {
-            MainBudget.Instance.Init();
             MainBudget.Instance.onBudgetLoaded += OnBudgetLoaded;
-
-            if (!string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken))
-            {
-                Task.Run(() => DropboxManager.Instance.DownloadData());
-            }
-            else
-            {
-                Task.Run(() => MainBudget.Instance.Load());
-            }
+            MainBudget.Instance.Init(new FileManagerUwp(), new DropboxManager());
         }
 
         private void OnBudgetLoaded()
@@ -91,7 +83,6 @@ namespace HomeBudget.UWP
                         break;
                 }
             }
-            
         }
 
         private void HamburgerButton_Click(object obj, RoutedEventArgs args)

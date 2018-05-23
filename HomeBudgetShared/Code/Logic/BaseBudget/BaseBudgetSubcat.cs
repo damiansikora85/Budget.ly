@@ -4,14 +4,21 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProtoBuf;
 
 namespace HomeBudget.Code.Logic
 {
+    [ProtoContract]
+    [ProtoInclude(7, typeof(PlannedSubcat))] 
+    [ProtoInclude(8, typeof(RealSubcat))]
     public class BaseBudgetSubcat : INotifyPropertyChanged
     {
-        public string Name { get; protected set; }
-        public int Id { get; protected set; }
+        [ProtoMember(1)]
+        public string Name { get; set; }
+        [ProtoMember(2)]
+        public int Id { get; set; }
 
+        [ProtoMember(3)]
         public virtual double Value { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -25,7 +32,7 @@ namespace HomeBudget.Code.Logic
 
         public virtual byte[] Serialize()
         {
-            List<byte> bytes = new List<byte>();
+            var bytes = new List<byte>();
             bytes.AddRange(BinaryData.GetBytes(Name));
             bytes.AddRange(BitConverter.GetBytes(Id));
 
@@ -45,8 +52,7 @@ namespace HomeBudget.Code.Logic
 
         protected void RaiseValueChanged()
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs("Value"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Value"));
         }
     }
 }

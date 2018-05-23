@@ -5,15 +5,145 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:syncfusion="using:Syncfusion.UI.Xaml.Grid"
+    xmlns:uwp="using:HomeBudget.UWP"
+    xmlns:charts="using:Syncfusion.UI.Xaml.Charts"
+    xmlns:sfutils="using:Syncfusion.UI.Xaml.Utils"
+    xmlns:wrapPanel="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:converters="using:HomeBudget.UWP.Converters"
+    xmlns:data="using:Syncfusion.Data"
     mc:Ignorable="d">
+    <Page.Resources>
+        <uwp:CurrencyValueConverter x:Key="CurrencyValueConverter"/>
+        <converters:ChartLabelConverter x:Key="ChartLabelConverter"/>
+        <converters:ValueLabelColorConverter x:Key="ValueLabelColorConverter"/>
+        <converters:BudgetCategorySortComparer x:Key="SortComparer"/>
+        <converters:ChartLabelVisibilityConverter x:Key="VisibilityConverter"/>
+        <ItemsPanelTemplate x:Key="itemPanelTemplate">
+            <wrapPanel:WrapPanel Orientation="Vertical" VerticalSpacing="5"/>
+        </ItemsPanelTemplate>
+    </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
-        <syncfusion:SfDataGrid x:Name="DataGrid" Grid.Row="2" AutoGenerateColumns="False" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" RenderTransformOrigin="0.501,0.398" Spacing="50">
+            <Button x:Name="PreviousMonth" Background="#00000000" Click="PreviousMonth_Click">
+                <TextBlock Text="&#xE760;" FontFamily="Segoe MDL2 Assets" Style="{StaticResource HeaderTextBlockStyle}" VerticalAlignment="Center"/>
+            </Button>
+            <TextBlock Text="{x:Bind Date}" Style="{StaticResource HeaderTextBlockStyle}" TextAlignment="Center"/>
+            <Button x:Name="NextMonth" Background="#00000000" Click="NextMonth_Click">
+                <TextBlock Text="&#xE761;" FontFamily="Segoe MDL2 Assets" Style="{StaticResource HeaderTextBlockStyle}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            </Button>
+        </StackPanel>
+        <TextBlock Grid.Row="1" Text="Rzeczywista realizacja budżetu" FontSize="28" TextAlignment="Center"/>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <charts:SfChart x:Name="IncomesChart" BorderThickness="0" Header="Dochody" >
+                <!--<charts:SfChart.Legend>
+                    <charts:ChartLegend LegendPosition="Outside" DockPosition="Right" ItemsPanel="{StaticResource itemPanelTemplate}"/>
+                </charts:SfChart.Legend>-->
+                <charts:PieSeries XBindingPath="Name"  YBindingPath="Subcat.Value" ItemsSource="{x:Bind IncomesData, Mode=OneWay}" ExplodeAll="True" ExplodeRadius="3" LabelPosition="Outside" EnableSmartLabels="True" ListenPropertyChange="True">
+                    <charts:PieSeries.AdornmentsInfo>
+                        <charts:ChartAdornmentInfo ShowLabel="True" ConnectorHeight="25" ShowConnectorLine="True" SegmentLabelContent="LabelContentPath" UseSeriesPalette="True" >
+                            <charts:ChartAdornmentInfo.LabelTemplate>
+                                <DataTemplate >
+                                    <StackPanel Background="{Binding Interior}" Visibility="{Binding YData, Converter={StaticResource VisibilityConverter}}">
+                                        <TextBlock HorizontalAlignment="Center" FontSize="11" Foreground="Black" Text="{Binding Converter={StaticResource ChartLabelConverter}}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+
+                            </charts:ChartAdornmentInfo.LabelTemplate>
+                        </charts:ChartAdornmentInfo>
+                    </charts:PieSeries.AdornmentsInfo>
+                </charts:PieSeries>
+            </charts:SfChart>
+            
+            <charts:SfChart x:Name="ExpensesChart" Grid.Column="1" Header="Wydatki">
+                <!--<charts:SfChart.Legend>
+                    <charts:ChartLegend LegendPosition="Outside" DockPosition="Right" ItemsPanel="{StaticResource itemPanelTemplate}"/>
+                </charts:SfChart.Legend>-->
+                <charts:PieSeries XBindingPath="Name" YBindingPath="Category.TotalValues" ItemsSource="{x:Bind ExpensesData, Mode=OneWay}" ExplodeAll="True" ExplodeRadius="3" EnableSmartLabels="True" ListenPropertyChange="True" ShowEmptyPoints="False">
+                    <charts:PieSeries.AdornmentsInfo>
+                        <charts:ChartAdornmentInfo  ShowLabel="True"  ShowConnectorLine="True" SegmentLabelContent="LabelContentPath" UseSeriesPalette="True" >
+                            <charts:ChartAdornmentInfo.LabelTemplate>
+                                <DataTemplate >
+                                    <StackPanel Background="{Binding Interior}" Visibility="{Binding YData, Converter={StaticResource VisibilityConverter}}">
+                                        <TextBlock HorizontalAlignment="Center" FontSize="11" Foreground="Black" Text="{Binding Converter={StaticResource ChartLabelConverter}}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </charts:ChartAdornmentInfo.LabelTemplate>
+                        </charts:ChartAdornmentInfo>
+                    </charts:PieSeries.AdornmentsInfo>
+                </charts:PieSeries>
+            </charts:SfChart>
+        </Grid>
+        <syncfusion:SfDataGrid x:Name="DataGrid" Grid.Row="3" AutoGenerateColumns="False" AllowGrouping="True" AutoExpandGroups="True" Margin="0,24" GroupCaptionTextFormat="{}{Key}" LiveDataUpdateMode="AllowSummaryUpdate" CurrentCellEndEdit="DataGrid_CurrentCellEndEdit" BorderBrush="Transparent">
+            <syncfusion:SfDataGrid.SortComparers>
+                <data:SortComparer Comparer="{StaticResource SortComparer}" PropertyName="Category.Name"/>
+            </syncfusion:SfDataGrid.SortComparers>
+            
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:GridTextColumn MappingName="Subcat.Name" HeaderText="Kategoria"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Value" HeaderText="Suma" DisplayBinding="{Binding Subcat.Value, Converter={StaticResource CurrencyValueConverter}}"/>
+
+
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[0].Value" HeaderText="1" DisplayBinding="{Binding Subcat.Values[0].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[1].Value" HeaderText="2" DisplayBinding="{Binding Subcat.Values[1].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[2].Value" HeaderText="3" DisplayBinding="{Binding Subcat.Values[2].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[3].Value" HeaderText="4" DisplayBinding="{Binding Subcat.Values[3].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[4].Value" HeaderText="5" DisplayBinding="{Binding Subcat.Values[4].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[5].Value" HeaderText="6" DisplayBinding="{Binding Subcat.Values[5].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[6].Value" HeaderText="7" DisplayBinding="{Binding Subcat.Values[6].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[7].Value" HeaderText="8" DisplayBinding="{Binding Subcat.Values[7].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[8].Value" HeaderText="9" DisplayBinding="{Binding Subcat.Values[8].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[9].Value" HeaderText="10" DisplayBinding="{Binding Subcat.Values[9].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[10].Value" HeaderText="11" DisplayBinding="{Binding Subcat.Values[10].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[11].Value" HeaderText="12" DisplayBinding="{Binding Subcat.Values[11].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[12].Value" HeaderText="13" DisplayBinding="{Binding Subcat.Values[12].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[13].Value" HeaderText="14" DisplayBinding="{Binding Subcat.Values[13].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[14].Value" HeaderText="15" DisplayBinding="{Binding Subcat.Values[14].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[15].Value" HeaderText="16" DisplayBinding="{Binding Subcat.Values[15].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[16].Value" HeaderText="17" DisplayBinding="{Binding Subcat.Values[16].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[16].Value" HeaderText="17" DisplayBinding="{Binding Subcat.Values[16].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[17].Value" HeaderText="18" DisplayBinding="{Binding Subcat.Values[17].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[18].Value" HeaderText="19" DisplayBinding="{Binding Subcat.Values[18].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[19].Value" HeaderText="20" DisplayBinding="{Binding Subcat.Values[19].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[20].Value" HeaderText="21" DisplayBinding="{Binding Subcat.Values[20].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[21].Value" HeaderText="22" DisplayBinding="{Binding Subcat.Values[21].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[22].Value" HeaderText="23" DisplayBinding="{Binding Subcat.Values[22].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[23].Value" HeaderText="24" DisplayBinding="{Binding Subcat.Values[23].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[24].Value" HeaderText="25" DisplayBinding="{Binding Subcat.Values[24].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[25].Value" HeaderText="26" DisplayBinding="{Binding Subcat.Values[25].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[26].Value" HeaderText="27" DisplayBinding="{Binding Subcat.Values[26].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[27].Value" HeaderText="28" DisplayBinding="{Binding Subcat.Values[27].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[28].Value" HeaderText="29" DisplayBinding="{Binding Subcat.Values[28].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[29].Value" HeaderText="30" DisplayBinding="{Binding Subcat.Values[29].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+                <syncfusion:GridNumericColumn MappingName="Subcat.Values[30].Value" HeaderText="31" DisplayBinding="{Binding Subcat.Values[30].Value, Converter={StaticResource CurrencyValueConverter}}" ColumnSizer="Auto" AllowEditing="True"/>
+
+                <!--<syncfusion:SfDataGrid.CaptionSummaryRow>
+                    <syncfusion:GridSummaryRow Title="Total Price : {PriceAmount}" ShowSummaryInRow="True">
+                        <syncfusion:GridSummaryRow.SummaryColumns>
+                            <syncfusion:GridSummaryColumn Name="PriceAmount"
+                                              Format="'{Sum:c}'"
+                                              MappingName="Subcat.Value"
+                                              SummaryType="DoubleAggregate" />
+                        </syncfusion:GridSummaryRow.SummaryColumns>
+                    </syncfusion:GridSummaryRow>
+                </syncfusion:SfDataGrid.CaptionSummaryRow>-->
+
+            </syncfusion:SfDataGrid.Columns>
+        </syncfusion:SfDataGrid>
     </Grid>
 </Page>

@@ -32,8 +32,8 @@ namespace HomeBudget.Utils
     {
         public static string Currency<T>(this IEnumerable<T> values, Func<T, double?> selector)
         {
-            double sum = values.Select(selector).Sum(elem => elem.Value);
-            CultureInfo cultureInfoPL = new CultureInfo("pl-PL");
+            var sum = values.Select(selector).Sum(elem => elem.Value);
+            var cultureInfoPL = new CultureInfo("pl-PL");
             return string.Format(cultureInfoPL, "{0:c}", sum);
         }
     }

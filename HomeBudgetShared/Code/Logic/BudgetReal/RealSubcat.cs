@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using ProtoBuf;
 
 namespace HomeBudget.Code.Logic
 {
+    [ProtoContract]
     public class SubcatValue : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -19,93 +21,76 @@ namespace HomeBudget.Code.Logic
             index = _index;
         }
 
+        [ProtoMember(1)]
         public double Value
         {
             get { return subcatValue; }
             set
             {
                 subcatValue = value;
-                if(PropertyChanged != null)
-                    PropertyChanged(this, new PropertyChangedEventArgs("Values["+index+"].Value"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Values["+index+"].Value"));
             }
         }
     };
 
+    [ProtoContract]
     public class RealSubcat : BaseBudgetSubcat
     {
-        private ObservableCollection<SubcatValue> values;// = new double[31];
-
         public static RealSubcat Create(string subcatName, int id)
         {
-            RealSubcat subcat = new RealSubcat()
+            var subcat = new RealSubcat
             {
                 Name = subcatName,
                 Id = id,
-                
+                Values = new ObservableCollection<SubcatValue>()
             };
+
+            for (int i = 0; i < 31; i++)
+            {
+                var subcatVal = new SubcatValue(i)
+                {
+                    Value = 0
+                };
+                subcatVal.PropertyChanged += subcat.OnValueChanged;
+                subcat.Values.Add(subcatVal);
+            }
 
             return subcat;
         }
 
         public RealSubcat()
         {
-            values = new ObservableCollection<SubcatValue>();
-
-            for (int i =0; i<31;i++)
-            {
-                SubcatValue subcatVal = new SubcatValue(i)
-                {
-                    Value = 0
-                };
-                values.Add(subcatVal);
-            }
+            
         }
 
-        public ObservableCollection<SubcatValue> Values
+        private void OnValueChanged(object sender, PropertyChangedEventArgs e)
         {
-            get
-            {
-                return values;
-            }
-            set
-            {
-                values = value;
-            }
+            RaiseValueChanged();
         }
+
+        [ProtoMember(1)]
+        public ObservableCollection<SubcatValue> Values { get; set; }
 
         public override double Value
         {
             get
             {
-                return values.Sum(subcatValue => subcatValue.Value);
+                return Values.Sum(subcatValue => subcatValue.Value);
             }
             set
             {
-                values[0].Value = value;
-            }
-        }
-
-        private int test;
-        public int Test
-        {
-            get
-            {
-                return test;
-            }
-            set
-            {
-                test = value;
+                //Values[0].Value = value;
             }
         }
 
         public override byte[] Serialize()
         {
-            List<byte> bytes = new List<byte>();
+            var bytes = new List<byte>();
             bytes.AddRange(base.Serialize());
             var byteArray = new List<byte>();
             for (int i = 0; i < 31; i++)
-                byteArray.AddRange(BitConverter.GetBytes(values[i].Value));
-            //Buffer.BlockCopy(values, 0, byteArray, 0, byteArray.Length);
+                byteArray.AddRange(BitConverter.GetBytes(Values[i].Value));
+
             bytes.AddRange(byteArray);
 
             return bytes.ToArray();
@@ -117,7 +102,7 @@ namespace HomeBudget.Code.Logic
             //values.Clear();
             for (int i = 0; i < 31; i++)
             {
-                values[i].Value = binaryData.GetDouble();
+                Values[i].Value = binaryData.GetDouble();
                 /*
                 SubcatValue subcatVal = new SubcatValue(i)
                 {
@@ -130,7 +115,7 @@ namespace HomeBudget.Code.Logic
 
         public void AddValue(double value, DateTime date)
         {
-            values[date.Day-1].Value += value;
+            Values[date.Day-1].Value += value;
             RaiseValueChanged();
         }
     }

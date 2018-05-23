@@ -34,6 +34,7 @@ namespace HomeBudget.UWP.Pages
         public SettingsPage()
         {
             this.InitializeComponent();
+            ProgressRing.IsActive = false;
         }
 
         private async void ConnectWithDropbox(object sender, RoutedEventArgs e)
@@ -49,15 +50,15 @@ namespace HomeBudget.UWP.Pages
             ProcessResult(result);
         }
 
-        private static void ProcessResult(WebAuthenticationResult result)
+        private void ProcessResult(WebAuthenticationResult result)
         {
             switch (result.ResponseStatus)
             {
                 case WebAuthenticationStatus.Success:
+                    ProgressRing.IsActive = true;
                     var response = DropboxOAuth2Helper.ParseTokenFragment(new Uri(result.ResponseData));
                     Helpers.Settings.DropboxAccessToken = response.AccessToken;
-                    DropboxManager.Instance.Init();
-                    Task.Run(()=> DropboxManager.Instance.DownloadData());
+                    MainBudget.Instance.CloudStorageConnected();
                     break;
 
                 /*case WebAuthenticationStatus.ErrorHttp:
@@ -66,41 +67,6 @@ namespace HomeBudget.UWP.Pages
                 case WebAuthenticationStatus.UserCancel:
                 default:
                     throw new OAuthUserCancelledException();*/
-            }
-        }
-
-        private async void WebViewOnNavigating(WebView sender, WebViewNavigationCompletedEventArgs args)
-        {
-            if (!args.Uri.AbsoluteUri.ToString().StartsWith(RedirectUri.ToString(), StringComparison.OrdinalIgnoreCase))
-            {
-                // we need to ignore all navigation that isn't to the redirect uri.  
-                return;
-            }
-
-            try
-            {
-                var result = DropboxOAuth2Helper.ParseTokenFragment(args.Uri);
-
-                if (result.State != this.oauth2State)
-                {
-                    return;
-                }
-
-                Helpers.Settings.DropboxAccessToken = result.AccessToken;
-                DropboxManager.Instance.Init();
-                await DropboxManager.Instance.DownloadData();
-            }
-            catch (ArgumentException argExc)
-            {
-                var msg = argExc.Message;
-                msg += "error";
-                // There was an error in the URI passed to ParseTokenFragment
-            }
-            finally
-            {
-                //args..Cancel = true;
-                //await Application.Current.MainPage.Navigation.PopModalAsync();
-
             }
         }
     }

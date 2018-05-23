@@ -73,7 +73,7 @@ namespace HomeBudget.UWP
 
 				rootFrame.NavigationFailed += OnNavigationFailed;
 
-                FFImageLoading.Forms.WinUWP.CachedImageRenderer.Init();
+                //FFImageLoading.Forms.WinUWP.CachedImageRenderer.Init();
 
                 //List<Assembly> assembliesToInclude = new List<Assembly>();
                 var assembliesToInclude = new List<Assembly>()
@@ -83,7 +83,7 @@ namespace HomeBudget.UWP
                     //typeof(Syncfusion.SfChart.XForms.UWP.SfChartRenderer).GetTypeInfo().Assembly
                 };
 				assembliesToInclude.AddRange(Rg.Plugins.Popup.Windows.Popup.GetExtraAssemblies());
-				Xamarin.Forms.Forms.Init(e, assembliesToInclude);
+				//Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
 				{
@@ -102,8 +102,8 @@ namespace HomeBudget.UWP
 				rootFrame.Navigate(typeof(MainPage), e.Arguments);
 			}
 
-            ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
-            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(800, 600));
+            ApplicationView.PreferredLaunchViewSize = new Size(1024, 768);
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(1024, 768));
             //ApplicationView.GetForCurrentView().
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 

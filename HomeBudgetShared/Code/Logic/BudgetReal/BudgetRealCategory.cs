@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProtoBuf;
 
 namespace HomeBudget.Code.Logic
 {
+    [ProtoContract]
     public sealed class BudgetRealCategory : BaseBudgetCategory
     {
         public static BudgetRealCategory Create(BudgetCategoryTemplate categoryDesc)

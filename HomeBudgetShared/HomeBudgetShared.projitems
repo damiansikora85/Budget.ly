@@ -11,10 +11,12 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Code\Dropbox\DropboxManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Dropbox\IDropbox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Interfaces\ICloudStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BaseBudget\BaseBudget.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BaseBudget\BaseBudgetCategory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BaseBudget\BaseBudgetSubcat.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BinaryData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BudgetData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BudgetJson\BudgetCategoryTemplate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BudgetJson\BudgetDescription.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BudgetJson\BudgetIncomeTemplate.cs" />
@@ -25,6 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BudgetReal\BudgetReal.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BudgetReal\BudgetRealCategory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BudgetReal\RealSubcat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\IFileManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\IMainBudget.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\MainBudget.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\Temp\OrderInfo.cs" />

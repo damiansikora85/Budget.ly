@@ -5,9 +5,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProtoBuf;
 
 namespace HomeBudget.Code.Logic
 {
+    [ProtoContract]
     public sealed class BudgetPlanned : BaseBudget.BaseBudget
     {
         public BudgetPlanned() { }
@@ -16,7 +18,7 @@ namespace HomeBudget.Code.Logic
         {
             foreach (BudgetPlannedCategory category in budgetPlanned.Categories)
             {
-                BudgetPlannedCategory newCategory = new BudgetPlannedCategory(category);
+                var newCategory = new BudgetPlannedCategory(category);
                 newCategory.PropertyChanged += OnCategoryModified;
                 Categories.Add(newCategory);
             }
@@ -26,7 +28,7 @@ namespace HomeBudget.Code.Logic
         {
             foreach (BudgetCategoryTemplate categoryDesc in categoriesDesc)
             {
-                BudgetPlannedCategory plannedCategory = BudgetPlannedCategory.Create(categoryDesc);
+                var plannedCategory = BudgetPlannedCategory.Create(categoryDesc);
                 plannedCategory.PropertyChanged += OnCategoryModified;
                 Categories.Add(plannedCategory);
             }
@@ -35,10 +37,10 @@ namespace HomeBudget.Code.Logic
         public void Deserialize(BinaryData binaryData)
         {
             Categories.Clear();
-            int categoriesNum = binaryData.GetInt();
+            var categoriesNum = binaryData.GetInt();
             for(int i=0; i<categoriesNum; i++)
             {
-                BudgetPlannedCategory category = new BudgetPlannedCategory();
+                var category = new BudgetPlannedCategory();
                 category.Deserialize(binaryData);
                 category.PropertyChanged += OnCategoryModified;
                 Categories.Add(category);

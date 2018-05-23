@@ -16,6 +16,7 @@
                     <TextBlock Text="Connect with Dropbox" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
+            <ProgressRing x:Name="ProgressRing"/>
         </StackPanel>
     </StackPanel>
 </Page>

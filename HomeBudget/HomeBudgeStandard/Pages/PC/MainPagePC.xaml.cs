@@ -102,7 +102,7 @@ namespace HomeBudget.Pages.PC
             else
             {
                 DropboxButtonChangeVisibility(true);
-                MainBudget.Instance.Load();
+                MainBudget.Instance.LoadAsync();
             }
         }
 
@@ -387,7 +387,7 @@ namespace HomeBudget.Pages.PC
                 subcat.AddValue(calculationResult, selectedDate);
 
                 HideCalculator();
-                MainBudget.Instance.Save();
+                MainBudget.Instance.SaveAsync();
                 SetupBudgetSummary();
 
                 //if month changed

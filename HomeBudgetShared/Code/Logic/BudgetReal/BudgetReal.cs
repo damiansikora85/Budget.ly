@@ -5,16 +5,18 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProtoBuf;
 
 namespace HomeBudget.Code.Logic
 {
+    [ProtoContract]
     public sealed class BudgetReal : BaseBudget.BaseBudget
     {
         public void Setup(List<BudgetCategoryTemplate> categoriesDesc)
         {
             foreach (BudgetCategoryTemplate categoryDesc in categoriesDesc)
             {
-                BudgetRealCategory realCategory = BudgetRealCategory.Create(categoryDesc);
+                var realCategory = BudgetRealCategory.Create(categoryDesc);
                 realCategory.PropertyChanged += OnCategoryModified;
                 Categories.Add(realCategory);
             }
@@ -26,7 +28,7 @@ namespace HomeBudget.Code.Logic
             int categoriesNum = binaryData.GetInt();
             for (int i = 0; i < categoriesNum; i++)
             {
-                BudgetRealCategory category = new BudgetRealCategory();
+                var category = new BudgetRealCategory();
                 category.Deserialize(binaryData);
                 category.PropertyChanged += OnCategoryModified;
                 Categories.Add(category);
@@ -35,13 +37,13 @@ namespace HomeBudget.Code.Logic
 
         public void AddExpense(double value, DateTime date, int categoryId, int subcatId)
         {
-            BudgetRealCategory category = (BudgetRealCategory)GetBudgetCategory(categoryId);
+            var category = (BudgetRealCategory)GetBudgetCategory(categoryId);
             category.AddValue(value, date, subcatId);
         }
 
         public void AddIncome(double value, DateTime date, int incomeCategoryId)
         {
-            BudgetRealCategory category = (BudgetRealCategory)GetIncomesCategories()[0];
+            var category = (BudgetRealCategory)GetIncomesCategories()[0];
             category.AddValue(value, date, incomeCategoryId);
         }
     }
