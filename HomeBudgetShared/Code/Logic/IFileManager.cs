@@ -9,5 +9,9 @@ namespace HomeBudget.Code.Logic
     {
         Task Save(BudgetData saveData);
         Task<BudgetData> Load();
+
+        Task WriteLine(string filename, string message);
+        Task<string> ReadFile(string filename);
+        Task DeleteFile(string filename);
     }
 }

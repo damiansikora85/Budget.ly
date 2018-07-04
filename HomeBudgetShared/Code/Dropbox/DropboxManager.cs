@@ -1,8 +1,8 @@
 ﻿using Dropbox.Api;
 using Dropbox.Api.Files;
-using HomeBudgeStandard.Code.Dropbox;
 using HomeBudget.Code.Logic;
 using HomeBudgetShared.Code.Interfaces;
+using HomeBudgetShared.Utils;
 using ProtoBuf;
 using System;
 using System.IO;
@@ -42,9 +42,9 @@ namespace HomeBudget.Code
             _dropboxClient = null;
         }
 
-        /*private async Task Synchronize(CancellationToken token)
+        private async Task Synchronize(CancellationToken token)
         {
-            while (!token.IsCancellationRequested)
+            /*while (!token.IsCancellationRequested)
             {
                 try
                 {
@@ -59,8 +59,8 @@ namespace HomeBudget.Code
                 {
                     await Task.Delay(5000, token);
                 }
-            }
-        }*/
+            }*/
+        }
 
         public async Task DownloadData()
         {
@@ -68,23 +68,28 @@ namespace HomeBudget.Code
                 return;
             try
             {
+                LogsManager.Instance.WriteLine("Dropbox loading");
                 var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH);
                 using (var response = await DropboxClient.Files.DownloadAsync(DROPBOX_DATA_FILE_PATH))
                 {
                     var stream = await response.GetContentAsStreamAsync();
                     var budgetData = Serializer.Deserialize<BudgetData>(stream);
                     OnDownloadFinished?.Invoke(budgetData);
+                    //OnDownloadFinished?.Invoke(null);
                     response.Dispose();
                 }
             }      
             catch(ApiException<GetMetadataError>)
             {
+                LogsManager.Instance.WriteLine("Dropbox file not found");
                 //file not found
                 OnDownloadFinished?.Invoke(null);
             }
             catch(Exception e)
             {
-                OnDownloadError?.Invoke();
+                LogsManager.Instance.WriteLine("Dropbox other exception: "+e.Message);
+                //OnDownloadError?.Invoke();
+                OnDownloadFinished?.Invoke(null);
             }
         }
 
@@ -93,7 +98,7 @@ namespace HomeBudget.Code
             if (DropboxClient == null)
                 return;
 
-            using (MemoryStream stream = new MemoryStream())
+            using(MemoryStream stream = new MemoryStream())
             {
                 Serializer.Serialize(stream, budgetData);
                 await stream.FlushAsync();

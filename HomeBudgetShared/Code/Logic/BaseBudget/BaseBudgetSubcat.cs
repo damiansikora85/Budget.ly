@@ -30,24 +30,9 @@ namespace HomeBudget.Code.Logic
             Id = subcat.Id;
         }
 
-        public virtual byte[] Serialize()
+        public virtual void Prepare()
         {
-            var bytes = new List<byte>();
-            bytes.AddRange(BinaryData.GetBytes(Name));
-            bytes.AddRange(BitConverter.GetBytes(Id));
 
-            return bytes.ToArray();
-        }
-
-        /*public BaseBudgetSubcat()
-        {
-            Value = 0;
-        }*/
-
-        public virtual void Deserialize(BinaryData binaryData)
-        {
-            Name = binaryData.GetString();
-            Id = binaryData.GetInt();
         }
 
         protected void RaiseValueChanged()

@@ -13,7 +13,7 @@
     xmlns:data="using:Syncfusion.Data"
     mc:Ignorable="d">
     <Page.Resources>
-        <uwp:CurrencyValueConverter x:Key="CurrencyValueConverter"/>
+        <converters:CurrencyValueConverter x:Key="CurrencyValueConverter"/>
         <converters:ChartLabelConverter x:Key="ChartLabelConverter"/>
         <converters:ValueLabelColorConverter x:Key="ValueLabelColorConverter"/>
         <converters:BudgetCategorySortComparer x:Key="SortComparer"/>
@@ -55,7 +55,7 @@
             </charts:SfChart>
 
             <charts:SfChart x:Name="ExpensesChart" Grid.Column="1" Header="Wydatki">
-                <charts:PieSeries XBindingPath="Name" YBindingPath="Category.TotalValues" ItemsSource="{x:Bind ExpensesData, Mode=OneWay}" ExplodeAll="True" ExplodeRadius="3" LabelPosition="Outside" EnableSmartLabels="True" ListenPropertyChange="True" ShowEmptyPoints="False">
+                <charts:PieSeries XBindingPath="Name" YBindingPath="Category.TotalValues" ItemsSource="{x:Bind ExpensesData, Mode=OneWay}" ExplodeAll="True" ExplodeRadius="3" ListenPropertyChange="True" >
                     <charts:PieSeries.AdornmentsInfo>
                         <charts:ChartAdornmentInfo ShowLabel="True" ConnectorHeight="25" ShowConnectorLine="True" SegmentLabelContent="LabelContentPath">
                             <charts:ChartAdornmentInfo.LabelTemplate>

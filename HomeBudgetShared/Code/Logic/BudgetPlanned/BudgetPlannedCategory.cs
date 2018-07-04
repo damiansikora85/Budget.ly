@@ -44,17 +44,13 @@ namespace HomeBudget.Code.Logic
             return category;
         }
 
-        public override void Deserialize(BinaryData binaryData)
+        /*public override void Prepare()
         {
-            base.Deserialize(binaryData);
-            int subcatNum = binaryData.GetInt();
-            for (int i = 0; i < subcatNum; i++)
+            foreach (var subcat in subcats)
             {
-                var subcat = new PlannedSubcat();
+                subcat.Prepare();
                 subcat.PropertyChanged += OnSubcatChanged;
-                subcat.Deserialize(binaryData);
-                subcats.Add(subcat);
             }
-        }
+        }*/
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
 
-namespace HomeBudget.UWP
+namespace HomeBudget.UWP.Converters
 {
     public class CurrencyValueConverter : IValueConverter
     {

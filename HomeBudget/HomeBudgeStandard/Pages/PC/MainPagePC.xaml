@@ -8,7 +8,7 @@
 	         xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
              xmlns:sf="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
-             x:Class="HomeBudget.Pages.PC.MainPagePC">
+             x:Class="HomeBudget.Pages.PC.MainPageMobile">
 
     <ContentPage.Resources>
         <ResourceDictionary>

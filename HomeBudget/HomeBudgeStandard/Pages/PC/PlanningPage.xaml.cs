@@ -30,7 +30,7 @@ namespace HomeBudget.Pages.PC
         {
             plannedModel = new ObservableCollection<BudgetViewModelData>();
             var budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
-            budgetPlanned.PropertyChanged += UpdateSummary;
+            //budgetPlanned.PropertyChanged += UpdateSummary;
             foreach (BudgetPlannedCategory category in budgetPlanned.Categories)
             {
                 var categoryTable = new CategoryPlanDataGrid();
@@ -86,7 +86,7 @@ namespace HomeBudget.Pages.PC
 
         private void SetupChart(SfChart chart, ObservableCollection<BudgetViewModelData> data, string xBindingPath, string yBindingPath)
         {
-            var pieSeries = new PieSeries
+            /*var pieSeries = new PieSeries
             {
                 ItemsSource = data,
                 XBindingPath = xBindingPath,
@@ -111,7 +111,7 @@ namespace HomeBudget.Pages.PC
                 LabelContent = LabelContent.YValue,
                 LabelTemplate = dataMarkerTemplate
             };
-            chart.Series.Add(pieSeries);
+            chart.Series.Add(pieSeries);*/
         }
 
         private void UpdateSummary(object sender, PropertyChangedEventArgs e)
@@ -129,17 +129,17 @@ namespace HomeBudget.Pages.PC
 
         private async void OnHomeClick(object sender, EventArgs args)
         { 
-            await Navigation.PushModalAsync(new MainPagePC());
+           // await Navigation.PushModalAsync(new MainPagePC());
         }
 
         private async void OnAnalizeClick(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new AnalyticsPagePC());
+            //await Navigation.PushModalAsync(new AnalyticsPagePC());
         }
 
         private async void OnOnlyThisMonth(object sender, EventArgs args)
         {
-            await MainBudget.Instance.SaveAsync();
+            await MainBudget.Instance.Save();
         }
 
         private async void OnSaveForAll(object sender, EventArgs args)

@@ -33,18 +33,5 @@ namespace HomeBudget.Code.Logic
                 Categories.Add(plannedCategory);
             }
         }
-
-        public void Deserialize(BinaryData binaryData)
-        {
-            Categories.Clear();
-            var categoriesNum = binaryData.GetInt();
-            for(int i=0; i<categoriesNum; i++)
-            {
-                var category = new BudgetPlannedCategory();
-                category.Deserialize(binaryData);
-                category.PropertyChanged += OnCategoryModified;
-                Categories.Add(category);
-            }
-        }
     }
 }

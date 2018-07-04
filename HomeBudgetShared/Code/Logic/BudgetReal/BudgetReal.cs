@@ -22,19 +22,6 @@ namespace HomeBudget.Code.Logic
             }
         }
 
-        public void Deserialize(BinaryData binaryData)
-        {
-            Categories.Clear();
-            int categoriesNum = binaryData.GetInt();
-            for (int i = 0; i < categoriesNum; i++)
-            {
-                var category = new BudgetRealCategory();
-                category.Deserialize(binaryData);
-                category.PropertyChanged += OnCategoryModified;
-                Categories.Add(category);
-            }
-        }
-
         public void AddExpense(double value, DateTime date, int categoryId, int subcatId)
         {
             var category = (BudgetRealCategory)GetBudgetCategory(categoryId);

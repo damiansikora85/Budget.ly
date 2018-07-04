@@ -40,20 +40,5 @@ namespace HomeBudget.Code.Logic
 
             return subcat;
         }
-
-        public override byte[] Serialize()
-        {
-            var bytes = new List<byte>();
-            bytes.AddRange(base.Serialize());
-            bytes.AddRange(BitConverter.GetBytes(plannedValue));
-
-            return bytes.ToArray();
-        }
-
-        public override void Deserialize(BinaryData binaryData)
-        {
-            base.Deserialize(binaryData);
-            plannedValue = binaryData.GetDouble();
-        }
     }
 }

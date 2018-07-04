@@ -52,26 +52,13 @@ namespace HomeBudget.Code.Logic
             IconName = category.IconName;
         }
 
-        public virtual byte[] Serialize()
+        public virtual void Prepare()
         {
-            var bytes = new List<byte>();
-            bytes.AddRange(BinaryData.GetBytes(Name));
-            bytes.AddRange(BitConverter.GetBytes(Id));
-            bytes.AddRange(BitConverter.GetBytes(IsIncome));
-            bytes.AddRange(BinaryData.GetBytes(IconName));
-            bytes.AddRange(BitConverter.GetBytes(subcats.Count));
-            foreach (BaseBudgetSubcat subcat in subcats)
-                bytes.AddRange(subcat.Serialize());
-
-            return bytes.ToArray();
-        }
-
-        public virtual void Deserialize(BinaryData binaryData)
-        {
-            Name = binaryData.GetString();
-            Id = binaryData.GetInt();
-            IsIncome = binaryData.GetBool();
-            IconName = binaryData.GetString();
+            foreach (var subcat in subcats)
+            {
+                subcat.Prepare();
+                subcat.PropertyChanged += OnSubcatChanged;
+            }
         }
 
         protected void OnSubcatChanged(object sender, PropertyChangedEventArgs e)

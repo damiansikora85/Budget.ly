@@ -40,6 +40,11 @@
                     <FontIcon Glyph="&#xF0E3;"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
+            <NavigationViewItem Content="Logs" Tag="logs">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE945;"/>
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
         </NavigationView.MenuItems>
 
         <Frame x:Name="ContentFrame" Margin="24" BorderThickness="0">

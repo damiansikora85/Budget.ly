@@ -1,35 +1,20 @@
-﻿using Autofac;
-using FFImageLoading;
-using FFImageLoading.Forms;
-using FFImageLoading.Forms.WinUWP;
-using HomeBudgeStandard.Code.Dropbox;
-using HomeBudgeStandard.Code.Logic;
-using HomeBudget.Code;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace HomeBudget.UWP
 {
-	/// <summary>
-	/// Provides application-specific behavior to supplement the default Application class.
-	/// </summary>
-	sealed partial class App : Application
+    /// <summary>
+    /// Provides application-specific behavior to supplement the default Application class.
+    /// </summary>
+    sealed partial class App : Application
 	{
 		/// <summary>
 		/// Initializes the singleton application object.  This is the first line of authored code
@@ -72,18 +57,6 @@ namespace HomeBudget.UWP
 				rootFrame = new Frame();
 
 				rootFrame.NavigationFailed += OnNavigationFailed;
-
-                //FFImageLoading.Forms.WinUWP.CachedImageRenderer.Init();
-
-                //List<Assembly> assembliesToInclude = new List<Assembly>();
-                var assembliesToInclude = new List<Assembly>()
-                {
-                    typeof(CachedImage).GetTypeInfo().Assembly,
-                    typeof(CachedImageRenderer).GetTypeInfo().Assembly,
-                    //typeof(Syncfusion.SfChart.XForms.UWP.SfChartRenderer).GetTypeInfo().Assembly
-                };
-				assembliesToInclude.AddRange(Rg.Plugins.Popup.Windows.Popup.GetExtraAssemblies());
-				//Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
 				{

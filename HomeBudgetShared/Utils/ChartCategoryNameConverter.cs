@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Globalization;
-using Xamarin.Forms;
+/*using Xamarin.Forms;
 
 namespace HomeBudget.Utils
 {
@@ -23,4 +23,4 @@ namespace HomeBudget.Utils
             return null;
         }
     }
-}
+}*/

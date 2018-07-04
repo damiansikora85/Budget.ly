@@ -8,6 +8,9 @@ using Android.Widget;
 using Android.OS;
 
 using System.Threading.Tasks;
+using HomeBudget.Code;
+using HomeBudgeStandard.Utils;
+using Acr.UserDialogs;
 
 namespace HomeBudget.Droid
 {
@@ -22,9 +25,10 @@ namespace HomeBudget.Droid
 
 			base.OnCreate(bundle);
 
-			global::Xamarin.Forms.Forms.Init(this, bundle);
-
-			LoadApplication(new App());
+            UserDialogs.Init(this);
+            global::Xamarin.Forms.Forms.Init(this, bundle);
+ 
+            LoadApplication(new App());
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using HomeBudget.Code.Logic;
 using HomeBudgetShared.Code.Interfaces;
+using HomeBudgetShared.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace HomeBudget.Code
 
     public class MainBudget
 	{
-        private const string TEMPLATE_FILENAME = "HomeBudget.UWP.template.json";
+        private const string TEMPLATE_FILENAME = "template.json";
         private const string SAVE_DIRECTORY_NAME = "save";
         private const string SAVE_FILE_NAME = "budget.data";
         public const int INCOME_CATEGORY_ID = 777;
@@ -80,7 +81,7 @@ namespace HomeBudget.Code
             initialized = false;
 		}
 
-        public void CloudStorageConnected()
+        public void OnCloudStorageConnected()
         {
             Task.Run(() => _cloudStorage.DownloadData());
         }
@@ -93,8 +94,9 @@ namespace HomeBudget.Code
             _cloudStorage.OnDownloadError += SynchronizeError;
 
             var assembly = typeof(MainBudget).GetTypeInfo().Assembly;
+            //var name = assembly.GetName();
             //var names = assembly.GetManifestResourceNames();
-            var stream = assembly.GetManifestResourceStream(TEMPLATE_FILENAME);
+            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{TEMPLATE_FILENAME}");
             var jsonString = "";
             using (var reader = new System.IO.StreamReader(stream))
             {
@@ -103,32 +105,25 @@ namespace HomeBudget.Code
                 budgetPlanned.Setup(budgetDescription.Categories);
             }
 
+            LogsManager.Instance.Init(fileManager);
+
             if (!string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken))
             {
+                LogsManager.Instance.WriteLine("Load data from cloud storage");
                 Task.Run(() => _cloudStorage.DownloadData());
             }
             else
             {
+                LogsManager.Instance.WriteLine("Load data from local device");
                 Task.Run(() => LoadAsync());
             }
-        }
-
-        public byte[] GetData()
-        {
-            var byteList = new List<byte>();
-            byteList.AddRange(BitConverter.GetBytes(months.Count));
-            foreach (BudgetMonth month in months)
-            {
-                byteList.AddRange(month.Serialize());
-            }
-
-            return byteList.ToArray();
         }
 
         public async Task<bool> Save(bool upload = true)
         {
             try
             {
+                LogsManager.Instance.WriteLine("Save data");
                 var saveData = new BudgetData
                 {
                     Version = VERSION,
@@ -144,6 +139,7 @@ namespace HomeBudget.Code
             }
             catch (Exception e)
             {
+                LogsManager.Instance.WriteLine("Save data error: "+e.InnerException.Message);
                 Console.WriteLine(e);
             }
 
@@ -152,11 +148,14 @@ namespace HomeBudget.Code
 
         public async Task LoadAsync()
         {
+            LogsManager.Instance.WriteLine("Load data");
             var data = await _fileManager.Load();
             if (data != null)
             {
                 budgetPlanned = data.BudgetPlanned;
                 months = data.Months;
+                foreach (var month in months)
+                    month.Setup();
             }
 
             initialized = true;
@@ -170,29 +169,42 @@ namespace HomeBudget.Code
 
         private void SynchronizeData(BudgetData data)
         {
-            if (data == null)
+            try
             {
-                Task.Run(() => LoadAsync());
-            }
-            else
-            {
-                months.Clear();
-                if(data.Months != null)
-                    months = data.Months;
-                if(data.BudgetPlanned != null)
-                    budgetPlanned = data.BudgetPlanned;
-
-                /*var binaryData = new BinaryData(data);
-                var numMonths = binaryData.GetInt();
-                for (int i = 0; i < numMonths; i++)
+                if (data == null)
                 {
-                    var month = BudgetMonth.CreateFromBinaryData(binaryData);
-                    month.onBudgetPlannedChanged += OnPlannedBudgetChanged;
-                    months.Add(month);
-                */
+                    LogsManager.Instance.WriteLine("Cloud save synchro - null");
+                    Task.Run(() => LoadAsync());
+                }
+                else
+                {
+                    LogsManager.Instance.WriteLine("Cloud save data: " + data.Months.Count.ToString());
+                    months.Clear();
+                    if (data.Months != null)
+                    {
+                        months = data.Months;
+                        foreach (var month in months)
+                            month.Setup();
+                    }
+                    if (data.BudgetPlanned != null)
+                        budgetPlanned = data.BudgetPlanned;
 
-                onBudgetLoaded?.Invoke();
-                Task.Run(() => Save(false));
+                    /*var binaryData = new BinaryData(data);
+                    var numMonths = binaryData.GetInt();
+                    for (int i = 0; i < numMonths; i++)
+                    {
+                        var month = BudgetMonth.CreateFromBinaryData(binaryData);
+                        month.onBudgetPlannedChanged += OnPlannedBudgetChanged;
+                        months.Add(month);
+                    */
+
+                    onBudgetLoaded?.Invoke();
+                    Task.Run(() => Save(false));
+                }
+            }
+            catch(Exception e)
+            {
+                LogsManager.Instance.WriteLine("SynchronizeData exception: "+e.Message);
             }
         }
 
@@ -240,7 +252,8 @@ namespace HomeBudget.Code
                 month.onBudgetPlannedChanged += OnPlannedBudgetChanged;
                 month.UpdatePlannedBudget(budgetPlanned);
                 months.Add(month);
-                Save();
+                //??
+                //Save();
 			}
 
 			return month;

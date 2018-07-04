@@ -1,5 +1,4 @@
 ﻿using Acr.UserDialogs;
-using Dropbox.Api;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
@@ -15,10 +14,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace HomeBudget.Pages.PC
+namespace HomeBudget.Pages.Mobile
 {
     //[XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPagePC : ContentPage
+    public partial class MainPageMobile : ContentPage
     {
         public enum EMode
         {
@@ -47,9 +46,9 @@ namespace HomeBudget.Pages.PC
 
         public ICommand SubcatClicked { get; private set; }
 
-        public MainPagePC()
+        public MainPageMobile()
         {
-            InitializeComponent();
+            /*InitializeComponent();
             viewModel = new MainPagePcViewModel();
             BindingContext = viewModel;
             addButton.GestureRecognizers.Add(new TapGestureRecognizer(OnAddClick));
@@ -80,7 +79,7 @@ namespace HomeBudget.Pages.PC
             calendar.MonthViewSettings = monthViewSettings;
             calendar.OnCalendarTapped += SelectedDateChanged;
             calendar.MonthChanged += SelectedMonthChanged;
-
+            */
         }
 
         private void SelectedMonthChanged(object sender, MonthChangedEventArgs args)
@@ -90,26 +89,14 @@ namespace HomeBudget.Pages.PC
 
         private void InitBudget()
         {
-            MainBudget.Instance.Init();
+            //MainBudget.Instance.Init();
             MainBudget.Instance.onBudgetLoaded += OnBudgetLoaded;
-
-            if (string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken) == false)
-            {
-                DropboxButtonChangeVisibility(false);
-                //DropboxLoginElement.IsVisible = false;
-                DropboxManager.Instance.DownloadData();
-            }
-            else
-            {
-                DropboxButtonChangeVisibility(true);
-                MainBudget.Instance.LoadAsync();
-            }
         }
 
         private void DropboxButtonChangeVisibility(bool isVisible)
         {
-            DropboxButon.IsVisible = isVisible;
-            DropboxIcon.IsVisible = isVisible;
+            //DropboxButon.IsVisible = isVisible;
+            //DropboxIcon.IsVisible = isVisible;
         }
 
         private void OnBudgetLoaded()
@@ -118,7 +105,7 @@ namespace HomeBudget.Pages.PC
             CreateIncomesBar();
             SetupBudgetSummary();
             budgetSummaryElement = new BudgetSummaryListView();
-            budgetSummaryElement.Setup(listView);
+            //budgetSummaryElement.Setup(listView);
             DropboxButtonChangeVisibility(false);
 
             UserDialogs.Instance.HideLoading();
@@ -131,34 +118,34 @@ namespace HomeBudget.Pages.PC
             double monthIncomes = budgetMonth.GetTotalIncomeReal();
             double diff = monthIncomes - monthExpenses;
             CultureInfo cultureInfoPL = new CultureInfo("pl-PL");
-            expansesText.Text = string.Format(cultureInfoPL, "{0:c}", monthExpenses);
-            incomeText.Text = string.Format(cultureInfoPL, "{0:c}", monthIncomes);
-            diffText.Text = string.Format(cultureInfoPL, "{0:c}", diff);
+            //expansesText.Text = string.Format(cultureInfoPL, "{0:c}", monthExpenses);
+            //incomeText.Text = string.Format(cultureInfoPL, "{0:c}", monthIncomes);
+            //diffText.Text = string.Format(cultureInfoPL, "{0:c}", diff);
 
             double monthExpensesPlanned = budgetMonth.GetTotalExpensesPlanned();
             double monthIncomePlanned = budgetMonth.GetTotalIncomePlanned();
             double diffPlanned = monthIncomePlanned - monthExpensesPlanned;
-            expansesPlannedText.Text = string.Format(cultureInfoPL, "{0:c}", monthExpensesPlanned);
-            incomePlannedText.Text = string.Format(cultureInfoPL, "{0:c}", monthIncomePlanned);
-            diffPlannedText.Text = string.Format(cultureInfoPL, "{0:c}", diffPlanned);
+            //expansesPlannedText.Text = string.Format(cultureInfoPL, "{0:c}", monthExpensesPlanned);
+            //incomePlannedText.Text = string.Format(cultureInfoPL, "{0:c}", monthIncomePlanned);
+            //diffPlannedText.Text = string.Format(cultureInfoPL, "{0:c}", diffPlanned);
         }
 
 
         private async void OnPlanClick(object sender, EventArgs args)
         {
-            await Navigation.PushModalAsync(new PlanningPage());
+            //await Navigation.PushModalAsync(new PlanningPage());
         }
 
         private async void OnAnalyticsClick(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new AnalyticsPagePC());
+            //await Navigation.PushModalAsync(new AnalyticsPagePC());
         }
 
         private async void OnAddClick(View arg1, object arg2)
         {
             mode = EMode.Expense;
             lockTapGesture = true;
-            await categories.TranslateTo(0, 0);
+            //await categories.TranslateTo(0, 0);
             lockTapGesture = false;
         }
 
@@ -166,7 +153,7 @@ namespace HomeBudget.Pages.PC
         {
             mode = EMode.Income;
             lockTapGesture = true;
-            await incomes.TranslateTo(0, 0);
+            //await incomes.TranslateTo(0, 0);
             lockTapGesture = false;
         }
 
@@ -174,7 +161,7 @@ namespace HomeBudget.Pages.PC
         {
             mode = EMode.Expense;
             lockTapGesture = true;
-            await categories.TranslateTo(0, 0);
+            //await categories.TranslateTo(0, 0);
             lockTapGesture = false;
         }
 
@@ -195,7 +182,7 @@ namespace HomeBudget.Pages.PC
                         Grid grid = CreateCategoryGrid();
                         CategoryElement element = CategoryElement.CreateAndAddToGrid(index++, subcatName, iconsPathPrefix + incomeTemplate.IconFileName, grid);
                         element.onClickFunc += OnIncomeCategoryClick;
-                        incomes.Children.Add(grid);
+                        //incomes.Children.Add(grid);
                     }
                 }
             }
@@ -206,7 +193,7 @@ namespace HomeBudget.Pages.PC
             selectedCategoryId = incomeCategoryID;
             selectedDate = DateTime.Now;
             categoryElement.Deselect();
-            await incomes.TranslateTo(-150, 0);
+            //await incomes.TranslateTo(-150, 0);
 
             //ShowCalculatorView("Dochód", selectedDate);
         }
@@ -225,7 +212,7 @@ namespace HomeBudget.Pages.PC
                 catagoriesData.Add(model);
             }
 
-            categories.ItemsSource = catagoriesData;
+            //categories.ItemsSource = catagoriesData;
 
             /*int categoriesNum = MainBudget.Instance.BudgetDescription.Categories.Count;
             List<BudgetCategoryTemplate> categoriesDesc = MainBudget.Instance.BudgetDescription.Categories;
@@ -253,8 +240,8 @@ namespace HomeBudget.Pages.PC
             selectedDate = DateTime.Now;
             BudgetViewModelData selectedCategory = (BudgetViewModelData)e.SelectedItem;
             CreateSubcatsList(selectedCategory.Category.Id);
-            Header.Text = selectedCategory.Name;
-            subcat.TranslateTo(150, 0);
+            //Header.Text = selectedCategory.Name;
+            //subcat.TranslateTo(150, 0);
         }
 
         private async Task OnCategoryClicked(int categoryID, CategoryElement categoryElement)
@@ -264,7 +251,7 @@ namespace HomeBudget.Pages.PC
             selectedCategoryId = categoryElement.Id;
             selectedDate = DateTime.Now;
             CreateSubcatsList(categoryID);
-            await subcat.TranslateTo(150, 0);
+            //await subcat.TranslateTo(150, 0);
 
             if (lastCategorySelected != null)
                 lastCategorySelected.Deselect();
@@ -288,7 +275,7 @@ namespace HomeBudget.Pages.PC
                 subcatsData.Add(model);
             }
 
-            subcat.ItemsSource = subcatsData;
+            //subcat.ItemsSource = subcatsData;
         }
 
         private Grid CreateCategoryGrid()
@@ -321,9 +308,9 @@ namespace HomeBudget.Pages.PC
         private void OnSubcatClicked(object sender, SelectedItemChangedEventArgs e)
         {
             ((ListView)sender).SelectedItem = null;
-            categories.SelectedItem = null;
-            subcat.TranslateTo(-250, 0);
-            categories.TranslateTo(-200, 0);
+            //categories.SelectedItem = null;
+            //subcat.TranslateTo(-250, 0);
+            //categories.TranslateTo(-200, 0);
 
             BudgetViewModelData selectedCategory = (BudgetViewModelData)e.SelectedItem;
 
@@ -349,14 +336,14 @@ namespace HomeBudget.Pages.PC
 
         private void ShowCalculator()
         {
-            background.IsVisible = true;
-            Calculator.IsVisible = true;
+            //background.IsVisible = true;
+            //Calculator.IsVisible = true;
         }
 
         private void HideCalculator()
         {
-            background.IsVisible = false;
-            Calculator.IsVisible = false;
+            //background.IsVisible = false;
+            //Calculator.IsVisible = false;
         }
 
         private void OnTap(object sender, EventArgs args)
@@ -367,14 +354,14 @@ namespace HomeBudget.Pages.PC
             if (lastCategorySelected != null)
                 lastCategorySelected.Deselect();
 
-            subcat.TranslateTo(-185, 0);
-            categories.TranslateTo(-150, 0);
-            incomes.TranslateTo(-150, 0);
+            //subcat.TranslateTo(-185, 0);
+            //categories.TranslateTo(-150, 0);
+            //incomes.TranslateTo(-150, 0);
         }
 
         private async void OnChangeDateClicked(object sender, EventArgs e)
         {
-            BudgetDatePicker.IsVisible = true;
+            //BudgetDatePicker.IsVisible = true;
         }
 
         private void ShowCalculatorView(string subcatName, BudgetViewModelData data)
@@ -387,7 +374,7 @@ namespace HomeBudget.Pages.PC
                 subcat.AddValue(calculationResult, selectedDate);
 
                 HideCalculator();
-                MainBudget.Instance.SaveAsync();
+                //MainBudget.Instance.SaveAsync();
                 SetupBudgetSummary();
 
                 //if month changed
@@ -398,18 +385,18 @@ namespace HomeBudget.Pages.PC
 
             ShowCalculator();
 
-            Description.Text = subcatName;
+            //Description.Text = subcatName;
 
             CultureInfo cultureInfoPL = new CultureInfo("pl-PL");
-            DateButton.Text = selectedDate.ToString("dd.MM.yyyy", cultureInfoPL);
+            //DateButton.Text = selectedDate.ToString("dd.MM.yyyy", cultureInfoPL);
         }
 
         private void SelectedDateChanged(object sender, CalendarTappedEventArgs args)
         {
             selectedDate = args.datetime;
             CultureInfo cultureInfoPL = new CultureInfo("pl-PL");
-            DateButton.Text = selectedDate.ToString("dd.MM.yyyy", cultureInfoPL);
-            BudgetDatePicker.IsVisible = false;
+            //DateButton.Text = selectedDate.ToString("dd.MM.yyyy", cultureInfoPL);
+            //BudgetDatePicker.IsVisible = false;
         }
 
         private void OnValueEdited(object sender, EventArgs e)
@@ -421,18 +408,18 @@ namespace HomeBudget.Pages.PC
 
         private async void OnDropboxClick(object sender, EventArgs e)
         {
-            this.oauth2State = Guid.NewGuid().ToString("N");
+            /*this.oauth2State = Guid.NewGuid().ToString("N");
             var authorizeUri = DropboxOAuth2Helper.GetAuthorizeUri(OAuthResponseType.Token, appKey, new Uri(RedirectUri), state: oauth2State);
 
             var webView = new WebView { Source = new UrlWebViewSource { Url = authorizeUri.AbsoluteUri } };
             webView.Navigating += this.WebViewOnNavigating;
             var contentPage = new ContentPage { Content = webView };
-            await Navigation.PushModalAsync(contentPage);
+            await Navigation.PushModalAsync(contentPage);*/
         }
 
         private async void WebViewOnNavigating(object sender, WebNavigatingEventArgs e)
         {
-            if (!e.Url.StartsWith(RedirectUri.ToString(), StringComparison.OrdinalIgnoreCase))
+            /*if (!e.Url.StartsWith(RedirectUri.ToString(), StringComparison.OrdinalIgnoreCase))
             {
                 // we need to ignore all navigation that isn't to the redirect uri.  
                 return;
@@ -448,10 +435,7 @@ namespace HomeBudget.Pages.PC
                 }
 
                 Helpers.Settings.DropboxAccessToken = result.AccessToken;
-                DropboxManager.Instance.Init();
-                //DropboxLoginElement.IsVisible = false;
-                DropboxButtonChangeVisibility(false);
-                await DropboxManager.Instance.DownloadData();
+
             }
             catch (ArgumentException argExc)
             {
@@ -463,7 +447,7 @@ namespace HomeBudget.Pages.PC
             {
                 e.Cancel = true;
                 await Application.Current.MainPage.Navigation.PopModalAsync();
-            }
+            }*/
         }
     }
 }

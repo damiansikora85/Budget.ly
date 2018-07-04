@@ -85,7 +85,6 @@ namespace HomeBudget.UWP.Pages
 
         private void SetupChart(SfChart chart, ObservableCollection<BudgetViewModelData> data, string xBindingPath, string yBindingPath)
         {
-            
             var pieSeries = new PieSeries()
             {
                 ItemsSource = data,
@@ -93,8 +92,7 @@ namespace HomeBudget.UWP.Pages
                 YBindingPath = yBindingPath,
                 EnableSmartLabels = true,
                 ListenPropertyChange = true,
-                ExplodeOnMouseClick = true,
-                
+                ExplodeOnMouseClick = true,   
             };
 
             chart.Series.Add(pieSeries);

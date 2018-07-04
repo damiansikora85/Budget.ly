@@ -31,19 +31,6 @@ namespace HomeBudget.Code.Logic
             return category;
         }
 
-        public override void Deserialize(BinaryData binaryData)
-        {
-            base.Deserialize(binaryData);
-            var subcatNum = binaryData.GetInt();
-            for (int i = 0; i < subcatNum; i++)
-            {
-                var subcat = new RealSubcat();
-                subcat.PropertyChanged += OnSubcatChanged;
-                subcat.Deserialize(binaryData);
-                subcats.Add(subcat);
-            }
-        }
-
         public void AddValue(double value, DateTime date, int subcatId)
         {
             var subcat = subcats.Find(elem => elem.Id == subcatId) as RealSubcat;

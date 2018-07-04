@@ -24,21 +24,15 @@ namespace HomeBudget.Code.Logic.BaseBudget
             Categories = new ObservableCollection<BaseBudgetCategory>();
         }
 
-        public byte[] Serialize()
-        {
-            var bytes = new List<byte>();
-            bytes.AddRange(BitConverter.GetBytes(Categories.Count));
-            foreach (BaseBudgetCategory category in Categories)
-            {
-                bytes.AddRange(category.Serialize());
-            }
-
-            return bytes.ToArray();
-        }
-
         protected void OnCategoryModified(object sender, PropertyChangedEventArgs e)
         {
             
+        }
+
+        public void Prepare()
+        {
+            foreach (var category in Categories)
+                category.Prepare();
         }
 
         public List<BaseBudgetCategory> GetIncomesCategories()

@@ -58,7 +58,7 @@ namespace HomeBudget.UWP.Pages
                     ProgressRing.IsActive = true;
                     var response = DropboxOAuth2Helper.ParseTokenFragment(new Uri(result.ResponseData));
                     Helpers.Settings.DropboxAccessToken = response.AccessToken;
-                    MainBudget.Instance.CloudStorageConnected();
+                    MainBudget.Instance.OnCloudStorageConnected();
                     break;
 
                 /*case WebAuthenticationStatus.ErrorHttp:

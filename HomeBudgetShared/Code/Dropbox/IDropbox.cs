@@ -11,5 +11,6 @@ namespace HomeBudgeStandard.Code.Dropbox
         void Init();
         Task DownloadData();
         Task UploadData(BudgetData data);
+        Task Login();
     }
 }

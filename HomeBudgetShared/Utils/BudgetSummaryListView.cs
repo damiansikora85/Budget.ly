@@ -1,13 +1,5 @@
-﻿using FFImageLoading.Forms;
-using FFImageLoading.Transformations;
-using FFImageLoading.Work;
-using HomeBudget.Code;
-using HomeBudget.Code.Logic;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using HomeBudget.Code.Logic;
 using System.ComponentModel;
-using System.Globalization;
-using Xamarin.Forms;
 
 namespace HomeBudget.Pages.Utils
 {
@@ -29,7 +21,7 @@ namespace HomeBudget.Pages.Utils
             set
             {
                 categoryReal = value;
-                categoryReal.PropertyChanged += OnCategoryChanged;
+                //categoryReal.PropertyChanged += OnCategoryChanged;
             }
         }
 
@@ -43,16 +35,16 @@ namespace HomeBudget.Pages.Utils
         private string icon;
         public string IconFile
         {
-            get => "ms-appx:///" + icon;
+            get => icon;
             set => icon = value;
         }
-        public double SpendPercentage
-        {
-            get
-            {
+        public double SpendPercentage =>
                 //Random rand = new Random();
-                return CategoryPlanned.TotalValues > 0 ? (CategoryReal.TotalValues / CategoryPlanned.TotalValues) : 0; //rand.NextDouble();
-            }
+                CategoryPlanned.TotalValues > 0 ? Min((CategoryReal.TotalValues / CategoryPlanned.TotalValues), 1) : 0; //rand.NextDouble();
+
+        private double Min(double v1, double v2)
+        {
+            return v1 > v2 ? v2 : v1;
         }
 
         public int SpendPercentageInt
@@ -63,7 +55,10 @@ namespace HomeBudget.Pages.Utils
             }
         }
 
-
+        public override string ToString()
+        {
+            return CategoryName;
+        }
 
     }
 

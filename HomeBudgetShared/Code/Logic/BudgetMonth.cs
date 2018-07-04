@@ -41,14 +41,6 @@ namespace HomeBudget.Code
 			return month;
 		}
 
-        public static BudgetMonth CreateFromBinaryData(BinaryData binaryData)
-        {
-            var month = new BudgetMonth();
-            month.Deserialize(binaryData);
-
-            return month;
-        }
-
         public void AddExpense(double value, DateTime date, int categoryID, int subcatID)
         {
             BudgetReal.AddExpense(value, date, categoryID, subcatID);
@@ -103,25 +95,6 @@ namespace HomeBudget.Code
 			return monthData;
 		}
 
-        public byte[] Serialize()
-        {
-            var bytes = new List<byte>();
-            bytes.AddRange(BitConverter.GetBytes(Month));
-            bytes.AddRange(BitConverter.GetBytes(Year));
-            bytes.AddRange(BudgetPlanned.Serialize());
-            bytes.AddRange(BudgetReal.Serialize());
-
-            return bytes.ToArray();
-        }
-
-        private void Deserialize(BinaryData binaryData)
-        {
-            Month = binaryData.GetInt();
-            Year = binaryData.GetInt();
-            BudgetPlanned.Deserialize(binaryData);
-            BudgetReal.Deserialize(binaryData);
-        }
-
         public double GetTotalIncomeReal()
         {
             return BudgetReal.GetTotalIncome();
@@ -145,6 +118,12 @@ namespace HomeBudget.Code
         public void UpdatePlannedBudget(BudgetPlanned newBudgetPlanned)
         {
             BudgetPlanned = new BudgetPlanned(newBudgetPlanned);
+        }
+
+        public void Setup()
+        {
+            BudgetPlanned.Prepare();
+            BudgetReal.Prepare();
         }
     }
 }

@@ -38,5 +38,30 @@ namespace HomeBudget.UWP.Utils
                 writeStream.Dispose();
             }
         }
+
+        public async Task WriteLine(string filename, string message)
+        {
+            var storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            var file = await storageFolder.CreateFileAsync(filename, Windows.Storage.CreationCollisionOption.OpenIfExists);
+            await Windows.Storage.FileIO.AppendLinesAsync(file, new List<string> { message });
+        }
+
+        public async Task<string> ReadFile(string filename)
+        {
+            var storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            if (await storageFolder.TryGetItemAsync(filename) == null) return "logfile not exist";
+
+            var file = await storageFolder.GetFileAsync(filename);
+            return await Windows.Storage.FileIO.ReadTextAsync(file);
+        }
+
+        public async Task DeleteFile(string filename)
+        {
+            var storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            if (await storageFolder.TryGetItemAsync(filename) == null) return;
+
+            var file = await storageFolder.GetFileAsync(filename);
+            await file.DeleteAsync();
+        }
     }
 }

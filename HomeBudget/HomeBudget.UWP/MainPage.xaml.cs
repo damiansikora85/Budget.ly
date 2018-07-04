@@ -16,18 +16,9 @@ namespace HomeBudget.UWP
     {
         public MainPage()
         {
-            //new Syncfusion.SfChart.XForms.UWP.SfChartRenderer();
-            //Syncfusion.SfDataGrid.XForms.UWP.SfDataGridRenderer.Init();
-
             InitializeComponent();
 
-            //ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
-            //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-
-            //LoadApplication(new HomeBudget.App());
-
             ContentFrame.Content = new ProgressRing { IsActive = true };
-
 
             if (!MainBudget.Instance.IsInitialized)
                 InitBudget();
@@ -80,6 +71,9 @@ namespace HomeBudget.UWP
                         break;
                     case "plan":
                         ContentFrame.Navigate(typeof(PlanPage));
+                        break;
+                    case "logs":
+                        ContentFrame.Navigate(typeof(LogsPage));
                         break;
                 }
             }

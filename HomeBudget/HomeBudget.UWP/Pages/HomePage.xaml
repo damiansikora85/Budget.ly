@@ -13,9 +13,10 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <uwp:CurrencyValueConverter x:Key="CurrencyValueConverter"/>
+        <converters:CurrencyValueConverter x:Key="CurrencyValueConverter"/>
         <syncfusion:StringFormatConverter x:Key="StringFormatConverter"/>
         <converters:BudgetProgressConverter x:Key="ProgressConverter" />
+        <converters:SummaryValueColorConverter x:Key="ValueColorConverter"/>
     </Page.Resources>
 
     <Frame x:Name="MainPanel">
@@ -54,7 +55,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="500"/>
+                <ColumnDefinition Width="650"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -75,8 +76,8 @@
                         <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Rzeczywiste" Style="{StaticResource SubtitleTextBlockStyle}" HorizontalTextAlignment="Start" />
-                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Planowane"  Style="{StaticResource SubtitleTextBlockStyle}" HorizontalTextAlignment="Start" />
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Rzeczywiste" Style="{StaticResource SubtitleTextBlockStyle}" HorizontalTextAlignment="End" />
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Planowane"  Style="{StaticResource SubtitleTextBlockStyle}" HorizontalTextAlignment="End" />
 
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Dochód:" Style="{StaticResource SubtitleTextBlockStyle}" HorizontalTextAlignment="Start" />
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Wydatki:" Style="{StaticResource SubtitleTextBlockStyle}" HorizontalTextAlignment="Start" />
@@ -100,15 +101,16 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="60"/>
                                     <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="150"/>
                                     <ColumnDefinition Width="100"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 
                                 <BitmapIcon Height="50" UriSource="{x:Bind IconFile}" Foreground="Black" />
                                 <TextBlock Grid.Column="1" Text="{x:Bind CategoryName}" VerticalAlignment="Center" Margin="24,0"/>
-                                <!--<Rectangle Grid.Column="2" Height="10" Width="100" Fill="{ThemeResource SystemAccentColor}"/>-->
-                                <ProgressBar Grid.Column="2" Value="{x:Bind SpendPercentageInt, Converter={StaticResource ProgressConverter}}" />
-                                <TextBlock Grid.Column="3" Text="{x:Bind SpendPercentage, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:P1}'}" VerticalAlignment="Center" Margin="24,0"/>
+                                <TextBlock Grid.Column="2" Text="{x:Bind CategoryReal.TotalValues, Converter={StaticResource CurrencyValueConverter}}" VerticalAlignment="Center" Margin="24,0" Foreground="{x:Bind SpendPercentage, Converter={StaticResource ValueColorConverter}}"/>
+                                <ProgressBar Grid.Column="3" Value="{x:Bind SpendPercentageInt, Converter={StaticResource ProgressConverter}}" />
+                                <TextBlock Grid.Column="4" Text="{x:Bind SpendPercentage, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:P1}'}" VerticalAlignment="Center" Margin="24,0"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>

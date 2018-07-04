@@ -247,7 +247,7 @@ namespace HomeBudget.Pages.PC
 
         private void SetupChart(SfChart chart, ObservableCollection<BudgetViewModelData> data, string xBindingPath, string yBindingPath)
         {
-            PieSeries pieSeries = new PieSeries()
+            /*PieSeries pieSeries = new PieSeries()
             {
                 ItemsSource = data,
                 XBindingPath = xBindingPath,
@@ -272,12 +272,12 @@ namespace HomeBudget.Pages.PC
                 LabelContent = LabelContent.YValue,
                 LabelTemplate = dataMarkerTemplate
             };
-            chart.Series.Add(pieSeries);
+            chart.Series.Add(pieSeries);*/
         }
 
         private async void OnHomeClick(object sender, EventArgs args)
         {
-            await Navigation.PushModalAsync(new MainPagePC());
+            //await Navigation.PushModalAsync(new MainPagePC());
         }
 
         private async void OnPlanClick(object sender, EventArgs args)

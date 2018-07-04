@@ -31,6 +31,17 @@ namespace HomeBudget.Code.Logic
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Values["+index+"].Value"));
             }
         }
+
+        private string test;
+        public string Test
+        {
+            get { return test; }
+            set
+            {
+                test = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Values[" + index + "].Value"));
+            }
+        }
     };
 
     [ProtoContract]
@@ -63,6 +74,12 @@ namespace HomeBudget.Code.Logic
             
         }
 
+        public override void Prepare()
+        {
+            foreach (var val in Values)
+                val.PropertyChanged += OnValueChanged;
+        }
+
         private void OnValueChanged(object sender, PropertyChangedEventArgs e)
         {
             RaiseValueChanged();
@@ -79,37 +96,7 @@ namespace HomeBudget.Code.Logic
             }
             set
             {
-                //Values[0].Value = value;
-            }
-        }
-
-        public override byte[] Serialize()
-        {
-            var bytes = new List<byte>();
-            bytes.AddRange(base.Serialize());
-            var byteArray = new List<byte>();
-            for (int i = 0; i < 31; i++)
-                byteArray.AddRange(BitConverter.GetBytes(Values[i].Value));
-
-            bytes.AddRange(byteArray);
-
-            return bytes.ToArray();
-        }
-
-        public override void Deserialize(BinaryData binaryData)
-        {
-            base.Deserialize(binaryData);
-            //values.Clear();
-            for (int i = 0; i < 31; i++)
-            {
-                Values[i].Value = binaryData.GetDouble();
-                /*
-                SubcatValue subcatVal = new SubcatValue(i)
-                {
-                    Value = binaryData.GetDouble()
-                };
-                //values[i].Value = 
-                values.Add(subcatVal);*/
+                Values[0].Value = value;
             }
         }
 
