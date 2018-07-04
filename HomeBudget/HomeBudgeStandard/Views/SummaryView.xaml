@@ -97,7 +97,7 @@
                     <ListView x:Name="listViewSubcats" ItemSelected="listView_ItemSelected" >
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <TextCell Text="{Binding CategoryName}" TextColor="DimGray" />
+                                <TextCell Text="{Binding Name}" TextColor="DimGray" />
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>

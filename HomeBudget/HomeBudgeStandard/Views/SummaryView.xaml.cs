@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using HomeBudget.Code;
+using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
 using System;
 using System.Collections.ObjectModel;
@@ -20,6 +21,7 @@ namespace HomeBudgeStandard.Views
         public double DiffExpected { get; set; }
 
         public ObservableCollection<BudgetSummaryDataViewModel> SummaryListViewItems { get; set; }
+        public ObservableCollection<BaseBudgetSubcat> SelectedCategorySubcats { get; private set; }
 
         private bool show;
 
@@ -33,6 +35,8 @@ namespace HomeBudgeStandard.Views
             dateText.Text = currentDate.ToString("dd MMMM yyyy", cultureInfoPL);
             show = true;
 
+            SelectedCategorySubcats = new ObservableCollection<BaseBudgetSubcat>();
+            
             MainBudget.Instance.onBudgetLoaded += UpdateSummary;
         }
 
@@ -44,12 +48,13 @@ namespace HomeBudgeStandard.Views
 
         private void UpdateSummary()
         {
-            UserDialogs.Instance.HideLoading();
             SetupBudgetSummary();
 
             SummaryListViewItems = GetBudgetSummaryData();
             listViewCategories.ItemsSource = SummaryListViewItems;
             summaryList.ItemsSource = SummaryListViewItems;
+
+            UserDialogs.Instance.HideLoading();
         }
 
         private void SetupBudgetSummary()
@@ -95,6 +100,7 @@ namespace HomeBudgeStandard.Views
 
         private void AddButton_Clicked(object sender, EventArgs e)
         {
+            SelectedCategorySubcats.Clear();
             categories.TranslateTo(0, 0, easing: Easing.SpringIn);
         }
 
@@ -107,7 +113,10 @@ namespace HomeBudgeStandard.Views
         {
             if(listViewCategories.SelectedItem is BudgetSummaryDataViewModel selectedCategory)
             {
+                foreach (var item in selectedCategory.CategoryReal.subcats)
+                    SelectedCategorySubcats.Add(item);
 
+                listViewSubcats.ItemsSource = SelectedCategorySubcats;
             }
             listViewCategories.SelectedItem = null;
             await categories.TranslateTo(660, 0, easing: Easing.SpringIn);
