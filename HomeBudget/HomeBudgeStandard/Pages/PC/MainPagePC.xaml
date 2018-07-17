@@ -249,9 +249,7 @@
                 </StackLayout>
             </AbsoluteLayout>
 
-            <AbsoluteLayout x:Name="BudgetDatePicker" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Grid.Column="1" IsVisible="False">
-                <sf:SfCalendar x:Name="calendar" FirstDayofWeek="1" AbsoluteLayout.LayoutBounds=".5, .5, .75, .8" AbsoluteLayout.LayoutFlags="All" />
-            </AbsoluteLayout>
+
 
         </Grid>
     </ContentPage.Content>

@@ -16,11 +16,10 @@
     <PackageReference Include="PCLStorage" Version="1.0.2" />
     <PackageReference Include="protobuf-net" Version="2.3.12" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.158-pre" />
-    <PackageReference Include="Syncfusion.Xamarin.Calculate" Version="16.1.0.24" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="16.1.0.24" />
-    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="16.1.0.24" />
-    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="16.1.0.24" />
-    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="16.1.0.24" />
+    <PackageReference Include="Syncfusion.Xamarin.Calculate" Version="16.2.0.42" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="16.2.0.42" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="16.2.0.42" />
+    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="16.2.0.42" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.6" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.3.6" />
@@ -57,6 +56,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BudgetRealView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CalcView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SideBarPC.xaml">

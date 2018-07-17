@@ -4,7 +4,6 @@ using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
 using HomeBudget.Utils;
 using HomeBudget.ViewModels;
-using Syncfusion.SfCalendar.XForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -82,10 +81,10 @@ namespace HomeBudget.Pages.Mobile
             */
         }
 
-        private void SelectedMonthChanged(object sender, MonthChangedEventArgs args)
+        /*private void SelectedMonthChanged(object sender, MonthChangedEventArgs args)
         {
             var d = args.args.CurrentValue;
-        }
+        }*/
 
         private void InitBudget()
         {
@@ -391,13 +390,13 @@ namespace HomeBudget.Pages.Mobile
             //DateButton.Text = selectedDate.ToString("dd.MM.yyyy", cultureInfoPL);
         }
 
-        private void SelectedDateChanged(object sender, CalendarTappedEventArgs args)
+        /*private void SelectedDateChanged(object sender, CalendarTappedEventArgs args)
         {
             selectedDate = args.datetime;
             CultureInfo cultureInfoPL = new CultureInfo("pl-PL");
             //DateButton.Text = selectedDate.ToString("dd.MM.yyyy", cultureInfoPL);
             //BudgetDatePicker.IsVisible = false;
-        }
+        }*/
 
         private void OnValueEdited(object sender, EventArgs e)
         {

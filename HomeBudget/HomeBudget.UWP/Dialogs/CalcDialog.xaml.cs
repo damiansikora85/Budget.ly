@@ -84,8 +84,6 @@ namespace HomeBudget.UWP
 
         private String calculationResultText;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public string CalculationResultText
         {
             get
@@ -114,6 +112,8 @@ namespace HomeBudget.UWP
                 }
             }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnCancel()
         {

@@ -5,6 +5,7 @@ using HomeBudget.Pages.Utils;
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -34,6 +35,7 @@ namespace HomeBudgeStandard.Views
             var currentDate = DateTime.Now;
             dateText.Text = currentDate.ToString("dd MMMM yyyy", cultureInfoPL);
             show = true;
+            CalcView.OnCancel += HideCalcView;
 
             SelectedCategorySubcats = new ObservableCollection<BaseBudgetSubcat>();
             
@@ -42,7 +44,9 @@ namespace HomeBudgeStandard.Views
 
         protected override void OnAppearing()
         {
-            if(SummaryListViewItems == null)
+            if (MainBudget.Instance.IsInitialized)
+                UpdateSummary();
+            else if(SummaryListViewItems == null)
                 UserDialogs.Instance.ShowLoading();
         }
 
@@ -122,6 +126,34 @@ namespace HomeBudgeStandard.Views
             await categories.TranslateTo(660, 0, easing: Easing.SpringIn);
 
             await subcats.TranslateTo(0, 0, easing: Easing.SpringIn);
+        }
+
+        private async void Subcat_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            await subcats.TranslateTo(660, 0, easing: Easing.SpringIn);
+            if (listViewSubcats.SelectedItem is RealSubcat selectedSubcat)
+            {    
+                CalcLayout.IsVisible = true;
+                CalcView.Reset();
+                CalcView.OnSaveValue = (double calculationResult, DateTime date) =>
+                {
+                    selectedSubcat.AddValue(calculationResult, date);
+
+                    Task.Run(async () =>
+                    {
+                        await MainBudget.Instance.Save();
+                    });
+
+                    SetupBudgetSummary();
+                    listViewSubcats.SelectedItem = null;
+                    HideCalcView();
+                };
+            }
+        }
+
+        private void HideCalcView()
+        {
+            CalcLayout.IsVisible = false;
         }
     }
 }

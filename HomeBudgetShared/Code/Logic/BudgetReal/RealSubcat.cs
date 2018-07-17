@@ -94,10 +94,10 @@ namespace HomeBudget.Code.Logic
             {
                 return Values.Sum(subcatValue => subcatValue.Value);
             }
-            set
+            /*set
             {
                 Values[0].Value = value;
-            }
+            }*/
         }
 
         public void AddValue(double value, DateTime date)
