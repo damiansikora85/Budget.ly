@@ -21,20 +21,32 @@ namespace HomeBudgeStandard.Utils
 
         public async Task<BudgetData> Load()
         {
+            return await Task.Run(() =>
+            {
+                var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                var filePath = Path.Combine(documentsPath, "budget.dat");
+                if (File.Exists(filePath))
+                {
+                    BudgetData data;
+                    using (var file = File.OpenRead(filePath))
+                    {
+                        data = Serializer.Deserialize<BudgetData>(file);
+                    }
+                    return data;
+                }
+
+                return null;
+            });
+        }
+
+        public async Task Save(BudgetData saveData) => await Task.Run(() =>
+        {
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var filePath = Path.Combine(documentsPath, "budget.dat");
-            if(File.Exists(filePath))
-            {
-                BudgetData data;
-                using (var file = File.OpenRead(filePath))
-                {
-                    data = Serializer.Deserialize<BudgetData>(file);
-                }
-                return data;
-            }
 
-            return null;
-        }
+            using (var file = File.OpenWrite(filePath))
+                Serializer.Serialize<BudgetData>(file, saveData);
+        });
 
         public Task<string> ReadFile(string filename)
         {
@@ -45,11 +57,6 @@ namespace HomeBudgeStandard.Utils
 
                 return File.ReadAllText(filePath);
             });
-        }
-
-        public async Task Save(BudgetData saveData)
-        {
-            
         }
 
         public Task WriteLine(string filename, string message)
