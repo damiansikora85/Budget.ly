@@ -50,15 +50,24 @@ namespace HomeBudgeStandard.Views
                 UserDialogs.Instance.ShowLoading();
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MainBudget.Instance.onBudgetLoaded -= UpdateSummary;
+        }
+
         private void UpdateSummary()
         {
-            SetupBudgetSummary();
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                SetupBudgetSummary();
 
-            SummaryListViewItems = GetBudgetSummaryData();
-            listViewCategories.ItemsSource = SummaryListViewItems;
-            summaryList.ItemsSource = SummaryListViewItems;
+                SummaryListViewItems = GetBudgetSummaryData();
+                listViewCategories.ItemsSource = SummaryListViewItems;
+                summaryList.ItemsSource = SummaryListViewItems;
 
-            UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideLoading();
+            });
         }
 
         private void SetupBudgetSummary()

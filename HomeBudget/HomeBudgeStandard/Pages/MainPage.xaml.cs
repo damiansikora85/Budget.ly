@@ -33,6 +33,15 @@ namespace HomeBudgeStandard.Pages
             //Device.BeginInvokeOnMainThread(() => Detail = new NavigationPage(new MainTabbedPage()));
         }
 
+        public void AfterCloudLogin()
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                Detail = new NavigationPage(new MainTabbedPage());
+                IsPresented = false;
+                });
+        }
+
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as MainPageMenuItem;

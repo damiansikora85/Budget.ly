@@ -51,18 +51,22 @@ namespace HomeBudgeStandard.Pages
                     return;
                 }
                 HomeBudget.Helpers.Settings.DropboxAccessToken = result.AccessToken;
-                MainBudget.Instance.OnCloudStorageConnected();
+                MainBudget.Instance.OnCloudStorageConnected();                
             }
             catch (ArgumentException argExc)
             {
-                string msg = argExc.Message;
+                var msg = argExc.Message;
                 msg += "error";
                 // There was an error in the URI passed to ParseTokenFragment
             }
             finally
             {
                 e.Cancel = true;
+                
                 await Application.Current.MainPage.Navigation.PopModalAsync();
+                var mainPage = Application.Current.MainPage as MainPage;
+                mainPage.AfterCloudLogin();
+
             }
         }
     }
