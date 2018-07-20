@@ -83,6 +83,7 @@ namespace HomeBudget.Code
 
         public void OnCloudStorageConnected()
         {
+            initialized = false;
             Task.Run(() => _cloudStorage.DownloadData());
         }
 
