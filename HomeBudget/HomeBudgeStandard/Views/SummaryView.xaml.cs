@@ -130,6 +130,7 @@ namespace HomeBudgeStandard.Views
                     SelectedCategorySubcats.Add(item);
 
                 listViewSubcats.ItemsSource = SelectedCategorySubcats;
+                CalcView.Category = selectedCategory.CategoryName;
             }
             listViewCategories.SelectedItem = null;
             await categories.TranslateTo(660, 0, easing: Easing.SpringIn);
@@ -144,6 +145,7 @@ namespace HomeBudgeStandard.Views
             {    
                 CalcLayout.IsVisible = true;
                 CalcView.Reset();
+                CalcView.Subcat = selectedSubcat.Name;
                 CalcView.OnSaveValue = (double calculationResult, DateTime date) =>
                 {
                     selectedSubcat.AddValue(calculationResult, date);

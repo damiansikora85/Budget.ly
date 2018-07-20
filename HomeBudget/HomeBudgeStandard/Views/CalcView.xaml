@@ -2,12 +2,12 @@
 <Frame xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             x:Class="HomeBudgeStandard.Views.CalcView">
+             x:Class="HomeBudgeStandard.Views.CalcView" Padding="5">
   <Frame.Content>
         <Grid BackgroundColor="White" RowSpacing="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="30" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -23,14 +23,20 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Label FontSize="20" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text=" " x:Name="Header" BackgroundColor="White"/>
-            <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text=" " x:Name="Description" BackgroundColor="White" />
-            <Button Grid.Column="3" Grid.Row="0" FontSize="12" Text="Save" Clicked="OnSave"/>
-            <DatePicker x:Name="Calendar" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" Date="{x:Static sys:DateTime.Now}">
-                <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
-            </DatePicker>
-            <Entry Keyboard="Numeric" FontSize="Small" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding FormulaText}" HorizontalTextAlignment="Start" />
-            <Label x:Name="Result" TextColor="Black" FontSize="Medium" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding CalculationResultText}" HorizontalTextAlignment="End" />
+            <FlexLayout  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" AlignItems="Center" JustifyContent="SpaceAround" >
+                <DatePicker x:Name="Calendar" VerticalOptions="CenterAndExpand" Date="{x:Static sys:DateTime.Now}" FontSize="Small" BackgroundColor="LightGray">
+                    <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                </DatePicker>
+                <StackLayout>
+                    <Label FontSize="20" Text="{Binding Category}" x:Name="Header"/>
+                    <Label Text="{Binding Subcat}" />
+                </StackLayout>
+                <Button FontSize="12" Text="Save" Clicked="OnSave"/>
+            </FlexLayout>
+
+
+            <Entry Keyboard="Numeric" FontSize="Small" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding FormulaText}" HorizontalTextAlignment="Start"/>
+            <Label x:Name="Result" TextColor="Black" FontSize="Large" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding CalculationResultText}" HorizontalTextAlignment="End" />
 
             <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding KeyPressed}" CommandParameter="Backspace" Text="←" />
             <Button Grid.Row="4" Grid.Column="2" Text="Back" Clicked="OnCancelClicked" />

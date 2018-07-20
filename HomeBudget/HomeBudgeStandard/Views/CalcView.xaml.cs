@@ -44,6 +44,9 @@ namespace HomeBudgeStandard.Views
         public Action OnCancel;
         public Action<double, DateTime> OnSaveValue;
 
+        public string Category { get; set; }
+        public string Subcat { get; set; }
+
         private String formulaText;
         public String FormulaText
         {
@@ -178,6 +181,8 @@ namespace HomeBudgeStandard.Views
         {
             FormulaText = string.Empty;
             CalculationResultText = "0";
+            OnPropertyChanged(nameof(Category));
+            OnPropertyChanged(nameof(Subcat));
         }
 
         private void OnCancelClicked(object sender, EventArgs e)
