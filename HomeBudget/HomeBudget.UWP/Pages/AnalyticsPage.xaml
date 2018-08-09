@@ -48,7 +48,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <charts:SfChart x:Name="IncomesChart" BorderThickness="0" Header="Dochody" >
+            <charts:SfChart x:Name="IncomesChart" BorderThickness="0" Header="Dochód" >
                 <!--<charts:SfChart.Legend>
                     <charts:ChartLegend LegendPosition="Outside" DockPosition="Right" ItemsPanel="{StaticResource itemPanelTemplate}"/>
                 </charts:SfChart.Legend>-->
