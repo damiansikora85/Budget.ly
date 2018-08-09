@@ -91,7 +91,7 @@ namespace HomeBudget.Code.Logic
         public override double Value
         {
             get => Values.Sum(subcatValue => subcatValue.Value);
-        };
+        }
 
         public void AddValue(double value, DateTime date)
         {
