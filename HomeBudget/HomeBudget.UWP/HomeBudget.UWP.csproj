@@ -128,7 +128,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\BudgetCategorySortComparer.cs" />
     <Compile Include="Converters\BudgetProgressConverter.cs" />
     <Compile Include="Converters\ChartLabelConverter.cs" />
     <Compile Include="Converters\ChartLabelVisibilityConverter.cs" />
