@@ -25,6 +25,7 @@ namespace HomeBudgeStandard.Views
         public ObservableCollection<BaseBudgetSubcat> SelectedCategorySubcats { get; private set; }
 
         private bool show;
+        private bool _setupDone;
 
         public SummaryView ()
 		{
@@ -44,10 +45,12 @@ namespace HomeBudgeStandard.Views
 
         protected override void OnAppearing()
         {
-            if (MainBudget.Instance.IsInitialized)
+            if (MainBudget.Instance.IsInitialized && !_setupDone)
                 UpdateSummary();
             else if(SummaryListViewItems == null)
                 UserDialogs.Instance.ShowLoading();
+
+            _setupDone = true;
         }
 
         protected override void OnDisappearing()
