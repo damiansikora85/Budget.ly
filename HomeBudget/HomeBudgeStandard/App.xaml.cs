@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Xamarin.Forms;
-using System.Threading.Tasks;
-using HomeBudget.Pages.PC;
+﻿
 using HomeBudgeStandard.Pages;
+using Xamarin.Forms;
 
 namespace HomeBudget
 {
-	public partial class App : Application
+    public partial class App : Application
 	{
-
         public App()
 		{
-			InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("OTMwNUAzMTM2MmUzMjJlMzBLM3Q2MWJvZEE2UXR0bFNleUhwMUFESUh2VDB4Wjg0YXljRlM5QjBucDFRPQ==;OTMwNkAzMTM2MmUzMjJlMzBoVHFOWTFERUxDZDBqRkt4Q3NvcDkxdDVmaDg2TndHWU9TWkhVc0R0R1V3PQ==");
+            InitializeComponent();
 
             //SwitchToHomePage();
             MainPage = new MainPage();
