@@ -16,7 +16,13 @@ namespace HomeBudget.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return null;
+            if (value is string valueStr)
+            {
+                var style = NumberStyles.Float | NumberStyles.AllowCurrencySymbol;
+                if (double.TryParse(valueStr, style, CultureInfo.InvariantCulture.NumberFormat, out double result))
+                    return result;
+            }
+            return 0.0;
         }
     }
 }

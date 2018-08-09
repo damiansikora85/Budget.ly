@@ -31,17 +31,6 @@ namespace HomeBudget.Code.Logic
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Values["+index+"].Value"));
             }
         }
-
-        private string test;
-        public string Test
-        {
-            get { return test; }
-            set
-            {
-                test = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Values[" + index + "].Value"));
-            }
-        }
     };
 
     [ProtoContract]
@@ -52,8 +41,7 @@ namespace HomeBudget.Code.Logic
             var subcat = new RealSubcat
             {
                 Name = subcatName,
-                Id = id,
-                Values = new ObservableCollection<SubcatValue>()
+                Id = id   
             };
 
             for (int i = 0; i < 31; i++)
@@ -71,7 +59,10 @@ namespace HomeBudget.Code.Logic
 
         public RealSubcat()
         {
-            
+            values = new ObservableCollection<SubcatValue>
+            {
+                new SubcatValue(0)
+            };
         }
 
         public override void Prepare()
@@ -85,20 +76,22 @@ namespace HomeBudget.Code.Logic
             RaiseValueChanged();
         }
 
+        private ObservableCollection<SubcatValue> values;
+
         [ProtoMember(1)]
-        public ObservableCollection<SubcatValue> Values { get; set; }
+        public ObservableCollection<SubcatValue> Values
+        {
+            get => values;
+            set
+            {
+                values = value;
+            }
+        }
 
         public override double Value
         {
-            get
-            {
-                return Values.Sum(subcatValue => subcatValue.Value);
-            }
-            /*set
-            {
-                Values[0].Value = value;
-            }*/
-        }
+            get => Values.Sum(subcatValue => subcatValue.Value);
+        };
 
         public void AddValue(double value, DateTime date)
         {

@@ -32,16 +32,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\MainBudget.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\Temp\OrderInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\Temp\OrderInfoRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\View\BudgetView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\View\CategoryView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\View\SubcategoryView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\BudgetCategorySortComparer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\BudgetSummaryListView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\BudgetViewModelData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\ChartCategoryNameConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\CurrencyDataGridHeader.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utils\CurrencyValueConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utils\MasterDetailPageExtended.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utils\ResizableMasterDetailsPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\LogsManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)template.json" />

@@ -1,10 +1,9 @@
 ﻿using HomeBudget.Code.Logic;
+using ProtoBuf;
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HomeBudget.Utils
 {
@@ -20,8 +19,7 @@ namespace HomeBudget.Utils
         public event PropertyChangedEventHandler PropertyChanged;
         void RaisePropertyChanged(string name)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

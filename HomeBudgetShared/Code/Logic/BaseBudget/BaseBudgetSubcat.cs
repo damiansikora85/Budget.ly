@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ProtoBuf;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProtoBuf;
 
 namespace HomeBudget.Code.Logic
 {
@@ -38,6 +33,11 @@ namespace HomeBudget.Code.Logic
         protected void RaiseValueChanged()
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Value"));
+        }
+
+        protected void RaiseValueChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

@@ -1,10 +1,109 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:charts="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:converters="clr-namespace:HomeBudget.Converters"
+             xmlns:sf="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:data="clr-namespace:Syncfusion.Data;assembly=Syncfusion.Data.Portable"
              x:Class="HomeBudgeStandard.Views.BudgetRealView"
              Title="Real Budget">
-    
-    <StackLayout>
-            <Label Text="Real Budget" />
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ChartLabelVisibilityConverter x:Key="VisibilityConverter" />
+            <converters:CurrencyValueConverter x:Key="CurrencyValueConverter" />
+            <converters:BudgetCategorySortComparer x:Key="SortComparer"/>
+            <DataTemplate x:Key="dataMarkerTemplate">
+                <StackLayout BackgroundColor="{Binding Interior}"><!--IsVisible="{Binding Subcat.Value, Converter=StaticResource VisibilityConverter}">-->
+                    <Label Text="{Binding Name}"/>
+                </StackLayout>
+            </DataTemplate>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
+            <Button x:Name="PreviousMonth" BackgroundColor="Transparent" Text="p "/>
+            <Label Text="{Binding Date}" HorizontalTextAlignment="Center"/>
+            <Button x:Name="NextMonth" BackgroundColor="Transparent" Text=">"/>
         </StackLayout>
+
+            <!--<charts:SfChart x:Name="chartIncome" >
+                <charts:PieSeries ItemsSource="{Binding IncomesData}" XBindingPath="Name" YBindingPath="Subcat.Value" EnableSmartLabels="True" DataMarkerPosition="OutsideExtended">
+                    <charts:PieSeries.DataMarker>
+                        <charts:ChartDataMarker LabelTemplate="{StaticResource dataMarkerTemplate}"/>
+                    </charts:PieSeries.DataMarker>
+                </charts:PieSeries>
+            </charts:SfChart>-->
+
+            <charts:SfChart x:Name="chartExpense" Grid.Row="1">
+                <charts:PieSeries ItemsSource="{Binding ExpensesData}" XBindingPath="Name" YBindingPath="Category.TotalValues" EnableSmartLabels="True" DataMarkerPosition="OutsideExtended">
+                    <charts:PieSeries.DataMarker>
+                        <charts:ChartDataMarker LabelTemplate="{StaticResource dataMarkerTemplate}"/>
+                    </charts:PieSeries.DataMarker>
+                </charts:PieSeries>
+            </charts:SfChart>
+
+        <sf:SfDataGrid x:Name="DataGrid" Grid.Row="2" ItemsSource="{Binding Budget, Mode=TwoWay}" AutoGenerateColumns="False" GroupCaptionTextFormat="{}{Key}" AutoExpandGroups="True" AllowGroupExpandCollapse="False" LiveDataUpdateMode="AllowSummaryUpdate" FrozenColumnsCount="2" CurrentCellEndEdit="DataGrid_CurrentCellEndEdit">
+            <sf:SfDataGrid.SortComparers>
+                <data:SortComparer Comparer="{StaticResource SortComparer}" PropertyName="Category.Name"/>
+            </sf:SfDataGrid.SortComparers>
+
+            <sf:SfDataGrid.Columns>
+                <sf:GridTextColumn MappingName="Subcat.Name" HeaderText="Kategoria" Width="100" HeaderFontAttribute="Bold">
+                    <sf:GridTextColumn.CellStyle>
+                        <Style TargetType="sf:GridCell">
+                            <Setter Property="BackgroundColor" Value="#EAEAEA" />
+                        </Style>
+                    </sf:GridTextColumn.CellStyle>
+                </sf:GridTextColumn>
+
+                <sf:GridNumericColumn MappingName="SubcatReal.Value" HeaderFontAttribute="Bold" FontAttribute="Bold" ColumnSizer="Auto" HeaderText="Suma" DisplayBinding="{Binding SubcatReal.Value, Converter={StaticResource CurrencyValueConverter}}"/>
+
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[0].Value" HeaderText="1" HeaderFontAttribute="Bold" DisplayBinding="{Binding SubcatReal.Values[0].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[1].Value" HeaderText="2" HeaderFontAttribute="Bold" DisplayBinding="{Binding SubcatReal.Values[1].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[2].Value" HeaderText="3" HeaderFontAttribute="Bold" DisplayBinding="{Binding SubcatReal.Values[2].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[3].Value" HeaderText="4" HeaderFontAttribute="Bold" DisplayBinding="{Binding SubcatReal.Values[3].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[4].Value" HeaderText="5" HeaderFontAttribute="Bold" DisplayBinding="{Binding SubcatReal.Values[4].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[5].Value" HeaderText="6" HeaderFontAttribute="Bold" DisplayBinding="{Binding SubcatReal.Values[5].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[6].Value" HeaderText="7" HeaderFontAttribute="Bold" DisplayBinding="{Binding SubcatReal.Values[6].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[7].Value" HeaderText="8" HeaderFontAttribute="Bold" DisplayBinding="{Binding SubcatReal.Values[7].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[8].Value" HeaderText="9" HeaderFontAttribute="Bold" DisplayBinding="{Binding SubcatReal.Values[8].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[9].Value" HeaderText="10" HeaderFontAttribute="Bold" DisplayBinding="{Binding SubcatReal.Values[9].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[10].Value" HeaderText="11" DisplayBinding="{Binding SubcatReal.Values[10].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[11].Value" HeaderText="12" DisplayBinding="{Binding SubcatReal.Values[11].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[12].Value" HeaderText="13" DisplayBinding="{Binding SubcatReal.Values[12].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[13].Value" HeaderText="14" DisplayBinding="{Binding SubcatReal.Values[13].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[14].Value" HeaderText="15" DisplayBinding="{Binding SubcatReal.Values[14].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[15].Value" HeaderText="16" DisplayBinding="{Binding SubcatReal.Values[15].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[16].Value" HeaderText="17" DisplayBinding="{Binding SubcatReal.Values[16].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[17].Value" HeaderText="18" DisplayBinding="{Binding SubcatReal.Values[17].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[18].Value" HeaderText="19" DisplayBinding="{Binding SubcatReal.Values[18].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[19].Value" HeaderText="20" DisplayBinding="{Binding SubcatReal.Values[19].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[20].Value" HeaderText="21" DisplayBinding="{Binding SubcatReal.Values[20].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[21].Value" HeaderText="22" DisplayBinding="{Binding SubcatReal.Values[21].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[22].Value" HeaderText="23" DisplayBinding="{Binding SubcatReal.Values[22].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[23].Value" HeaderText="24" DisplayBinding="{Binding SubcatReal.Values[23].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[24].Value" HeaderText="25" DisplayBinding="{Binding SubcatReal.Values[24].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[25].Value" HeaderText="26" DisplayBinding="{Binding SubcatReal.Values[25].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[26].Value" HeaderText="27" DisplayBinding="{Binding SubcatReal.Values[26].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[27].Value" HeaderText="28" DisplayBinding="{Binding SubcatReal.Values[27].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[28].Value" HeaderText="29" DisplayBinding="{Binding SubcatReal.Values[28].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[29].Value" HeaderText="30" DisplayBinding="{Binding SubcatReal.Values[29].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+                <sf:GridNumericColumn MappingName="SubcatReal.Values[30].Value" HeaderText="31" DisplayBinding="{Binding SubcatReal.Values[30].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
+
+            </sf:SfDataGrid.Columns>
+        </sf:SfDataGrid>
+        
+    </Grid>
 </ContentPage>
