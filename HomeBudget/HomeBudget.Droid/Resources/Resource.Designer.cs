@@ -1566,44 +1566,44 @@ namespace HomeBudget.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f0c006a
-			public const int abc_background_cache_hint_selector_material_dark = 2131492970;
-			
-			// aapt resource value: 0x7f0c006b
-			public const int abc_background_cache_hint_selector_material_light = 2131492971;
-			
-			// aapt resource value: 0x7f0c006c
-			public const int abc_btn_colored_borderless_text_material = 2131492972;
-			
-			// aapt resource value: 0x7f0c006d
-			public const int abc_btn_colored_text_material = 2131492973;
-			
-			// aapt resource value: 0x7f0c006e
-			public const int abc_color_highlight_material = 2131492974;
-			
 			// aapt resource value: 0x7f0c006f
-			public const int abc_hint_foreground_material_dark = 2131492975;
+			public const int abc_background_cache_hint_selector_material_dark = 2131492975;
 			
 			// aapt resource value: 0x7f0c0070
-			public const int abc_hint_foreground_material_light = 2131492976;
+			public const int abc_background_cache_hint_selector_material_light = 2131492976;
+			
+			// aapt resource value: 0x7f0c0071
+			public const int abc_btn_colored_borderless_text_material = 2131492977;
+			
+			// aapt resource value: 0x7f0c0072
+			public const int abc_btn_colored_text_material = 2131492978;
+			
+			// aapt resource value: 0x7f0c0073
+			public const int abc_color_highlight_material = 2131492979;
+			
+			// aapt resource value: 0x7f0c0074
+			public const int abc_hint_foreground_material_dark = 2131492980;
+			
+			// aapt resource value: 0x7f0c0075
+			public const int abc_hint_foreground_material_light = 2131492981;
 			
 			// aapt resource value: 0x7f0c0004
 			public const int abc_input_method_navigation_guard = 2131492868;
 			
-			// aapt resource value: 0x7f0c0071
-			public const int abc_primary_text_disable_only_material_dark = 2131492977;
+			// aapt resource value: 0x7f0c0076
+			public const int abc_primary_text_disable_only_material_dark = 2131492982;
 			
-			// aapt resource value: 0x7f0c0072
-			public const int abc_primary_text_disable_only_material_light = 2131492978;
+			// aapt resource value: 0x7f0c0077
+			public const int abc_primary_text_disable_only_material_light = 2131492983;
 			
-			// aapt resource value: 0x7f0c0073
-			public const int abc_primary_text_material_dark = 2131492979;
+			// aapt resource value: 0x7f0c0078
+			public const int abc_primary_text_material_dark = 2131492984;
 			
-			// aapt resource value: 0x7f0c0074
-			public const int abc_primary_text_material_light = 2131492980;
+			// aapt resource value: 0x7f0c0079
+			public const int abc_primary_text_material_light = 2131492985;
 			
-			// aapt resource value: 0x7f0c0075
-			public const int abc_search_url_text = 2131492981;
+			// aapt resource value: 0x7f0c007a
+			public const int abc_search_url_text = 2131492986;
 			
 			// aapt resource value: 0x7f0c0005
 			public const int abc_search_url_text_normal = 2131492869;
@@ -1614,29 +1614,32 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0c0007
 			public const int abc_search_url_text_selected = 2131492871;
 			
-			// aapt resource value: 0x7f0c0076
-			public const int abc_secondary_text_material_dark = 2131492982;
-			
-			// aapt resource value: 0x7f0c0077
-			public const int abc_secondary_text_material_light = 2131492983;
-			
-			// aapt resource value: 0x7f0c0078
-			public const int abc_tint_btn_checkable = 2131492984;
-			
-			// aapt resource value: 0x7f0c0079
-			public const int abc_tint_default = 2131492985;
-			
-			// aapt resource value: 0x7f0c007a
-			public const int abc_tint_edittext = 2131492986;
-			
 			// aapt resource value: 0x7f0c007b
-			public const int abc_tint_seek_thumb = 2131492987;
+			public const int abc_secondary_text_material_dark = 2131492987;
 			
 			// aapt resource value: 0x7f0c007c
-			public const int abc_tint_spinner = 2131492988;
+			public const int abc_secondary_text_material_light = 2131492988;
 			
 			// aapt resource value: 0x7f0c007d
-			public const int abc_tint_switch_track = 2131492989;
+			public const int abc_tint_btn_checkable = 2131492989;
+			
+			// aapt resource value: 0x7f0c007e
+			public const int abc_tint_default = 2131492990;
+			
+			// aapt resource value: 0x7f0c007f
+			public const int abc_tint_edittext = 2131492991;
+			
+			// aapt resource value: 0x7f0c0080
+			public const int abc_tint_seek_thumb = 2131492992;
+			
+			// aapt resource value: 0x7f0c0081
+			public const int abc_tint_spinner = 2131492993;
+			
+			// aapt resource value: 0x7f0c0082
+			public const int abc_tint_switch_track = 2131492994;
+			
+			// aapt resource value: 0x7f0c006c
+			public const int accent = 2131492972;
 			
 			// aapt resource value: 0x7f0c0008
 			public const int accent_material_dark = 2131492872;
@@ -1695,8 +1698,8 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0c0040
 			public const int design_bottom_navigation_shadow_color = 2131492928;
 			
-			// aapt resource value: 0x7f0c007e
-			public const int design_error = 2131492990;
+			// aapt resource value: 0x7f0c0083
+			public const int design_error = 2131492995;
 			
 			// aapt resource value: 0x7f0c0041
 			public const int design_fab_shadow_end_color = 2131492929;
@@ -1722,8 +1725,8 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0c0048
 			public const int design_snackbar_background_color = 2131492936;
 			
-			// aapt resource value: 0x7f0c007f
-			public const int design_tint_password_toggle = 2131492991;
+			// aapt resource value: 0x7f0c0084
+			public const int design_tint_password_toggle = 2131492996;
 			
 			// aapt resource value: 0x7f0c0016
 			public const int dim_foreground_disabled_material_dark = 2131492886;
@@ -1796,6 +1799,12 @@ namespace HomeBudget.Droid
 			
 			// aapt resource value: 0x7f0c003f
 			public const int notification_material_background_media_default_color = 2131492927;
+			
+			// aapt resource value: 0x7f0c006a
+			public const int primary = 2131492970;
+			
+			// aapt resource value: 0x7f0c006b
+			public const int primaryDark = 2131492971;
 			
 			// aapt resource value: 0x7f0c002b
 			public const int primary_dark_material_dark = 2131492907;
@@ -1932,17 +1941,20 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0c0038
 			public const int secondary_text_disabled_material_light = 2131492920;
 			
+			// aapt resource value: 0x7f0c006e
+			public const int splash_background = 2131492974;
+			
 			// aapt resource value: 0x7f0c0039
 			public const int switch_thumb_disabled_material_dark = 2131492921;
 			
 			// aapt resource value: 0x7f0c003a
 			public const int switch_thumb_disabled_material_light = 2131492922;
 			
-			// aapt resource value: 0x7f0c0080
-			public const int switch_thumb_material_dark = 2131492992;
+			// aapt resource value: 0x7f0c0085
+			public const int switch_thumb_material_dark = 2131492997;
 			
-			// aapt resource value: 0x7f0c0081
-			public const int switch_thumb_material_light = 2131492993;
+			// aapt resource value: 0x7f0c0086
+			public const int switch_thumb_material_light = 2131492998;
 			
 			// aapt resource value: 0x7f0c003b
 			public const int switch_thumb_normal_material_dark = 2131492923;
@@ -1955,6 +1967,9 @@ namespace HomeBudget.Droid
 			
 			// aapt resource value: 0x7f0c003e
 			public const int tooltip_background_light = 2131492926;
+			
+			// aapt resource value: 0x7f0c006d
+			public const int window_background = 2131492973;
 			
 			static Color()
 			{
@@ -2729,26 +2744,26 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
-			// aapt resource value: 0x7f020146
-			public const int avd_hide_password_1 = 2130837830;
-			
-			// aapt resource value: 0x7f020147
-			public const int avd_hide_password_2 = 2130837831;
-			
 			// aapt resource value: 0x7f020148
-			public const int avd_hide_password_3 = 2130837832;
+			public const int avd_hide_password_1 = 2130837832;
+			
+			// aapt resource value: 0x7f020149
+			public const int avd_hide_password_2 = 2130837833;
+			
+			// aapt resource value: 0x7f02014a
+			public const int avd_hide_password_3 = 2130837834;
 			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
 			
-			// aapt resource value: 0x7f020149
-			public const int avd_show_password_1 = 2130837833;
-			
-			// aapt resource value: 0x7f02014a
-			public const int avd_show_password_2 = 2130837834;
-			
 			// aapt resource value: 0x7f02014b
-			public const int avd_show_password_3 = 2130837835;
+			public const int avd_show_password_1 = 2130837835;
+			
+			// aapt resource value: 0x7f02014c
+			public const int avd_show_password_2 = 2130837836;
+			
+			// aapt resource value: 0x7f02014d
+			public const int avd_show_password_3 = 2130837837;
 			
 			// aapt resource value: 0x7f020055
 			public const int beauty = 2130837589;
@@ -3419,11 +3434,11 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f020133
 			public const int notification_icon_background = 2130837811;
 			
-			// aapt resource value: 0x7f020144
-			public const int notification_template_icon_bg = 2130837828;
+			// aapt resource value: 0x7f020146
+			public const int notification_template_icon_bg = 2130837830;
 			
-			// aapt resource value: 0x7f020145
-			public const int notification_template_icon_low_bg = 2130837829;
+			// aapt resource value: 0x7f020147
+			public const int notification_template_icon_low_bg = 2130837831;
 			
 			// aapt resource value: 0x7f020134
 			public const int notification_tile_bg = 2130837812;
@@ -3459,19 +3474,25 @@ namespace HomeBudget.Droid
 			public const int scrubber_control_pressed_holo = 2130837822;
 			
 			// aapt resource value: 0x7f02013f
-			public const int telokom = 2130837823;
+			public const int splash = 2130837823;
 			
 			// aapt resource value: 0x7f020140
-			public const int theatremasks = 2130837824;
+			public const int splashImg = 2130837824;
 			
 			// aapt resource value: 0x7f020141
-			public const int tooltip_frame_dark = 2130837825;
+			public const int telokom = 2130837825;
 			
 			// aapt resource value: 0x7f020142
-			public const int tooltip_frame_light = 2130837826;
+			public const int theatremasks = 2130837826;
 			
 			// aapt resource value: 0x7f020143
-			public const int transport = 2130837827;
+			public const int tooltip_frame_dark = 2130837827;
+			
+			// aapt resource value: 0x7f020144
+			public const int tooltip_frame_light = 2130837828;
+			
+			// aapt resource value: 0x7f020145
+			public const int transport = 2130837829;
 			
 			static Drawable()
 			{
@@ -5290,6 +5311,15 @@ namespace HomeBudget.Droid
 			
 			// aapt resource value: 0x7f0b019e
 			public const int MainTheme_Base = 2131427742;
+			
+			// aapt resource value: 0x7f0b01a1
+			public const int MyTheme = 2131427745;
+			
+			// aapt resource value: 0x7f0b01a0
+			public const int MyTheme_Base = 2131427744;
+			
+			// aapt resource value: 0x7f0b01a2
+			public const int MyTheme_Splash = 2131427746;
 			
 			// aapt resource value: 0x7f0b002d
 			public const int Platform_AppCompat = 2131427373;
