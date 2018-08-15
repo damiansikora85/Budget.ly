@@ -2,6 +2,7 @@
 using HomeBudget.Code;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace HomeBudgeStandard.Pages
     {
         public MainPage()
         {
+            CultureInfo.CurrentCulture = new CultureInfo("pl-PL");
             InitializeComponent();
             InitBudget();
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
