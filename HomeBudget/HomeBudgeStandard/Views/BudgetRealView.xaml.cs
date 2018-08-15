@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using HomeBudgeStandard.Effects;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Utils;
@@ -8,6 +9,7 @@ using Syncfusion.SfDataGrid.XForms;
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -18,7 +20,7 @@ namespace HomeBudgeStandard.Views
 	public partial class BudgetRealView : ContentPage
 	{
         public ObservableCollection<BudgetViewModelData> Budget { get; set; }
-        public ObservableCollection<BudgetViewModelData> IncomesData { get; set; }
+        public ObservableCollection<BudgetViewModelData> IncomesData { get; private set; }
         public ObservableCollection<BudgetViewModelData> ExpensesData { get; set; }
 
         private bool _setupDone;
@@ -46,14 +48,41 @@ namespace HomeBudgeStandard.Views
                 Setup();
             }
             _setupDone = true;
+
+            ExpensesChartSwitch.Effects.Add(new UnderlineEffect());
+
+            var tapGesture = new TapGestureRecognizer(SwitchChart);
+            ExpensesChartSwitch.GestureRecognizers.Add(tapGesture);
+            IncomeChartSwitch.GestureRecognizers.Add(tapGesture);
+        }
+
+        private void SwitchChart(View sender, object arg2)
+        {
+            if (sender.Effects.Count > 0)
+                return;
+
+            var label = sender as Label;
+            label.Effects.Add(new UnderlineEffect());
+            if (label == ExpensesChartSwitch)
+            {
+                IncomeChartSwitch.Effects.Clear();
+                chartExpense.IsVisible = true;
+                chartIncome.IsVisible = false;
+            }
+            else
+            {
+                ExpensesChartSwitch.Effects.Clear();
+                chartExpense.IsVisible = false;
+                chartIncome.IsVisible = true;
+            }
         }
 
         private void Setup()
         {
             Task.Run(() =>
             {
-                CreateCharts();
                 CreateDataGrid();
+                CreateCharts();
                 Device.BeginInvokeOnMainThread(() => UserDialogs.Instance.HideLoading());
             });
         }
@@ -69,6 +98,7 @@ namespace HomeBudgeStandard.Views
                 {
                     Name = category.Name,
                     Category = category,
+                    CategoryReal = category as BudgetRealCategory
                 };
                 if (!category.IsIncome)
                     ExpensesData.Add(model);
@@ -89,8 +119,11 @@ namespace HomeBudgeStandard.Views
                 }
             }
 
-            //OnPropertyChanged(nameof(ExpensesData));
-            //OnPropertyChanged(nameof(IncomesData));
+            OnPropertyChanged(nameof(ExpensesData));
+            OnPropertyChanged(nameof(IncomesData));
+
+            chartExpense.IsVisible = true;
+            chartIncome.IsVisible = false;
         }
 
         private void SetupChart(SfChart chart, ObservableCollection<BudgetViewModelData> data, string xBindingPath, string yBindingPath)
@@ -129,7 +162,6 @@ namespace HomeBudgeStandard.Views
             try
             {
                 var budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
-                
 
                 foreach (var category in budgetReal.Categories)
                 {
@@ -139,7 +171,7 @@ namespace HomeBudgeStandard.Views
                         {
                             Category = category,
                             Subcat = subcat,
-                            SubcatReal = subcat as RealSubcat
+                            SubcatReal = subcat as RealSubcat,
                         };
                         budget.Add(model);
                     }
@@ -172,6 +204,7 @@ namespace HomeBudgeStandard.Views
             {
                 Budget = budget;
                 DataGrid.ItemsSource = Budget;
+                DataGrid.GroupColumnDescriptions.Clear();
                 DataGrid.GroupColumnDescriptions.Add(new GroupColumnDescription { ColumnName = "Category.Name" });
             });
         }
@@ -185,6 +218,7 @@ namespace HomeBudgeStandard.Views
                 await Task.Delay(100);
                 DataGrid.View.TopLevelGroup.UpdateCaptionSummaries();
                 DataGrid.View.Refresh();
+                OnPropertyChanged("Category.TotalValues");
             });
         }
     }

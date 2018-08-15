@@ -5,6 +5,7 @@
              xmlns:converters="clr-namespace:HomeBudget.Converters"
              xmlns:sf="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
              xmlns:data="clr-namespace:Syncfusion.Data;assembly=Syncfusion.Data.Portable"
+             xmlns:effects="clr-namespace:HomeBudgeStandard.Effects"
              x:Class="HomeBudgeStandard.Views.BudgetRealView"
              Title="Real Budget">
 
@@ -31,27 +32,48 @@
         </Grid.RowDefinitions>
         
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
-            <Button x:Name="PreviousMonth" BackgroundColor="Transparent" Text="p "/>
-            <Label Text="{Binding Date}" HorizontalTextAlignment="Center"/>
-            <Button x:Name="NextMonth" BackgroundColor="Transparent" Text=">"/>
+            <Button x:Name="PreviousMonth" BackgroundColor="Transparent" Text="&lt;"/>
+            <Label Text="{Binding Date}" HorizontalTextAlignment="Center" FontSize="Large" VerticalTextAlignment="Center"/>
+            <Button x:Name="NextMonth" BackgroundColor="Transparent" Text="&gt;"/>
         </StackLayout>
 
-            <!--<charts:SfChart x:Name="chartIncome" >
-                <charts:PieSeries ItemsSource="{Binding IncomesData}" XBindingPath="Name" YBindingPath="Subcat.Value" EnableSmartLabels="True" DataMarkerPosition="OutsideExtended">
-                    <charts:PieSeries.DataMarker>
-                        <charts:ChartDataMarker LabelTemplate="{StaticResource dataMarkerTemplate}"/>
-                    </charts:PieSeries.DataMarker>
-                </charts:PieSeries>
-            </charts:SfChart>-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <charts:SfChart x:Name="chartExpense" Grid.Row="1">
-                <charts:PieSeries ItemsSource="{Binding ExpensesData}" XBindingPath="Name" YBindingPath="Category.TotalValues" EnableSmartLabels="True" DataMarkerPosition="OutsideExtended">
-                    <charts:PieSeries.DataMarker>
-                        <charts:ChartDataMarker LabelTemplate="{StaticResource dataMarkerTemplate}"/>
-                    </charts:PieSeries.DataMarker>
+                <Label x:Name="ExpensesChartSwitch" Text="Wydatki" FontAttributes="Bold" Rotation="270" Grid.Row="0" VerticalTextAlignment="Center"/>
+                <Label x:Name="IncomeChartSwitch" Text="Dochody" FontAttributes="Bold" Rotation="270" Grid.Row="1" VerticalTextAlignment="Center"/>
+
+            </Grid>
+
+            <charts:SfChart x:Name="chartExpense" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand">
+                <charts:SfChart.Legend>
+                    <charts:ChartLegend DockPosition="Right"/>
+                </charts:SfChart.Legend>
+
+                <charts:PieSeries ItemsSource="{Binding ExpensesData}" XBindingPath="Name" YBindingPath="Category.TotalValues" ListenPropertyChange="True">
                 </charts:PieSeries>
             </charts:SfChart>
 
+            <charts:SfChart x:Name="chartIncome" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand">
+                <charts:SfChart.Legend>
+                    <charts:ChartLegend DockPosition="Right"/>
+                </charts:SfChart.Legend>
+
+                <charts:PieSeries ItemsSource="{Binding IncomesData}" XBindingPath="Name" YBindingPath="Subcat.Value" ListenPropertyChange="True">
+                </charts:PieSeries>
+            </charts:SfChart>
+
+        </Grid>
+        
         <sf:SfDataGrid x:Name="DataGrid" Grid.Row="2" ItemsSource="{Binding Budget, Mode=TwoWay}" AutoGenerateColumns="False" GroupCaptionTextFormat="{}{Key}" AutoExpandGroups="True" AllowGroupExpandCollapse="False" LiveDataUpdateMode="AllowSummaryUpdate" FrozenColumnsCount="2" CurrentCellEndEdit="DataGrid_CurrentCellEndEdit">
             <sf:SfDataGrid.SortComparers>
                 <data:SortComparer Comparer="{StaticResource SortComparer}" PropertyName="Category.Name"/>
@@ -66,7 +88,9 @@
                     </sf:GridTextColumn.CellStyle>
                 </sf:GridTextColumn>
 
-                <sf:GridNumericColumn MappingName="SubcatReal.Value" HeaderFontAttribute="Bold" FontAttribute="Bold" ColumnSizer="Auto" HeaderText="Suma" DisplayBinding="{Binding SubcatReal.Value, Converter={StaticResource CurrencyValueConverter}}"/>
+                <sf:GridNumericColumn MappingName="Test" AllowEditing="True"/>
+
+                <sf:GridNumericColumn MappingName="SubcatReal.Value" HeaderFontAttribute="Bold" FontAttribute="Bold" Width="80" HeaderText="Suma" DisplayBinding="{Binding SubcatReal.Value, Converter={StaticResource CurrencyValueConverter}}"/>
 
                 <sf:GridNumericColumn MappingName="SubcatReal.Values[0].Value" HeaderText="1" HeaderFontAttribute="Bold" DisplayBinding="{Binding SubcatReal.Values[0].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
                 <sf:GridNumericColumn MappingName="SubcatReal.Values[1].Value" HeaderText="2" HeaderFontAttribute="Bold" DisplayBinding="{Binding SubcatReal.Values[1].Value, Converter={StaticResource CurrencyValueConverter}}" AllowEditing="True"/>
