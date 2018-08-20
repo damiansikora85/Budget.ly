@@ -1,9 +1,97 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:charts="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:converters="clr-namespace:HomeBudget.Converters"
+             xmlns:sf="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:data="clr-namespace:Syncfusion.Data;assembly=Syncfusion.Data.Portable"
+             xmlns:effects="clr-namespace:HomeBudgeStandard.Effects"
              x:Class="HomeBudgeStandard.Views.BudgetPlanView"
              Title="Budget Plan">
-    <StackLayout>
-        <Label Text="Budget Plan" />
-    </StackLayout>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ChartLabelVisibilityConverter x:Key="VisibilityConverter" />
+            <converters:CurrencyValueConverter x:Key="CurrencyValueConverter" />
+            <converters:BudgetCategorySortComparer x:Key="SortComparer"/>
+            <DataTemplate x:Key="dataMarkerTemplate">
+                <StackLayout BackgroundColor="{Binding Interior}">
+                    <!--IsVisible="{Binding Subcat.Value, Converter=StaticResource VisibilityConverter}">-->
+                    <Label Text="{Binding Name}"/>
+                </StackLayout>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
+            <Button x:Name="PreviousMonth" BackgroundColor="Transparent" Text="&lt;"/>
+            <Label Text="{Binding Date}" HorizontalTextAlignment="Center" FontSize="Large" VerticalTextAlignment="Center"/>
+            <Button x:Name="NextMonth" BackgroundColor="Transparent" Text="&gt;"/>
+        </StackLayout>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label x:Name="ExpensesChartSwitch" Text="Wydatki" FontAttributes="Bold" Rotation="270" Grid.Row="0" VerticalTextAlignment="Center"/>
+                <Label x:Name="IncomeChartSwitch" Text="Dochody" FontAttributes="Bold" Rotation="270" Grid.Row="1" VerticalTextAlignment="Center"/>
+
+            </Grid>
+
+            <charts:SfChart x:Name="chartExpense" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand">
+                <charts:SfChart.Legend>
+                    <charts:ChartLegend DockPosition="Right"/>
+                </charts:SfChart.Legend>
+
+                <charts:PieSeries ItemsSource="{Binding ExpensesData}" XBindingPath="Name" YBindingPath="Category.TotalValues" ListenPropertyChange="True">
+                </charts:PieSeries>
+            </charts:SfChart>
+
+            <charts:SfChart x:Name="chartIncome" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand">
+                <charts:SfChart.Legend>
+                    <charts:ChartLegend DockPosition="Right"/>
+                </charts:SfChart.Legend>
+
+                <charts:PieSeries ItemsSource="{Binding IncomesData}" XBindingPath="Name" YBindingPath="Subcat.Value" ListenPropertyChange="True">
+                </charts:PieSeries>
+            </charts:SfChart>
+
+        </Grid>
+        
+
+        <sf:SfDataGrid x:Name="DataGrid" Grid.Row="2" ItemsSource="{Binding Budget, Mode=TwoWay}" AutoGenerateColumns="False" GroupCaptionTextFormat="{}{Key}" AutoExpandGroups="True" AllowGroupExpandCollapse="False" LiveDataUpdateMode="AllowSummaryUpdate" FrozenColumnsCount="2" CurrentCellEndEdit="DataGrid_CurrentCellEndEdit" HorizontalOptions="CenterAndExpand">
+            <sf:SfDataGrid.SortComparers>
+                <data:SortComparer Comparer="{StaticResource SortComparer}" PropertyName="Category.Name"/>
+            </sf:SfDataGrid.SortComparers>
+
+            <sf:SfDataGrid.Columns>
+                <sf:GridTextColumn MappingName="Subcat.Name" HeaderText="Kategoria" Width="100" HeaderFontAttribute="Bold" ColumnSizer="Auto">
+                    <sf:GridTextColumn.CellStyle>
+                        <Style TargetType="sf:GridCell">
+                            <Setter Property="BackgroundColor" Value="#EAEAEA" />
+                        </Style>
+                    </sf:GridTextColumn.CellStyle>
+                </sf:GridTextColumn>
+
+                <sf:GridNumericColumn ColumnSizer="LastColumnFill" MappingName="SubcatPlanned.Value" HeaderFontAttribute="Bold" FontAttribute="Bold" Width="80" DisplayBinding="{Binding SubcatPlanned.Value, Converter={StaticResource CurrencyValueConverter}}" HeaderText="Suma" AllowEditing="True"/>
+            </sf:SfDataGrid.Columns>
+        </sf:SfDataGrid>
+
+    </Grid>
 </ContentPage>
