@@ -1,4 +1,5 @@
 ﻿using HomeBudget.Code.Logic;
+using System;
 using System.ComponentModel;
 
 namespace HomeBudget.Pages.Utils
@@ -60,6 +61,10 @@ namespace HomeBudget.Pages.Utils
             return CategoryName;
         }
 
+        public void RaisePropertyChanged()
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpendPercentage"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpendPercentageInt"));
+        }
     }
-
 }

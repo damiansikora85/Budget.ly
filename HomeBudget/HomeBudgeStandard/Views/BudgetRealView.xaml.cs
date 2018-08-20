@@ -8,6 +8,7 @@ using Syncfusion.SfChart.XForms;
 using Syncfusion.SfDataGrid.XForms;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -56,27 +57,6 @@ namespace HomeBudgeStandard.Views
             IncomeChartSwitch.GestureRecognizers.Add(tapGesture);
         }
 
-        private void SwitchChart(View sender, object arg2)
-        {
-            if (sender.Effects.Count > 0)
-                return;
-
-            var label = sender as Label;
-            label.Effects.Add(new UnderlineEffect());
-            if (label == ExpensesChartSwitch)
-            {
-                IncomeChartSwitch.Effects.Clear();
-                chartExpense.IsVisible = true;
-                chartIncome.IsVisible = false;
-            }
-            else
-            {
-                ExpensesChartSwitch.Effects.Clear();
-                chartExpense.IsVisible = false;
-                chartIncome.IsVisible = true;
-            }
-        }
-
         private void Setup()
         {
             Task.Run(() =>
@@ -122,38 +102,7 @@ namespace HomeBudgeStandard.Views
             OnPropertyChanged(nameof(ExpensesData));
             OnPropertyChanged(nameof(IncomesData));
 
-            chartExpense.IsVisible = true;
-            chartIncome.IsVisible = false;
-        }
-
-        private void SetupChart(SfChart chart, ObservableCollection<BudgetViewModelData> data, string xBindingPath, string yBindingPath)
-        {
-            var pieSeries = new PieSeries()
-            {
-                ItemsSource = data,
-                XBindingPath = xBindingPath,
-                YBindingPath = yBindingPath,
-                EnableSmartLabels = true,
-                DataMarkerPosition = CircularSeriesDataMarkerPosition.OutsideExtended,
-                ListenPropertyChange = true
-            };
-
-            /*DataTemplate dataMarkerTemplate = new DataTemplate(() =>
-            {
-                Label label = new Label();
-                label.SetBinding(Label.TextProperty, "Thiz", BindingMode.Default, new ChartCategoryNameConverter());
-                label.FontSize = 10;
-                label.VerticalOptions = LayoutOptions.Center;
-
-                return label;
-            });
-
-            pieSeries.DataMarker = new ChartDataMarker
-            {
-                LabelContent = LabelContent.YValue,
-                LabelTemplate = dataMarkerTemplate
-            };*/
-            chart.Series.Add(pieSeries);
+            SwitchChart(ExpensesChartSwitch, null);
         }
 
         private void CreateDataGrid()
@@ -206,6 +155,29 @@ namespace HomeBudgeStandard.Views
                 DataGrid.ItemsSource = Budget;
                 DataGrid.GroupColumnDescriptions.Clear();
                 DataGrid.GroupColumnDescriptions.Add(new GroupColumnDescription { ColumnName = "Category.Name" });
+            });
+        }
+
+        private void SwitchChart(View sender, object arg2)
+        {
+            if (sender.Effects.Count > 0)
+                return;
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                var label = sender as Label;
+                label.Effects.Add(new UnderlineEffect());
+                if (label == ExpensesChartSwitch)
+                {
+                    IncomeChartSwitch.Effects.Clear();
+                    chartExpense.IsVisible = true;
+                    chartIncome.IsVisible = false;
+                }
+                else
+                {
+                    ExpensesChartSwitch.Effects.Clear();
+                    chartExpense.IsVisible = false;
+                    chartIncome.IsVisible = true;
+                }
             });
         }
 

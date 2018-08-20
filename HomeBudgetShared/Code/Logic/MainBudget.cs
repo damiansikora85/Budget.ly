@@ -47,11 +47,7 @@ namespace HomeBudget.Code
 
         private IFileManager _fileManager;
         private ICloudStorage _cloudStorage;
-        private bool initialized;
-        public bool IsInitialized
-        {
-            get { return initialized; }
-        }
+        public bool IsInitialized { get; private set; }
 
         public event Action onBudgetLoaded = delegate { };
         public event Action onPlannedBudgetChanged;
@@ -78,12 +74,12 @@ namespace HomeBudget.Code
 		{
 			months = new List<BudgetMonth>();
             budgetPlanned = new BudgetPlanned();
-            initialized = false;
+            IsInitialized = false;
 		}
 
         public void OnCloudStorageConnected()
         {
-            initialized = false;
+            IsInitialized = false;
             Task.Run(() => _cloudStorage.DownloadData());
         }
 
@@ -159,7 +155,7 @@ namespace HomeBudget.Code
                     month.Setup();
             }
 
-            initialized = true;
+            IsInitialized = true;
             onBudgetLoaded?.Invoke();
         }
 

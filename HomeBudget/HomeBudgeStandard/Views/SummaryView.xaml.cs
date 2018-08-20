@@ -26,9 +26,12 @@ namespace HomeBudgeStandard.Views
 
         private bool show;
         private bool _setupDone;
+        private BudgetSummaryDataViewModel _selectedCategory;
+        public System.Windows.Input.ICommand GridClicked { get; set; }
 
         public SummaryView ()
 		{
+            GridClicked = new Command(OnGridClicked);
 			InitializeComponent ();
 
             BindingContext = this;
@@ -43,20 +46,39 @@ namespace HomeBudgeStandard.Views
             MainBudget.Instance.onBudgetLoaded += UpdateSummary;
         }
 
+        private async void OnGridClicked()
+        {
+            await HideSideBars();
+        }
+
         protected override void OnAppearing()
         {
             if (MainBudget.Instance.IsInitialized && !_setupDone)
                 UpdateSummary();
-            else if(SummaryListViewItems == null)
+            else if (SummaryListViewItems == null)
                 UserDialogs.Instance.ShowLoading();
+            else
+            {
+                foreach (var summaryItem in SummaryListViewItems)
+                    summaryItem.RaisePropertyChanged();
+
+                SetupBudgetSummary();
+            }
 
             _setupDone = true;
         }
 
         protected override void OnDisappearing()
         {
+            HideSideBars();
             base.OnDisappearing();
             MainBudget.Instance.onBudgetLoaded -= UpdateSummary;
+        }
+
+        private async Task HideSideBars()
+        {
+            await subcats.TranslateTo(660, 0, easing: Easing.SpringIn);
+            await categories.TranslateTo(660, 0, easing: Easing.SpringIn);
         }
 
         private void UpdateSummary()
@@ -129,6 +151,7 @@ namespace HomeBudgeStandard.Views
         {
             if(listViewCategories.SelectedItem is BudgetSummaryDataViewModel selectedCategory)
             {
+                _selectedCategory = selectedCategory;
                 foreach (var item in selectedCategory.CategoryReal.subcats)
                     SelectedCategorySubcats.Add(item);
 
@@ -161,6 +184,8 @@ namespace HomeBudgeStandard.Views
                     SetupBudgetSummary();
                     listViewSubcats.SelectedItem = null;
                     HideCalcView();
+                    _selectedCategory.RaisePropertyChanged();
+                    _selectedCategory = null;
                 };
             }
         }
