@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HomeBudgeStandard.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,21 @@ namespace HomeBudgeStandard.Pages
         public MainTabbedPage ()
         {
             InitializeComponent();
+
+            CurrentPageChanged += OnTabChanged;
+        }
+
+        private void OnTabChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        public bool OnBackPressed()
+        {
+            if (CurrentPage is SummaryView summaryView)
+                return summaryView.OnBackPressed();
+
+            return false;
         }
     }
 }

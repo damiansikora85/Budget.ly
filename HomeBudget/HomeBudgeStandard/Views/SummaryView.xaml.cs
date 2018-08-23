@@ -75,6 +75,15 @@ namespace HomeBudgeStandard.Views
             MainBudget.Instance.onBudgetLoaded -= UpdateSummary;
         }
 
+        public bool OnBackPressed()
+        {
+            if (CalcLayout.IsVisible)
+            {
+                HideCalcView();
+                return true;
+            }
+            return false;
+        }
         private async Task HideSideBars()
         {
             await subcats.TranslateTo(660, 0, easing: Easing.SpringIn);

@@ -24,6 +24,15 @@ namespace HomeBudgeStandard.Pages
             Detail = new NavigationPage(new MainTabbedPage());
         }
 
+        public bool OnBackPressed()
+        {
+            if(Detail is NavigationPage navigationPage && navigationPage.RootPage is MainTabbedPage mainTabbedPage)
+            {
+                return mainTabbedPage.OnBackPressed();
+            }
+            return false;
+        }
+
         private void InitBudget()
         {
             MainBudget.Instance.onBudgetLoaded += OnBudgetLoaded;
