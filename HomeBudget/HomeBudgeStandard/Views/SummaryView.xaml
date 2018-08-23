@@ -4,7 +4,7 @@
              xmlns:converters="clr-namespace:HomeBudget.Converters"
              xmlns:views="clr-namespace:HomeBudgeStandard.Views"
              x:Class="HomeBudgeStandard.Views.SummaryView"
-             Title="Summary">
+             Title="Podsumowanie">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:CurrencyValueConverter x:Key="CurrencyValueConverter" />
@@ -40,8 +40,8 @@
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
                 
-                <Label Grid.Row="0" Grid.Column="2" Text="Rzeczywiste" HorizontalTextAlignment="Start" />
-                <Label Grid.Row="0" Grid.Column="3" Text="Planowane" HorizontalTextAlignment="Start" />
+                <Label Grid.Row="0" Grid.Column="2" Text="Rzeczywiste" HorizontalTextAlignment="Center" />
+                <Label Grid.Row="0" Grid.Column="3" Text="Planowane" HorizontalTextAlignment="Center" />
 
                 <Label Grid.Row="1" Grid.Column="1" Text="Dochód:" HorizontalTextAlignment="Start" />
                 <Label Grid.Row="2" Grid.Column="1" Text="Wydatki:" HorizontalTextAlignment="Start" />

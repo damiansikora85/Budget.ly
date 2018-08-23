@@ -7,7 +7,7 @@
              xmlns:data="clr-namespace:Syncfusion.Data;assembly=Syncfusion.Data.Portable"
              xmlns:effects="clr-namespace:HomeBudgeStandard.Effects"
              x:Class="HomeBudgeStandard.Views.BudgetRealView"
-             Title="Real Budget">
+             Title="Rzeczywiste">
 
     <ContentPage.Resources>
         <ResourceDictionary>
