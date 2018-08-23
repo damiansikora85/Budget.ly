@@ -22,6 +22,7 @@ namespace HomeBudgeStandard.Views
         public double DiffExpected { get; set; }
 
         public ObservableCollection<BudgetSummaryDataViewModel> SummaryListViewItems { get; set; }
+
         public ObservableCollection<BaseBudgetSubcat> SelectedCategorySubcats { get; private set; }
 
         private bool show;
@@ -44,11 +45,6 @@ namespace HomeBudgeStandard.Views
             SelectedCategorySubcats = new ObservableCollection<BaseBudgetSubcat>();
             
             MainBudget.Instance.onBudgetLoaded += UpdateSummary;
-        }
-
-        private async void OnGridClicked()
-        {
-            await HideSideBars();
         }
 
         protected override void OnAppearing()
@@ -84,10 +80,19 @@ namespace HomeBudgeStandard.Views
             }
             return false;
         }
+
+        private async void OnGridClicked()
+        {
+            await HideSideBars();
+        }
+
         private async Task HideSideBars()
         {
-            await subcats.TranslateTo(660, 0, easing: Easing.SpringIn);
-            await categories.TranslateTo(660, 0, easing: Easing.SpringIn);
+            var fadeTask = boxView.FadeTo(0);
+            var hideSubcatsTask = subcats.TranslateTo(660, 0, easing: Easing.SpringIn);
+            var hideCategoriesTask = categories.TranslateTo(660, 0, easing: Easing.SpringIn);
+
+            await Task.WhenAll(fadeTask, hideSubcatsTask, hideCategoriesTask);
         }
 
         private void UpdateSummary()
@@ -145,10 +150,12 @@ namespace HomeBudgeStandard.Views
             return budgetSummaryCollection;
         }
 
-        private void AddButton_Clicked(object sender, EventArgs e)
+        private async void AddButton_Clicked(object sender, EventArgs e)
         {
             SelectedCategorySubcats.Clear();
-            categories.TranslateTo(0, 0, easing: Easing.SpringIn);
+            var fadeTask = boxView.FadeTo(0.5);
+            var showCategoriesTask = categories.TranslateTo(0, 0, easing: Easing.SpringIn);
+            await Task.WhenAll(fadeTask, showCategoriesTask);
         }
 
         private void Summary_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -177,9 +184,10 @@ namespace HomeBudgeStandard.Views
         {
             await subcats.TranslateTo(660, 0, easing: Easing.SpringIn);
             if (listViewSubcats.SelectedItem is RealSubcat selectedSubcat)
-            {    
+            {
                 CalcLayout.IsVisible = true;
                 CalcView.Reset();
+                await boxView.FadeTo(0);
                 CalcView.Subcat = selectedSubcat.Name;
                 CalcView.OnSaveValue = (double calculationResult, DateTime date) =>
                 {
