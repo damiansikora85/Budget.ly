@@ -45,7 +45,16 @@ namespace HomeBudgeStandard.Views
         public Action<double, DateTime> OnSaveValue;
 
         public string Category { get; set; }
-        public string Subcat { get; set; }
+        private string _subcat;
+        public string Subcat
+        {
+            get => _subcat;
+            set
+            {
+                _subcat = value;
+                OnPropertyChanged(nameof(Subcat));
+            }
+        }
 
         private String formulaText;
         public String FormulaText

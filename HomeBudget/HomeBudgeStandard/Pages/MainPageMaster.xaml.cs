@@ -34,7 +34,8 @@ namespace HomeBudgeStandard.Pages
                 MenuItems = new ObservableCollection<MainPageMenuItem>(new[]
                 {
                     new MainPageMenuItem { Id = 0, Title = "Budżet", TargetType = typeof(MainTabbedPage) },
-                    new MainPageMenuItem { Id = 1, Title = "Ustawienia" }
+                    new MainPageMenuItem { Id = 1, Title = "Ustawienia" },
+                    new MainPageMenuItem { Id = 1, Title = "O Aplikacji" }
                 });
             }
             

@@ -78,6 +78,18 @@ namespace HomeBudgeStandard.Views
                 HideCalcView();
                 return true;
             }
+            else if(categories.TranslationX == 0)
+            {
+                boxView.FadeTo(0);
+                categories.TranslateTo(660, 0, easing: Easing.SpringIn);
+                return true;
+            }
+            else if(subcats.TranslationX == 0)
+            {
+                boxView.FadeTo(0);
+                subcats.TranslateTo(660, 0, easing: Easing.SpringIn);
+                return true;
+            }
             return false;
         }
 

@@ -28,8 +28,8 @@
                     <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
                 </DatePicker>
                 <StackLayout>
-                    <Label FontSize="20" Text="{Binding Category}" x:Name="Header"/>
-                    <Label Text="{Binding Subcat}" />
+                    <Label FontSize="20" Text="{Binding Category}" x:Name="Header" LineBreakMode="TailTruncation" HorizontalTextAlignment="Center"/>
+                    <Label Text="{Binding Subcat}" HorizontalTextAlignment="Center"/>
                 </StackLayout>
                 <Button FontSize="12" Text="Save" Clicked="OnSave"/>
             </FlexLayout>
