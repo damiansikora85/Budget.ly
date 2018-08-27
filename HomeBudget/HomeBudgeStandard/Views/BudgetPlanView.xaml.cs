@@ -182,6 +182,11 @@ namespace HomeBudgeStandard.Views
             });
         }
 
+        private async void OnSave(object sender, EventArgs e)
+        {
+            await MainBudget.Instance.UpdateMainPlannedBudget();
+        }
+
         private void DataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
         {
             Task.Run(() => MainBudget.Instance.Save());

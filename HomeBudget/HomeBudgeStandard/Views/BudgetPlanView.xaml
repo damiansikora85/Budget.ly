@@ -63,7 +63,7 @@
                 </charts:PieSeries>
             </charts:SfChart>
 
-            <charts:SfChart x:Name="chartIncome" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand">
+            <charts:SfChart x:Name="chartIncome" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand" IsVisible="False">
                 <charts:SfChart.Legend>
                     <charts:ChartLegend DockPosition="Right"/>
                 </charts:SfChart.Legend>
@@ -73,25 +73,34 @@
             </charts:SfChart>
 
         </Grid>
-        
 
-        <sf:SfDataGrid x:Name="DataGrid" Grid.Row="2" ItemsSource="{Binding Budget, Mode=TwoWay}" AutoGenerateColumns="False" GroupCaptionTextFormat="{}{Key}" AutoExpandGroups="True" AllowGroupExpandCollapse="False" LiveDataUpdateMode="AllowSummaryUpdate" FrozenColumnsCount="2" CurrentCellEndEdit="DataGrid_CurrentCellEndEdit" HorizontalOptions="CenterAndExpand">
-            <sf:SfDataGrid.SortComparers>
-                <data:SortComparer Comparer="{StaticResource SortComparer}" PropertyName="Category.Name"/>
-            </sf:SfDataGrid.SortComparers>
 
-            <sf:SfDataGrid.Columns>
-                <sf:GridTextColumn MappingName="Subcat.Name" HeaderText="Kategoria" Width="100" HeaderFontAttribute="Bold" ColumnSizer="Auto">
-                    <sf:GridTextColumn.CellStyle>
-                        <Style TargetType="sf:GridCell">
-                            <Setter Property="BackgroundColor" Value="#EAEAEA" />
-                        </Style>
-                    </sf:GridTextColumn.CellStyle>
-                </sf:GridTextColumn>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <sf:SfDataGrid x:Name="DataGrid"  ItemsSource="{Binding Budget, Mode=TwoWay}" AutoGenerateColumns="False" GroupCaptionTextFormat="{}{Key}" AutoExpandGroups="True" AllowGroupExpandCollapse="False" LiveDataUpdateMode="AllowSummaryUpdate" FrozenColumnsCount="2" CurrentCellEndEdit="DataGrid_CurrentCellEndEdit" HorizontalOptions="CenterAndExpand">
+                <sf:SfDataGrid.SortComparers>
+                    <data:SortComparer Comparer="{StaticResource SortComparer}" PropertyName="Category.Name"/>
+                </sf:SfDataGrid.SortComparers>
 
-                <sf:GridNumericColumn ColumnSizer="LastColumnFill" MappingName="SubcatPlanned.Value" HeaderFontAttribute="Bold" FontAttribute="Bold" Width="80" DisplayBinding="{Binding SubcatPlanned.Value, Converter={StaticResource CurrencyValueConverter}}" HeaderText="Suma" AllowEditing="True"/>
-            </sf:SfDataGrid.Columns>
-        </sf:SfDataGrid>
+                <sf:SfDataGrid.Columns>
+                    <sf:GridTextColumn MappingName="Subcat.Name" HeaderText="Kategoria" Width="100" HeaderFontAttribute="Bold" ColumnSizer="Auto">
+                        <sf:GridTextColumn.CellStyle>
+                            <Style TargetType="sf:GridCell">
+                                <Setter Property="BackgroundColor" Value="#EAEAEA" />
+                            </Style>
+                        </sf:GridTextColumn.CellStyle>
+                    </sf:GridTextColumn>
+
+                    <sf:GridNumericColumn ColumnSizer="LastColumnFill" MappingName="SubcatPlanned.Value" HeaderFontAttribute="Bold" FontAttribute="Bold" Width="80" DisplayBinding="{Binding SubcatPlanned.Value, Converter={StaticResource CurrencyValueConverter}}" HeaderText="Suma" AllowEditing="True"/>
+                </sf:SfDataGrid.Columns>
+            </sf:SfDataGrid>
+            <StackLayout Grid.Column="1" VerticalOptions="End" Margin="0,0,5,5">
+                <Button Text="Użyj w kolejnych miesiącach" VerticalOptions="End" BackgroundColor="DodgerBlue" TextColor="White" Clicked="OnSave"/>
+            </StackLayout>
+        </Grid>
 
     </Grid>
 </ContentPage>
