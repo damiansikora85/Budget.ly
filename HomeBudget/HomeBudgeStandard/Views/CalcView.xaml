@@ -23,23 +23,34 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <FlexLayout  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" AlignItems="Center" JustifyContent="SpaceAround" >
-                <DatePicker x:Name="Calendar" VerticalOptions="CenterAndExpand" Date="{x:Static sys:DateTime.Now}" FontSize="Small" BackgroundColor="LightGray">
-                    <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+            <Grid  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" WidthRequest="9999" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <DatePicker x:Name="Calendar" VerticalOptions="CenterAndExpand" Date="{x:Static sys:DateTime.Now}" FontSize="Small" BackgroundColor="LightGray" Format="&#xf073; yyyy-MM-dd" >
+                    <DatePicker.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free Regular" />
+                    </DatePicker.FontFamily>
                 </DatePicker>
-                <StackLayout>
+                <StackLayout Grid.Column="1">
                     <Label FontSize="20" Text="{Binding Category}" x:Name="Header" LineBreakMode="TailTruncation" HorizontalTextAlignment="Center"/>
                     <Label Text="{Binding Subcat}" HorizontalTextAlignment="Center"/>
                 </StackLayout>
-                <Button FontSize="12" Text="Save" Clicked="OnSave"/>
-            </FlexLayout>
-
+                <Button Grid.Column="2" FontSize="Large" Text="&#xf0c7;" Clicked="OnSave" MinimumWidthRequest="80">
+                    <Button.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free Regular" />
+                    </Button.FontFamily>
+                </Button>
+            </Grid>
 
             <Entry Keyboard="Numeric" FontSize="Small" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding FormulaText}" HorizontalTextAlignment="Start"/>
             <Label x:Name="Result" TextColor="Black" FontSize="Large" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding CalculationResultText}" HorizontalTextAlignment="End" />
 
-            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding KeyPressed}" CommandParameter="Backspace" Text="←" />
-            <Button Grid.Row="4" Grid.Column="2" Text="Back" Clicked="OnCancelClicked" />
+            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Clicked="OnCancelClicked" Text="Anuluj"/>
+
+            <Button Grid.Row="4" Grid.Column="2" Text="←" Command="{Binding KeyPressed}" CommandParameter="Backspace" />
             <Button Grid.Row="4" Grid.Column="3" Command="{Binding KeyPressed}" CommandParameter="Divide" Text="÷" />
 
             <Button Grid.Row="5" Grid.Column="0" Command="{Binding KeyPressed}" CommandParameter="Seven" Text="7" VerticalOptions="Fill" HorizontalOptions="Fill"/>
