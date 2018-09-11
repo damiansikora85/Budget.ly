@@ -80,7 +80,7 @@
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <sf:SfDataGrid x:Name="DataGrid"  ItemsSource="{Binding Budget, Mode=TwoWay}" AutoGenerateColumns="False" GroupCaptionTextFormat="{}{Key}" AutoExpandGroups="True" AllowGroupExpandCollapse="False" LiveDataUpdateMode="AllowSummaryUpdate" FrozenColumnsCount="2" CurrentCellEndEdit="DataGrid_CurrentCellEndEdit" HorizontalOptions="CenterAndExpand">
+            <sf:SfDataGrid x:Name="DataGrid"  ItemsSource="{Binding Budget, Mode=TwoWay}" AutoGenerateColumns="False" GroupCaptionTextFormat="{}{Key}" AutoExpandGroups="False" AllowGroupExpandCollapse="true" LiveDataUpdateMode="AllowSummaryUpdate" FrozenColumnsCount="2" CurrentCellEndEdit="DataGrid_CurrentCellEndEdit" HorizontalOptions="CenterAndExpand">
                 <sf:SfDataGrid.SortComparers>
                     <data:SortComparer Comparer="{StaticResource SortComparer}" PropertyName="Category.Name"/>
                 </sf:SfDataGrid.SortComparers>

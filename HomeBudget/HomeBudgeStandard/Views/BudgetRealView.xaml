@@ -13,6 +13,7 @@
         <ResourceDictionary>
             <converters:ChartLabelVisibilityConverter x:Key="VisibilityConverter" />
             <converters:CurrencyValueConverter x:Key="CurrencyValueConverter" />
+            <converters:CurrencyValueZeroConverter x:Key="CurrencyValueZeroConverter" />
             <converters:BudgetCategorySortComparer x:Key="SortComparer"/>
             <DataTemplate x:Key="dataMarkerTemplate">
                 <StackLayout BackgroundColor="{Binding Interior}"><!--IsVisible="{Binding Subcat.Value, Converter=StaticResource VisibilityConverter}">-->

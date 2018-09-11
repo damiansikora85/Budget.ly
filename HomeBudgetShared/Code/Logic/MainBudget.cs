@@ -214,20 +214,20 @@ namespace HomeBudget.Code
         {
             var month = GetMonth(date);
             month.AddExpense(value, date, categoryID, subcatID);
-            Save();
+            await Save().ConfigureAwait(false);
         }
 
         public async Task AddIncome(float value, DateTime date, int incomeCategoryId)
         {
             var month = GetMonth(date);
             month.AddIncome(value, date, incomeCategoryId);
-            Save();
+            await Save().ConfigureAwait(false);
         }
 
         public async Task UpdateMainPlannedBudget()
         {
             budgetPlanned = GetCurrentMonthData().BudgetPlanned;
-            Save();
+            await Save().ConfigureAwait(false);
         }
 
         public double GetTotalPlannedExpensesForCurrentMonth()

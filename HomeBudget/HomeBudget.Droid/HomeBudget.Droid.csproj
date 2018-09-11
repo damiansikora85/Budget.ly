@@ -17,7 +17,7 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
@@ -25,6 +25,7 @@
     <JavaOptions />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <AndroidKeyStore>false</AndroidKeyStore>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,6 +50,9 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Acr.UserDialogs, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -145,41 +149,41 @@
     <Reference Include="Rg.Plugins.Popup.Droid, Version=1.1.4.158, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Rg.Plugins.Popup.1.1.4.158-pre\lib\MonoAndroid\Rg.Plugins.Popup.Droid.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Calculate.Portable, Version=16.2451.0.46, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.Calculate.16.2.0.46\lib\netstandard1.0\Syncfusion.Calculate.Portable.dll</HintPath>
+    <Reference Include="Syncfusion.Calculate.Portable, Version=16.2451.0.50, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.Calculate.16.2.0.50\lib\netstandard1.0\Syncfusion.Calculate.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Core.XForms, Version=16.2451.0.46, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.Core.16.2.0.46\lib\MonoAndroid10\Syncfusion.Core.XForms.dll</HintPath>
+    <Reference Include="Syncfusion.Core.XForms, Version=16.2451.0.50, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.Core.16.2.0.50\lib\MonoAndroid10\Syncfusion.Core.XForms.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Data.Portable, Version=16.2451.0.46, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfDataGrid.16.2.0.46\lib\MonoAndroid10\Syncfusion.Data.Portable.dll</HintPath>
+    <Reference Include="Syncfusion.Data.Portable, Version=16.2451.0.50, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfDataGrid.16.2.0.50\lib\MonoAndroid10\Syncfusion.Data.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.GridCommon.Portable, Version=16.2451.0.46, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.GridCommon.16.2.0.46\lib\MonoAndroid10\Syncfusion.GridCommon.Portable.dll</HintPath>
+    <Reference Include="Syncfusion.GridCommon.Portable, Version=16.2451.0.50, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.GridCommon.16.2.0.50\lib\MonoAndroid10\Syncfusion.GridCommon.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Licensing, Version=16.2.0.46, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Licensing.16.2.0.46\lib\MonoAndroid10\Syncfusion.Licensing.dll</HintPath>
+    <Reference Include="Syncfusion.Licensing, Version=16.2.0.50, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Licensing.16.2.0.50\lib\MonoAndroid10\Syncfusion.Licensing.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfChart.XForms, Version=16.2451.0.46, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfChart.16.2.0.46\lib\MonoAndroid10\Syncfusion.SfChart.XForms.dll</HintPath>
+    <Reference Include="Syncfusion.SfChart.XForms, Version=16.2451.0.50, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfChart.16.2.0.50\lib\MonoAndroid10\Syncfusion.SfChart.XForms.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfChart.XForms.Android, Version=16.2451.0.46, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfChart.16.2.0.46\lib\MonoAndroid10\Syncfusion.SfChart.XForms.Android.dll</HintPath>
+    <Reference Include="Syncfusion.SfChart.XForms.Android, Version=16.2451.0.50, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfChart.16.2.0.50\lib\MonoAndroid10\Syncfusion.SfChart.XForms.Android.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfDataGrid.XForms, Version=16.2451.0.46, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfDataGrid.16.2.0.46\lib\MonoAndroid10\Syncfusion.SfDataGrid.XForms.dll</HintPath>
+    <Reference Include="Syncfusion.SfDataGrid.XForms, Version=16.2451.0.50, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfDataGrid.16.2.0.50\lib\MonoAndroid10\Syncfusion.SfDataGrid.XForms.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfDataGrid.XForms.Android, Version=16.2451.0.46, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfDataGrid.16.2.0.46\lib\MonoAndroid10\Syncfusion.SfDataGrid.XForms.Android.dll</HintPath>
+    <Reference Include="Syncfusion.SfDataGrid.XForms.Android, Version=16.2451.0.50, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfDataGrid.16.2.0.50\lib\MonoAndroid10\Syncfusion.SfDataGrid.XForms.Android.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfNumericTextBox.Android, Version=16.2451.0.46, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericTextBox.16.2.0.46\lib\MonoAndroid10\Syncfusion.SfNumericTextBox.Android.dll</HintPath>
+    <Reference Include="Syncfusion.SfNumericTextBox.Android, Version=16.2451.0.50, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericTextBox.16.2.0.50\lib\MonoAndroid10\Syncfusion.SfNumericTextBox.Android.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfNumericTextBox.XForms, Version=16.2451.0.46, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericTextBox.16.2.0.46\lib\MonoAndroid10\Syncfusion.SfNumericTextBox.XForms.dll</HintPath>
+    <Reference Include="Syncfusion.SfNumericTextBox.XForms, Version=16.2451.0.50, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericTextBox.16.2.0.50\lib\MonoAndroid10\Syncfusion.SfNumericTextBox.XForms.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfNumericTextBox.XForms.Android, Version=16.2451.0.46, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericTextBox.16.2.0.46\lib\MonoAndroid10\Syncfusion.SfNumericTextBox.XForms.Android.dll</HintPath>
+    <Reference Include="Syncfusion.SfNumericTextBox.XForms.Android, Version=16.2451.0.50, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericTextBox.16.2.0.50\lib\MonoAndroid10\Syncfusion.SfNumericTextBox.XForms.Android.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections" />

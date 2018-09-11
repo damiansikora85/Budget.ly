@@ -53,7 +53,8 @@ namespace HomeBudgeStandard.Views
 
             ExpensesChartSwitch.Effects.Add(new UnderlineEffect());
 
-            var tapGesture = new TapGestureRecognizer(SwitchChart);
+            var tapGesture = new TapGestureRecognizer();
+            tapGesture.Tapped += SwitchChart;
             ExpensesChartSwitch.GestureRecognizers.Add(tapGesture);
             IncomeChartSwitch.GestureRecognizers.Add(tapGesture);
         }
@@ -159,10 +160,11 @@ namespace HomeBudgeStandard.Views
             });
         }
 
-        private void SwitchChart(View sender, object arg2)
+        private void SwitchChart(object sender, EventArgs e)
         {
-            if (sender.Effects.Count > 0)
+            if (sender is View view && view.Effects.Count > 0)
                 return;
+
             Device.BeginInvokeOnMainThread(() =>
             {
                 var label = sender as Label;
