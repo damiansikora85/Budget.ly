@@ -38,130 +38,169 @@ namespace HomeBudgeStandard.Views
             Budget = new ObservableCollection<BudgetViewModelData>();
             BindingContext = this;
             InitializeComponent ();
-            MainBudget.Instance.onBudgetLoaded += Setup;
+
+            var tapGesture = new TapGestureRecognizer();
+            tapGesture.Tapped += SwitchChart;
+            ExpensesChartSwitch.GestureRecognizers.Add(tapGesture);
+            IncomeChartSwitch.GestureRecognizers.Add(tapGesture);
+
+            MainBudget.Instance.onBudgetLoaded += () => Task.Run(async () =>
+            {
+                Device.BeginInvokeOnMainThread(() => UserDialogs.Instance.ShowLoading());
+                await Setup();
+            });
         }
 
         protected override void OnAppearing()
         {
-            if (MainBudget.Instance.IsInitialized && !_setupDone)
-            {
-                UserDialogs.Instance.ShowLoading();
-                Setup();
-            }
-            _setupDone = true;
-
-            ExpensesChartSwitch.Effects.Add(new UnderlineEffect());
-
-            var tapGesture = new TapGestureRecognizer(SwitchChart);
-            ExpensesChartSwitch.GestureRecognizers.Add(tapGesture);
-            IncomeChartSwitch.GestureRecognizers.Add(tapGesture);
-        }
-
-        private void Setup()
-        {
-            Task.Run(() =>
-            {
-                CreateDataGrid();
-                CreateCharts();
-                Device.BeginInvokeOnMainThread(() => UserDialogs.Instance.HideLoading());
-            });
-        }
-
-        private void CreateCharts()
-        {
-            ExpensesData = new ObservableCollection<BudgetViewModelData>();
-            IncomesData = new ObservableCollection<BudgetViewModelData>();
-            var budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
-            foreach (BudgetRealCategory category in budgetReal.Categories)
-            {
-                var model = new BudgetViewModelData()
-                {
-                    Name = category.Name,
-                    Category = category,
-                    CategoryReal = category as BudgetRealCategory
-                };
-                if (!category.IsIncome)
-                    ExpensesData.Add(model);
-            }
-
-            var incomesCategories = budgetReal.GetIncomesCategories();
-            foreach (BaseBudgetCategory category in incomesCategories)
-            {
-                foreach (BaseBudgetSubcat subcat in category.subcats)
-                {
-                    var model = new BudgetViewModelData()
-                    {
-                        Name = subcat.Name,
-                        Category = category,
-                        Subcat = subcat as RealSubcat
-                    };
-                    IncomesData.Add(model);
-                }
-            }
-
-            OnPropertyChanged(nameof(ExpensesData));
-            OnPropertyChanged(nameof(IncomesData));
-
-            SwitchChart(ExpensesChartSwitch, null);
-        }
-
-        private void CreateDataGrid()
-        {
-            var budget = new ObservableCollection<BudgetViewModelData>();
             try
             {
-                var budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
-
-                foreach (var category in budgetReal.Categories)
+                if (MainBudget.Instance.IsInitialized && !_setupDone)
                 {
-                    foreach (var subcat in category.subcats)
-                    {
-                        var model = new BudgetViewModelData
-                        {
-                            Category = category,
-                            Subcat = subcat,
-                            SubcatReal = subcat as RealSubcat,
-                        };
-                        budget.Add(model);
-                    }
+                    UserDialogs.Instance.ShowLoading();
+                    Task.Run(async () => await Setup());
                 }
+                _setupDone = true;
 
-                DataGrid.CaptionSummaryRow = new GridSummaryRow()
-                {
-                    ShowSummaryInRow = true,
-                    Title = "{Key}: {Total}",
-
-                    SummaryColumns = new ObservableCollection<ISummaryColumn>
-                    {
-                        new GridSummaryColumn()
-                        {
-                            Name = "Total",
-                            MappingName="Subcat.Value",
-                            SummaryType= SummaryType.Custom,
-                            CustomAggregate = new CurrencyDataGridHeader(),
-                            Format = "{Currency}"
-                        }
-                    }
-                };
+                ExpensesChartSwitch.Effects.Add(new UnderlineEffect());
             }
             catch(Exception e)
             {
-                 return;
+                Debug.WriteLine(e.Message);
             }
+        }
 
-            Device.BeginInvokeOnMainThread(() =>
+        private async Task Setup()
+        {
+            await CreateDataGrid();
+            //await CreateCharts();
+             
+            Device.BeginInvokeOnMainThread(() => UserDialogs.Instance.HideLoading());
+        }
+
+        private async Task CreateCharts()
+        {
+            await Task.Run(() =>
             {
-                Budget = budget;
-                DataGrid.ItemsSource = Budget;
-                DataGrid.GroupColumnDescriptions.Clear();
-                DataGrid.GroupColumnDescriptions.Add(new GroupColumnDescription { ColumnName = "Category.Name" });
+                ExpensesData = new ObservableCollection<BudgetViewModelData>();
+                IncomesData = new ObservableCollection<BudgetViewModelData>();
+                var budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
+                foreach (BudgetRealCategory category in budgetReal.Categories)
+                {
+                    var model = new BudgetViewModelData()
+                    {
+                        Name = category.Name,
+                        Category = category,
+                        CategoryReal = category as BudgetRealCategory
+                    };
+                    if (!category.IsIncome)
+                        ExpensesData.Add(model);
+                }
+
+                var incomesCategories = budgetReal.GetIncomesCategories();
+                foreach (BaseBudgetCategory category in incomesCategories)
+                {
+                    foreach (BaseBudgetSubcat subcat in category.subcats)
+                    {
+                        var model = new BudgetViewModelData()
+                        {
+                            Name = subcat.Name,
+                            Category = category,
+                            Subcat = subcat as RealSubcat
+                        };
+                        IncomesData.Add(model);
+                    }
+                }
+
+                OnPropertyChanged(nameof(ExpensesData));
+                OnPropertyChanged(nameof(IncomesData));
+
+                SwitchChart(ExpensesChartSwitch, null);
             });
         }
 
-        private void SwitchChart(View sender, object arg2)
+        private async Task CreateDataGrid()
         {
-            if (sender.Effects.Count > 0)
+            await Task.Run(() =>
+                {
+                    
+                var budget = new ObservableCollection<BudgetViewModelData>();
+                try
+                {
+                    var budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
+
+                    foreach (var category in budgetReal.Categories)
+                    {
+                        foreach (var subcat in category.subcats)
+                        {
+                            var model = new BudgetViewModelData
+                            {
+                                Category = category,
+                                Subcat = subcat,
+                                SubcatReal = subcat as RealSubcat,
+                                Name = category.Name
+                            };
+                            budget.Add(model);
+                        }
+                    }
+
+                        //DataGrid.GroupCaptionTextFormat = "{ColumnName} : {Key}"; -> OK
+
+                        /*var summaryRow = new GridGroupSummaryRow
+                        {
+                            Title = "Total Salary:{TotalSalary}",
+                            ShowSummaryInRow = true
+                        };
+                        summaryRow.SummaryColumns.Add(new GridSummaryColumn
+                        {
+                            Name = "TotalSalary",
+                            MappingName = "Subcat.Value",
+                            Format = "{Sum:c}",
+                            SummaryType = SummaryType.DoubleAggregate
+                        });
+
+                        DataGrid.CaptionSummaryRow = summaryRow;*/
+
+                        /*DataGrid.CaptionSummaryRow = new GridSummaryRow
+                        {
+                            ShowSummaryInRow = true,
+                            Title = "{Key}: {Total}",
+
+                            SummaryColumns = new ObservableCollection<ISummaryColumn>
+                            {
+                                new GridSummaryColumn
+                                {
+                                    Name = "Total",
+                                    MappingName="Subcat.Value",
+                                    SummaryType= SummaryType.CountAggregate,
+                                    CustomAggregate = new CurrencyDataGridHeader(),
+                                    Format = "{Currency}"
+                                }
+                            }
+                        };*/
+                    }
+                catch (Exception e)
+                {
+                    return;
+                }
+
+                Device.BeginInvokeOnMainThread( () =>
+                {
+                    //await Task.Yield();
+                    Budget = budget;
+                    OnPropertyChanged("Budget");
+                    //DataGrid.ItemsSource = Budget;
+                    //DataGrid.GroupColumnDescriptions.Clear();
+                    //DataGrid.GroupColumnDescriptions.Add(new GroupColumnDescription { ColumnName = "Category.Name" });
+                });
+            });
+        }
+
+        private void SwitchChart(object sender, EventArgs e)
+        {
+            if (sender is View view && view.Effects.Count > 0)
                 return;
+
             Device.BeginInvokeOnMainThread(() =>
             {
                 var label = sender as Label;
