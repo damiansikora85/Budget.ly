@@ -80,7 +80,6 @@ namespace HomeBudgeStandard.Views
                 {
                     Name = category.Name,
                     Category = category,
-                    //CategoryReal = category as BudgetPlannedCategory
                 };
                 if (!category.IsIncome)
                     ExpensesData.Add(model);

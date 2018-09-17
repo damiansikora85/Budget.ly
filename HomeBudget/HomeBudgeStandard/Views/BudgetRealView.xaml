@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:charts="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
              xmlns:converters="clr-namespace:HomeBudget.Converters"
+             xmlns:utils="clr-namespace:HomeBudget.Utils"
              xmlns:sf="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
              xmlns:data="clr-namespace:Syncfusion.Data;assembly=Syncfusion.Data.Portable"
              xmlns:effects="clr-namespace:HomeBudgeStandard.Effects"
@@ -15,6 +16,7 @@
             <converters:CurrencyValueConverter x:Key="CurrencyValueConverter" />
             <converters:CurrencyValueZeroConverter x:Key="CurrencyValueZeroConverter" />
             <converters:BudgetCategorySortComparer x:Key="SortComparer"/>
+            <utils:CurrencyDataGridHeader x:Key="currencyDataGridHeader"/>
             <DataTemplate x:Key="dataMarkerTemplate">
                 <StackLayout BackgroundColor="{Binding Interior}"><!--IsVisible="{Binding Subcat.Value, Converter=StaticResource VisibilityConverter}">-->
                     <Label Text="{Binding Name}"/>
@@ -80,17 +82,18 @@
                 <sf:GroupColumnDescription ColumnName="Category.Name" />
             </sf:SfDataGrid.GroupColumnDescriptions>
             
-            <!--<sf:SfDataGrid.SortComparers>
+            <sf:SfDataGrid.SortComparers>
                 <data:SortComparer Comparer="{StaticResource SortComparer}" PropertyName="Category.Name"/>
-            </sf:SfDataGrid.SortComparers>-->
+            </sf:SfDataGrid.SortComparers>
 
             <sf:SfDataGrid.CaptionSummaryRow>
-                <sf:GridGroupSummaryRow Title="Total Salary :{TotalSalary}" ShowSummaryInRow="True">
+                <sf:GridGroupSummaryRow Title="{}{Key}: {Total}" ShowSummaryInRow="True">
                     <sf:GridGroupSummaryRow.SummaryColumns>
-                        <sf:GridSummaryColumn Name="TotalSalary"
-                                      Format="{}{Count}"
-                                      MappingName="Name"
-                                      SummaryType="CountAggregate"/>
+                        <sf:GridSummaryColumn Name="Total"
+                                      Format="{}{Currency}"
+                                      MappingName="Subcat.Value"
+                                      CustomAggregate="{StaticResource currencyDataGridHeader}"
+                                      SummaryType="Custom"/>
                     </sf:GridGroupSummaryRow.SummaryColumns>
                 </sf:GridGroupSummaryRow>
             </sf:SfDataGrid.CaptionSummaryRow>
