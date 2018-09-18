@@ -126,36 +126,17 @@ namespace HomeBudgeStandard.Views
                         budget.Add(model);
                     }
                 }
-
-                DataGrid.CaptionSummaryRow = new GridSummaryRow()
-                {
-                    ShowSummaryInRow = true,
-                    Title = "{Key}: {Total}",
-
-                    SummaryColumns = new ObservableCollection<ISummaryColumn>
-                    {
-                        new GridSummaryColumn()
-                        {
-                            Name = "Total",
-                            MappingName="Subcat.Value",
-                            SummaryType= SummaryType.Custom,
-                            CustomAggregate = new CurrencyDataGridHeader(),
-                            Format = "{Currency}"
-                        }
-                    }
-                };
             }
             catch (Exception e)
             {
+                var msg = e.Message;
                 return;
             }
 
             Device.BeginInvokeOnMainThread(() =>
             {
                 Budget = budget;
-                DataGrid.ItemsSource = Budget;
-                DataGrid.GroupColumnDescriptions.Clear();
-                DataGrid.GroupColumnDescriptions.Add(new GroupColumnDescription { ColumnName = "Category.Name" });
+                OnPropertyChanged("Budget");
             });
         }
 

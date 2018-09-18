@@ -73,7 +73,7 @@ namespace HomeBudgeStandard.Views
         private async Task Setup()
         {
             await CreateDataGrid();
-            //await CreateCharts();
+            await CreateCharts();
              
             Device.BeginInvokeOnMainThread(() => UserDialogs.Instance.HideLoading());
         }
@@ -143,55 +143,17 @@ namespace HomeBudgeStandard.Views
                             budget.Add(model);
                         }
                     }
-
-                        //DataGrid.GroupCaptionTextFormat = "{ColumnName} : {Key}"; -> OK
-
-                        /*var summaryRow = new GridGroupSummaryRow
-                        {
-                            Title = "Total Salary:{TotalSalary}",
-                            ShowSummaryInRow = true
-                        };
-                        summaryRow.SummaryColumns.Add(new GridSummaryColumn
-                        {
-                            Name = "TotalSalary",
-                            MappingName = "Subcat.Value",
-                            Format = "{Sum:c}",
-                            SummaryType = SummaryType.DoubleAggregate
-                        });
-
-                        DataGrid.CaptionSummaryRow = summaryRow;*/
-
-                        /*DataGrid.CaptionSummaryRow = new GridSummaryRow
-                        {
-                            ShowSummaryInRow = true,
-                            Title = "{Key}: {Total}",
-
-                            SummaryColumns = new ObservableCollection<ISummaryColumn>
-                            {
-                                new GridSummaryColumn
-                                {
-                                    Name = "Total",
-                                    MappingName="Subcat.Value",
-                                    SummaryType= SummaryType.CountAggregate,
-                                    CustomAggregate = new CurrencyDataGridHeader(),
-                                    Format = "{Currency}"
-                                }
-                            }
-                        };*/
-                    }
+                }
                 catch (Exception e)
                 {
+                    var msg = e.Message;
                     return;
                 }
 
                 Device.BeginInvokeOnMainThread( () =>
                 {
-                    //await Task.Yield();
                     Budget = budget;
                     OnPropertyChanged("Budget");
-                    //DataGrid.ItemsSource = Budget;
-                    //DataGrid.GroupColumnDescriptions.Clear();
-                    //DataGrid.GroupColumnDescriptions.Add(new GroupColumnDescription { ColumnName = "Category.Name" });
                 });
             });
         }

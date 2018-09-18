@@ -41,7 +41,7 @@ namespace HomeBudget.Pages.Utils
         }
         public double SpendPercentage =>
                 //Random rand = new Random();
-                CategoryPlanned.TotalValues > 0 ? Min((CategoryReal.TotalValues / CategoryPlanned.TotalValues), 1) : 0; //rand.NextDouble();
+                CategoryPlanned.TotalValues > 0 ? Min((CategoryReal.TotalValues / CategoryPlanned.TotalValues), 1) : 0; 
 
         private double Min(double v1, double v2)
         {
@@ -63,6 +63,7 @@ namespace HomeBudget.Pages.Utils
 
         public void RaisePropertyChanged()
         {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CategoryReal.TotalValues"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpendPercentage"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpendPercentageInt"));
         }

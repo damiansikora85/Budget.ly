@@ -5,6 +5,7 @@
              xmlns:converters="clr-namespace:HomeBudget.Converters"
              xmlns:sf="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
              xmlns:data="clr-namespace:Syncfusion.Data;assembly=Syncfusion.Data.Portable"
+             xmlns:utils="clr-namespace:HomeBudget.Utils"
              xmlns:effects="clr-namespace:HomeBudgeStandard.Effects"
              x:Class="HomeBudgeStandard.Views.BudgetPlanView"
              Title="Planowanie">
@@ -14,6 +15,7 @@
             <converters:ChartLabelVisibilityConverter x:Key="VisibilityConverter" />
             <converters:CurrencyValueConverter x:Key="CurrencyValueConverter" />
             <converters:BudgetCategorySortComparer x:Key="SortComparer"/>
+            <utils:CurrencyDataGridHeader x:Key="currencyDataGridHeader"/>
             <DataTemplate x:Key="dataMarkerTemplate">
                 <StackLayout BackgroundColor="{Binding Interior}">
                     <!--IsVisible="{Binding Subcat.Value, Converter=StaticResource VisibilityConverter}">-->
@@ -80,10 +82,26 @@
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <sf:SfDataGrid x:Name="DataGrid"  ItemsSource="{Binding Budget, Mode=TwoWay}" AutoGenerateColumns="False" GroupCaptionTextFormat="{}{Key}" AutoExpandGroups="False" AllowGroupExpandCollapse="true" LiveDataUpdateMode="AllowSummaryUpdate" FrozenColumnsCount="2" CurrentCellEndEdit="DataGrid_CurrentCellEndEdit" HorizontalOptions="CenterAndExpand">
+            <sf:SfDataGrid x:Name="DataGrid"  ItemsSource="{Binding Budget}" AutoGenerateColumns="False" GroupCaptionTextFormat="{}{Key}" AutoExpandGroups="False" AllowGroupExpandCollapse="true" LiveDataUpdateMode="AllowSummaryUpdate" FrozenColumnsCount="2" CurrentCellEndEdit="DataGrid_CurrentCellEndEdit" HorizontalOptions="CenterAndExpand">
+                <sf:SfDataGrid.GroupColumnDescriptions>
+                    <sf:GroupColumnDescription ColumnName="Category.Name" />
+                </sf:SfDataGrid.GroupColumnDescriptions>
+                
                 <sf:SfDataGrid.SortComparers>
                     <data:SortComparer Comparer="{StaticResource SortComparer}" PropertyName="Category.Name"/>
                 </sf:SfDataGrid.SortComparers>
+
+                <sf:SfDataGrid.CaptionSummaryRow>
+                    <sf:GridGroupSummaryRow Title="{}{Key}: {Total}" ShowSummaryInRow="True">
+                        <sf:GridGroupSummaryRow.SummaryColumns>
+                            <sf:GridSummaryColumn Name="Total"
+                                      Format="{}{Currency}"
+                                      MappingName="Subcat.Value"
+                                      CustomAggregate="{StaticResource currencyDataGridHeader}"
+                                      SummaryType="Custom"/>
+                        </sf:GridGroupSummaryRow.SummaryColumns>
+                    </sf:GridGroupSummaryRow>
+                </sf:SfDataGrid.CaptionSummaryRow>
 
                 <sf:SfDataGrid.Columns>
                     <sf:GridTextColumn MappingName="Subcat.Name" HeaderText="Kategoria" Width="100" HeaderFontAttribute="Bold" ColumnSizer="Auto">
