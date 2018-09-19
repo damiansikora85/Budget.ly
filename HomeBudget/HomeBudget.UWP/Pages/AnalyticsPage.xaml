@@ -9,15 +9,16 @@
     xmlns:charts="using:Syncfusion.UI.Xaml.Charts"
     xmlns:sfutils="using:Syncfusion.UI.Xaml.Utils"
     xmlns:wrapPanel="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    xmlns:converters="using:HomeBudget.UWP.Converters"
+    xmlns:convertersUWP="using:HomeBudget.UWP.Converters"
+    xmlns:converters="using:HomeBudget.Converters"
     xmlns:data="using:Syncfusion.Data"
     mc:Ignorable="d">
     <Page.Resources>
-        <converters:CurrencyValueConverter x:Key="CurrencyValueConverter"/>
-        <converters:ChartLabelConverter x:Key="ChartLabelConverter"/>
-        <converters:ValueLabelColorConverter x:Key="ValueLabelColorConverter"/>
+        <convertersUWP:CurrencyValueConverter x:Key="CurrencyValueConverter"/>
+        <convertersUWP:ChartLabelConverter x:Key="ChartLabelConverter"/>
+        <convertersUWP:ValueLabelColorConverter x:Key="ValueLabelColorConverter"/>
         <converters:BudgetCategorySortComparer x:Key="SortComparer"/>
-        <converters:ChartLabelVisibilityConverter x:Key="VisibilityConverter"/>
+        <convertersUWP:ChartLabelVisibilityConverter x:Key="VisibilityConverter"/>
         <ItemsPanelTemplate x:Key="itemPanelTemplate">
             <wrapPanel:WrapPanel Orientation="Vertical" VerticalSpacing="5"/>
         </ItemsPanelTemplate>

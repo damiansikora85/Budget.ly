@@ -2,26 +2,14 @@
 using HomeBudget.Code.Logic;
 using HomeBudget.Utils;
 using Syncfusion.Data;
-using Syncfusion.UI.Xaml.Charts;
 using Syncfusion.UI.Xaml.Grid;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -83,7 +71,7 @@ namespace HomeBudget.UWP.Pages
             }
         }
 
-        private void SetupChart(SfChart chart, ObservableCollection<BudgetViewModelData> data, string xBindingPath, string yBindingPath)
+        /*private void SetupChart(SfChart chart, ObservableCollection<BudgetViewModelData> data, string xBindingPath, string yBindingPath)
         {
             var pieSeries = new PieSeries()
             {
@@ -96,7 +84,7 @@ namespace HomeBudget.UWP.Pages
             };
 
             chart.Series.Add(pieSeries);
-        }
+        }*/
 
         private void CreateDataGrid()
         {
@@ -128,8 +116,7 @@ namespace HomeBudget.UWP.Pages
                         MappingName="Subcat.Value",
                         SummaryType= SummaryType.Custom,
                         CustomAggregate = new CurrencyDataGridHeader(),
-                        Format = "{Currency}",
-                        
+                        Format = "{Currency}"
                     }
                 }
             };
