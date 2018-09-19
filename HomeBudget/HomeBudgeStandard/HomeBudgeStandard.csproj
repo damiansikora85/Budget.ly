@@ -37,12 +37,6 @@
     <EmbeddedResource Update="Pages\MainTabbedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Common\CategoryPlanDataGrid.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Common\CategoryRealDataGrid.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Pages\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -61,9 +55,6 @@
     <EmbeddedResource Update="Views\CalcView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\SideBarPC.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\SummaryView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -71,6 +62,7 @@
 
   <ItemGroup>
     <Folder Include="Interfaces\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 
   <Import Project="..\..\HomeBudgetShared\HomeBudgetShared.projitems" Label="Shared" />
