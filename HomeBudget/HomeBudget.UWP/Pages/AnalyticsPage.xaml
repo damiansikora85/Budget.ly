@@ -12,6 +12,7 @@
     xmlns:convertersUWP="using:HomeBudget.UWP.Converters"
     xmlns:converters="using:HomeBudget.Converters"
     xmlns:data="using:Syncfusion.Data"
+    xmlns:skia="using:SkiaSharp.Views.UWP"
     mc:Ignorable="d">
     <Page.Resources>
         <convertersUWP:CurrencyValueConverter x:Key="CurrencyValueConverter"/>
@@ -68,6 +69,10 @@
                     </charts:PieSeries.AdornmentsInfo>
                 </charts:PieSeries>
             </charts:SfChart>
+
+            <skia:SKXamlCanvas x:Name="emptyChartViewIncomes" PaintSurface="OnPaint"/>
+
+            <skia:SKXamlCanvas x:Name="emptyChartViewExpenses" Grid.Column="1" PaintSurface="OnPaint"/>
             
             <charts:SfChart x:Name="ExpensesChart" Grid.Column="1" Header="Wydatki">
                 <!--<charts:SfChart.Legend>
@@ -87,6 +92,7 @@
                     </charts:PieSeries.AdornmentsInfo>
                 </charts:PieSeries>
             </charts:SfChart>
+
         </Grid>
         <syncfusion:SfDataGrid x:Name="DataGrid" Grid.Row="3" AutoGenerateColumns="False" AllowGrouping="True" AutoExpandGroups="True" Margin="0,24" GroupCaptionTextFormat="{}{Key}" LiveDataUpdateMode="AllowSummaryUpdate" CurrentCellEndEdit="DataGrid_CurrentCellEndEdit" BorderBrush="Transparent" FrozenColumnCount="2">
             <syncfusion:SfDataGrid.SortComparers>

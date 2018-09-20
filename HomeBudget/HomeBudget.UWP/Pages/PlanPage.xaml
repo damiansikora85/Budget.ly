@@ -11,6 +11,7 @@
     xmlns:sfutils="using:Syncfusion.UI.Xaml.Utils"
     xmlns:convertersUWP="using:HomeBudget.UWP.Converters"
     xmlns:converters="using:HomeBudget.Converters"
+    xmlns:skia="using:SkiaSharp.Views.UWP"
     xmlns:data="using:Syncfusion.Data"
     mc:Ignorable="d">
     <Page.Resources>
@@ -54,6 +55,10 @@
                     </charts:PieSeries.AdornmentsInfo>
                 </charts:PieSeries>
             </charts:SfChart>
+
+            <skia:SKXamlCanvas x:Name="emptyChartViewIncomes" PaintSurface="OnPaint"/>
+
+            <skia:SKXamlCanvas x:Name="emptyChartViewExpenses" Grid.Column="1" PaintSurface="OnPaint"/>
 
             <charts:SfChart x:Name="ExpensesChart" Grid.Column="1" Header="Wydatki">
                 <charts:PieSeries XBindingPath="Name" YBindingPath="Category.TotalValues" ItemsSource="{x:Bind ExpensesData, Mode=OneWay}" ExplodeAll="True" ExplodeRadius="3" ListenPropertyChange="True" >

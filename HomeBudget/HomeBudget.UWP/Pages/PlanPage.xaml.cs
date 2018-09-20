@@ -1,6 +1,8 @@
 ﻿using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Utils;
+using SkiaSharp;
+using SkiaSharp.Views.UWP;
 using Syncfusion.Data;
 using Syncfusion.UI.Xaml.Charts;
 using Syncfusion.UI.Xaml.Grid;
@@ -41,6 +43,35 @@ namespace HomeBudget.UWP.Pages
             CreateCharts();
         }
 
+        private void OnPaint(object sender, SKPaintSurfaceEventArgs args)
+        {
+            var info = args.Info;
+            var surface = args.Surface;
+            var canvas = surface.Canvas;
+
+            canvas.Clear();
+
+            using (var paint = new SKPaint { Style = SKPaintStyle.Fill, Color = SKColors.LightGray })
+            {
+                canvas.DrawCircle(info.Width / 2, info.Height / 2, info.Height * 0.38f, paint);
+            }
+
+            using (var textPaint = new SKPaint { Color = SKColors.Black, TextSize = info.Width / 2 })
+            {
+                var message = "Brak danych";
+                var textWidth = textPaint.MeasureText(message);
+                textPaint.TextSize = 0.7f * info.Height * textPaint.TextSize / textWidth;
+
+                var textBounds = new SKRect();
+                textPaint.MeasureText(message, ref textBounds);
+
+                var xText = info.Width / 2 - textBounds.MidX;
+                var yText = info.Height / 2 - textBounds.MidY;
+
+                canvas.DrawText(message, xText, yText, textPaint);
+            }
+        }
+
         private void CreateCharts()
         {
             ExpensesData = new ObservableCollection<BudgetViewModelData>();
@@ -71,6 +102,9 @@ namespace HomeBudget.UWP.Pages
                     IncomesData.Add(model);
                 }
             }
+
+            emptyChartViewExpenses.Visibility = (ExpensesData.Sum(el => el.Category.TotalValues) > 0) ? Visibility.Collapsed : Visibility.Visible;
+            emptyChartViewIncomes.Visibility = (IncomesData.Sum(el => el.Category.TotalValues) > 0) ? Visibility.Collapsed : Visibility.Visible;
         }
 
         private void SetupChart(SfChart chart, ObservableCollection<BudgetViewModelData> data, string xBindingPath, string yBindingPath)
@@ -141,6 +175,10 @@ namespace HomeBudget.UWP.Pages
             Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
             {
                 await Task.Delay(100);
+
+                emptyChartViewExpenses.Visibility = (ExpensesData.Sum(el => el.Category.TotalValues) > 0) ? Visibility.Collapsed : Visibility.Visible;
+                emptyChartViewIncomes.Visibility = (IncomesData.Sum(el => el.Category.TotalValues) > 0) ? Visibility.Collapsed : Visibility.Visible;
+
                 DataGrid.View.TopLevelGroup.UpdateCaptionSummaries();
                 DataGrid.View.Refresh();
             });

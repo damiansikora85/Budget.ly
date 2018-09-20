@@ -288,6 +288,12 @@
     <PackageReference Include="protobuf-net">
       <Version>2.3.12</Version>
     </PackageReference>
+    <PackageReference Include="SkiaSharp">
+      <Version>1.60.3</Version>
+    </PackageReference>
+    <PackageReference Include="SkiaSharp.Views">
+      <Version>1.60.3</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Calculate.UWP">
       <Version>16.1.0.32</Version>
     </PackageReference>

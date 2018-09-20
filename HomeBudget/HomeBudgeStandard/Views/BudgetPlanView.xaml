@@ -74,6 +74,8 @@
                 </charts:PieSeries>
             </charts:SfChart>
 
+            <ContentView x:Name="emptyChartView" Grid.Column="1" IsVisible="False"/>
+
         </Grid>
 
 

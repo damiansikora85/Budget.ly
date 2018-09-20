@@ -45,7 +45,11 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -57,7 +61,7 @@
 
             </Grid>
 
-            <charts:SfChart x:Name="chartExpense" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand">
+            <charts:SfChart x:Name="chartExpense" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand" >
                 <charts:SfChart.Legend>
                     <charts:ChartLegend DockPosition="Right"/>
                 </charts:SfChart.Legend>
@@ -75,6 +79,8 @@
                 </charts:PieSeries>
             </charts:SfChart>
 
+            <ContentView x:Name="emptyChartView" Grid.Column="1" IsVisible="False"/>
+            
         </Grid>
 
         <sf:SfDataGrid x:Name="DataGrid" Grid.Row="2" ItemsSource="{Binding Budget}" AutoGenerateColumns="False" GroupCaptionTextFormat="{}{Key}" AutoExpandGroups="False" AllowGroupExpandCollapse="True" LiveDataUpdateMode="AllowSummaryUpdate" FrozenColumnsCount="2" CurrentCellEndEdit="DataGrid_CurrentCellEndEdit">

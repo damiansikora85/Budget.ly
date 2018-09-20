@@ -16,6 +16,8 @@
     <PackageReference Include="PCLStorage" Version="1.0.2" />
     <PackageReference Include="protobuf-net" Version="2.3.12" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.158-pre" />
+    <PackageReference Include="SkiaSharp" Version="1.60.3" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.60.3" />
     <PackageReference Include="Syncfusion.Xamarin.Calculate" Version="16.2.0.50" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="16.2.0.50" />
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="16.2.0.50" />

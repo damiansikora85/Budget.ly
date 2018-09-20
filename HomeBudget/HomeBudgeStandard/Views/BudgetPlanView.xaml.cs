@@ -3,14 +3,13 @@ using HomeBudgeStandard.Effects;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Utils;
-using Syncfusion.Data;
+using SkiaSharp;
+using SkiaSharp.Views.Forms;
 using Syncfusion.SfDataGrid.XForms;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -18,7 +17,7 @@ using Xamarin.Forms.Xaml;
 
 namespace HomeBudgeStandard.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Skip)]
+    [XamlCompilation(XamlCompilationOptions.Skip)]
 	public partial class BudgetPlanView : ContentPage
 	{
         public ObservableCollection<BudgetViewModelData> Budget { get; set; }
@@ -26,6 +25,10 @@ namespace HomeBudgeStandard.Views
         public ObservableCollection<BudgetViewModelData> ExpensesData { get; set; }
 
         private bool _setupDone;
+        private SKCanvasView _skCanvas;
+
+        private bool _hasIncomes;
+        private bool _hasExpenses;
 
         private CultureInfo _cultureInfoPL = new CultureInfo("pl-PL");
 
@@ -40,6 +43,15 @@ namespace HomeBudgeStandard.Views
             BindingContext = this;
             InitializeComponent();
             MainBudget.Instance.onBudgetLoaded += Setup;
+
+            var canvasView = new SKCanvasView();
+            canvasView.PaintSurface += OnCanvasViewPaintSurface;
+            emptyChartView.Content = canvasView;
+
+            var tapGesture = new TapGestureRecognizer();
+            tapGesture.Tapped += SwitchChart;
+            ExpensesChartSwitch.GestureRecognizers.Add(tapGesture);
+            IncomeChartSwitch.GestureRecognizers.Add(tapGesture);
         }
 
         protected override void OnAppearing()
@@ -49,14 +61,36 @@ namespace HomeBudgeStandard.Views
                 UserDialogs.Instance.ShowLoading();
                 Setup();
             }
-            _setupDone = true;
+            _setupDone = true;  
+        }
 
-            ExpensesChartSwitch.Effects.Add(new UnderlineEffect());
+        private void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs args)
+        {
+            var info = args.Info;
+            var surface = args.Surface;
+            var canvas = surface.Canvas;
 
-            var tapGesture = new TapGestureRecognizer();
-            tapGesture.Tapped += SwitchChart;
-            ExpensesChartSwitch.GestureRecognizers.Add(tapGesture);
-            IncomeChartSwitch.GestureRecognizers.Add(tapGesture);
+            canvas.Clear();
+
+            using (var paint = new SKPaint { Style = SKPaintStyle.Fill, Color = Color.FromRgb(200, 200, 200).ToSKColor() })
+            {
+                canvas.DrawCircle(info.Width / 4, info.Height / 2, info.Height * 0.38f, paint);
+            }
+
+            using (var textPaint = new SKPaint { Color = Color.Black.ToSKColor(), TextSize = info.Width / 2 })
+            {
+                var message = "Brak danych";
+                var textWidth = textPaint.MeasureText(message);
+                textPaint.TextSize = 0.7f * info.Height * textPaint.TextSize / textWidth;
+
+                var textBounds = new SKRect();
+                textPaint.MeasureText(message, ref textBounds);
+
+                var xText = info.Width / 4 - textBounds.MidX;
+                var yText = info.Height / 2 - textBounds.MidY;
+
+                canvas.DrawText(message, xText, yText, textPaint);
+            }
         }
 
         private void Setup()
@@ -99,6 +133,9 @@ namespace HomeBudgeStandard.Views
                     IncomesData.Add(model);
                 }
             }
+
+            _hasExpenses = ExpensesData.Sum(el => el.Category.TotalValues) > 0;
+            _hasIncomes = IncomesData.Sum(el => el.Category.TotalValues) > 0;
 
             OnPropertyChanged(nameof(ExpensesData));
             OnPropertyChanged(nameof(IncomesData));
@@ -154,12 +191,14 @@ namespace HomeBudgeStandard.Views
                     IncomeChartSwitch.Effects.Clear();
                     chartExpense.IsVisible = true;
                     chartIncome.IsVisible = false;
+                    emptyChartView.IsVisible = !_hasExpenses;
                 }
                 else
                 {
                     ExpensesChartSwitch.Effects.Clear();
                     chartExpense.IsVisible = false;
                     chartIncome.IsVisible = true;
+                    emptyChartView.IsVisible = !_hasIncomes;
                 }
             });
         }
@@ -176,6 +215,11 @@ namespace HomeBudgeStandard.Views
             Device.BeginInvokeOnMainThread(async () =>
             {
                 await Task.Delay(100);
+
+                _hasExpenses = ExpensesData.Sum(el => el.Category.TotalValues) > 0;
+                _hasIncomes = IncomesData.Sum(el => el.Category.TotalValues) > 0;
+                emptyChartView.IsVisible = (ExpensesChartSwitch.Effects.Count > 0) ? !_hasExpenses : !_hasIncomes;
+
                 DataGrid.View.TopLevelGroup.UpdateCaptionSummaries();
                 DataGrid.View.Refresh();
                 OnPropertyChanged("Category.TotalValues");
