@@ -34,9 +34,17 @@
         </Grid.RowDefinitions>
 
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
-            <Button x:Name="PreviousMonth" BackgroundColor="Transparent" Text="&lt;"/>
+            <Button x:Name="PreviousMonthButton" BackgroundColor="Transparent" Text="&#xf104;" Clicked="OnPrevMonth">
+                <Button.FontFamily>
+                    <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                </Button.FontFamily>
+            </Button>
             <Label Text="{Binding Date}" HorizontalTextAlignment="Center" FontSize="Large" VerticalTextAlignment="Center"/>
-            <Button x:Name="NextMonth" BackgroundColor="Transparent" Text="&gt;"/>
+            <Button x:Name="NextMonthButton" BackgroundColor="Transparent" Text="&#xf105;" Clicked="OnNextMonth">
+                <Button.FontFamily>
+                    <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                </Button.FontFamily>
+            </Button>
         </StackLayout>
 
         <Grid Grid.Row="1">

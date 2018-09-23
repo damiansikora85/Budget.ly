@@ -34,11 +34,11 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" RenderTransformOrigin="0.501,0.398" Spacing="50">
-            <Button x:Name="PreviousMonth" Background="#00000000" Click="PreviousMonth_Click">
+            <Button x:Name="PreviousMonthButton" Background="#00000000" Click="PreviousMonth_Click" >
                 <TextBlock Text="&#xE760;" FontFamily="Segoe MDL2 Assets" Style="{StaticResource HeaderTextBlockStyle}" VerticalAlignment="Center"/>
             </Button>
-            <TextBlock Text="{x:Bind Date}" Style="{StaticResource HeaderTextBlockStyle}" TextAlignment="Center"/>
-            <Button x:Name="NextMonth" Background="#00000000" Click="NextMonth_Click">
+            <TextBlock Text="{x:Bind Date,Mode=OneWay}" Style="{StaticResource HeaderTextBlockStyle}" TextAlignment="Center"/>
+            <Button x:Name="NextMonthButton" Background="#00000000" Click="NextMonth_Click" >
                 <TextBlock Text="&#xE761;" FontFamily="Segoe MDL2 Assets" Style="{StaticResource HeaderTextBlockStyle}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
             </Button>
         </StackPanel>
@@ -95,6 +95,10 @@
 
         </Grid>
         <syncfusion:SfDataGrid x:Name="DataGrid" Grid.Row="3" AutoGenerateColumns="False" AllowGrouping="True" AutoExpandGroups="True" Margin="0,24" GroupCaptionTextFormat="{}{Key}" LiveDataUpdateMode="AllowSummaryUpdate" CurrentCellEndEdit="DataGrid_CurrentCellEndEdit" BorderBrush="Transparent" FrozenColumnCount="2">
+            <syncfusion:SfDataGrid.GroupColumnDescriptions>
+                <syncfusion:GroupColumnDescription ColumnName="Category.Name"/>
+            </syncfusion:SfDataGrid.GroupColumnDescriptions>
+            
             <syncfusion:SfDataGrid.SortComparers>
                 <data:SortComparer Comparer="{StaticResource SortComparer}" PropertyName="Category.Name"/>
             </syncfusion:SfDataGrid.SortComparers>

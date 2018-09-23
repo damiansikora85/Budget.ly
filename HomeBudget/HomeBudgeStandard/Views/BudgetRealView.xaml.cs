@@ -28,10 +28,11 @@ namespace HomeBudgeStandard.Views
         private SKCanvasView _skCanvas;
 
         private CultureInfo _cultureInfoPL = new CultureInfo("pl-PL");
+        private DateTime _currentMonth;
 
         public string Date
         {
-            get => DateTime.Now.ToString("MMMM yyyy", _cultureInfoPL);
+            get => _currentMonth.ToString("MMMM yyyy", _cultureInfoPL);
         }
 
         private bool _hasIncomes;
@@ -39,6 +40,7 @@ namespace HomeBudgeStandard.Views
 
         public BudgetRealView ()
 		{
+            _currentMonth = DateTime.Now;
             Budget = new ObservableCollection<BudgetViewModelData>();
             BindingContext = this;
             InitializeComponent ();
@@ -97,11 +99,9 @@ namespace HomeBudgeStandard.Views
                     UserDialogs.Instance.ShowLoading();
                     Task.Run(async () => await Setup());
                 }
-                else SwitchChart(ExpensesChartSwitch, null);
+                else SwitchChartForce(ExpensesChartSwitch);
 
                 _setupDone = true;
-
-                //ExpensesChartSwitch.Effects.Add(new UnderlineEffect());
             }
             catch(Exception e)
             {
@@ -111,22 +111,24 @@ namespace HomeBudgeStandard.Views
 
         private async Task Setup()
         {
-            await CreateDataGrid();
-            await CreateCharts();
+            _currentMonth = DateTime.Now;
+            OnPropertyChanged(nameof(Date));
+            await CreateDataGrid(_currentMonth);
+            await CreateCharts(_currentMonth);
              
             Device.BeginInvokeOnMainThread(() => UserDialogs.Instance.HideLoading());
         }
 
-        private async Task CreateCharts()
+        private async Task CreateCharts(DateTime date)
         {
             await Task.Run(() =>
             {
                 ExpensesData = new ObservableCollection<BudgetViewModelData>();
                 IncomesData = new ObservableCollection<BudgetViewModelData>();
-                var budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
+                var budgetReal = MainBudget.Instance.GetMonth(date).BudgetReal;
                 foreach (BudgetRealCategory category in budgetReal.Categories)
                 {
-                    var model = new BudgetViewModelData()
+                    var model = new BudgetViewModelData
                     {
                         Name = category.Name,
                         Category = category,
@@ -141,7 +143,7 @@ namespace HomeBudgeStandard.Views
                 {
                     foreach (BaseBudgetSubcat subcat in category.subcats)
                     {
-                        var model = new BudgetViewModelData()
+                        var model = new BudgetViewModelData
                         {
                             Name = subcat.Name,
                             Category = category,
@@ -157,19 +159,19 @@ namespace HomeBudgeStandard.Views
                 OnPropertyChanged(nameof(ExpensesData));
                 OnPropertyChanged(nameof(IncomesData));
 
-                SwitchChart(ExpensesChartSwitch, null);
+                SwitchChartForce(ExpensesChartSwitch);
             });
         }
 
-        private async Task CreateDataGrid()
+        private async Task CreateDataGrid(DateTime date)
         {
             await Task.Run(() =>
-                {
+            {
                     
                 var budget = new ObservableCollection<BudgetViewModelData>();
                 try
                 {
-                    var budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
+                    var budgetReal = MainBudget.Instance.GetMonth(date).BudgetReal;
 
                     foreach (var category in budgetReal.Categories)
                     {
@@ -184,7 +186,7 @@ namespace HomeBudgeStandard.Views
                             };
                             budget.Add(model);
                         }
-                    }
+                    } 
                 }
                 catch (Exception e)
                 {
@@ -195,19 +197,18 @@ namespace HomeBudgeStandard.Views
                 Device.BeginInvokeOnMainThread( () =>
                 {
                     Budget = budget;
-                    OnPropertyChanged("Budget");
+                    OnPropertyChanged(nameof(Budget));
+
+                    PreviousMonthButton.IsEnabled = MainBudget.Instance.HasMonthData(_currentMonth.AddMonths(-1));
+                    NextMonthButton.IsEnabled = MainBudget.Instance.HasMonthData(_currentMonth.AddMonths(1));
                 });
             });
         }
 
-        private void SwitchChart(object sender, EventArgs e)
+        private void SwitchChartForce(Label label)
         {
-            if (sender is View view && view.Effects.Count > 0)
-                return;
-
             Device.BeginInvokeOnMainThread(() =>
             {
-                var label = sender as Label;
                 label.Effects.Add(new UnderlineEffect());
                 if (label == ExpensesChartSwitch)
                 {
@@ -228,6 +229,12 @@ namespace HomeBudgeStandard.Views
             });
         }
 
+        private void SwitchChart(object sender, EventArgs e)
+        {
+            if (sender is View view && view.Effects.Count == 0)
+                SwitchChartForce(sender as Label);
+        }
+
         private void DataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
         {
             Task.Run(() => MainBudget.Instance.Save());
@@ -245,6 +252,25 @@ namespace HomeBudgeStandard.Views
                 DataGrid.View.Refresh();
                 OnPropertyChanged("Category.TotalValues");
             });
+        }
+
+        private async void OnPrevMonth(object sender, EventArgs e)
+        {
+            _currentMonth = _currentMonth.AddMonths(-1);
+            await RefreshAsync();
+        }
+
+        private async void OnNextMonth(object sender, EventArgs e)
+        {
+            _currentMonth = _currentMonth.AddMonths(1);
+            await RefreshAsync();
+        }
+
+        private async Task RefreshAsync()
+        {
+            OnPropertyChanged(nameof(Date));
+            await CreateDataGrid(_currentMonth);
+            await CreateCharts(_currentMonth);
         }
     }
 }
