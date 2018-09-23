@@ -44,6 +44,8 @@ namespace HomeBudgeStandard.Views
         public Action OnCancel;
         public Action<double, DateTime> OnSaveValue;
 
+        private CultureInfo _cultureInfoPL = new CultureInfo("pl-PL");
+
         public string Category { get; set; }
         private string _subcat;
         public string Subcat
@@ -78,15 +80,15 @@ namespace HomeBudgeStandard.Views
         {
             get
             {
-                var cultureInfoPL = new CultureInfo("pl-PL");
-                return string.Format(cultureInfoPL, "{0:C}", float.Parse(calculationResultText, CultureInfo.InvariantCulture.NumberFormat));
+                
+                return string.Format(_cultureInfoPL, "{0:C}", float.Parse(calculationResultText, CultureInfo.CurrentCulture.NumberFormat));
             }
             set
             {
                 try
                 {
                     var style = NumberStyles.Float | NumberStyles.AllowCurrencySymbol;
-                    if (float.TryParse(value, style, CultureInfo.InvariantCulture.NumberFormat, out var result))
+                    if (float.TryParse(value, style, CultureInfo.CurrentCulture.NumberFormat, out var result))
                         calculationResultText = value;
                     else
                         calculationResultText = "0";
@@ -102,6 +104,8 @@ namespace HomeBudgeStandard.Views
                 }
             }
         }
+
+        public String DecimalSeparator => _cultureInfoPL.NumberFormat.NumberDecimalSeparator;
 
         public CalcView ()
 		{
@@ -143,7 +147,7 @@ namespace HomeBudgeStandard.Views
                     }
                 case CalculatorKey.Point:
                     {
-                        FormulaText += '.';
+                        FormulaText += ',';
                         break;
                     }
                 case CalculatorKey.Minus:
