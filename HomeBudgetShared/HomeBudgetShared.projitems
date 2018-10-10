@@ -30,6 +30,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\IFileManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\IMainBudget.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\MainBudget.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\Synchronize\IBudgetSynchronizer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\Synchronize\Impl\BudgetSynchronizer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\Temp\OrderInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\Temp\OrderInfoRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\BudgetCategorySortComparer.cs" />
