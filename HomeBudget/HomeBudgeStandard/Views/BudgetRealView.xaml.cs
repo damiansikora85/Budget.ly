@@ -94,7 +94,7 @@ namespace HomeBudgeStandard.Views
         {
             try
             {
-                if (MainBudget.Instance.IsInitialized && !_setupDone)
+                if (MainBudget.Instance.IsDataLoaded && !_setupDone)
                 {
                     UserDialogs.Instance.ShowLoading();
                     Task.Run(async () => await Setup());

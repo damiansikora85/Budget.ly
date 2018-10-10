@@ -1,5 +1,6 @@
 ﻿using HomeBudget.Code.Logic;
 using HomeBudgetShared.Code.Interfaces;
+using HomeBudgetShared.Code.Synchronize;
 using HomeBudgetShared.Utils;
 using Newtonsoft.Json;
 using System;
@@ -42,12 +43,13 @@ namespace HomeBudget.Code
         private const string SAVE_FILE_NAME = "budget.data";
         public const int INCOME_CATEGORY_ID = 777;
         private const int VERSION = 1;
-        private List<BudgetMonth> months;
+        private List<BudgetMonth> _months;
         private BudgetPlanned budgetPlanned;
 
         private IFileManager _fileManager;
-        private ICloudStorage _cloudStorage;
-        public bool IsInitialized { get; private set; }
+        //private ICloudStorage _cloudStorage;
+        private IBudgetSynchronizer _budgetSynchronizer;
+        public bool IsDataLoaded { get; private set; }
 
         public event Action onBudgetLoaded = delegate { };
         public event Action onPlannedBudgetChanged;
@@ -57,6 +59,8 @@ namespace HomeBudget.Code
 		{
 			get { return budgetDescription; }
 		}
+
+        public BudgetData ActualBudgetData { get; private set; }
 
 		static MainBudget instance;
 		public static MainBudget Instance
@@ -72,23 +76,21 @@ namespace HomeBudget.Code
 
 		private MainBudget()
 		{
-			months = new List<BudgetMonth>();
+			_months = new List<BudgetMonth>();
             budgetPlanned = new BudgetPlanned();
-            IsInitialized = false;
+            IsDataLoaded = false;
 		}
 
         public void OnCloudStorageConnected()
         {
-            IsInitialized = false;
-            Task.Run(() => _cloudStorage.DownloadData());
+            IsDataLoaded = false;
+            Task.Run(async() => UpdateData(await _budgetSynchronizer.ForceLoad()));
         }
 
-        public void Init(IFileManager fileManager, ICloudStorage cloudStorage)
+        public void Init(IFileManager fileManager, IBudgetSynchronizer budgetSynchronizer)
         {
             _fileManager = fileManager;
-            _cloudStorage = cloudStorage;
-            _cloudStorage.OnDownloadFinished += SynchronizeData;
-            _cloudStorage.OnDownloadError += SynchronizeError;
+            _budgetSynchronizer = budgetSynchronizer;
 
             var assembly = typeof(MainBudget).GetTypeInfo().Assembly;
             //var name = assembly.GetName();
@@ -106,8 +108,9 @@ namespace HomeBudget.Code
 
             if (!string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken))
             {
+                _budgetSynchronizer.Start();
                 LogsManager.Instance.WriteLine("Load data from cloud storage");
-                Task.Run(() => _cloudStorage.DownloadData());
+                Task.Run(async () => UpdateData(await _budgetSynchronizer.ForceLoad()));
             }
             else
             {
@@ -121,17 +124,18 @@ namespace HomeBudget.Code
             try
             {
                 LogsManager.Instance.WriteLine("Save data");
-                var saveData = new BudgetData
+                ActualBudgetData = new BudgetData
                 {
                     Version = VERSION,
                     TimeStamp = DateTime.Now,
                     BudgetPlanned = budgetPlanned,
-                    Months = months
+                    Months = _months,
+                    IsSynchronized = false
                 };
-                await _fileManager.Save(saveData);
+                await _fileManager.Save(ActualBudgetData);
 
-                if(upload)
-                    await _cloudStorage.UploadData(saveData);
+                if (upload)
+                    _budgetSynchronizer.ShouldSave = true;
 
             }
             catch (Exception e)
@@ -150,12 +154,12 @@ namespace HomeBudget.Code
             if (data != null)
             {
                 budgetPlanned = data.BudgetPlanned;
-                months = data.Months;
-                foreach (var month in months)
+                _months = data.Months;
+                foreach (var month in _months)
                     month.Setup();
             }
 
-            IsInitialized = true;
+            IsDataLoaded = true;
             onBudgetLoaded?.Invoke();
         }
 
@@ -164,7 +168,7 @@ namespace HomeBudget.Code
             onPlannedBudgetChanged?.Invoke();
         }
 
-        private void SynchronizeData(BudgetData data)
+        private void UpdateData(BudgetData data)
         {
             try
             {
@@ -175,25 +179,16 @@ namespace HomeBudget.Code
                 }
                 else
                 {
-                    LogsManager.Instance.WriteLine("Cloud save data: " + data.Months.Count.ToString());
-                    months.Clear();
+                    LogsManager.Instance.WriteLine("Cloud save data: " + data.Months.Count);
+                    _months.Clear();
                     if (data.Months != null)
                     {
-                        months = data.Months;
-                        foreach (var month in months)
+                        _months = data.Months;
+                        foreach (var month in _months)
                             month.Setup();
                     }
                     if (data.BudgetPlanned != null)
                         budgetPlanned = data.BudgetPlanned;
-
-                    /*var binaryData = new BinaryData(data);
-                    var numMonths = binaryData.GetInt();
-                    for (int i = 0; i < numMonths; i++)
-                    {
-                        var month = BudgetMonth.CreateFromBinaryData(binaryData);
-                        month.onBudgetPlannedChanged += OnPlannedBudgetChanged;
-                        months.Add(month);
-                    */
 
                     onBudgetLoaded?.Invoke();
                     Task.Run(() => Save(false));
@@ -205,7 +200,7 @@ namespace HomeBudget.Code
             }
         }
 
-        private void SynchronizeError()
+        private void SynchronizeError(object sender, EventArgs args)
         {
             LoadAsync();
         }
@@ -242,13 +237,13 @@ namespace HomeBudget.Code
 
         public BudgetMonth GetMonth(DateTime date)
 		{
-			var month = months.Find(x => x.Month == date.Month && x.Year == date.Year);
+			var month = _months.Find(x => x.Month == date.Month && x.Year == date.Year);
 			if (month == null)
 			{
 				month = BudgetMonth.Create(budgetDescription.Categories, date);
                 month.onBudgetPlannedChanged += OnPlannedBudgetChanged;
                 month.UpdatePlannedBudget(budgetPlanned);
-                months.Add(month);
+                _months.Add(month);
                 //??
                 //Save();
 			}
@@ -256,7 +251,9 @@ namespace HomeBudget.Code
 			return month;
 		}
 
-		public ObservableCollection<BudgetMonth.BudgetChartData> GetCurrentMonthChartData()
+        public bool HasMonthData(DateTime date) => _months.Find(x => x.Month == date.Month && x.Year == date.Year) != null;
+
+        public ObservableCollection<BudgetMonth.BudgetChartData> GetCurrentMonthChartData()
 		{
 			return GetMonth(DateTime.Now).GetData();
 		}

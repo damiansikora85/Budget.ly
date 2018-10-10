@@ -49,7 +49,7 @@ namespace HomeBudgeStandard.Views
 
         protected override void OnAppearing()
         {
-            if (MainBudget.Instance.IsInitialized && !_setupDone)
+            if (MainBudget.Instance.IsDataLoaded && !_setupDone)
                 UpdateSummary();
             else if (SummaryListViewItems == null)
                 UserDialogs.Instance.ShowLoading();

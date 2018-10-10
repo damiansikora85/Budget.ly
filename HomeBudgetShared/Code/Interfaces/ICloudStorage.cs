@@ -10,9 +10,10 @@ namespace HomeBudgetShared.Code.Interfaces
     {
         // Init();
         Task UploadData(BudgetData data);
-        Task DownloadData();
+        Task<BudgetData> DownloadData();
+        Task<bool> HasStoredData();
 
-        Action<BudgetData> OnDownloadFinished { get; set; }
-        Action OnDownloadError { get; set; }
+        event EventHandler<BudgetData> OnDownloadFinished;
+        event EventHandler OnDownloadError;
     }
 }

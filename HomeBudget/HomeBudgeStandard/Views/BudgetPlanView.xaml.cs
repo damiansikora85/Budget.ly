@@ -62,7 +62,7 @@ namespace HomeBudgeStandard.Views
 
         protected override void OnAppearing()
         {
-            if (MainBudget.Instance.IsInitialized && !_setupDone)
+            if (MainBudget.Instance.IsDataLoaded && !_setupDone)
             {
                 UserDialogs.Instance.ShowLoading();
                 Task.Run(async () => await Setup());
