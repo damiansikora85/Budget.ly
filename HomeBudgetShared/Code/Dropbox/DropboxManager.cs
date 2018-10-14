@@ -33,6 +33,7 @@ namespace HomeBudget.Code
 
         private bool _isSynchronized;
         private const int SYNCHRO_DELAY_MS = 5*1000;
+        private DateTime _synchroDate;
 
         public event EventHandler<BudgetData> OnDownloadFinished;
         public event EventHandler OnDownloadError;
@@ -51,7 +52,9 @@ namespace HomeBudget.Code
             try
             {
                 LogsManager.Instance.WriteLine("Dropbox loading");
-                var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH);
+                var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH) as FileMetadata;
+                _synchroDate = metadata.ServerModified;
+               
                 using (var response = await DropboxClient.Files.DownloadAsync(DROPBOX_DATA_FILE_PATH))
                 {
                     var bytes = await response.GetContentAsByteArrayAsync();
@@ -90,17 +93,26 @@ namespace HomeBudget.Code
 
             try
             {
-                using (MemoryStream stream = new MemoryStream())
+                var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH) as FileMetadata;
+                if (_synchroDate < metadata.ServerModified)
                 {
-                    Serializer.Serialize(stream, budgetData);
-                    await stream.FlushAsync();
-                    var l = stream.Length;
-                    var bytes = stream.GetBuffer();
-
-                    using (var memoryStream = new MemoryStream(bytes, 0, (int)stream.Length))
+                    await DownloadData();
+                }
+                else
+                {
+                    using (MemoryStream stream = new MemoryStream())
                     {
-                        var metadata = await DropboxClient.Files.UploadAsync(DROPBOX_DATA_FILE_PATH, WriteMode.Overwrite.Instance, body: memoryStream);
-                        onUploadFinished?.Invoke();
+                        Serializer.Serialize(stream, budgetData);
+                        await stream.FlushAsync();
+                        var l = stream.Length;
+                        var bytes = stream.GetBuffer();
+
+                        using (var memoryStream = new MemoryStream(bytes, 0, (int)stream.Length))
+                        {
+                            metadata = await DropboxClient.Files.UploadAsync(DROPBOX_DATA_FILE_PATH, WriteMode.Overwrite.Instance, body: memoryStream);
+                            _synchroDate = metadata.ServerModified;
+                            onUploadFinished?.Invoke();
+                        }
                     }
                 }
             }
