@@ -212,6 +212,11 @@ namespace HomeBudget.Code
             await Save().ConfigureAwait(false);
         }
 
+        public bool HasMonthData(DateTime date)
+        {
+            return months.Find(x => x.Month == date.Month && x.Year == date.Year) != null;
+        }
+
         public async Task AddIncome(float value, DateTime date, int incomeCategoryId)
         {
             var month = GetMonth(date);
