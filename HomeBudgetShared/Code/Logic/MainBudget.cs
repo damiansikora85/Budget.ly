@@ -47,18 +47,14 @@ namespace HomeBudget.Code
         private BudgetPlanned budgetPlanned;
 
         private IFileManager _fileManager;
-        //private ICloudStorage _cloudStorage;
         private IBudgetSynchronizer _budgetSynchronizer;
         public bool IsDataLoaded { get; private set; }
 
-        public event Action onBudgetLoaded = delegate { };
+        //public event Action onBudgetLoaded = delegate { };
         public event Action onPlannedBudgetChanged;
+        public event Action BudgetDataChanged = delegate { };
 
-        private BudgetDescription budgetDescription;
-		public BudgetDescription BudgetDescription
-		{
-			get { return budgetDescription; }
-		}
+        public BudgetDescription BudgetDescription { get; private set; }
 
         public BudgetData ActualBudgetData { get; private set; }
 
@@ -84,13 +80,15 @@ namespace HomeBudget.Code
         public void OnCloudStorageConnected()
         {
             IsDataLoaded = false;
-            Task.Run(async() => UpdateData(await _budgetSynchronizer.ForceLoad()));
+            _budgetSynchronizer.Start();
+            Task.Run(async() => UpdateData(null, await _budgetSynchronizer.ForceLoad()));
         }
 
         public void Init(IFileManager fileManager, IBudgetSynchronizer budgetSynchronizer)
         {
             _fileManager = fileManager;
             _budgetSynchronizer = budgetSynchronizer;
+            _budgetSynchronizer.DataDownloaded += UpdateData;
 
             var assembly = typeof(MainBudget).GetTypeInfo().Assembly;
             //var name = assembly.GetName();
@@ -100,8 +98,8 @@ namespace HomeBudget.Code
             using (var reader = new System.IO.StreamReader(stream))
             {
                 jsonString = reader.ReadToEnd();
-                budgetDescription = JsonConvert.DeserializeObject<BudgetDescription>(jsonString);
-                budgetPlanned.Setup(budgetDescription.Categories);
+                BudgetDescription = JsonConvert.DeserializeObject<BudgetDescription>(jsonString);
+                budgetPlanned.Setup(BudgetDescription.Categories);
             }
 
             LogsManager.Instance.Init(fileManager);
@@ -110,7 +108,7 @@ namespace HomeBudget.Code
             {
                 _budgetSynchronizer.Start();
                 LogsManager.Instance.WriteLine("Load data from cloud storage");
-                Task.Run(async () => UpdateData(await _budgetSynchronizer.ForceLoad()));
+                Task.Run(async () => UpdateData(null, await _budgetSynchronizer.ForceLoad()));
             }
             else
             {
@@ -160,7 +158,8 @@ namespace HomeBudget.Code
             }
 
             IsDataLoaded = true;
-            onBudgetLoaded?.Invoke();
+            //onBudgetLoaded?.Invoke();
+            BudgetDataChanged?.Invoke();
         }
 
         private void OnPlannedBudgetChanged()
@@ -168,7 +167,7 @@ namespace HomeBudget.Code
             onPlannedBudgetChanged?.Invoke();
         }
 
-        private void UpdateData(BudgetData data)
+        private void UpdateData(object sender, BudgetData data)
         {
             try
             {
@@ -190,7 +189,8 @@ namespace HomeBudget.Code
                     if (data.BudgetPlanned != null)
                         budgetPlanned = data.BudgetPlanned;
 
-                    onBudgetLoaded?.Invoke();
+                    //onBudgetLoaded?.Invoke();
+                    BudgetDataChanged?.Invoke();
                     Task.Run(() => Save(false));
                 }
             }
@@ -210,11 +210,6 @@ namespace HomeBudget.Code
             var month = GetMonth(date);
             month.AddExpense(value, date, categoryID, subcatID);
             await Save().ConfigureAwait(false);
-        }
-
-        public bool HasMonthData(DateTime date)
-        {
-            return months.Find(x => x.Month == date.Month && x.Year == date.Year) != null;
         }
 
         public async Task AddIncome(float value, DateTime date, int incomeCategoryId)
@@ -245,7 +240,7 @@ namespace HomeBudget.Code
 			var month = _months.Find(x => x.Month == date.Month && x.Year == date.Year);
 			if (month == null)
 			{
-				month = BudgetMonth.Create(budgetDescription.Categories, date);
+				month = BudgetMonth.Create(BudgetDescription.Categories, date);
                 month.onBudgetPlannedChanged += OnPlannedBudgetChanged;
                 month.UpdatePlannedBudget(budgetPlanned);
                 _months.Add(month);

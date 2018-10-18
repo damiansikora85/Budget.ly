@@ -9,9 +9,10 @@ namespace HomeBudgetShared.Code.Interfaces
     public interface ICloudStorage
     {
         // Init();
-        Task UploadData(BudgetData data);
+        Task<DateTime> UploadData(BudgetData data);
         Task<BudgetData> DownloadData();
         Task<bool> HasStoredData();
+        Task<DateTime> GetCloudFileModifiedTime();
 
         event EventHandler<BudgetData> OnDownloadFinished;
         event EventHandler OnDownloadError;

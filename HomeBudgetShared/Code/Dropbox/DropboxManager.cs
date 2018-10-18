@@ -33,7 +33,6 @@ namespace HomeBudget.Code
 
         private bool _isSynchronized;
         private const int SYNCHRO_DELAY_MS = 5*1000;
-        private DateTime _synchroDate;
 
         public event EventHandler<BudgetData> OnDownloadFinished;
         public event EventHandler OnDownloadError;
@@ -43,17 +42,39 @@ namespace HomeBudget.Code
             _dropboxClient = null;
         }
 
+        public async Task<DateTime> GetCloudFileModifiedTime()
+        {
+            if (DropboxClient == null)
+                return DateTime.MinValue;
+
+            try
+            {
+                LogsManager.Instance.WriteLine("Dropbox loading");
+                var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH) as FileMetadata;
+                return metadata.ServerModified;
+
+            }
+            catch (ApiException<GetMetadataError>)
+            {
+                return DateTime.MinValue;
+            }
+            catch (Exception)
+            {
+                return DateTime.MinValue;
+            }
+        }
+
         public async Task<BudgetData> DownloadData()
         {
             if (DropboxClient == null)
                 return null;
 
             var budgetData = new BudgetData();
+            var cloudFileModifiedDate = await GetCloudFileModifiedTime();
             try
             {
                 LogsManager.Instance.WriteLine("Dropbox loading");
-                var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH) as FileMetadata;
-                _synchroDate = metadata.ServerModified;
+                //var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH) as FileMetadata;
                
                 using (var response = await DropboxClient.Files.DownloadAsync(DROPBOX_DATA_FILE_PATH))
                 {
@@ -80,39 +101,27 @@ namespace HomeBudget.Code
                 //OnDownloadFinished?.Invoke(this, null);
                 return null;
             }
-            /*finally
-            {
-                return budgetData;
-            }*/
         }
 
-        public async Task UploadData(BudgetData budgetData)
+        public async Task<DateTime> UploadData(BudgetData budgetData)
         {
             if (DropboxClient == null)
-                return;
+                return DateTime.MinValue;
 
+            DateTime cloudFileModifedDate = DateTime.MinValue;
             try
             {
-                var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH) as FileMetadata;
-                if (_synchroDate < metadata.ServerModified)
+                using (MemoryStream stream = new MemoryStream())
                 {
-                    await DownloadData();
-                }
-                else
-                {
-                    using (MemoryStream stream = new MemoryStream())
+                    Serializer.Serialize(stream, budgetData);
+                    await stream.FlushAsync();
+                    var bytes = stream.GetBuffer();
+                    
+                    using (var memoryStream = new MemoryStream(bytes, 0, (int)stream.Length))
                     {
-                        Serializer.Serialize(stream, budgetData);
-                        await stream.FlushAsync();
-                        var l = stream.Length;
-                        var bytes = stream.GetBuffer();
-
-                        using (var memoryStream = new MemoryStream(bytes, 0, (int)stream.Length))
-                        {
-                            metadata = await DropboxClient.Files.UploadAsync(DROPBOX_DATA_FILE_PATH, WriteMode.Overwrite.Instance, body: memoryStream);
-                            _synchroDate = metadata.ServerModified;
-                            onUploadFinished?.Invoke();
-                        }
+                        var metadata = await DropboxClient.Files.UploadAsync(DROPBOX_DATA_FILE_PATH, WriteMode.Overwrite.Instance, body: memoryStream);
+                        cloudFileModifedDate = metadata.ServerModified;
+                        onUploadFinished?.Invoke();
                     }
                 }
             }
@@ -120,6 +129,8 @@ namespace HomeBudget.Code
             {
                 var msg = exc.Message;
             }
+
+            return cloudFileModifedDate;
         }
 
         public async Task<bool> HasStoredData()
@@ -143,5 +154,7 @@ namespace HomeBudget.Code
                 return false;
             }
         }
+
+
     }
 }

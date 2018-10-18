@@ -36,13 +36,7 @@ namespace HomeBudgeStandard.Pages
 
         private void InitBudget()
         {
-            MainBudget.Instance.onBudgetLoaded += OnBudgetLoaded;
             MainBudget.Instance.Init(new FileManagerXamarin(), new BudgetSynchronizer(new DropboxCloudStorage()));
-        }
-
-        private void OnBudgetLoaded()
-        {
-            //Device.BeginInvokeOnMainThread(() => Detail = new NavigationPage(new MainTabbedPage()));
         }
 
         public void AfterCloudLogin()

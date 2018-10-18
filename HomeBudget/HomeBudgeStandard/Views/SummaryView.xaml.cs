@@ -43,8 +43,6 @@ namespace HomeBudgeStandard.Views
             CalcView.OnCancel += HideCalcView;
 
             SelectedCategorySubcats = new ObservableCollection<BaseBudgetSubcat>();
-            
-            MainBudget.Instance.onBudgetLoaded += UpdateSummary;
         }
 
         protected override void OnAppearing()
@@ -61,6 +59,7 @@ namespace HomeBudgeStandard.Views
                 SetupBudgetSummary();
             }
 
+            MainBudget.Instance.BudgetDataChanged += UpdateSummary;
             _setupDone = true;
         }
 
@@ -68,7 +67,7 @@ namespace HomeBudgeStandard.Views
         {
             HideSideBars();
             base.OnDisappearing();
-            MainBudget.Instance.onBudgetLoaded -= UpdateSummary;
+            MainBudget.Instance.BudgetDataChanged -= UpdateSummary;
         }
 
         public bool OnBackPressed()
@@ -118,6 +117,7 @@ namespace HomeBudgeStandard.Views
                 summaryList.ItemsSource = SummaryListViewItems;
 
                 UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Toast("Zaktualizowano dane z Dropbox");
             });
         }
 

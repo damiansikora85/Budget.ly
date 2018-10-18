@@ -54,9 +54,13 @@ namespace HomeBudgeStandard.Views
             canvasView.PaintSurface += OnCanvasViewPaintSurface;
             emptyChartView.Content = canvasView;
 
-            MainBudget.Instance.onBudgetLoaded += () => Task.Run(async () =>
+            MainBudget.Instance.BudgetDataChanged += () => Task.Run(async () =>
             {
-                Device.BeginInvokeOnMainThread(() => UserDialogs.Instance.ShowLoading());
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    UserDialogs.Instance.ShowLoading();
+                    //UserDialogs.Instance.Toast("Zaktualizowano dane z Dropbox");
+                });
                 await Setup();
             });
         }

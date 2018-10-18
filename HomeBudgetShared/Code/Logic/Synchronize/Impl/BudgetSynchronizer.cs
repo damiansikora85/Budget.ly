@@ -26,6 +26,8 @@ namespace HomeBudgetShared.Code.Synchronize
         public event EventHandler<BudgetData> DataDownloaded;
         public event EventHandler DownloadError;
 
+        private DateTime _dataSynchroTime;
+
         public BudgetSynchronizer(ICloudStorage cloudStorage)
         {
             _cloudStorage = cloudStorage;
@@ -69,8 +71,19 @@ namespace HomeBudgetShared.Code.Synchronize
                             if (ShouldSave)
                             {
                                 var data = MainBudget.Instance.ActualBudgetData;
-                                await _cloudStorage.UploadData(data);
+                                _dataSynchroTime = await _cloudStorage.UploadData(data);
                                 ShouldSave = false;
+                            }
+                            else
+                            {
+                                var cloudFileModifiedDate = await _cloudStorage.GetCloudFileModifiedTime();
+                                
+                                if(cloudFileModifiedDate > _dataSynchroTime)
+                                {
+                                    var downloadData = await _cloudStorage.DownloadData();
+                                    _dataSynchroTime = cloudFileModifiedDate;
+                                    DataDownloaded?.Invoke(this, downloadData);
+                                }
                             }
                         }
                         catch(Exception exc)
@@ -93,7 +106,9 @@ namespace HomeBudgetShared.Code.Synchronize
 
         public async Task<BudgetData> ForceLoad()
         {
-            return await _cloudStorage.DownloadData();
+            _dataSynchroTime = await _cloudStorage.GetCloudFileModifiedTime();
+            var downloadData = await _cloudStorage.DownloadData();
+            return downloadData; 
         }
     }
 }
