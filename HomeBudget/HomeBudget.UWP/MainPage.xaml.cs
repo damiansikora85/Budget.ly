@@ -3,10 +3,6 @@ using HomeBudget.UWP.Pages;
 using HomeBudget.UWP.Utils;
 using HomeBudgetShared.Code.Synchronize;
 using System;
-using System.ComponentModel;
-using System.Globalization;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -29,7 +25,7 @@ namespace HomeBudget.UWP
 
         private void InitBudget()
         {
-            MainBudget.Instance.onBudgetLoaded += OnBudgetLoaded;
+            MainBudget.Instance.BudgetDataChanged += OnBudgetLoaded;
             MainBudget.Instance.Init(new FileManagerUwp(), new BudgetSynchronizer(new DropboxCloudStorage()));
         }
 

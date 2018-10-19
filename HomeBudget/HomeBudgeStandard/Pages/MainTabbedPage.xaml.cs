@@ -1,4 +1,5 @@
-﻿using HomeBudgeStandard.Views;
+﻿using Acr.UserDialogs;
+using HomeBudgeStandard.Views;
 using HomeBudget.Code;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace HomeBudgeStandard.Pages
             {
                 if (CurrentPage != Children[0])
                     CurrentPage = Children[0];
+                UserDialogs.Instance.Toast("Zaktualizowano dane z Dropbox");
             }
             );
         }

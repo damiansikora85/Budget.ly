@@ -117,7 +117,6 @@ namespace HomeBudgeStandard.Views
                 summaryList.ItemsSource = SummaryListViewItems;
 
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Toast("Zaktualizowano dane z Dropbox");
             });
         }
 

@@ -108,9 +108,9 @@
                                 
                                 <BitmapIcon Height="50" UriSource="{x:Bind IconFile}" Foreground="Black" />
                                 <TextBlock Grid.Column="1" Text="{x:Bind CategoryName}" VerticalAlignment="Center" Margin="24,0"/>
-                                <TextBlock Grid.Column="2" Text="{x:Bind CategoryReal.TotalValues, Converter={StaticResource CurrencyValueConverter}}" VerticalAlignment="Center" Margin="24,0" Foreground="{x:Bind SpendPercentage, Converter={StaticResource ValueColorConverter}}"/>
-                                <ProgressBar Grid.Column="3" Value="{x:Bind SpendPercentageInt, Converter={StaticResource ProgressConverter}}" />
-                                <TextBlock Grid.Column="4" Text="{x:Bind SpendPercentage, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:P1}'}" VerticalAlignment="Center" Margin="24,0"/>
+                                <TextBlock Grid.Column="2" Text="{x:Bind CategoryReal.TotalValues, Mode=OneWay, Converter={StaticResource CurrencyValueConverter}}" VerticalAlignment="Center" Margin="24,0" Foreground="{x:Bind SpendPercentage, Converter={StaticResource ValueColorConverter}}"/>
+                                <ProgressBar Grid.Column="3" Value="{x:Bind SpendPercentageInt, Mode=OneWay, Converter={StaticResource ProgressConverter}}" />
+                                <TextBlock Grid.Column="4" Text="{x:Bind SpendPercentage, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:P1}'}" VerticalAlignment="Center" Margin="24,0"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
