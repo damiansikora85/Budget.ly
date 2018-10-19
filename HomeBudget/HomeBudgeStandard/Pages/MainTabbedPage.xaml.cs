@@ -1,4 +1,6 @@
-﻿using HomeBudgeStandard.Views;
+﻿using Acr.UserDialogs;
+using HomeBudgeStandard.Views;
+using HomeBudget.Code;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,18 @@ namespace HomeBudgeStandard.Pages
             InitializeComponent();
 
             CurrentPageChanged += OnTabChanged;
+            MainBudget.Instance.BudgetDataChanged += BudgetDataChanged;
+        }
+
+        private void BudgetDataChanged()
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                if (CurrentPage != Children[0])
+                    CurrentPage = Children[0];
+                UserDialogs.Instance.Toast("Zaktualizowano dane z Dropbox");
+            }
+            );
         }
 
         private void OnTabChanged(object sender, EventArgs e)

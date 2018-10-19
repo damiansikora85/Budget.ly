@@ -18,5 +18,8 @@ namespace HomeBudget.Code.Logic
 
         [ProtoMember(4)]
         public List<BudgetMonth> Months { get; set; }
+
+        [ProtoMember(5)]
+        public bool IsSynchronized { get; set; }
     }
 }

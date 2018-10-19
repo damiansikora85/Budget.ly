@@ -43,13 +43,11 @@ namespace HomeBudgeStandard.Views
             CalcView.OnCancel += HideCalcView;
 
             SelectedCategorySubcats = new ObservableCollection<BaseBudgetSubcat>();
-            
-            MainBudget.Instance.onBudgetLoaded += UpdateSummary;
         }
 
         protected override void OnAppearing()
         {
-            if (MainBudget.Instance.IsInitialized && !_setupDone)
+            if (MainBudget.Instance.IsDataLoaded && !_setupDone)
                 UpdateSummary();
             else if (SummaryListViewItems == null)
                 UserDialogs.Instance.ShowLoading();
@@ -61,6 +59,7 @@ namespace HomeBudgeStandard.Views
                 SetupBudgetSummary();
             }
 
+            MainBudget.Instance.BudgetDataChanged += UpdateSummary;
             _setupDone = true;
         }
 
@@ -68,7 +67,7 @@ namespace HomeBudgeStandard.Views
         {
             HideSideBars();
             base.OnDisappearing();
-            MainBudget.Instance.onBudgetLoaded -= UpdateSummary;
+            MainBudget.Instance.BudgetDataChanged -= UpdateSummary;
         }
 
         public bool OnBackPressed()

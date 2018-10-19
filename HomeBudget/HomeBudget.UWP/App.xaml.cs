@@ -22,14 +22,9 @@ namespace HomeBudget.UWP
 		/// </summary>
 		public App()
 		{
-			this.InitializeComponent();
+            //Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzAyMjhAMzEzNjJlMzMyZTMwWnNGUjdzSXhBQ1lNWGdhd3hjdXpMM3craCs1bVZISGswWUdNSnpJWHR2UT0=;MzAyMjlAMzEzNjJlMzMyZTMwWjNZRERVT0xRbVVnN1BZR0xVUVNva3JKRHhLcmtONkd5UittaU94bU8wTT0=");
+            this.InitializeComponent();
 			this.Suspending += OnSuspending;
-
-            //Ioc
-            /*var builder = new ContainerBuilder();
-            builder.RegisterType<DropboxManager>().As<IDropbox>();
-            builder.RegisterType<MainBudget>().As<IMainBudget>().SingleInstance();
-            var container = builder.Build();*/
         }
 
 		/// <summary>
