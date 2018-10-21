@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using HomeBudget.Code;
 using HomeBudgeStandard.Utils;
 using Acr.UserDialogs;
+using Android.Content;
+using Plugin.InAppBilling;
 
 namespace HomeBudget.Droid
 {
@@ -30,12 +32,20 @@ namespace HomeBudget.Droid
 
             _theApp = new App();
             LoadApplication(_theApp);
-		}
+
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity = this;
+        }
 
         public override void OnBackPressed()
         {
             if(!_theApp.OnBackPressed())
                 base.OnBackPressed();
+        }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            InAppBillingImplementation.HandleActivityResult(requestCode, resultCode, data);
         }
     }
 }

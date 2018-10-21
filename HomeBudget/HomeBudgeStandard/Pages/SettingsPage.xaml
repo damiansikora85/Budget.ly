@@ -4,7 +4,7 @@
              x:Class="HomeBudgeStandard.Pages.SettingsPage">
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Synchronize with Dropbox" Clicked="OnLoginDropbox"/>
+            <Button Text="{Binding BuyTitle}" IsEnabled="{Binding IsNotBoughtYet}" Clicked="OnLoginDropbox"/>
             <Button Text="Already bought synchronization" Clicked="OnLoginDropboxWithDataCheck"/>
         </StackLayout>
     </ContentPage.Content>

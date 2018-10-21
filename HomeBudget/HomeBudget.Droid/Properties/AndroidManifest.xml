@@ -2,6 +2,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.darktower.homebudget" android:installLocation="internalOnly" android:versionCode="5" android:versionName="1.0">
 	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="27" />
 	<application android:label="HomeBudget.Droid"></application>
-
-  <uses-permission android:name="com.android.vending.BILLING" />
+	<uses-permission android:name="com.android.vending.BILLING" />
 </manifest>

@@ -1,9 +1,11 @@
 ﻿using Acr.UserDialogs;
 using Dropbox.Api;
 using Dropbox.Api.Files;
+using HomeBudgeStandard.Interfaces.Impl;
 using HomeBudget.Code;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +16,7 @@ using Xamarin.Forms.Xaml;
 namespace HomeBudgeStandard.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SettingsPage : ContentPage
+    public partial class SettingsPage : ContentPage, INotifyPropertyChanged
     {
         private const string _redirectUri = "https://localhost/authorize";
         private string _appKey = "p6cayskxetnkx1a";
@@ -26,16 +28,37 @@ namespace HomeBudgeStandard.Pages
             get => !string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken);
         }
 
+        public string BuyTitle { get; set; }
+
+        public bool DropboxSynchroBought { get; set; }
+        public bool IsNotBoughtYet => !DropboxSynchroBought;
+
         public SettingsPage ()
 		{
 			InitializeComponent ();
             BindingContext = this;
 		}
 
+        protected override async void OnAppearing()
+        {
+            var purchaseService = new PurchaseService();
+            var info = await purchaseService.GetProductInfo("com.darktower.homebudget.dropbox");
+            if (info != null)
+            {
+                BuyTitle = $"{info.Name} {info.LocalizedPrice}";
+                OnPropertyChanged(nameof(BuyTitle));
+            }
+
+            DropboxSynchroBought = await purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropbox");
+            OnPropertyChanged(nameof(IsNotBoughtYet));
+        }
+
         private async void OnLoginDropbox(object sender, EventArgs e)
         {
-            _checkDropboxFileExist = false;
-            await LoginToDropbox();
+            var purchaseService = new PurchaseService();
+            await purchaseService.MakePurchase("com.darktower.homebudget.dropbox");
+            //_checkDropboxFileExist = false;
+            //await LoginToDropbox();
         }
 
         private async void OnLoginDropboxWithDataCheck(object sender, EventArgs args)
