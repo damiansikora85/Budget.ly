@@ -295,10 +295,22 @@
       <Version>1.60.3</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Calculate.UWP">
-      <Version>16.1.0.32</Version>
+      <Version>16.3.0.21</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Data.UWP">
+      <Version>16.3.0.21</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.SfChart.UWP">
-      <Version>16.1.0.32</Version>
+      <Version>16.3.0.21</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.SfGrid.UWP">
+      <Version>16.3.0.21</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.SfInput.UWP">
+      <Version>16.3.0.21</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.SfShared.UWP">
+      <Version>16.3.0.21</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>
