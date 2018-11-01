@@ -1,11 +1,6 @@
-MainPackage=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\x64\Release\HomeBudget.UWP_1.0.5.0_x64.appx
-SymbolPackage=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\AppPackages\HomeBudget.UWP_1.0.5.0_Test\HomeBudget.UWP_1.0.5.0_x64.appxsym
-ResourcePack=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\x64\Release\HomeBudget.UWP_1.0.5.0_language-de.appx
-ResourcePack=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\x64\Release\HomeBudget.UWP_1.0.5.0_language-es.appx
-ResourcePack=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\x64\Release\HomeBudget.UWP_1.0.5.0_language-fr.appx
-ResourcePack=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\x64\Release\HomeBudget.UWP_1.0.5.0_language-it.appx
-ResourcePack=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\x64\Release\HomeBudget.UWP_1.0.5.0_language-ja.appx
-ResourcePack=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\x64\Release\HomeBudget.UWP_1.0.5.0_language-ko.appx
-ResourcePack=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\x64\Release\HomeBudget.UWP_1.0.5.0_language-ru.appx
-ResourcePack=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\x64\Release\HomeBudget.UWP_1.0.5.0_language-zh-hans.appx
-ResourcePack=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\x64\Release\HomeBudget.UWP_1.0.5.0_language-zh-hant.appx
+MainPackage=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\x64\Release\HomeBudget.UWP_1.1.6.0_x64.appx
+SymbolPackage=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\AppPackages\HomeBudget.UWP_1.1.6.0_Test\HomeBudget.UWP_1.1.6.0_x64.appxsym
+ResourcePack=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\x64\Release\HomeBudget.UWP_1.1.6.0_scale-100.appx
+ResourcePack=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\x64\Release\HomeBudget.UWP_1.1.6.0_scale-125.appx
+ResourcePack=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\x64\Release\HomeBudget.UWP_1.1.6.0_scale-150.appx
+ResourcePack=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\x64\Release\HomeBudget.UWP_1.1.6.0_scale-400.appx

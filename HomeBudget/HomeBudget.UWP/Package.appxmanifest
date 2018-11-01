@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="20a84f28-ff2a-44d4-a006-46022669e87c" Publisher="CN=Damian Sikora" Version="1.0.24.0" />
-  <mp:PhoneIdentity PhoneProductId="20a84f28-ff2a-44d4-a006-46022669e87c" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="1148DamianSikora.budget.ly" Publisher="CN=A77BDE33-E28D-4535-9A73-5108690FA8C1" Version="1.1.6.0" />
+  <mp:PhoneIdentity PhoneProductId="6898d521-8be2-40f8-932b-8ccbd2c704a6" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>HomeBudget.UWP</DisplayName>
+    <DisplayName>budget.ly</DisplayName>
     <PublisherDisplayName>Damian Sikora</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -15,10 +15,10 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="HomeBudget.UWP.App">
-      <uap:VisualElements DisplayName="HomeBudget" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="The best home budget app ever" BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
+      <uap:VisualElements DisplayName="budget.ly" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="The best home budget app ever" BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\LargeTile.png" Square71x71Logo="Assets\SmallTile.png">
         </uap:DefaultTile>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="white" />
       </uap:VisualElements>
     </Application>
   </Applications>
