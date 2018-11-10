@@ -8,6 +8,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.user
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -342,3 +343,4 @@ bld/
 [Bb]in/
 [Oo]bj/
 .vs/
+dropbox-sdk-dotnet-master/

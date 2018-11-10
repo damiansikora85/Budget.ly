@@ -109,7 +109,7 @@
             </syncfusion:SfDataGrid>
 
             <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
-                <Button Margin="24" Click="OnSave">
+                <Button Margin="24" Click="OnSave" Background="{ThemeResource SystemAccentColor}">
                     <TextBlock Text="Użyj w kolejnych miesiącach" TextWrapping="Wrap"/>
                 </Button> 
                 <TextBlock Text="Ten plan budżetu będzie używany tylko w tym miesiącu, aby użyć go również w kolejnych kliknij Zapisz." TextWrapping="WrapWholeWords" Margin="24,0" Foreground="Gray"/>

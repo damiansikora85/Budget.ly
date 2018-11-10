@@ -29,13 +29,13 @@
 
         <TextBlock FontSize="20" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text=" " x:Name="Header"  />
         <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text=" " x:Name="Description" />
-        <Button Grid.Column="3" Grid.Row="0" FontFamily="Segoe MDL2 Assets" FontSize="12" Click="{x:Bind OnSave, Mode=OneWay}" Content="&#xE74E;" Background="{ThemeResource SystemAccentColor}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        <Button Grid.Column="3" Grid.Row="0" FontFamily="Segoe MDL2 Assets" FontSize="20" Click="{x:Bind OnSave, Mode=OneWay}" Content="&#xE74E;" Background="{ThemeResource SystemAccentColor}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         <CalendarDatePicker x:Name="Calendar" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" DateFormat = "{}{day.integer(2)}‎.‎{month.integer(2)}.‎{year.full}"/>
         <TextBox FontSize="16" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Text="{x:Bind FormulaText, Mode=OneWay}" HorizontalTextAlignment="End" LostFocus="TextBox_LostFocus" KeyDown="TextBox_KeyDown" />
         <TextBlock x:Name="Result" FontSize="20" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Text="{x:Bind Path=CalculationResultText, Mode=OneWay}" HorizontalTextAlignment="End" />
 
         <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Command="{x:Bind KeyPressed}" CommandParameter="Backspace" Content="←" HorizontalAlignment="Stretch" />
-        <Button Grid.Row="4" Grid.Column="2" Click="{x:Bind OnCancel}" Content="Back" HorizontalAlignment="Stretch" />
+        <Button Grid.Row="4" Grid.Column="2" Click="{x:Bind OnCancel}" Content="Anuluj" HorizontalAlignment="Stretch" />
         <Button Grid.Row="4" Grid.Column="3" Command="{x:Bind KeyPressed}" CommandParameter="Divide" Content="÷" HorizontalAlignment="Stretch" />
 
         <Button Grid.Row="5" Grid.Column="0" Command="{x:Bind Path=KeyPressed}" CommandParameter="Seven" Content="7" HorizontalAlignment="Stretch" />

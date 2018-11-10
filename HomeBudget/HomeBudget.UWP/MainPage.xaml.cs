@@ -83,9 +83,14 @@ namespace HomeBudget.UWP
 
         private void OnDropboxClick(object obj, RoutedEventArgs args)
         {
-
+            
         }
 
-        
+        private void OnDropboxClicked(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            
+            NavView.SelectedItem = sender;
+            ContentFrame.Navigate(typeof(DropboxPage));
+        }
     }
 }

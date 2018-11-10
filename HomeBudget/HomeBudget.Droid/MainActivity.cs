@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 using HomeBudget.Code;
 using HomeBudgeStandard.Utils;
 using Acr.UserDialogs;
+using Android.Content;
+using HomeBudget.Droid.Native;
+using Plugin.LocalNotifications;
 
 namespace HomeBudget.Droid
 {
@@ -25,8 +28,13 @@ namespace HomeBudget.Droid
 
 			base.OnCreate(bundle);
 
+            var notificationManager = Application.Context.GetSystemService(Context.NotificationService) as Android.App.NotificationManager;
+            notificationManager.CancelAll();
+
             UserDialogs.Init(this);
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            Xamarin.Forms.DependencyService.Register<AndroidNotificationService>();
 
             _theApp = new App();
             LoadApplication(_theApp);

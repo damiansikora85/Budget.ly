@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using HomeBudgeStandard.Utils;
 
 namespace HomeBudget
 {
@@ -24,6 +25,9 @@ namespace HomeBudget
                   "uwp={Your UWP App secret here};" +
                   "ios={Your iOS App secret here}",
                   typeof(Analytics), typeof(Crashes));
+
+            NotificationManager.ClearAllNotifications();
+            NotificationManager.ReScheduleNotificationsBySettings();
         }
 
 		protected override void OnSleep()

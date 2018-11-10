@@ -1,12 +1,7 @@
 ﻿using Acr.UserDialogs;
-using Dropbox.Api;
-using Dropbox.Api.Files;
-using HomeBudget.Code;
+using HomeBudgeStandard.Utils;
+using HomeBudget;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,113 +11,114 @@ namespace HomeBudgeStandard.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsPage : ContentPage
     {
-        private const string _redirectUri = "https://localhost/authorize";
-        private string _appKey = "p6cayskxetnkx1a";
-        private string _oauth2State;
-        private bool _checkDropboxFileExist;
-
-        public bool HasAccessToken
-        {
-            get => !string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken);
-        }
-
         public SettingsPage ()
 		{
 			InitializeComponent ();
             BindingContext = this;
 		}
 
-        private async void OnLoginDropbox(object sender, EventArgs e)
+        protected override void OnAppearing()
         {
-            _checkDropboxFileExist = false;
-            await LoginToDropbox();
+            RestoreFromSettings();
+            base.OnAppearing();
         }
 
-        private async void OnLoginDropboxWithDataCheck(object sender, EventArgs args)
+        private void OnSaveClicked(object sender, EventArgs e)
         {
-            _checkDropboxFileExist = true;
-            await LoginToDropbox();
+            SaveNotificationSettings();
+
+            NotificationManager.ReScheduleNotificationsBySettings();
+            UserDialogs.Instance.Toast("Zapisano");
         }
 
-        private async Task LoginToDropbox()
+        private void RestoreFromSettings()
         {
-            _oauth2State = Guid.NewGuid().ToString("N");
-            var authorizeUri = DropboxOAuth2Helper.GetAuthorizeUri(OAuthResponseType.Token, _appKey, new Uri(_redirectUri), state: _oauth2State);
+            var notificationsDisabled = GetFromSettings("NotificationsDisabled");
+            if (notificationsDisabled is bool check)
+                NotificationsCheckbox.IsChecked = check;
 
-            var webView = new WebView { Source = new UrlWebViewSource { Url = authorizeUri.AbsoluteUri } };
-            webView.Navigating += WebViewOnNavigating;
-            var contentPage = new ContentPage { Content = webView };
-            await Navigation.PushModalAsync(contentPage);
+            var notificationTime = GetFromSettings("NotificationsTime");
+            if (notificationTime is TimeSpan notificationTimeValue)
+                NotificationTimePicker.Time = notificationTimeValue;
+
+            var notificationMonday = GetFromSettings("NotificationsMonday");
+            if (notificationMonday is bool notificationMondayValue)
+                NotificationMonday.IsChecked = notificationMondayValue;
+
+            var notificationTuesday = GetFromSettings("NotificationsTuesday");
+            if (notificationTuesday is bool notificationTuesdayValue)
+                NotificationTuesday.IsChecked = notificationTuesdayValue;
+
+            var notificationWednesday = GetFromSettings("NotificationsWednesday");
+            if (notificationWednesday is bool notificationWednesdayValue)
+                NotificationWednesday.IsChecked = notificationWednesdayValue;
+
+            var notificationThursday = GetFromSettings("NotificationsThursday");
+            if (notificationThursday is bool notificationThursdayValue)
+                NotificationThursday.IsChecked = notificationThursdayValue;
+
+            var notificationFriday = GetFromSettings("NotificationsFriday");
+            if (notificationFriday is bool notificationFridayValue)
+                NotificationFriday.IsChecked = notificationFridayValue;
+
+            var notificationSaturday = GetFromSettings("NotificationsSaturday");
+            if (notificationSaturday is bool notificationSaturdayValue)
+                NotificationSaturday.IsChecked = notificationSaturdayValue;
+
+            var notificationSunday = GetFromSettings("NotificationsSunday");
+            if (notificationSunday is bool notificationSundayValue)
+                NotificationSunday.IsChecked = notificationSundayValue;
         }
 
-        private async void WebViewOnNavigating(object sender, WebNavigatingEventArgs e)
+        private void DisableNotificationChanged(object sender, Syncfusion.XForms.Buttons.StateChangedEventArgs e)
         {
-            if (!e.Url.StartsWith(_redirectUri.ToString(), StringComparison.OrdinalIgnoreCase))
-            {
-                // we need to ignore all navigation that isn't to the redirect uri.  
-                return;
-            }
-
-            try
-            {
-                var result = DropboxOAuth2Helper.ParseTokenFragment(new Uri(e.Url));
-
-                if (result.State != _oauth2State)
-                {
-                    return;
-                }
-                HomeBudget.Helpers.Settings.DropboxAccessToken = result.AccessToken;
-                
-
-            }
-            catch (ArgumentException argExc)
-            {
-                var msg = argExc.Message;
-                msg += "error";
-                // There was an error in the URI passed to ParseTokenFragment
-            }
-            finally
-            {
-                await Application.Current.MainPage.Navigation.PopModalAsync();
-
-                if (!_checkDropboxFileExist)
-                {
-                    MainBudget.Instance.OnCloudStorageConnected();
-                    var mainPage = Application.Current.MainPage as MainPage;
-                    mainPage.AfterCloudLogin();
-                }
-                else if(await HasDropboxData())
-                {
-                    MainBudget.Instance.OnCloudStorageConnected();   
-                    var mainPage = Application.Current.MainPage as MainPage;
-                    mainPage.AfterCloudLogin();
-                }
-                else UserDialogs.Instance.Toast("Nie znaleziono pliku");  
-            }
+            NotificationsSetEnabled(e.IsChecked.HasValue ? !e.IsChecked.Value : true);
         }
 
-        private async Task<bool> HasDropboxData()
+        private void NotificationsSetEnabled(bool enabled)
         {
-            var accessToken = HomeBudget.Helpers.Settings.DropboxAccessToken;
-            var hasData = false;
-            using (var dropboxClient = new DropboxClient(accessToken))
-            {
-                try
-                {
-                    var metadata = await dropboxClient.Files.GetMetadataAsync(DropboxCloudStorage.DROPBOX_DATA_FILE_PATH);
-                    hasData = metadata.IsFile;
-                }
-                catch (ApiException<GetMetadataError> apiExc)
-                {
-                    hasData = false;
-                }
-                catch (Exception e)
-                {
-                    hasData = false;
-                }
-            }
+            NotificationTimePicker.IsEnabled = enabled;
+            NotificationMonday.IsEnabled = enabled;
+            NotificationTuesday.IsEnabled = enabled;
+            NotificationWednesday.IsEnabled = enabled;
+            NotificationThursday.IsEnabled = enabled;
+            NotificationFriday.IsEnabled = enabled;
+            NotificationSaturday.IsEnabled = enabled;
+            NotificationSunday.IsEnabled = enabled;
+        }
 
-            return hasData;
+        private async void SaveNotificationSettings()
+        {
+            SaveSetting("NotificationsDisabled", NotificationsCheckbox.IsChecked.HasValue ? NotificationsCheckbox.IsChecked.Value : false);
+            SaveSetting("NotificationsTime", NotificationTimePicker.Time);
+
+            SaveSetting("NotificationsMonday", NotificationMonday.IsChecked.HasValue ? NotificationMonday.IsChecked.Value : false);
+            SaveSetting("NotificationsTuesday", NotificationTuesday.IsChecked.HasValue ? NotificationTuesday.IsChecked.Value : false);
+            SaveSetting("NotificationsWednesday", NotificationWednesday.IsChecked.HasValue ? NotificationWednesday.IsChecked.Value : false);
+            SaveSetting("NotificationsThursday", NotificationThursday.IsChecked.HasValue ? NotificationThursday.IsChecked.Value : false);
+            SaveSetting("NotificationsFriday", NotificationFriday.IsChecked.HasValue ? NotificationFriday.IsChecked.Value : false);
+            SaveSetting("NotificationsSaturday", NotificationSaturday.IsChecked.HasValue ? NotificationSaturday.IsChecked.Value : false);
+            SaveSetting("NotificationsSunday", NotificationSunday.IsChecked.HasValue ? NotificationSunday.IsChecked.Value : false);
+
+            await App.Current.SavePropertiesAsync();
+        }
+
+        private void SaveSetting(string settingName, object value)
+        {
+            if (App.Current.Properties.ContainsKey(settingName))
+                App.Current.Properties[settingName] = value;
+            else
+                App.Current.Properties.Add(settingName, value);
+        }
+
+        private object GetFromSettings(string settingName)
+        {
+            if (App.Current.Properties.ContainsKey(settingName))
+            {
+                return App.Current.Properties[settingName];
+            }
+            else
+                return null;
         }
     }
 }
