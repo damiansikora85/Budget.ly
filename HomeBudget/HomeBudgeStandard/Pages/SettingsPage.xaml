@@ -5,17 +5,31 @@
              x:Class="HomeBudgeStandard.Pages.SettingsPage">
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Notification" Clicked="Button_Clicked"/>
-            <FlexLayout>
-                <sf:SfCheckBox Text="Poniedziałek"/>
-                <sf:SfCheckBox Text="Wtorek"/>
-                <sf:SfCheckBox Text="Środa"/>
-                <sf:SfCheckBox Text="Czwartek"/>
-                <sf:SfCheckBox Text="Piątek"/>
-                <sf:SfCheckBox Text="Sobota"/>
-                <sf:SfCheckBox Text="Niedziela"/>
-            </FlexLayout>
-            <TimePicker/>
+            <Label Text="Powiadomienia" FontSize="Large"/>
+            <Grid Margin="0, 10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <sf:SfCheckBox Text="Poniedziałek" x:Name="NotificationMonday"/>
+                <sf:SfCheckBox Text="Wtorek" x:Name="NotificationTuesday" Grid.Column="1"/>
+                <sf:SfCheckBox Text="Środa" x:Name="NotificationWednesday" Grid.Column="2"/>
+                <sf:SfCheckBox Text="Czwartek" x:Name="NotificationThursday" Grid.Row="1"/>
+                <sf:SfCheckBox Text="Piątek" x:Name="NotificationFriday" Grid.Row="1" Grid.Column="1"/>
+                <sf:SfCheckBox Text="Sobota" x:Name="NotificationSaturday" Grid.Row="1" Grid.Column="2"/>
+                <sf:SfCheckBox Text="Niedziela" x:Name="NotificationSunday" Grid.Row="2" />
+            </Grid>
+            <Label Text="O której godzinie wysyłać powiadomienia:"/>
+            <TimePicker x:Name="NotificationTimePicker" Format="HH:mm"/>
+            <sf:SfCheckBox x:Name="NotificationsCheckbox" Text="Wyłącz powiadomienia" StateChanged="DisableNotificationChanged"/>
+            <Button Text="Zapisz" Clicked="OnSaveClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

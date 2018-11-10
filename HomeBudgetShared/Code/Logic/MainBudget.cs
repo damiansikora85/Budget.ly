@@ -46,6 +46,8 @@ namespace HomeBudget.Code
         private List<BudgetMonth> _months;
         private BudgetPlanned budgetPlanned;
 
+        private object _updateLock = new object();
+
         private IFileManager _fileManager;
         private IBudgetSynchronizer _budgetSynchronizer;
         public bool IsDataLoaded { get; private set; }
@@ -179,16 +181,18 @@ namespace HomeBudget.Code
                 else
                 {
                     LogsManager.Instance.WriteLine("Cloud save data: " + data.Months.Count);
-                    _months.Clear();
-                    if (data.Months != null)
+                    lock (_updateLock)
                     {
-                        _months = data.Months;
-                        foreach (var month in _months)
-                            month.Setup();
+                        _months.Clear();
+                        if (data.Months != null)
+                        {
+                            _months = data.Months;
+                            foreach (var month in _months)
+                                month.Setup();
+                        }
+                        if (data.BudgetPlanned != null)
+                            budgetPlanned = data.BudgetPlanned;
                     }
-                    if (data.BudgetPlanned != null)
-                        budgetPlanned = data.BudgetPlanned;
-
                     //onBudgetLoaded?.Invoke();
                     BudgetDataChanged?.Invoke();
                     Task.Run(() => Save(false));
