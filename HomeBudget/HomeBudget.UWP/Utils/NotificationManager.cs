@@ -116,9 +116,14 @@ namespace HomeBudget.UWP.Utils
 
                         new AdaptiveText()
                         {
-                            Text = "Notification test"
-                        },
+                            Text = "Zapisz wydatki!"
+                        }
                     },
+                    AppLogoOverride = new ToastGenericAppLogo()
+                    {
+                        Source = "ms-appx:///Assets/StoreLogo.scale-150.png",
+                        HintCrop = ToastGenericAppLogoCrop.Circle
+                    }
                 }
             };
 
