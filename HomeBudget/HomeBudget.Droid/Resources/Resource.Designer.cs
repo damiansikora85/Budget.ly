@@ -63,113 +63,1305 @@ namespace HomeBudget.Droid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahText = global::HomeBudget.Droid.Resource.Styleable.ProgressWheel_ahText;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::HomeBudget.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::HomeBudget.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.circleColor = global::HomeBudget.Droid.Resource.Attribute.circleColor;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.circularProgressBarStyle = global::HomeBudget.Droid.Resource.Attribute.circularProgressBarStyle;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.circular_gravity = global::HomeBudget.Droid.Resource.Attribute.circular_gravity;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.circular_indeterminate = global::HomeBudget.Droid.Resource.Attribute.circular_indeterminate;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.circular_indeterminate_interval = global::HomeBudget.Droid.Resource.Attribute.circular_indeterminate_interval;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.circular_marker_progress = global::HomeBudget.Droid.Resource.Attribute.circular_marker_progress;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.circular_progress = global::HomeBudget.Droid.Resource.Attribute.circular_progress;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.circular_progress_background_color = global::HomeBudget.Droid.Resource.Attribute.circular_progress_background_color;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.circular_progress_color = global::HomeBudget.Droid.Resource.Attribute.circular_progress_color;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.circular_stroke_width = global::HomeBudget.Droid.Resource.Attribute.circular_stroke_width;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.indeterminate = global::HomeBudget.Droid.Resource.Attribute.indeterminate;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.indeterminate_interval = global::HomeBudget.Droid.Resource.Attribute.indeterminate_interval;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.innerSize = global::HomeBudget.Droid.Resource.Attribute.innerSize;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.max = global::HomeBudget.Droid.Resource.Attribute.max;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.pinned = global::HomeBudget.Droid.Resource.Attribute.pinned;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.pinnedDrawable = global::HomeBudget.Droid.Resource.Attribute.pinnedDrawable;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.progress = global::HomeBudget.Droid.Resource.Attribute.progress;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.progressButtonStyle = global::HomeBudget.Droid.Resource.Attribute.progressButtonStyle;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.progressColor = global::HomeBudget.Droid.Resource.Attribute.progressColor;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.shadowDrawable = global::HomeBudget.Droid.Resource.Attribute.shadowDrawable;
-			global::com.refractored.monodroidtoolkit.Resource.Attribute.unpinnedDrawable = global::HomeBudget.Droid.Resource.Attribute.unpinnedDrawable;
-			global::com.refractored.monodroidtoolkit.Resource.Color.progress_default_circle_color = global::HomeBudget.Droid.Resource.Color.progress_default_circle_color;
-			global::com.refractored.monodroidtoolkit.Resource.Color.progress_default_progress_color = global::HomeBudget.Droid.Resource.Color.progress_default_progress_color;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_background_dark = global::HomeBudget.Droid.Resource.Color.refractored_background_dark;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_background_holo_dark = global::HomeBudget.Droid.Resource.Color.refractored_background_holo_dark;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_background_holo_light = global::HomeBudget.Droid.Resource.Color.refractored_background_holo_light;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_background_light = global::HomeBudget.Droid.Resource.Color.refractored_background_light;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_bright_foreground_dark = global::HomeBudget.Droid.Resource.Color.refractored_bright_foreground_dark;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_bright_foreground_dark_disabled = global::HomeBudget.Droid.Resource.Color.refractored_bright_foreground_dark_disabled;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_bright_foreground_disabled_holo_dark = global::HomeBudget.Droid.Resource.Color.refractored_bright_foreground_disabled_holo_dark;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_bright_foreground_disabled_holo_light = global::HomeBudget.Droid.Resource.Color.refractored_bright_foreground_disabled_holo_light;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_bright_foreground_holo_dark = global::HomeBudget.Droid.Resource.Color.refractored_bright_foreground_holo_dark;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_bright_foreground_holo_light = global::HomeBudget.Droid.Resource.Color.refractored_bright_foreground_holo_light;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_bright_foreground_light = global::HomeBudget.Droid.Resource.Color.refractored_bright_foreground_light;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_dim_foreground_disabled_holo_dark = global::HomeBudget.Droid.Resource.Color.refractored_dim_foreground_disabled_holo_dark;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_dim_foreground_disabled_holo_light = global::HomeBudget.Droid.Resource.Color.refractored_dim_foreground_disabled_holo_light;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_dim_foreground_holo_dark = global::HomeBudget.Droid.Resource.Color.refractored_dim_foreground_holo_dark;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_dim_foreground_holo_light = global::HomeBudget.Droid.Resource.Color.refractored_dim_foreground_holo_light;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_highlighted_text_holo_dark = global::HomeBudget.Droid.Resource.Color.refractored_highlighted_text_holo_dark;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_highlighted_text_holo_light = global::HomeBudget.Droid.Resource.Color.refractored_highlighted_text_holo_light;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_hint_foreground_holo_dark = global::HomeBudget.Droid.Resource.Color.refractored_hint_foreground_holo_dark;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_hint_foreground_holo_light = global::HomeBudget.Droid.Resource.Color.refractored_hint_foreground_holo_light;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_holo_blue_bright = global::HomeBudget.Droid.Resource.Color.refractored_holo_blue_bright;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_holo_blue_dark = global::HomeBudget.Droid.Resource.Color.refractored_holo_blue_dark;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_holo_blue_light = global::HomeBudget.Droid.Resource.Color.refractored_holo_blue_light;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_holo_green_dark = global::HomeBudget.Droid.Resource.Color.refractored_holo_green_dark;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_holo_green_light = global::HomeBudget.Droid.Resource.Color.refractored_holo_green_light;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_holo_orange_dark = global::HomeBudget.Droid.Resource.Color.refractored_holo_orange_dark;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_holo_orange_light = global::HomeBudget.Droid.Resource.Color.refractored_holo_orange_light;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_holo_purple = global::HomeBudget.Droid.Resource.Color.refractored_holo_purple;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_holo_red_dark = global::HomeBudget.Droid.Resource.Color.refractored_holo_red_dark;
-			global::com.refractored.monodroidtoolkit.Resource.Color.refractored_holo_red_light = global::HomeBudget.Droid.Resource.Color.refractored_holo_red_light;
-			global::com.refractored.monodroidtoolkit.Resource.Dimension.progress_inner_size = global::HomeBudget.Droid.Resource.Dimension.progress_inner_size;
-			global::com.refractored.monodroidtoolkit.Resource.Drawable.pin_progress_pinned = global::HomeBudget.Droid.Resource.Drawable.pin_progress_pinned;
-			global::com.refractored.monodroidtoolkit.Resource.Drawable.pin_progress_shadow = global::HomeBudget.Droid.Resource.Drawable.pin_progress_shadow;
-			global::com.refractored.monodroidtoolkit.Resource.Drawable.pin_progress_unpinned = global::HomeBudget.Droid.Resource.Drawable.pin_progress_unpinned;
-			global::com.refractored.monodroidtoolkit.Resource.Drawable.scrubber_control_normal_holo = global::HomeBudget.Droid.Resource.Drawable.scrubber_control_normal_holo;
-			global::com.refractored.monodroidtoolkit.Resource.Drawable.scrubber_control_pressed_holo = global::HomeBudget.Droid.Resource.Drawable.scrubber_control_pressed_holo;
-			global::com.refractored.monodroidtoolkit.Resource.Id.bottom = global::HomeBudget.Droid.Resource.Id.bottom;
-			global::com.refractored.monodroidtoolkit.Resource.Id.center = global::HomeBudget.Droid.Resource.Id.center;
-			global::com.refractored.monodroidtoolkit.Resource.Id.center_horizontal = global::HomeBudget.Droid.Resource.Id.center_horizontal;
-			global::com.refractored.monodroidtoolkit.Resource.Id.center_vertical = global::HomeBudget.Droid.Resource.Id.center_vertical;
-			global::com.refractored.monodroidtoolkit.Resource.Id.clip = global::HomeBudget.Droid.Resource.Id.clip;
-			global::com.refractored.monodroidtoolkit.Resource.Id.clip_horizontal = global::HomeBudget.Droid.Resource.Id.clip_horizontal;
-			global::com.refractored.monodroidtoolkit.Resource.Id.clip_vertical = global::HomeBudget.Droid.Resource.Id.clip_vertical;
-			global::com.refractored.monodroidtoolkit.Resource.Id.end = global::HomeBudget.Droid.Resource.Id.end;
-			global::com.refractored.monodroidtoolkit.Resource.Id.fill = global::HomeBudget.Droid.Resource.Id.fill;
-			global::com.refractored.monodroidtoolkit.Resource.Id.fill_horizontal = global::HomeBudget.Droid.Resource.Id.fill_horizontal;
-			global::com.refractored.monodroidtoolkit.Resource.Id.fill_vertical = global::HomeBudget.Droid.Resource.Id.fill_vertical;
-			global::com.refractored.monodroidtoolkit.Resource.Id.left = global::HomeBudget.Droid.Resource.Id.left;
-			global::com.refractored.monodroidtoolkit.Resource.Id.right = global::HomeBudget.Droid.Resource.Id.right;
-			global::com.refractored.monodroidtoolkit.Resource.Id.start = global::HomeBudget.Droid.Resource.Id.start;
-			global::com.refractored.monodroidtoolkit.Resource.Id.top = global::HomeBudget.Droid.Resource.Id.top;
-			global::com.refractored.monodroidtoolkit.Resource.Integer.circular_indeterminent_interval = global::HomeBudget.Droid.Resource.Integer.circular_indeterminent_interval;
-			global::com.refractored.monodroidtoolkit.Resource.Integer.progressbutton_indeterminent_interval = global::HomeBudget.Droid.Resource.Integer.progressbutton_indeterminent_interval;
-			global::com.refractored.monodroidtoolkit.Resource.Style.CircularProgressBar = global::HomeBudget.Droid.Resource.Style.CircularProgressBar;
-			global::com.refractored.monodroidtoolkit.Resource.Style.CircularProgressBarLight = global::HomeBudget.Droid.Resource.Style.CircularProgressBarLight;
-			global::com.refractored.monodroidtoolkit.Resource.Style.ProgressButton = global::HomeBudget.Droid.Resource.Style.ProgressButton;
-			global::com.refractored.monodroidtoolkit.Resource.Style.ProgressButton_Pin = global::HomeBudget.Droid.Resource.Style.ProgressButton_Pin;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.HoloCircularProgressBar = global::HomeBudget.Droid.Resource.Styleable.HoloCircularProgressBar;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.HoloCircularProgressBar_circular_gravity = global::HomeBudget.Droid.Resource.Styleable.HoloCircularProgressBar_circular_gravity;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.HoloCircularProgressBar_circular_indeterminate = global::HomeBudget.Droid.Resource.Styleable.HoloCircularProgressBar_circular_indeterminate;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.HoloCircularProgressBar_circular_indeterminate_interval = global::HomeBudget.Droid.Resource.Styleable.HoloCircularProgressBar_circular_indeterminate_interval;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.HoloCircularProgressBar_circular_marker_progress = global::HomeBudget.Droid.Resource.Styleable.HoloCircularProgressBar_circular_marker_progress;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.HoloCircularProgressBar_circular_progress = global::HomeBudget.Droid.Resource.Styleable.HoloCircularProgressBar_circular_progress;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.HoloCircularProgressBar_circular_progress_background_color = global::HomeBudget.Droid.Resource.Styleable.HoloCircularProgressBar_circular_progress_background_color;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.HoloCircularProgressBar_circular_progress_color = global::HomeBudget.Droid.Resource.Styleable.HoloCircularProgressBar_circular_progress_color;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.HoloCircularProgressBar_circular_stroke_width = global::HomeBudget.Droid.Resource.Styleable.HoloCircularProgressBar_circular_stroke_width;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.ProgressButton = global::HomeBudget.Droid.Resource.Styleable.ProgressButton;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.ProgressButton_android_clickable = global::HomeBudget.Droid.Resource.Styleable.ProgressButton_android_clickable;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.ProgressButton_android_focusable = global::HomeBudget.Droid.Resource.Styleable.ProgressButton_android_focusable;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.ProgressButton_android_selectableItemBackground = global::HomeBudget.Droid.Resource.Styleable.ProgressButton_android_selectableItemBackground;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.ProgressButton_circleColor = global::HomeBudget.Droid.Resource.Styleable.ProgressButton_circleColor;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.ProgressButton_indeterminate = global::HomeBudget.Droid.Resource.Styleable.ProgressButton_indeterminate;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.ProgressButton_indeterminate_interval = global::HomeBudget.Droid.Resource.Styleable.ProgressButton_indeterminate_interval;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.ProgressButton_innerSize = global::HomeBudget.Droid.Resource.Styleable.ProgressButton_innerSize;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.ProgressButton_max = global::HomeBudget.Droid.Resource.Styleable.ProgressButton_max;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.ProgressButton_pinned = global::HomeBudget.Droid.Resource.Styleable.ProgressButton_pinned;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.ProgressButton_pinnedDrawable = global::HomeBudget.Droid.Resource.Styleable.ProgressButton_pinnedDrawable;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.ProgressButton_progress = global::HomeBudget.Droid.Resource.Styleable.ProgressButton_progress;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.ProgressButton_progressColor = global::HomeBudget.Droid.Resource.Styleable.ProgressButton_progressColor;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.ProgressButton_shadowDrawable = global::HomeBudget.Droid.Resource.Styleable.ProgressButton_shadowDrawable;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.ProgressButton_unpinnedDrawable = global::HomeBudget.Droid.Resource.Styleable.ProgressButton_unpinnedDrawable;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.Theme = global::HomeBudget.Droid.Resource.Styleable.Theme;
-			global::com.refractored.monodroidtoolkit.Resource.Styleable.Theme_circularProgressBarStyle = global::HomeBudget.Droid.Resource.Styleable.Theme_circularProgressBarStyle;
 			global::PCLStorage.Resource.String.ApplicationName = global::HomeBudget.Droid.Resource.String.ApplicationName;
 			global::PCLStorage.Resource.String.Hello = global::HomeBudget.Droid.Resource.String.Hello;
+			global::Plugin.LocalNotifications.Resource.Drawable.plugin_lc_smallicon = global::HomeBudget.Droid.Resource.Drawable.plugin_lc_smallicon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.abc_fade_in = global::HomeBudget.Droid.Resource.Animation.abc_fade_in;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.abc_fade_out = global::HomeBudget.Droid.Resource.Animation.abc_fade_out;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.abc_grow_fade_in_from_bottom = global::HomeBudget.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.abc_popup_enter = global::HomeBudget.Droid.Resource.Animation.abc_popup_enter;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.abc_popup_exit = global::HomeBudget.Droid.Resource.Animation.abc_popup_exit;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.abc_shrink_fade_out_from_bottom = global::HomeBudget.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.abc_slide_in_bottom = global::HomeBudget.Droid.Resource.Animation.abc_slide_in_bottom;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.abc_slide_in_top = global::HomeBudget.Droid.Resource.Animation.abc_slide_in_top;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.abc_slide_out_bottom = global::HomeBudget.Droid.Resource.Animation.abc_slide_out_bottom;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.abc_slide_out_top = global::HomeBudget.Droid.Resource.Animation.abc_slide_out_top;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_indeterminate_to_checked_box_inner_merged_animation = global::HomeBudget.Droid.Resource.Animation.btn_checkbox_indeterminate_to_checked_box_inner_merged_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_indeterminate_to_checked_box_outer_merged_animation = global::HomeBudget.Droid.Resource.Animation.btn_checkbox_indeterminate_to_checked_box_outer_merged_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_indeterminate_to_checked_icon_null_animation = global::HomeBudget.Droid.Resource.Animation.btn_checkbox_indeterminate_to_checked_icon_null_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_checked_box_inner_merged_animation = global::HomeBudget.Droid.Resource.Animation.btn_checkbox_to_checked_box_inner_merged_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_checked_box_outer_merged_animation = global::HomeBudget.Droid.Resource.Animation.btn_checkbox_to_checked_box_outer_merged_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_checked_icon_null_animation = global::HomeBudget.Droid.Resource.Animation.btn_checkbox_to_checked_icon_null_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_indeterminate_from_checked_box_inner_merged_animation = global::HomeBudget.Droid.Resource.Animation.btn_checkbox_to_indeterminate_from_checked_box_inner_merged_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_indeterminate_from_checked_icon_null_animation = global::HomeBudget.Droid.Resource.Animation.btn_checkbox_to_indeterminate_from_checked_icon_null_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_indeterminate_from_unchecked_box_inner_merged_animation = global::HomeBudget.Droid.Resource.Animation.btn_checkbox_to_indeterminate_from_unchecked_box_inner_merged_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_indeterminate_from_unchecked_box_outer_merged_animation = global::HomeBudget.Droid.Resource.Animation.btn_checkbox_to_indeterminate_from_unchecked_box_outer_merged_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_indeterminate_from_unchecked_icon_null_animation = global::HomeBudget.Droid.Resource.Animation.btn_checkbox_to_indeterminate_from_unchecked_icon_null_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_unchecked_box_inner_merged_animation = global::HomeBudget.Droid.Resource.Animation.btn_checkbox_to_unchecked_box_inner_merged_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_unchecked_check_path_merged_animation = global::HomeBudget.Droid.Resource.Animation.btn_checkbox_to_unchecked_check_path_merged_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_unchecked_from_indeterminate_box_inner_merged_animation = global::HomeBudget.Droid.Resource.Animation.btn_checkbox_to_unchecked_from_indeterminate_box_inner_merged_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_unchecked_from_indeterminate_check_path_merged_animation = global::HomeBudget.Droid.Resource.Animation.btn_checkbox_to_unchecked_from_indeterminate_check_path_merged_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_unchecked_from_indeterminate_icon_null_animation = global::HomeBudget.Droid.Resource.Animation.btn_checkbox_to_unchecked_from_indeterminate_icon_null_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_unchecked_icon_null_animation = global::HomeBudget.Droid.Resource.Animation.btn_checkbox_to_unchecked_icon_null_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionBarDivider = global::HomeBudget.Droid.Resource.Attribute.actionBarDivider;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionBarItemBackground = global::HomeBudget.Droid.Resource.Attribute.actionBarItemBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionBarPopupTheme = global::HomeBudget.Droid.Resource.Attribute.actionBarPopupTheme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionBarSize = global::HomeBudget.Droid.Resource.Attribute.actionBarSize;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionBarSplitStyle = global::HomeBudget.Droid.Resource.Attribute.actionBarSplitStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionBarStyle = global::HomeBudget.Droid.Resource.Attribute.actionBarStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionBarTabBarStyle = global::HomeBudget.Droid.Resource.Attribute.actionBarTabBarStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionBarTabStyle = global::HomeBudget.Droid.Resource.Attribute.actionBarTabStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionBarTabTextStyle = global::HomeBudget.Droid.Resource.Attribute.actionBarTabTextStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionBarTheme = global::HomeBudget.Droid.Resource.Attribute.actionBarTheme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionBarWidgetTheme = global::HomeBudget.Droid.Resource.Attribute.actionBarWidgetTheme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionButtonStyle = global::HomeBudget.Droid.Resource.Attribute.actionButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionDropDownStyle = global::HomeBudget.Droid.Resource.Attribute.actionDropDownStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionLayout = global::HomeBudget.Droid.Resource.Attribute.actionLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionMenuTextAppearance = global::HomeBudget.Droid.Resource.Attribute.actionMenuTextAppearance;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionMenuTextColor = global::HomeBudget.Droid.Resource.Attribute.actionMenuTextColor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionModeBackground = global::HomeBudget.Droid.Resource.Attribute.actionModeBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionModeCloseButtonStyle = global::HomeBudget.Droid.Resource.Attribute.actionModeCloseButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionModeCloseDrawable = global::HomeBudget.Droid.Resource.Attribute.actionModeCloseDrawable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionModeCopyDrawable = global::HomeBudget.Droid.Resource.Attribute.actionModeCopyDrawable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionModeCutDrawable = global::HomeBudget.Droid.Resource.Attribute.actionModeCutDrawable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionModeFindDrawable = global::HomeBudget.Droid.Resource.Attribute.actionModeFindDrawable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionModePasteDrawable = global::HomeBudget.Droid.Resource.Attribute.actionModePasteDrawable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionModePopupWindowStyle = global::HomeBudget.Droid.Resource.Attribute.actionModePopupWindowStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionModeSelectAllDrawable = global::HomeBudget.Droid.Resource.Attribute.actionModeSelectAllDrawable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionModeShareDrawable = global::HomeBudget.Droid.Resource.Attribute.actionModeShareDrawable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionModeSplitBackground = global::HomeBudget.Droid.Resource.Attribute.actionModeSplitBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionModeStyle = global::HomeBudget.Droid.Resource.Attribute.actionModeStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionModeWebSearchDrawable = global::HomeBudget.Droid.Resource.Attribute.actionModeWebSearchDrawable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionOverflowButtonStyle = global::HomeBudget.Droid.Resource.Attribute.actionOverflowButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionOverflowMenuStyle = global::HomeBudget.Droid.Resource.Attribute.actionOverflowMenuStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionProviderClass = global::HomeBudget.Droid.Resource.Attribute.actionProviderClass;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.actionViewClass = global::HomeBudget.Droid.Resource.Attribute.actionViewClass;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.activityChooserViewStyle = global::HomeBudget.Droid.Resource.Attribute.activityChooserViewStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.alertDialogButtonGroupStyle = global::HomeBudget.Droid.Resource.Attribute.alertDialogButtonGroupStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.alertDialogCenterButtons = global::HomeBudget.Droid.Resource.Attribute.alertDialogCenterButtons;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.alertDialogStyle = global::HomeBudget.Droid.Resource.Attribute.alertDialogStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.alertDialogTheme = global::HomeBudget.Droid.Resource.Attribute.alertDialogTheme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.allowStacking = global::HomeBudget.Droid.Resource.Attribute.allowStacking;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.arrowHeadLength = global::HomeBudget.Droid.Resource.Attribute.arrowHeadLength;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.arrowShaftLength = global::HomeBudget.Droid.Resource.Attribute.arrowShaftLength;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.autoCompleteTextViewStyle = global::HomeBudget.Droid.Resource.Attribute.autoCompleteTextViewStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.background = global::HomeBudget.Droid.Resource.Attribute.background;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.backgroundSplit = global::HomeBudget.Droid.Resource.Attribute.backgroundSplit;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.backgroundStacked = global::HomeBudget.Droid.Resource.Attribute.backgroundStacked;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.backgroundTint = global::HomeBudget.Droid.Resource.Attribute.backgroundTint;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.backgroundTintMode = global::HomeBudget.Droid.Resource.Attribute.backgroundTintMode;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.barLength = global::HomeBudget.Droid.Resource.Attribute.barLength;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.borderlessButtonStyle = global::HomeBudget.Droid.Resource.Attribute.borderlessButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.buttonBarButtonStyle = global::HomeBudget.Droid.Resource.Attribute.buttonBarButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.buttonBarNegativeButtonStyle = global::HomeBudget.Droid.Resource.Attribute.buttonBarNegativeButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.buttonBarNeutralButtonStyle = global::HomeBudget.Droid.Resource.Attribute.buttonBarNeutralButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.buttonBarPositiveButtonStyle = global::HomeBudget.Droid.Resource.Attribute.buttonBarPositiveButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.buttonBarStyle = global::HomeBudget.Droid.Resource.Attribute.buttonBarStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.buttonPanelSideLayout = global::HomeBudget.Droid.Resource.Attribute.buttonPanelSideLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.buttonStyle = global::HomeBudget.Droid.Resource.Attribute.buttonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.buttonStyleSmall = global::HomeBudget.Droid.Resource.Attribute.buttonStyleSmall;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.buttonTint = global::HomeBudget.Droid.Resource.Attribute.buttonTint;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.buttonTintMode = global::HomeBudget.Droid.Resource.Attribute.buttonTintMode;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.checkboxStyle = global::HomeBudget.Droid.Resource.Attribute.checkboxStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.@checked = global::HomeBudget.Droid.Resource.Attribute.@checked;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.checkedTextViewStyle = global::HomeBudget.Droid.Resource.Attribute.checkedTextViewStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.closeIcon = global::HomeBudget.Droid.Resource.Attribute.closeIcon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.closeItemLayout = global::HomeBudget.Droid.Resource.Attribute.closeItemLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.collapseContentDescription = global::HomeBudget.Droid.Resource.Attribute.collapseContentDescription;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.collapseIcon = global::HomeBudget.Droid.Resource.Attribute.collapseIcon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.color = global::HomeBudget.Droid.Resource.Attribute.color;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.colorAccent = global::HomeBudget.Droid.Resource.Attribute.colorAccent;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.colorButtonNormal = global::HomeBudget.Droid.Resource.Attribute.colorButtonNormal;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.colorControlActivated = global::HomeBudget.Droid.Resource.Attribute.colorControlActivated;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.colorControlHighlight = global::HomeBudget.Droid.Resource.Attribute.colorControlHighlight;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.colorControlNormal = global::HomeBudget.Droid.Resource.Attribute.colorControlNormal;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.colorPrimary = global::HomeBudget.Droid.Resource.Attribute.colorPrimary;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.colorPrimaryDark = global::HomeBudget.Droid.Resource.Attribute.colorPrimaryDark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.colorSwitchThumbNormal = global::HomeBudget.Droid.Resource.Attribute.colorSwitchThumbNormal;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.commitIcon = global::HomeBudget.Droid.Resource.Attribute.commitIcon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.contentInsetEnd = global::HomeBudget.Droid.Resource.Attribute.contentInsetEnd;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.contentInsetLeft = global::HomeBudget.Droid.Resource.Attribute.contentInsetLeft;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.contentInsetRight = global::HomeBudget.Droid.Resource.Attribute.contentInsetRight;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.contentInsetStart = global::HomeBudget.Droid.Resource.Attribute.contentInsetStart;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.controlBackground = global::HomeBudget.Droid.Resource.Attribute.controlBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.cornerradius = global::HomeBudget.Droid.Resource.Attribute.cornerradius;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.customNavigationLayout = global::HomeBudget.Droid.Resource.Attribute.customNavigationLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.defaultQueryHint = global::HomeBudget.Droid.Resource.Attribute.defaultQueryHint;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.dialogPreferredPadding = global::HomeBudget.Droid.Resource.Attribute.dialogPreferredPadding;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.dialogTheme = global::HomeBudget.Droid.Resource.Attribute.dialogTheme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.displayOptions = global::HomeBudget.Droid.Resource.Attribute.displayOptions;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.divider = global::HomeBudget.Droid.Resource.Attribute.divider;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.dividerHorizontal = global::HomeBudget.Droid.Resource.Attribute.dividerHorizontal;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.dividerPadding = global::HomeBudget.Droid.Resource.Attribute.dividerPadding;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.dividerVertical = global::HomeBudget.Droid.Resource.Attribute.dividerVertical;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.drawableSize = global::HomeBudget.Droid.Resource.Attribute.drawableSize;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.drawerArrowStyle = global::HomeBudget.Droid.Resource.Attribute.drawerArrowStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.dropDownListViewStyle = global::HomeBudget.Droid.Resource.Attribute.dropDownListViewStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.dropdownListPreferredItemHeight = global::HomeBudget.Droid.Resource.Attribute.dropdownListPreferredItemHeight;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.editTextBackground = global::HomeBudget.Droid.Resource.Attribute.editTextBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.editTextColor = global::HomeBudget.Droid.Resource.Attribute.editTextColor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.editTextStyle = global::HomeBudget.Droid.Resource.Attribute.editTextStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.elevation = global::HomeBudget.Droid.Resource.Attribute.elevation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.expandActivityOverflowButtonDrawable = global::HomeBudget.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.gapBetweenBars = global::HomeBudget.Droid.Resource.Attribute.gapBetweenBars;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.goIcon = global::HomeBudget.Droid.Resource.Attribute.goIcon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.height = global::HomeBudget.Droid.Resource.Attribute.height;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.hideOnContentScroll = global::HomeBudget.Droid.Resource.Attribute.hideOnContentScroll;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.homeAsUpIndicator = global::HomeBudget.Droid.Resource.Attribute.homeAsUpIndicator;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.homeLayout = global::HomeBudget.Droid.Resource.Attribute.homeLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.icon = global::HomeBudget.Droid.Resource.Attribute.icon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.iconifiedByDefault = global::HomeBudget.Droid.Resource.Attribute.iconifiedByDefault;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.imageButtonStyle = global::HomeBudget.Droid.Resource.Attribute.imageButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.indeterminateProgressStyle = global::HomeBudget.Droid.Resource.Attribute.indeterminateProgressStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.initialActivityCount = global::HomeBudget.Droid.Resource.Attribute.initialActivityCount;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.isLightTheme = global::HomeBudget.Droid.Resource.Attribute.isLightTheme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.isthreestate = global::HomeBudget.Droid.Resource.Attribute.isthreestate;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.itemPadding = global::HomeBudget.Droid.Resource.Attribute.itemPadding;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.layout = global::HomeBudget.Droid.Resource.Attribute.layout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.listChoiceBackgroundIndicator = global::HomeBudget.Droid.Resource.Attribute.listChoiceBackgroundIndicator;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.listDividerAlertDialog = global::HomeBudget.Droid.Resource.Attribute.listDividerAlertDialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.listItemLayout = global::HomeBudget.Droid.Resource.Attribute.listItemLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.listLayout = global::HomeBudget.Droid.Resource.Attribute.listLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.listPopupWindowStyle = global::HomeBudget.Droid.Resource.Attribute.listPopupWindowStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.listPreferredItemHeight = global::HomeBudget.Droid.Resource.Attribute.listPreferredItemHeight;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.listPreferredItemHeightLarge = global::HomeBudget.Droid.Resource.Attribute.listPreferredItemHeightLarge;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.listPreferredItemHeightSmall = global::HomeBudget.Droid.Resource.Attribute.listPreferredItemHeightSmall;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.listPreferredItemPaddingLeft = global::HomeBudget.Droid.Resource.Attribute.listPreferredItemPaddingLeft;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.listPreferredItemPaddingRight = global::HomeBudget.Droid.Resource.Attribute.listPreferredItemPaddingRight;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.logo = global::HomeBudget.Droid.Resource.Attribute.logo;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.logoDescription = global::HomeBudget.Droid.Resource.Attribute.logoDescription;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.maxButtonHeight = global::HomeBudget.Droid.Resource.Attribute.maxButtonHeight;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.measureWithLargestChild = global::HomeBudget.Droid.Resource.Attribute.measureWithLargestChild;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.multiChoiceItemLayout = global::HomeBudget.Droid.Resource.Attribute.multiChoiceItemLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.navigationContentDescription = global::HomeBudget.Droid.Resource.Attribute.navigationContentDescription;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.navigationIcon = global::HomeBudget.Droid.Resource.Attribute.navigationIcon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.navigationMode = global::HomeBudget.Droid.Resource.Attribute.navigationMode;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.overlapAnchor = global::HomeBudget.Droid.Resource.Attribute.overlapAnchor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.paddingEnd = global::HomeBudget.Droid.Resource.Attribute.paddingEnd;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.paddingStart = global::HomeBudget.Droid.Resource.Attribute.paddingStart;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.panelBackground = global::HomeBudget.Droid.Resource.Attribute.panelBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.panelMenuListTheme = global::HomeBudget.Droid.Resource.Attribute.panelMenuListTheme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.panelMenuListWidth = global::HomeBudget.Droid.Resource.Attribute.panelMenuListWidth;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.popupMenuStyle = global::HomeBudget.Droid.Resource.Attribute.popupMenuStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.popupTheme = global::HomeBudget.Droid.Resource.Attribute.popupTheme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.popupWindowStyle = global::HomeBudget.Droid.Resource.Attribute.popupWindowStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.preserveIconSpacing = global::HomeBudget.Droid.Resource.Attribute.preserveIconSpacing;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.progressBarPadding = global::HomeBudget.Droid.Resource.Attribute.progressBarPadding;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.progressBarStyle = global::HomeBudget.Droid.Resource.Attribute.progressBarStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.queryBackground = global::HomeBudget.Droid.Resource.Attribute.queryBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.queryHint = global::HomeBudget.Droid.Resource.Attribute.queryHint;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.radioButtonStyle = global::HomeBudget.Droid.Resource.Attribute.radioButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.ratingBarStyle = global::HomeBudget.Droid.Resource.Attribute.ratingBarStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.ratingBarStyleIndicator = global::HomeBudget.Droid.Resource.Attribute.ratingBarStyleIndicator;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.ratingBarStyleSmall = global::HomeBudget.Droid.Resource.Attribute.ratingBarStyleSmall;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.searchHintIcon = global::HomeBudget.Droid.Resource.Attribute.searchHintIcon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.searchIcon = global::HomeBudget.Droid.Resource.Attribute.searchIcon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.searchViewStyle = global::HomeBudget.Droid.Resource.Attribute.searchViewStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.seekBarStyle = global::HomeBudget.Droid.Resource.Attribute.seekBarStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.segmentBackColor = global::HomeBudget.Droid.Resource.Attribute.segmentBackColor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.segmentBorderColor = global::HomeBudget.Droid.Resource.Attribute.segmentBorderColor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.segmentBorderThickness = global::HomeBudget.Droid.Resource.Attribute.segmentBorderThickness;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.segmentColor = global::HomeBudget.Droid.Resource.Attribute.segmentColor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.segmentCornerRadius = global::HomeBudget.Droid.Resource.Attribute.segmentCornerRadius;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.segmentDisplayMode = global::HomeBudget.Droid.Resource.Attribute.segmentDisplayMode;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.segmentPosition = global::HomeBudget.Droid.Resource.Attribute.segmentPosition;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.segmentSelectedIndex = global::HomeBudget.Droid.Resource.Attribute.segmentSelectedIndex;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.segmentStrokeThickness = global::HomeBudget.Droid.Resource.Attribute.segmentStrokeThickness;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.segmentedHeight = global::HomeBudget.Droid.Resource.Attribute.segmentedHeight;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.segmentedPadding = global::HomeBudget.Droid.Resource.Attribute.segmentedPadding;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.segmentedWidth = global::HomeBudget.Droid.Resource.Attribute.segmentedWidth;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.selectableItemBackground = global::HomeBudget.Droid.Resource.Attribute.selectableItemBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.selectableItemBackgroundBorderless = global::HomeBudget.Droid.Resource.Attribute.selectableItemBackgroundBorderless;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.showAsAction = global::HomeBudget.Droid.Resource.Attribute.showAsAction;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.showDividers = global::HomeBudget.Droid.Resource.Attribute.showDividers;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.showText = global::HomeBudget.Droid.Resource.Attribute.showText;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.singleChoiceItemLayout = global::HomeBudget.Droid.Resource.Attribute.singleChoiceItemLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.spinBars = global::HomeBudget.Droid.Resource.Attribute.spinBars;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.spinnerDropDownItemStyle = global::HomeBudget.Droid.Resource.Attribute.spinnerDropDownItemStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.spinnerStyle = global::HomeBudget.Droid.Resource.Attribute.spinnerStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.splitTrack = global::HomeBudget.Droid.Resource.Attribute.splitTrack;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.srcCompat = global::HomeBudget.Droid.Resource.Attribute.srcCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.state_above_anchor = global::HomeBudget.Droid.Resource.Attribute.state_above_anchor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.state_indeterminate = global::HomeBudget.Droid.Resource.Attribute.state_indeterminate;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.submitBackground = global::HomeBudget.Droid.Resource.Attribute.submitBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.subtitle = global::HomeBudget.Droid.Resource.Attribute.subtitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.subtitleTextAppearance = global::HomeBudget.Droid.Resource.Attribute.subtitleTextAppearance;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.subtitleTextColor = global::HomeBudget.Droid.Resource.Attribute.subtitleTextColor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.subtitleTextStyle = global::HomeBudget.Droid.Resource.Attribute.subtitleTextStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.suggestionRowLayout = global::HomeBudget.Droid.Resource.Attribute.suggestionRowLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.switchMinWidth = global::HomeBudget.Droid.Resource.Attribute.switchMinWidth;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.switchPadding = global::HomeBudget.Droid.Resource.Attribute.switchPadding;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.switchStyle = global::HomeBudget.Droid.Resource.Attribute.switchStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.switchTextAppearance = global::HomeBudget.Droid.Resource.Attribute.switchTextAppearance;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.textAllCaps = global::HomeBudget.Droid.Resource.Attribute.textAllCaps;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.textAppearanceLargePopupMenu = global::HomeBudget.Droid.Resource.Attribute.textAppearanceLargePopupMenu;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.textAppearanceListItem = global::HomeBudget.Droid.Resource.Attribute.textAppearanceListItem;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.textAppearanceListItemSmall = global::HomeBudget.Droid.Resource.Attribute.textAppearanceListItemSmall;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.textAppearanceSearchResultSubtitle = global::HomeBudget.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.textAppearanceSearchResultTitle = global::HomeBudget.Droid.Resource.Attribute.textAppearanceSearchResultTitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.textAppearanceSmallPopupMenu = global::HomeBudget.Droid.Resource.Attribute.textAppearanceSmallPopupMenu;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.textColorAlertDialogListItem = global::HomeBudget.Droid.Resource.Attribute.textColorAlertDialogListItem;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.textColorSearchUrl = global::HomeBudget.Droid.Resource.Attribute.textColorSearchUrl;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.theme = global::HomeBudget.Droid.Resource.Attribute.theme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.thickness = global::HomeBudget.Droid.Resource.Attribute.thickness;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.thumbTextPadding = global::HomeBudget.Droid.Resource.Attribute.thumbTextPadding;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.title = global::HomeBudget.Droid.Resource.Attribute.title;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.titleMarginBottom = global::HomeBudget.Droid.Resource.Attribute.titleMarginBottom;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.titleMarginEnd = global::HomeBudget.Droid.Resource.Attribute.titleMarginEnd;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.titleMarginStart = global::HomeBudget.Droid.Resource.Attribute.titleMarginStart;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.titleMarginTop = global::HomeBudget.Droid.Resource.Attribute.titleMarginTop;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.titleMargins = global::HomeBudget.Droid.Resource.Attribute.titleMargins;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.titleTextAppearance = global::HomeBudget.Droid.Resource.Attribute.titleTextAppearance;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.titleTextColor = global::HomeBudget.Droid.Resource.Attribute.titleTextColor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.titleTextStyle = global::HomeBudget.Droid.Resource.Attribute.titleTextStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.toolbarNavigationButtonStyle = global::HomeBudget.Droid.Resource.Attribute.toolbarNavigationButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.toolbarStyle = global::HomeBudget.Droid.Resource.Attribute.toolbarStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.track = global::HomeBudget.Droid.Resource.Attribute.track;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.voiceIcon = global::HomeBudget.Droid.Resource.Attribute.voiceIcon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.windowActionBar = global::HomeBudget.Droid.Resource.Attribute.windowActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.windowActionBarOverlay = global::HomeBudget.Droid.Resource.Attribute.windowActionBarOverlay;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.windowActionModeOverlay = global::HomeBudget.Droid.Resource.Attribute.windowActionModeOverlay;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.windowFixedHeightMajor = global::HomeBudget.Droid.Resource.Attribute.windowFixedHeightMajor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.windowFixedHeightMinor = global::HomeBudget.Droid.Resource.Attribute.windowFixedHeightMinor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.windowFixedWidthMajor = global::HomeBudget.Droid.Resource.Attribute.windowFixedWidthMajor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.windowFixedWidthMinor = global::HomeBudget.Droid.Resource.Attribute.windowFixedWidthMinor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.windowMinWidthMajor = global::HomeBudget.Droid.Resource.Attribute.windowMinWidthMajor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.windowMinWidthMinor = global::HomeBudget.Droid.Resource.Attribute.windowMinWidthMinor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.windowNoTitle = global::HomeBudget.Droid.Resource.Attribute.windowNoTitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Boolean.abc_action_bar_embed_tabs = global::HomeBudget.Droid.Resource.Boolean.abc_action_bar_embed_tabs;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Boolean.abc_allow_stacked_button_bar = global::HomeBudget.Droid.Resource.Boolean.abc_allow_stacked_button_bar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Boolean.abc_config_actionMenuItemAllCaps = global::HomeBudget.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Boolean.abc_config_closeDialogWhenTouchOutside = global::HomeBudget.Droid.Resource.Boolean.abc_config_closeDialogWhenTouchOutside;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent = global::HomeBudget.Droid.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.abc_background_cache_hint_selector_material_dark = global::HomeBudget.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.abc_background_cache_hint_selector_material_light = global::HomeBudget.Droid.Resource.Color.abc_background_cache_hint_selector_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.abc_color_highlight_material = global::HomeBudget.Droid.Resource.Color.abc_color_highlight_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.abc_input_method_navigation_guard = global::HomeBudget.Droid.Resource.Color.abc_input_method_navigation_guard;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.abc_primary_text_disable_only_material_dark = global::HomeBudget.Droid.Resource.Color.abc_primary_text_disable_only_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.abc_primary_text_disable_only_material_light = global::HomeBudget.Droid.Resource.Color.abc_primary_text_disable_only_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.abc_primary_text_material_dark = global::HomeBudget.Droid.Resource.Color.abc_primary_text_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.abc_primary_text_material_light = global::HomeBudget.Droid.Resource.Color.abc_primary_text_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.abc_search_url_text = global::HomeBudget.Droid.Resource.Color.abc_search_url_text;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.abc_search_url_text_normal = global::HomeBudget.Droid.Resource.Color.abc_search_url_text_normal;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.abc_search_url_text_pressed = global::HomeBudget.Droid.Resource.Color.abc_search_url_text_pressed;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.abc_search_url_text_selected = global::HomeBudget.Droid.Resource.Color.abc_search_url_text_selected;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.abc_secondary_text_material_dark = global::HomeBudget.Droid.Resource.Color.abc_secondary_text_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.abc_secondary_text_material_light = global::HomeBudget.Droid.Resource.Color.abc_secondary_text_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.accent_material_dark = global::HomeBudget.Droid.Resource.Color.accent_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.accent_material_light = global::HomeBudget.Droid.Resource.Color.accent_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.background_floating_material_dark = global::HomeBudget.Droid.Resource.Color.background_floating_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.background_floating_material_light = global::HomeBudget.Droid.Resource.Color.background_floating_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.background_material_dark = global::HomeBudget.Droid.Resource.Color.background_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.background_material_light = global::HomeBudget.Droid.Resource.Color.background_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.bright_foreground_disabled_material_dark = global::HomeBudget.Droid.Resource.Color.bright_foreground_disabled_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.bright_foreground_disabled_material_light = global::HomeBudget.Droid.Resource.Color.bright_foreground_disabled_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.bright_foreground_inverse_material_dark = global::HomeBudget.Droid.Resource.Color.bright_foreground_inverse_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.bright_foreground_inverse_material_light = global::HomeBudget.Droid.Resource.Color.bright_foreground_inverse_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.bright_foreground_material_dark = global::HomeBudget.Droid.Resource.Color.bright_foreground_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.bright_foreground_material_light = global::HomeBudget.Droid.Resource.Color.bright_foreground_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.button_material_dark = global::HomeBudget.Droid.Resource.Color.button_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.button_material_light = global::HomeBudget.Droid.Resource.Color.button_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.control_checkable_material = global::HomeBudget.Droid.Resource.Color.control_checkable_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.dim_foreground_disabled_material_dark = global::HomeBudget.Droid.Resource.Color.dim_foreground_disabled_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.dim_foreground_disabled_material_light = global::HomeBudget.Droid.Resource.Color.dim_foreground_disabled_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.dim_foreground_material_dark = global::HomeBudget.Droid.Resource.Color.dim_foreground_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.dim_foreground_material_light = global::HomeBudget.Droid.Resource.Color.dim_foreground_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.foreground_material_dark = global::HomeBudget.Droid.Resource.Color.foreground_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.foreground_material_light = global::HomeBudget.Droid.Resource.Color.foreground_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.highlighted_text_material_dark = global::HomeBudget.Droid.Resource.Color.highlighted_text_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.highlighted_text_material_light = global::HomeBudget.Droid.Resource.Color.highlighted_text_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.material_blue_grey_800 = global::HomeBudget.Droid.Resource.Color.material_blue_grey_800;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.material_blue_grey_900 = global::HomeBudget.Droid.Resource.Color.material_blue_grey_900;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.material_blue_grey_950 = global::HomeBudget.Droid.Resource.Color.material_blue_grey_950;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.material_deep_teal_200 = global::HomeBudget.Droid.Resource.Color.material_deep_teal_200;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.material_deep_teal_500 = global::HomeBudget.Droid.Resource.Color.material_deep_teal_500;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.material_grey_100 = global::HomeBudget.Droid.Resource.Color.material_grey_100;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.material_grey_300 = global::HomeBudget.Droid.Resource.Color.material_grey_300;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.material_grey_50 = global::HomeBudget.Droid.Resource.Color.material_grey_50;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.material_grey_600 = global::HomeBudget.Droid.Resource.Color.material_grey_600;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.material_grey_800 = global::HomeBudget.Droid.Resource.Color.material_grey_800;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.material_grey_850 = global::HomeBudget.Droid.Resource.Color.material_grey_850;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.material_grey_900 = global::HomeBudget.Droid.Resource.Color.material_grey_900;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.primary_dark_material_dark = global::HomeBudget.Droid.Resource.Color.primary_dark_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.primary_dark_material_light = global::HomeBudget.Droid.Resource.Color.primary_dark_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.primary_material_dark = global::HomeBudget.Droid.Resource.Color.primary_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.primary_material_light = global::HomeBudget.Droid.Resource.Color.primary_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.primary_text_default_material_dark = global::HomeBudget.Droid.Resource.Color.primary_text_default_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.primary_text_default_material_light = global::HomeBudget.Droid.Resource.Color.primary_text_default_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.primary_text_disabled_material_dark = global::HomeBudget.Droid.Resource.Color.primary_text_disabled_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.primary_text_disabled_material_light = global::HomeBudget.Droid.Resource.Color.primary_text_disabled_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.ripple_material_dark = global::HomeBudget.Droid.Resource.Color.ripple_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.ripple_material_light = global::HomeBudget.Droid.Resource.Color.ripple_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.secondary_text_default_material_dark = global::HomeBudget.Droid.Resource.Color.secondary_text_default_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.secondary_text_default_material_light = global::HomeBudget.Droid.Resource.Color.secondary_text_default_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.secondary_text_disabled_material_dark = global::HomeBudget.Droid.Resource.Color.secondary_text_disabled_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.secondary_text_disabled_material_light = global::HomeBudget.Droid.Resource.Color.secondary_text_disabled_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.switch_thumb_disabled_material_dark = global::HomeBudget.Droid.Resource.Color.switch_thumb_disabled_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.switch_thumb_disabled_material_light = global::HomeBudget.Droid.Resource.Color.switch_thumb_disabled_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.switch_thumb_material_dark = global::HomeBudget.Droid.Resource.Color.switch_thumb_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.switch_thumb_material_light = global::HomeBudget.Droid.Resource.Color.switch_thumb_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.switch_thumb_normal_material_dark = global::HomeBudget.Droid.Resource.Color.switch_thumb_normal_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Color.switch_thumb_normal_material_light = global::HomeBudget.Droid.Resource.Color.switch_thumb_normal_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_action_bar_content_inset_material = global::HomeBudget.Droid.Resource.Dimension.abc_action_bar_content_inset_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_action_bar_default_height_material = global::HomeBudget.Droid.Resource.Dimension.abc_action_bar_default_height_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_action_bar_default_padding_end_material = global::HomeBudget.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_action_bar_default_padding_start_material = global::HomeBudget.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_action_bar_icon_vertical_padding_material = global::HomeBudget.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_action_bar_overflow_padding_end_material = global::HomeBudget.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_action_bar_overflow_padding_start_material = global::HomeBudget.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_action_bar_progress_bar_size = global::HomeBudget.Droid.Resource.Dimension.abc_action_bar_progress_bar_size;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_action_bar_stacked_max_height = global::HomeBudget.Droid.Resource.Dimension.abc_action_bar_stacked_max_height;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_action_bar_stacked_tab_max_width = global::HomeBudget.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material = global::HomeBudget.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_action_bar_subtitle_top_margin_material = global::HomeBudget.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_action_button_min_height_material = global::HomeBudget.Droid.Resource.Dimension.abc_action_button_min_height_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_action_button_min_width_material = global::HomeBudget.Droid.Resource.Dimension.abc_action_button_min_width_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_action_button_min_width_overflow_material = global::HomeBudget.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_alert_dialog_button_bar_height = global::HomeBudget.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_button_inset_horizontal_material = global::HomeBudget.Droid.Resource.Dimension.abc_button_inset_horizontal_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_button_inset_vertical_material = global::HomeBudget.Droid.Resource.Dimension.abc_button_inset_vertical_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_button_padding_horizontal_material = global::HomeBudget.Droid.Resource.Dimension.abc_button_padding_horizontal_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_button_padding_vertical_material = global::HomeBudget.Droid.Resource.Dimension.abc_button_padding_vertical_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_config_prefDialogWidth = global::HomeBudget.Droid.Resource.Dimension.abc_config_prefDialogWidth;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_control_corner_material = global::HomeBudget.Droid.Resource.Dimension.abc_control_corner_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_control_inset_material = global::HomeBudget.Droid.Resource.Dimension.abc_control_inset_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_control_padding_material = global::HomeBudget.Droid.Resource.Dimension.abc_control_padding_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_dialog_fixed_height_major = global::HomeBudget.Droid.Resource.Dimension.abc_dialog_fixed_height_major;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_dialog_fixed_height_minor = global::HomeBudget.Droid.Resource.Dimension.abc_dialog_fixed_height_minor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_dialog_fixed_width_major = global::HomeBudget.Droid.Resource.Dimension.abc_dialog_fixed_width_major;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_dialog_fixed_width_minor = global::HomeBudget.Droid.Resource.Dimension.abc_dialog_fixed_width_minor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_dialog_min_width_major = global::HomeBudget.Droid.Resource.Dimension.abc_dialog_min_width_major;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_dialog_min_width_minor = global::HomeBudget.Droid.Resource.Dimension.abc_dialog_min_width_minor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_dialog_padding_material = global::HomeBudget.Droid.Resource.Dimension.abc_dialog_padding_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_dialog_padding_top_material = global::HomeBudget.Droid.Resource.Dimension.abc_dialog_padding_top_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_disabled_alpha_material_dark = global::HomeBudget.Droid.Resource.Dimension.abc_disabled_alpha_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_disabled_alpha_material_light = global::HomeBudget.Droid.Resource.Dimension.abc_disabled_alpha_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_dropdownitem_icon_width = global::HomeBudget.Droid.Resource.Dimension.abc_dropdownitem_icon_width;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_dropdownitem_text_padding_left = global::HomeBudget.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_dropdownitem_text_padding_right = global::HomeBudget.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_edit_text_inset_bottom_material = global::HomeBudget.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_edit_text_inset_horizontal_material = global::HomeBudget.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_edit_text_inset_top_material = global::HomeBudget.Droid.Resource.Dimension.abc_edit_text_inset_top_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_floating_window_z = global::HomeBudget.Droid.Resource.Dimension.abc_floating_window_z;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_list_item_padding_horizontal_material = global::HomeBudget.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_panel_menu_list_width = global::HomeBudget.Droid.Resource.Dimension.abc_panel_menu_list_width;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_search_view_preferred_width = global::HomeBudget.Droid.Resource.Dimension.abc_search_view_preferred_width;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_seekbar_track_background_height_material = global::HomeBudget.Droid.Resource.Dimension.abc_seekbar_track_background_height_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_seekbar_track_progress_height_material = global::HomeBudget.Droid.Resource.Dimension.abc_seekbar_track_progress_height_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_select_dialog_padding_start_material = global::HomeBudget.Droid.Resource.Dimension.abc_select_dialog_padding_start_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_switch_padding = global::HomeBudget.Droid.Resource.Dimension.abc_switch_padding;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_text_size_body_1_material = global::HomeBudget.Droid.Resource.Dimension.abc_text_size_body_1_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_text_size_body_2_material = global::HomeBudget.Droid.Resource.Dimension.abc_text_size_body_2_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_text_size_button_material = global::HomeBudget.Droid.Resource.Dimension.abc_text_size_button_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_text_size_caption_material = global::HomeBudget.Droid.Resource.Dimension.abc_text_size_caption_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_text_size_display_1_material = global::HomeBudget.Droid.Resource.Dimension.abc_text_size_display_1_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_text_size_display_2_material = global::HomeBudget.Droid.Resource.Dimension.abc_text_size_display_2_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_text_size_display_3_material = global::HomeBudget.Droid.Resource.Dimension.abc_text_size_display_3_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_text_size_display_4_material = global::HomeBudget.Droid.Resource.Dimension.abc_text_size_display_4_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_text_size_headline_material = global::HomeBudget.Droid.Resource.Dimension.abc_text_size_headline_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_text_size_large_material = global::HomeBudget.Droid.Resource.Dimension.abc_text_size_large_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_text_size_medium_material = global::HomeBudget.Droid.Resource.Dimension.abc_text_size_medium_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_text_size_menu_material = global::HomeBudget.Droid.Resource.Dimension.abc_text_size_menu_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_text_size_small_material = global::HomeBudget.Droid.Resource.Dimension.abc_text_size_small_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_text_size_subhead_material = global::HomeBudget.Droid.Resource.Dimension.abc_text_size_subhead_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_text_size_subtitle_material_toolbar = global::HomeBudget.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_text_size_title_material = global::HomeBudget.Droid.Resource.Dimension.abc_text_size_title_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.abc_text_size_title_material_toolbar = global::HomeBudget.Droid.Resource.Dimension.abc_text_size_title_material_toolbar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.disabledAlpha = global::HomeBudget.Droid.Resource.Dimension.disabledAlpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.disabled_alpha_material_dark = global::HomeBudget.Droid.Resource.Dimension.disabled_alpha_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.disabled_alpha_material_light = global::HomeBudget.Droid.Resource.Dimension.disabled_alpha_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.highlight_alpha_material_colored = global::HomeBudget.Droid.Resource.Dimension.highlight_alpha_material_colored;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.highlight_alpha_material_dark = global::HomeBudget.Droid.Resource.Dimension.highlight_alpha_material_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.highlight_alpha_material_light = global::HomeBudget.Droid.Resource.Dimension.highlight_alpha_material_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.notification_large_icon_height = global::HomeBudget.Droid.Resource.Dimension.notification_large_icon_height;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.notification_large_icon_width = global::HomeBudget.Droid.Resource.Dimension.notification_large_icon_width;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.notification_subtext_size = global::HomeBudget.Droid.Resource.Dimension.notification_subtext_size;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_ab_share_pack_mtrl_alpha = global::HomeBudget.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_action_bar_item_background_material = global::HomeBudget.Droid.Resource.Drawable.abc_action_bar_item_background_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_btn_borderless_material = global::HomeBudget.Droid.Resource.Drawable.abc_btn_borderless_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_btn_check_material = global::HomeBudget.Droid.Resource.Drawable.abc_btn_check_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_btn_check_to_on_mtrl_000 = global::HomeBudget.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_btn_check_to_on_mtrl_015 = global::HomeBudget.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_btn_colored_material = global::HomeBudget.Droid.Resource.Drawable.abc_btn_colored_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_btn_default_mtrl_shape = global::HomeBudget.Droid.Resource.Drawable.abc_btn_default_mtrl_shape;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_btn_radio_material = global::HomeBudget.Droid.Resource.Drawable.abc_btn_radio_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_btn_radio_to_on_mtrl_000 = global::HomeBudget.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_btn_radio_to_on_mtrl_015 = global::HomeBudget.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001 = global::HomeBudget.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012 = global::HomeBudget.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_cab_background_internal_bg = global::HomeBudget.Droid.Resource.Drawable.abc_cab_background_internal_bg;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_cab_background_top_material = global::HomeBudget.Droid.Resource.Drawable.abc_cab_background_top_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_cab_background_top_mtrl_alpha = global::HomeBudget.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_control_background_material = global::HomeBudget.Droid.Resource.Drawable.abc_control_background_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_edit_text_material = global::HomeBudget.Droid.Resource.Drawable.abc_edit_text_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha = global::HomeBudget.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha = global::HomeBudget.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha = global::HomeBudget.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha = global::HomeBudget.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha = global::HomeBudget.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_ic_menu_share_mtrl_alpha = global::HomeBudget.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_ic_star_black_16dp = global::HomeBudget.Droid.Resource.Drawable.abc_ic_star_black_16dp;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_ic_star_black_36dp = global::HomeBudget.Droid.Resource.Drawable.abc_ic_star_black_36dp;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_ic_star_half_black_16dp = global::HomeBudget.Droid.Resource.Drawable.abc_ic_star_half_black_16dp;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_ic_star_half_black_36dp = global::HomeBudget.Droid.Resource.Drawable.abc_ic_star_half_black_36dp;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_item_background_holo_dark = global::HomeBudget.Droid.Resource.Drawable.abc_item_background_holo_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_item_background_holo_light = global::HomeBudget.Droid.Resource.Drawable.abc_item_background_holo_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_list_divider_mtrl_alpha = global::HomeBudget.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_list_focused_holo = global::HomeBudget.Droid.Resource.Drawable.abc_list_focused_holo;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_list_longpressed_holo = global::HomeBudget.Droid.Resource.Drawable.abc_list_longpressed_holo;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_list_pressed_holo_dark = global::HomeBudget.Droid.Resource.Drawable.abc_list_pressed_holo_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_list_pressed_holo_light = global::HomeBudget.Droid.Resource.Drawable.abc_list_pressed_holo_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_list_selector_background_transition_holo_dark = global::HomeBudget.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_list_selector_background_transition_holo_light = global::HomeBudget.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_list_selector_disabled_holo_dark = global::HomeBudget.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_list_selector_disabled_holo_light = global::HomeBudget.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_list_selector_holo_dark = global::HomeBudget.Droid.Resource.Drawable.abc_list_selector_holo_dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_list_selector_holo_light = global::HomeBudget.Droid.Resource.Drawable.abc_list_selector_holo_light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult = global::HomeBudget.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_popup_background_mtrl_mult = global::HomeBudget.Droid.Resource.Drawable.abc_popup_background_mtrl_mult;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_ratingbar_indicator_material = global::HomeBudget.Droid.Resource.Drawable.abc_ratingbar_indicator_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_ratingbar_small_material = global::HomeBudget.Droid.Resource.Drawable.abc_ratingbar_small_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha = global::HomeBudget.Droid.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000 = global::HomeBudget.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005 = global::HomeBudget.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_scrubber_primary_mtrl_alpha = global::HomeBudget.Droid.Resource.Drawable.abc_scrubber_primary_mtrl_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_scrubber_track_mtrl_alpha = global::HomeBudget.Droid.Resource.Drawable.abc_scrubber_track_mtrl_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_seekbar_thumb_material = global::HomeBudget.Droid.Resource.Drawable.abc_seekbar_thumb_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_seekbar_track_material = global::HomeBudget.Droid.Resource.Drawable.abc_seekbar_track_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_spinner_mtrl_am_alpha = global::HomeBudget.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_spinner_textfield_background_material = global::HomeBudget.Droid.Resource.Drawable.abc_spinner_textfield_background_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_switch_thumb_material = global::HomeBudget.Droid.Resource.Drawable.abc_switch_thumb_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_switch_track_mtrl_alpha = global::HomeBudget.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_tab_indicator_material = global::HomeBudget.Droid.Resource.Drawable.abc_tab_indicator_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_tab_indicator_mtrl_alpha = global::HomeBudget.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_text_cursor_material = global::HomeBudget.Droid.Resource.Drawable.abc_text_cursor_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_textfield_activated_mtrl_alpha = global::HomeBudget.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_textfield_default_mtrl_alpha = global::HomeBudget.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha = global::HomeBudget.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_textfield_search_default_mtrl_alpha = global::HomeBudget.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.abc_textfield_search_material = global::HomeBudget.Droid.Resource.Drawable.abc_textfield_search_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox = global::HomeBudget.Droid.Resource.Drawable.btn_checkbox;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox_checked = global::HomeBudget.Droid.Resource.Drawable.btn_checkbox_checked;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox_checked_to_indeterminate_animation = global::HomeBudget.Droid.Resource.Drawable.btn_checkbox_checked_to_indeterminate_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox_checked_to_unchecked_animation = global::HomeBudget.Droid.Resource.Drawable.btn_checkbox_checked_to_unchecked_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox_indeterminate = global::HomeBudget.Droid.Resource.Drawable.btn_checkbox_indeterminate;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox_indeterminate_to_checked_animation = global::HomeBudget.Droid.Resource.Drawable.btn_checkbox_indeterminate_to_checked_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox_indeterminate_to_unchecked_animation = global::HomeBudget.Droid.Resource.Drawable.btn_checkbox_indeterminate_to_unchecked_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox_unchecked = global::HomeBudget.Droid.Resource.Drawable.btn_checkbox_unchecked;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox_unchecked_to_checked_animation = global::HomeBudget.Droid.Resource.Drawable.btn_checkbox_unchecked_to_checked_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox_unchecked_to_indeterminate_animation = global::HomeBudget.Droid.Resource.Drawable.btn_checkbox_unchecked_to_indeterminate_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.notification_template_icon_bg = global::HomeBudget.Droid.Resource.Drawable.notification_template_icon_bg;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.action0 = global::HomeBudget.Droid.Resource.Id.action0;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.action_bar = global::HomeBudget.Droid.Resource.Id.action_bar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.action_bar_activity_content = global::HomeBudget.Droid.Resource.Id.action_bar_activity_content;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.action_bar_container = global::HomeBudget.Droid.Resource.Id.action_bar_container;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.action_bar_root = global::HomeBudget.Droid.Resource.Id.action_bar_root;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.action_bar_spinner = global::HomeBudget.Droid.Resource.Id.action_bar_spinner;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.action_bar_subtitle = global::HomeBudget.Droid.Resource.Id.action_bar_subtitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.action_bar_title = global::HomeBudget.Droid.Resource.Id.action_bar_title;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.action_context_bar = global::HomeBudget.Droid.Resource.Id.action_context_bar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.action_divider = global::HomeBudget.Droid.Resource.Id.action_divider;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.action_menu_divider = global::HomeBudget.Droid.Resource.Id.action_menu_divider;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.action_menu_presenter = global::HomeBudget.Droid.Resource.Id.action_menu_presenter;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.action_mode_bar = global::HomeBudget.Droid.Resource.Id.action_mode_bar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.action_mode_bar_stub = global::HomeBudget.Droid.Resource.Id.action_mode_bar_stub;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.action_mode_close_button = global::HomeBudget.Droid.Resource.Id.action_mode_close_button;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.activity_chooser_view_content = global::HomeBudget.Droid.Resource.Id.activity_chooser_view_content;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.alertTitle = global::HomeBudget.Droid.Resource.Id.alertTitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.always = global::HomeBudget.Droid.Resource.Id.always;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.beginning = global::HomeBudget.Droid.Resource.Id.beginning;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.border = global::HomeBudget.Droid.Resource.Id.border;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.bottom = global::HomeBudget.Droid.Resource.Id.bottom;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.buttonPanel = global::HomeBudget.Droid.Resource.Id.buttonPanel;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.cancel_action = global::HomeBudget.Droid.Resource.Id.cancel_action;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.checkbox = global::HomeBudget.Droid.Resource.Id.checkbox;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.@checked = global::HomeBudget.Droid.Resource.Id.@checked;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.chronometer = global::HomeBudget.Droid.Resource.Id.chronometer;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.collapseActionView = global::HomeBudget.Droid.Resource.Id.collapseActionView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.contentPanel = global::HomeBudget.Droid.Resource.Id.contentPanel;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.custom = global::HomeBudget.Droid.Resource.Id.custom;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.customPanel = global::HomeBudget.Droid.Resource.Id.customPanel;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.decor_content_parent = global::HomeBudget.Droid.Resource.Id.decor_content_parent;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.default_activity_button = global::HomeBudget.Droid.Resource.Id.default_activity_button;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.disableHome = global::HomeBudget.Droid.Resource.Id.disableHome;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.edit_query = global::HomeBudget.Droid.Resource.Id.edit_query;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.end = global::HomeBudget.Droid.Resource.Id.end;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.end_padder = global::HomeBudget.Droid.Resource.Id.end_padder;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.expand_activities_button = global::HomeBudget.Droid.Resource.Id.expand_activities_button;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.expanded_menu = global::HomeBudget.Droid.Resource.Id.expanded_menu;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.fill = global::HomeBudget.Droid.Resource.Id.fill;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.home = global::HomeBudget.Droid.Resource.Id.home;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.homeAsUp = global::HomeBudget.Droid.Resource.Id.homeAsUp;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.icon = global::HomeBudget.Droid.Resource.Id.icon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.ifRoom = global::HomeBudget.Droid.Resource.Id.ifRoom;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.image = global::HomeBudget.Droid.Resource.Id.image;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.imagewithtext = global::HomeBudget.Droid.Resource.Id.imagewithtext;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.indeterminate = global::HomeBudget.Droid.Resource.Id.indeterminate;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.info = global::HomeBudget.Droid.Resource.Id.info;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.line1 = global::HomeBudget.Droid.Resource.Id.line1;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.line3 = global::HomeBudget.Droid.Resource.Id.line3;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.listMode = global::HomeBudget.Droid.Resource.Id.listMode;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.list_item = global::HomeBudget.Droid.Resource.Id.list_item;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.media_actions = global::HomeBudget.Droid.Resource.Id.media_actions;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.middle = global::HomeBudget.Droid.Resource.Id.middle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.multiply = global::HomeBudget.Droid.Resource.Id.multiply;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.never = global::HomeBudget.Droid.Resource.Id.never;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.none = global::HomeBudget.Droid.Resource.Id.none;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.normal = global::HomeBudget.Droid.Resource.Id.normal;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.parentPanel = global::HomeBudget.Droid.Resource.Id.parentPanel;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.progress_circular = global::HomeBudget.Droid.Resource.Id.progress_circular;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.progress_horizontal = global::HomeBudget.Droid.Resource.Id.progress_horizontal;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.radio = global::HomeBudget.Droid.Resource.Id.radio;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.screen = global::HomeBudget.Droid.Resource.Id.screen;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.scrollIndicatorDown = global::HomeBudget.Droid.Resource.Id.scrollIndicatorDown;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.scrollIndicatorUp = global::HomeBudget.Droid.Resource.Id.scrollIndicatorUp;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.scrollView = global::HomeBudget.Droid.Resource.Id.scrollView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.search_badge = global::HomeBudget.Droid.Resource.Id.search_badge;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.search_bar = global::HomeBudget.Droid.Resource.Id.search_bar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.search_button = global::HomeBudget.Droid.Resource.Id.search_button;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.search_close_btn = global::HomeBudget.Droid.Resource.Id.search_close_btn;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.search_edit_frame = global::HomeBudget.Droid.Resource.Id.search_edit_frame;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.search_go_btn = global::HomeBudget.Droid.Resource.Id.search_go_btn;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.search_mag_icon = global::HomeBudget.Droid.Resource.Id.search_mag_icon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.search_plate = global::HomeBudget.Droid.Resource.Id.search_plate;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.search_src_text = global::HomeBudget.Droid.Resource.Id.search_src_text;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.search_voice_btn = global::HomeBudget.Droid.Resource.Id.search_voice_btn;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.select_dialog_listview = global::HomeBudget.Droid.Resource.Id.select_dialog_listview;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.shortcut = global::HomeBudget.Droid.Resource.Id.shortcut;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.showCustom = global::HomeBudget.Droid.Resource.Id.showCustom;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.showHome = global::HomeBudget.Droid.Resource.Id.showHome;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.showTitle = global::HomeBudget.Droid.Resource.Id.showTitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.spacer = global::HomeBudget.Droid.Resource.Id.spacer;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.split_action_bar = global::HomeBudget.Droid.Resource.Id.split_action_bar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.src_atop = global::HomeBudget.Droid.Resource.Id.src_atop;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.src_in = global::HomeBudget.Droid.Resource.Id.src_in;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.src_over = global::HomeBudget.Droid.Resource.Id.src_over;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.status_bar_latest_event_content = global::HomeBudget.Droid.Resource.Id.status_bar_latest_event_content;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.submit_area = global::HomeBudget.Droid.Resource.Id.submit_area;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.tabMode = global::HomeBudget.Droid.Resource.Id.tabMode;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.text = global::HomeBudget.Droid.Resource.Id.text;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.text2 = global::HomeBudget.Droid.Resource.Id.text2;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.textSpacerNoButtons = global::HomeBudget.Droid.Resource.Id.textSpacerNoButtons;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.time = global::HomeBudget.Droid.Resource.Id.time;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.title = global::HomeBudget.Droid.Resource.Id.title;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.title_template = global::HomeBudget.Droid.Resource.Id.title_template;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.top = global::HomeBudget.Droid.Resource.Id.top;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.topPanel = global::HomeBudget.Droid.Resource.Id.topPanel;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.@unchecked = global::HomeBudget.Droid.Resource.Id.@unchecked;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.up = global::HomeBudget.Droid.Resource.Id.up;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.useLogo = global::HomeBudget.Droid.Resource.Id.useLogo;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.withText = global::HomeBudget.Droid.Resource.Id.withText;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Id.wrap_content = global::HomeBudget.Droid.Resource.Id.wrap_content;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Integer.abc_config_activityDefaultDur = global::HomeBudget.Droid.Resource.Integer.abc_config_activityDefaultDur;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Integer.abc_config_activityShortDur = global::HomeBudget.Droid.Resource.Integer.abc_config_activityShortDur;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Integer.cancel_button_image_alpha = global::HomeBudget.Droid.Resource.Integer.cancel_button_image_alpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Integer.status_bar_notification_info_maxnum = global::HomeBudget.Droid.Resource.Integer.status_bar_notification_info_maxnum;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Interpolator.btn_checkbox_checked_animation_interpolator_0 = global::HomeBudget.Droid.Resource.Interpolator.btn_checkbox_checked_animation_interpolator_0;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Interpolator.btn_checkbox_checked_animation_interpolator_1 = global::HomeBudget.Droid.Resource.Interpolator.btn_checkbox_checked_animation_interpolator_1;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Interpolator.btn_checkbox_indeterminate_animation_interpolator_1 = global::HomeBudget.Droid.Resource.Interpolator.btn_checkbox_indeterminate_animation_interpolator_1;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Interpolator.btn_checkbox_unchecked_animation_interpolator_0 = global::HomeBudget.Droid.Resource.Interpolator.btn_checkbox_unchecked_animation_interpolator_0;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Interpolator.btn_checkbox_unchecked_animation_interpolator_1 = global::HomeBudget.Droid.Resource.Interpolator.btn_checkbox_unchecked_animation_interpolator_1;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_action_bar_title_item = global::HomeBudget.Droid.Resource.Layout.abc_action_bar_title_item;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_action_bar_up_container = global::HomeBudget.Droid.Resource.Layout.abc_action_bar_up_container;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_action_menu_item_layout = global::HomeBudget.Droid.Resource.Layout.abc_action_menu_item_layout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_action_menu_layout = global::HomeBudget.Droid.Resource.Layout.abc_action_menu_layout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_action_mode_bar = global::HomeBudget.Droid.Resource.Layout.abc_action_mode_bar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_action_mode_close_item_material = global::HomeBudget.Droid.Resource.Layout.abc_action_mode_close_item_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_activity_chooser_view = global::HomeBudget.Droid.Resource.Layout.abc_activity_chooser_view;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_activity_chooser_view_list_item = global::HomeBudget.Droid.Resource.Layout.abc_activity_chooser_view_list_item;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_alert_dialog_button_bar_material = global::HomeBudget.Droid.Resource.Layout.abc_alert_dialog_button_bar_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_alert_dialog_material = global::HomeBudget.Droid.Resource.Layout.abc_alert_dialog_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_dialog_title_material = global::HomeBudget.Droid.Resource.Layout.abc_dialog_title_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_expanded_menu_layout = global::HomeBudget.Droid.Resource.Layout.abc_expanded_menu_layout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_list_menu_item_checkbox = global::HomeBudget.Droid.Resource.Layout.abc_list_menu_item_checkbox;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_list_menu_item_icon = global::HomeBudget.Droid.Resource.Layout.abc_list_menu_item_icon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_list_menu_item_layout = global::HomeBudget.Droid.Resource.Layout.abc_list_menu_item_layout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_list_menu_item_radio = global::HomeBudget.Droid.Resource.Layout.abc_list_menu_item_radio;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_popup_menu_item_layout = global::HomeBudget.Droid.Resource.Layout.abc_popup_menu_item_layout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_screen_content_include = global::HomeBudget.Droid.Resource.Layout.abc_screen_content_include;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_screen_simple = global::HomeBudget.Droid.Resource.Layout.abc_screen_simple;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_screen_simple_overlay_action_mode = global::HomeBudget.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_screen_toolbar = global::HomeBudget.Droid.Resource.Layout.abc_screen_toolbar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_search_dropdown_item_icons_2line = global::HomeBudget.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_search_view = global::HomeBudget.Droid.Resource.Layout.abc_search_view;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.abc_select_dialog_material = global::HomeBudget.Droid.Resource.Layout.abc_select_dialog_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.notification_media_action = global::HomeBudget.Droid.Resource.Layout.notification_media_action;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.notification_media_cancel_action = global::HomeBudget.Droid.Resource.Layout.notification_media_cancel_action;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.notification_template_big_media = global::HomeBudget.Droid.Resource.Layout.notification_template_big_media;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.notification_template_big_media_narrow = global::HomeBudget.Droid.Resource.Layout.notification_template_big_media_narrow;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.notification_template_media = global::HomeBudget.Droid.Resource.Layout.notification_template_media;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.notification_template_part_chronometer = global::HomeBudget.Droid.Resource.Layout.notification_template_part_chronometer;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.notification_template_part_time = global::HomeBudget.Droid.Resource.Layout.notification_template_part_time;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.select_dialog_item_material = global::HomeBudget.Droid.Resource.Layout.select_dialog_item_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.select_dialog_multichoice_material = global::HomeBudget.Droid.Resource.Layout.select_dialog_multichoice_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.select_dialog_singlechoice_material = global::HomeBudget.Droid.Resource.Layout.select_dialog_singlechoice_material;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Layout.support_simple_spinner_dropdown_item = global::HomeBudget.Droid.Resource.Layout.support_simple_spinner_dropdown_item;
+			global::Syncfusion.Buttons.XForms.Android.Resource.String.abc_action_bar_home_description = global::HomeBudget.Droid.Resource.String.abc_action_bar_home_description;
+			global::Syncfusion.Buttons.XForms.Android.Resource.String.abc_action_bar_up_description = global::HomeBudget.Droid.Resource.String.abc_action_bar_up_description;
+			global::Syncfusion.Buttons.XForms.Android.Resource.String.abc_action_menu_overflow_description = global::HomeBudget.Droid.Resource.String.abc_action_menu_overflow_description;
+			global::Syncfusion.Buttons.XForms.Android.Resource.String.abc_action_mode_done = global::HomeBudget.Droid.Resource.String.abc_action_mode_done;
+			global::Syncfusion.Buttons.XForms.Android.Resource.String.abc_activity_chooser_view_see_all = global::HomeBudget.Droid.Resource.String.abc_activity_chooser_view_see_all;
+			global::Syncfusion.Buttons.XForms.Android.Resource.String.abc_activitychooserview_choose_application = global::HomeBudget.Droid.Resource.String.abc_activitychooserview_choose_application;
+			global::Syncfusion.Buttons.XForms.Android.Resource.String.abc_capital_off = global::HomeBudget.Droid.Resource.String.abc_capital_off;
+			global::Syncfusion.Buttons.XForms.Android.Resource.String.abc_capital_on = global::HomeBudget.Droid.Resource.String.abc_capital_on;
+			global::Syncfusion.Buttons.XForms.Android.Resource.String.abc_search_hint = global::HomeBudget.Droid.Resource.String.abc_search_hint;
+			global::Syncfusion.Buttons.XForms.Android.Resource.String.abc_searchview_description_clear = global::HomeBudget.Droid.Resource.String.abc_searchview_description_clear;
+			global::Syncfusion.Buttons.XForms.Android.Resource.String.abc_searchview_description_query = global::HomeBudget.Droid.Resource.String.abc_searchview_description_query;
+			global::Syncfusion.Buttons.XForms.Android.Resource.String.abc_searchview_description_search = global::HomeBudget.Droid.Resource.String.abc_searchview_description_search;
+			global::Syncfusion.Buttons.XForms.Android.Resource.String.abc_searchview_description_submit = global::HomeBudget.Droid.Resource.String.abc_searchview_description_submit;
+			global::Syncfusion.Buttons.XForms.Android.Resource.String.abc_searchview_description_voice = global::HomeBudget.Droid.Resource.String.abc_searchview_description_voice;
+			global::Syncfusion.Buttons.XForms.Android.Resource.String.abc_shareactionprovider_share_with = global::HomeBudget.Droid.Resource.String.abc_shareactionprovider_share_with;
+			global::Syncfusion.Buttons.XForms.Android.Resource.String.abc_shareactionprovider_share_with_application = global::HomeBudget.Droid.Resource.String.abc_shareactionprovider_share_with_application;
+			global::Syncfusion.Buttons.XForms.Android.Resource.String.abc_toolbar_collapse_description = global::HomeBudget.Droid.Resource.String.abc_toolbar_collapse_description;
+			global::Syncfusion.Buttons.XForms.Android.Resource.String.status_bar_notification_info_overflow = global::HomeBudget.Droid.Resource.String.status_bar_notification_info_overflow;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.AlertDialog_AppCompat = global::HomeBudget.Droid.Resource.Style.AlertDialog_AppCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.AlertDialog_AppCompat_Light = global::HomeBudget.Droid.Resource.Style.AlertDialog_AppCompat_Light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Animation_AppCompat_Dialog = global::HomeBudget.Droid.Resource.Style.Animation_AppCompat_Dialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Animation_AppCompat_DropDownUp = global::HomeBudget.Droid.Resource.Style.Animation_AppCompat_DropDownUp;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_AlertDialog_AppCompat = global::HomeBudget.Droid.Resource.Style.Base_AlertDialog_AppCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_AlertDialog_AppCompat_Light = global::HomeBudget.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Animation_AppCompat_Dialog = global::HomeBudget.Droid.Resource.Style.Base_Animation_AppCompat_Dialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Animation_AppCompat_DropDownUp = global::HomeBudget.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_DialogWindowTitle_AppCompat = global::HomeBudget.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_DialogWindowTitleBackground_AppCompat = global::HomeBudget.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Body1 = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Body2 = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Button = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Caption = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Display1 = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Display2 = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Display3 = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Display4 = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Headline = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Inverse = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Large = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Medium = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Menu = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_SearchResult = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Small = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Subhead = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Title = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title = global::HomeBudget.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Theme_AppCompat = global::HomeBudget.Droid.Resource.Style.Base_Theme_AppCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Theme_AppCompat_CompactMenu = global::HomeBudget.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Theme_AppCompat_Dialog = global::HomeBudget.Droid.Resource.Style.Base_Theme_AppCompat_Dialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Theme_AppCompat_Dialog_Alert = global::HomeBudget.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize = global::HomeBudget.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth = global::HomeBudget.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge = global::HomeBudget.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Theme_AppCompat_Light = global::HomeBudget.Droid.Resource.Style.Base_Theme_AppCompat_Light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar = global::HomeBudget.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Theme_AppCompat_Light_Dialog = global::HomeBudget.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert = global::HomeBudget.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize = global::HomeBudget.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth = global::HomeBudget.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge = global::HomeBudget.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_ThemeOverlay_AppCompat = global::HomeBudget.Droid.Resource.Style.Base_ThemeOverlay_AppCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar = global::HomeBudget.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_ThemeOverlay_AppCompat_Dark = global::HomeBudget.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar = global::HomeBudget.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_ThemeOverlay_AppCompat_Light = global::HomeBudget.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_V11_Theme_AppCompat_Dialog = global::HomeBudget.Droid.Resource.Style.Base_V11_Theme_AppCompat_Dialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog = global::HomeBudget.Droid.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView = global::HomeBudget.Droid.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_V12_Widget_AppCompat_EditText = global::HomeBudget.Droid.Resource.Style.Base_V12_Widget_AppCompat_EditText;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_V21_Theme_AppCompat = global::HomeBudget.Droid.Resource.Style.Base_V21_Theme_AppCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::HomeBudget.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_V21_Theme_AppCompat_Light = global::HomeBudget.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog = global::HomeBudget.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_V22_Theme_AppCompat = global::HomeBudget.Droid.Resource.Style.Base_V22_Theme_AppCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_V22_Theme_AppCompat_Light = global::HomeBudget.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_V23_Theme_AppCompat = global::HomeBudget.Droid.Resource.Style.Base_V23_Theme_AppCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_V23_Theme_AppCompat_Light = global::HomeBudget.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_V7_Theme_AppCompat = global::HomeBudget.Droid.Resource.Style.Base_V7_Theme_AppCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_V7_Theme_AppCompat_Dialog = global::HomeBudget.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_V7_Theme_AppCompat_Light = global::HomeBudget.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog = global::HomeBudget.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView = global::HomeBudget.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_V7_Widget_AppCompat_EditText = global::HomeBudget.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_ActionBar = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_ActionButton = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_ActionMode = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_ActivityChooserView = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_Button = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_Button;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_Button_Borderless = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_Button_Colored = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_Button_Small = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_ButtonBar = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_EditText = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_EditText;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_ImageButton = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_ImageButton;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_Light_ActionBar = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_ListPopupWindow = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_ListView = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_ListView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_ListView_DropDown = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_ListView_Menu = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_PopupMenu = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_PopupWindow = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_ProgressBar = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_RatingBar = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_RatingBar_Small = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Small;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_SearchView = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_SearchView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_SeekBar = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_Spinner = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_Spinner;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_Toolbar = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation = global::HomeBudget.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Platform_AppCompat = global::HomeBudget.Droid.Resource.Style.Platform_AppCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Platform_AppCompat_Light = global::HomeBudget.Droid.Resource.Style.Platform_AppCompat_Light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Platform_ThemeOverlay_AppCompat = global::HomeBudget.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark = global::HomeBudget.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Platform_ThemeOverlay_AppCompat_Light = global::HomeBudget.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Platform_V11_AppCompat = global::HomeBudget.Droid.Resource.Style.Platform_V11_AppCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Platform_V11_AppCompat_Light = global::HomeBudget.Droid.Resource.Style.Platform_V11_AppCompat_Light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Platform_V14_AppCompat = global::HomeBudget.Droid.Resource.Style.Platform_V14_AppCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Platform_V14_AppCompat_Light = global::HomeBudget.Droid.Resource.Style.Platform_V14_AppCompat_Light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Platform_Widget_AppCompat_Spinner = global::HomeBudget.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat = global::HomeBudget.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = global::HomeBudget.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon = global::HomeBudget.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem = global::HomeBudget.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = global::HomeBudget.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = global::HomeBudget.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown = global::HomeBudget.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = global::HomeBudget.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = global::HomeBudget.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query = global::HomeBudget.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::HomeBudget.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon = global::HomeBudget.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton = global::HomeBudget.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = global::HomeBudget.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Body1 = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Body1;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Body2 = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Body2;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Button = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Button;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Caption = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Caption;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Display1 = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Display1;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Display2 = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Display2;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Display3 = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Display3;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Display4 = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Display4;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Headline = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Headline;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Inverse = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Large = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Large;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Large_Inverse = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Medium = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Medium;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Medium_Inverse = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Menu = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Menu;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_SearchResult_Title = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Small = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Small;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Small_Inverse = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Subhead = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Subhead;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Title = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Title;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Title_Inverse = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Widget_Button = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Widget_Switch = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::HomeBudget.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::HomeBudget.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::HomeBudget.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title = global::HomeBudget.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_CompactMenu = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_CompactMenu;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_DayNight = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_DayNight;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_DayNight_Dialog = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_DayNight_NoActionBar = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_Dialog = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_Dialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_Dialog_Alert = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_Dialog_MinWidth = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_DialogWhenLarge = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_Light = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_Light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_Light_DarkActionBar = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_Light_Dialog = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_Light_Dialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_Light_Dialog_Alert = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_Light_NoActionBar = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Theme_AppCompat_NoActionBar = global::HomeBudget.Droid.Resource.Style.Theme_AppCompat_NoActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.ThemeOverlay_AppCompat = global::HomeBudget.Droid.Resource.Style.ThemeOverlay_AppCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.ThemeOverlay_AppCompat_ActionBar = global::HomeBudget.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.ThemeOverlay_AppCompat_Dark = global::HomeBudget.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar = global::HomeBudget.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.ThemeOverlay_AppCompat_Light = global::HomeBudget.Droid.Resource.Style.ThemeOverlay_AppCompat_Light;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_ActionBar = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_ActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_ActionBar_Solid = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_ActionBar_TabBar = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_ActionBar_TabText = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_ActionBar_TabView = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_ActionButton = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_ActionButton;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_ActionButton_CloseMode = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_ActionButton_Overflow = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_ActionMode = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_ActionMode;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_ActivityChooserView = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_AutoCompleteTextView = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Button = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Button;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Button_Borderless = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Button_Borderless;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Button_Borderless_Colored = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Button_Colored = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Button_Colored;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Button_Small = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Button_Small;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_ButtonBar = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_ButtonBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_CompoundButton_Switch = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_DrawerArrowToggle = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_DropDownItem_Spinner = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_EditText = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_EditText;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_ImageButton = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_ImageButton;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_ActionBar = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_ActionButton = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_ActivityChooserView = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_ListPopupWindow = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_ListView_DropDown = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_PopupMenu = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_SearchView = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_SearchView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_ListPopupWindow = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_ListView = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_ListView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_ListView_DropDown = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_ListView_Menu = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_ListView_Menu;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_PopupMenu = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_PopupMenu;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_PopupMenu_Overflow = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_PopupWindow = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_PopupWindow;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_ProgressBar = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_ProgressBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_RatingBar = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_RatingBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_RatingBar_Indicator = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_RatingBar_Indicator;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_RatingBar_Small = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_RatingBar_Small;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_SearchView = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_SearchView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_SearchView_ActionBar = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_SeekBar = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_SeekBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Spinner = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Spinner;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Spinner_DropDown = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Spinner_Underlined = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_TextView_SpinnerItem = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Toolbar = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Toolbar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::HomeBudget.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar = global::HomeBudget.Droid.Resource.Styleable.ActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_background = global::HomeBudget.Droid.Resource.Styleable.ActionBar_background;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_backgroundSplit = global::HomeBudget.Droid.Resource.Styleable.ActionBar_backgroundSplit;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_backgroundStacked = global::HomeBudget.Droid.Resource.Styleable.ActionBar_backgroundStacked;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_contentInsetEnd = global::HomeBudget.Droid.Resource.Styleable.ActionBar_contentInsetEnd;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_contentInsetLeft = global::HomeBudget.Droid.Resource.Styleable.ActionBar_contentInsetLeft;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_contentInsetRight = global::HomeBudget.Droid.Resource.Styleable.ActionBar_contentInsetRight;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_contentInsetStart = global::HomeBudget.Droid.Resource.Styleable.ActionBar_contentInsetStart;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_customNavigationLayout = global::HomeBudget.Droid.Resource.Styleable.ActionBar_customNavigationLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_displayOptions = global::HomeBudget.Droid.Resource.Styleable.ActionBar_displayOptions;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_divider = global::HomeBudget.Droid.Resource.Styleable.ActionBar_divider;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_elevation = global::HomeBudget.Droid.Resource.Styleable.ActionBar_elevation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_height = global::HomeBudget.Droid.Resource.Styleable.ActionBar_height;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_hideOnContentScroll = global::HomeBudget.Droid.Resource.Styleable.ActionBar_hideOnContentScroll;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_homeAsUpIndicator = global::HomeBudget.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_homeLayout = global::HomeBudget.Droid.Resource.Styleable.ActionBar_homeLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_icon = global::HomeBudget.Droid.Resource.Styleable.ActionBar_icon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_indeterminateProgressStyle = global::HomeBudget.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_itemPadding = global::HomeBudget.Droid.Resource.Styleable.ActionBar_itemPadding;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_logo = global::HomeBudget.Droid.Resource.Styleable.ActionBar_logo;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_navigationMode = global::HomeBudget.Droid.Resource.Styleable.ActionBar_navigationMode;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_popupTheme = global::HomeBudget.Droid.Resource.Styleable.ActionBar_popupTheme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_progressBarPadding = global::HomeBudget.Droid.Resource.Styleable.ActionBar_progressBarPadding;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_progressBarStyle = global::HomeBudget.Droid.Resource.Styleable.ActionBar_progressBarStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_subtitle = global::HomeBudget.Droid.Resource.Styleable.ActionBar_subtitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_subtitleTextStyle = global::HomeBudget.Droid.Resource.Styleable.ActionBar_subtitleTextStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_title = global::HomeBudget.Droid.Resource.Styleable.ActionBar_title;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBar_titleTextStyle = global::HomeBudget.Droid.Resource.Styleable.ActionBar_titleTextStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBarLayout = global::HomeBudget.Droid.Resource.Styleable.ActionBarLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionBarLayout_android_layout_gravity = global::HomeBudget.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionMenuItemView = global::HomeBudget.Droid.Resource.Styleable.ActionMenuItemView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionMenuItemView_android_minWidth = global::HomeBudget.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionMenuView = global::HomeBudget.Droid.Resource.Styleable.ActionMenuView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionMode = global::HomeBudget.Droid.Resource.Styleable.ActionMode;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionMode_background = global::HomeBudget.Droid.Resource.Styleable.ActionMode_background;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionMode_backgroundSplit = global::HomeBudget.Droid.Resource.Styleable.ActionMode_backgroundSplit;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionMode_closeItemLayout = global::HomeBudget.Droid.Resource.Styleable.ActionMode_closeItemLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionMode_height = global::HomeBudget.Droid.Resource.Styleable.ActionMode_height;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionMode_subtitleTextStyle = global::HomeBudget.Droid.Resource.Styleable.ActionMode_subtitleTextStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActionMode_titleTextStyle = global::HomeBudget.Droid.Resource.Styleable.ActionMode_titleTextStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActivityChooserView = global::HomeBudget.Droid.Resource.Styleable.ActivityChooserView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable = global::HomeBudget.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ActivityChooserView_initialActivityCount = global::HomeBudget.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AlertDialog = global::HomeBudget.Droid.Resource.Styleable.AlertDialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AlertDialog_android_layout = global::HomeBudget.Droid.Resource.Styleable.AlertDialog_android_layout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AlertDialog_buttonPanelSideLayout = global::HomeBudget.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AlertDialog_listItemLayout = global::HomeBudget.Droid.Resource.Styleable.AlertDialog_listItemLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AlertDialog_listLayout = global::HomeBudget.Droid.Resource.Styleable.AlertDialog_listLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AlertDialog_multiChoiceItemLayout = global::HomeBudget.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AlertDialog_singleChoiceItemLayout = global::HomeBudget.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatImageView = global::HomeBudget.Droid.Resource.Styleable.AppCompatImageView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatImageView_android_src = global::HomeBudget.Droid.Resource.Styleable.AppCompatImageView_android_src;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatImageView_srcCompat = global::HomeBudget.Droid.Resource.Styleable.AppCompatImageView_srcCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTextView = global::HomeBudget.Droid.Resource.Styleable.AppCompatTextView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTextView_android_textAppearance = global::HomeBudget.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTextView_textAllCaps = global::HomeBudget.Droid.Resource.Styleable.AppCompatTextView_textAllCaps;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionBarDivider = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionBarItemBackground = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionBarItemBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionBarPopupTheme = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionBarPopupTheme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionBarSize = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionBarSize;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionBarSplitStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionBarSplitStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionBarStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionBarStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionBarTabStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionBarTabStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionBarTheme = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionBarTheme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionButtonStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionDropDownStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionDropDownStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionMenuTextColor = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextColor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionModeBackground = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionModeBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionModeCutDrawable = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionModeCutDrawable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionModeFindDrawable = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionModeFindDrawable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionModePasteDrawable = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionModePasteDrawable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionModeShareDrawable = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionModeShareDrawable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionModeSplitBackground = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionModeSplitBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionModeStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionModeStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_activityChooserViewStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_activityChooserViewStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_alertDialogStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_alertDialogStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_alertDialogTheme = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_alertDialogTheme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_android_windowIsFloating = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_android_windowIsFloating;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_borderlessButtonStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_borderlessButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_buttonBarStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_buttonBarStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_buttonStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_buttonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_buttonStyleSmall = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_buttonStyleSmall;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_checkboxStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_checkboxStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_checkedTextViewStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_checkedTextViewStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_colorAccent = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_colorAccent;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_colorButtonNormal = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_colorButtonNormal;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_colorControlActivated = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_colorControlActivated;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_colorControlHighlight = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_colorControlHighlight;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_colorControlNormal = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_colorControlNormal;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_colorPrimary = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_colorPrimary;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_colorPrimaryDark = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_colorPrimaryDark;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_controlBackground = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_controlBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_dialogPreferredPadding = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_dialogTheme = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_dialogTheme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_dividerHorizontal = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_dividerVertical = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_dividerVertical;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_dropDownListViewStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_editTextBackground = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_editTextBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_editTextColor = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_editTextColor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_editTextStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_editTextStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_homeAsUpIndicator = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_imageButtonStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_listDividerAlertDialog = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_listPopupWindowStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_listPreferredItemHeight = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_panelBackground = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_panelBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_panelMenuListTheme = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_panelMenuListTheme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_panelMenuListWidth = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_panelMenuListWidth;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_popupMenuStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_popupMenuStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_popupWindowStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_popupWindowStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_radioButtonStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_radioButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_ratingBarStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_searchViewStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_searchViewStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_seekBarStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_seekBarStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_selectableItemBackground = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_spinnerStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_spinnerStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_switchStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_switchStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_textAppearanceListItem = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItem;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_textColorSearchUrl = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_textColorSearchUrl;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_toolbarStyle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_toolbarStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_windowActionBar = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_windowActionBar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_windowActionBarOverlay = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_windowActionModeOverlay = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_windowMinWidthMajor = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_windowMinWidthMinor = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.AppCompatTheme_windowNoTitle = global::HomeBudget.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ButtonBarLayout = global::HomeBudget.Droid.Resource.Styleable.ButtonBarLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ButtonBarLayout_allowStacking = global::HomeBudget.Droid.Resource.Styleable.ButtonBarLayout_allowStacking;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.CompoundButton = global::HomeBudget.Droid.Resource.Styleable.CompoundButton;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.CompoundButton_android_button = global::HomeBudget.Droid.Resource.Styleable.CompoundButton_android_button;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.CompoundButton_buttonTint = global::HomeBudget.Droid.Resource.Styleable.CompoundButton_buttonTint;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.CompoundButton_buttonTintMode = global::HomeBudget.Droid.Resource.Styleable.CompoundButton_buttonTintMode;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.DrawableStates = global::HomeBudget.Droid.Resource.Styleable.DrawableStates;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.DrawableStates_state_indeterminate = global::HomeBudget.Droid.Resource.Styleable.DrawableStates_state_indeterminate;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.DrawerArrowToggle = global::HomeBudget.Droid.Resource.Styleable.DrawerArrowToggle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.DrawerArrowToggle_arrowHeadLength = global::HomeBudget.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.DrawerArrowToggle_arrowShaftLength = global::HomeBudget.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.DrawerArrowToggle_barLength = global::HomeBudget.Droid.Resource.Styleable.DrawerArrowToggle_barLength;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.DrawerArrowToggle_color = global::HomeBudget.Droid.Resource.Styleable.DrawerArrowToggle_color;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.DrawerArrowToggle_drawableSize = global::HomeBudget.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.DrawerArrowToggle_gapBetweenBars = global::HomeBudget.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.DrawerArrowToggle_spinBars = global::HomeBudget.Droid.Resource.Styleable.DrawerArrowToggle_spinBars;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.DrawerArrowToggle_thickness = global::HomeBudget.Droid.Resource.Styleable.DrawerArrowToggle_thickness;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.LinearLayoutCompat = global::HomeBudget.Droid.Resource.Styleable.LinearLayoutCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.LinearLayoutCompat_android_baselineAligned = global::HomeBudget.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex = global::HomeBudget.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.LinearLayoutCompat_android_gravity = global::HomeBudget.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.LinearLayoutCompat_android_orientation = global::HomeBudget.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.LinearLayoutCompat_android_weightSum = global::HomeBudget.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.LinearLayoutCompat_divider = global::HomeBudget.Droid.Resource.Styleable.LinearLayoutCompat_divider;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.LinearLayoutCompat_dividerPadding = global::HomeBudget.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild = global::HomeBudget.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.LinearLayoutCompat_showDividers = global::HomeBudget.Droid.Resource.Styleable.LinearLayoutCompat_showDividers;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.LinearLayoutCompat_Layout = global::HomeBudget.Droid.Resource.Styleable.LinearLayoutCompat_Layout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity = global::HomeBudget.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height = global::HomeBudget.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight = global::HomeBudget.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width = global::HomeBudget.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ListPopupWindow = global::HomeBudget.Droid.Resource.Styleable.ListPopupWindow;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset = global::HomeBudget.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset = global::HomeBudget.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuGroup = global::HomeBudget.Droid.Resource.Styleable.MenuGroup;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuGroup_android_checkableBehavior = global::HomeBudget.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuGroup_android_enabled = global::HomeBudget.Droid.Resource.Styleable.MenuGroup_android_enabled;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuGroup_android_id = global::HomeBudget.Droid.Resource.Styleable.MenuGroup_android_id;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuGroup_android_menuCategory = global::HomeBudget.Droid.Resource.Styleable.MenuGroup_android_menuCategory;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuGroup_android_orderInCategory = global::HomeBudget.Droid.Resource.Styleable.MenuGroup_android_orderInCategory;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuGroup_android_visible = global::HomeBudget.Droid.Resource.Styleable.MenuGroup_android_visible;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuItem = global::HomeBudget.Droid.Resource.Styleable.MenuItem;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuItem_actionLayout = global::HomeBudget.Droid.Resource.Styleable.MenuItem_actionLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuItem_actionProviderClass = global::HomeBudget.Droid.Resource.Styleable.MenuItem_actionProviderClass;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuItem_actionViewClass = global::HomeBudget.Droid.Resource.Styleable.MenuItem_actionViewClass;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuItem_android_alphabeticShortcut = global::HomeBudget.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuItem_android_checkable = global::HomeBudget.Droid.Resource.Styleable.MenuItem_android_checkable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuItem_android_checked = global::HomeBudget.Droid.Resource.Styleable.MenuItem_android_checked;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuItem_android_enabled = global::HomeBudget.Droid.Resource.Styleable.MenuItem_android_enabled;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuItem_android_icon = global::HomeBudget.Droid.Resource.Styleable.MenuItem_android_icon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuItem_android_id = global::HomeBudget.Droid.Resource.Styleable.MenuItem_android_id;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuItem_android_menuCategory = global::HomeBudget.Droid.Resource.Styleable.MenuItem_android_menuCategory;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuItem_android_numericShortcut = global::HomeBudget.Droid.Resource.Styleable.MenuItem_android_numericShortcut;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuItem_android_onClick = global::HomeBudget.Droid.Resource.Styleable.MenuItem_android_onClick;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuItem_android_orderInCategory = global::HomeBudget.Droid.Resource.Styleable.MenuItem_android_orderInCategory;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuItem_android_title = global::HomeBudget.Droid.Resource.Styleable.MenuItem_android_title;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuItem_android_titleCondensed = global::HomeBudget.Droid.Resource.Styleable.MenuItem_android_titleCondensed;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuItem_android_visible = global::HomeBudget.Droid.Resource.Styleable.MenuItem_android_visible;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuItem_showAsAction = global::HomeBudget.Droid.Resource.Styleable.MenuItem_showAsAction;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuView = global::HomeBudget.Droid.Resource.Styleable.MenuView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuView_android_headerBackground = global::HomeBudget.Droid.Resource.Styleable.MenuView_android_headerBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuView_android_horizontalDivider = global::HomeBudget.Droid.Resource.Styleable.MenuView_android_horizontalDivider;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuView_android_itemBackground = global::HomeBudget.Droid.Resource.Styleable.MenuView_android_itemBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuView_android_itemIconDisabledAlpha = global::HomeBudget.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuView_android_itemTextAppearance = global::HomeBudget.Droid.Resource.Styleable.MenuView_android_itemTextAppearance;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuView_android_verticalDivider = global::HomeBudget.Droid.Resource.Styleable.MenuView_android_verticalDivider;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuView_android_windowAnimationStyle = global::HomeBudget.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.MenuView_preserveIconSpacing = global::HomeBudget.Droid.Resource.Styleable.MenuView_preserveIconSpacing;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.PopupWindow = global::HomeBudget.Droid.Resource.Styleable.PopupWindow;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.PopupWindow_android_popupBackground = global::HomeBudget.Droid.Resource.Styleable.PopupWindow_android_popupBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.PopupWindow_overlapAnchor = global::HomeBudget.Droid.Resource.Styleable.PopupWindow_overlapAnchor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.PopupWindowBackgroundState = global::HomeBudget.Droid.Resource.Styleable.PopupWindowBackgroundState;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor = global::HomeBudget.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SearchView = global::HomeBudget.Droid.Resource.Styleable.SearchView;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SearchView_android_focusable = global::HomeBudget.Droid.Resource.Styleable.SearchView_android_focusable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SearchView_android_imeOptions = global::HomeBudget.Droid.Resource.Styleable.SearchView_android_imeOptions;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SearchView_android_inputType = global::HomeBudget.Droid.Resource.Styleable.SearchView_android_inputType;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SearchView_android_maxWidth = global::HomeBudget.Droid.Resource.Styleable.SearchView_android_maxWidth;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SearchView_closeIcon = global::HomeBudget.Droid.Resource.Styleable.SearchView_closeIcon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SearchView_commitIcon = global::HomeBudget.Droid.Resource.Styleable.SearchView_commitIcon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SearchView_defaultQueryHint = global::HomeBudget.Droid.Resource.Styleable.SearchView_defaultQueryHint;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SearchView_goIcon = global::HomeBudget.Droid.Resource.Styleable.SearchView_goIcon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SearchView_iconifiedByDefault = global::HomeBudget.Droid.Resource.Styleable.SearchView_iconifiedByDefault;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SearchView_layout = global::HomeBudget.Droid.Resource.Styleable.SearchView_layout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SearchView_queryBackground = global::HomeBudget.Droid.Resource.Styleable.SearchView_queryBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SearchView_queryHint = global::HomeBudget.Droid.Resource.Styleable.SearchView_queryHint;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SearchView_searchHintIcon = global::HomeBudget.Droid.Resource.Styleable.SearchView_searchHintIcon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SearchView_searchIcon = global::HomeBudget.Droid.Resource.Styleable.SearchView_searchIcon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SearchView_submitBackground = global::HomeBudget.Droid.Resource.Styleable.SearchView_submitBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SearchView_suggestionRowLayout = global::HomeBudget.Droid.Resource.Styleable.SearchView_suggestionRowLayout;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SearchView_voiceIcon = global::HomeBudget.Droid.Resource.Styleable.SearchView_voiceIcon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfCheckBox = global::HomeBudget.Droid.Resource.Styleable.SfCheckBox;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfCheckBox_checked = global::HomeBudget.Droid.Resource.Styleable.SfCheckBox_checked;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfCheckBox_cornerradius = global::HomeBudget.Droid.Resource.Styleable.SfCheckBox_cornerradius;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfCheckBox_isthreestate = global::HomeBudget.Droid.Resource.Styleable.SfCheckBox_isthreestate;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfSegmentedControl = global::HomeBudget.Droid.Resource.Styleable.SfSegmentedControl;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfSegmentedControl_segmentBackColor = global::HomeBudget.Droid.Resource.Styleable.SfSegmentedControl_segmentBackColor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfSegmentedControl_segmentBorderColor = global::HomeBudget.Droid.Resource.Styleable.SfSegmentedControl_segmentBorderColor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfSegmentedControl_segmentBorderThickness = global::HomeBudget.Droid.Resource.Styleable.SfSegmentedControl_segmentBorderThickness;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfSegmentedControl_segmentColor = global::HomeBudget.Droid.Resource.Styleable.SfSegmentedControl_segmentColor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfSegmentedControl_segmentCornerRadius = global::HomeBudget.Droid.Resource.Styleable.SfSegmentedControl_segmentCornerRadius;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfSegmentedControl_segmentDisplayMode = global::HomeBudget.Droid.Resource.Styleable.SfSegmentedControl_segmentDisplayMode;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfSegmentedControl_segmentPosition = global::HomeBudget.Droid.Resource.Styleable.SfSegmentedControl_segmentPosition;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfSegmentedControl_segmentSelectedIndex = global::HomeBudget.Droid.Resource.Styleable.SfSegmentedControl_segmentSelectedIndex;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfSegmentedControl_segmentStrokeThickness = global::HomeBudget.Droid.Resource.Styleable.SfSegmentedControl_segmentStrokeThickness;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfSegmentedControl_segmentedHeight = global::HomeBudget.Droid.Resource.Styleable.SfSegmentedControl_segmentedHeight;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfSegmentedControl_segmentedPadding = global::HomeBudget.Droid.Resource.Styleable.SfSegmentedControl_segmentedPadding;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfSegmentedControl_segmentedWidth = global::HomeBudget.Droid.Resource.Styleable.SfSegmentedControl_segmentedWidth;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Spinner = global::HomeBudget.Droid.Resource.Styleable.Spinner;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Spinner_android_dropDownWidth = global::HomeBudget.Droid.Resource.Styleable.Spinner_android_dropDownWidth;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Spinner_android_entries = global::HomeBudget.Droid.Resource.Styleable.Spinner_android_entries;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Spinner_android_popupBackground = global::HomeBudget.Droid.Resource.Styleable.Spinner_android_popupBackground;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Spinner_android_prompt = global::HomeBudget.Droid.Resource.Styleable.Spinner_android_prompt;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Spinner_popupTheme = global::HomeBudget.Droid.Resource.Styleable.Spinner_popupTheme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SwitchCompat = global::HomeBudget.Droid.Resource.Styleable.SwitchCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SwitchCompat_android_textOff = global::HomeBudget.Droid.Resource.Styleable.SwitchCompat_android_textOff;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SwitchCompat_android_textOn = global::HomeBudget.Droid.Resource.Styleable.SwitchCompat_android_textOn;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SwitchCompat_android_thumb = global::HomeBudget.Droid.Resource.Styleable.SwitchCompat_android_thumb;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SwitchCompat_showText = global::HomeBudget.Droid.Resource.Styleable.SwitchCompat_showText;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SwitchCompat_splitTrack = global::HomeBudget.Droid.Resource.Styleable.SwitchCompat_splitTrack;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SwitchCompat_switchMinWidth = global::HomeBudget.Droid.Resource.Styleable.SwitchCompat_switchMinWidth;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SwitchCompat_switchPadding = global::HomeBudget.Droid.Resource.Styleable.SwitchCompat_switchPadding;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SwitchCompat_switchTextAppearance = global::HomeBudget.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SwitchCompat_thumbTextPadding = global::HomeBudget.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SwitchCompat_track = global::HomeBudget.Droid.Resource.Styleable.SwitchCompat_track;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.TextAppearance = global::HomeBudget.Droid.Resource.Styleable.TextAppearance;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.TextAppearance_android_shadowColor = global::HomeBudget.Droid.Resource.Styleable.TextAppearance_android_shadowColor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.TextAppearance_android_shadowDx = global::HomeBudget.Droid.Resource.Styleable.TextAppearance_android_shadowDx;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.TextAppearance_android_shadowDy = global::HomeBudget.Droid.Resource.Styleable.TextAppearance_android_shadowDy;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.TextAppearance_android_shadowRadius = global::HomeBudget.Droid.Resource.Styleable.TextAppearance_android_shadowRadius;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.TextAppearance_android_textColor = global::HomeBudget.Droid.Resource.Styleable.TextAppearance_android_textColor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.TextAppearance_android_textSize = global::HomeBudget.Droid.Resource.Styleable.TextAppearance_android_textSize;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.TextAppearance_android_textStyle = global::HomeBudget.Droid.Resource.Styleable.TextAppearance_android_textStyle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.TextAppearance_android_typeface = global::HomeBudget.Droid.Resource.Styleable.TextAppearance_android_typeface;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.TextAppearance_textAllCaps = global::HomeBudget.Droid.Resource.Styleable.TextAppearance_textAllCaps;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar = global::HomeBudget.Droid.Resource.Styleable.Toolbar;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_android_gravity = global::HomeBudget.Droid.Resource.Styleable.Toolbar_android_gravity;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_android_minHeight = global::HomeBudget.Droid.Resource.Styleable.Toolbar_android_minHeight;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_collapseContentDescription = global::HomeBudget.Droid.Resource.Styleable.Toolbar_collapseContentDescription;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_collapseIcon = global::HomeBudget.Droid.Resource.Styleable.Toolbar_collapseIcon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_contentInsetEnd = global::HomeBudget.Droid.Resource.Styleable.Toolbar_contentInsetEnd;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_contentInsetLeft = global::HomeBudget.Droid.Resource.Styleable.Toolbar_contentInsetLeft;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_contentInsetRight = global::HomeBudget.Droid.Resource.Styleable.Toolbar_contentInsetRight;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_contentInsetStart = global::HomeBudget.Droid.Resource.Styleable.Toolbar_contentInsetStart;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_logo = global::HomeBudget.Droid.Resource.Styleable.Toolbar_logo;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_logoDescription = global::HomeBudget.Droid.Resource.Styleable.Toolbar_logoDescription;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_maxButtonHeight = global::HomeBudget.Droid.Resource.Styleable.Toolbar_maxButtonHeight;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_navigationContentDescription = global::HomeBudget.Droid.Resource.Styleable.Toolbar_navigationContentDescription;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_navigationIcon = global::HomeBudget.Droid.Resource.Styleable.Toolbar_navigationIcon;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_popupTheme = global::HomeBudget.Droid.Resource.Styleable.Toolbar_popupTheme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_subtitle = global::HomeBudget.Droid.Resource.Styleable.Toolbar_subtitle;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_subtitleTextAppearance = global::HomeBudget.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_subtitleTextColor = global::HomeBudget.Droid.Resource.Styleable.Toolbar_subtitleTextColor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_title = global::HomeBudget.Droid.Resource.Styleable.Toolbar_title;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_titleMarginBottom = global::HomeBudget.Droid.Resource.Styleable.Toolbar_titleMarginBottom;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_titleMarginEnd = global::HomeBudget.Droid.Resource.Styleable.Toolbar_titleMarginEnd;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_titleMarginStart = global::HomeBudget.Droid.Resource.Styleable.Toolbar_titleMarginStart;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_titleMarginTop = global::HomeBudget.Droid.Resource.Styleable.Toolbar_titleMarginTop;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_titleMargins = global::HomeBudget.Droid.Resource.Styleable.Toolbar_titleMargins;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_titleTextAppearance = global::HomeBudget.Droid.Resource.Styleable.Toolbar_titleTextAppearance;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.Toolbar_titleTextColor = global::HomeBudget.Droid.Resource.Styleable.Toolbar_titleTextColor;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.View = global::HomeBudget.Droid.Resource.Styleable.View;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.View_android_focusable = global::HomeBudget.Droid.Resource.Styleable.View_android_focusable;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.View_android_theme = global::HomeBudget.Droid.Resource.Styleable.View_android_theme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.View_paddingEnd = global::HomeBudget.Droid.Resource.Styleable.View_paddingEnd;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.View_paddingStart = global::HomeBudget.Droid.Resource.Styleable.View_paddingStart;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.View_theme = global::HomeBudget.Droid.Resource.Styleable.View_theme;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ViewBackgroundHelper = global::HomeBudget.Droid.Resource.Styleable.ViewBackgroundHelper;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ViewBackgroundHelper_android_background = global::HomeBudget.Droid.Resource.Styleable.ViewBackgroundHelper_android_background;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ViewBackgroundHelper_backgroundTint = global::HomeBudget.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode = global::HomeBudget.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ViewStubCompat = global::HomeBudget.Droid.Resource.Styleable.ViewStubCompat;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ViewStubCompat_android_id = global::HomeBudget.Droid.Resource.Styleable.ViewStubCompat_android_id;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ViewStubCompat_android_inflatedId = global::HomeBudget.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.ViewStubCompat_android_layout = global::HomeBudget.Droid.Resource.Styleable.ViewStubCompat_android_layout;
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.inputlayout_togglecollapseicon = global::HomeBudget.Droid.Resource.Drawable.inputlayout_togglecollapseicon;
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.inputlayout_togglevisibleicon = global::HomeBudget.Droid.Resource.Drawable.inputlayout_togglevisibleicon;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.Fadein = global::HomeBudget.Droid.Resource.Animation.Fadein;
@@ -290,8 +1482,6 @@ namespace HomeBudget.Droid
 			global::Com.Syncfusion.Numerictextbox.Resource.Styleable.SfNumericTextBox_watermark = global::HomeBudget.Droid.Resource.Styleable.SfNumericTextBox_watermark;
 			global::Com.Syncfusion.Numerictextbox.Resource.Styleable.SfNumericTextBox_watermarkColor = global::HomeBudget.Droid.Resource.Styleable.SfNumericTextBox_watermarkColor;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::HomeBudget.Droid.Resource.Attribute.actionBarSize;
-			global::XLabs.Platform.Resource.String.ApplicationName = global::HomeBudget.Droid.Resource.String.ApplicationName;
-			global::XLabs.Platform.Resource.String.Hello = global::HomeBudget.Droid.Resource.String.Hello;
 		}
 		
 		public partial class Animation
@@ -328,34 +1518,85 @@ namespace HomeBudget.Droid
 			public const int abc_slide_out_top = 2130968585;
 			
 			// aapt resource value: 0x7f04000a
-			public const int design_bottom_sheet_slide_in = 2130968586;
+			public const int btn_checkbox_indeterminate_to_checked_box_inner_merged_animation = 2130968586;
 			
 			// aapt resource value: 0x7f04000b
-			public const int design_bottom_sheet_slide_out = 2130968587;
+			public const int btn_checkbox_indeterminate_to_checked_box_outer_merged_animation = 2130968587;
 			
 			// aapt resource value: 0x7f04000c
-			public const int design_snackbar_in = 2130968588;
+			public const int btn_checkbox_indeterminate_to_checked_icon_null_animation = 2130968588;
 			
 			// aapt resource value: 0x7f04000d
-			public const int design_snackbar_out = 2130968589;
+			public const int btn_checkbox_to_checked_box_inner_merged_animation = 2130968589;
 			
 			// aapt resource value: 0x7f04000e
-			public const int Fadein = 2130968590;
+			public const int btn_checkbox_to_checked_box_outer_merged_animation = 2130968590;
 			
 			// aapt resource value: 0x7f04000f
-			public const int Fadeout = 2130968591;
+			public const int btn_checkbox_to_checked_icon_null_animation = 2130968591;
 			
 			// aapt resource value: 0x7f040010
-			public const int Scale_in = 2130968592;
+			public const int btn_checkbox_to_indeterminate_from_checked_box_inner_merged_animation = 2130968592;
 			
 			// aapt resource value: 0x7f040011
-			public const int Scale_out = 2130968593;
+			public const int btn_checkbox_to_indeterminate_from_checked_icon_null_animation = 2130968593;
 			
 			// aapt resource value: 0x7f040012
-			public const int tooltip_enter = 2130968594;
+			public const int btn_checkbox_to_indeterminate_from_unchecked_box_inner_merged_animation = 2130968594;
 			
 			// aapt resource value: 0x7f040013
-			public const int tooltip_exit = 2130968595;
+			public const int btn_checkbox_to_indeterminate_from_unchecked_box_outer_merged_animation = 2130968595;
+			
+			// aapt resource value: 0x7f040014
+			public const int btn_checkbox_to_indeterminate_from_unchecked_icon_null_animation = 2130968596;
+			
+			// aapt resource value: 0x7f040015
+			public const int btn_checkbox_to_unchecked_box_inner_merged_animation = 2130968597;
+			
+			// aapt resource value: 0x7f040016
+			public const int btn_checkbox_to_unchecked_check_path_merged_animation = 2130968598;
+			
+			// aapt resource value: 0x7f040017
+			public const int btn_checkbox_to_unchecked_from_indeterminate_box_inner_merged_animation = 2130968599;
+			
+			// aapt resource value: 0x7f040018
+			public const int btn_checkbox_to_unchecked_from_indeterminate_check_path_merged_animation = 2130968600;
+			
+			// aapt resource value: 0x7f040019
+			public const int btn_checkbox_to_unchecked_from_indeterminate_icon_null_animation = 2130968601;
+			
+			// aapt resource value: 0x7f04001a
+			public const int btn_checkbox_to_unchecked_icon_null_animation = 2130968602;
+			
+			// aapt resource value: 0x7f04001b
+			public const int design_bottom_sheet_slide_in = 2130968603;
+			
+			// aapt resource value: 0x7f04001c
+			public const int design_bottom_sheet_slide_out = 2130968604;
+			
+			// aapt resource value: 0x7f04001d
+			public const int design_snackbar_in = 2130968605;
+			
+			// aapt resource value: 0x7f04001e
+			public const int design_snackbar_out = 2130968606;
+			
+			// aapt resource value: 0x7f04001f
+			public const int Fadein = 2130968607;
+			
+			// aapt resource value: 0x7f040020
+			public const int Fadeout = 2130968608;
+			
+			// aapt resource value: 0x7f040021
+			public const int Scale_in = 2130968609;
+			
+			// aapt resource value: 0x7f040022
+			public const int Scale_out = 2130968610;
+			
+			// aapt resource value: 0x7f040023
+			public const int tooltip_enter = 2130968611;
+			
+			// aapt resource value: 0x7f040024
+			public const int tooltip_exit = 2130968612;
 			
 			static Animation()
 			{
@@ -488,41 +1729,41 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f01008e
 			public const int activityChooserViewStyle = 2130772110;
 			
-			// aapt resource value: 0x7f010199
-			public const int ahBarColor = 2130772377;
-			
-			// aapt resource value: 0x7f0101a1
-			public const int ahBarLength = 2130772385;
-			
-			// aapt resource value: 0x7f0101a0
-			public const int ahBarWidth = 2130772384;
-			
-			// aapt resource value: 0x7f01019e
-			public const int ahCircleColor = 2130772382;
-			
-			// aapt resource value: 0x7f01019d
-			public const int ahDelayMillis = 2130772381;
-			
-			// aapt resource value: 0x7f01019f
-			public const int ahRadius = 2130772383;
-			
-			// aapt resource value: 0x7f01019a
-			public const int ahRimColor = 2130772378;
-			
-			// aapt resource value: 0x7f01019b
-			public const int ahRimWidth = 2130772379;
+			// aapt resource value: 0x7f010194
+			public const int ahBarColor = 2130772372;
 			
 			// aapt resource value: 0x7f01019c
-			public const int ahSpinSpeed = 2130772380;
+			public const int ahBarLength = 2130772380;
 			
-			// aapt resource value: 0x7f010196
-			public const int ahText = 2130772374;
+			// aapt resource value: 0x7f01019b
+			public const int ahBarWidth = 2130772379;
 			
-			// aapt resource value: 0x7f010197
-			public const int ahTextColor = 2130772375;
+			// aapt resource value: 0x7f010199
+			public const int ahCircleColor = 2130772377;
 			
 			// aapt resource value: 0x7f010198
-			public const int ahTextSize = 2130772376;
+			public const int ahDelayMillis = 2130772376;
+			
+			// aapt resource value: 0x7f01019a
+			public const int ahRadius = 2130772378;
+			
+			// aapt resource value: 0x7f010195
+			public const int ahRimColor = 2130772373;
+			
+			// aapt resource value: 0x7f010196
+			public const int ahRimWidth = 2130772374;
+			
+			// aapt resource value: 0x7f010197
+			public const int ahSpinSpeed = 2130772375;
+			
+			// aapt resource value: 0x7f010191
+			public const int ahText = 2130772369;
+			
+			// aapt resource value: 0x7f010192
+			public const int ahTextColor = 2130772370;
+			
+			// aapt resource value: 0x7f010193
+			public const int ahTextSize = 2130772371;
 			
 			// aapt resource value: 0x7f0100b3
 			public const int alertDialogButtonGroupStyle = 2130772147;
@@ -674,38 +1915,11 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0100bd
 			public const int checkboxStyle = 2130772157;
 			
+			// aapt resource value: 0x7f010184
+			public const int @checked = 2130772356;
+			
 			// aapt resource value: 0x7f0100be
 			public const int checkedTextViewStyle = 2130772158;
-			
-			// aapt resource value: 0x7f010184
-			public const int circleColor = 2130772356;
-			
-			// aapt resource value: 0x7f010195
-			public const int circularProgressBarStyle = 2130772373;
-			
-			// aapt resource value: 0x7f01018d
-			public const int circular_gravity = 2130772365;
-			
-			// aapt resource value: 0x7f010193
-			public const int circular_indeterminate = 2130772371;
-			
-			// aapt resource value: 0x7f010194
-			public const int circular_indeterminate_interval = 2130772372;
-			
-			// aapt resource value: 0x7f010190
-			public const int circular_marker_progress = 2130772368;
-			
-			// aapt resource value: 0x7f01018f
-			public const int circular_progress = 2130772367;
-			
-			// aapt resource value: 0x7f010192
-			public const int circular_progress_background_color = 2130772370;
-			
-			// aapt resource value: 0x7f010191
-			public const int circular_progress_color = 2130772369;
-			
-			// aapt resource value: 0x7f01018e
-			public const int circular_stroke_width = 2130772366;
 			
 			// aapt resource value: 0x7f0100ee
 			public const int closeIcon = 2130772206;
@@ -802,6 +2016,9 @@ namespace HomeBudget.Droid
 			
 			// aapt resource value: 0x7f0100b0
 			public const int controlBackground = 2130772144;
+			
+			// aapt resource value: 0x7f010183
+			public const int cornerradius = 2130772355;
 			
 			// aapt resource value: 0x7f010160
 			public const int counterEnabled = 2130772320;
@@ -1007,26 +2224,20 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f010095
 			public const int imageButtonStyle = 2130772117;
 			
-			// aapt resource value: 0x7f01018b
-			public const int indeterminate = 2130772363;
-			
 			// aapt resource value: 0x7f010034
 			public const int indeterminateProgressStyle = 2130772020;
 			
-			// aapt resource value: 0x7f01018c
-			public const int indeterminate_interval = 2130772364;
-			
 			// aapt resource value: 0x7f010041
 			public const int initialActivityCount = 2130772033;
-			
-			// aapt resource value: 0x7f010189
-			public const int innerSize = 2130772361;
 			
 			// aapt resource value: 0x7f010149
 			public const int insetForeground = 2130772297;
 			
 			// aapt resource value: 0x7f010024
 			public const int isLightTheme = 2130772004;
+			
+			// aapt resource value: 0x7f010182
+			public const int isthreestate = 2130772354;
 			
 			// aapt resource value: 0x7f010146
 			public const int itemBackground = 2130772294;
@@ -1120,9 +2331,6 @@ namespace HomeBudget.Droid
 			
 			// aapt resource value: 0x7f010110
 			public const int logoDescription = 2130772240;
-			
-			// aapt resource value: 0x7f010183
-			public const int max = 2130772355;
 			
 			// aapt resource value: 0x7f01014b
 			public const int maxActionInlineWidth = 2130772299;
@@ -1244,12 +2452,6 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f010174
 			public const int percentDisplayMode = 2130772340;
 			
-			// aapt resource value: 0x7f01018a
-			public const int pinned = 2130772362;
-			
-			// aapt resource value: 0x7f010186
-			public const int pinnedDrawable = 2130772358;
-			
 			// aapt resource value: 0x7f010091
 			public const int popupMenuStyle = 2130772113;
 			
@@ -1265,20 +2467,11 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f01013e
 			public const int pressedTranslationZ = 2130772286;
 			
-			// aapt resource value: 0x7f010182
-			public const int progress = 2130772354;
-			
 			// aapt resource value: 0x7f010035
 			public const int progressBarPadding = 2130772021;
 			
 			// aapt resource value: 0x7f010033
 			public const int progressBarStyle = 2130772019;
-			
-			// aapt resource value: 0x7f010181
-			public const int progressButtonStyle = 2130772353;
-			
-			// aapt resource value: 0x7f010185
-			public const int progressColor = 2130772357;
 			
 			// aapt resource value: 0x7f0100f5
 			public const int queryBackground = 2130772213;
@@ -1322,6 +2515,42 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0100c4
 			public const int seekBarStyle = 2130772164;
 			
+			// aapt resource value: 0x7f010186
+			public const int segmentBackColor = 2130772358;
+			
+			// aapt resource value: 0x7f010187
+			public const int segmentBorderColor = 2130772359;
+			
+			// aapt resource value: 0x7f010188
+			public const int segmentBorderThickness = 2130772360;
+			
+			// aapt resource value: 0x7f010189
+			public const int segmentColor = 2130772361;
+			
+			// aapt resource value: 0x7f01018e
+			public const int segmentCornerRadius = 2130772366;
+			
+			// aapt resource value: 0x7f010190
+			public const int segmentDisplayMode = 2130772368;
+			
+			// aapt resource value: 0x7f01018f
+			public const int segmentPosition = 2130772367;
+			
+			// aapt resource value: 0x7f010185
+			public const int segmentSelectedIndex = 2130772357;
+			
+			// aapt resource value: 0x7f01018d
+			public const int segmentStrokeThickness = 2130772365;
+			
+			// aapt resource value: 0x7f01018b
+			public const int segmentedHeight = 2130772363;
+			
+			// aapt resource value: 0x7f01018a
+			public const int segmentedPadding = 2130772362;
+			
+			// aapt resource value: 0x7f01018c
+			public const int segmentedWidth = 2130772364;
+			
 			// aapt resource value: 0x7f01017a
 			public const int selectAllOnFocus = 2130772346;
 			
@@ -1330,9 +2559,6 @@ namespace HomeBudget.Droid
 			
 			// aapt resource value: 0x7f01008a
 			public const int selectableItemBackgroundBorderless = 2130772106;
-			
-			// aapt resource value: 0x7f010188
-			public const int shadowDrawable = 2130772360;
 			
 			// aapt resource value: 0x7f0100dc
 			public const int showAsAction = 2130772188;
@@ -1378,6 +2604,9 @@ namespace HomeBudget.Droid
 			
 			// aapt resource value: 0x7f01011a
 			public const int state_collapsible = 2130772250;
+			
+			// aapt resource value: 0x7f010181
+			public const int state_indeterminate = 2130772353;
 			
 			// aapt resource value: 0x7f010132
 			public const int statusBarBackground = 2130772274;
@@ -1592,9 +2821,6 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0100fb
 			public const int trackTintMode = 2130772219;
 			
-			// aapt resource value: 0x7f010187
-			public const int unpinnedDrawable = 2130772359;
-			
 			// aapt resource value: 0x7f010140
 			public const int useCompatPadding = 2130772288;
 			
@@ -1681,44 +2907,44 @@ namespace HomeBudget.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f0c006f
-			public const int abc_background_cache_hint_selector_material_dark = 2131492975;
+			// aapt resource value: 0x7f0c0050
+			public const int abc_background_cache_hint_selector_material_dark = 2131492944;
 			
-			// aapt resource value: 0x7f0c0070
-			public const int abc_background_cache_hint_selector_material_light = 2131492976;
+			// aapt resource value: 0x7f0c0051
+			public const int abc_background_cache_hint_selector_material_light = 2131492945;
 			
-			// aapt resource value: 0x7f0c0071
-			public const int abc_btn_colored_borderless_text_material = 2131492977;
+			// aapt resource value: 0x7f0c0052
+			public const int abc_btn_colored_borderless_text_material = 2131492946;
 			
-			// aapt resource value: 0x7f0c0072
-			public const int abc_btn_colored_text_material = 2131492978;
+			// aapt resource value: 0x7f0c0053
+			public const int abc_btn_colored_text_material = 2131492947;
 			
-			// aapt resource value: 0x7f0c0073
-			public const int abc_color_highlight_material = 2131492979;
+			// aapt resource value: 0x7f0c0054
+			public const int abc_color_highlight_material = 2131492948;
 			
-			// aapt resource value: 0x7f0c0074
-			public const int abc_hint_foreground_material_dark = 2131492980;
+			// aapt resource value: 0x7f0c0055
+			public const int abc_hint_foreground_material_dark = 2131492949;
 			
-			// aapt resource value: 0x7f0c0075
-			public const int abc_hint_foreground_material_light = 2131492981;
+			// aapt resource value: 0x7f0c0056
+			public const int abc_hint_foreground_material_light = 2131492950;
 			
 			// aapt resource value: 0x7f0c0004
 			public const int abc_input_method_navigation_guard = 2131492868;
 			
-			// aapt resource value: 0x7f0c0076
-			public const int abc_primary_text_disable_only_material_dark = 2131492982;
+			// aapt resource value: 0x7f0c0057
+			public const int abc_primary_text_disable_only_material_dark = 2131492951;
 			
-			// aapt resource value: 0x7f0c0077
-			public const int abc_primary_text_disable_only_material_light = 2131492983;
+			// aapt resource value: 0x7f0c0058
+			public const int abc_primary_text_disable_only_material_light = 2131492952;
 			
-			// aapt resource value: 0x7f0c0078
-			public const int abc_primary_text_material_dark = 2131492984;
+			// aapt resource value: 0x7f0c0059
+			public const int abc_primary_text_material_dark = 2131492953;
 			
-			// aapt resource value: 0x7f0c0079
-			public const int abc_primary_text_material_light = 2131492985;
+			// aapt resource value: 0x7f0c005a
+			public const int abc_primary_text_material_light = 2131492954;
 			
-			// aapt resource value: 0x7f0c007a
-			public const int abc_search_url_text = 2131492986;
+			// aapt resource value: 0x7f0c005b
+			public const int abc_search_url_text = 2131492955;
 			
 			// aapt resource value: 0x7f0c0005
 			public const int abc_search_url_text_normal = 2131492869;
@@ -1729,32 +2955,32 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0c0007
 			public const int abc_search_url_text_selected = 2131492871;
 			
-			// aapt resource value: 0x7f0c007b
-			public const int abc_secondary_text_material_dark = 2131492987;
+			// aapt resource value: 0x7f0c005c
+			public const int abc_secondary_text_material_dark = 2131492956;
 			
-			// aapt resource value: 0x7f0c007c
-			public const int abc_secondary_text_material_light = 2131492988;
+			// aapt resource value: 0x7f0c005d
+			public const int abc_secondary_text_material_light = 2131492957;
 			
-			// aapt resource value: 0x7f0c007d
-			public const int abc_tint_btn_checkable = 2131492989;
+			// aapt resource value: 0x7f0c005e
+			public const int abc_tint_btn_checkable = 2131492958;
 			
-			// aapt resource value: 0x7f0c007e
-			public const int abc_tint_default = 2131492990;
+			// aapt resource value: 0x7f0c005f
+			public const int abc_tint_default = 2131492959;
 			
-			// aapt resource value: 0x7f0c007f
-			public const int abc_tint_edittext = 2131492991;
+			// aapt resource value: 0x7f0c0060
+			public const int abc_tint_edittext = 2131492960;
 			
-			// aapt resource value: 0x7f0c0080
-			public const int abc_tint_seek_thumb = 2131492992;
+			// aapt resource value: 0x7f0c0061
+			public const int abc_tint_seek_thumb = 2131492961;
 			
-			// aapt resource value: 0x7f0c0081
-			public const int abc_tint_spinner = 2131492993;
+			// aapt resource value: 0x7f0c0062
+			public const int abc_tint_spinner = 2131492962;
 			
-			// aapt resource value: 0x7f0c0082
-			public const int abc_tint_switch_track = 2131492994;
+			// aapt resource value: 0x7f0c0063
+			public const int abc_tint_switch_track = 2131492963;
 			
-			// aapt resource value: 0x7f0c006c
-			public const int accent = 2131492972;
+			// aapt resource value: 0x7f0c004d
+			public const int accent = 2131492941;
 			
 			// aapt resource value: 0x7f0c0008
 			public const int accent_material_dark = 2131492872;
@@ -1810,11 +3036,14 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0c0003
 			public const int cardview_shadow_start_color = 2131492867;
 			
+			// aapt resource value: 0x7f0c0064
+			public const int control_checkable_material = 2131492964;
+			
 			// aapt resource value: 0x7f0c0040
 			public const int design_bottom_navigation_shadow_color = 2131492928;
 			
-			// aapt resource value: 0x7f0c0083
-			public const int design_error = 2131492995;
+			// aapt resource value: 0x7f0c0065
+			public const int design_error = 2131492965;
 			
 			// aapt resource value: 0x7f0c0041
 			public const int design_fab_shadow_end_color = 2131492929;
@@ -1840,8 +3069,8 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0c0048
 			public const int design_snackbar_background_color = 2131492936;
 			
-			// aapt resource value: 0x7f0c0084
-			public const int design_tint_password_toggle = 2131492996;
+			// aapt resource value: 0x7f0c0066
+			public const int design_tint_password_toggle = 2131492966;
 			
 			// aapt resource value: 0x7f0c0016
 			public const int dim_foreground_disabled_material_dark = 2131492886;
@@ -1915,11 +3144,11 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0c003f
 			public const int notification_material_background_media_default_color = 2131492927;
 			
-			// aapt resource value: 0x7f0c006a
-			public const int primary = 2131492970;
+			// aapt resource value: 0x7f0c004b
+			public const int primary = 2131492939;
 			
-			// aapt resource value: 0x7f0c006b
-			public const int primaryDark = 2131492971;
+			// aapt resource value: 0x7f0c004c
+			public const int primaryDark = 2131492940;
 			
 			// aapt resource value: 0x7f0c002b
 			public const int primary_dark_material_dark = 2131492907;
@@ -1945,99 +3174,6 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0c0032
 			public const int primary_text_disabled_material_light = 2131492914;
 			
-			// aapt resource value: 0x7f0c004b
-			public const int progress_default_circle_color = 2131492939;
-			
-			// aapt resource value: 0x7f0c004c
-			public const int progress_default_progress_color = 2131492940;
-			
-			// aapt resource value: 0x7f0c004d
-			public const int refractored_background_dark = 2131492941;
-			
-			// aapt resource value: 0x7f0c0052
-			public const int refractored_background_holo_dark = 2131492946;
-			
-			// aapt resource value: 0x7f0c0053
-			public const int refractored_background_holo_light = 2131492947;
-			
-			// aapt resource value: 0x7f0c004e
-			public const int refractored_background_light = 2131492942;
-			
-			// aapt resource value: 0x7f0c004f
-			public const int refractored_bright_foreground_dark = 2131492943;
-			
-			// aapt resource value: 0x7f0c0051
-			public const int refractored_bright_foreground_dark_disabled = 2131492945;
-			
-			// aapt resource value: 0x7f0c0056
-			public const int refractored_bright_foreground_disabled_holo_dark = 2131492950;
-			
-			// aapt resource value: 0x7f0c0057
-			public const int refractored_bright_foreground_disabled_holo_light = 2131492951;
-			
-			// aapt resource value: 0x7f0c0054
-			public const int refractored_bright_foreground_holo_dark = 2131492948;
-			
-			// aapt resource value: 0x7f0c0055
-			public const int refractored_bright_foreground_holo_light = 2131492949;
-			
-			// aapt resource value: 0x7f0c0050
-			public const int refractored_bright_foreground_light = 2131492944;
-			
-			// aapt resource value: 0x7f0c0059
-			public const int refractored_dim_foreground_disabled_holo_dark = 2131492953;
-			
-			// aapt resource value: 0x7f0c005c
-			public const int refractored_dim_foreground_disabled_holo_light = 2131492956;
-			
-			// aapt resource value: 0x7f0c0058
-			public const int refractored_dim_foreground_holo_dark = 2131492952;
-			
-			// aapt resource value: 0x7f0c005b
-			public const int refractored_dim_foreground_holo_light = 2131492955;
-			
-			// aapt resource value: 0x7f0c005e
-			public const int refractored_highlighted_text_holo_dark = 2131492958;
-			
-			// aapt resource value: 0x7f0c005f
-			public const int refractored_highlighted_text_holo_light = 2131492959;
-			
-			// aapt resource value: 0x7f0c005a
-			public const int refractored_hint_foreground_holo_dark = 2131492954;
-			
-			// aapt resource value: 0x7f0c005d
-			public const int refractored_hint_foreground_holo_light = 2131492957;
-			
-			// aapt resource value: 0x7f0c0069
-			public const int refractored_holo_blue_bright = 2131492969;
-			
-			// aapt resource value: 0x7f0c0063
-			public const int refractored_holo_blue_dark = 2131492963;
-			
-			// aapt resource value: 0x7f0c0060
-			public const int refractored_holo_blue_light = 2131492960;
-			
-			// aapt resource value: 0x7f0c0064
-			public const int refractored_holo_green_dark = 2131492964;
-			
-			// aapt resource value: 0x7f0c0061
-			public const int refractored_holo_green_light = 2131492961;
-			
-			// aapt resource value: 0x7f0c0068
-			public const int refractored_holo_orange_dark = 2131492968;
-			
-			// aapt resource value: 0x7f0c0067
-			public const int refractored_holo_orange_light = 2131492967;
-			
-			// aapt resource value: 0x7f0c0066
-			public const int refractored_holo_purple = 2131492966;
-			
-			// aapt resource value: 0x7f0c0065
-			public const int refractored_holo_red_dark = 2131492965;
-			
-			// aapt resource value: 0x7f0c0062
-			public const int refractored_holo_red_light = 2131492962;
-			
 			// aapt resource value: 0x7f0c0033
 			public const int ripple_material_dark = 2131492915;
 			
@@ -2056,8 +3192,8 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0c0038
 			public const int secondary_text_disabled_material_light = 2131492920;
 			
-			// aapt resource value: 0x7f0c006e
-			public const int splash_background = 2131492974;
+			// aapt resource value: 0x7f0c004f
+			public const int splash_background = 2131492943;
 			
 			// aapt resource value: 0x7f0c0039
 			public const int switch_thumb_disabled_material_dark = 2131492921;
@@ -2065,11 +3201,11 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0c003a
 			public const int switch_thumb_disabled_material_light = 2131492922;
 			
-			// aapt resource value: 0x7f0c0085
-			public const int switch_thumb_material_dark = 2131492997;
+			// aapt resource value: 0x7f0c0067
+			public const int switch_thumb_material_dark = 2131492967;
 			
-			// aapt resource value: 0x7f0c0086
-			public const int switch_thumb_material_light = 2131492998;
+			// aapt resource value: 0x7f0c0068
+			public const int switch_thumb_material_light = 2131492968;
 			
 			// aapt resource value: 0x7f0c003b
 			public const int switch_thumb_normal_material_dark = 2131492923;
@@ -2083,8 +3219,8 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0c003e
 			public const int tooltip_background_light = 2131492926;
 			
-			// aapt resource value: 0x7f0c006d
-			public const int window_background = 2131492973;
+			// aapt resource value: 0x7f0c004e
+			public const int window_background = 2131492942;
 			
 			static Color()
 			{
@@ -2099,500 +3235,500 @@ namespace HomeBudget.Droid
 		public partial class Dimension
 		{
 			
-			// aapt resource value: 0x7f08001b
-			public const int abc_action_bar_content_inset_material = 2131230747;
+			// aapt resource value: 0x7f07001b
+			public const int abc_action_bar_content_inset_material = 2131165211;
 			
-			// aapt resource value: 0x7f08001c
-			public const int abc_action_bar_content_inset_with_nav = 2131230748;
+			// aapt resource value: 0x7f07001c
+			public const int abc_action_bar_content_inset_with_nav = 2131165212;
 			
-			// aapt resource value: 0x7f080010
-			public const int abc_action_bar_default_height_material = 2131230736;
+			// aapt resource value: 0x7f070010
+			public const int abc_action_bar_default_height_material = 2131165200;
 			
-			// aapt resource value: 0x7f08001d
-			public const int abc_action_bar_default_padding_end_material = 2131230749;
+			// aapt resource value: 0x7f07001d
+			public const int abc_action_bar_default_padding_end_material = 2131165213;
 			
-			// aapt resource value: 0x7f08001e
-			public const int abc_action_bar_default_padding_start_material = 2131230750;
+			// aapt resource value: 0x7f07001e
+			public const int abc_action_bar_default_padding_start_material = 2131165214;
 			
-			// aapt resource value: 0x7f080020
-			public const int abc_action_bar_elevation_material = 2131230752;
+			// aapt resource value: 0x7f070020
+			public const int abc_action_bar_elevation_material = 2131165216;
 			
-			// aapt resource value: 0x7f080021
-			public const int abc_action_bar_icon_vertical_padding_material = 2131230753;
+			// aapt resource value: 0x7f070021
+			public const int abc_action_bar_icon_vertical_padding_material = 2131165217;
 			
-			// aapt resource value: 0x7f080022
-			public const int abc_action_bar_overflow_padding_end_material = 2131230754;
+			// aapt resource value: 0x7f070022
+			public const int abc_action_bar_overflow_padding_end_material = 2131165218;
 			
-			// aapt resource value: 0x7f080023
-			public const int abc_action_bar_overflow_padding_start_material = 2131230755;
+			// aapt resource value: 0x7f070023
+			public const int abc_action_bar_overflow_padding_start_material = 2131165219;
 			
-			// aapt resource value: 0x7f080011
-			public const int abc_action_bar_progress_bar_size = 2131230737;
+			// aapt resource value: 0x7f070011
+			public const int abc_action_bar_progress_bar_size = 2131165201;
 			
-			// aapt resource value: 0x7f080024
-			public const int abc_action_bar_stacked_max_height = 2131230756;
+			// aapt resource value: 0x7f070024
+			public const int abc_action_bar_stacked_max_height = 2131165220;
 			
-			// aapt resource value: 0x7f080025
-			public const int abc_action_bar_stacked_tab_max_width = 2131230757;
+			// aapt resource value: 0x7f070025
+			public const int abc_action_bar_stacked_tab_max_width = 2131165221;
 			
-			// aapt resource value: 0x7f080026
-			public const int abc_action_bar_subtitle_bottom_margin_material = 2131230758;
+			// aapt resource value: 0x7f070026
+			public const int abc_action_bar_subtitle_bottom_margin_material = 2131165222;
 			
-			// aapt resource value: 0x7f080027
-			public const int abc_action_bar_subtitle_top_margin_material = 2131230759;
+			// aapt resource value: 0x7f070027
+			public const int abc_action_bar_subtitle_top_margin_material = 2131165223;
 			
-			// aapt resource value: 0x7f080028
-			public const int abc_action_button_min_height_material = 2131230760;
+			// aapt resource value: 0x7f070028
+			public const int abc_action_button_min_height_material = 2131165224;
 			
-			// aapt resource value: 0x7f080029
-			public const int abc_action_button_min_width_material = 2131230761;
+			// aapt resource value: 0x7f070029
+			public const int abc_action_button_min_width_material = 2131165225;
 			
-			// aapt resource value: 0x7f08002a
-			public const int abc_action_button_min_width_overflow_material = 2131230762;
+			// aapt resource value: 0x7f07002a
+			public const int abc_action_button_min_width_overflow_material = 2131165226;
 			
-			// aapt resource value: 0x7f08000f
-			public const int abc_alert_dialog_button_bar_height = 2131230735;
+			// aapt resource value: 0x7f07000f
+			public const int abc_alert_dialog_button_bar_height = 2131165199;
 			
-			// aapt resource value: 0x7f08002b
-			public const int abc_button_inset_horizontal_material = 2131230763;
+			// aapt resource value: 0x7f07002b
+			public const int abc_button_inset_horizontal_material = 2131165227;
 			
-			// aapt resource value: 0x7f08002c
-			public const int abc_button_inset_vertical_material = 2131230764;
+			// aapt resource value: 0x7f07002c
+			public const int abc_button_inset_vertical_material = 2131165228;
 			
-			// aapt resource value: 0x7f08002d
-			public const int abc_button_padding_horizontal_material = 2131230765;
+			// aapt resource value: 0x7f07002d
+			public const int abc_button_padding_horizontal_material = 2131165229;
 			
-			// aapt resource value: 0x7f08002e
-			public const int abc_button_padding_vertical_material = 2131230766;
+			// aapt resource value: 0x7f07002e
+			public const int abc_button_padding_vertical_material = 2131165230;
 			
-			// aapt resource value: 0x7f08002f
-			public const int abc_cascading_menus_min_smallest_width = 2131230767;
+			// aapt resource value: 0x7f07002f
+			public const int abc_cascading_menus_min_smallest_width = 2131165231;
 			
-			// aapt resource value: 0x7f080014
-			public const int abc_config_prefDialogWidth = 2131230740;
+			// aapt resource value: 0x7f070014
+			public const int abc_config_prefDialogWidth = 2131165204;
 			
-			// aapt resource value: 0x7f080030
-			public const int abc_control_corner_material = 2131230768;
+			// aapt resource value: 0x7f070030
+			public const int abc_control_corner_material = 2131165232;
 			
-			// aapt resource value: 0x7f080031
-			public const int abc_control_inset_material = 2131230769;
+			// aapt resource value: 0x7f070031
+			public const int abc_control_inset_material = 2131165233;
 			
-			// aapt resource value: 0x7f080032
-			public const int abc_control_padding_material = 2131230770;
+			// aapt resource value: 0x7f070032
+			public const int abc_control_padding_material = 2131165234;
 			
-			// aapt resource value: 0x7f080015
-			public const int abc_dialog_fixed_height_major = 2131230741;
+			// aapt resource value: 0x7f070015
+			public const int abc_dialog_fixed_height_major = 2131165205;
 			
-			// aapt resource value: 0x7f080016
-			public const int abc_dialog_fixed_height_minor = 2131230742;
+			// aapt resource value: 0x7f070016
+			public const int abc_dialog_fixed_height_minor = 2131165206;
 			
-			// aapt resource value: 0x7f080017
-			public const int abc_dialog_fixed_width_major = 2131230743;
+			// aapt resource value: 0x7f070017
+			public const int abc_dialog_fixed_width_major = 2131165207;
 			
-			// aapt resource value: 0x7f080018
-			public const int abc_dialog_fixed_width_minor = 2131230744;
+			// aapt resource value: 0x7f070018
+			public const int abc_dialog_fixed_width_minor = 2131165208;
 			
-			// aapt resource value: 0x7f080033
-			public const int abc_dialog_list_padding_bottom_no_buttons = 2131230771;
+			// aapt resource value: 0x7f070033
+			public const int abc_dialog_list_padding_bottom_no_buttons = 2131165235;
 			
-			// aapt resource value: 0x7f080034
-			public const int abc_dialog_list_padding_top_no_title = 2131230772;
+			// aapt resource value: 0x7f070034
+			public const int abc_dialog_list_padding_top_no_title = 2131165236;
 			
-			// aapt resource value: 0x7f080019
-			public const int abc_dialog_min_width_major = 2131230745;
+			// aapt resource value: 0x7f070019
+			public const int abc_dialog_min_width_major = 2131165209;
 			
-			// aapt resource value: 0x7f08001a
-			public const int abc_dialog_min_width_minor = 2131230746;
+			// aapt resource value: 0x7f07001a
+			public const int abc_dialog_min_width_minor = 2131165210;
 			
-			// aapt resource value: 0x7f080035
-			public const int abc_dialog_padding_material = 2131230773;
+			// aapt resource value: 0x7f070035
+			public const int abc_dialog_padding_material = 2131165237;
 			
-			// aapt resource value: 0x7f080036
-			public const int abc_dialog_padding_top_material = 2131230774;
+			// aapt resource value: 0x7f070036
+			public const int abc_dialog_padding_top_material = 2131165238;
 			
-			// aapt resource value: 0x7f080037
-			public const int abc_dialog_title_divider_material = 2131230775;
+			// aapt resource value: 0x7f070037
+			public const int abc_dialog_title_divider_material = 2131165239;
 			
-			// aapt resource value: 0x7f080038
-			public const int abc_disabled_alpha_material_dark = 2131230776;
+			// aapt resource value: 0x7f070038
+			public const int abc_disabled_alpha_material_dark = 2131165240;
 			
-			// aapt resource value: 0x7f080039
-			public const int abc_disabled_alpha_material_light = 2131230777;
+			// aapt resource value: 0x7f070039
+			public const int abc_disabled_alpha_material_light = 2131165241;
 			
-			// aapt resource value: 0x7f08003a
-			public const int abc_dropdownitem_icon_width = 2131230778;
+			// aapt resource value: 0x7f07003a
+			public const int abc_dropdownitem_icon_width = 2131165242;
 			
-			// aapt resource value: 0x7f08003b
-			public const int abc_dropdownitem_text_padding_left = 2131230779;
+			// aapt resource value: 0x7f07003b
+			public const int abc_dropdownitem_text_padding_left = 2131165243;
 			
-			// aapt resource value: 0x7f08003c
-			public const int abc_dropdownitem_text_padding_right = 2131230780;
+			// aapt resource value: 0x7f07003c
+			public const int abc_dropdownitem_text_padding_right = 2131165244;
 			
-			// aapt resource value: 0x7f08003d
-			public const int abc_edit_text_inset_bottom_material = 2131230781;
+			// aapt resource value: 0x7f07003d
+			public const int abc_edit_text_inset_bottom_material = 2131165245;
 			
-			// aapt resource value: 0x7f08003e
-			public const int abc_edit_text_inset_horizontal_material = 2131230782;
+			// aapt resource value: 0x7f07003e
+			public const int abc_edit_text_inset_horizontal_material = 2131165246;
 			
-			// aapt resource value: 0x7f08003f
-			public const int abc_edit_text_inset_top_material = 2131230783;
+			// aapt resource value: 0x7f07003f
+			public const int abc_edit_text_inset_top_material = 2131165247;
 			
-			// aapt resource value: 0x7f080040
-			public const int abc_floating_window_z = 2131230784;
+			// aapt resource value: 0x7f070040
+			public const int abc_floating_window_z = 2131165248;
 			
-			// aapt resource value: 0x7f080041
-			public const int abc_list_item_padding_horizontal_material = 2131230785;
+			// aapt resource value: 0x7f070041
+			public const int abc_list_item_padding_horizontal_material = 2131165249;
 			
-			// aapt resource value: 0x7f080042
-			public const int abc_panel_menu_list_width = 2131230786;
+			// aapt resource value: 0x7f070042
+			public const int abc_panel_menu_list_width = 2131165250;
 			
-			// aapt resource value: 0x7f080043
-			public const int abc_progress_bar_height_material = 2131230787;
+			// aapt resource value: 0x7f070043
+			public const int abc_progress_bar_height_material = 2131165251;
 			
-			// aapt resource value: 0x7f080044
-			public const int abc_search_view_preferred_height = 2131230788;
+			// aapt resource value: 0x7f070044
+			public const int abc_search_view_preferred_height = 2131165252;
 			
-			// aapt resource value: 0x7f080045
-			public const int abc_search_view_preferred_width = 2131230789;
+			// aapt resource value: 0x7f070045
+			public const int abc_search_view_preferred_width = 2131165253;
 			
-			// aapt resource value: 0x7f080046
-			public const int abc_seekbar_track_background_height_material = 2131230790;
+			// aapt resource value: 0x7f070046
+			public const int abc_seekbar_track_background_height_material = 2131165254;
 			
-			// aapt resource value: 0x7f080047
-			public const int abc_seekbar_track_progress_height_material = 2131230791;
+			// aapt resource value: 0x7f070047
+			public const int abc_seekbar_track_progress_height_material = 2131165255;
 			
-			// aapt resource value: 0x7f080048
-			public const int abc_select_dialog_padding_start_material = 2131230792;
+			// aapt resource value: 0x7f070048
+			public const int abc_select_dialog_padding_start_material = 2131165256;
 			
-			// aapt resource value: 0x7f08001f
-			public const int abc_switch_padding = 2131230751;
+			// aapt resource value: 0x7f07001f
+			public const int abc_switch_padding = 2131165215;
 			
-			// aapt resource value: 0x7f080049
-			public const int abc_text_size_body_1_material = 2131230793;
+			// aapt resource value: 0x7f070049
+			public const int abc_text_size_body_1_material = 2131165257;
 			
-			// aapt resource value: 0x7f08004a
-			public const int abc_text_size_body_2_material = 2131230794;
+			// aapt resource value: 0x7f07004a
+			public const int abc_text_size_body_2_material = 2131165258;
 			
-			// aapt resource value: 0x7f08004b
-			public const int abc_text_size_button_material = 2131230795;
+			// aapt resource value: 0x7f07004b
+			public const int abc_text_size_button_material = 2131165259;
 			
-			// aapt resource value: 0x7f08004c
-			public const int abc_text_size_caption_material = 2131230796;
+			// aapt resource value: 0x7f07004c
+			public const int abc_text_size_caption_material = 2131165260;
 			
-			// aapt resource value: 0x7f08004d
-			public const int abc_text_size_display_1_material = 2131230797;
+			// aapt resource value: 0x7f07004d
+			public const int abc_text_size_display_1_material = 2131165261;
 			
-			// aapt resource value: 0x7f08004e
-			public const int abc_text_size_display_2_material = 2131230798;
+			// aapt resource value: 0x7f07004e
+			public const int abc_text_size_display_2_material = 2131165262;
 			
-			// aapt resource value: 0x7f08004f
-			public const int abc_text_size_display_3_material = 2131230799;
+			// aapt resource value: 0x7f07004f
+			public const int abc_text_size_display_3_material = 2131165263;
 			
-			// aapt resource value: 0x7f080050
-			public const int abc_text_size_display_4_material = 2131230800;
+			// aapt resource value: 0x7f070050
+			public const int abc_text_size_display_4_material = 2131165264;
 			
-			// aapt resource value: 0x7f080051
-			public const int abc_text_size_headline_material = 2131230801;
+			// aapt resource value: 0x7f070051
+			public const int abc_text_size_headline_material = 2131165265;
 			
-			// aapt resource value: 0x7f080052
-			public const int abc_text_size_large_material = 2131230802;
+			// aapt resource value: 0x7f070052
+			public const int abc_text_size_large_material = 2131165266;
 			
-			// aapt resource value: 0x7f080053
-			public const int abc_text_size_medium_material = 2131230803;
+			// aapt resource value: 0x7f070053
+			public const int abc_text_size_medium_material = 2131165267;
 			
-			// aapt resource value: 0x7f080054
-			public const int abc_text_size_menu_header_material = 2131230804;
+			// aapt resource value: 0x7f070054
+			public const int abc_text_size_menu_header_material = 2131165268;
 			
-			// aapt resource value: 0x7f080055
-			public const int abc_text_size_menu_material = 2131230805;
+			// aapt resource value: 0x7f070055
+			public const int abc_text_size_menu_material = 2131165269;
 			
-			// aapt resource value: 0x7f080056
-			public const int abc_text_size_small_material = 2131230806;
+			// aapt resource value: 0x7f070056
+			public const int abc_text_size_small_material = 2131165270;
 			
-			// aapt resource value: 0x7f080057
-			public const int abc_text_size_subhead_material = 2131230807;
+			// aapt resource value: 0x7f070057
+			public const int abc_text_size_subhead_material = 2131165271;
 			
-			// aapt resource value: 0x7f080012
-			public const int abc_text_size_subtitle_material_toolbar = 2131230738;
+			// aapt resource value: 0x7f070012
+			public const int abc_text_size_subtitle_material_toolbar = 2131165202;
 			
-			// aapt resource value: 0x7f080058
-			public const int abc_text_size_title_material = 2131230808;
+			// aapt resource value: 0x7f070058
+			public const int abc_text_size_title_material = 2131165272;
 			
-			// aapt resource value: 0x7f080013
-			public const int abc_text_size_title_material_toolbar = 2131230739;
+			// aapt resource value: 0x7f070013
+			public const int abc_text_size_title_material_toolbar = 2131165203;
 			
-			// aapt resource value: 0x7f08000c
-			public const int cardview_compat_inset_shadow = 2131230732;
+			// aapt resource value: 0x7f07000c
+			public const int cardview_compat_inset_shadow = 2131165196;
 			
-			// aapt resource value: 0x7f08000d
-			public const int cardview_default_elevation = 2131230733;
+			// aapt resource value: 0x7f07000d
+			public const int cardview_default_elevation = 2131165197;
 			
-			// aapt resource value: 0x7f08000e
-			public const int cardview_default_radius = 2131230734;
+			// aapt resource value: 0x7f07000e
+			public const int cardview_default_radius = 2131165198;
 			
-			// aapt resource value: 0x7f080094
-			public const int compat_button_inset_horizontal_material = 2131230868;
+			// aapt resource value: 0x7f070094
+			public const int compat_button_inset_horizontal_material = 2131165332;
 			
-			// aapt resource value: 0x7f080095
-			public const int compat_button_inset_vertical_material = 2131230869;
+			// aapt resource value: 0x7f070095
+			public const int compat_button_inset_vertical_material = 2131165333;
 			
-			// aapt resource value: 0x7f080096
-			public const int compat_button_padding_horizontal_material = 2131230870;
+			// aapt resource value: 0x7f070096
+			public const int compat_button_padding_horizontal_material = 2131165334;
 			
-			// aapt resource value: 0x7f080097
-			public const int compat_button_padding_vertical_material = 2131230871;
+			// aapt resource value: 0x7f070097
+			public const int compat_button_padding_vertical_material = 2131165335;
 			
-			// aapt resource value: 0x7f080098
-			public const int compat_control_corner_material = 2131230872;
+			// aapt resource value: 0x7f070098
+			public const int compat_control_corner_material = 2131165336;
 			
-			// aapt resource value: 0x7f080072
-			public const int design_appbar_elevation = 2131230834;
+			// aapt resource value: 0x7f070072
+			public const int design_appbar_elevation = 2131165298;
 			
-			// aapt resource value: 0x7f080073
-			public const int design_bottom_navigation_active_item_max_width = 2131230835;
+			// aapt resource value: 0x7f070073
+			public const int design_bottom_navigation_active_item_max_width = 2131165299;
 			
-			// aapt resource value: 0x7f080074
-			public const int design_bottom_navigation_active_text_size = 2131230836;
+			// aapt resource value: 0x7f070074
+			public const int design_bottom_navigation_active_text_size = 2131165300;
 			
-			// aapt resource value: 0x7f080075
-			public const int design_bottom_navigation_elevation = 2131230837;
+			// aapt resource value: 0x7f070075
+			public const int design_bottom_navigation_elevation = 2131165301;
 			
-			// aapt resource value: 0x7f080076
-			public const int design_bottom_navigation_height = 2131230838;
+			// aapt resource value: 0x7f070076
+			public const int design_bottom_navigation_height = 2131165302;
 			
-			// aapt resource value: 0x7f080077
-			public const int design_bottom_navigation_item_max_width = 2131230839;
+			// aapt resource value: 0x7f070077
+			public const int design_bottom_navigation_item_max_width = 2131165303;
 			
-			// aapt resource value: 0x7f080078
-			public const int design_bottom_navigation_item_min_width = 2131230840;
+			// aapt resource value: 0x7f070078
+			public const int design_bottom_navigation_item_min_width = 2131165304;
 			
-			// aapt resource value: 0x7f080079
-			public const int design_bottom_navigation_margin = 2131230841;
+			// aapt resource value: 0x7f070079
+			public const int design_bottom_navigation_margin = 2131165305;
 			
-			// aapt resource value: 0x7f08007a
-			public const int design_bottom_navigation_shadow_height = 2131230842;
+			// aapt resource value: 0x7f07007a
+			public const int design_bottom_navigation_shadow_height = 2131165306;
 			
-			// aapt resource value: 0x7f08007b
-			public const int design_bottom_navigation_text_size = 2131230843;
+			// aapt resource value: 0x7f07007b
+			public const int design_bottom_navigation_text_size = 2131165307;
 			
-			// aapt resource value: 0x7f08007c
-			public const int design_bottom_sheet_modal_elevation = 2131230844;
+			// aapt resource value: 0x7f07007c
+			public const int design_bottom_sheet_modal_elevation = 2131165308;
 			
-			// aapt resource value: 0x7f08007d
-			public const int design_bottom_sheet_peek_height_min = 2131230845;
+			// aapt resource value: 0x7f07007d
+			public const int design_bottom_sheet_peek_height_min = 2131165309;
 			
-			// aapt resource value: 0x7f08007e
-			public const int design_fab_border_width = 2131230846;
+			// aapt resource value: 0x7f07007e
+			public const int design_fab_border_width = 2131165310;
 			
-			// aapt resource value: 0x7f08007f
-			public const int design_fab_elevation = 2131230847;
+			// aapt resource value: 0x7f07007f
+			public const int design_fab_elevation = 2131165311;
 			
-			// aapt resource value: 0x7f080080
-			public const int design_fab_image_size = 2131230848;
+			// aapt resource value: 0x7f070080
+			public const int design_fab_image_size = 2131165312;
 			
-			// aapt resource value: 0x7f080081
-			public const int design_fab_size_mini = 2131230849;
+			// aapt resource value: 0x7f070081
+			public const int design_fab_size_mini = 2131165313;
 			
-			// aapt resource value: 0x7f080082
-			public const int design_fab_size_normal = 2131230850;
+			// aapt resource value: 0x7f070082
+			public const int design_fab_size_normal = 2131165314;
 			
-			// aapt resource value: 0x7f080083
-			public const int design_fab_translation_z_pressed = 2131230851;
+			// aapt resource value: 0x7f070083
+			public const int design_fab_translation_z_pressed = 2131165315;
 			
-			// aapt resource value: 0x7f080084
-			public const int design_navigation_elevation = 2131230852;
+			// aapt resource value: 0x7f070084
+			public const int design_navigation_elevation = 2131165316;
 			
-			// aapt resource value: 0x7f080085
-			public const int design_navigation_icon_padding = 2131230853;
+			// aapt resource value: 0x7f070085
+			public const int design_navigation_icon_padding = 2131165317;
 			
-			// aapt resource value: 0x7f080086
-			public const int design_navigation_icon_size = 2131230854;
+			// aapt resource value: 0x7f070086
+			public const int design_navigation_icon_size = 2131165318;
 			
-			// aapt resource value: 0x7f08006a
-			public const int design_navigation_max_width = 2131230826;
+			// aapt resource value: 0x7f07006a
+			public const int design_navigation_max_width = 2131165290;
 			
-			// aapt resource value: 0x7f080087
-			public const int design_navigation_padding_bottom = 2131230855;
+			// aapt resource value: 0x7f070087
+			public const int design_navigation_padding_bottom = 2131165319;
 			
-			// aapt resource value: 0x7f080088
-			public const int design_navigation_separator_vertical_padding = 2131230856;
+			// aapt resource value: 0x7f070088
+			public const int design_navigation_separator_vertical_padding = 2131165320;
 			
-			// aapt resource value: 0x7f08006b
-			public const int design_snackbar_action_inline_max_width = 2131230827;
+			// aapt resource value: 0x7f07006b
+			public const int design_snackbar_action_inline_max_width = 2131165291;
 			
-			// aapt resource value: 0x7f08006c
-			public const int design_snackbar_background_corner_radius = 2131230828;
+			// aapt resource value: 0x7f07006c
+			public const int design_snackbar_background_corner_radius = 2131165292;
 			
-			// aapt resource value: 0x7f080089
-			public const int design_snackbar_elevation = 2131230857;
+			// aapt resource value: 0x7f070089
+			public const int design_snackbar_elevation = 2131165321;
 			
-			// aapt resource value: 0x7f08006d
-			public const int design_snackbar_extra_spacing_horizontal = 2131230829;
+			// aapt resource value: 0x7f07006d
+			public const int design_snackbar_extra_spacing_horizontal = 2131165293;
 			
-			// aapt resource value: 0x7f08006e
-			public const int design_snackbar_max_width = 2131230830;
+			// aapt resource value: 0x7f07006e
+			public const int design_snackbar_max_width = 2131165294;
 			
-			// aapt resource value: 0x7f08006f
-			public const int design_snackbar_min_width = 2131230831;
+			// aapt resource value: 0x7f07006f
+			public const int design_snackbar_min_width = 2131165295;
 			
-			// aapt resource value: 0x7f08008a
-			public const int design_snackbar_padding_horizontal = 2131230858;
+			// aapt resource value: 0x7f07008a
+			public const int design_snackbar_padding_horizontal = 2131165322;
 			
-			// aapt resource value: 0x7f08008b
-			public const int design_snackbar_padding_vertical = 2131230859;
+			// aapt resource value: 0x7f07008b
+			public const int design_snackbar_padding_vertical = 2131165323;
 			
-			// aapt resource value: 0x7f080070
-			public const int design_snackbar_padding_vertical_2lines = 2131230832;
+			// aapt resource value: 0x7f070070
+			public const int design_snackbar_padding_vertical_2lines = 2131165296;
 			
-			// aapt resource value: 0x7f08008c
-			public const int design_snackbar_text_size = 2131230860;
+			// aapt resource value: 0x7f07008c
+			public const int design_snackbar_text_size = 2131165324;
 			
-			// aapt resource value: 0x7f08008d
-			public const int design_tab_max_width = 2131230861;
+			// aapt resource value: 0x7f07008d
+			public const int design_tab_max_width = 2131165325;
 			
-			// aapt resource value: 0x7f080071
-			public const int design_tab_scrollable_min_width = 2131230833;
+			// aapt resource value: 0x7f070071
+			public const int design_tab_scrollable_min_width = 2131165297;
 			
-			// aapt resource value: 0x7f08008e
-			public const int design_tab_text_size = 2131230862;
+			// aapt resource value: 0x7f07008e
+			public const int design_tab_text_size = 2131165326;
 			
-			// aapt resource value: 0x7f08008f
-			public const int design_tab_text_size_2line = 2131230863;
+			// aapt resource value: 0x7f07008f
+			public const int design_tab_text_size_2line = 2131165327;
 			
-			// aapt resource value: 0x7f080059
-			public const int disabled_alpha_material_dark = 2131230809;
+			// aapt resource value: 0x7f0700a4
+			public const int disabledAlpha = 2131165348;
 			
-			// aapt resource value: 0x7f08005a
-			public const int disabled_alpha_material_light = 2131230810;
+			// aapt resource value: 0x7f070059
+			public const int disabled_alpha_material_dark = 2131165273;
 			
-			// aapt resource value: 0x7f080000
-			public const int fastscroll_default_thickness = 2131230720;
+			// aapt resource value: 0x7f07005a
+			public const int disabled_alpha_material_light = 2131165274;
 			
-			// aapt resource value: 0x7f080001
-			public const int fastscroll_margin = 2131230721;
+			// aapt resource value: 0x7f070000
+			public const int fastscroll_default_thickness = 2131165184;
 			
-			// aapt resource value: 0x7f080002
-			public const int fastscroll_minimum_range = 2131230722;
+			// aapt resource value: 0x7f070001
+			public const int fastscroll_margin = 2131165185;
 			
-			// aapt resource value: 0x7f08005b
-			public const int highlight_alpha_material_colored = 2131230811;
+			// aapt resource value: 0x7f070002
+			public const int fastscroll_minimum_range = 2131165186;
 			
-			// aapt resource value: 0x7f08005c
-			public const int highlight_alpha_material_dark = 2131230812;
+			// aapt resource value: 0x7f07005b
+			public const int highlight_alpha_material_colored = 2131165275;
 			
-			// aapt resource value: 0x7f08005d
-			public const int highlight_alpha_material_light = 2131230813;
+			// aapt resource value: 0x7f07005c
+			public const int highlight_alpha_material_dark = 2131165276;
 			
-			// aapt resource value: 0x7f08005e
-			public const int hint_alpha_material_dark = 2131230814;
+			// aapt resource value: 0x7f07005d
+			public const int highlight_alpha_material_light = 2131165277;
 			
-			// aapt resource value: 0x7f08005f
-			public const int hint_alpha_material_light = 2131230815;
+			// aapt resource value: 0x7f07005e
+			public const int hint_alpha_material_dark = 2131165278;
 			
-			// aapt resource value: 0x7f080060
-			public const int hint_pressed_alpha_material_dark = 2131230816;
+			// aapt resource value: 0x7f07005f
+			public const int hint_alpha_material_light = 2131165279;
 			
-			// aapt resource value: 0x7f080061
-			public const int hint_pressed_alpha_material_light = 2131230817;
+			// aapt resource value: 0x7f070060
+			public const int hint_pressed_alpha_material_dark = 2131165280;
 			
-			// aapt resource value: 0x7f080003
-			public const int item_touch_helper_max_drag_scroll_per_frame = 2131230723;
+			// aapt resource value: 0x7f070061
+			public const int hint_pressed_alpha_material_light = 2131165281;
 			
-			// aapt resource value: 0x7f080004
-			public const int item_touch_helper_swipe_escape_max_velocity = 2131230724;
+			// aapt resource value: 0x7f070003
+			public const int item_touch_helper_max_drag_scroll_per_frame = 2131165187;
 			
-			// aapt resource value: 0x7f080005
-			public const int item_touch_helper_swipe_escape_velocity = 2131230725;
+			// aapt resource value: 0x7f070004
+			public const int item_touch_helper_swipe_escape_max_velocity = 2131165188;
 			
-			// aapt resource value: 0x7f080006
-			public const int mr_controller_volume_group_list_item_height = 2131230726;
+			// aapt resource value: 0x7f070005
+			public const int item_touch_helper_swipe_escape_velocity = 2131165189;
 			
-			// aapt resource value: 0x7f080007
-			public const int mr_controller_volume_group_list_item_icon_size = 2131230727;
+			// aapt resource value: 0x7f070006
+			public const int mr_controller_volume_group_list_item_height = 2131165190;
 			
-			// aapt resource value: 0x7f080008
-			public const int mr_controller_volume_group_list_max_height = 2131230728;
+			// aapt resource value: 0x7f070007
+			public const int mr_controller_volume_group_list_item_icon_size = 2131165191;
 			
-			// aapt resource value: 0x7f08000b
-			public const int mr_controller_volume_group_list_padding_top = 2131230731;
+			// aapt resource value: 0x7f070008
+			public const int mr_controller_volume_group_list_max_height = 2131165192;
 			
-			// aapt resource value: 0x7f080009
-			public const int mr_dialog_fixed_width_major = 2131230729;
+			// aapt resource value: 0x7f07000b
+			public const int mr_controller_volume_group_list_padding_top = 2131165195;
 			
-			// aapt resource value: 0x7f08000a
-			public const int mr_dialog_fixed_width_minor = 2131230730;
+			// aapt resource value: 0x7f070009
+			public const int mr_dialog_fixed_width_major = 2131165193;
 			
-			// aapt resource value: 0x7f080099
-			public const int notification_action_icon_size = 2131230873;
+			// aapt resource value: 0x7f07000a
+			public const int mr_dialog_fixed_width_minor = 2131165194;
 			
-			// aapt resource value: 0x7f08009a
-			public const int notification_action_text_size = 2131230874;
+			// aapt resource value: 0x7f070099
+			public const int notification_action_icon_size = 2131165337;
 			
-			// aapt resource value: 0x7f08009b
-			public const int notification_big_circle_margin = 2131230875;
+			// aapt resource value: 0x7f07009a
+			public const int notification_action_text_size = 2131165338;
 			
-			// aapt resource value: 0x7f080091
-			public const int notification_content_margin_start = 2131230865;
+			// aapt resource value: 0x7f07009b
+			public const int notification_big_circle_margin = 2131165339;
 			
-			// aapt resource value: 0x7f08009c
-			public const int notification_large_icon_height = 2131230876;
+			// aapt resource value: 0x7f070091
+			public const int notification_content_margin_start = 2131165329;
 			
-			// aapt resource value: 0x7f08009d
-			public const int notification_large_icon_width = 2131230877;
+			// aapt resource value: 0x7f07009c
+			public const int notification_large_icon_height = 2131165340;
 			
-			// aapt resource value: 0x7f080092
-			public const int notification_main_column_padding_top = 2131230866;
+			// aapt resource value: 0x7f07009d
+			public const int notification_large_icon_width = 2131165341;
 			
-			// aapt resource value: 0x7f080093
-			public const int notification_media_narrow_margin = 2131230867;
+			// aapt resource value: 0x7f070092
+			public const int notification_main_column_padding_top = 2131165330;
 			
-			// aapt resource value: 0x7f08009e
-			public const int notification_right_icon_size = 2131230878;
+			// aapt resource value: 0x7f070093
+			public const int notification_media_narrow_margin = 2131165331;
 			
-			// aapt resource value: 0x7f080090
-			public const int notification_right_side_padding_top = 2131230864;
+			// aapt resource value: 0x7f07009e
+			public const int notification_right_icon_size = 2131165342;
 			
-			// aapt resource value: 0x7f08009f
-			public const int notification_small_icon_background_padding = 2131230879;
+			// aapt resource value: 0x7f070090
+			public const int notification_right_side_padding_top = 2131165328;
 			
-			// aapt resource value: 0x7f0800a0
-			public const int notification_small_icon_size_as_large = 2131230880;
+			// aapt resource value: 0x7f07009f
+			public const int notification_small_icon_background_padding = 2131165343;
 			
-			// aapt resource value: 0x7f0800a1
-			public const int notification_subtext_size = 2131230881;
+			// aapt resource value: 0x7f0700a0
+			public const int notification_small_icon_size_as_large = 2131165344;
 			
-			// aapt resource value: 0x7f0800a2
-			public const int notification_top_pad = 2131230882;
+			// aapt resource value: 0x7f0700a1
+			public const int notification_subtext_size = 2131165345;
 			
-			// aapt resource value: 0x7f0800a3
-			public const int notification_top_pad_large_text = 2131230883;
+			// aapt resource value: 0x7f0700a2
+			public const int notification_top_pad = 2131165346;
 			
-			// aapt resource value: 0x7f0800a4
-			public const int progress_inner_size = 2131230884;
+			// aapt resource value: 0x7f0700a3
+			public const int notification_top_pad_large_text = 2131165347;
 			
-			// aapt resource value: 0x7f080062
-			public const int tooltip_corner_radius = 2131230818;
+			// aapt resource value: 0x7f070062
+			public const int tooltip_corner_radius = 2131165282;
 			
-			// aapt resource value: 0x7f080063
-			public const int tooltip_horizontal_padding = 2131230819;
+			// aapt resource value: 0x7f070063
+			public const int tooltip_horizontal_padding = 2131165283;
 			
-			// aapt resource value: 0x7f080064
-			public const int tooltip_margin = 2131230820;
+			// aapt resource value: 0x7f070064
+			public const int tooltip_margin = 2131165284;
 			
-			// aapt resource value: 0x7f080065
-			public const int tooltip_precise_anchor_extra_offset = 2131230821;
+			// aapt resource value: 0x7f070065
+			public const int tooltip_precise_anchor_extra_offset = 2131165285;
 			
-			// aapt resource value: 0x7f080066
-			public const int tooltip_precise_anchor_threshold = 2131230822;
+			// aapt resource value: 0x7f070066
+			public const int tooltip_precise_anchor_threshold = 2131165286;
 			
-			// aapt resource value: 0x7f080067
-			public const int tooltip_vertical_padding = 2131230823;
+			// aapt resource value: 0x7f070067
+			public const int tooltip_vertical_padding = 2131165287;
 			
-			// aapt resource value: 0x7f080068
-			public const int tooltip_y_offset_non_touch = 2131230824;
+			// aapt resource value: 0x7f070068
+			public const int tooltip_y_offset_non_touch = 2131165288;
 			
-			// aapt resource value: 0x7f080069
-			public const int tooltip_y_offset_touch = 2131230825;
+			// aapt resource value: 0x7f070069
+			public const int tooltip_y_offset_touch = 2131165289;
 			
 			static Dimension()
 			{
@@ -2859,761 +3995,782 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
-			// aapt resource value: 0x7f02014a
-			public const int avd_hide_password_1 = 2130837834;
+			// aapt resource value: 0x7f020151
+			public const int avd_hide_password_1 = 2130837841;
 			
-			// aapt resource value: 0x7f02014b
-			public const int avd_hide_password_2 = 2130837835;
+			// aapt resource value: 0x7f020152
+			public const int avd_hide_password_2 = 2130837842;
 			
-			// aapt resource value: 0x7f02014c
-			public const int avd_hide_password_3 = 2130837836;
+			// aapt resource value: 0x7f020153
+			public const int avd_hide_password_3 = 2130837843;
 			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
 			
-			// aapt resource value: 0x7f02014d
-			public const int avd_show_password_1 = 2130837837;
+			// aapt resource value: 0x7f020154
+			public const int avd_show_password_1 = 2130837844;
 			
-			// aapt resource value: 0x7f02014e
-			public const int avd_show_password_2 = 2130837838;
+			// aapt resource value: 0x7f020155
+			public const int avd_show_password_2 = 2130837845;
 			
-			// aapt resource value: 0x7f02014f
-			public const int avd_show_password_3 = 2130837839;
+			// aapt resource value: 0x7f020156
+			public const int avd_show_password_3 = 2130837846;
 			
 			// aapt resource value: 0x7f020055
 			public const int beauty = 2130837589;
 			
 			// aapt resource value: 0x7f020056
-			public const int clothes = 2130837590;
+			public const int btn_checkbox = 2130837590;
 			
 			// aapt resource value: 0x7f020057
-			public const int debt = 2130837591;
+			public const int btn_checkbox_checked = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int design_bottom_navigation_item_background = 2130837592;
+			public const int btn_checkbox_checked_to_indeterminate_animation = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int design_fab_background = 2130837593;
+			public const int btn_checkbox_checked_to_unchecked_animation = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int design_ic_visibility = 2130837594;
+			public const int btn_checkbox_indeterminate = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int design_ic_visibility_off = 2130837595;
+			public const int btn_checkbox_indeterminate_to_checked_animation = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int design_password_eye = 2130837596;
+			public const int btn_checkbox_indeterminate_to_unchecked_animation = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int design_snackbar_background = 2130837597;
+			public const int btn_checkbox_unchecked = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int food = 2130837598;
+			public const int btn_checkbox_unchecked_to_checked_animation = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int home = 2130837599;
+			public const int btn_checkbox_unchecked_to_indeterminate_animation = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int ic_audiotrack_dark = 2130837600;
+			public const int clothes = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int ic_audiotrack_light = 2130837601;
+			public const int debt = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int ic_dialog_close_dark = 2130837602;
+			public const int design_bottom_navigation_item_background = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int ic_dialog_close_light = 2130837603;
+			public const int design_fab_background = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int ic_errorstatus = 2130837604;
+			public const int design_ic_visibility = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int ic_group_collapse_00 = 2130837605;
+			public const int design_ic_visibility_off = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int ic_group_collapse_01 = 2130837606;
+			public const int design_password_eye = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int ic_group_collapse_02 = 2130837607;
+			public const int design_snackbar_background = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int ic_group_collapse_03 = 2130837608;
+			public const int food = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int ic_group_collapse_04 = 2130837609;
+			public const int home = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int ic_group_collapse_05 = 2130837610;
+			public const int ic_audiotrack_dark = 2130837610;
 			
 			// aapt resource value: 0x7f02006b
-			public const int ic_group_collapse_06 = 2130837611;
+			public const int ic_audiotrack_light = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int ic_group_collapse_07 = 2130837612;
+			public const int ic_dialog_close_dark = 2130837612;
 			
 			// aapt resource value: 0x7f02006d
-			public const int ic_group_collapse_08 = 2130837613;
+			public const int ic_dialog_close_light = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int ic_group_collapse_09 = 2130837614;
+			public const int ic_errorstatus = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int ic_group_collapse_10 = 2130837615;
+			public const int ic_group_collapse_00 = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int ic_group_collapse_11 = 2130837616;
+			public const int ic_group_collapse_01 = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int ic_group_collapse_12 = 2130837617;
+			public const int ic_group_collapse_02 = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int ic_group_collapse_13 = 2130837618;
+			public const int ic_group_collapse_03 = 2130837618;
 			
 			// aapt resource value: 0x7f020073
-			public const int ic_group_collapse_14 = 2130837619;
+			public const int ic_group_collapse_04 = 2130837619;
 			
 			// aapt resource value: 0x7f020074
-			public const int ic_group_collapse_15 = 2130837620;
+			public const int ic_group_collapse_05 = 2130837620;
 			
 			// aapt resource value: 0x7f020075
-			public const int ic_group_expand_00 = 2130837621;
+			public const int ic_group_collapse_06 = 2130837621;
 			
 			// aapt resource value: 0x7f020076
-			public const int ic_group_expand_01 = 2130837622;
+			public const int ic_group_collapse_07 = 2130837622;
 			
 			// aapt resource value: 0x7f020077
-			public const int ic_group_expand_02 = 2130837623;
+			public const int ic_group_collapse_08 = 2130837623;
 			
 			// aapt resource value: 0x7f020078
-			public const int ic_group_expand_03 = 2130837624;
+			public const int ic_group_collapse_09 = 2130837624;
 			
 			// aapt resource value: 0x7f020079
-			public const int ic_group_expand_04 = 2130837625;
+			public const int ic_group_collapse_10 = 2130837625;
 			
 			// aapt resource value: 0x7f02007a
-			public const int ic_group_expand_05 = 2130837626;
+			public const int ic_group_collapse_11 = 2130837626;
 			
 			// aapt resource value: 0x7f02007b
-			public const int ic_group_expand_06 = 2130837627;
+			public const int ic_group_collapse_12 = 2130837627;
 			
 			// aapt resource value: 0x7f02007c
-			public const int ic_group_expand_07 = 2130837628;
+			public const int ic_group_collapse_13 = 2130837628;
 			
 			// aapt resource value: 0x7f02007d
-			public const int ic_group_expand_08 = 2130837629;
+			public const int ic_group_collapse_14 = 2130837629;
 			
 			// aapt resource value: 0x7f02007e
-			public const int ic_group_expand_09 = 2130837630;
+			public const int ic_group_collapse_15 = 2130837630;
 			
 			// aapt resource value: 0x7f02007f
-			public const int ic_group_expand_10 = 2130837631;
+			public const int ic_group_expand_00 = 2130837631;
 			
 			// aapt resource value: 0x7f020080
-			public const int ic_group_expand_11 = 2130837632;
+			public const int ic_group_expand_01 = 2130837632;
 			
 			// aapt resource value: 0x7f020081
-			public const int ic_group_expand_12 = 2130837633;
+			public const int ic_group_expand_02 = 2130837633;
 			
 			// aapt resource value: 0x7f020082
-			public const int ic_group_expand_13 = 2130837634;
+			public const int ic_group_expand_03 = 2130837634;
 			
 			// aapt resource value: 0x7f020083
-			public const int ic_group_expand_14 = 2130837635;
+			public const int ic_group_expand_04 = 2130837635;
 			
 			// aapt resource value: 0x7f020084
-			public const int ic_group_expand_15 = 2130837636;
+			public const int ic_group_expand_05 = 2130837636;
 			
 			// aapt resource value: 0x7f020085
-			public const int ic_media_pause_dark = 2130837637;
+			public const int ic_group_expand_06 = 2130837637;
 			
 			// aapt resource value: 0x7f020086
-			public const int ic_media_pause_light = 2130837638;
+			public const int ic_group_expand_07 = 2130837638;
 			
 			// aapt resource value: 0x7f020087
-			public const int ic_media_play_dark = 2130837639;
+			public const int ic_group_expand_08 = 2130837639;
 			
 			// aapt resource value: 0x7f020088
-			public const int ic_media_play_light = 2130837640;
+			public const int ic_group_expand_09 = 2130837640;
 			
 			// aapt resource value: 0x7f020089
-			public const int ic_media_stop_dark = 2130837641;
+			public const int ic_group_expand_10 = 2130837641;
 			
 			// aapt resource value: 0x7f02008a
-			public const int ic_media_stop_light = 2130837642;
+			public const int ic_group_expand_11 = 2130837642;
 			
 			// aapt resource value: 0x7f02008b
-			public const int ic_mr_button_connected_00_dark = 2130837643;
+			public const int ic_group_expand_12 = 2130837643;
 			
 			// aapt resource value: 0x7f02008c
-			public const int ic_mr_button_connected_00_light = 2130837644;
+			public const int ic_group_expand_13 = 2130837644;
 			
 			// aapt resource value: 0x7f02008d
-			public const int ic_mr_button_connected_01_dark = 2130837645;
+			public const int ic_group_expand_14 = 2130837645;
 			
 			// aapt resource value: 0x7f02008e
-			public const int ic_mr_button_connected_01_light = 2130837646;
+			public const int ic_group_expand_15 = 2130837646;
 			
 			// aapt resource value: 0x7f02008f
-			public const int ic_mr_button_connected_02_dark = 2130837647;
+			public const int ic_media_pause_dark = 2130837647;
 			
 			// aapt resource value: 0x7f020090
-			public const int ic_mr_button_connected_02_light = 2130837648;
+			public const int ic_media_pause_light = 2130837648;
 			
 			// aapt resource value: 0x7f020091
-			public const int ic_mr_button_connected_03_dark = 2130837649;
+			public const int ic_media_play_dark = 2130837649;
 			
 			// aapt resource value: 0x7f020092
-			public const int ic_mr_button_connected_03_light = 2130837650;
+			public const int ic_media_play_light = 2130837650;
 			
 			// aapt resource value: 0x7f020093
-			public const int ic_mr_button_connected_04_dark = 2130837651;
+			public const int ic_media_stop_dark = 2130837651;
 			
 			// aapt resource value: 0x7f020094
-			public const int ic_mr_button_connected_04_light = 2130837652;
+			public const int ic_media_stop_light = 2130837652;
 			
 			// aapt resource value: 0x7f020095
-			public const int ic_mr_button_connected_05_dark = 2130837653;
+			public const int ic_mr_button_connected_00_dark = 2130837653;
 			
 			// aapt resource value: 0x7f020096
-			public const int ic_mr_button_connected_05_light = 2130837654;
+			public const int ic_mr_button_connected_00_light = 2130837654;
 			
 			// aapt resource value: 0x7f020097
-			public const int ic_mr_button_connected_06_dark = 2130837655;
+			public const int ic_mr_button_connected_01_dark = 2130837655;
 			
 			// aapt resource value: 0x7f020098
-			public const int ic_mr_button_connected_06_light = 2130837656;
+			public const int ic_mr_button_connected_01_light = 2130837656;
 			
 			// aapt resource value: 0x7f020099
-			public const int ic_mr_button_connected_07_dark = 2130837657;
+			public const int ic_mr_button_connected_02_dark = 2130837657;
 			
 			// aapt resource value: 0x7f02009a
-			public const int ic_mr_button_connected_07_light = 2130837658;
+			public const int ic_mr_button_connected_02_light = 2130837658;
 			
 			// aapt resource value: 0x7f02009b
-			public const int ic_mr_button_connected_08_dark = 2130837659;
+			public const int ic_mr_button_connected_03_dark = 2130837659;
 			
 			// aapt resource value: 0x7f02009c
-			public const int ic_mr_button_connected_08_light = 2130837660;
+			public const int ic_mr_button_connected_03_light = 2130837660;
 			
 			// aapt resource value: 0x7f02009d
-			public const int ic_mr_button_connected_09_dark = 2130837661;
+			public const int ic_mr_button_connected_04_dark = 2130837661;
 			
 			// aapt resource value: 0x7f02009e
-			public const int ic_mr_button_connected_09_light = 2130837662;
+			public const int ic_mr_button_connected_04_light = 2130837662;
 			
 			// aapt resource value: 0x7f02009f
-			public const int ic_mr_button_connected_10_dark = 2130837663;
+			public const int ic_mr_button_connected_05_dark = 2130837663;
 			
 			// aapt resource value: 0x7f0200a0
-			public const int ic_mr_button_connected_10_light = 2130837664;
+			public const int ic_mr_button_connected_05_light = 2130837664;
 			
 			// aapt resource value: 0x7f0200a1
-			public const int ic_mr_button_connected_11_dark = 2130837665;
+			public const int ic_mr_button_connected_06_dark = 2130837665;
 			
 			// aapt resource value: 0x7f0200a2
-			public const int ic_mr_button_connected_11_light = 2130837666;
+			public const int ic_mr_button_connected_06_light = 2130837666;
 			
 			// aapt resource value: 0x7f0200a3
-			public const int ic_mr_button_connected_12_dark = 2130837667;
+			public const int ic_mr_button_connected_07_dark = 2130837667;
 			
 			// aapt resource value: 0x7f0200a4
-			public const int ic_mr_button_connected_12_light = 2130837668;
+			public const int ic_mr_button_connected_07_light = 2130837668;
 			
 			// aapt resource value: 0x7f0200a5
-			public const int ic_mr_button_connected_13_dark = 2130837669;
+			public const int ic_mr_button_connected_08_dark = 2130837669;
 			
 			// aapt resource value: 0x7f0200a6
-			public const int ic_mr_button_connected_13_light = 2130837670;
+			public const int ic_mr_button_connected_08_light = 2130837670;
 			
 			// aapt resource value: 0x7f0200a7
-			public const int ic_mr_button_connected_14_dark = 2130837671;
+			public const int ic_mr_button_connected_09_dark = 2130837671;
 			
 			// aapt resource value: 0x7f0200a8
-			public const int ic_mr_button_connected_14_light = 2130837672;
+			public const int ic_mr_button_connected_09_light = 2130837672;
 			
 			// aapt resource value: 0x7f0200a9
-			public const int ic_mr_button_connected_15_dark = 2130837673;
+			public const int ic_mr_button_connected_10_dark = 2130837673;
 			
 			// aapt resource value: 0x7f0200aa
-			public const int ic_mr_button_connected_15_light = 2130837674;
+			public const int ic_mr_button_connected_10_light = 2130837674;
 			
 			// aapt resource value: 0x7f0200ab
-			public const int ic_mr_button_connected_16_dark = 2130837675;
+			public const int ic_mr_button_connected_11_dark = 2130837675;
 			
 			// aapt resource value: 0x7f0200ac
-			public const int ic_mr_button_connected_16_light = 2130837676;
+			public const int ic_mr_button_connected_11_light = 2130837676;
 			
 			// aapt resource value: 0x7f0200ad
-			public const int ic_mr_button_connected_17_dark = 2130837677;
+			public const int ic_mr_button_connected_12_dark = 2130837677;
 			
 			// aapt resource value: 0x7f0200ae
-			public const int ic_mr_button_connected_17_light = 2130837678;
+			public const int ic_mr_button_connected_12_light = 2130837678;
 			
 			// aapt resource value: 0x7f0200af
-			public const int ic_mr_button_connected_18_dark = 2130837679;
+			public const int ic_mr_button_connected_13_dark = 2130837679;
 			
 			// aapt resource value: 0x7f0200b0
-			public const int ic_mr_button_connected_18_light = 2130837680;
+			public const int ic_mr_button_connected_13_light = 2130837680;
 			
 			// aapt resource value: 0x7f0200b1
-			public const int ic_mr_button_connected_19_dark = 2130837681;
+			public const int ic_mr_button_connected_14_dark = 2130837681;
 			
 			// aapt resource value: 0x7f0200b2
-			public const int ic_mr_button_connected_19_light = 2130837682;
+			public const int ic_mr_button_connected_14_light = 2130837682;
 			
 			// aapt resource value: 0x7f0200b3
-			public const int ic_mr_button_connected_20_dark = 2130837683;
+			public const int ic_mr_button_connected_15_dark = 2130837683;
 			
 			// aapt resource value: 0x7f0200b4
-			public const int ic_mr_button_connected_20_light = 2130837684;
+			public const int ic_mr_button_connected_15_light = 2130837684;
 			
 			// aapt resource value: 0x7f0200b5
-			public const int ic_mr_button_connected_21_dark = 2130837685;
+			public const int ic_mr_button_connected_16_dark = 2130837685;
 			
 			// aapt resource value: 0x7f0200b6
-			public const int ic_mr_button_connected_21_light = 2130837686;
+			public const int ic_mr_button_connected_16_light = 2130837686;
 			
 			// aapt resource value: 0x7f0200b7
-			public const int ic_mr_button_connected_22_dark = 2130837687;
+			public const int ic_mr_button_connected_17_dark = 2130837687;
 			
 			// aapt resource value: 0x7f0200b8
-			public const int ic_mr_button_connected_22_light = 2130837688;
+			public const int ic_mr_button_connected_17_light = 2130837688;
 			
 			// aapt resource value: 0x7f0200b9
-			public const int ic_mr_button_connected_23_dark = 2130837689;
+			public const int ic_mr_button_connected_18_dark = 2130837689;
 			
 			// aapt resource value: 0x7f0200ba
-			public const int ic_mr_button_connected_23_light = 2130837690;
+			public const int ic_mr_button_connected_18_light = 2130837690;
 			
 			// aapt resource value: 0x7f0200bb
-			public const int ic_mr_button_connected_24_dark = 2130837691;
+			public const int ic_mr_button_connected_19_dark = 2130837691;
 			
 			// aapt resource value: 0x7f0200bc
-			public const int ic_mr_button_connected_24_light = 2130837692;
+			public const int ic_mr_button_connected_19_light = 2130837692;
 			
 			// aapt resource value: 0x7f0200bd
-			public const int ic_mr_button_connected_25_dark = 2130837693;
+			public const int ic_mr_button_connected_20_dark = 2130837693;
 			
 			// aapt resource value: 0x7f0200be
-			public const int ic_mr_button_connected_25_light = 2130837694;
+			public const int ic_mr_button_connected_20_light = 2130837694;
 			
 			// aapt resource value: 0x7f0200bf
-			public const int ic_mr_button_connected_26_dark = 2130837695;
+			public const int ic_mr_button_connected_21_dark = 2130837695;
 			
 			// aapt resource value: 0x7f0200c0
-			public const int ic_mr_button_connected_26_light = 2130837696;
+			public const int ic_mr_button_connected_21_light = 2130837696;
 			
 			// aapt resource value: 0x7f0200c1
-			public const int ic_mr_button_connected_27_dark = 2130837697;
+			public const int ic_mr_button_connected_22_dark = 2130837697;
 			
 			// aapt resource value: 0x7f0200c2
-			public const int ic_mr_button_connected_27_light = 2130837698;
+			public const int ic_mr_button_connected_22_light = 2130837698;
 			
 			// aapt resource value: 0x7f0200c3
-			public const int ic_mr_button_connected_28_dark = 2130837699;
+			public const int ic_mr_button_connected_23_dark = 2130837699;
 			
 			// aapt resource value: 0x7f0200c4
-			public const int ic_mr_button_connected_28_light = 2130837700;
+			public const int ic_mr_button_connected_23_light = 2130837700;
 			
 			// aapt resource value: 0x7f0200c5
-			public const int ic_mr_button_connected_29_dark = 2130837701;
+			public const int ic_mr_button_connected_24_dark = 2130837701;
 			
 			// aapt resource value: 0x7f0200c6
-			public const int ic_mr_button_connected_29_light = 2130837702;
+			public const int ic_mr_button_connected_24_light = 2130837702;
 			
 			// aapt resource value: 0x7f0200c7
-			public const int ic_mr_button_connected_30_dark = 2130837703;
+			public const int ic_mr_button_connected_25_dark = 2130837703;
 			
 			// aapt resource value: 0x7f0200c8
-			public const int ic_mr_button_connected_30_light = 2130837704;
+			public const int ic_mr_button_connected_25_light = 2130837704;
 			
 			// aapt resource value: 0x7f0200c9
-			public const int ic_mr_button_connecting_00_dark = 2130837705;
+			public const int ic_mr_button_connected_26_dark = 2130837705;
 			
 			// aapt resource value: 0x7f0200ca
-			public const int ic_mr_button_connecting_00_light = 2130837706;
+			public const int ic_mr_button_connected_26_light = 2130837706;
 			
 			// aapt resource value: 0x7f0200cb
-			public const int ic_mr_button_connecting_01_dark = 2130837707;
+			public const int ic_mr_button_connected_27_dark = 2130837707;
 			
 			// aapt resource value: 0x7f0200cc
-			public const int ic_mr_button_connecting_01_light = 2130837708;
+			public const int ic_mr_button_connected_27_light = 2130837708;
 			
 			// aapt resource value: 0x7f0200cd
-			public const int ic_mr_button_connecting_02_dark = 2130837709;
+			public const int ic_mr_button_connected_28_dark = 2130837709;
 			
 			// aapt resource value: 0x7f0200ce
-			public const int ic_mr_button_connecting_02_light = 2130837710;
+			public const int ic_mr_button_connected_28_light = 2130837710;
 			
 			// aapt resource value: 0x7f0200cf
-			public const int ic_mr_button_connecting_03_dark = 2130837711;
+			public const int ic_mr_button_connected_29_dark = 2130837711;
 			
 			// aapt resource value: 0x7f0200d0
-			public const int ic_mr_button_connecting_03_light = 2130837712;
+			public const int ic_mr_button_connected_29_light = 2130837712;
 			
 			// aapt resource value: 0x7f0200d1
-			public const int ic_mr_button_connecting_04_dark = 2130837713;
+			public const int ic_mr_button_connected_30_dark = 2130837713;
 			
 			// aapt resource value: 0x7f0200d2
-			public const int ic_mr_button_connecting_04_light = 2130837714;
+			public const int ic_mr_button_connected_30_light = 2130837714;
 			
 			// aapt resource value: 0x7f0200d3
-			public const int ic_mr_button_connecting_05_dark = 2130837715;
+			public const int ic_mr_button_connecting_00_dark = 2130837715;
 			
 			// aapt resource value: 0x7f0200d4
-			public const int ic_mr_button_connecting_05_light = 2130837716;
+			public const int ic_mr_button_connecting_00_light = 2130837716;
 			
 			// aapt resource value: 0x7f0200d5
-			public const int ic_mr_button_connecting_06_dark = 2130837717;
+			public const int ic_mr_button_connecting_01_dark = 2130837717;
 			
 			// aapt resource value: 0x7f0200d6
-			public const int ic_mr_button_connecting_06_light = 2130837718;
+			public const int ic_mr_button_connecting_01_light = 2130837718;
 			
 			// aapt resource value: 0x7f0200d7
-			public const int ic_mr_button_connecting_07_dark = 2130837719;
+			public const int ic_mr_button_connecting_02_dark = 2130837719;
 			
 			// aapt resource value: 0x7f0200d8
-			public const int ic_mr_button_connecting_07_light = 2130837720;
+			public const int ic_mr_button_connecting_02_light = 2130837720;
 			
 			// aapt resource value: 0x7f0200d9
-			public const int ic_mr_button_connecting_08_dark = 2130837721;
+			public const int ic_mr_button_connecting_03_dark = 2130837721;
 			
 			// aapt resource value: 0x7f0200da
-			public const int ic_mr_button_connecting_08_light = 2130837722;
+			public const int ic_mr_button_connecting_03_light = 2130837722;
 			
 			// aapt resource value: 0x7f0200db
-			public const int ic_mr_button_connecting_09_dark = 2130837723;
+			public const int ic_mr_button_connecting_04_dark = 2130837723;
 			
 			// aapt resource value: 0x7f0200dc
-			public const int ic_mr_button_connecting_09_light = 2130837724;
+			public const int ic_mr_button_connecting_04_light = 2130837724;
 			
 			// aapt resource value: 0x7f0200dd
-			public const int ic_mr_button_connecting_10_dark = 2130837725;
+			public const int ic_mr_button_connecting_05_dark = 2130837725;
 			
 			// aapt resource value: 0x7f0200de
-			public const int ic_mr_button_connecting_10_light = 2130837726;
+			public const int ic_mr_button_connecting_05_light = 2130837726;
 			
 			// aapt resource value: 0x7f0200df
-			public const int ic_mr_button_connecting_11_dark = 2130837727;
+			public const int ic_mr_button_connecting_06_dark = 2130837727;
 			
 			// aapt resource value: 0x7f0200e0
-			public const int ic_mr_button_connecting_11_light = 2130837728;
+			public const int ic_mr_button_connecting_06_light = 2130837728;
 			
 			// aapt resource value: 0x7f0200e1
-			public const int ic_mr_button_connecting_12_dark = 2130837729;
+			public const int ic_mr_button_connecting_07_dark = 2130837729;
 			
 			// aapt resource value: 0x7f0200e2
-			public const int ic_mr_button_connecting_12_light = 2130837730;
+			public const int ic_mr_button_connecting_07_light = 2130837730;
 			
 			// aapt resource value: 0x7f0200e3
-			public const int ic_mr_button_connecting_13_dark = 2130837731;
+			public const int ic_mr_button_connecting_08_dark = 2130837731;
 			
 			// aapt resource value: 0x7f0200e4
-			public const int ic_mr_button_connecting_13_light = 2130837732;
+			public const int ic_mr_button_connecting_08_light = 2130837732;
 			
 			// aapt resource value: 0x7f0200e5
-			public const int ic_mr_button_connecting_14_dark = 2130837733;
+			public const int ic_mr_button_connecting_09_dark = 2130837733;
 			
 			// aapt resource value: 0x7f0200e6
-			public const int ic_mr_button_connecting_14_light = 2130837734;
+			public const int ic_mr_button_connecting_09_light = 2130837734;
 			
 			// aapt resource value: 0x7f0200e7
-			public const int ic_mr_button_connecting_15_dark = 2130837735;
+			public const int ic_mr_button_connecting_10_dark = 2130837735;
 			
 			// aapt resource value: 0x7f0200e8
-			public const int ic_mr_button_connecting_15_light = 2130837736;
+			public const int ic_mr_button_connecting_10_light = 2130837736;
 			
 			// aapt resource value: 0x7f0200e9
-			public const int ic_mr_button_connecting_16_dark = 2130837737;
+			public const int ic_mr_button_connecting_11_dark = 2130837737;
 			
 			// aapt resource value: 0x7f0200ea
-			public const int ic_mr_button_connecting_16_light = 2130837738;
+			public const int ic_mr_button_connecting_11_light = 2130837738;
 			
 			// aapt resource value: 0x7f0200eb
-			public const int ic_mr_button_connecting_17_dark = 2130837739;
+			public const int ic_mr_button_connecting_12_dark = 2130837739;
 			
 			// aapt resource value: 0x7f0200ec
-			public const int ic_mr_button_connecting_17_light = 2130837740;
+			public const int ic_mr_button_connecting_12_light = 2130837740;
 			
 			// aapt resource value: 0x7f0200ed
-			public const int ic_mr_button_connecting_18_dark = 2130837741;
+			public const int ic_mr_button_connecting_13_dark = 2130837741;
 			
 			// aapt resource value: 0x7f0200ee
-			public const int ic_mr_button_connecting_18_light = 2130837742;
+			public const int ic_mr_button_connecting_13_light = 2130837742;
 			
 			// aapt resource value: 0x7f0200ef
-			public const int ic_mr_button_connecting_19_dark = 2130837743;
+			public const int ic_mr_button_connecting_14_dark = 2130837743;
 			
 			// aapt resource value: 0x7f0200f0
-			public const int ic_mr_button_connecting_19_light = 2130837744;
+			public const int ic_mr_button_connecting_14_light = 2130837744;
 			
 			// aapt resource value: 0x7f0200f1
-			public const int ic_mr_button_connecting_20_dark = 2130837745;
+			public const int ic_mr_button_connecting_15_dark = 2130837745;
 			
 			// aapt resource value: 0x7f0200f2
-			public const int ic_mr_button_connecting_20_light = 2130837746;
+			public const int ic_mr_button_connecting_15_light = 2130837746;
 			
 			// aapt resource value: 0x7f0200f3
-			public const int ic_mr_button_connecting_21_dark = 2130837747;
+			public const int ic_mr_button_connecting_16_dark = 2130837747;
 			
 			// aapt resource value: 0x7f0200f4
-			public const int ic_mr_button_connecting_21_light = 2130837748;
+			public const int ic_mr_button_connecting_16_light = 2130837748;
 			
 			// aapt resource value: 0x7f0200f5
-			public const int ic_mr_button_connecting_22_dark = 2130837749;
+			public const int ic_mr_button_connecting_17_dark = 2130837749;
 			
 			// aapt resource value: 0x7f0200f6
-			public const int ic_mr_button_connecting_22_light = 2130837750;
+			public const int ic_mr_button_connecting_17_light = 2130837750;
 			
 			// aapt resource value: 0x7f0200f7
-			public const int ic_mr_button_connecting_23_dark = 2130837751;
+			public const int ic_mr_button_connecting_18_dark = 2130837751;
 			
 			// aapt resource value: 0x7f0200f8
-			public const int ic_mr_button_connecting_23_light = 2130837752;
+			public const int ic_mr_button_connecting_18_light = 2130837752;
 			
 			// aapt resource value: 0x7f0200f9
-			public const int ic_mr_button_connecting_24_dark = 2130837753;
+			public const int ic_mr_button_connecting_19_dark = 2130837753;
 			
 			// aapt resource value: 0x7f0200fa
-			public const int ic_mr_button_connecting_24_light = 2130837754;
+			public const int ic_mr_button_connecting_19_light = 2130837754;
 			
 			// aapt resource value: 0x7f0200fb
-			public const int ic_mr_button_connecting_25_dark = 2130837755;
+			public const int ic_mr_button_connecting_20_dark = 2130837755;
 			
 			// aapt resource value: 0x7f0200fc
-			public const int ic_mr_button_connecting_25_light = 2130837756;
+			public const int ic_mr_button_connecting_20_light = 2130837756;
 			
 			// aapt resource value: 0x7f0200fd
-			public const int ic_mr_button_connecting_26_dark = 2130837757;
+			public const int ic_mr_button_connecting_21_dark = 2130837757;
 			
 			// aapt resource value: 0x7f0200fe
-			public const int ic_mr_button_connecting_26_light = 2130837758;
+			public const int ic_mr_button_connecting_21_light = 2130837758;
 			
 			// aapt resource value: 0x7f0200ff
-			public const int ic_mr_button_connecting_27_dark = 2130837759;
+			public const int ic_mr_button_connecting_22_dark = 2130837759;
 			
 			// aapt resource value: 0x7f020100
-			public const int ic_mr_button_connecting_27_light = 2130837760;
+			public const int ic_mr_button_connecting_22_light = 2130837760;
 			
 			// aapt resource value: 0x7f020101
-			public const int ic_mr_button_connecting_28_dark = 2130837761;
+			public const int ic_mr_button_connecting_23_dark = 2130837761;
 			
 			// aapt resource value: 0x7f020102
-			public const int ic_mr_button_connecting_28_light = 2130837762;
+			public const int ic_mr_button_connecting_23_light = 2130837762;
 			
 			// aapt resource value: 0x7f020103
-			public const int ic_mr_button_connecting_29_dark = 2130837763;
+			public const int ic_mr_button_connecting_24_dark = 2130837763;
 			
 			// aapt resource value: 0x7f020104
-			public const int ic_mr_button_connecting_29_light = 2130837764;
+			public const int ic_mr_button_connecting_24_light = 2130837764;
 			
 			// aapt resource value: 0x7f020105
-			public const int ic_mr_button_connecting_30_dark = 2130837765;
+			public const int ic_mr_button_connecting_25_dark = 2130837765;
 			
 			// aapt resource value: 0x7f020106
-			public const int ic_mr_button_connecting_30_light = 2130837766;
+			public const int ic_mr_button_connecting_25_light = 2130837766;
 			
 			// aapt resource value: 0x7f020107
-			public const int ic_mr_button_disabled_dark = 2130837767;
+			public const int ic_mr_button_connecting_26_dark = 2130837767;
 			
 			// aapt resource value: 0x7f020108
-			public const int ic_mr_button_disabled_light = 2130837768;
+			public const int ic_mr_button_connecting_26_light = 2130837768;
 			
 			// aapt resource value: 0x7f020109
-			public const int ic_mr_button_disconnected_dark = 2130837769;
+			public const int ic_mr_button_connecting_27_dark = 2130837769;
 			
 			// aapt resource value: 0x7f02010a
-			public const int ic_mr_button_disconnected_light = 2130837770;
+			public const int ic_mr_button_connecting_27_light = 2130837770;
 			
 			// aapt resource value: 0x7f02010b
-			public const int ic_mr_button_grey = 2130837771;
+			public const int ic_mr_button_connecting_28_dark = 2130837771;
 			
 			// aapt resource value: 0x7f02010c
-			public const int ic_successstatus = 2130837772;
+			public const int ic_mr_button_connecting_28_light = 2130837772;
 			
 			// aapt resource value: 0x7f02010d
-			public const int ic_vol_type_speaker_dark = 2130837773;
+			public const int ic_mr_button_connecting_29_dark = 2130837773;
 			
 			// aapt resource value: 0x7f02010e
-			public const int ic_vol_type_speaker_group_dark = 2130837774;
+			public const int ic_mr_button_connecting_29_light = 2130837774;
 			
 			// aapt resource value: 0x7f02010f
-			public const int ic_vol_type_speaker_group_light = 2130837775;
+			public const int ic_mr_button_connecting_30_dark = 2130837775;
 			
 			// aapt resource value: 0x7f020110
-			public const int ic_vol_type_speaker_light = 2130837776;
+			public const int ic_mr_button_connecting_30_light = 2130837776;
 			
 			// aapt resource value: 0x7f020111
-			public const int ic_vol_type_tv_dark = 2130837777;
+			public const int ic_mr_button_disabled_dark = 2130837777;
 			
 			// aapt resource value: 0x7f020112
-			public const int ic_vol_type_tv_light = 2130837778;
+			public const int ic_mr_button_disabled_light = 2130837778;
 			
 			// aapt resource value: 0x7f020113
-			public const int icon = 2130837779;
+			public const int ic_mr_button_disconnected_dark = 2130837779;
 			
 			// aapt resource value: 0x7f020114
-			public const int income = 2130837780;
+			public const int ic_mr_button_disconnected_light = 2130837780;
 			
 			// aapt resource value: 0x7f020115
-			public const int inputlayout_togglecollapseicon = 2130837781;
+			public const int ic_mr_button_grey = 2130837781;
 			
 			// aapt resource value: 0x7f020116
-			public const int inputlayout_togglevisibleicon = 2130837782;
+			public const int ic_successstatus = 2130837782;
 			
 			// aapt resource value: 0x7f020117
-			public const int kids = 2130837783;
+			public const int ic_vol_type_speaker_dark = 2130837783;
 			
 			// aapt resource value: 0x7f020118
-			public const int medicine = 2130837784;
+			public const int ic_vol_type_speaker_group_dark = 2130837784;
 			
 			// aapt resource value: 0x7f020119
-			public const int mr_button_connected_dark = 2130837785;
+			public const int ic_vol_type_speaker_group_light = 2130837785;
 			
 			// aapt resource value: 0x7f02011a
-			public const int mr_button_connected_light = 2130837786;
+			public const int ic_vol_type_speaker_light = 2130837786;
 			
 			// aapt resource value: 0x7f02011b
-			public const int mr_button_connecting_dark = 2130837787;
+			public const int ic_vol_type_tv_dark = 2130837787;
 			
 			// aapt resource value: 0x7f02011c
-			public const int mr_button_connecting_light = 2130837788;
+			public const int ic_vol_type_tv_light = 2130837788;
 			
 			// aapt resource value: 0x7f02011d
-			public const int mr_button_dark = 2130837789;
+			public const int icon = 2130837789;
 			
 			// aapt resource value: 0x7f02011e
-			public const int mr_button_light = 2130837790;
+			public const int income = 2130837790;
 			
 			// aapt resource value: 0x7f02011f
-			public const int mr_dialog_close_dark = 2130837791;
+			public const int inputlayout_togglecollapseicon = 2130837791;
 			
 			// aapt resource value: 0x7f020120
-			public const int mr_dialog_close_light = 2130837792;
+			public const int inputlayout_togglevisibleicon = 2130837792;
 			
 			// aapt resource value: 0x7f020121
-			public const int mr_dialog_material_background_dark = 2130837793;
+			public const int kids = 2130837793;
 			
 			// aapt resource value: 0x7f020122
-			public const int mr_dialog_material_background_light = 2130837794;
+			public const int LogoSmall = 2130837794;
 			
 			// aapt resource value: 0x7f020123
-			public const int mr_group_collapse = 2130837795;
+			public const int medicine = 2130837795;
 			
 			// aapt resource value: 0x7f020124
-			public const int mr_group_expand = 2130837796;
+			public const int mr_button_connected_dark = 2130837796;
 			
 			// aapt resource value: 0x7f020125
-			public const int mr_media_pause_dark = 2130837797;
+			public const int mr_button_connected_light = 2130837797;
 			
 			// aapt resource value: 0x7f020126
-			public const int mr_media_pause_light = 2130837798;
+			public const int mr_button_connecting_dark = 2130837798;
 			
 			// aapt resource value: 0x7f020127
-			public const int mr_media_play_dark = 2130837799;
+			public const int mr_button_connecting_light = 2130837799;
 			
 			// aapt resource value: 0x7f020128
-			public const int mr_media_play_light = 2130837800;
+			public const int mr_button_dark = 2130837800;
 			
 			// aapt resource value: 0x7f020129
-			public const int mr_media_stop_dark = 2130837801;
+			public const int mr_button_light = 2130837801;
 			
 			// aapt resource value: 0x7f02012a
-			public const int mr_media_stop_light = 2130837802;
+			public const int mr_dialog_close_dark = 2130837802;
 			
 			// aapt resource value: 0x7f02012b
-			public const int mr_vol_type_audiotrack_dark = 2130837803;
+			public const int mr_dialog_close_light = 2130837803;
 			
 			// aapt resource value: 0x7f02012c
-			public const int mr_vol_type_audiotrack_light = 2130837804;
+			public const int mr_dialog_material_background_dark = 2130837804;
 			
 			// aapt resource value: 0x7f02012d
-			public const int navigation_empty_icon = 2130837805;
+			public const int mr_dialog_material_background_light = 2130837805;
 			
 			// aapt resource value: 0x7f02012e
-			public const int notification_action_background = 2130837806;
+			public const int mr_group_collapse = 2130837806;
 			
 			// aapt resource value: 0x7f02012f
-			public const int notification_bg = 2130837807;
+			public const int mr_group_expand = 2130837807;
 			
 			// aapt resource value: 0x7f020130
-			public const int notification_bg_low = 2130837808;
+			public const int mr_media_pause_dark = 2130837808;
 			
 			// aapt resource value: 0x7f020131
-			public const int notification_bg_low_normal = 2130837809;
+			public const int mr_media_pause_light = 2130837809;
 			
 			// aapt resource value: 0x7f020132
-			public const int notification_bg_low_pressed = 2130837810;
+			public const int mr_media_play_dark = 2130837810;
 			
 			// aapt resource value: 0x7f020133
-			public const int notification_bg_normal = 2130837811;
+			public const int mr_media_play_light = 2130837811;
 			
 			// aapt resource value: 0x7f020134
-			public const int notification_bg_normal_pressed = 2130837812;
+			public const int mr_media_stop_dark = 2130837812;
 			
 			// aapt resource value: 0x7f020135
-			public const int notification_icon_background = 2130837813;
-			
-			// aapt resource value: 0x7f020148
-			public const int notification_template_icon_bg = 2130837832;
-			
-			// aapt resource value: 0x7f020149
-			public const int notification_template_icon_low_bg = 2130837833;
+			public const int mr_media_stop_light = 2130837813;
 			
 			// aapt resource value: 0x7f020136
-			public const int notification_tile_bg = 2130837814;
+			public const int mr_vol_type_audiotrack_dark = 2130837814;
 			
 			// aapt resource value: 0x7f020137
-			public const int notify_panel_notification_icon_bg = 2130837815;
+			public const int mr_vol_type_audiotrack_light = 2130837815;
 			
 			// aapt resource value: 0x7f020138
-			public const int other = 2130837816;
+			public const int navigation_empty_icon = 2130837816;
 			
 			// aapt resource value: 0x7f020139
-			public const int pin_progress_pinned = 2130837817;
+			public const int notification_action_background = 2130837817;
 			
 			// aapt resource value: 0x7f02013a
-			public const int pin_progress_shadow = 2130837818;
+			public const int notification_bg = 2130837818;
 			
 			// aapt resource value: 0x7f02013b
-			public const int pin_progress_unpinned = 2130837819;
+			public const int notification_bg_low = 2130837819;
 			
 			// aapt resource value: 0x7f02013c
-			public const int roundedbg = 2130837820;
+			public const int notification_bg_low_normal = 2130837820;
 			
 			// aapt resource value: 0x7f02013d
-			public const int roundedbgdark = 2130837821;
+			public const int notification_bg_low_pressed = 2130837821;
 			
 			// aapt resource value: 0x7f02013e
-			public const int savings = 2130837822;
+			public const int notification_bg_normal = 2130837822;
 			
 			// aapt resource value: 0x7f02013f
-			public const int scrubber_control_normal_holo = 2130837823;
+			public const int notification_bg_normal_pressed = 2130837823;
 			
 			// aapt resource value: 0x7f020140
-			public const int scrubber_control_pressed_holo = 2130837824;
+			public const int notification_icon_background = 2130837824;
+			
+			// aapt resource value: 0x7f02014f
+			public const int notification_template_icon_bg = 2130837839;
+			
+			// aapt resource value: 0x7f020150
+			public const int notification_template_icon_low_bg = 2130837840;
 			
 			// aapt resource value: 0x7f020141
-			public const int splash = 2130837825;
+			public const int notification_tile_bg = 2130837825;
 			
 			// aapt resource value: 0x7f020142
-			public const int splashImg = 2130837826;
+			public const int notify_panel_notification_icon_bg = 2130837826;
 			
 			// aapt resource value: 0x7f020143
-			public const int telokom = 2130837827;
+			public const int other = 2130837827;
 			
 			// aapt resource value: 0x7f020144
-			public const int theatremasks = 2130837828;
+			public const int plugin_lc_smallicon = 2130837828;
 			
 			// aapt resource value: 0x7f020145
-			public const int tooltip_frame_dark = 2130837829;
+			public const int roundedbg = 2130837829;
 			
 			// aapt resource value: 0x7f020146
-			public const int tooltip_frame_light = 2130837830;
+			public const int roundedbgdark = 2130837830;
 			
 			// aapt resource value: 0x7f020147
-			public const int transport = 2130837831;
+			public const int savings = 2130837831;
+			
+			// aapt resource value: 0x7f020148
+			public const int splash = 2130837832;
+			
+			// aapt resource value: 0x7f020149
+			public const int splashStyle = 2130837833;
+			
+			// aapt resource value: 0x7f02014a
+			public const int telokom = 2130837834;
+			
+			// aapt resource value: 0x7f02014b
+			public const int theatremasks = 2130837835;
+			
+			// aapt resource value: 0x7f02014c
+			public const int tooltip_frame_dark = 2130837836;
+			
+			// aapt resource value: 0x7f02014d
+			public const int tooltip_frame_light = 2130837837;
+			
+			// aapt resource value: 0x7f02014e
+			public const int transport = 2130837838;
 			
 			static Drawable()
 			{
@@ -3628,716 +4785,728 @@ namespace HomeBudget.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f090032
-			public const int ALT = 2131296306;
+			// aapt resource value: 0x7f080032
+			public const int ALT = 2131230770;
 			
-			// aapt resource value: 0x7f090033
-			public const int CTRL = 2131296307;
+			// aapt resource value: 0x7f080033
+			public const int CTRL = 2131230771;
 			
-			// aapt resource value: 0x7f090034
-			public const int FUNCTION = 2131296308;
+			// aapt resource value: 0x7f080034
+			public const int FUNCTION = 2131230772;
 			
-			// aapt resource value: 0x7f090035
-			public const int META = 2131296309;
+			// aapt resource value: 0x7f080035
+			public const int META = 2131230773;
 			
-			// aapt resource value: 0x7f090036
-			public const int SHIFT = 2131296310;
+			// aapt resource value: 0x7f080036
+			public const int SHIFT = 2131230774;
 			
-			// aapt resource value: 0x7f090037
-			public const int SYM = 2131296311;
+			// aapt resource value: 0x7f080037
+			public const int SYM = 2131230775;
 			
-			// aapt resource value: 0x7f0900d3
-			public const int action0 = 2131296467;
+			// aapt resource value: 0x7f0800d7
+			public const int action0 = 2131230935;
 			
-			// aapt resource value: 0x7f090083
-			public const int action_bar = 2131296387;
+			// aapt resource value: 0x7f080087
+			public const int action_bar = 2131230855;
 			
-			// aapt resource value: 0x7f090001
-			public const int action_bar_activity_content = 2131296257;
+			// aapt resource value: 0x7f080001
+			public const int action_bar_activity_content = 2131230721;
 			
-			// aapt resource value: 0x7f090082
-			public const int action_bar_container = 2131296386;
+			// aapt resource value: 0x7f080086
+			public const int action_bar_container = 2131230854;
 			
-			// aapt resource value: 0x7f09007e
-			public const int action_bar_root = 2131296382;
+			// aapt resource value: 0x7f080082
+			public const int action_bar_root = 2131230850;
 			
-			// aapt resource value: 0x7f090002
-			public const int action_bar_spinner = 2131296258;
+			// aapt resource value: 0x7f080002
+			public const int action_bar_spinner = 2131230722;
 			
-			// aapt resource value: 0x7f090062
-			public const int action_bar_subtitle = 2131296354;
+			// aapt resource value: 0x7f080067
+			public const int action_bar_subtitle = 2131230823;
 			
-			// aapt resource value: 0x7f090061
-			public const int action_bar_title = 2131296353;
+			// aapt resource value: 0x7f080066
+			public const int action_bar_title = 2131230822;
 			
-			// aapt resource value: 0x7f0900d0
-			public const int action_container = 2131296464;
+			// aapt resource value: 0x7f0800d4
+			public const int action_container = 2131230932;
 			
-			// aapt resource value: 0x7f090084
-			public const int action_context_bar = 2131296388;
+			// aapt resource value: 0x7f080088
+			public const int action_context_bar = 2131230856;
 			
-			// aapt resource value: 0x7f0900d7
-			public const int action_divider = 2131296471;
+			// aapt resource value: 0x7f0800db
+			public const int action_divider = 2131230939;
 			
-			// aapt resource value: 0x7f0900d1
-			public const int action_image = 2131296465;
+			// aapt resource value: 0x7f0800d5
+			public const int action_image = 2131230933;
 			
-			// aapt resource value: 0x7f090003
-			public const int action_menu_divider = 2131296259;
+			// aapt resource value: 0x7f080003
+			public const int action_menu_divider = 2131230723;
 			
-			// aapt resource value: 0x7f090004
-			public const int action_menu_presenter = 2131296260;
+			// aapt resource value: 0x7f080004
+			public const int action_menu_presenter = 2131230724;
 			
-			// aapt resource value: 0x7f090080
-			public const int action_mode_bar = 2131296384;
+			// aapt resource value: 0x7f080084
+			public const int action_mode_bar = 2131230852;
 			
-			// aapt resource value: 0x7f09007f
-			public const int action_mode_bar_stub = 2131296383;
+			// aapt resource value: 0x7f080083
+			public const int action_mode_bar_stub = 2131230851;
 			
-			// aapt resource value: 0x7f090063
-			public const int action_mode_close_button = 2131296355;
+			// aapt resource value: 0x7f080068
+			public const int action_mode_close_button = 2131230824;
 			
-			// aapt resource value: 0x7f0900d2
-			public const int action_text = 2131296466;
+			// aapt resource value: 0x7f0800d6
+			public const int action_text = 2131230934;
 			
-			// aapt resource value: 0x7f0900e0
-			public const int actions = 2131296480;
+			// aapt resource value: 0x7f0800e4
+			public const int actions = 2131230948;
 			
-			// aapt resource value: 0x7f090064
-			public const int activity_chooser_view_content = 2131296356;
+			// aapt resource value: 0x7f080069
+			public const int activity_chooser_view_content = 2131230825;
 			
-			// aapt resource value: 0x7f090027
-			public const int add = 2131296295;
+			// aapt resource value: 0x7f080027
+			public const int add = 2131230759;
 			
-			// aapt resource value: 0x7f090077
-			public const int alertTitle = 2131296375;
+			// aapt resource value: 0x7f08007b
+			public const int alertTitle = 2131230843;
 			
-			// aapt resource value: 0x7f090052
-			public const int all = 2131296338;
+			// aapt resource value: 0x7f080052
+			public const int all = 2131230802;
 			
-			// aapt resource value: 0x7f090038
-			public const int always = 2131296312;
+			// aapt resource value: 0x7f080038
+			public const int always = 2131230776;
 			
-			// aapt resource value: 0x7f09009c
-			public const int annotationLayout = 2131296412;
+			// aapt resource value: 0x7f0800a0
+			public const int annotationLayout = 2131230880;
 			
-			// aapt resource value: 0x7f090056
-			public const int async = 2131296342;
+			// aapt resource value: 0x7f080056
+			public const int async = 2131230806;
 			
-			// aapt resource value: 0x7f090044
-			public const int auto = 2131296324;
+			// aapt resource value: 0x7f080044
+			public const int auto = 2131230788;
 			
-			// aapt resource value: 0x7f090099
-			public const int axisLayout = 2131296409;
+			// aapt resource value: 0x7f08009d
+			public const int axisLayout = 2131230877;
 			
-			// aapt resource value: 0x7f09002f
-			public const int beginning = 2131296303;
+			// aapt resource value: 0x7f08002f
+			public const int beginning = 2131230767;
 			
-			// aapt resource value: 0x7f090057
-			public const int blocking = 2131296343;
+			// aapt resource value: 0x7f080057
+			public const int blocking = 2131230807;
 			
-			// aapt resource value: 0x7f09003d
-			public const int bottom = 2131296317;
+			// aapt resource value: 0x7f080063
+			public const int border = 2131230819;
 			
-			// aapt resource value: 0x7f0900e4
-			public const int bottom_labels = 2131296484;
+			// aapt resource value: 0x7f08003d
+			public const int bottom = 2131230781;
 			
-			// aapt resource value: 0x7f09006a
-			public const int buttonPanel = 2131296362;
+			// aapt resource value: 0x7f0800e8
+			public const int bottom_labels = 2131230952;
 			
-			// aapt resource value: 0x7f0900d4
-			public const int cancel_action = 2131296468;
+			// aapt resource value: 0x7f08006e
+			public const int buttonPanel = 2131230830;
 			
-			// aapt resource value: 0x7f090045
-			public const int center = 2131296325;
+			// aapt resource value: 0x7f0800d8
+			public const int cancel_action = 2131230936;
 			
-			// aapt resource value: 0x7f090046
-			public const int center_horizontal = 2131296326;
+			// aapt resource value: 0x7f080045
+			public const int center = 2131230789;
 			
-			// aapt resource value: 0x7f090047
-			public const int center_vertical = 2131296327;
+			// aapt resource value: 0x7f080046
+			public const int center_horizontal = 2131230790;
 			
-			// aapt resource value: 0x7f09009b
-			public const int chartBehaviorLayout = 2131296411;
+			// aapt resource value: 0x7f080047
+			public const int center_vertical = 2131230791;
 			
-			// aapt resource value: 0x7f09009f
-			public const int chartLegendScrollView = 2131296415;
+			// aapt resource value: 0x7f08009f
+			public const int chartBehaviorLayout = 2131230879;
 			
-			// aapt resource value: 0x7f09007a
-			public const int checkbox = 2131296378;
+			// aapt resource value: 0x7f0800a3
+			public const int chartLegendScrollView = 2131230883;
 			
-			// aapt resource value: 0x7f0900dc
-			public const int chronometer = 2131296476;
+			// aapt resource value: 0x7f08007e
+			public const int checkbox = 2131230846;
 			
-			// aapt resource value: 0x7f090060
-			public const int clip = 2131296352;
+			// aapt resource value: 0x7f080060
+			public const int @checked = 2131230816;
 			
-			// aapt resource value: 0x7f09004e
-			public const int clip_horizontal = 2131296334;
+			// aapt resource value: 0x7f0800e0
+			public const int chronometer = 2131230944;
 			
-			// aapt resource value: 0x7f09004f
-			public const int clip_vertical = 2131296335;
+			// aapt resource value: 0x7f08004e
+			public const int clip_horizontal = 2131230798;
 			
-			// aapt resource value: 0x7f090039
-			public const int collapseActionView = 2131296313;
+			// aapt resource value: 0x7f08004f
+			public const int clip_vertical = 2131230799;
 			
-			// aapt resource value: 0x7f09005c
-			public const int compute = 2131296348;
+			// aapt resource value: 0x7f080039
+			public const int collapseActionView = 2131230777;
 			
-			// aapt resource value: 0x7f0900a6
-			public const int container = 2131296422;
+			// aapt resource value: 0x7f08005c
+			public const int compute = 2131230812;
 			
-			// aapt resource value: 0x7f0900e5
-			public const int content = 2131296485;
+			// aapt resource value: 0x7f0800aa
+			public const int container = 2131230890;
 			
-			// aapt resource value: 0x7f09006d
-			public const int contentPanel = 2131296365;
+			// aapt resource value: 0x7f0800e9
+			public const int content = 2131230953;
 			
-			// aapt resource value: 0x7f0900a7
-			public const int coordinator = 2131296423;
+			// aapt resource value: 0x7f080071
+			public const int contentPanel = 2131230833;
 			
-			// aapt resource value: 0x7f090074
-			public const int custom = 2131296372;
+			// aapt resource value: 0x7f0800ab
+			public const int coordinator = 2131230891;
 			
-			// aapt resource value: 0x7f090073
-			public const int customPanel = 2131296371;
+			// aapt resource value: 0x7f080078
+			public const int custom = 2131230840;
 			
-			// aapt resource value: 0x7f090097
-			public const int dataMarkerLayout = 2131296407;
+			// aapt resource value: 0x7f080077
+			public const int customPanel = 2131230839;
 			
-			// aapt resource value: 0x7f09005a
-			public const int decimalMode = 2131296346;
+			// aapt resource value: 0x7f08009b
+			public const int dataMarkerLayout = 2131230875;
 			
-			// aapt resource value: 0x7f090081
-			public const int decor_content_parent = 2131296385;
+			// aapt resource value: 0x7f08005a
+			public const int decimalMode = 2131230810;
 			
-			// aapt resource value: 0x7f090067
-			public const int default_activity_button = 2131296359;
+			// aapt resource value: 0x7f080085
+			public const int decor_content_parent = 2131230853;
 			
-			// aapt resource value: 0x7f0900a9
-			public const int design_bottom_sheet = 2131296425;
+			// aapt resource value: 0x7f08006b
+			public const int default_activity_button = 2131230827;
 			
-			// aapt resource value: 0x7f0900b0
-			public const int design_menu_item_action_area = 2131296432;
+			// aapt resource value: 0x7f0800ad
+			public const int design_bottom_sheet = 2131230893;
 			
-			// aapt resource value: 0x7f0900af
-			public const int design_menu_item_action_area_stub = 2131296431;
+			// aapt resource value: 0x7f0800b4
+			public const int design_menu_item_action_area = 2131230900;
 			
-			// aapt resource value: 0x7f0900ae
-			public const int design_menu_item_text = 2131296430;
+			// aapt resource value: 0x7f0800b3
+			public const int design_menu_item_action_area_stub = 2131230899;
 			
-			// aapt resource value: 0x7f0900ad
-			public const int design_navigation_view = 2131296429;
+			// aapt resource value: 0x7f0800b2
+			public const int design_menu_item_text = 2131230898;
 			
-			// aapt resource value: 0x7f090020
-			public const int disableHome = 2131296288;
+			// aapt resource value: 0x7f0800b1
+			public const int design_navigation_view = 2131230897;
 			
-			// aapt resource value: 0x7f09005b
-			public const int doubleMode = 2131296347;
+			// aapt resource value: 0x7f080020
+			public const int disableHome = 2131230752;
 			
-			// aapt resource value: 0x7f090085
-			public const int edit_query = 2131296389;
+			// aapt resource value: 0x7f08005b
+			public const int doubleMode = 2131230811;
 			
-			// aapt resource value: 0x7f090030
-			public const int end = 2131296304;
+			// aapt resource value: 0x7f080089
+			public const int edit_query = 2131230857;
 			
-			// aapt resource value: 0x7f0900e2
-			public const int end_padder = 2131296482;
+			// aapt resource value: 0x7f080030
+			public const int end = 2131230768;
 			
-			// aapt resource value: 0x7f09003f
-			public const int enterAlways = 2131296319;
+			// aapt resource value: 0x7f0800e6
+			public const int end_padder = 2131230950;
 			
-			// aapt resource value: 0x7f090040
-			public const int enterAlwaysCollapsed = 2131296320;
+			// aapt resource value: 0x7f08003f
+			public const int enterAlways = 2131230783;
 			
-			// aapt resource value: 0x7f090041
-			public const int exitUntilCollapsed = 2131296321;
+			// aapt resource value: 0x7f080040
+			public const int enterAlwaysCollapsed = 2131230784;
 			
-			// aapt resource value: 0x7f090065
-			public const int expand_activities_button = 2131296357;
+			// aapt resource value: 0x7f080041
+			public const int exitUntilCollapsed = 2131230785;
 			
-			// aapt resource value: 0x7f090079
-			public const int expanded_menu = 2131296377;
+			// aapt resource value: 0x7f08006a
+			public const int expand_activities_button = 2131230826;
 			
-			// aapt resource value: 0x7f090050
-			public const int fill = 2131296336;
+			// aapt resource value: 0x7f08007d
+			public const int expanded_menu = 2131230845;
 			
-			// aapt resource value: 0x7f090051
-			public const int fill_horizontal = 2131296337;
+			// aapt resource value: 0x7f080050
+			public const int fill = 2131230800;
 			
-			// aapt resource value: 0x7f090048
-			public const int fill_vertical = 2131296328;
+			// aapt resource value: 0x7f080051
+			public const int fill_horizontal = 2131230801;
 			
-			// aapt resource value: 0x7f090054
-			public const int @fixed = 2131296340;
+			// aapt resource value: 0x7f080048
+			public const int fill_vertical = 2131230792;
 			
-			// aapt resource value: 0x7f090058
-			public const int forever = 2131296344;
+			// aapt resource value: 0x7f080054
+			public const int @fixed = 2131230804;
 			
-			// aapt resource value: 0x7f09000a
-			public const int ghost_view = 2131296266;
+			// aapt resource value: 0x7f080058
+			public const int forever = 2131230808;
 			
-			// aapt resource value: 0x7f090094
-			public const int gridLineLayout = 2131296404;
+			// aapt resource value: 0x7f08000a
+			public const int ghost_view = 2131230730;
 			
-			// aapt resource value: 0x7f0900e6
-			public const int gridLinesLayout = 2131296486;
+			// aapt resource value: 0x7f080098
+			public const int gridLineLayout = 2131230872;
 			
-			// aapt resource value: 0x7f090005
-			public const int home = 2131296261;
+			// aapt resource value: 0x7f0800ea
+			public const int gridLinesLayout = 2131230954;
 			
-			// aapt resource value: 0x7f090021
-			public const int homeAsUp = 2131296289;
+			// aapt resource value: 0x7f080005
+			public const int home = 2131230725;
 			
-			// aapt resource value: 0x7f090069
-			public const int icon = 2131296361;
+			// aapt resource value: 0x7f080021
+			public const int homeAsUp = 2131230753;
 			
-			// aapt resource value: 0x7f0900a2
-			public const int iconView = 2131296418;
+			// aapt resource value: 0x7f08006d
+			public const int icon = 2131230829;
 			
-			// aapt resource value: 0x7f0900e1
-			public const int icon_group = 2131296481;
+			// aapt resource value: 0x7f0800a6
+			public const int iconView = 2131230886;
 			
-			// aapt resource value: 0x7f09003a
-			public const int ifRoom = 2131296314;
+			// aapt resource value: 0x7f0800e5
+			public const int icon_group = 2131230949;
 			
-			// aapt resource value: 0x7f090066
-			public const int image = 2131296358;
+			// aapt resource value: 0x7f08003a
+			public const int ifRoom = 2131230778;
 			
-			// aapt resource value: 0x7f0900dd
-			public const int info = 2131296477;
+			// aapt resource value: 0x7f080064
+			public const int image = 2131230820;
 			
-			// aapt resource value: 0x7f090059
-			public const int italic = 2131296345;
+			// aapt resource value: 0x7f080065
+			public const int imagewithtext = 2131230821;
 			
-			// aapt resource value: 0x7f090000
-			public const int item_touch_helper_previous_elevation = 2131296256;
+			// aapt resource value: 0x7f080061
+			public const int indeterminate = 2131230817;
 			
-			// aapt resource value: 0x7f0900a3
-			public const int label = 2131296419;
+			// aapt resource value: 0x7f0800e1
+			public const int info = 2131230945;
 			
-			// aapt resource value: 0x7f0900a5
-			public const int largeLabel = 2131296421;
+			// aapt resource value: 0x7f080059
+			public const int italic = 2131230809;
 			
-			// aapt resource value: 0x7f090049
-			public const int left = 2131296329;
+			// aapt resource value: 0x7f080000
+			public const int item_touch_helper_previous_elevation = 2131230720;
 			
-			// aapt resource value: 0x7f09009e
-			public const int legendHeader = 2131296414;
+			// aapt resource value: 0x7f0800a7
+			public const int label = 2131230887;
 			
-			// aapt resource value: 0x7f0900a1
-			public const int legendItemsLayout = 2131296417;
+			// aapt resource value: 0x7f0800a9
+			public const int largeLabel = 2131230889;
 			
-			// aapt resource value: 0x7f09009a
-			public const int legendLayout = 2131296410;
+			// aapt resource value: 0x7f080049
+			public const int left = 2131230793;
 			
-			// aapt resource value: 0x7f0900a0
-			public const int legendScrollView = 2131296416;
+			// aapt resource value: 0x7f0800a2
+			public const int legendHeader = 2131230882;
 			
-			// aapt resource value: 0x7f09009d
-			public const int legendViewGroup = 2131296413;
+			// aapt resource value: 0x7f0800a5
+			public const int legendItemsLayout = 2131230885;
 			
-			// aapt resource value: 0x7f090017
-			public const int line1 = 2131296279;
+			// aapt resource value: 0x7f08009e
+			public const int legendLayout = 2131230878;
 			
-			// aapt resource value: 0x7f090018
-			public const int line3 = 2131296280;
+			// aapt resource value: 0x7f0800a4
+			public const int legendScrollView = 2131230884;
 			
-			// aapt resource value: 0x7f09001d
-			public const int listMode = 2131296285;
+			// aapt resource value: 0x7f0800a1
+			public const int legendViewGroup = 2131230881;
 			
-			// aapt resource value: 0x7f090068
-			public const int list_item = 2131296360;
+			// aapt resource value: 0x7f080017
+			public const int line1 = 2131230743;
 			
-			// aapt resource value: 0x7f0900b4
-			public const int loadingImage = 2131296436;
+			// aapt resource value: 0x7f080018
+			public const int line3 = 2131230744;
 			
-			// aapt resource value: 0x7f0900b2
-			public const int loadingProgressBar = 2131296434;
+			// aapt resource value: 0x7f08001d
+			public const int listMode = 2131230749;
 			
-			// aapt resource value: 0x7f0900b5
-			public const int loadingProgressWheel = 2131296437;
+			// aapt resource value: 0x7f08006c
+			public const int list_item = 2131230828;
 			
-			// aapt resource value: 0x7f0900ec
-			public const int masked = 2131296492;
+			// aapt resource value: 0x7f0800b8
+			public const int loadingImage = 2131230904;
 			
-			// aapt resource value: 0x7f0900d6
-			public const int media_actions = 2131296470;
+			// aapt resource value: 0x7f0800b6
+			public const int loadingProgressBar = 2131230902;
 			
-			// aapt resource value: 0x7f0900ea
-			public const int message = 2131296490;
+			// aapt resource value: 0x7f0800b9
+			public const int loadingProgressWheel = 2131230905;
 			
-			// aapt resource value: 0x7f090031
-			public const int middle = 2131296305;
+			// aapt resource value: 0x7f0800f0
+			public const int masked = 2131230960;
 			
-			// aapt resource value: 0x7f090053
-			public const int mini = 2131296339;
+			// aapt resource value: 0x7f0800da
+			public const int media_actions = 2131230938;
 			
-			// aapt resource value: 0x7f0900c2
-			public const int mr_art = 2131296450;
+			// aapt resource value: 0x7f0800ee
+			public const int message = 2131230958;
 			
-			// aapt resource value: 0x7f0900b7
-			public const int mr_chooser_list = 2131296439;
+			// aapt resource value: 0x7f080031
+			public const int middle = 2131230769;
 			
-			// aapt resource value: 0x7f0900ba
-			public const int mr_chooser_route_desc = 2131296442;
+			// aapt resource value: 0x7f080053
+			public const int mini = 2131230803;
 			
-			// aapt resource value: 0x7f0900b8
-			public const int mr_chooser_route_icon = 2131296440;
+			// aapt resource value: 0x7f0800c6
+			public const int mr_art = 2131230918;
 			
-			// aapt resource value: 0x7f0900b9
-			public const int mr_chooser_route_name = 2131296441;
+			// aapt resource value: 0x7f0800bb
+			public const int mr_chooser_list = 2131230907;
 			
-			// aapt resource value: 0x7f0900b6
-			public const int mr_chooser_title = 2131296438;
+			// aapt resource value: 0x7f0800be
+			public const int mr_chooser_route_desc = 2131230910;
 			
-			// aapt resource value: 0x7f0900bf
-			public const int mr_close = 2131296447;
+			// aapt resource value: 0x7f0800bc
+			public const int mr_chooser_route_icon = 2131230908;
 			
-			// aapt resource value: 0x7f0900c5
-			public const int mr_control_divider = 2131296453;
+			// aapt resource value: 0x7f0800bd
+			public const int mr_chooser_route_name = 2131230909;
 			
-			// aapt resource value: 0x7f0900cb
-			public const int mr_control_playback_ctrl = 2131296459;
+			// aapt resource value: 0x7f0800ba
+			public const int mr_chooser_title = 2131230906;
 			
-			// aapt resource value: 0x7f0900ce
-			public const int mr_control_subtitle = 2131296462;
+			// aapt resource value: 0x7f0800c3
+			public const int mr_close = 2131230915;
 			
-			// aapt resource value: 0x7f0900cd
-			public const int mr_control_title = 2131296461;
+			// aapt resource value: 0x7f0800c9
+			public const int mr_control_divider = 2131230921;
 			
-			// aapt resource value: 0x7f0900cc
-			public const int mr_control_title_container = 2131296460;
+			// aapt resource value: 0x7f0800cf
+			public const int mr_control_playback_ctrl = 2131230927;
 			
-			// aapt resource value: 0x7f0900c0
-			public const int mr_custom_control = 2131296448;
+			// aapt resource value: 0x7f0800d2
+			public const int mr_control_subtitle = 2131230930;
 			
-			// aapt resource value: 0x7f0900c1
-			public const int mr_default_control = 2131296449;
+			// aapt resource value: 0x7f0800d1
+			public const int mr_control_title = 2131230929;
 			
-			// aapt resource value: 0x7f0900bc
-			public const int mr_dialog_area = 2131296444;
+			// aapt resource value: 0x7f0800d0
+			public const int mr_control_title_container = 2131230928;
 			
-			// aapt resource value: 0x7f0900bb
-			public const int mr_expandable_area = 2131296443;
+			// aapt resource value: 0x7f0800c4
+			public const int mr_custom_control = 2131230916;
 			
-			// aapt resource value: 0x7f0900cf
-			public const int mr_group_expand_collapse = 2131296463;
+			// aapt resource value: 0x7f0800c5
+			public const int mr_default_control = 2131230917;
 			
-			// aapt resource value: 0x7f0900c3
-			public const int mr_media_main_control = 2131296451;
+			// aapt resource value: 0x7f0800c0
+			public const int mr_dialog_area = 2131230912;
 			
-			// aapt resource value: 0x7f0900be
-			public const int mr_name = 2131296446;
+			// aapt resource value: 0x7f0800bf
+			public const int mr_expandable_area = 2131230911;
 			
-			// aapt resource value: 0x7f0900c4
-			public const int mr_playback_control = 2131296452;
+			// aapt resource value: 0x7f0800d3
+			public const int mr_group_expand_collapse = 2131230931;
 			
-			// aapt resource value: 0x7f0900bd
-			public const int mr_title_bar = 2131296445;
+			// aapt resource value: 0x7f0800c7
+			public const int mr_media_main_control = 2131230919;
 			
-			// aapt resource value: 0x7f0900c6
-			public const int mr_volume_control = 2131296454;
+			// aapt resource value: 0x7f0800c2
+			public const int mr_name = 2131230914;
 			
-			// aapt resource value: 0x7f0900c7
-			public const int mr_volume_group_list = 2131296455;
+			// aapt resource value: 0x7f0800c8
+			public const int mr_playback_control = 2131230920;
 			
-			// aapt resource value: 0x7f0900c9
-			public const int mr_volume_item_icon = 2131296457;
+			// aapt resource value: 0x7f0800c1
+			public const int mr_title_bar = 2131230913;
 			
-			// aapt resource value: 0x7f0900ca
-			public const int mr_volume_slider = 2131296458;
+			// aapt resource value: 0x7f0800ca
+			public const int mr_volume_control = 2131230922;
 			
-			// aapt resource value: 0x7f090028
-			public const int multiply = 2131296296;
+			// aapt resource value: 0x7f0800cb
+			public const int mr_volume_group_list = 2131230923;
 			
-			// aapt resource value: 0x7f0900ac
-			public const int navigation_header_container = 2131296428;
+			// aapt resource value: 0x7f0800cd
+			public const int mr_volume_item_icon = 2131230925;
 			
-			// aapt resource value: 0x7f09003b
-			public const int never = 2131296315;
+			// aapt resource value: 0x7f0800ce
+			public const int mr_volume_slider = 2131230926;
 			
-			// aapt resource value: 0x7f090022
-			public const int none = 2131296290;
+			// aapt resource value: 0x7f080028
+			public const int multiply = 2131230760;
 			
-			// aapt resource value: 0x7f09001e
-			public const int normal = 2131296286;
+			// aapt resource value: 0x7f0800b0
+			public const int navigation_header_container = 2131230896;
 			
-			// aapt resource value: 0x7f0900df
-			public const int notification_background = 2131296479;
+			// aapt resource value: 0x7f08003b
+			public const int never = 2131230779;
 			
-			// aapt resource value: 0x7f0900d9
-			public const int notification_main_column = 2131296473;
+			// aapt resource value: 0x7f080022
+			public const int none = 2131230754;
 			
-			// aapt resource value: 0x7f0900d8
-			public const int notification_main_column_container = 2131296472;
+			// aapt resource value: 0x7f08001e
+			public const int normal = 2131230750;
 			
-			// aapt resource value: 0x7f09005e
-			public const int onKeyFocus = 2131296350;
+			// aapt resource value: 0x7f0800e3
+			public const int notification_background = 2131230947;
 			
-			// aapt resource value: 0x7f09005f
-			public const int onLostFocus = 2131296351;
+			// aapt resource value: 0x7f0800dd
+			public const int notification_main_column = 2131230941;
 			
-			// aapt resource value: 0x7f09004c
-			public const int parallax = 2131296332;
+			// aapt resource value: 0x7f0800dc
+			public const int notification_main_column_container = 2131230940;
 			
-			// aapt resource value: 0x7f09006c
-			public const int parentPanel = 2131296364;
+			// aapt resource value: 0x7f08005e
+			public const int onKeyFocus = 2131230814;
 			
-			// aapt resource value: 0x7f09000b
-			public const int parent_matrix = 2131296267;
+			// aapt resource value: 0x7f08005f
+			public const int onLostFocus = 2131230815;
 			
-			// aapt resource value: 0x7f09004d
-			public const int pin = 2131296333;
+			// aapt resource value: 0x7f08004c
+			public const int parallax = 2131230796;
 			
-			// aapt resource value: 0x7f090006
-			public const int progress_circular = 2131296262;
+			// aapt resource value: 0x7f080070
+			public const int parentPanel = 2131230832;
 			
-			// aapt resource value: 0x7f090007
-			public const int progress_horizontal = 2131296263;
+			// aapt resource value: 0x7f08000b
+			public const int parent_matrix = 2131230731;
 			
-			// aapt resource value: 0x7f09007c
-			public const int radio = 2131296380;
+			// aapt resource value: 0x7f08004d
+			public const int pin = 2131230797;
 			
-			// aapt resource value: 0x7f09004a
-			public const int right = 2131296330;
+			// aapt resource value: 0x7f080006
+			public const int progress_circular = 2131230726;
 			
-			// aapt resource value: 0x7f0900de
-			public const int right_icon = 2131296478;
+			// aapt resource value: 0x7f080007
+			public const int progress_horizontal = 2131230727;
 			
-			// aapt resource value: 0x7f0900da
-			public const int right_side = 2131296474;
+			// aapt resource value: 0x7f080080
+			public const int radio = 2131230848;
 			
-			// aapt resource value: 0x7f090092
-			public const int rootLayout = 2131296402;
+			// aapt resource value: 0x7f08004a
+			public const int right = 2131230794;
 			
-			// aapt resource value: 0x7f09000c
-			public const int save_image_matrix = 2131296268;
+			// aapt resource value: 0x7f0800e2
+			public const int right_icon = 2131230946;
 			
-			// aapt resource value: 0x7f09000d
-			public const int save_non_transition_alpha = 2131296269;
+			// aapt resource value: 0x7f0800de
+			public const int right_side = 2131230942;
 			
-			// aapt resource value: 0x7f09000e
-			public const int save_scale_type = 2131296270;
+			// aapt resource value: 0x7f080096
+			public const int rootLayout = 2131230870;
 			
-			// aapt resource value: 0x7f090029
-			public const int screen = 2131296297;
+			// aapt resource value: 0x7f08000c
+			public const int save_image_matrix = 2131230732;
 			
-			// aapt resource value: 0x7f090042
-			public const int scroll = 2131296322;
+			// aapt resource value: 0x7f08000d
+			public const int save_non_transition_alpha = 2131230733;
 			
-			// aapt resource value: 0x7f090072
-			public const int scrollIndicatorDown = 2131296370;
+			// aapt resource value: 0x7f08000e
+			public const int save_scale_type = 2131230734;
 			
-			// aapt resource value: 0x7f09006e
-			public const int scrollIndicatorUp = 2131296366;
+			// aapt resource value: 0x7f080029
+			public const int screen = 2131230761;
 			
-			// aapt resource value: 0x7f09006f
-			public const int scrollView = 2131296367;
+			// aapt resource value: 0x7f080042
+			public const int scroll = 2131230786;
 			
-			// aapt resource value: 0x7f090055
-			public const int scrollable = 2131296341;
+			// aapt resource value: 0x7f080076
+			public const int scrollIndicatorDown = 2131230838;
 			
-			// aapt resource value: 0x7f090087
-			public const int search_badge = 2131296391;
+			// aapt resource value: 0x7f080072
+			public const int scrollIndicatorUp = 2131230834;
 			
-			// aapt resource value: 0x7f090086
-			public const int search_bar = 2131296390;
+			// aapt resource value: 0x7f080073
+			public const int scrollView = 2131230835;
 			
-			// aapt resource value: 0x7f090088
-			public const int search_button = 2131296392;
+			// aapt resource value: 0x7f080055
+			public const int scrollable = 2131230805;
 			
-			// aapt resource value: 0x7f09008d
-			public const int search_close_btn = 2131296397;
+			// aapt resource value: 0x7f08008b
+			public const int search_badge = 2131230859;
 			
-			// aapt resource value: 0x7f090089
-			public const int search_edit_frame = 2131296393;
+			// aapt resource value: 0x7f08008a
+			public const int search_bar = 2131230858;
 			
-			// aapt resource value: 0x7f09008f
-			public const int search_go_btn = 2131296399;
+			// aapt resource value: 0x7f08008c
+			public const int search_button = 2131230860;
 			
-			// aapt resource value: 0x7f09008a
-			public const int search_mag_icon = 2131296394;
+			// aapt resource value: 0x7f080091
+			public const int search_close_btn = 2131230865;
 			
-			// aapt resource value: 0x7f09008b
-			public const int search_plate = 2131296395;
+			// aapt resource value: 0x7f08008d
+			public const int search_edit_frame = 2131230861;
 			
-			// aapt resource value: 0x7f09008c
-			public const int search_src_text = 2131296396;
+			// aapt resource value: 0x7f080093
+			public const int search_go_btn = 2131230867;
 			
-			// aapt resource value: 0x7f090090
-			public const int search_voice_btn = 2131296400;
+			// aapt resource value: 0x7f08008e
+			public const int search_mag_icon = 2131230862;
 			
-			// aapt resource value: 0x7f090091
-			public const int select_dialog_listview = 2131296401;
+			// aapt resource value: 0x7f08008f
+			public const int search_plate = 2131230863;
 			
-			// aapt resource value: 0x7f090096
-			public const int seriesLayout = 2131296406;
+			// aapt resource value: 0x7f080090
+			public const int search_src_text = 2131230864;
 			
-			// aapt resource value: 0x7f09007b
-			public const int shortcut = 2131296379;
+			// aapt resource value: 0x7f080094
+			public const int search_voice_btn = 2131230868;
 			
-			// aapt resource value: 0x7f090023
-			public const int showCustom = 2131296291;
+			// aapt resource value: 0x7f080095
+			public const int select_dialog_listview = 2131230869;
 			
-			// aapt resource value: 0x7f090024
-			public const int showHome = 2131296292;
+			// aapt resource value: 0x7f08009a
+			public const int seriesLayout = 2131230874;
 			
-			// aapt resource value: 0x7f090025
-			public const int showTitle = 2131296293;
+			// aapt resource value: 0x7f08007f
+			public const int shortcut = 2131230847;
 			
-			// aapt resource value: 0x7f0900e8
-			public const int sliding_tabs = 2131296488;
+			// aapt resource value: 0x7f080023
+			public const int showCustom = 2131230755;
 			
-			// aapt resource value: 0x7f0900a4
-			public const int smallLabel = 2131296420;
+			// aapt resource value: 0x7f080024
+			public const int showHome = 2131230756;
 			
-			// aapt resource value: 0x7f0900ab
-			public const int snackbar_action = 2131296427;
+			// aapt resource value: 0x7f080025
+			public const int showTitle = 2131230757;
 			
-			// aapt resource value: 0x7f0900aa
-			public const int snackbar_text = 2131296426;
+			// aapt resource value: 0x7f0800ec
+			public const int sliding_tabs = 2131230956;
 			
-			// aapt resource value: 0x7f090043
-			public const int snap = 2131296323;
+			// aapt resource value: 0x7f0800a8
+			public const int smallLabel = 2131230888;
 			
-			// aapt resource value: 0x7f09006b
-			public const int spacer = 2131296363;
+			// aapt resource value: 0x7f0800af
+			public const int snackbar_action = 2131230895;
 			
-			// aapt resource value: 0x7f090008
-			public const int split_action_bar = 2131296264;
+			// aapt resource value: 0x7f0800ae
+			public const int snackbar_text = 2131230894;
 			
-			// aapt resource value: 0x7f09002a
-			public const int src_atop = 2131296298;
+			// aapt resource value: 0x7f080043
+			public const int snap = 2131230787;
 			
-			// aapt resource value: 0x7f09002b
-			public const int src_in = 2131296299;
+			// aapt resource value: 0x7f08006f
+			public const int spacer = 2131230831;
 			
-			// aapt resource value: 0x7f09002c
-			public const int src_over = 2131296300;
+			// aapt resource value: 0x7f080008
+			public const int split_action_bar = 2131230728;
 			
-			// aapt resource value: 0x7f09004b
-			public const int start = 2131296331;
+			// aapt resource value: 0x7f08002a
+			public const int src_atop = 2131230762;
 			
-			// aapt resource value: 0x7f0900d5
-			public const int status_bar_latest_event_content = 2131296469;
+			// aapt resource value: 0x7f08002b
+			public const int src_in = 2131230763;
 			
-			// aapt resource value: 0x7f090095
-			public const int stripLinesLayout = 2131296405;
+			// aapt resource value: 0x7f08002c
+			public const int src_over = 2131230764;
 			
-			// aapt resource value: 0x7f09007d
-			public const int submenuarrow = 2131296381;
+			// aapt resource value: 0x7f08004b
+			public const int start = 2131230795;
 			
-			// aapt resource value: 0x7f09008e
-			public const int submit_area = 2131296398;
+			// aapt resource value: 0x7f0800d9
+			public const int status_bar_latest_event_content = 2131230937;
 			
-			// aapt resource value: 0x7f09001f
-			public const int tabMode = 2131296287;
+			// aapt resource value: 0x7f080099
+			public const int stripLinesLayout = 2131230873;
 			
-			// aapt resource value: 0x7f090019
-			public const int tag_transition_group = 2131296281;
+			// aapt resource value: 0x7f080081
+			public const int submenuarrow = 2131230849;
 			
-			// aapt resource value: 0x7f090098
-			public const int technicalIndicatorLayout = 2131296408;
+			// aapt resource value: 0x7f080092
+			public const int submit_area = 2131230866;
 			
-			// aapt resource value: 0x7f09001a
-			public const int text = 2131296282;
+			// aapt resource value: 0x7f08001f
+			public const int tabMode = 2131230751;
 			
-			// aapt resource value: 0x7f09001b
-			public const int text2 = 2131296283;
+			// aapt resource value: 0x7f080019
+			public const int tag_transition_group = 2131230745;
 			
-			// aapt resource value: 0x7f090071
-			public const int textSpacerNoButtons = 2131296369;
+			// aapt resource value: 0x7f08009c
+			public const int technicalIndicatorLayout = 2131230876;
 			
-			// aapt resource value: 0x7f090070
-			public const int textSpacerNoTitle = 2131296368;
+			// aapt resource value: 0x7f08001a
+			public const int text = 2131230746;
 			
-			// aapt resource value: 0x7f0900b3
-			public const int textViewStatus = 2131296435;
+			// aapt resource value: 0x7f08001b
+			public const int text2 = 2131230747;
 			
-			// aapt resource value: 0x7f0900b1
-			public const int text_input_password_toggle = 2131296433;
+			// aapt resource value: 0x7f080075
+			public const int textSpacerNoButtons = 2131230837;
 			
-			// aapt resource value: 0x7f090014
-			public const int textinput_counter = 2131296276;
+			// aapt resource value: 0x7f080074
+			public const int textSpacerNoTitle = 2131230836;
 			
-			// aapt resource value: 0x7f090015
-			public const int textinput_error = 2131296277;
+			// aapt resource value: 0x7f0800b7
+			public const int textViewStatus = 2131230903;
 			
-			// aapt resource value: 0x7f0900e7
-			public const int thumbLayout = 2131296487;
+			// aapt resource value: 0x7f0800b5
+			public const int text_input_password_toggle = 2131230901;
 			
-			// aapt resource value: 0x7f0900db
-			public const int time = 2131296475;
+			// aapt resource value: 0x7f080014
+			public const int textinput_counter = 2131230740;
 			
-			// aapt resource value: 0x7f09001c
-			public const int title = 2131296284;
+			// aapt resource value: 0x7f080015
+			public const int textinput_error = 2131230741;
 			
-			// aapt resource value: 0x7f090078
-			public const int titleDividerNoCustom = 2131296376;
+			// aapt resource value: 0x7f0800eb
+			public const int thumbLayout = 2131230955;
 			
-			// aapt resource value: 0x7f090093
-			public const int titleLayout = 2131296403;
+			// aapt resource value: 0x7f0800df
+			public const int time = 2131230943;
 			
-			// aapt resource value: 0x7f090076
-			public const int title_template = 2131296374;
+			// aapt resource value: 0x7f08001c
+			public const int title = 2131230748;
 			
-			// aapt resource value: 0x7f0900e9
-			public const int toolbar = 2131296489;
+			// aapt resource value: 0x7f08007c
+			public const int titleDividerNoCustom = 2131230844;
 			
-			// aapt resource value: 0x7f09003e
-			public const int top = 2131296318;
+			// aapt resource value: 0x7f080097
+			public const int titleLayout = 2131230871;
 			
-			// aapt resource value: 0x7f090075
-			public const int topPanel = 2131296373;
+			// aapt resource value: 0x7f08007a
+			public const int title_template = 2131230842;
 			
-			// aapt resource value: 0x7f0900e3
-			public const int top_labels = 2131296483;
+			// aapt resource value: 0x7f0800ed
+			public const int toolbar = 2131230957;
 			
-			// aapt resource value: 0x7f0900a8
-			public const int touch_outside = 2131296424;
+			// aapt resource value: 0x7f08003e
+			public const int top = 2131230782;
 			
-			// aapt resource value: 0x7f09000f
-			public const int transition_current_scene = 2131296271;
+			// aapt resource value: 0x7f080079
+			public const int topPanel = 2131230841;
 			
-			// aapt resource value: 0x7f090010
-			public const int transition_layout_save = 2131296272;
+			// aapt resource value: 0x7f0800e7
+			public const int top_labels = 2131230951;
 			
-			// aapt resource value: 0x7f090011
-			public const int transition_position = 2131296273;
+			// aapt resource value: 0x7f0800ac
+			public const int touch_outside = 2131230892;
 			
-			// aapt resource value: 0x7f090012
-			public const int transition_scene_layoutid_cache = 2131296274;
+			// aapt resource value: 0x7f08000f
+			public const int transition_current_scene = 2131230735;
 			
-			// aapt resource value: 0x7f090013
-			public const int transition_transform = 2131296275;
+			// aapt resource value: 0x7f080010
+			public const int transition_layout_save = 2131230736;
 			
-			// aapt resource value: 0x7f09002d
-			public const int uniform = 2131296301;
+			// aapt resource value: 0x7f080011
+			public const int transition_position = 2131230737;
 			
-			// aapt resource value: 0x7f090009
-			public const int up = 2131296265;
+			// aapt resource value: 0x7f080012
+			public const int transition_scene_layoutid_cache = 2131230738;
 			
-			// aapt resource value: 0x7f090026
-			public const int useLogo = 2131296294;
+			// aapt resource value: 0x7f080013
+			public const int transition_transform = 2131230739;
 			
-			// aapt resource value: 0x7f09005d
-			public const int value = 2131296349;
+			// aapt resource value: 0x7f080062
+			public const int @unchecked = 2131230818;
 			
-			// aapt resource value: 0x7f090016
-			public const int view_offset_helper = 2131296278;
+			// aapt resource value: 0x7f08002d
+			public const int uniform = 2131230765;
 			
-			// aapt resource value: 0x7f0900eb
-			public const int visible = 2131296491;
+			// aapt resource value: 0x7f080009
+			public const int up = 2131230729;
 			
-			// aapt resource value: 0x7f0900c8
-			public const int volume_item_container = 2131296456;
+			// aapt resource value: 0x7f080026
+			public const int useLogo = 2131230758;
 			
-			// aapt resource value: 0x7f09003c
-			public const int withText = 2131296316;
+			// aapt resource value: 0x7f08005d
+			public const int value = 2131230813;
 			
-			// aapt resource value: 0x7f09002e
-			public const int wrap_content = 2131296302;
+			// aapt resource value: 0x7f080016
+			public const int view_offset_helper = 2131230742;
+			
+			// aapt resource value: 0x7f0800ef
+			public const int visible = 2131230959;
+			
+			// aapt resource value: 0x7f0800cc
+			public const int volume_item_container = 2131230924;
+			
+			// aapt resource value: 0x7f08003c
+			public const int withText = 2131230780;
+			
+			// aapt resource value: 0x7f08002e
+			public const int wrap_content = 2131230766;
 			
 			static Id()
 			{
@@ -4367,9 +5536,6 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0a0005
 			public const int cancel_button_image_alpha = 2131361797;
 			
-			// aapt resource value: 0x7f0a000e
-			public const int circular_indeterminent_interval = 2131361806;
-			
 			// aapt resource value: 0x7f0a0006
 			public const int config_tooltipAnimTime = 2131361798;
 			
@@ -4387,9 +5553,6 @@ namespace HomeBudget.Droid
 			
 			// aapt resource value: 0x7f0a0002
 			public const int mr_controller_volume_group_list_fade_out_duration_ms = 2131361794;
-			
-			// aapt resource value: 0x7f0a000d
-			public const int progressbutton_indeterminent_interval = 2131361805;
 			
 			// aapt resource value: 0x7f0a000b
 			public const int show_password_duration = 2131361803;
@@ -4411,10 +5574,25 @@ namespace HomeBudget.Droid
 		{
 			
 			// aapt resource value: 0x7f060000
-			public const int mr_fast_out_slow_in = 2131099648;
+			public const int btn_checkbox_checked_animation_interpolator_0 = 2131099648;
 			
 			// aapt resource value: 0x7f060001
-			public const int mr_linear_out_slow_in = 2131099649;
+			public const int btn_checkbox_checked_animation_interpolator_1 = 2131099649;
+			
+			// aapt resource value: 0x7f060002
+			public const int btn_checkbox_indeterminate_animation_interpolator_1 = 2131099650;
+			
+			// aapt resource value: 0x7f060003
+			public const int btn_checkbox_unchecked_animation_interpolator_0 = 2131099651;
+			
+			// aapt resource value: 0x7f060004
+			public const int btn_checkbox_unchecked_animation_interpolator_1 = 2131099652;
+			
+			// aapt resource value: 0x7f060005
+			public const int mr_fast_out_slow_in = 2131099653;
+			
+			// aapt resource value: 0x7f060006
+			public const int mr_linear_out_slow_in = 2131099654;
 			
 			static Interpolator()
 			{
@@ -4670,233 +5848,233 @@ namespace HomeBudget.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f070001
-			public const int ApplicationName = 2131165185;
+			// aapt resource value: 0x7f09004b
+			public const int ApplicationName = 2131296331;
 			
-			// aapt resource value: 0x7f070000
-			public const int Hello = 2131165184;
+			// aapt resource value: 0x7f09004a
+			public const int Hello = 2131296330;
 			
-			// aapt resource value: 0x7f070017
-			public const int abc_action_bar_home_description = 2131165207;
+			// aapt resource value: 0x7f090015
+			public const int abc_action_bar_home_description = 2131296277;
 			
-			// aapt resource value: 0x7f070018
-			public const int abc_action_bar_up_description = 2131165208;
+			// aapt resource value: 0x7f090016
+			public const int abc_action_bar_up_description = 2131296278;
 			
-			// aapt resource value: 0x7f070019
-			public const int abc_action_menu_overflow_description = 2131165209;
+			// aapt resource value: 0x7f090017
+			public const int abc_action_menu_overflow_description = 2131296279;
 			
-			// aapt resource value: 0x7f07001a
-			public const int abc_action_mode_done = 2131165210;
+			// aapt resource value: 0x7f090018
+			public const int abc_action_mode_done = 2131296280;
 			
-			// aapt resource value: 0x7f07001b
-			public const int abc_activity_chooser_view_see_all = 2131165211;
+			// aapt resource value: 0x7f090019
+			public const int abc_activity_chooser_view_see_all = 2131296281;
 			
-			// aapt resource value: 0x7f07001c
-			public const int abc_activitychooserview_choose_application = 2131165212;
+			// aapt resource value: 0x7f09001a
+			public const int abc_activitychooserview_choose_application = 2131296282;
 			
-			// aapt resource value: 0x7f07001d
-			public const int abc_capital_off = 2131165213;
+			// aapt resource value: 0x7f09001b
+			public const int abc_capital_off = 2131296283;
 			
-			// aapt resource value: 0x7f07001e
-			public const int abc_capital_on = 2131165214;
+			// aapt resource value: 0x7f09001c
+			public const int abc_capital_on = 2131296284;
 			
-			// aapt resource value: 0x7f070029
-			public const int abc_font_family_body_1_material = 2131165225;
+			// aapt resource value: 0x7f090027
+			public const int abc_font_family_body_1_material = 2131296295;
 			
-			// aapt resource value: 0x7f07002a
-			public const int abc_font_family_body_2_material = 2131165226;
+			// aapt resource value: 0x7f090028
+			public const int abc_font_family_body_2_material = 2131296296;
 			
-			// aapt resource value: 0x7f07002b
-			public const int abc_font_family_button_material = 2131165227;
+			// aapt resource value: 0x7f090029
+			public const int abc_font_family_button_material = 2131296297;
 			
-			// aapt resource value: 0x7f07002c
-			public const int abc_font_family_caption_material = 2131165228;
+			// aapt resource value: 0x7f09002a
+			public const int abc_font_family_caption_material = 2131296298;
 			
-			// aapt resource value: 0x7f07002d
-			public const int abc_font_family_display_1_material = 2131165229;
+			// aapt resource value: 0x7f09002b
+			public const int abc_font_family_display_1_material = 2131296299;
 			
-			// aapt resource value: 0x7f07002e
-			public const int abc_font_family_display_2_material = 2131165230;
+			// aapt resource value: 0x7f09002c
+			public const int abc_font_family_display_2_material = 2131296300;
 			
-			// aapt resource value: 0x7f07002f
-			public const int abc_font_family_display_3_material = 2131165231;
+			// aapt resource value: 0x7f09002d
+			public const int abc_font_family_display_3_material = 2131296301;
 			
-			// aapt resource value: 0x7f070030
-			public const int abc_font_family_display_4_material = 2131165232;
+			// aapt resource value: 0x7f09002e
+			public const int abc_font_family_display_4_material = 2131296302;
 			
-			// aapt resource value: 0x7f070031
-			public const int abc_font_family_headline_material = 2131165233;
+			// aapt resource value: 0x7f09002f
+			public const int abc_font_family_headline_material = 2131296303;
 			
-			// aapt resource value: 0x7f070032
-			public const int abc_font_family_menu_material = 2131165234;
+			// aapt resource value: 0x7f090030
+			public const int abc_font_family_menu_material = 2131296304;
 			
-			// aapt resource value: 0x7f070033
-			public const int abc_font_family_subhead_material = 2131165235;
+			// aapt resource value: 0x7f090031
+			public const int abc_font_family_subhead_material = 2131296305;
 			
-			// aapt resource value: 0x7f070034
-			public const int abc_font_family_title_material = 2131165236;
+			// aapt resource value: 0x7f090032
+			public const int abc_font_family_title_material = 2131296306;
 			
-			// aapt resource value: 0x7f07001f
-			public const int abc_search_hint = 2131165215;
+			// aapt resource value: 0x7f09001d
+			public const int abc_search_hint = 2131296285;
 			
-			// aapt resource value: 0x7f070020
-			public const int abc_searchview_description_clear = 2131165216;
+			// aapt resource value: 0x7f09001e
+			public const int abc_searchview_description_clear = 2131296286;
 			
-			// aapt resource value: 0x7f070021
-			public const int abc_searchview_description_query = 2131165217;
+			// aapt resource value: 0x7f09001f
+			public const int abc_searchview_description_query = 2131296287;
 			
-			// aapt resource value: 0x7f070022
-			public const int abc_searchview_description_search = 2131165218;
+			// aapt resource value: 0x7f090020
+			public const int abc_searchview_description_search = 2131296288;
 			
-			// aapt resource value: 0x7f070023
-			public const int abc_searchview_description_submit = 2131165219;
+			// aapt resource value: 0x7f090021
+			public const int abc_searchview_description_submit = 2131296289;
 			
-			// aapt resource value: 0x7f070024
-			public const int abc_searchview_description_voice = 2131165220;
+			// aapt resource value: 0x7f090022
+			public const int abc_searchview_description_voice = 2131296290;
 			
-			// aapt resource value: 0x7f070025
-			public const int abc_shareactionprovider_share_with = 2131165221;
+			// aapt resource value: 0x7f090023
+			public const int abc_shareactionprovider_share_with = 2131296291;
 			
-			// aapt resource value: 0x7f070026
-			public const int abc_shareactionprovider_share_with_application = 2131165222;
+			// aapt resource value: 0x7f090024
+			public const int abc_shareactionprovider_share_with_application = 2131296292;
 			
-			// aapt resource value: 0x7f070027
-			public const int abc_toolbar_collapse_description = 2131165223;
+			// aapt resource value: 0x7f090025
+			public const int abc_toolbar_collapse_description = 2131296293;
 			
-			// aapt resource value: 0x7f070035
-			public const int appbar_scrolling_view_behavior = 2131165237;
+			// aapt resource value: 0x7f090033
+			public const int appbar_scrolling_view_behavior = 2131296307;
 			
-			// aapt resource value: 0x7f070036
-			public const int bottom_sheet_behavior = 2131165238;
+			// aapt resource value: 0x7f090034
+			public const int bottom_sheet_behavior = 2131296308;
 			
-			// aapt resource value: 0x7f070040
-			public const int cancel_drop = 2131165248;
+			// aapt resource value: 0x7f09003e
+			public const int cancel_drop = 2131296318;
 			
-			// aapt resource value: 0x7f070037
-			public const int character_counter_pattern = 2131165239;
+			// aapt resource value: 0x7f090035
+			public const int character_counter_pattern = 2131296309;
 			
-			// aapt resource value: 0x7f070041
-			public const int drop_above = 2131165249;
+			// aapt resource value: 0x7f09003f
+			public const int drop_above = 2131296319;
 			
-			// aapt resource value: 0x7f070042
-			public const int drop_below = 2131165250;
+			// aapt resource value: 0x7f090040
+			public const int drop_below = 2131296320;
 			
-			// aapt resource value: 0x7f07003e
-			public const int library_name = 2131165246;
+			// aapt resource value: 0x7f09003c
+			public const int library_name = 2131296316;
 			
-			// aapt resource value: 0x7f07003f
-			public const int load_more_items = 2131165247;
+			// aapt resource value: 0x7f09003d
+			public const int load_more_items = 2131296317;
 			
-			// aapt resource value: 0x7f070002
-			public const int mr_button_content_description = 2131165186;
+			// aapt resource value: 0x7f090000
+			public const int mr_button_content_description = 2131296256;
 			
-			// aapt resource value: 0x7f070003
-			public const int mr_cast_button_connected = 2131165187;
+			// aapt resource value: 0x7f090001
+			public const int mr_cast_button_connected = 2131296257;
 			
-			// aapt resource value: 0x7f070004
-			public const int mr_cast_button_connecting = 2131165188;
+			// aapt resource value: 0x7f090002
+			public const int mr_cast_button_connecting = 2131296258;
 			
-			// aapt resource value: 0x7f070005
-			public const int mr_cast_button_disconnected = 2131165189;
+			// aapt resource value: 0x7f090003
+			public const int mr_cast_button_disconnected = 2131296259;
 			
-			// aapt resource value: 0x7f070006
-			public const int mr_chooser_searching = 2131165190;
+			// aapt resource value: 0x7f090004
+			public const int mr_chooser_searching = 2131296260;
 			
-			// aapt resource value: 0x7f070007
-			public const int mr_chooser_title = 2131165191;
+			// aapt resource value: 0x7f090005
+			public const int mr_chooser_title = 2131296261;
 			
-			// aapt resource value: 0x7f070008
-			public const int mr_controller_album_art = 2131165192;
+			// aapt resource value: 0x7f090006
+			public const int mr_controller_album_art = 2131296262;
 			
-			// aapt resource value: 0x7f070009
-			public const int mr_controller_casting_screen = 2131165193;
+			// aapt resource value: 0x7f090007
+			public const int mr_controller_casting_screen = 2131296263;
 			
-			// aapt resource value: 0x7f07000a
-			public const int mr_controller_close_description = 2131165194;
+			// aapt resource value: 0x7f090008
+			public const int mr_controller_close_description = 2131296264;
 			
-			// aapt resource value: 0x7f07000b
-			public const int mr_controller_collapse_group = 2131165195;
+			// aapt resource value: 0x7f090009
+			public const int mr_controller_collapse_group = 2131296265;
 			
-			// aapt resource value: 0x7f07000c
-			public const int mr_controller_disconnect = 2131165196;
+			// aapt resource value: 0x7f09000a
+			public const int mr_controller_disconnect = 2131296266;
 			
-			// aapt resource value: 0x7f07000d
-			public const int mr_controller_expand_group = 2131165197;
+			// aapt resource value: 0x7f09000b
+			public const int mr_controller_expand_group = 2131296267;
 			
-			// aapt resource value: 0x7f07000e
-			public const int mr_controller_no_info_available = 2131165198;
+			// aapt resource value: 0x7f09000c
+			public const int mr_controller_no_info_available = 2131296268;
 			
-			// aapt resource value: 0x7f07000f
-			public const int mr_controller_no_media_selected = 2131165199;
+			// aapt resource value: 0x7f09000d
+			public const int mr_controller_no_media_selected = 2131296269;
 			
-			// aapt resource value: 0x7f070010
-			public const int mr_controller_pause = 2131165200;
+			// aapt resource value: 0x7f09000e
+			public const int mr_controller_pause = 2131296270;
 			
-			// aapt resource value: 0x7f070011
-			public const int mr_controller_play = 2131165201;
+			// aapt resource value: 0x7f09000f
+			public const int mr_controller_play = 2131296271;
 			
-			// aapt resource value: 0x7f070012
-			public const int mr_controller_stop = 2131165202;
+			// aapt resource value: 0x7f090010
+			public const int mr_controller_stop = 2131296272;
 			
-			// aapt resource value: 0x7f070013
-			public const int mr_controller_stop_casting = 2131165203;
+			// aapt resource value: 0x7f090011
+			public const int mr_controller_stop_casting = 2131296273;
 			
-			// aapt resource value: 0x7f070014
-			public const int mr_controller_volume_slider = 2131165204;
+			// aapt resource value: 0x7f090012
+			public const int mr_controller_volume_slider = 2131296274;
 			
-			// aapt resource value: 0x7f070015
-			public const int mr_system_route_name = 2131165205;
+			// aapt resource value: 0x7f090013
+			public const int mr_system_route_name = 2131296275;
 			
-			// aapt resource value: 0x7f070016
-			public const int mr_user_route_category_name = 2131165206;
+			// aapt resource value: 0x7f090014
+			public const int mr_user_route_category_name = 2131296276;
 			
-			// aapt resource value: 0x7f070038
-			public const int password_toggle_content_description = 2131165240;
+			// aapt resource value: 0x7f090036
+			public const int password_toggle_content_description = 2131296310;
 			
-			// aapt resource value: 0x7f070039
-			public const int path_password_eye = 2131165241;
+			// aapt resource value: 0x7f090037
+			public const int path_password_eye = 2131296311;
 			
-			// aapt resource value: 0x7f07003a
-			public const int path_password_eye_mask_strike_through = 2131165242;
+			// aapt resource value: 0x7f090038
+			public const int path_password_eye_mask_strike_through = 2131296312;
 			
-			// aapt resource value: 0x7f07003b
-			public const int path_password_eye_mask_visible = 2131165243;
+			// aapt resource value: 0x7f090039
+			public const int path_password_eye_mask_visible = 2131296313;
 			
-			// aapt resource value: 0x7f07003c
-			public const int path_password_strike_through = 2131165244;
+			// aapt resource value: 0x7f09003a
+			public const int path_password_strike_through = 2131296314;
 			
-			// aapt resource value: 0x7f070044
-			public const int q = 2131165252;
+			// aapt resource value: 0x7f090042
+			public const int q = 2131296322;
 			
-			// aapt resource value: 0x7f070043
-			public const int quarter = 2131165251;
+			// aapt resource value: 0x7f090041
+			public const int quarter = 2131296321;
 			
-			// aapt resource value: 0x7f070028
-			public const int search_menu_title = 2131165224;
+			// aapt resource value: 0x7f090026
+			public const int search_menu_title = 2131296294;
 			
-			// aapt resource value: 0x7f07004a
-			public const int sfchart_close_label = 2131165258;
+			// aapt resource value: 0x7f090048
+			public const int sfchart_close_label = 2131296328;
 			
-			// aapt resource value: 0x7f070047
-			public const int sfchart_high_label = 2131165255;
+			// aapt resource value: 0x7f090045
+			public const int sfchart_high_label = 2131296325;
 			
-			// aapt resource value: 0x7f070048
-			public const int sfchart_low_label = 2131165256;
+			// aapt resource value: 0x7f090046
+			public const int sfchart_low_label = 2131296326;
 			
-			// aapt resource value: 0x7f070049
-			public const int sfchart_open_label = 2131165257;
+			// aapt resource value: 0x7f090047
+			public const int sfchart_open_label = 2131296327;
 			
-			// aapt resource value: 0x7f07004b
-			public const int sfchart_others_label = 2131165259;
+			// aapt resource value: 0x7f090049
+			public const int sfchart_others_label = 2131296329;
 			
-			// aapt resource value: 0x7f07003d
-			public const int status_bar_notification_info_overflow = 2131165245;
+			// aapt resource value: 0x7f09003b
+			public const int status_bar_notification_info_overflow = 2131296315;
 			
-			// aapt resource value: 0x7f070046
-			public const int w = 2131165254;
+			// aapt resource value: 0x7f090044
+			public const int w = 2131296324;
 			
-			// aapt resource value: 0x7f070045
-			public const int week = 2131165253;
+			// aapt resource value: 0x7f090043
+			public const int week = 2131296323;
 			
 			static String()
 			{
@@ -4929,8 +6107,8 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0b016e
 			public const int Animation_Design_BottomSheetDialog = 2131427694;
 			
-			// aapt resource value: 0x7f0b0195
-			public const int AppCompatDialogStyle = 2131427733;
+			// aapt resource value: 0x7f0b0191
+			public const int AppCompatDialogStyle = 2131427729;
 			
 			// aapt resource value: 0x7f0b00a9
 			public const int Base_AlertDialog_AppCompat = 2131427497;
@@ -5433,26 +6611,20 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0b000e
 			public const int CardView_Light = 2131427342;
 			
-			// aapt resource value: 0x7f0b0191
-			public const int CircularProgressBar = 2131427729;
+			// aapt resource value: 0x7f0b018f
+			public const int MainTheme = 2131427727;
 			
-			// aapt resource value: 0x7f0b0192
-			public const int CircularProgressBarLight = 2131427730;
+			// aapt resource value: 0x7f0b0190
+			public const int MainTheme_Base = 2131427728;
 			
 			// aapt resource value: 0x7f0b0193
-			public const int MainTheme = 2131427731;
+			public const int MyTheme = 2131427731;
+			
+			// aapt resource value: 0x7f0b0192
+			public const int MyTheme_Base = 2131427730;
 			
 			// aapt resource value: 0x7f0b0194
-			public const int MainTheme_Base = 2131427732;
-			
-			// aapt resource value: 0x7f0b0197
-			public const int MyTheme = 2131427735;
-			
-			// aapt resource value: 0x7f0b0196
-			public const int MyTheme_Base = 2131427734;
-			
-			// aapt resource value: 0x7f0b0198
-			public const int MyTheme_Splash = 2131427736;
+			public const int MyTheme_Splash = 2131427732;
 			
 			// aapt resource value: 0x7f0b002d
 			public const int Platform_AppCompat = 2131427373;
@@ -5495,12 +6667,6 @@ namespace HomeBudget.Droid
 			
 			// aapt resource value: 0x7f0b0031
 			public const int Platform_Widget_AppCompat_Spinner = 2131427377;
-			
-			// aapt resource value: 0x7f0b018f
-			public const int ProgressButton = 2131427727;
-			
-			// aapt resource value: 0x7f0b0190
-			public const int ProgressButton_Pin = 2131427728;
 			
 			// aapt resource value: 0x7f0b003a
 			public const int RtlOverlay_DialogWindowTitle_AppCompat = 2131427386;
@@ -7223,6 +8389,12 @@ namespace HomeBudget.Droid
 			// aapt resource value: 2
 			public const int DesignTheme_textColorError = 2;
 			
+			public static int[] DrawableStates = new int[] {
+					2130772353};
+			
+			// aapt resource value: 0
+			public const int DrawableStates_state_indeterminate = 0;
+			
 			public static int[] DrawerArrowToggle = new int[] {
 					2130772175,
 					2130772176,
@@ -7362,40 +8534,6 @@ namespace HomeBudget.Droid
 			
 			// aapt resource value: 2
 			public const int ForegroundLinearLayout_foregroundInsidePadding = 2;
-			
-			public static int[] HoloCircularProgressBar = new int[] {
-					2130772365,
-					2130772366,
-					2130772367,
-					2130772368,
-					2130772369,
-					2130772370,
-					2130772371,
-					2130772372};
-			
-			// aapt resource value: 0
-			public const int HoloCircularProgressBar_circular_gravity = 0;
-			
-			// aapt resource value: 6
-			public const int HoloCircularProgressBar_circular_indeterminate = 6;
-			
-			// aapt resource value: 7
-			public const int HoloCircularProgressBar_circular_indeterminate_interval = 7;
-			
-			// aapt resource value: 3
-			public const int HoloCircularProgressBar_circular_marker_progress = 3;
-			
-			// aapt resource value: 2
-			public const int HoloCircularProgressBar_circular_progress = 2;
-			
-			// aapt resource value: 5
-			public const int HoloCircularProgressBar_circular_progress_background_color = 5;
-			
-			// aapt resource value: 4
-			public const int HoloCircularProgressBar_circular_progress_color = 4;
-			
-			// aapt resource value: 1
-			public const int HoloCircularProgressBar_circular_stroke_width = 1;
 			
 			public static int[] LinearLayoutCompat = new int[] {
 					16842927,
@@ -7701,77 +8839,19 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0
 			public const int PopupWindowBackgroundState_state_above_anchor = 0;
 			
-			public static int[] ProgressButton = new int[] {
-					16842970,
-					16842981,
-					16843534,
-					2130772354,
-					2130772355,
-					2130772356,
-					2130772357,
-					2130772358,
-					2130772359,
-					2130772360,
-					2130772361,
-					2130772362,
-					2130772363,
-					2130772364};
-			
-			// aapt resource value: 1
-			public const int ProgressButton_android_clickable = 1;
-			
-			// aapt resource value: 0
-			public const int ProgressButton_android_focusable = 0;
-			
-			// aapt resource value: 2
-			public const int ProgressButton_android_selectableItemBackground = 2;
-			
-			// aapt resource value: 5
-			public const int ProgressButton_circleColor = 5;
-			
-			// aapt resource value: 12
-			public const int ProgressButton_indeterminate = 12;
-			
-			// aapt resource value: 13
-			public const int ProgressButton_indeterminate_interval = 13;
-			
-			// aapt resource value: 10
-			public const int ProgressButton_innerSize = 10;
-			
-			// aapt resource value: 4
-			public const int ProgressButton_max = 4;
-			
-			// aapt resource value: 11
-			public const int ProgressButton_pinned = 11;
-			
-			// aapt resource value: 7
-			public const int ProgressButton_pinnedDrawable = 7;
-			
-			// aapt resource value: 3
-			public const int ProgressButton_progress = 3;
-			
-			// aapt resource value: 6
-			public const int ProgressButton_progressColor = 6;
-			
-			// aapt resource value: 9
-			public const int ProgressButton_shadowDrawable = 9;
-			
-			// aapt resource value: 8
-			public const int ProgressButton_unpinnedDrawable = 8;
-			
 			public static int[] ProgressWheel = new int[] {
+					2130772369,
+					2130772370,
+					2130772371,
+					2130772372,
+					2130772373,
 					2130772374,
 					2130772375,
 					2130772376,
 					2130772377,
 					2130772378,
 					2130772379,
-					2130772380,
-					2130772381,
-					2130772382,
-					2130772383,
-					2130772384,
-					2130772385};
+					2130772380};
 			
 			// aapt resource value: 3
 			public const int ProgressWheel_ahBarColor = 3;
@@ -7947,6 +9027,20 @@ namespace HomeBudget.Droid
 			// aapt resource value: 12
 			public const int SearchView_voiceIcon = 12;
 			
+			public static int[] SfCheckBox = new int[] {
+					2130772354,
+					2130772355,
+					2130772356};
+			
+			// aapt resource value: 2
+			public const int SfCheckBox_checked = 2;
+			
+			// aapt resource value: 1
+			public const int SfCheckBox_cornerradius = 1;
+			
+			// aapt resource value: 0
+			public const int SfCheckBox_isthreestate = 0;
+			
 			public static int[] SfNumericTextBox = new int[] {
 					2130772339,
 					2130772340,
@@ -8004,6 +9098,56 @@ namespace HomeBudget.Droid
 			
 			// aapt resource value: 11
 			public const int SfNumericTextBox_watermarkColor = 11;
+			
+			public static int[] SfSegmentedControl = new int[] {
+					2130772357,
+					2130772358,
+					2130772359,
+					2130772360,
+					2130772361,
+					2130772362,
+					2130772363,
+					2130772364,
+					2130772365,
+					2130772366,
+					2130772367,
+					2130772368};
+			
+			// aapt resource value: 1
+			public const int SfSegmentedControl_segmentBackColor = 1;
+			
+			// aapt resource value: 2
+			public const int SfSegmentedControl_segmentBorderColor = 2;
+			
+			// aapt resource value: 3
+			public const int SfSegmentedControl_segmentBorderThickness = 3;
+			
+			// aapt resource value: 4
+			public const int SfSegmentedControl_segmentColor = 4;
+			
+			// aapt resource value: 9
+			public const int SfSegmentedControl_segmentCornerRadius = 9;
+			
+			// aapt resource value: 11
+			public const int SfSegmentedControl_segmentDisplayMode = 11;
+			
+			// aapt resource value: 10
+			public const int SfSegmentedControl_segmentPosition = 10;
+			
+			// aapt resource value: 0
+			public const int SfSegmentedControl_segmentSelectedIndex = 0;
+			
+			// aapt resource value: 8
+			public const int SfSegmentedControl_segmentStrokeThickness = 8;
+			
+			// aapt resource value: 6
+			public const int SfSegmentedControl_segmentedHeight = 6;
+			
+			// aapt resource value: 5
+			public const int SfSegmentedControl_segmentedPadding = 5;
+			
+			// aapt resource value: 7
+			public const int SfSegmentedControl_segmentedWidth = 7;
 			
 			public static int[] SnackbarLayout = new int[] {
 					16843039,
@@ -8298,12 +9442,6 @@ namespace HomeBudget.Droid
 			
 			// aapt resource value: 15
 			public const int TextInputLayout_passwordToggleTintMode = 15;
-			
-			public static int[] Theme = new int[] {
-					2130772373};
-			
-			// aapt resource value: 0
-			public const int Theme_circularProgressBarStyle = 0;
 			
 			public static int[] Toolbar = new int[] {
 					16842927,

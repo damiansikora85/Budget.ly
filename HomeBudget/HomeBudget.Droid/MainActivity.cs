@@ -13,12 +13,15 @@ using HomeBudgeStandard.Utils;
 using Acr.UserDialogs;
 using Android.Content;
 using Plugin.InAppBilling;
+using HomeBudget.Droid.Native;
+using Plugin.LocalNotifications;
 
 namespace HomeBudget.Droid
 {
-	[Activity(Label = "HomeBudget", Icon = "@drawable/icon", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
+	[Activity(Label = "HomeBudget", Icon = "@drawable/icon", Theme = "@style/MyTheme.Splash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
+        //@style/MainTheme
         private App _theApp;
 		protected override void OnCreate(Bundle bundle)
 		{
@@ -27,8 +30,12 @@ namespace HomeBudget.Droid
 
 			base.OnCreate(bundle);
 
+            base.SetTheme(Resource.Style.MainTheme);
+
             UserDialogs.Init(this);
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            Xamarin.Forms.DependencyService.Register<AndroidNotificationService>();
 
             _theApp = new App();
             LoadApplication(_theApp);

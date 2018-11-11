@@ -103,13 +103,17 @@ namespace HomeBudget.UWP.Pages
 
         private void OnFlyoutCategoryClicked(object sender, SelectionChangedEventArgs e)
         {
-            var flyout = FlyoutBase.GetAttachedFlyout(MainPanel);
             var listView = (ListView)sender;
+            if (listView.SelectedItem == null) return;
+
             var selectedCategory = (BudgetSummaryDataViewModel)listView.SelectedItem;
             
             foreach(var item in selectedCategory.CategoryReal.subcats)
                 SelectedCategorySubcats.Add(item);
 
+            listView.SelectedItem = null;
+
+            var flyout = FlyoutBase.GetAttachedFlyout(MainPanel);
             flyout.Hide();
         }
 

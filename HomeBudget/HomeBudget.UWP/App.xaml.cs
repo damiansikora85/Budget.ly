@@ -1,8 +1,10 @@
-﻿using System;
+﻿using HomeBudget.UWP.Utils;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Store;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -22,7 +24,7 @@ namespace HomeBudget.UWP
 		/// </summary>
 		public App()
 		{
-            //Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzAyMjhAMzEzNjJlMzMyZTMwWnNGUjdzSXhBQ1lNWGdhd3hjdXpMM3craCs1bVZISGswWUdNSnpJWHR2UT0=;MzAyMjlAMzEzNjJlMzMyZTMwWjNZRERVT0xRbVVnN1BZR0xVUVNva3JKRHhLcmtONkd5UittaU94bU8wTT0=");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzAyMjhAMzEzNjJlMzMyZTMwWnNGUjdzSXhBQ1lNWGdhd3hjdXpMM3craCs1bVZISGswWUdNSnpJWHR2UT0=;MzAyMjlAMzEzNjJlMzMyZTMwWjNZRERVT0xRbVVnN1BZR0xVUVNva3JKRHhLcmtONkd5UittaU94bU8wTT0=");
             this.InitializeComponent();
 			this.Suspending += OnSuspending;
         }
@@ -77,7 +79,10 @@ namespace HomeBudget.UWP
 
             // Ensure the current window is active
             Window.Current.Activate();
-		}
+
+            var notificationMgr = new NotificationManager();
+            notificationMgr.ReScheduleNotificationsBySettings();
+        }
 
 		/// <summary>
 		/// Invoked when Navigation to a certain page fails
@@ -102,5 +107,41 @@ namespace HomeBudget.UWP
 			//TODO: Save application state and stop any background activity
 			deferral.Complete();
 		}
-	}
+
+        protected override void OnActivated(IActivatedEventArgs e)
+        {
+            // Get the root frame
+            Frame rootFrame = Window.Current.Content as Frame;
+
+            if (rootFrame == null)
+            {
+                // Create a Frame to act as the navigation context and navigate to the first page
+                rootFrame = new Frame();
+
+                rootFrame.NavigationFailed += OnNavigationFailed;
+
+                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                {
+                    //TODO: Load state from previously suspended application
+                }
+
+                // Place the frame in the current Window
+                Window.Current.Content = rootFrame;
+            }
+
+            // Handle toast activation
+            if (e is ToastNotificationActivatedEventArgs)
+            {
+                rootFrame.Navigate(typeof(MainPage));
+
+                ApplicationView.PreferredLaunchViewSize = new Size(1024, 768);
+                ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(1024, 768));
+                //ApplicationView.GetForCurrentView().
+                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            }
+
+            // Ensure the current window is active
+            Window.Current.Activate();
+        }
+    }
 }

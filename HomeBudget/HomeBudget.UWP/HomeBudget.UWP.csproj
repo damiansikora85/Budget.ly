@@ -17,11 +17,11 @@
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>HomeBudget.UWP_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>HomeBudget.UWP_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>491CBEA35C1A9EC94BE8389ACCBDAEA152A99D0F</PackageCertificateThumbprint>
+    <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>75E3208DCCE1517821DFD827228DC48856CCA650</PackageCertificateThumbprint>
     <RuntimeIdentifiers>win10-arm;win10-arm-aot;win10-x86;win10-x86-aot;win10-x64;win10-x64-aot</RuntimeIdentifiers>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
@@ -119,6 +119,7 @@
     <Content Include="Assets\DropboxLogoOrg.png" />
     <Content Include="Assets\emptyChart.png" />
     <Content Include="Assets\Fonts\Cambria.ttf" />
+    <None Include="HomeBudget.UWP_StoreKey.pfx" />
     <None Include="HomeBudget.UWP_TemporaryKey.pfx" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -146,6 +147,9 @@
     <Compile Include="Pages\AnalyticsPage.xaml.cs">
       <DependentUpon>AnalyticsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\DropboxPage.xaml.cs">
+      <DependentUpon>DropboxPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -161,6 +165,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\DelegateCommnd.cs" />
     <Compile Include="Utils\FileManagerUwp.cs" />
+    <Compile Include="Utils\NotificationManager.cs" />
     <Compile Include="Utils\Settings.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -203,6 +208,11 @@
     <Content Include="Assets\Icons\transportHighlight.png" />
     <Content Include="Assets\income.png" />
     <Content Include="Assets\incomes.png" />
+    <Content Include="Assets\LargeTile.scale-100.png" />
+    <Content Include="Assets\LargeTile.scale-125.png" />
+    <Content Include="Assets\LargeTile.scale-150.png" />
+    <Content Include="Assets\LargeTile.scale-200.png" />
+    <Content Include="Assets\LargeTile.scale-400.png" />
     <Content Include="Assets\New\expense.png" />
     <Content Include="Assets\New\income.png" />
     <Content Include="Assets\planning_active.png" />
@@ -210,14 +220,49 @@
     <Content Include="Assets\Plus.png" />
     <Content Include="Assets\restaurant.png" />
     <Content Include="Assets\restaurantHighlight.png" />
+    <Content Include="Assets\SmallTile.scale-100.png" />
+    <Content Include="Assets\SmallTile.scale-125.png" />
+    <Content Include="Assets\SmallTile.scale-150.png" />
+    <Content Include="Assets\SmallTile.scale-200.png" />
+    <Content Include="Assets\SmallTile.scale-400.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-125.png" />
+    <Content Include="Assets\StoreLogo.scale-150.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-400.png" />
     <Content Include="Assets\sync_black.png" />
+    <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +279,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\AnalyticsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DropboxPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -276,6 +325,9 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.0.6</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
+      <Version>4.0.0</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
       <Version>2.2.0</Version>
     </PackageReference>
@@ -288,6 +340,9 @@
     <PackageReference Include="protobuf-net">
       <Version>2.3.12</Version>
     </PackageReference>
+    <PackageReference Include="QueryString.NET">
+      <Version>1.0.0</Version>
+    </PackageReference>
     <PackageReference Include="SkiaSharp">
       <Version>1.60.3</Version>
     </PackageReference>
@@ -295,13 +350,22 @@
       <Version>1.60.3</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Calculate.UWP">
-      <Version>16.1.0.32</Version>
+      <Version>16.3.0.21</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Data.UWP">
+      <Version>16.3.0.21</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.SfChart.UWP">
-      <Version>16.1.0.32</Version>
+      <Version>16.3.0.21</Version>
     </PackageReference>
-    <PackageReference Include="Syncfusion.SfGrid.UWP46">
-      <Version>16.1.0.26</Version>
+    <PackageReference Include="Syncfusion.SfGrid.UWP">
+      <Version>16.3.0.21</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.SfInput.UWP">
+      <Version>16.3.0.21</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.SfShared.UWP">
+      <Version>16.3.0.21</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>

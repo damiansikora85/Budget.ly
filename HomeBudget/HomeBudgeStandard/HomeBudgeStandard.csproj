@@ -10,6 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.0.0" />
     <PackageReference Include="AppCenter.Analytics.Metrics" Version="1.1.0" />
     <PackageReference Include="codecracker.CSharp" Version="1.1.0" />
@@ -17,20 +25,21 @@
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.10.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.10.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="PCLStorage" Version="1.0.2" />
     <PackageReference Include="Plugin.InAppBilling" Version="2.0.0" />
     <PackageReference Include="protobuf-net" Version="2.4.0" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.168" />
     <PackageReference Include="SkiaSharp" Version="1.60.3" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.60.3" />
-    <PackageReference Include="Syncfusion.Xamarin.Calculate" Version="16.3.0.21" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="16.3.0.21" />
-    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="16.3.0.21" />
-    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="16.3.0.21" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="16.3.0.29" />
+    <PackageReference Include="Syncfusion.Xamarin.Calculate" Version="16.3.0.29" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="16.3.0.29" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="16.3.0.29" />
+    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="16.3.0.29" />
+    <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.6" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.3.6" />
-    <PackageReference Include="Xamarin.Forms" Version="3.2.0.839982" />
+    <PackageReference Include="Xamarin.Forms" Version="3.3.0.912540" />
     <PackageReference Include="XamarinDropboxPlugin" Version="1.0.1" />
   </ItemGroup>
 
@@ -41,13 +50,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Pages\DropboxPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\MainTabbedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\MainPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\MainPageDetail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\MainPageMaster.xaml">

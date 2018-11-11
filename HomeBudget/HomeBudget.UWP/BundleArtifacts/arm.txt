@@ -1,2 +1,6 @@
-MainPackage=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\ARM\Release\HomeBudget.UWP_1.0.2.0_ARM.appx
-SymbolPackage=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\AppPackages\HomeBudget.UWP_1.0.2.0_Test\HomeBudget.UWP_1.0.2.0_ARM.appxsym
+MainPackage=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\ARM\Release\HomeBudget.UWP_1.1.5.0_ARM.appx
+SymbolPackage=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\AppPackages\HomeBudget.UWP_1.1.5.0_Test\HomeBudget.UWP_1.1.5.0_ARM.appxsym
+ResourcePack=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\ARM\Release\HomeBudget.UWP_1.1.5.0_scale-100.appx
+ResourcePack=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\ARM\Release\HomeBudget.UWP_1.1.5.0_scale-125.appx
+ResourcePack=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\ARM\Release\HomeBudget.UWP_1.1.5.0_scale-150.appx
+ResourcePack=C:\Projekty\XamarinTest\HomeBudget\HomeBudget\HomeBudget.UWP\bin\ARM\Release\HomeBudget.UWP_1.1.5.0_scale-400.appx

@@ -35,7 +35,7 @@
   </style>
 
   <style name="MyTheme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">
-    <item name="android:windowBackground">@drawable/splash</item>
+    <item name="android:windowBackground">@drawable/splashStyle</item>
     <item name="android:windowNoTitle">true</item>
   </style>
   

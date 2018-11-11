@@ -116,15 +116,8 @@
                     </ListView.ItemTemplate>
                 </ListView>
             
-                <!--<syncfusion:SfDataGrid x:Name="listView" AutoGenerateColumns="False" Grid.Column="1" BackgroundColor="#f9f9f9"/>
-                <ffimageloading:CachedImage Source="Assets/circle.png" Grid.Column="3" HorizontalOptions="End" VerticalOptions="End">
-                    <ffimageloading:CachedImage.Transformations>
-                        <fftransformations:TintTransformation HexColor="#6BBE8B" EnableSolidColor="true"/>
-                    </ffimageloading:CachedImage.Transformations>
-                </ffimageloading:CachedImage>
-                <Image x:Name="addButton" Source="Assets/Plus.png" Grid.Column="3" HorizontalOptions="End" VerticalOptions="End" />-->
             </ScrollViewer>
-            <Button Margin="24" Width="50" Height="50" Grid.Column="1" Grid.Row="2" Background="LightGray" FontFamily="Segoe MDL2 Assets" Content="&#xE710;" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="AddButton_Click" />
+            <Button Margin="24" Width="50" Height="50" Grid.Column="1" Grid.Row="2" Background="{ThemeResource SystemAccentColor}" FontFamily="Segoe MDL2 Assets" Content="&#xE710;" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="AddButton_Click" />
         </Grid>
     </Frame>
 </Page>

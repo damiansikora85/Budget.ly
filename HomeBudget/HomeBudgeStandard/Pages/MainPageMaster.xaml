@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:utils="clr-namespace:HomeBudgeStandard.Utils"
              x:Class="HomeBudgeStandard.Pages.MainPageMaster"
              Title="Master">
   <StackLayout>
@@ -9,33 +10,22 @@
               HasUnevenRows="true"
               ItemsSource="{Binding MenuItems}">
       <ListView.Header>
-        <Grid BackgroundColor="#03A9F4">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="10"/>
-          </Grid.ColumnDefinitions>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="10"/>
-          </Grid.RowDefinitions>
-          <Label
-              Grid.Column="1"
-              Grid.Row="2"
-              Text="HomeBudget"
-              Style="{DynamicResource SubtitleStyle}"/>
-        </Grid>
+                <StackLayout Orientation="Horizontal" Margin="5,14">
+                    <Image Source="{utils:ImageResourceExtension HomeBudgeStandard.Assets.Logo.png}" HeightRequest="50"/>
+                    <Label Text="Budget.ly" FontSize="Large" FontAttributes="Bold" TextColor="#00A9FF" VerticalTextAlignment="End"/>
+                </StackLayout>
       </ListView.Header>
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
-            <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
-              <Label VerticalOptions="FillAndExpand" 
-                    VerticalTextAlignment="Center" 
-                    Text="{Binding Title}"/>
-            </StackLayout>
+            <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="{Binding Icon}">
+                    <Label.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                    </Label.FontFamily>
+                </Label>
+                <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="{Binding Title}"/>
+             </StackLayout>
           </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>

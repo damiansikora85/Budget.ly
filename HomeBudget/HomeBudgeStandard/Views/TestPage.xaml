@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sf="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms" 
+             x:Class="HomeBudgeStandard.Views.TestPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <sf:SfDataGrid x:Name="dataGrid" ItemsSource="{Binding OrderInfoCollection}">
+                <sf:SfDataGrid.GroupColumnDescriptions>
+                    <sf:GroupColumnDescription ColumnName="ShipCountry" />
+                </sf:SfDataGrid.GroupColumnDescriptions>
+
+                <sf:SfDataGrid.CaptionSummaryRow>
+                    <sf:GridGroupSummaryRow Title="Total Salary :{TotalSalary}" ShowSummaryInRow="True">
+                        <sf:GridGroupSummaryRow.SummaryColumns>
+                            <sf:GridSummaryColumn Name="TotalSalary"
+                                      Format="{}{Count}"
+                                      MappingName="Customer"
+                                      SummaryType="CountAggregate"/>
+                        </sf:GridGroupSummaryRow.SummaryColumns>
+                    </sf:GridGroupSummaryRow>
+                </sf:SfDataGrid.CaptionSummaryRow>
+
+            </sf:SfDataGrid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

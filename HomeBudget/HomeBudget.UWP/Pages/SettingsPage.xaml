@@ -8,16 +8,30 @@
     mc:Ignorable="d">
 
     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Spacing="5">
-            <TextBlock Text="Dropbox" FontSize="24" FontWeight="Bold"/>
-            <Button Click="ConnectWithDropbox" Background="Transparent">
-                <StackPanel Orientation="Horizontal" Spacing="5">
-                    <Image Source="ms-appx:///Assets/dropbox-icon.png" Height="30"/>
-                    <TextBlock Text="Connect with Dropbox" VerticalAlignment="Center"/>
-                </StackPanel>
-            </Button>
-            <Button Content="Already bought" Click="ConnectWithDataCheck"/>
-            <ProgressRing x:Name="ProgressRing"/>
-        </StackPanel>
+        <TextBlock Text="Ustawienia"  Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,0,24"/>
+        
+        <TextBlock Text="Powiadomienia" Style="{StaticResource SubtitleTextBlockStyle}" />
+        <Grid HorizontalAlignment="Stretch" Margin="0,24,0,20" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <CheckBox x:Name="checkBoxMon" Grid.Column="0" Content="Poniedziałek" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+            <CheckBox x:Name="checkBoxTue" Grid.Column="1" Content="Wtorek" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+            <CheckBox x:Name="checkBoxWed" Grid.Column="2" Content="Środa" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+            <CheckBox x:Name="checkBoxThu" Grid.Column="3" Content="Czwartek" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+            <CheckBox x:Name="checkBoxFri" Grid.Column="4" Content="Piątek" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+            <CheckBox x:Name="checkBoxSat" Grid.Column="5" Content="Sobota" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+            <CheckBox x:Name="checkBoxSun" Grid.Column="6" Content="Niedziela" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+        </Grid>
+        <TextBlock Text="Wysyłaj powiadomienia o godzinie:"/>
+        <TimePicker x:Name="timePicker" ClockIdentifier="24HourClock" HorizontalAlignment="Left" Margin="0,0,0,20" VerticalAlignment="Stretch"/>
+        <CheckBox x:Name="notificationCheckBox" IsChecked="False" Unchecked="notificationCheckBox_Unchecked" Checked="NotificationCheckBox_Checked" Content="Wyłącz powiadomienia" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+        <Button x:Name="button" Content="Zapisz" Click="SaveClick" HorizontalAlignment="Left" Margin="5,24,0,0" VerticalAlignment="Stretch" Background="{ThemeResource SystemAccentColor}"/>
     </StackPanel>
 </Page>
