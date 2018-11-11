@@ -1,5 +1,4 @@
-﻿using Acr.UserDialogs;
-using HomeBudget.Code;
+﻿using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
 using System;
@@ -50,7 +49,7 @@ namespace HomeBudgeStandard.Views
             if (MainBudget.Instance.IsDataLoaded && !_setupDone)
                 UpdateSummary();
             else if (SummaryListViewItems == null)
-                UserDialogs.Instance.ShowLoading();
+                loader.IsRunning = true;
             else
             {
                 foreach (var summaryItem in SummaryListViewItems)
@@ -116,7 +115,7 @@ namespace HomeBudgeStandard.Views
                 listViewCategories.ItemsSource = SummaryListViewItems;
                 summaryList.ItemsSource = SummaryListViewItems;
 
-                UserDialogs.Instance.HideLoading();
+                loader.IsRunning = false;
             });
         }
 
