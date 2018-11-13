@@ -91,7 +91,9 @@
             
         </Grid>
 
-        <sf:SfDataGrid x:Name="DataGrid" Grid.Row="2" EnableDataVirtualization="True" ItemsSource="{Binding Budget}" AutoGenerateColumns="False" GroupCaptionTextFormat="{}{Key}" AutoExpandGroups="False" AllowGroupExpandCollapse="True" LiveDataUpdateMode="AllowSummaryUpdate" FrozenColumnsCount="2" CurrentCellEndEdit="DataGrid_CurrentCellEndEdit">
+        <sf:SfDataGrid x:Name="DataGrid" Grid.Row="2" EnableDataVirtualization="True" ItemsSource="{Binding Budget}" AutoGenerateColumns="False"
+                       GroupCaptionTextFormat="{}{Key}" AutoExpandGroups="False" AllowGroupExpandCollapse="True" LiveDataUpdateMode="AllowSummaryUpdate" 
+                       FrozenColumnsCount="2" CurrentCellEndEdit="DataGrid_CurrentCellEndEdit" SelectionMode="Multiple" NavigationMode="Cell">
             <sf:SfDataGrid.GroupColumnDescriptions>
                 <sf:GroupColumnDescription ColumnName="Category.Name" />
             </sf:SfDataGrid.GroupColumnDescriptions>
