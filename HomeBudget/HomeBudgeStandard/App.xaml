@@ -6,11 +6,9 @@
 
 		<!-- Application resource dictionary -->
 		<ResourceDictionary>
-			<Style x:Key="ButtonStyle" TargetType="Button">
-				<Setter Property="HorizontalOptions" Value="FillAndExpand" />
-				<Setter Property="TextColor" Value="White" />
-				<Setter Property="FontSize" Value="Large" />
-				<Setter Property="BackgroundColor" Value="#68B785" />
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="DodgerBlue" />
 			</Style>
 
 			<Style x:Key="ButtonStyleSub" TargetType="Button">
@@ -30,15 +28,6 @@
                 <Setter Property="TextColor" Value="#232825" />
             </Style>
 
-            <Style x:Key="BudgetFrameStyle" TargetType="Frame">
-                <Setter Property="OutlineColor" Value="#C0C0C0"/>
-                <Setter Property="HasShadow" Value="True"/>
-                <Setter Property="BackgroundColor" Value="White"/>
-                <Setter Property="Padding" Value="0"/>
-                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
-                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
-                <Setter Property="Padding" Value="5"/>
-            </Style>
         </ResourceDictionary>
 
 	</Application.Resources>
