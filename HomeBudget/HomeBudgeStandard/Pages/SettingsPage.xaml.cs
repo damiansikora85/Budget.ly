@@ -1,21 +1,9 @@
-﻿using Acr.UserDialogs;
-<<<<<<< HEAD
-using Dropbox.Api;
-using Dropbox.Api.Files;
-using HomeBudgeStandard.Interfaces.Impl;
-using HomeBudget.Code;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-=======
+﻿
+using Acr.UserDialogs;
 using HomeBudgeStandard.Utils;
 using HomeBudget;
 using System;
->>>>>>> master
-
+using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -24,57 +12,16 @@ namespace HomeBudgeStandard.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsPage : ContentPage, INotifyPropertyChanged
     {
-<<<<<<< HEAD
-        private const string _redirectUri = "https://localhost/authorize";
-        private string _appKey = "p6cayskxetnkx1a";
-        private string _oauth2State;
-        private bool _checkDropboxFileExist;
-
-        public bool HasAccessToken
-        {
-            get => !string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken);
-        }
-
-        public string BuyTitle { get; set; }
-
-        public bool DropboxSynchroBought { get; set; }
-        public bool IsNotBoughtYet => !DropboxSynchroBought;
-
-=======
->>>>>>> master
         public SettingsPage ()
 		{
 			InitializeComponent ();
             BindingContext = this;
 		}
 
-<<<<<<< HEAD
         protected override async void OnAppearing()
-        {
-            var purchaseService = new PurchaseService();
-            var info = await purchaseService.GetProductInfo("com.darktower.homebudget.dropbox");
-            if (info != null)
-            {
-                BuyTitle = $"{info.Name} {info.LocalizedPrice}";
-                OnPropertyChanged(nameof(BuyTitle));
-            }
-
-            DropboxSynchroBought = await purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropbox");
-            OnPropertyChanged(nameof(IsNotBoughtYet));
-        }
-
-        private async void OnLoginDropbox(object sender, EventArgs e)
-        {
-            var purchaseService = new PurchaseService();
-            await purchaseService.MakePurchase("com.darktower.homebudget.dropbox");
-            //_checkDropboxFileExist = false;
-            //await LoginToDropbox();
-=======
-        protected override void OnAppearing()
         {
             RestoreFromSettings();
             base.OnAppearing();
->>>>>>> master
         }
 
         private void OnSaveClicked(object sender, EventArgs e)
