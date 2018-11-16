@@ -2979,9 +2979,6 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0c0063
 			public const int abc_tint_switch_track = 2131492963;
 			
-			// aapt resource value: 0x7f0c004d
-			public const int accent = 2131492941;
-			
 			// aapt resource value: 0x7f0c0008
 			public const int accent_material_dark = 2131492872;
 			
@@ -3035,6 +3032,15 @@ namespace HomeBudget.Droid
 			
 			// aapt resource value: 0x7f0c0003
 			public const int cardview_shadow_start_color = 2131492867;
+			
+			// aapt resource value: 0x7f0c004d
+			public const int colorAccent = 2131492941;
+			
+			// aapt resource value: 0x7f0c004b
+			public const int colorPrimary = 2131492939;
+			
+			// aapt resource value: 0x7f0c004c
+			public const int colorPrimaryDark = 2131492940;
 			
 			// aapt resource value: 0x7f0c0064
 			public const int control_checkable_material = 2131492964;
@@ -3143,12 +3149,6 @@ namespace HomeBudget.Droid
 			
 			// aapt resource value: 0x7f0c003f
 			public const int notification_material_background_media_default_color = 2131492927;
-			
-			// aapt resource value: 0x7f0c004b
-			public const int primary = 2131492939;
-			
-			// aapt resource value: 0x7f0c004c
-			public const int primaryDark = 2131492940;
 			
 			// aapt resource value: 0x7f0c002b
 			public const int primary_dark_material_dark = 2131492907;
@@ -6110,8 +6110,17 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0b016e
 			public const int Animation_Design_BottomSheetDialog = 2131427694;
 			
+			// aapt resource value: 0x7f0b018f
+			public const int AppTheme = 2131427727;
+			
 			// aapt resource value: 0x7f0b0191
-			public const int AppCompatDialogStyle = 2131427729;
+			public const int AppTheme_AppBarOverlay = 2131427729;
+			
+			// aapt resource value: 0x7f0b0190
+			public const int AppTheme_Main = 2131427728;
+			
+			// aapt resource value: 0x7f0b0192
+			public const int AppTheme_PopupOverlay = 2131427730;
 			
 			// aapt resource value: 0x7f0b00a9
 			public const int Base_AlertDialog_AppCompat = 2131427497;
@@ -6614,21 +6623,6 @@ namespace HomeBudget.Droid
 			// aapt resource value: 0x7f0b000e
 			public const int CardView_Light = 2131427342;
 			
-			// aapt resource value: 0x7f0b018f
-			public const int MainTheme = 2131427727;
-			
-			// aapt resource value: 0x7f0b0190
-			public const int MainTheme_Base = 2131427728;
-			
-			// aapt resource value: 0x7f0b0193
-			public const int MyTheme = 2131427731;
-			
-			// aapt resource value: 0x7f0b0192
-			public const int MyTheme_Base = 2131427730;
-			
-			// aapt resource value: 0x7f0b0194
-			public const int MyTheme_Splash = 2131427732;
-			
 			// aapt resource value: 0x7f0b002d
 			public const int Platform_AppCompat = 2131427373;
 			
@@ -6712,6 +6706,9 @@ namespace HomeBudget.Droid
 			
 			// aapt resource value: 0x7f0b0047
 			public const int RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = 2131427399;
+			
+			// aapt resource value: 0x7f0b0193
+			public const int SplashTheme = 2131427731;
 			
 			// aapt resource value: 0x7f0b00d6
 			public const int TextAppearance_AppCompat = 2131427542;
