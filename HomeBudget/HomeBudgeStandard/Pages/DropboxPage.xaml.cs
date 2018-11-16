@@ -19,9 +19,12 @@ namespace HomeBudgeStandard.Pages
         private string _oauth2State;
         private bool _checkDropboxFileExist;
 
+
+        public string SynchronizationStatus => string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken)?"\uf057":"\uf058";
         public string RegularPrice { get; private set; }
         public string PromoPrice { get; private set; }
-        public bool NotConnected => string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken);
+        public bool DropboxConnected => !string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken);
+        public bool DropboxNotConnected => string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken);
 
         public bool HasAccessToken
         {
@@ -59,7 +62,7 @@ namespace HomeBudgeStandard.Pages
 
         protected async override void OnAppearing()
         {
-            var purchaseService = new PurchaseService();
+            /*var purchaseService = new PurchaseService();
             var info = await purchaseService.GetProductInfo("com.darktower.homebudget.dropbox");
             if (info != null)
             {
@@ -76,7 +79,7 @@ namespace HomeBudgeStandard.Pages
             {
                 RegularPrice = info.LocalizedPrice;
                 OnPropertyChanged(nameof(RegularPrice));
-            }
+            }*/
 
             //DropboxSynchroBought = await purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropbox");
             //OnPropertyChanged(nameof(IsNotBoughtYet));
