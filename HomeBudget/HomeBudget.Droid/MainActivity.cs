@@ -18,19 +18,19 @@ using Plugin.LocalNotifications;
 
 namespace HomeBudget.Droid
 {
-	[Activity(Label = "HomeBudget", Icon = "@drawable/icon", Theme = "@style/MyTheme.Splash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
+	[Activity(Label = "HomeBudget", Icon = "@drawable/icon", Theme = "@style/SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
-        //@style/MainTheme
         private App _theApp;
 		protected override void OnCreate(Bundle bundle)
 		{
-			TabLayoutResource = Resource.Layout.Tabbar;
+            base.Window.RequestFeature(WindowFeatures.ActionBar);
+
+            base.SetTheme(Resource.Style.AppTheme_Main);
+            TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;
 
-			base.OnCreate(bundle);
-
-            base.SetTheme(Resource.Style.MainTheme);
+            base.OnCreate(bundle);
 
             UserDialogs.Init(this);
             global::Xamarin.Forms.Forms.Init(this, bundle);
