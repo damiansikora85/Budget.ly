@@ -100,7 +100,7 @@ namespace HomeBudgeStandard.Pages
             SaveSetting("NotificationsFriday", NotificationFriday.IsChecked.HasValue ? NotificationFriday.IsChecked.Value : false);
             SaveSetting("NotificationsSaturday", NotificationSaturday.IsChecked.HasValue ? NotificationSaturday.IsChecked.Value : false);
             SaveSetting("NotificationsSunday", NotificationSunday.IsChecked.HasValue ? NotificationSunday.IsChecked.Value : false);
-
+            
             await App.Current.SavePropertiesAsync();
         }
 

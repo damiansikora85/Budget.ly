@@ -40,13 +40,12 @@ namespace HomeBudgeStandard.Pages
             {
                 Detail = new NavigationPage(new MainTabbedPage());
                 IsPresented = false;
-                });
+            });
         }
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var item = e.SelectedItem as MainPageMenuItem;
-            if (item == null)
+            if (!(e.SelectedItem is MainPageMenuItem item))
                 return;
 
             var page = (Page)Activator.CreateInstance(item.TargetType);

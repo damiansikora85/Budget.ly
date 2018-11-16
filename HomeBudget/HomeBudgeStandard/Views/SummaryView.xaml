@@ -23,7 +23,7 @@
                 <TapGestureRecognizer Command="{Binding GridClicked}" />
             </Grid.GestureRecognizers>
 
-            <Label x:Name="dateText" Grid.Row="0" HorizontalTextAlignment="Center" FontSize="Large"/>
+            <Label x:Name="dateText" Grid.Row="0" HorizontalTextAlignment="Center" FontSize="Large" LineBreakMode="NoWrap"/>
 
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
@@ -40,19 +40,19 @@
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
                 
-                <Label Grid.Row="0" Grid.Column="2" Text="Rzeczywiste" HorizontalTextAlignment="Center" />
-                <Label Grid.Row="0" Grid.Column="3" Text="Planowane" HorizontalTextAlignment="Center" />
+                <Label Grid.Row="0" Grid.Column="2" Text="Rzeczywiste" HorizontalTextAlignment="Center" LineBreakMode="NoWrap"/>
+                <Label Grid.Row="0" Grid.Column="3" Text="Planowane" HorizontalTextAlignment="Center" LineBreakMode="NoWrap"/>
 
-                <Label Grid.Row="1" Grid.Column="1" Text="Dochód:" HorizontalTextAlignment="Start" />
-                <Label Grid.Row="2" Grid.Column="1" Text="Wydatki:" HorizontalTextAlignment="Start" />
+                <Label Grid.Row="1" Grid.Column="1" Text="Dochód:" HorizontalTextAlignment="Start" LineBreakMode="NoWrap"/>
+                <Label Grid.Row="2" Grid.Column="1" Text="Wydatki:" HorizontalTextAlignment="Start" LineBreakMode="NoWrap"/>
 
-                <Label Margin="12,0" Grid.Column="2" Grid.Row="1" Text="{Binding RealIncomes, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End"/>
-                <Label Margin="12,0" Grid.Column="2" Grid.Row="2" Text="{Binding RealExpenses, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End"/>
-                <Label Margin="12,0" Grid.Column="2" Grid.Row="3" Text="{Binding DiffReal, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End"/>
+                <Label Margin="12,0" Grid.Column="2" Grid.Row="1" Text="{Binding RealIncomes, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
+                <Label Margin="12,0" Grid.Column="2" Grid.Row="2" Text="{Binding RealExpenses, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
+                <Label Margin="12,0" Grid.Column="2" Grid.Row="3" Text="{Binding DiffReal, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
 
-                <Label Margin="12,0" Grid.Column="3" Grid.Row="1" Text="{Binding ExpectedIncomes, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End"/>
-                <Label Margin="12,0" Grid.Column="3" Grid.Row="2" Text="{Binding ExpectedExpenses, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End"/>
-                <Label Margin="12,0" Grid.Column="3" Grid.Row="3" Text="{Binding DiffExpected, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End"/>
+                <Label Margin="12,0" Grid.Column="3" Grid.Row="1" Text="{Binding ExpectedIncomes, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
+                <Label Margin="12,0" Grid.Column="3" Grid.Row="2" Text="{Binding ExpectedExpenses, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
+                <Label Margin="12,0" Grid.Column="3" Grid.Row="3" Text="{Binding DiffExpected, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
             </Grid>
 
             <StackLayout Grid.Row="2">
@@ -74,10 +74,10 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="{Binding IconFile}"/>
-                                    <Label Grid.Column="1" Text="{Binding CategoryName}" VerticalTextAlignment="Center"/>
-                                    <Label Grid.Column="2" Text="{Binding CategoryReal.TotalValues, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                                    <Label Grid.Column="1" Text="{Binding CategoryName}" LineBreakMode="NoWrap"/>
+                                    <Label Grid.Column="2" Text="{Binding CategoryReal.TotalValues, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
                                     <ProgressBar Grid.Column="3" Progress="{Binding SpendPercentage}"/>
-                                    <Label Grid.Column="4" Text="{Binding SpendPercentage, StringFormat='{0:P1}'}" VerticalTextAlignment="Center"/>
+                                    <Label Grid.Column="4" Text="{Binding SpendPercentage, StringFormat='{0:P1}'}" LineBreakMode="NoWrap"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

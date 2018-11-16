@@ -36,7 +36,7 @@
     </ContentPage.Resources>
   <StackLayout>
         <ListView x:Name="MenuItemsListView"
-              SeparatorVisibility="None"
+              SeparatorVisibility="Default"
               HasUnevenRows="true"
               ItemsSource="{Binding MenuItems}"
                   ItemTemplate="{StaticResource templateSelector}">
