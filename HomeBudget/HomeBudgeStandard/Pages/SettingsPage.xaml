@@ -5,7 +5,7 @@
              x:Class="HomeBudgeStandard.Pages.SettingsPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Powiadomienia" FontSize="Large"/>
+            <Label Text="Powiadomienia" FontSize="Large" LineBreakMode="NoWrap"/>
             <Grid Margin="0, 10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -26,9 +26,9 @@
                 <sf:SfCheckBox Text="Sobota" x:Name="NotificationSaturday" Grid.Row="1" Grid.Column="2"/>
                 <sf:SfCheckBox Text="Niedziela" x:Name="NotificationSunday" Grid.Row="2" />
             </Grid>
-            <Label Text="O której godzinie wysyłać powiadomienia:"/>
+            <Label Text="O której godzinie wysyłać powiadomienia:" LineBreakMode="NoWrap"/>
             <TimePicker x:Name="NotificationTimePicker" Format="HH:mm"/>
-            <sf:SfCheckBox x:Name="NotificationsCheckbox" Text="Wyłącz powiadomienia" StateChanged="DisableNotificationChanged"/>
+            <sf:SfCheckBox x:Name="NotificationsCheckbox" Text="Wyłącz powiadomienia" StateChanged="DisableNotificationChanged" />
             <Button Text="Zapisz" Clicked="OnSaveClicked"/>
         </StackLayout>
     </ContentPage.Content>

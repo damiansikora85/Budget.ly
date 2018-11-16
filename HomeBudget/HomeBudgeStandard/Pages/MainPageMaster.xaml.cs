@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FontAwesome;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -33,10 +34,10 @@ namespace HomeBudgeStandard.Pages
             {
                 MenuItems = new ObservableCollection<MainPageMenuItem>(new[]
                 {
-                    new MainPageMenuItem { Id = 0, Title = "Budżet", Icon="\uf571", TargetType = typeof(MainTabbedPage) },
-                    new MainPageMenuItem { Id = 1, Title = "Dropbox", Icon="\uf571", TargetType = typeof(DropboxPage) },
-                    new MainPageMenuItem { Id = 2, Title = "Ustawienia", Icon="\uf013", TargetType = typeof(SettingsPage) },
-                    new MainPageMenuItem { Id = 3, Title = "O Aplikacji", Icon="\uf059" }
+                    new MainPageMenuItem { Id = 0, Title = "Budżet", Icon=FontAwesomeIcons.FileInvoiceDollar, TargetType = typeof(MainTabbedPage) },
+                    new MainPageMenuItem { Id = 1, Title = "Dropbox", Icon=FontAwesomeIcons.Dropbox, TargetType = typeof(DropboxPage), UseBrandsIcon = true },
+                    new MainPageMenuItem { Id = 2, Title = "Ustawienia", Icon=FontAwesomeIcons.Cog, TargetType = typeof(SettingsPage) },
+                    new MainPageMenuItem { Id = 3, Title = "O Aplikacji", Icon=FontAwesomeIcons.QuestionCircle, TargetType = typeof(AboutPage) }
                 });
             }
             
@@ -50,6 +51,17 @@ namespace HomeBudgeStandard.Pages
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
             #endregion
+        }
+    }
+
+    public class CellTemplateSelector : DataTemplateSelector
+    {
+        public DataTemplate NormalTemplate { get; set; }
+        public DataTemplate BrandsTemplate { get; set; }
+
+        protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
+        {
+            return ((MainPageMenuItem)item).UseBrandsIcon ? BrandsTemplate : NormalTemplate;
         }
     }
 }

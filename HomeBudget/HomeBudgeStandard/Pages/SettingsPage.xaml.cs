@@ -1,15 +1,16 @@
-﻿using Acr.UserDialogs;
+﻿
+using Acr.UserDialogs;
 using HomeBudgeStandard.Utils;
 using HomeBudget;
 using System;
-
+using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace HomeBudgeStandard.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SettingsPage : ContentPage
+    public partial class SettingsPage : ContentPage, INotifyPropertyChanged
     {
         public SettingsPage ()
 		{
@@ -17,7 +18,7 @@ namespace HomeBudgeStandard.Pages
             BindingContext = this;
 		}
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             RestoreFromSettings();
             base.OnAppearing();
@@ -99,7 +100,7 @@ namespace HomeBudgeStandard.Pages
             SaveSetting("NotificationsFriday", NotificationFriday.IsChecked.HasValue ? NotificationFriday.IsChecked.Value : false);
             SaveSetting("NotificationsSaturday", NotificationSaturday.IsChecked.HasValue ? NotificationSaturday.IsChecked.Value : false);
             SaveSetting("NotificationsSunday", NotificationSunday.IsChecked.HasValue ? NotificationSunday.IsChecked.Value : false);
-
+            
             await App.Current.SavePropertiesAsync();
         }
 
