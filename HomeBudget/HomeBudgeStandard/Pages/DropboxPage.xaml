@@ -19,7 +19,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="Kup synchronizacje   " FontAttributes="Bold"/>
-                            <Span Text="{Binding RegularPrice, Mode=OneWay} " TextDecorations="Strikethrough"/>
+                            <Span Text="{Binding RegularPrice, Mode=OneWay} " />
                             <Span Text=" {Binding PromoPrice, Mode=OneWay}" FontAttributes="Bold"/>
                         </FormattedString>
                     </Label.FormattedText>

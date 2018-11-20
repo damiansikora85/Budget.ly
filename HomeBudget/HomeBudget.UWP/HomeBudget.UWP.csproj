@@ -121,9 +121,6 @@
     <Content Include="Assets\Fonts\Cambria.ttf" />
     <None Include="HomeBudget.UWP_StoreKey.pfx" />
     <None Include="HomeBudget.UWP_TemporaryKey.pfx" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">

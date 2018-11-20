@@ -38,7 +38,7 @@ namespace HomeBudget.Utils
         public BudgetViewModelData Thiz { get { return this; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        void RaisePropertyChanged(string name)
+        private void RaisePropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
