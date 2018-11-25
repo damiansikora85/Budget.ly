@@ -4,7 +4,7 @@
              x:Class="HomeBudgeStandard.Pages.DropboxPage">
     <ContentPage.Content>
         <StackLayout Margin="25,25">
-            <Label Text="Synchronizacja danych z Dropbox" FontSize="Large" FontAttributes="Bold" LineBreakMode="NoWrap"/>
+            <Label Text="Synchronizacja danych z Dropbox" FontSize="Large" FontAttributes="Bold"/>
             
             <Image Source="dropboxInfo.png" HeightRequest="150" Margin="0,20"/>
             <Label Text="Dzięki synchronizacji możesz współdzielić budżet na kilku urządzeniach"/>

@@ -18,7 +18,7 @@ namespace HomeBudgeStandard.Pages
         private string _appKey = "p6cayskxetnkx1a";
         private string _oauth2State;
         private bool _checkDropboxFileExist;
-
+        private bool _waitingForDropboxResponse;
 
         public string SynchronizationStatus => string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken)?"\uf057":"\uf058";
         public string RegularPrice { get; private set; }
@@ -57,6 +57,7 @@ namespace HomeBudgeStandard.Pages
             var webView = new WebView { Source = new UrlWebViewSource { Url = authorizeUri.AbsoluteUri } };
             webView.Navigating += WebViewOnNavigating;
             var contentPage = new ContentPage { Content = webView };
+            _waitingForDropboxResponse = true;
             await Navigation.PushModalAsync(contentPage);
         }
 
@@ -83,6 +84,9 @@ namespace HomeBudgeStandard.Pages
 
             //DropboxSynchroBought = await purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropbox");
             //OnPropertyChanged(nameof(IsNotBoughtYet));
+
+            if(_waitingForDropboxResponse)
+                UserDialogs.Instance.ShowLoading("");
             base.OnAppearing();
         }
 
@@ -114,7 +118,7 @@ namespace HomeBudgeStandard.Pages
             {
                 await Application.Current.MainPage.Navigation.PopModalAsync();
 
-                if (!_checkDropboxFileExist)
+                /*if (!_checkDropboxFileExist)
                 {
                     MainBudget.Instance.OnCloudStorageConnected();
                     var mainPage = Application.Current.MainPage as MainPage;
@@ -126,7 +130,33 @@ namespace HomeBudgeStandard.Pages
                     var mainPage = Application.Current.MainPage as MainPage;
                     mainPage.AfterCloudLogin();
                 }
-                else UserDialogs.Instance.Toast("Nie znaleziono pliku");
+                else UserDialogs.Instance.Toast("Nie znaleziono pliku");*/
+
+                if (await HasDropboxData())
+                {
+                    UserDialogs.Instance.HideLoading();
+                    if (await UserDialogs.Instance.ConfirmAsync("Wykryto zapisane dane aplikacji Budget.ly na Twoim koncie Dropbox. Czy chcesz nadpisać dane lokalne w telefonie?", "Uwaga", "Użyj danych z Dropbox", "Użyj danych z  telefonu"))
+                    {
+                        MainBudget.Instance.OnCloudStorageConnected(true);
+                        var mainPage = Application.Current.MainPage as MainPage;
+                        mainPage.AfterCloudLogin();
+                    }
+                    else
+                    {
+                        MainBudget.Instance.OnCloudStorageConnected(false);
+                        var mainPage = Application.Current.MainPage as MainPage;
+                        mainPage.AfterCloudLogin();
+                    }
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    MainBudget.Instance.OnCloudStorageConnected(false);
+                    var mainPage = Application.Current.MainPage as MainPage;
+                    mainPage.AfterCloudLogin();
+
+                    //UserDialogs.Instance.Toast("Nie znaleziono pliku");
+                }
             }
         }
 

@@ -79,11 +79,14 @@ namespace HomeBudget.Code
             IsDataLoaded = false;
 		}
 
-        public void OnCloudStorageConnected()
+        public void OnCloudStorageConnected(bool overwriteLocal)
         {
-            IsDataLoaded = false;
+            IsDataLoaded = !overwriteLocal;
+            _budgetSynchronizer.ShouldSave = !overwriteLocal;
             _budgetSynchronizer.Start();
-            Task.Run(async() => UpdateData(null, await _budgetSynchronizer.ForceLoad()));
+            
+            if(overwriteLocal)
+                 Task.Run(async() => UpdateData(null, await _budgetSynchronizer.ForceLoad()));
         }
 
         public void Init(IFileManager fileManager, IBudgetSynchronizer budgetSynchronizer)
