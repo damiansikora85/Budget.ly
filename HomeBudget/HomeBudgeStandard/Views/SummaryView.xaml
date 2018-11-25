@@ -16,6 +16,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="1"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
 
@@ -48,19 +49,20 @@
 
                 <Label Margin="12,0" Grid.Column="2" Grid.Row="1" Text="{Binding RealIncomes, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
                 <Label Margin="12,0" Grid.Column="2" Grid.Row="2" Text="{Binding RealExpenses, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
-                <Label Margin="12,0" Grid.Column="2" Grid.Row="3" Text="{Binding DiffReal, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
+                <Label Margin="12,0" Grid.Column="2" Grid.Row="3" Text="{Binding DiffReal, Converter={StaticResource CurrencyValueConverter}}" FontAttributes="Bold" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
 
                 <Label Margin="12,0" Grid.Column="3" Grid.Row="1" Text="{Binding ExpectedIncomes, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
                 <Label Margin="12,0" Grid.Column="3" Grid.Row="2" Text="{Binding ExpectedExpenses, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
-                <Label Margin="12,0" Grid.Column="3" Grid.Row="3" Text="{Binding DiffExpected, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
+                <Label Margin="12,0" Grid.Column="3" Grid.Row="3" Text="{Binding DiffExpected, Converter={StaticResource CurrencyValueConverter}}" FontAttributes="Bold" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
             </Grid>
 
             <StackLayout Grid.Row="2">
                 <ActivityIndicator x:Name="loader"/>
             </StackLayout>
-            <!--<Grid Grid.Row="2">-->
 
-            <AbsoluteLayout Grid.Row="2">
+            <BoxView Grid.Row="2" BackgroundColor="Beige" Color="DarkGray" Margin="12, 0" HeightRequest="1" WidthRequest="100"/>
+
+            <AbsoluteLayout Grid.Row="3">
                 <ListView x:Name="summaryList" AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All" ItemSelected="Summary_ItemSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -83,16 +85,14 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            <!--</Grid>-->
-
                 <Button AbsoluteLayout.LayoutBounds=".95,.95,60,60" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="DodgerBlue" Text="+" FontAttributes="Bold" TextColor="White" FontSize="Large" Clicked="AddButton_Clicked" BorderRadius="30"/>
             </AbsoluteLayout>
 
-            <AbsoluteLayout Grid.RowSpan="3" InputTransparent="True">
-                <BoxView InputTransparent="True" x:Name="boxView" Color="Black" Opacity="0.0" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All"/>
+            <AbsoluteLayout Grid.RowSpan="4" InputTransparent="True">
+                <BoxView x:Name="blocker" InputTransparent="True" Color="Black" Opacity="0.0" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All"/>
             </AbsoluteLayout>
 
-            <AbsoluteLayout x:Name="categories" Grid.RowSpan="3" TranslationX="660">
+            <AbsoluteLayout x:Name="categories" Grid.RowSpan="4" TranslationX="660" >
                 <StackLayout AbsoluteLayout.LayoutBounds="1, 1, 0.66, 1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White">
                     <ListView x:Name="listViewCategories" ItemSelected="listView_ItemSelected" >
                         <ListView.ItemTemplate>
@@ -104,7 +104,7 @@
                 </StackLayout>
             </AbsoluteLayout>
 
-            <AbsoluteLayout x:Name="subcats" Grid.RowSpan="3" TranslationX="660">
+            <AbsoluteLayout x:Name="subcats" Grid.RowSpan="4" TranslationX="660" >
                 <StackLayout AbsoluteLayout.LayoutBounds="1, 1, 0.66, 1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White">
                     <ListView x:Name="listViewSubcats" ItemSelected="Subcat_ItemSelected" >
                         <ListView.ItemTemplate>
@@ -116,7 +116,7 @@
                 </StackLayout>
             </AbsoluteLayout>
 
-            <AbsoluteLayout x:Name="CalcLayout" Grid.RowSpan="3" IsVisible="False" BackgroundColor="#C0000000">
+            <AbsoluteLayout x:Name="CalcLayout" Grid.RowSpan="4" IsVisible="False" BackgroundColor="#C0000000" >
                 <views:CalcView x:Name="CalcView" AbsoluteLayout.LayoutBounds=".5, .5, 0.9, 0.9" AbsoluteLayout.LayoutFlags="All"/>
             </AbsoluteLayout>
         </Grid>

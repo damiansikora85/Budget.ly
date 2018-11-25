@@ -1,5 +1,4 @@
-﻿
-using HomeBudget.Code;
+﻿using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
 using System;
@@ -79,13 +78,13 @@ namespace HomeBudgeStandard.Views
             }
             else if(categories.TranslationX == 0)
             {
-                boxView.FadeTo(0);
+                blocker.FadeTo(0);
                 categories.TranslateTo(660, 0, easing: Easing.SpringIn);
                 return true;
             }
             else if(subcats.TranslationX == 0)
             {
-                boxView.FadeTo(0);
+                blocker.FadeTo(0);
                 subcats.TranslateTo(660, 0, easing: Easing.SpringIn);
                 return true;
             }
@@ -99,7 +98,7 @@ namespace HomeBudgeStandard.Views
 
         private async Task HideSideBars()
         {
-            var fadeTask = boxView.FadeTo(0);
+            var fadeTask = blocker.FadeTo(0);
             var hideSubcatsTask = subcats.TranslateTo(660, 0, easing: Easing.SpringIn);
             var hideCategoriesTask = categories.TranslateTo(660, 0, easing: Easing.SpringIn);
 
@@ -164,7 +163,7 @@ namespace HomeBudgeStandard.Views
         private async void AddButton_Clicked(object sender, EventArgs e)
         {
             SelectedCategorySubcats.Clear();
-            var fadeTask = boxView.FadeTo(0.5);
+            var fadeTask = blocker.FadeTo(0.5);
             var showCategoriesTask = categories.TranslateTo(0, 0, easing: Easing.SpringIn);
             await Task.WhenAll(fadeTask, showCategoriesTask);
         }
@@ -198,7 +197,7 @@ namespace HomeBudgeStandard.Views
             {
                 CalcLayout.IsVisible = true;
                 CalcView.Reset();
-                await boxView.FadeTo(0);
+                await blocker.FadeTo(0);
                 CalcView.Subcat = selectedSubcat.Name;
                 CalcView.OnSaveValue = (double calculationResult, DateTime date) =>
                 {
