@@ -12,9 +12,17 @@ namespace HomeBudgeStandard.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AboutPage : ContentPage
 	{
+        public Command LinkCommand { get; private set; }
 		public AboutPage ()
 		{
+            LinkCommand = new Command(() => OpenLink());
 			InitializeComponent ();
+            BindingContext = this;
 		}
-	}
+
+        private void OpenLink()
+        {
+            Device.OpenUri(new Uri("https://jakoszczedzacpieniadze.pl"));
+        }
+    }
 }
