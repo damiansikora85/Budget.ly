@@ -68,11 +68,11 @@
 				"icon": "home.png",
 				"sub": [
 					"Czynsz",
-					"Prad",
+					"Prąd",
 					"Gaz",
-					"Smieci",
+					"Śmieci",
 					"Naprawy",
-					"Wyposazenie",
+					"Wyposażenie",
 					"Ubezpieczenie",
 					"Inne"
 				]
@@ -85,8 +85,8 @@
 				"icon": "transport.png",
 				"sub": [
 					"Paliwo",
-					"Przeglady/naprawa",
-					"Wyposazenie",
+					"Przeglądy/naprawa",
+					"Wyposażenie",
 					"Ubezpieczenie",
 					"Bilety",
 					"PKP/PKS",
@@ -126,7 +126,7 @@
 				"isIncome": "false",
 				"icon": "clothes.png",
 				"sub": [
-					"Ubrania zwykle",
+					"Ubrania zwykłe",
 					"Ubrania sportowe",
 					"Buty",
 					"Dodatki",
@@ -141,7 +141,7 @@
 				"icon": "beauty.png",
 				"sub": [
 					"Kosmetyki",
-					"Srodki czystosci",
+					"Środki czystości",
 					"Fryzjer",
 					"Kosmetyczka",
 					"Pieluchy",
@@ -169,11 +169,11 @@
 				"isIncome": "false",
 				"icon": "theatremasks.png",
 				"sub": [
-					"Silownia/basen",
+					"Siłownia/basen",
 					"Kino/teatr",
 					"Koncerty",
 					"Czasopisma",
-					"Ksiazki",
+					"Ksiażki",
 					"Hobby",
 					"Hotel/turystyka",
 					"Giereczki",
@@ -188,19 +188,19 @@
 				"icon": "other.png",
 				"sub": [
 					"Ubezpieczenia",
-					"Dobroczynnosc",
+					"Dobroczynność",
 					"Prezenty",
 					"RTV",
 					"Oprogramowanie",
 					"Edukacja",
-					"Uslugi",
+					"Usługi",
 					"Podatki",
 					"Inne"
 				]
 
 			},
 			{
-				"name": "Splata dlugow",
+				"name": "Spłata długow",
 				"id": "11",
 				"isIncome": "false",
 				"icon": "debt.png",
@@ -208,14 +208,14 @@
 					"Kredyt hipoteczny PKO",
 					"Kredyt hipoteczny Pekao",
 					"Kredyt konsumencki",
-					"Pozyczka",
+					"Pożyczka",
 					"Karta kredytowa",
 					"Inne"
 				]
 
 			},
 			{
-				"name": "Oszczednosci",
+				"name": "Oszczedności",
 				"id": "12",
 				"isIncome": "false",
 				"icon": "savings.png",
@@ -224,12 +224,11 @@
 					"Fundusz wyd niereg",
 					"Poduszka finansowa",
 					"IKE/IKZE",
-					"Nadplata dlugow",
+					"Nadpłata dlugow",
 					"Wakacje",
-					"Swieta",
+					"Świeta",
 					"Inne"
 				]
-
 			}
 	]
 }
