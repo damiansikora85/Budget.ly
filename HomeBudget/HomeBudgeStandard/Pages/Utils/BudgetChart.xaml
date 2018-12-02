@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms" 
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
+      xmlns:local="clr-namespace:HomeBudget.Utils"
+      x:Class="HomeBudget.Utils.BudgetChart">
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="3*"/>
+        <ColumnDefinition Width="2*"/>
+    </Grid.ColumnDefinitions>
+    
+    <oxy:PlotView x:Name="chart" VerticalOptions="Center" HorizontalOptions="Center" />
+    <ListView x:Name="legend" Grid.Column="1" RowHeight="35">
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="local:ChartData">
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal">
+                        <BoxView WidthRequest="10" Margin="0,11" Color="{Binding Color}"/>
+                        <Label Text="{Binding Label}" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</Grid>

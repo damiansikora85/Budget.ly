@@ -35,6 +35,7 @@ namespace HomeBudget.Droid
             UserDialogs.Init(this);
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
+            OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init();
             Xamarin.Forms.DependencyService.Register<AndroidNotificationService>();
 
             _theApp = new App();

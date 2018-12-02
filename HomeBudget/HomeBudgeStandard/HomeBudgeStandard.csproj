@@ -25,6 +25,7 @@
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.10.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.10.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="OxyPlot.Xamarin.Forms" Version="1.0.0" />
     <PackageReference Include="Plugin.InAppBilling" Version="2.0.0" />
     <PackageReference Include="protobuf-net" Version="2.4.0" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.168" />
@@ -66,6 +67,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Utils\BudgetChart.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BudgetPlanView.xaml">

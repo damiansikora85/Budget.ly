@@ -1,12 +1,14 @@
-﻿using Acr.UserDialogs;
+﻿//using Acr.UserDialogs;
 using HomeBudgeStandard.Effects;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Utils;
+using OxyPlot.Series;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using Syncfusion.SfDataGrid.XForms;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
@@ -17,12 +19,14 @@ using Xamarin.Forms.Xaml;
 
 namespace HomeBudgeStandard.Views
 {
+
+
     [XamlCompilation(XamlCompilationOptions.Skip)]
 	public partial class BudgetPlanView : ContentPage
 	{
         public ObservableCollection<BudgetViewModelData> Budget { get; set; }
-        public ObservableCollection<BudgetViewModelData> IncomesData { get; private set; }
-        public ObservableCollection<BudgetViewModelData> ExpensesData { get; set; }
+        //public ObservableCollection<BudgetViewModelData> IncomesData { get; private set; }
+        //public ObservableCollection<BudgetViewModelData> ExpensesData { get; set; }
 
         private bool _setupDone;
         private SKCanvasView _skCanvas;
@@ -46,14 +50,13 @@ namespace HomeBudgeStandard.Views
             InitializeComponent();
             MainBudget.Instance.BudgetDataChanged += () => Task.Run(async () =>
             {
-                Device.BeginInvokeOnMainThread(() => UserDialogs.Instance.ShowLoading());
-                //UserDialogs.Instance.Toast("Zaktualizowano dane z Dropbox");
+                //Device.BeginInvokeOnMainThread(() => UserDialogs.Instance.ShowLoading());
                 await Setup();
             });
 
             var canvasView = new SKCanvasView();
             canvasView.PaintSurface += OnCanvasViewPaintSurface;
-            emptyChartView.Content = canvasView;
+
 
             var tapGesture = new TapGestureRecognizer();
             tapGesture.Tapped += SwitchChart;
@@ -65,10 +68,10 @@ namespace HomeBudgeStandard.Views
         {
             if (MainBudget.Instance.IsDataLoaded && !_setupDone)
             {
-                UserDialogs.Instance.ShowLoading();
+                //UserDialogs.Instance.ShowLoading();
                 Task.Run(async () => await Setup());
             }
-            else SwitchChartForce(ExpensesChartSwitch);
+            else ForceSwitchChart(ExpensesChartSwitch);
 
             _setupDone = true;  
         }
@@ -107,50 +110,95 @@ namespace HomeBudgeStandard.Views
             _currentMonth = DateTime.Now;
 
             await CreateDataGrid(_currentMonth);
-            await CreateCharts(_currentMonth);
-            Device.BeginInvokeOnMainThread(() => UserDialogs.Instance.HideLoading());
+            //await CreateCharts(_currentMonth);
+            UpdateCharts(_currentMonth);
+            ForceSwitchChart(ExpensesChartSwitch);
+            //Device.BeginInvokeOnMainThread(() => UserDialogs.Instance.HideLoading());
         }
 
-        private async Task CreateCharts(DateTime date)
+        //private async Task CreateCharts(DateTime date)
+        //{
+        //    await Task.Run(() =>
+        //    {
+        //        var seriesExpense = new PieSeries();
+        //        //ExpensesData = new ObservableCollection<BudgetViewModelData>();
+        //        //IncomesData = new ObservableCollection<BudgetViewModelData>();
+        //        var budgetPlanned = MainBudget.Instance.GetMonth(date).BudgetPlanned;
+        //        foreach (BudgetPlannedCategory category in budgetPlanned.Categories)
+        //        {
+        //            var model = new BudgetViewModelData()
+        //            {
+        //                Name = category.Name,
+        //                Category = category,
+        //            };
+        //            if (!category.IsIncome)
+        //                ExpensesData.Add(model);
+        //            seriesExpense.Slices.Add(new PieSlice(model.Name, model.Category.TotalValues));
+        //        }
+        //        var plotModelExpense = new OxyPlot.PlotModel();
+        //        plotModelExpense.Series.Add(seriesExpense);
+        //        chartExpense.Model = plotModelExpense;
+
+        //        var seriesIncome = new PieSeries();
+
+        //        var incomesCategories = budgetPlanned.GetIncomesCategories();
+        //        foreach (BudgetPlannedCategory category in incomesCategories)
+        //        {
+        //            foreach (BaseBudgetSubcat subcat in category.subcats)
+        //            {
+        //                var model = new BudgetViewModelData
+        //                {
+        //                    Name = subcat.Name,
+        //                    Category = category,
+        //                    Subcat = subcat as PlannedSubcat
+        //                };
+        //                IncomesData.Add(model);
+        //                seriesIncome.Slices.Add(new PieSlice(model.Name, model.Subcat.Value));
+        //            }
+        //        }
+
+        //        var plotModelIncome = new OxyPlot.PlotModel();
+        //        plotModelIncome.Series.Add(seriesIncome);
+        //        chartIncome.Model = plotModelIncome;
+
+        //        _hasExpenses = ExpensesData.Sum(el => el.Category.TotalValues) > 0;
+        //        _hasIncomes = IncomesData.Sum(el => el.Category.TotalValues) > 0;
+
+        //        OnPropertyChanged(nameof(ExpensesData));
+        //        OnPropertyChanged(nameof(IncomesData));
+
+        //        ForceSwitchChart(ExpensesChartSwitch);
+        //    });
+        //}
+
+        private void UpdateCharts(DateTime date)
         {
-            await Task.Run(() =>
+            Device.BeginInvokeOnMainThread(() =>
             {
-                ExpensesData = new ObservableCollection<BudgetViewModelData>();
-                IncomesData = new ObservableCollection<BudgetViewModelData>();
                 var budgetPlanned = MainBudget.Instance.GetMonth(date).BudgetPlanned;
+                var chartDataExpenses = new List<ChartData>();
                 foreach (BudgetPlannedCategory category in budgetPlanned.Categories)
                 {
-                    var model = new BudgetViewModelData()
+                    if (!category.IsIncome && category.TotalValues > 0)
                     {
-                        Name = category.Name,
-                        Category = category,
-                    };
-                    if (!category.IsIncome)
-                        ExpensesData.Add(model);
+                        chartDataExpenses.Add(new ChartData { Label = category.Name, Value = category.TotalValues });
+                    }
                 }
+                chartExpense.SetData(chartDataExpenses);
 
+
+                var chartDataIncome = new List<ChartData>();
                 var incomesCategories = budgetPlanned.GetIncomesCategories();
                 foreach (BudgetPlannedCategory category in incomesCategories)
                 {
                     foreach (BaseBudgetSubcat subcat in category.subcats)
                     {
-                        var model = new BudgetViewModelData()
-                        {
-                            Name = subcat.Name,
-                            Category = category,
-                            Subcat = subcat as PlannedSubcat
-                        };
-                        IncomesData.Add(model);
+                        if (subcat.Value > 0)
+                            chartDataIncome.Add(new ChartData { Label = subcat.Name, Value = subcat.Value });
                     }
                 }
 
-                _hasExpenses = ExpensesData.Sum(el => el.Category.TotalValues) > 0;
-                _hasIncomes = IncomesData.Sum(el => el.Category.TotalValues) > 0;
-
-                OnPropertyChanged(nameof(ExpensesData));
-                OnPropertyChanged(nameof(IncomesData));
-
-                SwitchChartForce(ExpensesChartSwitch);
+                chartIncome.SetData(chartDataIncome);
             });
         }
 
@@ -186,7 +234,7 @@ namespace HomeBudgeStandard.Views
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     Budget = budget;
-                    OnPropertyChanged("Budget");
+                    OnPropertyChanged(nameof(Budget));
 
                     PreviousMonthButton.IsEnabled = MainBudget.Instance.HasMonthData(_currentMonth.AddMonths(-1));
                     NextMonthButton.IsEnabled = MainBudget.Instance.HasMonthData(_currentMonth.AddMonths(1));
@@ -194,7 +242,7 @@ namespace HomeBudgeStandard.Views
             });
         }
 
-        private void SwitchChartForce(Label label)
+        private void ForceSwitchChart(Label label)
         {
             Device.BeginInvokeOnMainThread(() =>
             {
@@ -204,14 +252,12 @@ namespace HomeBudgeStandard.Views
                     IncomeChartSwitch.Effects.Clear();
                     chartExpense.IsVisible = true;
                     chartIncome.IsVisible = false;
-                    emptyChartView.IsVisible = !_hasExpenses;
                 }
                 else
                 {
                     ExpensesChartSwitch.Effects.Clear();
                     chartExpense.IsVisible = false;
                     chartIncome.IsVisible = true;
-                    emptyChartView.IsVisible = !_hasIncomes;
                 }
             });
         }
@@ -219,7 +265,7 @@ namespace HomeBudgeStandard.Views
         private void SwitchChart(object sender, EventArgs e)
         {
             if (sender is View view && view.Effects.Count == 0)
-                SwitchChartForce(sender as Label);
+                ForceSwitchChart(sender as Label);
         }
 
         private async void OnSave(object sender, EventArgs e)
@@ -235,13 +281,19 @@ namespace HomeBudgeStandard.Views
             {
                 await Task.Delay(100);
 
-                _hasExpenses = ExpensesData.Sum(el => el.Category.TotalValues) > 0;
-                _hasIncomes = IncomesData.Sum(el => el.Category.TotalValues) > 0;
-                emptyChartView.IsVisible = (ExpensesChartSwitch.Effects.Count > 0) ? !_hasExpenses : !_hasIncomes;
+                //_hasExpenses = ExpensesData.Sum(el => el.Category.TotalValues) > 0;
+                //_hasIncomes = IncomesData.Sum(el => el.Category.TotalValues) > 0;
+                //emptyChartView.IsVisible = (ExpensesChartSwitch.Effects.Count > 0) ? !_hasExpenses : !_hasIncomes;
+                //chartExpense.BindingContext = this;
+                //chartIncome.BindingContext = this;
 
                 DataGrid.View.TopLevelGroup.UpdateCaptionSummaries();
                 DataGrid.View.Refresh();
-                OnPropertyChanged("Category.TotalValues");
+                //OnPropertyChanged("Category.TotalValues");
+                //OnPropertyChanged("ExpensesData");
+
+                UpdateCharts(_currentMonth);
+          
             });
         }
 
@@ -261,7 +313,8 @@ namespace HomeBudgeStandard.Views
         {
             OnPropertyChanged(nameof(Date));
             await CreateDataGrid(_currentMonth);
-            await CreateCharts(_currentMonth);
+            //await CreateCharts(_currentMonth);
+            UpdateCharts(_currentMonth);
         }
     }
 }

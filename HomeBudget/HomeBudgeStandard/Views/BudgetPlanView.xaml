@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:charts="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
              xmlns:converters="clr-namespace:HomeBudget.Converters"
              xmlns:sf="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
              xmlns:data="clr-namespace:Syncfusion.Data;assembly=Syncfusion.Data.Portable"
              xmlns:utils="clr-namespace:HomeBudget.Utils"
-             xmlns:effects="clr-namespace:HomeBudgeStandard.Effects"
              x:Class="HomeBudgeStandard.Views.BudgetPlanView"
              Title="Planowanie">
 
@@ -64,7 +63,10 @@
 
             </Grid>
 
-            <charts:SfChart x:Name="chartExpense" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand">
+            <utils:BudgetChart x:Name="chartExpense" Grid.Column="1" />
+            <utils:BudgetChart x:Name="chartIncome" Grid.Column="1" />
+            
+            <!--<charts:SfChart x:Name="chartExpense" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand">
                 <charts:SfChart.Legend>
                     <charts:ChartLegend DockPosition="Right"/>
                 </charts:SfChart.Legend>
@@ -82,7 +84,7 @@
                 </charts:PieSeries>
             </charts:SfChart>
 
-            <ContentView x:Name="emptyChartView" Grid.Column="1" IsVisible="False"/>
+            <ContentView x:Name="emptyChartView" Grid.Column="1" IsVisible="False"/>-->
 
         </Grid>
 
@@ -95,11 +97,11 @@
             <sf:SfDataGrid x:Name="DataGrid" EnableDataVirtualization="True" ItemsSource="{Binding Budget}" AutoGenerateColumns="False" 
                            GroupCaptionTextFormat="{}{Key}" AutoExpandGroups="False" AllowGroupExpandCollapse="true" LiveDataUpdateMode="AllowSummaryUpdate" 
                            FrozenColumnsCount="2" CurrentCellEndEdit="DataGrid_CurrentCellEndEdit" HorizontalOptions="CenterAndExpand" 
-                           SelectionMode="Multiple" NavigationMode="Cell" >
+                           SelectionMode="SingleDeselect" NavigationMode="Cell" >
                 <sf:SfDataGrid.GroupColumnDescriptions>
                     <sf:GroupColumnDescription ColumnName="Category.Name" />
                 </sf:SfDataGrid.GroupColumnDescriptions>
-                
+
                 <sf:SfDataGrid.SortComparers>
                     <data:SortComparer Comparer="{StaticResource SortComparer}" PropertyName="Category.Name"/>
                 </sf:SfDataGrid.SortComparers>
@@ -117,7 +119,7 @@
                 </sf:SfDataGrid.CaptionSummaryRow>
 
                 <sf:SfDataGrid.Columns>
-                    <sf:GridTextColumn MappingName="Subcat.Name" HeaderText="Kategoria" Width="100" HeaderFontAttribute="Bold" ColumnSizer="Auto">
+                    <sf:GridTextColumn MappingName="Subcat.Name" HeaderText="Kategoria" HeaderFontAttribute="Bold" ColumnSizer="Star">
                         <sf:GridTextColumn.CellStyle>
                             <Style TargetType="sf:GridCell">
                                 <Setter Property="BackgroundColor" Value="#EAEAEA" />
@@ -125,12 +127,10 @@
                         </sf:GridTextColumn.CellStyle>
                     </sf:GridTextColumn>
 
-                    <sf:GridNumericColumn ColumnSizer="LastColumnFill" MappingName="SubcatPlanned.Value" HeaderFontAttribute="Bold" FontAttribute="Bold" Width="80" DisplayBinding="{Binding SubcatPlanned.Value, Converter={StaticResource CurrencyValueConverter}}" HeaderText="Suma" AllowEditing="True"/>
+                    <sf:GridNumericColumn ColumnSizer="LastColumnFill" MappingName="SubcatPlanned.Value" HeaderFontAttribute="Bold" FontAttribute="Bold" DisplayBinding="{Binding SubcatPlanned.Value, Converter={StaticResource CurrencyValueConverter}}" HeaderText="Suma" AllowEditing="True"/>
                 </sf:SfDataGrid.Columns>
             </sf:SfDataGrid>
-            <!--<StackLayout Grid.Column="1" VerticalOptions="End" Margin="0,0,5,5">
-                <Button Text="Użyj w kolejnych miesiącach" VerticalOptions="End" BackgroundColor="DodgerBlue" TextColor="White" Clicked="OnSave"/>
-            </StackLayout>-->
+            <Button Grid.Column="1" Text="Użyj w kolejnych miesiącach" VerticalOptions="End" BackgroundColor="DodgerBlue" TextColor="White" Margin="12,12" Clicked="OnSave"/>
         </Grid>
 
     </Grid>
