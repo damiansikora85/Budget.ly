@@ -77,10 +77,10 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="{Binding IconFile}"/>
-                                    <Label Grid.Column="1" Text="{Binding CategoryName}" LineBreakMode="NoWrap"/>
-                                    <Label Grid.Column="2" Text="{Binding CategoryReal.TotalValues, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
+                                    <Label Grid.Column="1" Text="{Binding CategoryName}" LineBreakMode="NoWrap" VerticalTextAlignment="Center"/>
+                                    <Label Grid.Column="2" Text="{Binding CategoryReal.TotalValues, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
                                     <ProgressBar Grid.Column="3" Progress="{Binding SpendPercentage}"/>
-                                    <Label Grid.Column="4" Text="{Binding SpendPercentage, StringFormat='{0:P1}'}" LineBreakMode="NoWrap"/>
+                                    <Label Grid.Column="4" Text="{Binding SpendPercentage, StringFormat='{0:P1}'}" LineBreakMode="NoWrap" VerticalTextAlignment="Center"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
@@ -97,8 +97,14 @@
                 <StackLayout AbsoluteLayout.LayoutBounds="1, 1, 0.66, 1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White">
                     <ListView x:Name="listViewCategories" ItemSelected="listView_ItemSelected" >
                         <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ImageCell Text="{Binding CategoryName}" TextColor="DimGray" ImageSource="{Binding IconFile}" />
+                            <DataTemplate x:DataType="utils:BudgetSummaryDataViewModel">
+                                <ViewCell>
+                                <!--<ImageCell Text="{Binding CategoryName}" TextColor="DimGray" ImageSource="{Binding IconFile}" />-->
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding IconFile}"/>
+                                    <Label Text="{Binding CategoryName}" LineBreakMode="NoWrap"/>
+                                </StackLayout>
+                                </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
