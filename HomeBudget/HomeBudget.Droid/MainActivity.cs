@@ -18,7 +18,7 @@ using Plugin.LocalNotifications;
 
 namespace HomeBudget.Droid
 {
-	[Activity(Label = "HomeBudget", Icon = "@drawable/icon", Theme = "@style/SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
+	[Activity(Label = "Budget.ly", Icon = "@drawable/icon", Theme = "@style/SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
         private App _theApp;
@@ -33,10 +33,12 @@ namespace HomeBudget.Droid
             base.OnCreate(bundle);
 
             UserDialogs.Init(this);
+            HUDTutorial.MainActivity = this;
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init();
             Xamarin.Forms.DependencyService.Register<AndroidNotificationService>();
+            Xamarin.Forms.DependencyService.Register<HUDTutorial>();
 
             _theApp = new App();
             LoadApplication(_theApp);

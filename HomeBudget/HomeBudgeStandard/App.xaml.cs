@@ -28,8 +28,8 @@ namespace HomeBudget
                   "ios={Your iOS App secret here}",
                   typeof(Analytics), typeof(Crashes));
 
-            NotificationManager.ClearAllNotifications();
-            NotificationManager.ReScheduleNotificationsBySettings();
+            //NotificationManager.ClearAllNotifications();
+            //NotificationManager.ReScheduleNotificationsBySettings();
         }
 
 		protected override void OnSleep()

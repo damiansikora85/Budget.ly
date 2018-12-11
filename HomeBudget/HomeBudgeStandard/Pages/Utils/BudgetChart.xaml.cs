@@ -44,20 +44,28 @@ namespace HomeBudget.Utils
                     OutsideLabelFormat = null,//"{2:f0}%",
                     StartAngle = 270
                 };
-                for(int i=0; i< data.Count; i++)
+
+                var model = new OxyPlot.PlotModel();
+
+                if (data.Sum(el => el.Value) == 0)
                 {
-                    series.Slices.Add(new PieSlice(data[i].Label, data[i].Value));
-                    data[i].Color = ToColor(Colors[i]);
+                    series.Slices.Add(new PieSlice("Brak danych", 1));
+                    series.InsideLabelFormat = "{1}";
+                    model.DefaultColors = new List<OxyPlot.OxyColor> { OxyPlot.OxyColor.Parse("#ACACAC") };
+                }
+                else
+                {
+                    for (int i = 0; i < data.Count; i++)
+                    {
+                        series.Slices.Add(new PieSlice(data[i].Label, data[i].Value));
+                        data[i].Color = ToColor(Colors[i]);
+                    }
+                    model.DefaultColors = Colors;
+                    legend.ItemsSource = data;
                 }
 
-                var model = new OxyPlot.PlotModel
-                {
-                    DefaultColors = Colors
-                };
                 model.Series.Add(series);
                 chart.Model = model;
-
-                legend.ItemsSource = data;
             });
         }
 

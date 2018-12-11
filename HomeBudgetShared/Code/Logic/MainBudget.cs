@@ -200,6 +200,7 @@ namespace HomeBudget.Code
                             budgetPlanned = data.BudgetPlanned;
                     }
                     //onBudgetLoaded?.Invoke();
+                    IsDataLoaded = true;
                     BudgetDataChanged?.Invoke();
                     Task.Run(() => Save(false));
                 }

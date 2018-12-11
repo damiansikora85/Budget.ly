@@ -67,12 +67,14 @@
 				"isIncome": "false",
 				"icon": "home.png",
 				"sub": [
-					"Czynsz",
+					"Eksploatacja",
+					"Fundusz remontowy",
 					"Prąd",
 					"Gaz",
-					"Śmieci",
+					"Wywóz śmieci",
 					"Naprawy",
 					"Wyposażenie",
+					"Ogród",
 					"Ubezpieczenie",
 					"Inne"
 				]
@@ -86,9 +88,9 @@
 				"sub": [
 					"Paliwo",
 					"Przeglądy/naprawa",
-					"Wyposażenie",
+					"Wyposażenie auta",
 					"Ubezpieczenie",
-					"Bilety",
+					"Komunikacja miejska",
 					"PKP/PKS",
 					"Taxi",
 					"Inne"
@@ -144,10 +146,8 @@
 					"Środki czystości",
 					"Fryzjer",
 					"Kosmetyczka",
-					"Pieluchy",
 					"Inne"
 				]
-
 			},
 			{
 				"name": "Dzieci",
@@ -155,13 +155,14 @@
 				"isIncome": "false",
 				"icon": "kids.png",
 				"sub": [
-					"Art szkolne",
+					"Art. szkolne",
+					"Dodatkowe zajęcia",
+					"Wpłaty na szkołe",
 					"Przedszkole",
 					"Opieka",
 					"Zabawki",
 					"Inne"
 				]
-
 			},
 			{
 				"name": "Rozrywka",
@@ -179,7 +180,6 @@
 					"Giereczki",
 					"Inne"
 				]
-
 			},
 			{
 				"name": "Inne",
@@ -195,12 +195,12 @@
 					"Edukacja",
 					"Usługi",
 					"Podatki",
+					"Grand Duo",  
 					"Inne"
 				]
-
 			},
 			{
-				"name": "Spłata długow",
+				"name": "Spłata długów",
 				"id": "11",
 				"isIncome": "false",
 				"icon": "debt.png",
@@ -212,7 +212,6 @@
 					"Karta kredytowa",
 					"Inne"
 				]
-
 			},
 			{
 				"name": "Oszczedności",
@@ -221,12 +220,12 @@
 				"icon": "savings.png",
 				"sub": [
 					"Fundusz awaryjny",
-					"Fundusz wyd niereg",
+					"Fundusz wydatków nieregularnych",
 					"Poduszka finansowa",
 					"IKE/IKZE",
-					"Nadpłata dlugow",
-					"Wakacje",
-					"Świeta",
+					"Nadpłata długów",
+					"Fundusz: Wakacje",
+					"Fundusz: Świeta",
 					"Inne"
 				]
 			}

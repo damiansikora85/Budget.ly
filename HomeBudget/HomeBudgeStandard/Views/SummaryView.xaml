@@ -4,13 +4,9 @@
              xmlns:converters="clr-namespace:HomeBudget.Converters"
              xmlns:views="clr-namespace:HomeBudgeStandard.Views"
              xmlns:utils="clr-namespace:HomeBudget.Pages.Utils"
+             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
              x:Class="HomeBudgeStandard.Views.SummaryView"
              Title="Podsumowanie">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converters:CurrencyValueConverter x:Key="CurrencyValueConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
 
     <ContentPage.Content>
         <Grid>
@@ -86,7 +82,8 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <Button AbsoluteLayout.LayoutBounds=".95,.95,60,60" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="DodgerBlue" Text="+" FontAttributes="Bold" TextColor="White" FontSize="Large" Clicked="AddButton_Clicked" BorderRadius="30"/>
+                <Button AbsoluteLayout.LayoutBounds=".95,.95,60,60" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="DodgerBlue" Text="+" CornerRadius="30" FontAttributes="Bold" TextColor="White" FontSize="Large" Clicked="AddButton_Clicked" />
+                
             </AbsoluteLayout>
 
             <AbsoluteLayout Grid.RowSpan="4" InputTransparent="True">
@@ -99,10 +96,9 @@
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="utils:BudgetSummaryDataViewModel">
                                 <ViewCell>
-                                <!--<ImageCell Text="{Binding CategoryName}" TextColor="DimGray" ImageSource="{Binding IconFile}" />-->
                                 <StackLayout Orientation="Horizontal">
                                     <Image Source="{Binding IconFile}"/>
-                                    <Label Text="{Binding CategoryName}" LineBreakMode="NoWrap"/>
+                                    <Label Text="{Binding CategoryName}" LineBreakMode="NoWrap" VerticalTextAlignment="Center"/>
                                 </StackLayout>
                                 </ViewCell>
                             </DataTemplate>
@@ -123,9 +119,7 @@
                 </StackLayout>
             </AbsoluteLayout>
 
-            <AbsoluteLayout x:Name="CalcLayout" Grid.RowSpan="4" IsVisible="False" BackgroundColor="#C0000000" >
-                <views:CalcView x:Name="CalcView" AbsoluteLayout.LayoutBounds=".5, .5, 0.9, 0.9" AbsoluteLayout.LayoutFlags="All"/>
-            </AbsoluteLayout>
+            <AbsoluteLayout x:Name="CalcLayout" Grid.RowSpan="4" IsVisible="False" BackgroundColor="#C0000000" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -1,4 +1,5 @@
-﻿using HomeBudget.Code;
+﻿using Acr.UserDialogs;
+using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
 using System;
@@ -29,6 +30,8 @@ namespace HomeBudgeStandard.Views
         private BudgetSummaryDataViewModel _selectedCategory;
         public System.Windows.Input.ICommand GridClicked { get; set; }
 
+        private CalcView _calcView;
+
         public SummaryView ()
 		{
             GridClicked = new Command(OnGridClicked);
@@ -39,7 +42,9 @@ namespace HomeBudgeStandard.Views
             var currentDate = DateTime.Now;
             dateText.Text = currentDate.ToString("dd MMMM yyyy", cultureInfoPL);
             show = true;
-            CalcView.OnCancel += HideCalcView;
+            //CalcView.OnCancel += HideCalcView;
+
+            MainBudget.Instance.BudgetDataChanged += UpdateSummary;
 
             SelectedCategorySubcats = new ObservableCollection<BaseBudgetSubcat>();
         }
@@ -49,7 +54,10 @@ namespace HomeBudgeStandard.Views
             if (MainBudget.Instance.IsDataLoaded && !_setupDone)
                 UpdateSummary();
             else if (SummaryListViewItems == null)
+            {
                 loader.IsRunning = true;
+                UserDialogs.Instance.ShowLoading("");
+            }
             else
             {
                 foreach (var summaryItem in SummaryListViewItems)
@@ -58,7 +66,7 @@ namespace HomeBudgeStandard.Views
                 SetupBudgetSummary();
             }
 
-            MainBudget.Instance.BudgetDataChanged += UpdateSummary;
+            
             _setupDone = true;
         }
 
@@ -105,17 +113,19 @@ namespace HomeBudgeStandard.Views
             await Task.WhenAll(fadeTask, hideSubcatsTask, hideCategoriesTask);
         }
 
-        private void UpdateSummary()
+        private async void UpdateSummary()
         {
+            var summaryData = await GetBudgetSummaryData();
             Device.BeginInvokeOnMainThread(() =>
             {
                 SetupBudgetSummary();
 
-                SummaryListViewItems = GetBudgetSummaryData();
-                listViewCategories.ItemsSource = SummaryListViewItems;
-                summaryList.ItemsSource = SummaryListViewItems;
+                SummaryListViewItems = summaryData;
+                listViewCategories.ItemsSource = summaryData;
+                summaryList.ItemsSource = summaryData;
 
                 loader.IsRunning = false;
+                UserDialogs.Instance.HideLoading();
             });
         }
 
@@ -130,34 +140,31 @@ namespace HomeBudgeStandard.Views
             ExpectedIncomes = budgetMonth.GetTotalIncomePlanned();
             DiffExpected = ExpectedIncomes - ExpectedExpenses;
 
-            OnPropertyChanged(nameof(RealExpenses));
-            OnPropertyChanged(nameof(RealIncomes));
-            OnPropertyChanged(nameof(DiffReal));
-
-            OnPropertyChanged(nameof(ExpectedExpenses));
-            OnPropertyChanged(nameof(ExpectedIncomes));
-            OnPropertyChanged(nameof(DiffExpected));
+            OnPropertyChanged("");
         }
 
-        private ObservableCollection<BudgetSummaryDataViewModel> GetBudgetSummaryData()
+        private async Task<ObservableCollection<BudgetSummaryDataViewModel>> GetBudgetSummaryData()
         {
-            var budgetSummaryCollection = new ObservableCollection<BudgetSummaryDataViewModel>();
-            var budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
-            var categoriesDesc = MainBudget.Instance.BudgetDescription.Categories;
-            var budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
-            for (int i = 0; i < budgetReal.Categories.Count; i++)
+            return await Task.Factory.StartNew<ObservableCollection<BudgetSummaryDataViewModel>>(() =>
             {
-                var budgetSummaryData = new BudgetSummaryDataViewModel
+                var budgetSummaryCollection = new ObservableCollection<BudgetSummaryDataViewModel>();
+                var budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
+                var categoriesDesc = MainBudget.Instance.BudgetDescription.Categories;
+                var budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
+                for (int i = 0; i < budgetReal.Categories.Count; i++)
                 {
-                    CategoryReal = budgetReal.Categories[i],
-                    CategoryPlanned = budgetPlanned.Categories[i],
-                    IconFile = categoriesDesc[i].IconFileName
-                };
+                    var budgetSummaryData = new BudgetSummaryDataViewModel
+                    {
+                        CategoryReal = budgetReal.Categories[i],
+                        CategoryPlanned = budgetPlanned.Categories[i],
+                        IconFile = categoriesDesc[i].IconFileName
+                    };
 
-                budgetSummaryCollection.Add(budgetSummaryData);
-            }
+                    budgetSummaryCollection.Add(budgetSummaryData);
+                }
 
-            return budgetSummaryCollection;
+                return budgetSummaryCollection;
+            });
         }
 
         private async void AddButton_Clicked(object sender, EventArgs e)
@@ -182,7 +189,15 @@ namespace HomeBudgeStandard.Views
                     SelectedCategorySubcats.Add(item);
 
                 listViewSubcats.ItemsSource = SelectedCategorySubcats;
-                CalcView.Category = selectedCategory.CategoryName;
+                if (_calcView == null)
+                {
+                    _calcView = new CalcView();
+                    AbsoluteLayout.SetLayoutFlags(_calcView, AbsoluteLayoutFlags.All);
+                    AbsoluteLayout.SetLayoutBounds(_calcView, new Rectangle(0.5,0.5,0.9,0.9));
+                    
+                    _calcView.OnCancel += HideCalcView;
+                }
+                _calcView.Category = selectedCategory.CategoryName;
             }
             listViewCategories.SelectedItem = null;
             await categories.TranslateTo(660, 0, easing: Easing.SpringIn);
@@ -195,11 +210,12 @@ namespace HomeBudgeStandard.Views
             await subcats.TranslateTo(660, 0, easing: Easing.SpringIn);
             if (listViewSubcats.SelectedItem is RealSubcat selectedSubcat)
             {
+                CalcLayout.Children.Add(_calcView);
                 CalcLayout.IsVisible = true;
-                CalcView.Reset();
+                _calcView.Reset();
                 await blocker.FadeTo(0);
-                CalcView.Subcat = selectedSubcat.Name;
-                CalcView.OnSaveValue = (double calculationResult, DateTime date) =>
+                _calcView.Subcat = selectedSubcat.Name;
+                _calcView.OnSaveValue = (double calculationResult, DateTime date) =>
                 {
                     selectedSubcat.AddValue(calculationResult, date);
 

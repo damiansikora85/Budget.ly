@@ -14,9 +14,9 @@
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="local:ChartData">
                 <ViewCell>
-                    <StackLayout Orientation="Horizontal">
-                        <BoxView WidthRequest="10" Margin="0,11" Color="{Binding Color}"/>
-                        <Label Text="{Binding Label}" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
+                    <StackLayout Orientation="Horizontal" >
+                        <BoxView WidthRequest="10" Margin="0,11" Color="{Binding Color}" />
+                        <Label Text="{Binding Label}" VerticalTextAlignment="Center" FontSize="12"/>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
