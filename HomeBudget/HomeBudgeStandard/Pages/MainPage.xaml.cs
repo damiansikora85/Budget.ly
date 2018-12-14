@@ -1,5 +1,6 @@
 ﻿using HomeBudgeStandard.Utils;
 using HomeBudget.Code;
+using HomeBudget.Helpers;
 using HomeBudgetShared.Code.Synchronize;
 using System;
 using System.Globalization;
@@ -32,6 +33,11 @@ namespace HomeBudgeStandard.Pages
         private void InitBudget()
         {
             MainBudget.Instance.Init(new FileManagerXamarin(), new BudgetSynchronizer(new DropboxCloudStorage()));
+            if(Settings.FirstLaunch)
+            {
+                NotificationManager.ScheduleDefaultNotifications();
+                Settings.FirstLaunch = false;
+            }
         }
 
         public void AfterCloudLogin()

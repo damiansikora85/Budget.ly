@@ -62,6 +62,14 @@ namespace HomeBudgeStandard.Utils
             notificationService.ScheduleNotification("Zapisz wydatki!", days, time);
         }
 
+        public static void ScheduleDefaultNotifications()
+        {
+            var notificationTime = TimeSpan.Parse("20:00");
+            App.Current.Properties.Add("NotificationsWednesday", true);
+            App.Current.Properties.Add("NotificationsSaturday", true);
+            App.Current.Properties.Add("NotificationsTime", notificationTime);
 
+            ScheduleNotification(new DayOfWeek[] {DayOfWeek.Wednesday, DayOfWeek.Saturday }, notificationTime);
+        }
     }
 }

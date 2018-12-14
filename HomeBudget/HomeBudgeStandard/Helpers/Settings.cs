@@ -24,6 +24,9 @@ namespace HomeBudget.Helpers
         private const string DropboxAccessTokenKey = "dropboxAccessToken_key";
         private static readonly string DropboxAccessTokenDefault = string.Empty;
 
+
+        private const string FirstLaunchKey = "first_launch";
+        
         #endregion
 
 
@@ -31,6 +34,12 @@ namespace HomeBudget.Helpers
         {
             get => AppSettings.GetValueOrDefault(DropboxAccessTokenKey, DropboxAccessTokenDefault);
             set => AppSettings.AddOrUpdateValue(DropboxAccessTokenKey, value);
+        }
+
+        public static bool FirstLaunch
+        {
+            get => AppSettings.GetValueOrDefault(FirstLaunchKey, true);
+            set => AppSettings.AddOrUpdateValue(FirstLaunchKey, value);
         }
     }
 }
