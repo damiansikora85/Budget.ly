@@ -85,8 +85,6 @@ namespace HomeBudgeStandard.Pages
             //DropboxSynchroBought = await purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropbox");
             //OnPropertyChanged(nameof(IsNotBoughtYet));
 
-            //if(_waitingForDropboxResponse)
-                //UserDialogs.Instance.ShowLoading("");
             base.OnAppearing();
         }
 
