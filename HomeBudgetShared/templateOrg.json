@@ -7,7 +7,7 @@
 			"icon": "incomes.png"
 		},
 		{
-			"name": "Wynagrodzenie Partnera/Partnerki",
+			"name": "Wynagrodzenie Partnera",
 			"id": "1",
 			"icon": "incomes.png"
 		},
@@ -173,23 +173,23 @@
 				]
 
 			},
-			{
-				"name": "Rozrywka",
-				"id": "9",
-				"isIncome": "false",
-				"icon": "theatre-masks.png",
-				"sub": [
-					"Siłownia/basen",
-					"Kino/teatr",
-					"Koncerty",
-					"Czasopisma",
-					"Książki",
-					"Hobby",
-					"Hotel/turystyka",
-					"Inne"
-				]
+		{
+			"name": "Rozrywka",
+			"id": "9",
+			"isIncome": "false",
+			"icon": "theatremasks.png",
+			"sub": [
+				"Siłownia/basen",
+				"Kino/teatr",
+				"Koncerty",
+				"Czasopisma",
+				"Książki",
+				"Hobby",
+				"Hotel/turystyka",
+				"Inne"
+			]
 
-			},
+		},
 			{
 				"name": "Inne",
 				"id": "10",
