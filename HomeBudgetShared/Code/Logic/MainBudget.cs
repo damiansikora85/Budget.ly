@@ -52,9 +52,8 @@ namespace HomeBudget.Code
         private IBudgetSynchronizer _budgetSynchronizer;
         public bool IsDataLoaded { get; private set; }
 
-        //public event Action onBudgetLoaded = delegate { };
         public event Action onPlannedBudgetChanged;
-        public event Action BudgetDataChanged = delegate { };
+        public event Action<bool> BudgetDataChanged = delegate { };
 
         public BudgetDescription BudgetDescription { get; private set; }
 
@@ -175,7 +174,7 @@ namespace HomeBudget.Code
 
             IsDataLoaded = true;
             //onBudgetLoaded?.Invoke();
-            BudgetDataChanged?.Invoke();
+            BudgetDataChanged?.Invoke(false);
         }
 
         private void OnPlannedBudgetChanged()
@@ -207,9 +206,9 @@ namespace HomeBudget.Code
                         if (data.BudgetPlanned != null)
                             budgetPlanned = data.BudgetPlanned;
                     }
-                    //onBudgetLoaded?.Invoke();
+
                     IsDataLoaded = true;
-                    BudgetDataChanged?.Invoke();
+                    BudgetDataChanged?.Invoke(true);
                     Task.Run(() => Save(false));
                 }
             }

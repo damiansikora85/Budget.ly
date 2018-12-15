@@ -44,9 +44,14 @@ namespace HomeBudgeStandard.Views
             show = true;
             //CalcView.OnCancel += HideCalcView;
 
-            MainBudget.Instance.BudgetDataChanged += UpdateSummary;
+            MainBudget.Instance.BudgetDataChanged += BudgetDataChanged;
 
             SelectedCategorySubcats = new ObservableCollection<BaseBudgetSubcat>();
+        }
+
+        private void BudgetDataChanged(bool isLoadedFromCloud)
+        {
+            UpdateSummary();
         }
 
         protected override void OnAppearing()
@@ -66,7 +71,6 @@ namespace HomeBudgeStandard.Views
                 SetupBudgetSummary();
             }
 
-            
             _setupDone = true;
         }
 
@@ -74,7 +78,7 @@ namespace HomeBudgeStandard.Views
         {
             HideSideBars();
             base.OnDisappearing();
-            MainBudget.Instance.BudgetDataChanged -= UpdateSummary;
+            MainBudget.Instance.BudgetDataChanged -= BudgetDataChanged;
         }
 
         public bool OnBackPressed()
