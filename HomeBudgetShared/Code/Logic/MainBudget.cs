@@ -38,7 +38,7 @@ namespace HomeBudget.Code
 
     public class MainBudget
 	{
-        private const string TEMPLATE_FILENAME = "template.json";
+        private const string TEMPLATE_FILENAME = "templateOrg.json";
         private const string SAVE_DIRECTORY_NAME = "save";
         private const string SAVE_FILE_NAME = "budget.data";
         public const int INCOME_CATEGORY_ID = 777;
@@ -52,9 +52,8 @@ namespace HomeBudget.Code
         private IBudgetSynchronizer _budgetSynchronizer;
         public bool IsDataLoaded { get; private set; }
 
-        //public event Action onBudgetLoaded = delegate { };
         public event Action onPlannedBudgetChanged;
-        public event Action BudgetDataChanged = delegate { };
+        public event Action<bool> BudgetDataChanged = delegate { };
 
         public BudgetDescription BudgetDescription { get; private set; }
 
@@ -97,29 +96,37 @@ namespace HomeBudget.Code
 
             Task.Factory.StartNew(() =>
             {
-                var assembly = typeof(MainBudget).GetTypeInfo().Assembly;
-                //var name = assembly.GetName();
-                //var names = assembly.GetManifestResourceNames();
-                var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{TEMPLATE_FILENAME}");
-                var jsonString = "";
-                using (var reader = new System.IO.StreamReader(stream))
+                try
                 {
-                    jsonString = reader.ReadToEnd();
-                    BudgetDescription = JsonConvert.DeserializeObject<BudgetDescription>(jsonString);
-                    budgetPlanned.Setup(BudgetDescription.Categories);
+                    var assembly = typeof(MainBudget).GetTypeInfo().Assembly;
+                    //var name = assembly.GetName();
+                    //var names = assembly.GetManifestResourceNames();
+                    var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{TEMPLATE_FILENAME}");
+                    var jsonString = "";
+                    using (var reader = new System.IO.StreamReader(stream))
+                    {
+                        jsonString = reader.ReadToEnd();
+                        BudgetDescription = JsonConvert.DeserializeObject<BudgetDescription>(jsonString);
+                        budgetPlanned.Setup(BudgetDescription.Categories);
+                    }
+
+                    if (!string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken))
+                    {
+                        _budgetSynchronizer.Start();
+                        LogsManager.Instance.WriteLine("Load data from cloud storage");
+                        Task.Run(async () => UpdateData(null, await _budgetSynchronizer.ForceLoad()));
+                    }
+                    else
+                    {
+                        LogsManager.Instance.WriteLine("Load data from local device");
+                        Task.Run(() => LoadAsync());
+                    }
+                }
+                catch(Exception exc)
+                {
+                    var msg = exc.Message;
                 }
 
-                if (!string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken))
-                {
-                    _budgetSynchronizer.Start();
-                    LogsManager.Instance.WriteLine("Load data from cloud storage");
-                    Task.Run(async () => UpdateData(null, await _budgetSynchronizer.ForceLoad()));
-                }
-                else
-                {
-                    LogsManager.Instance.WriteLine("Load data from local device");
-                    Task.Run(() => LoadAsync());
-                }
             });
 
             LogsManager.Instance.Init(fileManager);
@@ -167,7 +174,7 @@ namespace HomeBudget.Code
 
             IsDataLoaded = true;
             //onBudgetLoaded?.Invoke();
-            BudgetDataChanged?.Invoke();
+            BudgetDataChanged?.Invoke(false);
         }
 
         private void OnPlannedBudgetChanged()
@@ -199,8 +206,9 @@ namespace HomeBudget.Code
                         if (data.BudgetPlanned != null)
                             budgetPlanned = data.BudgetPlanned;
                     }
-                    //onBudgetLoaded?.Invoke();
-                    BudgetDataChanged?.Invoke();
+
+                    IsDataLoaded = true;
+                    BudgetDataChanged?.Invoke(true);
                     Task.Run(() => Save(false));
                 }
             }

@@ -63,30 +63,40 @@ namespace HomeBudgeStandard.Pages
 
         protected async override void OnAppearing()
         {
-            /*var purchaseService = new PurchaseService();
-            var info = await purchaseService.GetProductInfo("com.darktower.homebudget.dropbox");
-            if (info != null)
+            UserDialogs.Instance.ShowLoading("");
+            var purchaseService = new PurchaseService();
+            if (await purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropbox"))
             {
-                PromoPrice = info.LocalizedPrice;
-                OnPropertyChanged(nameof(PromoPrice));
-
-                //temp
-                RegularPrice = info.LocalizedPrice;
-                OnPropertyChanged(nameof(RegularPrice));
+                iapLayout.IsVisible = false;
+                connectLayout.IsVisible = true;
             }
-            info = null;
-            info = await purchaseService.GetProductInfo("com.darktower.homebudget.dropboxnormal ");
-            if (info != null)
+            else
             {
-                RegularPrice = info.LocalizedPrice;
-                OnPropertyChanged(nameof(RegularPrice));
-            }*/
+                iapLayout.IsVisible = true;
+                connectLayout.IsVisible = false;
 
+                var info = await purchaseService.GetProductInfo("com.darktower.homebudget.dropbox");
+                if (info != null)
+                {
+                    PromoPrice = $"  {info.LocalizedPrice}";
+                    OnPropertyChanged(nameof(PromoPrice));
+
+                    //temp
+                    RegularPrice = info.LocalizedPrice;
+                    OnPropertyChanged(nameof(RegularPrice));
+                }
+                info = null;
+                info = await purchaseService.GetProductInfo("com.darktower.homebudget.dropboxnormal");
+                if (info != null)
+                {
+                    RegularPrice = info.LocalizedPrice;
+                    OnPropertyChanged(nameof(RegularPrice));
+                }
+            }
             //DropboxSynchroBought = await purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropbox");
             //OnPropertyChanged(nameof(IsNotBoughtYet));
 
-            if(_waitingForDropboxResponse)
-                UserDialogs.Instance.ShowLoading("");
+            UserDialogs.Instance.HideLoading();
             base.OnAppearing();
         }
 
@@ -100,6 +110,7 @@ namespace HomeBudgeStandard.Pages
 
             try
             {
+                UserDialogs.Instance.ShowLoading("");
                 var result = DropboxOAuth2Helper.ParseTokenFragment(new Uri(e.Url));
 
                 if (result.State != _oauth2State)
@@ -107,42 +118,21 @@ namespace HomeBudgeStandard.Pages
                     return;
                 }
                 HomeBudget.Helpers.Settings.DropboxAccessToken = result.AccessToken;
-            }
-            catch (ArgumentException argExc)
-            {
-                var msg = argExc.Message;
-                msg += "error";
-                // There was an error in the URI passed to ParseTokenFragment
-            }
-            finally
-            {
-                await Application.Current.MainPage.Navigation.PopModalAsync();
 
-                /*if (!_checkDropboxFileExist)
-                {
-                    MainBudget.Instance.OnCloudStorageConnected();
-                    var mainPage = Application.Current.MainPage as MainPage;
-                    mainPage.AfterCloudLogin();
-                }
-                else if (await HasDropboxData())
-                {
-                    MainBudget.Instance.OnCloudStorageConnected();
-                    var mainPage = Application.Current.MainPage as MainPage;
-                    mainPage.AfterCloudLogin();
-                }
-                else UserDialogs.Instance.Toast("Nie znaleziono pliku");*/
+                await Application.Current.MainPage.Navigation.PopModalAsync();
 
                 if (await HasDropboxData())
                 {
-                    UserDialogs.Instance.HideLoading();
                     if (await UserDialogs.Instance.ConfirmAsync("Wykryto zapisane dane aplikacji Budget.ly na Twoim koncie Dropbox. Czy chcesz nadpisać dane lokalne w telefonie?", "Uwaga", "Użyj danych z Dropbox", "Użyj danych z  telefonu"))
                     {
+                        UserDialogs.Instance.HideLoading();
                         MainBudget.Instance.OnCloudStorageConnected(true);
                         var mainPage = Application.Current.MainPage as MainPage;
                         mainPage.AfterCloudLogin();
                     }
                     else
                     {
+                        UserDialogs.Instance.HideLoading();
                         MainBudget.Instance.OnCloudStorageConnected(false);
                         var mainPage = Application.Current.MainPage as MainPage;
                         mainPage.AfterCloudLogin();
@@ -154,9 +144,17 @@ namespace HomeBudgeStandard.Pages
                     MainBudget.Instance.OnCloudStorageConnected(false);
                     var mainPage = Application.Current.MainPage as MainPage;
                     mainPage.AfterCloudLogin();
-
-                    //UserDialogs.Instance.Toast("Nie znaleziono pliku");
                 }
+            }
+            catch (ArgumentException argExc)
+            {
+                UserDialogs.Instance.HideLoading();
+                await UserDialogs.Instance.AlertAsync(argExc.Message, "Uwaga", "Dalej");
+            }
+            catch (Exception exc)
+            {
+                UserDialogs.Instance.HideLoading();
+                await UserDialogs.Instance.AlertAsync(exc.Message, "Uwaga", "Dalej");
             }
         }
 

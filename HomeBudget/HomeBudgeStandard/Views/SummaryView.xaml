@@ -3,13 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converters="clr-namespace:HomeBudget.Converters"
              xmlns:views="clr-namespace:HomeBudgeStandard.Views"
+             xmlns:utils="clr-namespace:HomeBudget.Pages.Utils"
+             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
              x:Class="HomeBudgeStandard.Views.SummaryView"
              Title="Podsumowanie">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converters:CurrencyValueConverter x:Key="CurrencyValueConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
 
     <ContentPage.Content>
         <Grid>
@@ -65,7 +62,7 @@
             <AbsoluteLayout Grid.Row="3">
                 <ListView x:Name="summaryList" AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All" ItemSelected="Summary_ItemSelected">
                     <ListView.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="utils:BudgetSummaryDataViewModel">
                             <ViewCell>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -76,16 +73,17 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="{Binding IconFile}"/>
-                                    <Label Grid.Column="1" Text="{Binding CategoryName}" LineBreakMode="NoWrap"/>
-                                    <Label Grid.Column="2" Text="{Binding CategoryReal.TotalValues, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
+                                    <Label Grid.Column="1" Text="{Binding CategoryName}" LineBreakMode="NoWrap" VerticalTextAlignment="Center"/>
+                                    <Label Grid.Column="2" Text="{Binding CategoryReal.TotalValues, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
                                     <ProgressBar Grid.Column="3" Progress="{Binding SpendPercentage}"/>
-                                    <Label Grid.Column="4" Text="{Binding SpendPercentage, StringFormat='{0:P1}'}" LineBreakMode="NoWrap"/>
+                                    <Label Grid.Column="4" Text="{Binding SpendPercentage, StringFormat='{0:P1}'}" LineBreakMode="NoWrap" VerticalTextAlignment="Center"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <Button AbsoluteLayout.LayoutBounds=".95,.95,60,60" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="DodgerBlue" Text="+" FontAttributes="Bold" TextColor="White" FontSize="Large" Clicked="AddButton_Clicked" BorderRadius="30"/>
+                <Button AbsoluteLayout.LayoutBounds=".95,.95,60,60" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="DodgerBlue" Text="+" CornerRadius="30" FontAttributes="Bold" TextColor="White" FontSize="Large" Clicked="AddButton_Clicked" />
+                
             </AbsoluteLayout>
 
             <AbsoluteLayout Grid.RowSpan="4" InputTransparent="True">
@@ -96,8 +94,13 @@
                 <StackLayout AbsoluteLayout.LayoutBounds="1, 1, 0.66, 1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White">
                     <ListView x:Name="listViewCategories" ItemSelected="listView_ItemSelected" >
                         <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ImageCell Text="{Binding CategoryName}" TextColor="DimGray" ImageSource="{Binding IconFile}" />
+                            <DataTemplate x:DataType="utils:BudgetSummaryDataViewModel">
+                                <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding IconFile}"/>
+                                    <Label Text="{Binding CategoryName}" LineBreakMode="NoWrap" VerticalTextAlignment="Center"/>
+                                </StackLayout>
+                                </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
@@ -116,9 +119,7 @@
                 </StackLayout>
             </AbsoluteLayout>
 
-            <AbsoluteLayout x:Name="CalcLayout" Grid.RowSpan="4" IsVisible="False" BackgroundColor="#C0000000" >
-                <views:CalcView x:Name="CalcView" AbsoluteLayout.LayoutBounds=".5, .5, 0.9, 0.9" AbsoluteLayout.LayoutFlags="All"/>
-            </AbsoluteLayout>
+            <AbsoluteLayout x:Name="CalcLayout" Grid.RowSpan="4" IsVisible="False" BackgroundColor="#C0000000" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

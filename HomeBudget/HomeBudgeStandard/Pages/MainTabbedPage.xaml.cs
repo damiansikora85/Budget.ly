@@ -19,15 +19,18 @@ namespace HomeBudgeStandard.Pages
             MainBudget.Instance.BudgetDataChanged += BudgetDataChanged;
         }
 
-        private void BudgetDataChanged()
+        private void BudgetDataChanged(bool isLoadedFromCloud)
         {
-            Device.BeginInvokeOnMainThread(() =>
+            if (isLoadedFromCloud)
             {
-                if (CurrentPage != Children[0])
-                    CurrentPage = Children[0];
-                UserDialogs.Instance.Toast("Zaktualizowano dane z Dropbox");
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    if (CurrentPage != Children[0])
+                        CurrentPage = Children[0];
+                    UserDialogs.Instance.Toast("Zaktualizowano dane z Dropbox");
+                }
+                );
             }
-            );
         }
 
         private void OnTabChanged(object sender, EventArgs e)

@@ -73,14 +73,12 @@ namespace HomeBudgeStandard.Views
             }
         }
 
-
         private String calculationResultText;
 
         public string CalculationResultText
         {
             get
             {
-                
                 return string.Format(_cultureInfoPL, "{0:C}", float.Parse(calculationResultText, CultureInfo.CurrentCulture.NumberFormat));
             }
             set

@@ -25,21 +25,21 @@
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.10.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.10.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="OxyPlot.Xamarin.Forms" Version="1.0.0" />
     <PackageReference Include="Plugin.InAppBilling" Version="2.0.0" />
     <PackageReference Include="protobuf-net" Version="2.4.0" />
+    <PackageReference Include="Refractored.FloatingActionButtonForms" Version="2.1.0" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.168" />
     <PackageReference Include="SkiaSharp" Version="1.60.3" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.60.3" />
-    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="16.3.0.29" />
-    <PackageReference Include="Syncfusion.Xamarin.Calculate" Version="16.3.0.29" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="16.3.0.29" />
-    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="16.3.0.29" />
-    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="16.3.0.29" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="16.3.0.36" />
+    <PackageReference Include="Syncfusion.Xamarin.Calculate" Version="16.3.0.36" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="16.3.0.36" />
     <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.6" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.3.6" />
-    <PackageReference Include="Xamarin.Forms" Version="3.2.0.871581" />
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
     <PackageReference Include="XamarinDropboxPlugin" Version="1.0.1" />
   </ItemGroup>
 
@@ -68,6 +68,12 @@
     <EmbeddedResource Update="Pages\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Utils\BudgetChart.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Utils\SummaryListViewCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\BudgetPlanView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -84,6 +90,18 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Syncfusion.Core.XForms">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Xamarin\16.3.0.29\Xamarin\lib\pcl\Syncfusion.Core.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Data.Portable">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Xamarin\16.3.0.29\Xamarin\lib\pcl\Syncfusion.Data.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfDataGrid.XForms">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Xamarin\16.3.0.29\Xamarin\lib\pcl\Syncfusion.SfDataGrid.XForms.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <Import Project="..\..\HomeBudgetShared\HomeBudgetShared.projitems" Label="Shared" />

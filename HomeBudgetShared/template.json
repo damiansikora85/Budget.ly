@@ -67,12 +67,14 @@
 				"isIncome": "false",
 				"icon": "home.png",
 				"sub": [
-					"Czynsz",
-					"Prad",
+					"Eksploatacja",
+					"Fundusz remontowy",
+					"Prąd",
 					"Gaz",
-					"Smieci",
+					"Wywóz śmieci",
 					"Naprawy",
-					"Wyposazenie",
+					"Wyposażenie",
+					"Ogród",
 					"Ubezpieczenie",
 					"Inne"
 				]
@@ -85,10 +87,10 @@
 				"icon": "transport.png",
 				"sub": [
 					"Paliwo",
-					"Przeglady/naprawa",
-					"Wyposazenie",
+					"Przeglądy/naprawa",
+					"Wyposażenie auta",
 					"Ubezpieczenie",
-					"Bilety",
+					"Komunikacja miejska",
 					"PKP/PKS",
 					"Taxi",
 					"Inne"
@@ -126,7 +128,7 @@
 				"isIncome": "false",
 				"icon": "clothes.png",
 				"sub": [
-					"Ubrania zwykle",
+					"Ubrania zwykłe",
 					"Ubrania sportowe",
 					"Buty",
 					"Dodatki",
@@ -141,13 +143,11 @@
 				"icon": "beauty.png",
 				"sub": [
 					"Kosmetyki",
-					"Srodki czystosci",
+					"Środki czystości",
 					"Fryzjer",
 					"Kosmetyczka",
-					"Pieluchy",
 					"Inne"
 				]
-
 			},
 			{
 				"name": "Dzieci",
@@ -155,13 +155,14 @@
 				"isIncome": "false",
 				"icon": "kids.png",
 				"sub": [
-					"Art szkolne",
+					"Art. szkolne",
+					"Dodatkowe zajęcia",
+					"Wpłaty na szkołe",
 					"Przedszkole",
 					"Opieka",
 					"Zabawki",
 					"Inne"
 				]
-
 			},
 			{
 				"name": "Rozrywka",
@@ -169,17 +170,16 @@
 				"isIncome": "false",
 				"icon": "theatremasks.png",
 				"sub": [
-					"Silownia/basen",
+					"Siłownia/basen",
 					"Kino/teatr",
 					"Koncerty",
 					"Czasopisma",
-					"Ksiazki",
+					"Ksiażki",
 					"Hobby",
 					"Hotel/turystyka",
 					"Giereczki",
 					"Inne"
 				]
-
 			},
 			{
 				"name": "Inne",
@@ -188,19 +188,19 @@
 				"icon": "other.png",
 				"sub": [
 					"Ubezpieczenia",
-					"Dobroczynnosc",
+					"Dobroczynność",
 					"Prezenty",
 					"RTV",
 					"Oprogramowanie",
 					"Edukacja",
-					"Uslugi",
+					"Usługi",
 					"Podatki",
+					"Grand Duo",  
 					"Inne"
 				]
-
 			},
 			{
-				"name": "Splata dlugow",
+				"name": "Spłata długów",
 				"id": "11",
 				"isIncome": "false",
 				"icon": "debt.png",
@@ -208,28 +208,26 @@
 					"Kredyt hipoteczny PKO",
 					"Kredyt hipoteczny Pekao",
 					"Kredyt konsumencki",
-					"Pozyczka",
+					"Pożyczka",
 					"Karta kredytowa",
 					"Inne"
 				]
-
 			},
 			{
-				"name": "Oszczednosci",
+				"name": "Oszczedności",
 				"id": "12",
 				"isIncome": "false",
 				"icon": "savings.png",
 				"sub": [
 					"Fundusz awaryjny",
-					"Fundusz wyd niereg",
+					"Fundusz wydatków nieregularnych",
 					"Poduszka finansowa",
 					"IKE/IKZE",
-					"Nadplata dlugow",
-					"Wakacje",
-					"Swieta",
+					"Nadpłata długów",
+					"Fundusz: Wakacje",
+					"Fundusz: Świeta",
 					"Inne"
 				]
-
 			}
 	]
 }

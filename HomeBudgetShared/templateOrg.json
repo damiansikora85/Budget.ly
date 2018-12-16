@@ -7,7 +7,7 @@
 			"icon": "incomes.png"
 		},
 		{
-			"name": "Wynagrodzenie Partnera/Partnerki",
+			"name": "Wynagrodzenie Partnera",
 			"id": "1",
 			"icon": "incomes.png"
 		},
@@ -47,7 +47,7 @@
 					"Wynagrodzenie",
 					"Wynagrodzenie Partnera/Partnerki",
 					"Premia",
-                    "Premia bankowa",
+          "Premia bankowa",
 					"Odsetki bankowe",
 					"Sprzedaż np.Allegro",
 					"Inne"
@@ -74,10 +74,10 @@
 				"icon": "home.png",
 				"sub": [
 					"Czynsz",
-                    "Woda i kanalizacja"
+          "Woda i kanalizacja",
 					"Prąd",
 					"Gaz",
-                    "Ogrzewanie",
+          "Ogrzewanie",
 					"Wywóz śmieci",
 					"Konserwacja i naprawy",
 					"Wyposażenie",
@@ -110,9 +110,9 @@
 				"icon": "telokom.png",
 				"sub": [
 					"Telefon 1",
-                    "Telefon 2"
+          "Telefon 2",
 					"TV",
-                    "Internet",
+          "Internet",
 					"Inne"
 				]
 
@@ -165,31 +165,31 @@
 				"icon": "kids.png",
 				"sub": [
 					"Art. szkolne",
-                    "Dodatkowe zajęcia",
-                    "Wpłaty na szkołe",
+          "Dodatkowe zajęcia",
+          "Wpłaty na szkołe",
 					"Opieka nad dziećmi",
 					"Zabawki",
 					"Inne"
 				]
 
 			},
-			{
-				"name": "Rozrywka",
-				"id": "9",
-				"isIncome": "false",
-				"icon": "theatre-masks.png",
-				"sub": [
-					"Siłownia/basen",
-					"Kino/teatr",
-					"Koncerty",
-					"Czasopisma",
-					"Książki",
-					"Hobby",
-					"Hotel/turystyka",
-					"Inne"
-				]
+		{
+			"name": "Rozrywka",
+			"id": "9",
+			"isIncome": "false",
+			"icon": "theatremasks.png",
+			"sub": [
+				"Siłownia/basen",
+				"Kino/teatr",
+				"Koncerty",
+				"Czasopisma",
+				"Książki",
+				"Hobby",
+				"Hotel/turystyka",
+				"Inne"
+			]
 
-			},
+		},
 			{
 				"name": "Inne",
 				"id": "10",
