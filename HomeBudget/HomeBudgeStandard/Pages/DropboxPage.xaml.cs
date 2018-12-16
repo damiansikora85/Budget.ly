@@ -63,28 +63,40 @@ namespace HomeBudgeStandard.Pages
 
         protected async override void OnAppearing()
         {
-            /*var purchaseService = new PurchaseService();
-            var info = await purchaseService.GetProductInfo("com.darktower.homebudget.dropbox");
-            if (info != null)
+            UserDialogs.Instance.ShowLoading("");
+            var purchaseService = new PurchaseService();
+            if (await purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropbox"))
             {
-                PromoPrice = info.LocalizedPrice;
-                OnPropertyChanged(nameof(PromoPrice));
-
-                //temp
-                RegularPrice = info.LocalizedPrice;
-                OnPropertyChanged(nameof(RegularPrice));
+                iapLayout.IsVisible = false;
+                connectLayout.IsVisible = true;
             }
-            info = null;
-            info = await purchaseService.GetProductInfo("com.darktower.homebudget.dropboxnormal ");
-            if (info != null)
+            else
             {
-                RegularPrice = info.LocalizedPrice;
-                OnPropertyChanged(nameof(RegularPrice));
-            }*/
+                iapLayout.IsVisible = true;
+                connectLayout.IsVisible = false;
 
+                var info = await purchaseService.GetProductInfo("com.darktower.homebudget.dropbox");
+                if (info != null)
+                {
+                    PromoPrice = $"  {info.LocalizedPrice}";
+                    OnPropertyChanged(nameof(PromoPrice));
+
+                    //temp
+                    RegularPrice = info.LocalizedPrice;
+                    OnPropertyChanged(nameof(RegularPrice));
+                }
+                info = null;
+                info = await purchaseService.GetProductInfo("com.darktower.homebudget.dropboxnormal");
+                if (info != null)
+                {
+                    RegularPrice = info.LocalizedPrice;
+                    OnPropertyChanged(nameof(RegularPrice));
+                }
+            }
             //DropboxSynchroBought = await purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropbox");
             //OnPropertyChanged(nameof(IsNotBoughtYet));
 
+            UserDialogs.Instance.HideLoading();
             base.OnAppearing();
         }
 

@@ -8,33 +8,35 @@
             
             <Image Source="dropboxInfo.png" HeightRequest="150" Margin="0,20"/>
             <Label Text="Dzięki synchronizacji możesz współdzielić budżet na kilku urządzeniach"/>
-            <Grid IsVisible="False">
+            <Grid x:Name="iapLayout" IsVisible="false">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="55"/>
                     <RowDefinition Height="55"/>
                 </Grid.RowDefinitions>
 
                 <Button Clicked="OnLoginDropbox" Style="{StaticResource ButtonStyle}"/>
-                <Label InputTransparent="True" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                <Label InputTransparent="True" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="Kup synchronizacje   " FontAttributes="Bold"/>
-                            <Span Text="{Binding RegularPrice, Mode=OneWay} " />
-                            <Span Text=" {Binding PromoPrice, Mode=OneWay}" FontAttributes="Bold"/>
+                            <Span Text="{Binding RegularPrice, Mode=OneWay}" TextDecorations="Strikethrough"/>
+                            <Span Text="{Binding PromoPrice, Mode=OneWay}" FontAttributes="Bold"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
 
                 <Button Grid.Row="1" Text="Wykupione wcześniej" Style="{StaticResource ButtonStyle}" Clicked="OnLoginDropboxWithDataCheck"  />
             </Grid>
-            <Button Text="Synchronizuj z Dropbox" Style="{StaticResource ButtonStyle}" Clicked="OnLoginDropbox" IsVisible="{Binding DropboxNotConnected}" Margin="0,15"/>
-            <StackLayout Orientation="Horizontal" IsVisible="{Binding DropboxConnected}">
-                <Label Text="Synchronizacja wlączona" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
-                <Label Text="{Binding SynchronizationStatus}" FontSize="35" LineBreakMode="NoWrap">
-                    <Label.FontFamily>
-                        <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free Regular" />
-                    </Label.FontFamily>
-                </Label>
+            <StackLayout x:Name="connectLayout" IsVisible="false">
+                <Button Text="Synchronizuj z Dropbox" Style="{StaticResource ButtonStyle}" Clicked="OnLoginDropbox" Margin="0,15"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Synchronizacja włączona" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
+                    <Label Text="{Binding SynchronizationStatus}" FontSize="35" LineBreakMode="NoWrap">
+                        <Label.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free Regular" />
+                        </Label.FontFamily>
+                    </Label>
+                </StackLayout>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
