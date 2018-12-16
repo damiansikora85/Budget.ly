@@ -83,8 +83,9 @@ namespace HomeBudgeStandard.Views
                 AutoExpandGroups = false,
                 AllowGroupExpandCollapse = true,
                 LiveDataUpdateMode = LiveDataUpdateMode.AllowSummaryUpdate,
-                SelectionMode = SelectionMode.SingleDeselect,
+                SelectionMode = SelectionMode.Single,
                 NavigationMode = NavigationMode.Cell,
+                EditTapAction = TapAction.OnTap
             };
 
             _dataGrid.SortComparers.Add(new SortComparer

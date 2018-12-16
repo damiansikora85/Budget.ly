@@ -95,6 +95,7 @@ namespace HomeBudgeStandard.Views
                 SelectionMode = SelectionMode.SingleDeselect,
                 NavigationMode = NavigationMode.Cell,
                 FrozenColumnsCount = 2,
+                EditTapAction = TapAction.OnTap
             };
 
             _dataGrid.SortComparers.Add(new SortComparer
