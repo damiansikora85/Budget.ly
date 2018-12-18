@@ -26,6 +26,9 @@ namespace HomeBudgeStandard.Pages
         public bool DropboxConnected => !string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken);
         public bool DropboxNotConnected => string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken);
 
+        private PurchaseService _purchaseService;
+        private string _iapName;
+
         public bool HasAccessToken
         {
             get => !string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken);
@@ -35,6 +38,7 @@ namespace HomeBudgeStandard.Pages
         {
             InitializeComponent();
             BindingContext = this;
+            _purchaseService = new PurchaseService();
         }
 
         private async void OnLoginDropbox(object sender, EventArgs e)
@@ -64,8 +68,8 @@ namespace HomeBudgeStandard.Pages
         protected async override void OnAppearing()
         {
             UserDialogs.Instance.ShowLoading("");
-            var purchaseService = new PurchaseService();
-            if (await purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropbox"))
+            if (await _purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropbox") ||
+                await _purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropboxnormal"))
             {
                 iapLayout.IsVisible = false;
                 connectLayout.IsVisible = true;
@@ -75,9 +79,11 @@ namespace HomeBudgeStandard.Pages
                 iapLayout.IsVisible = true;
                 connectLayout.IsVisible = false;
 
-                var info = await purchaseService.GetProductInfo("com.darktower.homebudget.dropbox");
+                _iapName = "com.darktower.homebudget.dropboxnormal";
+                var info = await _purchaseService.GetProductInfo("com.darktower.homebudget.dropbox");
                 if (info != null)
                 {
+                    _iapName = "com.darktower.homebudget.dropbox";
                     PromoPrice = $"  {info.LocalizedPrice}";
                     OnPropertyChanged(nameof(PromoPrice));
 
@@ -86,7 +92,7 @@ namespace HomeBudgeStandard.Pages
                     OnPropertyChanged(nameof(RegularPrice));
                 }
                 info = null;
-                info = await purchaseService.GetProductInfo("com.darktower.homebudget.dropboxnormal");
+                info = await _purchaseService.GetProductInfo("com.darktower.homebudget.dropboxnormal");
                 if (info != null)
                 {
                     RegularPrice = info.LocalizedPrice;
@@ -98,6 +104,22 @@ namespace HomeBudgeStandard.Pages
 
             UserDialogs.Instance.HideLoading();
             base.OnAppearing();
+        }
+
+        private async void OnIapClick(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(_iapName)) return;
+
+            var result = await _purchaseService.MakePurchase(_iapName);
+            if (result)
+            {
+                await LoginToDropbox();
+            }
+        }
+
+        private async void OnConsume(object sender, EventArgs e)
+        {
+            await _purchaseService.ConsumeProduct("com.darktower.homebudget.dropbox");
         }
 
         private async void WebViewOnNavigating(object sender, WebNavigatingEventArgs e)

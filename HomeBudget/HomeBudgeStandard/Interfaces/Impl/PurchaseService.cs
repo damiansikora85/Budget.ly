@@ -10,6 +10,37 @@ namespace HomeBudgeStandard.Interfaces.Impl
 {
     public class PurchaseService : IPurchaseService
     {
+        public async Task ConsumeProduct(string productId)
+        {
+            try
+            {
+                var connected = await CrossInAppBilling.Current.ConnectAsync();
+
+                if (!connected)
+                {
+                    //Couldn't connect to billing, could be offline, alert user
+                    return ;
+                }
+
+                var purchases = await CrossInAppBilling.Current.GetPurchasesAsync(ItemType.InAppPurchase);
+                if (purchases == null) return ;
+
+                var purchase = purchases.First(el => el.ProductId == productId);
+                if (purchase != null)
+                    await CrossInAppBilling.Current.ConsumePurchaseAsync(productId, purchase.PurchaseToken);
+            }
+            catch (Exception ex)
+            {
+                //Something bad has occurred, alert user
+                var msg = ex.Message;
+            }
+            finally
+            {
+                //Disconnect, it is okay if we never connected
+                await CrossInAppBilling.Current.DisconnectAsync();
+            }
+        }
+
         public async Task<InAppBillingProduct> GetProductInfo(string productName)
         {
             try
@@ -54,8 +85,8 @@ namespace HomeBudgeStandard.Interfaces.Impl
 
                 var purchases = await CrossInAppBilling.Current.GetPurchasesAsync(ItemType.InAppPurchase);
                 if (purchases == null) return false;
-                var purchasesList = purchases.ToList();
-                return purchasesList.Count > 0;
+
+                return purchases.First(el => el.ProductId == productName) != null;
             }
             catch (Exception ex)
             {
@@ -69,7 +100,7 @@ namespace HomeBudgeStandard.Interfaces.Impl
             }
         }
 
-        public async Task MakePurchase(string productName)
+        public async Task<bool> MakePurchase(string productName)
         {
             try
             {
@@ -78,7 +109,7 @@ namespace HomeBudgeStandard.Interfaces.Impl
                 if (!connected)
                 {
                     //Couldn't connect to billing, could be offline, alert user
-                    return;
+                    return false;
                 }
 
                 //try to purchase item
@@ -86,6 +117,7 @@ namespace HomeBudgeStandard.Interfaces.Impl
                 if (purchase == null)
                 {
                     //Not purchased, alert the user
+                    return false;
                 }
                 else
                 {
@@ -93,11 +125,13 @@ namespace HomeBudgeStandard.Interfaces.Impl
                     var id = purchase.Id;
                     var token = purchase.PurchaseToken;
                     var state = purchase.State;
+                    return true;
                 }
             }
             catch (Exception ex)
             {
                 //Something bad has occurred, alert user
+                return false;
             }
             finally
             {

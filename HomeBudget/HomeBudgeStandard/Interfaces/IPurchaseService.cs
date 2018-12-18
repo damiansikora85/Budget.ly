@@ -8,8 +8,9 @@ namespace HomeBudgeStandard.Interfaces
 {
     public interface IPurchaseService
     {
-        Task MakePurchase(string productName);
+        Task<bool> MakePurchase(string productName);
         Task<InAppBillingProduct> GetProductInfo(string produsctName);
         Task<bool> IsProductAlreadyBought(string productName);
+        Task ConsumeProduct(string name);
     }
 }
