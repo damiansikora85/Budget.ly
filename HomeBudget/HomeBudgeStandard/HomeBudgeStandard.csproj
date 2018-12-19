@@ -34,7 +34,6 @@
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.60.3" />
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="16.3.0.36" />
     <PackageReference Include="Syncfusion.Xamarin.Calculate" Version="16.3.0.36" />
-    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="16.3.0.36" />
     <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="16.4.0.42" />
     <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
@@ -91,18 +90,6 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Syncfusion.Core.XForms">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Xamarin\16.3.0.29\Xamarin\lib\pcl\Syncfusion.Core.XForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.Data.Portable">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Xamarin\16.3.0.29\Xamarin\lib\pcl\Syncfusion.Data.Portable.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.SfDataGrid.XForms">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Xamarin\16.3.0.29\Xamarin\lib\pcl\Syncfusion.SfDataGrid.XForms.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
   <Import Project="..\..\HomeBudgetShared\HomeBudgetShared.projitems" Label="Shared" />
