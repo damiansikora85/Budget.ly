@@ -87,7 +87,10 @@ namespace HomeBudgeStandard.Views
                 {
                     var style = NumberStyles.Float | NumberStyles.AllowCurrencySymbol;
                     if (float.TryParse(value, style, CultureInfo.CurrentCulture.NumberFormat, out var result))
-                        calculationResultText = value;
+                    {
+                        calculationResultText = result < float.MaxValue ? value : "0";
+                        calculationResultText = result > float.MinValue ? calculationResultText : "0";
+                    }
                     else
                         calculationResultText = "0";
                 }
@@ -136,8 +139,9 @@ namespace HomeBudgeStandard.Views
                     }
                 case CalculatorKey.Equal:
                     {
-                        using (var calcQuick = new CalcQuickBase())
+                        using (var calcQuick = new CalcQuickBase() { ThrowCircularException = true })
                         {
+                            
                             CalculationResultText = calcQuick.ParseAndCompute(formulaText);
                             OnPropertyChanged(nameof(CalculationResultText));
                             break;
@@ -180,7 +184,7 @@ namespace HomeBudgeStandard.Views
 
         void OnSave(object sender, EventArgs e)
         {
-            using (var calcQuick = new CalcQuickBase())
+            using (var calcQuick = new CalcQuickBase() { ThrowCircularException = true })
             {
                 CalculationResultText = calcQuick.ParseAndCompute(formulaText);
                 OnPropertyChanged("CategoryReal.TotalValues");
