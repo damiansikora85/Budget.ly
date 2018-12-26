@@ -32,6 +32,7 @@ namespace HomeBudget.Droid
 
             base.OnCreate(bundle);
 
+            Rg.Plugins.Popup.Popup.Init(this, bundle);
             UserDialogs.Init(this);
             HUDTutorial.MainActivity = this;
             global::Xamarin.Forms.Forms.Init(this, bundle);
@@ -48,7 +49,11 @@ namespace HomeBudget.Droid
 
         public override void OnBackPressed()
         {
-            if(!_theApp.OnBackPressed())
+            if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
+            {
+                // Do something if there are some pages in the `PopupStack`
+            }
+            else if (!_theApp.OnBackPressed())
                 base.OnBackPressed();
         }
 
