@@ -83,6 +83,7 @@
     <Compile Include="Native\AndroidNotificationService.cs" />
     <Compile Include="Native\HUDTutorial.cs" />
     <Compile Include="Native\NotificationBroadcastReceiver.cs" />
+    <Compile Include="Renderers\CustomDatePickerRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

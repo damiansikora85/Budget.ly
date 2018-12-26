@@ -1,4 +1,5 @@
-﻿using Syncfusion.Calculate;
+﻿using Rg.Plugins.Popup.Pages;
+using Syncfusion.Calculate;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,7 +13,7 @@ using Xamarin.Forms.Xaml;
 namespace HomeBudgeStandard.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CalcView : Frame
+	public partial class CalcView : PopupPage
 	{
         public enum CalculatorKey
         {
@@ -182,7 +183,7 @@ namespace HomeBudgeStandard.Views
             return;
         }
 
-        void OnSave(object sender, EventArgs e)
+        private void OnSave(object sender, EventArgs e)
         {
             using (var calcQuick = new CalcQuickBase() { ThrowCircularException = true })
             {

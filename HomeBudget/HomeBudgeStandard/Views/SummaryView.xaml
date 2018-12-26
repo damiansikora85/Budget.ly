@@ -119,7 +119,7 @@
                 </StackLayout>
             </AbsoluteLayout>
 
-            <AbsoluteLayout x:Name="CalcLayout" Grid.RowSpan="4" IsVisible="False" BackgroundColor="#C0000000" />
+            <AbsoluteLayout x:Name="CalcLayout" Grid.RowSpan="4" IsVisible="False" BackgroundColor="#55000000" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

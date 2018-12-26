@@ -2,6 +2,8 @@
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
+using Microsoft.AppCenter.Crashes;
+using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -196,8 +198,8 @@ namespace HomeBudgeStandard.Views
                 if (_calcView == null)
                 {
                     _calcView = new CalcView();
-                    AbsoluteLayout.SetLayoutFlags(_calcView, AbsoluteLayoutFlags.All);
-                    AbsoluteLayout.SetLayoutBounds(_calcView, new Rectangle(0.5,0.5,0.9,0.9));
+                   // AbsoluteLayout.SetLayoutFlags(_calcView, AbsoluteLayoutFlags.All);
+                    //AbsoluteLayout.SetLayoutBounds(_calcView, new Rectangle(0.5,0.5,0.9,0.9));
                     
                     _calcView.OnCancel += HideCalcView;
                 }
@@ -214,8 +216,6 @@ namespace HomeBudgeStandard.Views
             await subcats.TranslateTo(660, 0, easing: Easing.SpringIn);
             if (listViewSubcats.SelectedItem is RealSubcat selectedSubcat)
             {
-                CalcLayout.Children.Add(_calcView);
-                CalcLayout.IsVisible = true;
                 _calcView.Reset();
                 await blocker.FadeTo(0);
                 _calcView.Subcat = selectedSubcat.Name;
@@ -233,13 +233,17 @@ namespace HomeBudgeStandard.Views
                     HideCalcView();
                     _selectedCategory.RaisePropertyChanged();
                     _selectedCategory = null;
+                    Navigation.PopPopupAsync();
+                    
                 };
+
+                await Navigation.PushPopupAsync(_calcView);
             }
         }
 
         private void HideCalcView()
         {
-            CalcLayout.IsVisible = false;
+            Navigation.PopPopupAsync();
         }
     }
 }
