@@ -221,8 +221,14 @@ namespace HomeBudgeStandard.Views
                 _calcView.Subcat = selectedSubcat.Name;
                 _calcView.OnSaveValue = (double calculationResult, DateTime date) =>
                 {
-                    selectedSubcat.AddValue(calculationResult, date);
-
+                    var budgetMonth = MainBudget.Instance.GetMonth(date);
+                    var category = budgetMonth.BudgetReal.GetBudgetCategory(_selectedCategory.CategoryReal.Id);
+                    if (category != null)
+                    {
+                        var subcat = category.GetSubcat(selectedSubcat.Id);
+                        if(subcat is RealSubcat realSubcat)
+                            realSubcat.AddValue(calculationResult, date);
+                    }
                     Task.Run(async () =>
                     {
                         await MainBudget.Instance.Save();
@@ -234,7 +240,6 @@ namespace HomeBudgeStandard.Views
                     _selectedCategory.RaisePropertyChanged();
                     _selectedCategory = null;
                     Navigation.PopPopupAsync();
-                    
                 };
 
                 await Navigation.PushPopupAsync(_calcView);

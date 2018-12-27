@@ -61,6 +61,11 @@ namespace HomeBudget.Code.Logic
             }
         }
 
+        public BaseBudgetSubcat GetSubcat(int subcatId)
+        {
+            return subcats.FirstOrDefault(elem => elem.Id == subcatId);
+        }
+
         protected void OnSubcatChanged(object sender, PropertyChangedEventArgs e)
         {
             RaisePropertyChanged("TotalValues");
