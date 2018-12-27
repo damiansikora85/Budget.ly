@@ -48,13 +48,13 @@
                         <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions>
 
-                    <components:CustomDatePicker x:Name="Calendar" TextColor="DodgerBlue" FontSize="20" Format="&#xf073; " HorizontalOptions="Center" >
+                    <components:CustomDatePicker x:Name="Calendar" MaximumDate="{x:Static sys:DateTime.Now}" TextColor="DodgerBlue" FontSize="20" Format="&#xf073; " HorizontalOptions="Center" DateSelected="Calendar_DateSelected" >
                         <DatePicker.FontFamily>
                             <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free Regular" />
                         </DatePicker.FontFamily>
                     </components:CustomDatePicker>
 
-                    <Label Text="21.12.2018" Grid.Row="1" TextColor="DodgerBlue" FontSize="12" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
+                    <Label x:Name="dateLabel" Grid.Row="1" TextColor="DodgerBlue" FontSize="12" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
                     <Label FontSize="20" Text="{Binding Category}" Grid.Column="1" TextColor="Black" x:Name="Header" LineBreakMode="TailTruncation" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
                     <Label Text="{Binding Subcat}" Grid.Column="1" Grid.Row="1" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
                     

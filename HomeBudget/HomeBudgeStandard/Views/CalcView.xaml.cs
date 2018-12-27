@@ -115,6 +115,7 @@ namespace HomeBudgeStandard.Views
             calculationResultText = "0";
             InitializeComponent ();
             BindingContext = this;
+            dateLabel.Text = Calendar.Date.ToString("dd.MM.yyyy");
         }
 
         void HandleKeyPressed(string value)
@@ -209,6 +210,11 @@ namespace HomeBudgeStandard.Views
         private void OnCancelClicked(object sender, EventArgs e)
         {
             OnCancel?.Invoke();
+        }
+
+        private void Calendar_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            dateLabel.Text = Calendar.Date.ToString("dd.MM.yyyy");
         }
     }
 }
