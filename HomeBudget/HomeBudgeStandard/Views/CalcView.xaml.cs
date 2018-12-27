@@ -150,27 +150,32 @@ namespace HomeBudgeStandard.Views
                     }
                 case CalculatorKey.Point:
                     {
-                        FormulaText += ',';
+                        if (!string.IsNullOrEmpty(FormulaText) && Char.IsDigit(FormulaText.Last()))
+                            FormulaText += ',';
                         break;
                     }
                 case CalculatorKey.Minus:
                     {
-                        FormulaText += '-';
+                        if (!string.IsNullOrEmpty(FormulaText) && Char.IsDigit(FormulaText.Last()))
+                            FormulaText += '-';
                         break;
                     }
                 case CalculatorKey.Multiply:
                     {
-                        FormulaText += '*';
+                        if (!string.IsNullOrEmpty(FormulaText) && Char.IsDigit(FormulaText.Last()))
+                            FormulaText += '*';
                         break;
                     }
                 case CalculatorKey.Divide:
                     {
-                        FormulaText += '/';
+                        if (!string.IsNullOrEmpty(FormulaText) && Char.IsDigit(FormulaText.Last()))
+                            FormulaText += '/';
                         break;
                     }
                 case CalculatorKey.Plus:
                     {
-                        FormulaText += '+';
+                        if (!string.IsNullOrEmpty(FormulaText) && Char.IsDigit(FormulaText.Last()))
+                            FormulaText += '+';
                         break;
                     }
                 case CalculatorKey.Backspace:
