@@ -1,24 +1,16 @@
-﻿using System;
-
-using Android.App;
-using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Android.OS;
-
-using System.Threading.Tasks;
-using HomeBudget.Code;
-using HomeBudgeStandard.Utils;
+﻿
 using Acr.UserDialogs;
+using Android.App;
 using Android.Content;
-using Plugin.InAppBilling;
+using Android.Content.PM;
+using Android.OS;
+using Android.Views;
 using HomeBudget.Droid.Native;
-using Plugin.LocalNotifications;
+using Plugin.InAppBilling;
 
 namespace HomeBudget.Droid
 {
-	[Activity(Label = "Budget.ly", Icon = "@drawable/icon", Theme = "@style/SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "Budget.ly", Icon = "@drawable/icon", Theme = "@style/SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
         private App _theApp;
@@ -32,6 +24,7 @@ namespace HomeBudget.Droid
 
             base.OnCreate(bundle);
 
+            Rg.Plugins.Popup.Popup.Init(this, bundle);
             UserDialogs.Init(this);
             HUDTutorial.MainActivity = this;
             global::Xamarin.Forms.Forms.Init(this, bundle);
@@ -48,7 +41,11 @@ namespace HomeBudget.Droid
 
         public override void OnBackPressed()
         {
-            if(!_theApp.OnBackPressed())
+            if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
+            {
+                // Do something if there are some pages in the `PopupStack`
+            }
+            else if (!_theApp.OnBackPressed())
                 base.OnBackPressed();
         }
 

@@ -14,7 +14,7 @@ namespace HomeBudget
 	{
         public App()
 		{
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzAyMjhAMzEzNjJlMzMyZTMwWnNGUjdzSXhBQ1lNWGdhd3hjdXpMM3craCs1bVZISGswWUdNSnpJWHR2UT0=;MzAyMjlAMzEzNjJlMzMyZTMwWjNZRERVT0xRbVVnN1BZR0xVUVNva3JKRHhLcmtONkd5UittaU94bU8wTT0=");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTMyMThAMzEzNjJlMzQyZTMwWVlrQ3ZMeHpoL3dobHRYU0haaVhUVUNoTnY3UElTWXFJcjJaSGFiZGVzbz0=;NTMyMTlAMzEzNjJlMzQyZTMwbWdDVTd0cS9CYW82Tm8vY0V1NU1ENXg0anFiOXV3QU9PTmZ1d3o0UEhJTT0=");
             InitializeComponent();
 
             MainPage = new MainPage();

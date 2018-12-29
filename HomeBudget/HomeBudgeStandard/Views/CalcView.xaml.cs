@@ -1,4 +1,5 @@
-﻿using Syncfusion.Calculate;
+﻿using Rg.Plugins.Popup.Pages;
+using Syncfusion.Calculate;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,7 +13,7 @@ using Xamarin.Forms.Xaml;
 namespace HomeBudgeStandard.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CalcView : Frame
+	public partial class CalcView : PopupPage
 	{
         public enum CalculatorKey
         {
@@ -87,7 +88,10 @@ namespace HomeBudgeStandard.Views
                 {
                     var style = NumberStyles.Float | NumberStyles.AllowCurrencySymbol;
                     if (float.TryParse(value, style, CultureInfo.CurrentCulture.NumberFormat, out var result))
-                        calculationResultText = value;
+                    {
+                        calculationResultText = result < float.MaxValue ? value : "0";
+                        calculationResultText = result > float.MinValue ? calculationResultText : "0";
+                    }
                     else
                         calculationResultText = "0";
                 }
@@ -111,6 +115,7 @@ namespace HomeBudgeStandard.Views
             calculationResultText = "0";
             InitializeComponent ();
             BindingContext = this;
+            dateLabel.Text = Calendar.Date.ToString("dd.MM.yyyy");
         }
 
         void HandleKeyPressed(string value)
@@ -136,8 +141,9 @@ namespace HomeBudgeStandard.Views
                     }
                 case CalculatorKey.Equal:
                     {
-                        using (var calcQuick = new CalcQuickBase())
+                        using (var calcQuick = new CalcQuickBase() { ThrowCircularException = true })
                         {
+                            
                             CalculationResultText = calcQuick.ParseAndCompute(formulaText);
                             OnPropertyChanged(nameof(CalculationResultText));
                             break;
@@ -145,27 +151,32 @@ namespace HomeBudgeStandard.Views
                     }
                 case CalculatorKey.Point:
                     {
-                        FormulaText += ',';
+                        if (!string.IsNullOrEmpty(FormulaText) && Char.IsDigit(FormulaText.Last()))
+                            FormulaText += ',';
                         break;
                     }
                 case CalculatorKey.Minus:
                     {
-                        FormulaText += '-';
+                        if (!string.IsNullOrEmpty(FormulaText) && Char.IsDigit(FormulaText.Last()))
+                            FormulaText += '-';
                         break;
                     }
                 case CalculatorKey.Multiply:
                     {
-                        FormulaText += '*';
+                        if (!string.IsNullOrEmpty(FormulaText) && Char.IsDigit(FormulaText.Last()))
+                            FormulaText += '*';
                         break;
                     }
                 case CalculatorKey.Divide:
                     {
-                        FormulaText += '/';
+                        if (!string.IsNullOrEmpty(FormulaText) && Char.IsDigit(FormulaText.Last()))
+                            FormulaText += '/';
                         break;
                     }
                 case CalculatorKey.Plus:
                     {
-                        FormulaText += '+';
+                        if (!string.IsNullOrEmpty(FormulaText) && Char.IsDigit(FormulaText.Last()))
+                            FormulaText += '+';
                         break;
                     }
                 case CalculatorKey.Backspace:
@@ -178,9 +189,9 @@ namespace HomeBudgeStandard.Views
             return;
         }
 
-        void OnSave(object sender, EventArgs e)
+        private void OnSave(object sender, EventArgs e)
         {
-            using (var calcQuick = new CalcQuickBase())
+            using (var calcQuick = new CalcQuickBase() { ThrowCircularException = true })
             {
                 CalculationResultText = calcQuick.ParseAndCompute(formulaText);
                 OnPropertyChanged("CategoryReal.TotalValues");
@@ -199,6 +210,11 @@ namespace HomeBudgeStandard.Views
         private void OnCancelClicked(object sender, EventArgs e)
         {
             OnCancel?.Invoke();
+        }
+
+        private void Calendar_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            dateLabel.Text = Calendar.Date.ToString("dd.MM.yyyy");
         }
     }
 }

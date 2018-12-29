@@ -2,6 +2,8 @@
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
+using Microsoft.AppCenter.Crashes;
+using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -83,12 +85,7 @@ namespace HomeBudgeStandard.Views
 
         public bool OnBackPressed()
         {
-            if (CalcLayout.IsVisible)
-            {
-                HideCalcView();
-                return true;
-            }
-            else if(categories.TranslationX == 0)
+            if(categories.TranslationX == 0)
             {
                 blocker.FadeTo(0);
                 categories.TranslateTo(660, 0, easing: Easing.SpringIn);
@@ -196,8 +193,8 @@ namespace HomeBudgeStandard.Views
                 if (_calcView == null)
                 {
                     _calcView = new CalcView();
-                    AbsoluteLayout.SetLayoutFlags(_calcView, AbsoluteLayoutFlags.All);
-                    AbsoluteLayout.SetLayoutBounds(_calcView, new Rectangle(0.5,0.5,0.9,0.9));
+                   // AbsoluteLayout.SetLayoutFlags(_calcView, AbsoluteLayoutFlags.All);
+                    //AbsoluteLayout.SetLayoutBounds(_calcView, new Rectangle(0.5,0.5,0.9,0.9));
                     
                     _calcView.OnCancel += HideCalcView;
                 }
@@ -214,15 +211,19 @@ namespace HomeBudgeStandard.Views
             await subcats.TranslateTo(660, 0, easing: Easing.SpringIn);
             if (listViewSubcats.SelectedItem is RealSubcat selectedSubcat)
             {
-                CalcLayout.Children.Add(_calcView);
-                CalcLayout.IsVisible = true;
                 _calcView.Reset();
                 await blocker.FadeTo(0);
                 _calcView.Subcat = selectedSubcat.Name;
                 _calcView.OnSaveValue = (double calculationResult, DateTime date) =>
                 {
-                    selectedSubcat.AddValue(calculationResult, date);
-
+                    var budgetMonth = MainBudget.Instance.GetMonth(date);
+                    var category = budgetMonth.BudgetReal.GetBudgetCategory(_selectedCategory.CategoryReal.Id);
+                    if (category != null)
+                    {
+                        var subcat = category.GetSubcat(selectedSubcat.Id);
+                        if(subcat is RealSubcat realSubcat)
+                            realSubcat.AddValue(calculationResult, date);
+                    }
                     Task.Run(async () =>
                     {
                         await MainBudget.Instance.Save();
@@ -233,13 +234,16 @@ namespace HomeBudgeStandard.Views
                     HideCalcView();
                     _selectedCategory.RaisePropertyChanged();
                     _selectedCategory = null;
+                    Navigation.PopPopupAsync();
                 };
+
+                await Navigation.PushPopupAsync(_calcView);
             }
         }
 
         private void HideCalcView()
         {
-            CalcLayout.IsVisible = false;
+            Navigation.PopPopupAsync();
         }
     }
 }
