@@ -85,12 +85,7 @@ namespace HomeBudgeStandard.Views
 
         public bool OnBackPressed()
         {
-            if (CalcLayout.IsVisible)
-            {
-                HideCalcView();
-                return true;
-            }
-            else if(categories.TranslationX == 0)
+            if(categories.TranslationX == 0)
             {
                 blocker.FadeTo(0);
                 categories.TranslateTo(660, 0, easing: Easing.SpringIn);
