@@ -24,18 +24,21 @@ namespace HomeBudgeStandard.Views
         public double DiffExpected { get; set; }
 
         public ObservableCollection<BudgetSummaryDataViewModel> SummaryListViewItems { get; set; }
-
         public ObservableCollection<BaseBudgetSubcat> SelectedCategorySubcats { get; private set; }
+        public Command ExpandCategoryCommand;
 
         private bool show;
         private bool _setupDone;
         private BudgetSummaryDataViewModel _selectedCategory;
+        private BudgetSummaryDataViewModel _lastClickedElem;
+
         public System.Windows.Input.ICommand GridClicked { get; set; }
 
         private CalcView _calcView;
 
         public SummaryView ()
 		{
+            //ExpandCategoryCommand = new Command<BudgetSummaryDataViewModel>(ExpandCategory);
             GridClicked = new Command(OnGridClicked);
 			InitializeComponent ();
 
@@ -146,7 +149,7 @@ namespace HomeBudgeStandard.Views
 
         private async Task<ObservableCollection<BudgetSummaryDataViewModel>> GetBudgetSummaryData()
         {
-            return await Task.Factory.StartNew<ObservableCollection<BudgetSummaryDataViewModel>>(() =>
+            return await Task.Factory.StartNew(() =>
             {
                 var budgetSummaryCollection = new ObservableCollection<BudgetSummaryDataViewModel>();
                 var budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
@@ -176,6 +179,28 @@ namespace HomeBudgeStandard.Views
             await Task.WhenAll(fadeTask, showCategoriesTask);
         }
 
+        private void ExpandCategory(object sender, EventArgs args)
+        {
+            if (sender is Button button)
+            {
+                if (button.CommandParameter is BudgetSummaryDataViewModel element)
+                {
+                    if (element != _lastClickedElem)
+                    {
+                        if (_lastClickedElem != null)
+                            _lastClickedElem.Collapse();
+
+                        element.Expand();
+                        _lastClickedElem = element;
+                    }
+                    else if (element.IsExpanded)
+                        element.Collapse();
+                    else
+                        element.Expand();
+                }
+            }
+        }
+
         private void Summary_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             summaryList.SelectedItem = null;
@@ -183,7 +208,7 @@ namespace HomeBudgeStandard.Views
 
         private async void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            if(listViewCategories.SelectedItem is BudgetSummaryDataViewModel selectedCategory)
+            if(listViewCategories.SelectedItem is HomeBudget.Pages.Utils.BudgetSummaryDataViewModel selectedCategory)
             {
                 _selectedCategory = selectedCategory;
                 foreach (var item in selectedCategory.CategoryReal.subcats)

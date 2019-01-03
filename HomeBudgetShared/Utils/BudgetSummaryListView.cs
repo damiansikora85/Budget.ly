@@ -1,13 +1,17 @@
 ﻿using HomeBudget.Code.Logic;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace HomeBudget.Pages.Utils
 {
-    public class BudgetSummaryDataViewModel : INotifyPropertyChanged
+    public class BudgetSummaryDataViewModel : ObservableCollection<SummaryListSubcat>, INotifyPropertyChanged
     {
         public string CategoryName => CategoryReal.Name;
         public event PropertyChangedEventHandler PropertyChanged;
+        public bool IsExpanded { get; private set; }
 
         public BaseBudgetCategory CategoryPlanned
         {
@@ -22,8 +26,34 @@ namespace HomeBudget.Pages.Utils
             set
             {
                 categoryReal = value;
-                //categoryReal.PropertyChanged += OnCategoryChanged;
+                this.Clear();
             }
+        }
+
+        public async void Expand()
+        {
+            IsExpanded = true;
+            this.Clear();
+            int delay = 100;
+
+            foreach (var subcat in categoryReal.subcats)
+            {
+                var subcatPlanned = CategoryPlanned.GetSubcat(subcat.Id);
+                this.Add(new SummaryListSubcat
+                {
+                    Name = subcat.Name,
+                    Amount = subcat.Value,
+                    SpendPercentage = subcatPlanned.Value > 0 ? Math.Min((subcat.Value / subcatPlanned.Value), 1) : 0
+                });
+                await Task.Delay(delay);
+                delay = Math.Max(10, delay - 10);
+            }
+        }
+
+        public void Collapse()
+        {
+            IsExpanded = false;
+            this.Clear();
         }
 
         private void OnCategoryChanged(object sender, PropertyChangedEventArgs e)
@@ -32,21 +62,10 @@ namespace HomeBudget.Pages.Utils
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpendPercentage"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpendPercentageInt"));
         }
-
-        private string icon;
-        public string IconFile
-        {
-            get => icon;
-            set => icon = value;
-        }
+        public string IconFile { get; set; }
         public double SpendPercentage =>
                 //Random rand = new Random();
-                CategoryPlanned.TotalValues > 0 ? Min((CategoryReal.TotalValues / CategoryPlanned.TotalValues), 1) : 0; 
-
-        private double Min(double v1, double v2)
-        {
-            return v1 > v2 ? v2 : v1;
-        }
+                CategoryPlanned.TotalValues > 0 ? Math.Min((CategoryReal.TotalValues / CategoryPlanned.TotalValues), 1) : 0; 
 
         public int SpendPercentageInt
         {
