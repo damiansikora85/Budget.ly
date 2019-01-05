@@ -179,6 +179,42 @@ namespace HomeBudgeStandard.Views
             await Task.WhenAll(fadeTask, showCategoriesTask);
         }
 
+        private async void AddExpense(object sender, EventArgs args)
+        {
+            if (sender is ImageButton button)
+            {
+                if (button.CommandParameter is SummaryListSubcat selectedSubcat)
+                {
+                    _calcView.Reset();
+                    _calcView.Subcat = selectedSubcat.Name;
+                    _calcView.OnSaveValue = (double calculationResult, DateTime date) =>
+                    {
+                        var budgetMonth = MainBudget.Instance.GetMonth(date);
+                        var category = budgetMonth.BudgetReal.GetBudgetCategory(_selectedCategory.CategoryReal.Id);
+                        if (category != null)
+                        {
+                            var subcat = category.GetSubcat(selectedSubcat.Id);
+                            if (subcat is RealSubcat realSubcat)
+                                realSubcat.AddValue(calculationResult, date);
+                        }
+                        Task.Run(async () =>
+                        {
+                            await MainBudget.Instance.Save();
+                        });
+
+                        SetupBudgetSummary();
+                        listViewSubcats.SelectedItem = null;
+                        HideCalcView();
+                        _selectedCategory.RaisePropertyChanged();
+                        _selectedCategory = null;
+                        Navigation.PopPopupAsync();
+                    };
+                    _selectedCategory.Collapse();
+                    await Navigation.PushPopupAsync(_calcView);
+                }
+            }
+        }
+
         private void ExpandCategory(object sender, EventArgs args)
         {
             if (sender is Button button)
@@ -192,6 +228,17 @@ namespace HomeBudgeStandard.Views
 
                         element.Expand();
                         _lastClickedElem = element;
+
+                        if (_calcView == null)
+                        {
+                            _calcView = new CalcView();
+                            // AbsoluteLayout.SetLayoutFlags(_calcView, AbsoluteLayoutFlags.All);
+                            //AbsoluteLayout.SetLayoutBounds(_calcView, new Rectangle(0.5,0.5,0.9,0.9));
+
+                            _calcView.OnCancel += HideCalcView;
+                        }
+                        _calcView.Category = element.CategoryName;
+                        _selectedCategory = element;
                     }
                     else if (element.IsExpanded)
                         element.Collapse();

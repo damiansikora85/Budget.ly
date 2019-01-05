@@ -34,7 +34,7 @@ namespace HomeBudget.Pages.Utils
         {
             IsExpanded = true;
             this.Clear();
-            int delay = 100;
+            int delay = 50;
 
             foreach (var subcat in categoryReal.subcats)
             {
@@ -43,10 +43,11 @@ namespace HomeBudget.Pages.Utils
                 {
                     Name = subcat.Name,
                     Amount = subcat.Value,
-                    SpendPercentage = subcatPlanned.Value > 0 ? Math.Min((subcat.Value / subcatPlanned.Value), 1) : 0
+                    SpendPercentage = subcatPlanned.Value > 0 ? Math.Min((subcat.Value / subcatPlanned.Value), 1) : 0,
+                    Id = subcat.Id
                 });
-                await Task.Delay(delay);
-                delay = Math.Max(10, delay - 10);
+                await Task.Delay(10);
+                delay = Math.Max(10, delay - 7);
             }
         }
 

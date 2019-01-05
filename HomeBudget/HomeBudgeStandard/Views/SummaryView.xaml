@@ -52,9 +52,8 @@
                 <ActivityIndicator x:Name="loader"/>
             </StackLayout>
 
-            <BoxView Grid.Row="2" BackgroundColor="Beige" Color="DarkGray" Margin="12, 0" HeightRequest="1" WidthRequest="100"/>
+            <BoxView Grid.Row="2" BackgroundColor="Beige" Color="DarkGray" Margin="5, 0" HeightRequest="1" WidthRequest="100"/>
 
-            
             <ListView x:Name="summaryList" Grid.Row="3" ItemSelected="Summary_ItemSelected"
                         IsGroupingEnabled="True" GroupDisplayBinding="{Binding CategoryName}">
                 <ListView.ItemTemplate>
@@ -62,17 +61,18 @@
                     <ViewCell>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="35"/>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="4*"/>
                                 <ColumnDefinition Width="55"/>
                                 <ColumnDefinition Width="50"/>
-                                <ColumnDefinition Width="50"/>
+                                
                             </Grid.ColumnDefinitions>
-                            <Label Text="{Binding Name}" FontSize="12" LineBreakMode="NoWrap" VerticalTextAlignment="Center"/>
-                            <Label Grid.Column="1" Text="{Binding Amount, Converter={StaticResource CurrencyValueConverter}}" FontSize="12" HorizontalTextAlignment="End" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
-                            <ProgressBar Grid.Column="2" Progress="{Binding SpendPercentage}"/>
-                            <Label Grid.Column="3" Text="{Binding SpendPercentage, StringFormat='{0:P1}'}" FontSize="12" LineBreakMode="NoWrap" VerticalTextAlignment="Center"/>
-                            <Button Grid.Column="4" Text="+" Clicked="ExpandCategory" CommandParameter="{Binding .}" TextColor="White" BackgroundColor="DodgerBlue" CornerRadius="25" Margin="5"/>
+                            <Label Grid.Column="1" Text="{Binding Name}" FontSize="12" LineBreakMode="WordWrap" VerticalTextAlignment="Center"/>
+                            <Label Grid.Column="2" Text="{Binding Amount, Converter={StaticResource CurrencyValueConverter}}" FontSize="12" HorizontalTextAlignment="End" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
+                            <ProgressBar Grid.Column="3" Progress="{Binding SpendPercentage}"/>
+                            <Label Grid.Column="4" Text="{Binding SpendPercentage, StringFormat='{0:P1}'}" FontSize="12" LineBreakMode="NoWrap" VerticalTextAlignment="Center"/>
+                            <ImageButton Source="plus.png" Clicked="AddExpense" CommandParameter="{Binding .}" BackgroundColor="Transparent" Margin="5,12"/>
                         </Grid>
                     </ViewCell>
                     <!--<TextCell Text="{Binding Name}"/>-->
@@ -86,17 +86,17 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="35"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="4*"/>
                                     <ColumnDefinition Width="55"/>
                                     <ColumnDefinition Width="50"/>
                                 </Grid.ColumnDefinitions>
 
                                 <Image Source="{Binding IconFile}"/>
-                                <Label Grid.Column="1" Text="{Binding CategoryName}" FontSize="12" LineBreakMode="NoWrap" VerticalTextAlignment="Center"/>
-                                <Label Grid.Column="2" Text="{Binding CategoryReal.TotalValues, Converter={StaticResource CurrencyValueConverter}}" FontSize="12" HorizontalTextAlignment="End" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
+                                <Label Grid.Column="1" Text="{Binding CategoryName}"  LineBreakMode="NoWrap" VerticalTextAlignment="Center"/>
+                                <Label Grid.Column="2" Text="{Binding CategoryReal.TotalValues, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
                                 <ProgressBar Grid.Column="3" Progress="{Binding SpendPercentage}"/>
-                                <Label Grid.Column="4" Text="{Binding SpendPercentage, StringFormat='{0:P1}'}" FontSize="12" LineBreakMode="NoWrap" VerticalTextAlignment="Center"/>
+                                <Label Grid.Column="4" Text="{Binding SpendPercentage, StringFormat='{0:P1}'}"  LineBreakMode="NoWrap" VerticalTextAlignment="Center"/>
                                 <Button BackgroundColor="Transparent" Grid.ColumnSpan="5" Clicked="ExpandCategory" CommandParameter="{Binding .}"/>
                             </Grid>
                         </ViewCell>
