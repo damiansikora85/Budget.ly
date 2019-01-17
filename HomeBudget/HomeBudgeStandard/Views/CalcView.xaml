@@ -18,7 +18,7 @@
     </pages:PopupPage.Resources>
     
     <pages:PopupPage.Content>
-        <Frame HasShadow="False" BorderColor="DodgerBlue" Margin="30,40" Padding="10" >
+        <Frame HasShadow="False" BorderColor="#00C1DF" Margin="30,40" Padding="10" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />

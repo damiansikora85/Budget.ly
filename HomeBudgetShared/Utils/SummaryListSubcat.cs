@@ -15,7 +15,12 @@ namespace HomeBudget.Pages.Utils
             }
         }
         public string Name { get; set; }
-        public double Amount { get; set; }
+        public double AmountReal { get; set; }
+        public double AmountPlanned { get; set; }
         public int Id { get; set; }
+        public string Icon { get; set; }
+
+        public Action Expand;
+        public Action Collapse;
     }
 }

@@ -12,6 +12,8 @@ namespace HomeBudget.Pages.Utils
         public string CategoryName => CategoryReal.Name;
         public event PropertyChangedEventHandler PropertyChanged;
         public bool IsExpanded { get; private set; }
+        public bool IsExpanding { get; private set; }
+        private List<SummaryListSubcat> _sublist;
 
         public BaseBudgetCategory CategoryPlanned
         {
@@ -30,38 +32,58 @@ namespace HomeBudget.Pages.Utils
             }
         }
 
-        public async void Expand()
+        public void Init()
         {
-            IsExpanded = true;
-            this.Clear();
-            int delay = 50;
-
+            _sublist = new List<SummaryListSubcat>();
             foreach (var subcat in categoryReal.subcats)
             {
                 var subcatPlanned = CategoryPlanned.GetSubcat(subcat.Id);
-                this.Add(new SummaryListSubcat
+                _sublist.Add(new SummaryListSubcat
                 {
                     Name = subcat.Name,
-                    Amount = subcat.Value,
+                    AmountReal = subcat.Value,
+                    AmountPlanned = subcatPlanned.Value,
                     SpendPercentage = subcatPlanned.Value > 0 ? Math.Min((subcat.Value / subcatPlanned.Value), 1) : 0,
-                    Id = subcat.Id
+                    Id = subcat.Id,
+                    Icon = IconFile
                 });
-                await Task.Delay(10);
-                delay = Math.Max(10, delay - 7);
             }
+        }
+
+        public async void Expand()
+        {
+            IsExpanded = true;
+            IsExpanding = true;
+
+            foreach (var subcat in _sublist)
+            {
+                this.Add(subcat);
+            }
+
+            foreach(var subcat in this)
+            {
+                subcat.Expand();
+                await Task.Delay(100);
+            }
+
+            IsExpanding = false;
         }
 
         public void Collapse()
         {
+            if (IsExpanding) return;
+
             IsExpanded = false;
+            foreach (var subcat in this)
+                subcat.Collapse();
             this.Clear();
         }
 
         private void OnCategoryChanged(object sender, PropertyChangedEventArgs e)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CategoryReal.TotalValues"));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpendPercentage"));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpendPercentageInt"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SpendPercentage)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SpendPercentageInt)));
         }
         public string IconFile { get; set; }
         public double SpendPercentage =>
@@ -84,8 +106,8 @@ namespace HomeBudget.Pages.Utils
         public void RaisePropertyChanged()
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CategoryReal.TotalValues"));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpendPercentage"));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpendPercentageInt"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SpendPercentage)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SpendPercentageInt)));
         }
     }
 }

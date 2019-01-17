@@ -40,8 +40,8 @@ namespace HomeBudgeStandard.Pages
 
         public bool OnBackPressed()
         {
-            if (CurrentPage is SummaryView summaryView)
-                return summaryView.OnBackPressed();
+            //if (CurrentPage is SummaryView summaryView)
+                //return summaryView.OnBackPressed();
 
             return false;
         }

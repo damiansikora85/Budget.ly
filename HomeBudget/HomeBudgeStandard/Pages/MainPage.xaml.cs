@@ -2,6 +2,7 @@
 using HomeBudget.Code;
 using HomeBudget.Helpers;
 using HomeBudgetShared.Code.Synchronize;
+using Microsoft.AppCenter.Crashes;
 using System;
 using System.Globalization;
 
@@ -19,6 +20,9 @@ namespace HomeBudgeStandard.Pages
             InitializeComponent();
             InitBudget();
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
+
+            Crashes.NotifyUserConfirmation(UserConfirmation.AlwaysSend);
+            
         }
 
         public bool OnBackPressed()
@@ -54,13 +58,25 @@ namespace HomeBudgeStandard.Pages
             if (!(e.SelectedItem is MainPageMenuItem item))
                 return;
 
-            var page = (Page)Activator.CreateInstance(item.TargetType);
-            page.Title = item.Title;
+            try
+            {
+                var page = (Page)Activator.CreateInstance(item.TargetType);
+                page.Title = item.Title;
 
-            Detail = new NavigationPage(page);
-            IsPresented = false;
-
+                Detail = new NavigationPage(page);
+                IsPresented = false;
+            }
+            catch(Exception exc)
+            {
+                var msg = exc.Message;
+            }
             MasterPage.ListView.SelectedItem = null;
+        }
+
+        protected async override void OnAppearing()
+        {
+            await Crashes.SetEnabledAsync(true);
+            var didAppCrash = await Crashes.HasCrashedInLastSessionAsync();
         }
     }
 }

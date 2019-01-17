@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:components="clr-namespace:HomeBudgeStandard.Components"
+          x:Class="HomeBudget.Pages.Utils.AnimatedViewCell">
+  <ViewCell.View>
+        <Grid x:Name="layout" BackgroundColor="White" Margin="8,0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="1" Text="{Binding Name}" FontSize="14" LineBreakMode="WordWrap" VerticalTextAlignment="Center" InputTransparent="True"/>
+            <Label Grid.Column="2" FontSize="12" HorizontalTextAlignment="End" VerticalTextAlignment="Center" LineBreakMode="NoWrap" InputTransparent="True">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding AmountReal, Converter={StaticResource CurrencyValueConverter}}"/>
+                        <Span Text="/"/>
+                        <Span Text="{Binding AmountPlanned, Converter={StaticResource CurrencyValueConverter}}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+                
+            </Label>
+            <components:GradientProgressBar Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Progress="0.8" Margin="0,3,0,5" InputTransparent="True"/>
+
+            <!--<Label Grid.Column="4" Text="{Binding SpendPercentage, StringFormat='{0:P1}'}" FontSize="12" LineBreakMode="NoWrap" VerticalTextAlignment="Center"/>-->
+            <Image Grid.RowSpan="2" Margin="10,10" Source="{Binding Icon}" InputTransparent="True"/>
+            <Image Grid.RowSpan="2" Grid.Column="3" Source="add.png" BackgroundColor="Transparent" Margin="15,15"/>
+        </Grid>
+    </ViewCell.View>
+</ViewCell>

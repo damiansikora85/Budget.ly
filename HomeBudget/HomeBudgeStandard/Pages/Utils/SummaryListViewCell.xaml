@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HomeBudget.Pages.Utils.SummaryViewCell">
+
+    <Grid x:Name="grid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="35"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="55"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <Image Source="{Binding IconFile}"/>
+        <Label Grid.Column="1" Text="{Binding CategoryName}" FontSize="12" LineBreakMode="NoWrap" VerticalTextAlignment="Center"/>
+        <Label Grid.Column="2" Text="{Binding CategoryReal.TotalValues, Converter={StaticResource CurrencyValueConverter}}" FontSize="12" HorizontalTextAlignment="End" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
+        <ProgressBar Grid.Column="3" Progress="{Binding SpendPercentage}"/>
+        <Label Grid.Column="4" Text="{Binding SpendPercentage, StringFormat='{0:P1}'}" FontSize="12" LineBreakMode="NoWrap" VerticalTextAlignment="Center"/>
+        <Button Grid.Column="5" Text="+" Clicked="ExpandCategory" CommandParameter="{Binding .}" TextColor="White" BackgroundColor="DodgerBlue" CornerRadius="25" Margin="5"/>
+    </Grid>
+
+</ViewCell>
