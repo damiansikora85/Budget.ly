@@ -5,46 +5,54 @@
              x:Class="HomeBudgeStandard.Views.BudgetPlanView"
              Title="Planowanie">
 
-    <Grid x:Name="mainGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="2*"/>
-        </Grid.RowDefinitions>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="ContentTemplate">
+                <Grid x:Name="mainGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
 
-        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
-            <Button x:Name="PreviousMonthButton" BackgroundColor="Transparent" Text="&#xf104;" Clicked="OnPrevMonth">
-                <Button.FontFamily>
-                    <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
-                </Button.FontFamily>
-            </Button>
-            <Label Text="{Binding Date}" HorizontalTextAlignment="Center" FontSize="Large" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
-            <Button x:Name="NextMonthButton" BackgroundColor="Transparent" Text="&#xf105;" Clicked="OnNextMonth">
-                <Button.FontFamily>
-                    <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
-                </Button.FontFamily>
-            </Button>
-        </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
+                        <Button x:Name="PreviousMonthButton" BackgroundColor="Transparent" Text="&#xf104;" Clicked="OnPrevMonth">
+                            <Button.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                            </Button.FontFamily>
+                        </Button>
+                        <Label Text="{Binding Date}" HorizontalTextAlignment="Center" FontSize="Large" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
+                        <Button x:Name="NextMonthButton" BackgroundColor="Transparent" Text="&#xf105;" Clicked="OnNextMonth">
+                            <Button.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                            </Button.FontFamily>
+                        </Button>
+                    </StackLayout>
 
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                <Label x:Name="ExpensesChartSwitch" Text="Wydatki" FontAttributes="Bold" Rotation="270" Grid.Row="0" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
-                <Label x:Name="IncomeChartSwitch" Text="Dochody" FontAttributes="Bold" Rotation="270" Grid.Row="1" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
-            </Grid>
+                            <Label x:Name="ExpensesChartSwitch" Text="Wydatki" FontAttributes="Bold" Rotation="270" Grid.Row="0" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
+                            <Label x:Name="IncomeChartSwitch" Text="Dochody" FontAttributes="Bold" Rotation="270" Grid.Row="1" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
+                        </Grid>
 
-            <utils:BudgetChart Grid.Column="1" x:Name="chartExpense"/>
-            <utils:BudgetChart Grid.Column="1" x:Name="chartIncome"/>
-        </Grid>
+                        <utils:BudgetChart Grid.Column="1" x:Name="chartExpense"/>
+                        <utils:BudgetChart Grid.Column="1" x:Name="chartIncome"/>
+                    </Grid>
 
-    </Grid>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    
 </ContentPage>
