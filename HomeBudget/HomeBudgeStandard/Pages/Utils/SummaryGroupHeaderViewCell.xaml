@@ -4,22 +4,23 @@
           xmlns:components="clr-namespace:HomeBudgeStandard.Components"
           x:Class="HomeBudget.Pages.Utils.SummaryGroupHeaderViewCell">
   <ViewCell.View>
-        <Grid x:Name="layout" BackgroundColor="White" Margin="5,1" HeightRequest="55">
+        <Grid x:Name="layout" BackgroundColor="White" Margin="5,1" HeightRequest="65" RowSpacing="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="10"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Image Source="{Binding IconFile}" Grid.RowSpan="2" Margin="10" />
+            <Image Source="{Binding IconFile}" Grid.RowSpan="3" Margin="10" />
             <Label Grid.Column="1" Text="{Binding CategoryName}" FontSize="16" TextColor="Black" LineBreakMode="NoWrap" VerticalTextAlignment="Center" VerticalOptions="Center" />
 
-            <Label Grid.Column="2" FontSize="14" LineBreakMode="NoWrap" HorizontalTextAlignment="End" HorizontalOptions="End" VerticalTextAlignment="Center" VerticalOptions="Center">
+            <!--<Label Grid.Column="2" FontSize="14" LineBreakMode="NoWrap" HorizontalTextAlignment="End" HorizontalOptions="End" VerticalTextAlignment="Center" VerticalOptions="Center">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="{Binding CategoryReal.TotalValues, Converter={StaticResource CurrencyValueConverter}}"/>
@@ -27,11 +28,15 @@
                         <Span Text="{Binding CategoryPlanned.TotalValues, Converter={StaticResource CurrencyValueConverter}}"/>
                     </FormattedString>
                 </Label.FormattedText>
-            </Label>
+            </Label>-->
 
-            <components:GradientProgressBar Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Progress="0.8" Margin="0,3,0,5"/>
+            <Label Grid.Column="2" Text="{Binding SpendPercentage, StringFormat='{0:P1}'}" FontSize="14" LineBreakMode="NoWrap" VerticalTextAlignment="Center" HorizontalTextAlignment="End" />
+            <Label Grid.Column="1" Grid.Row="2" Text="{Binding CategoryReal.TotalValues, Converter={StaticResource CurrencyValueConverter}}" FontSize="14" LineBreakMode="NoWrap" />
+            <Label Grid.Column="2" Grid.Row="2" Text="{Binding CategoryPlanned.TotalValues, Converter={StaticResource CurrencyValueConverter}}" FontSize="14" LineBreakMode="NoWrap" HorizontalTextAlignment="End" />
 
-            <Label x:Name="expandIcon" Grid.RowSpan="2" Grid.Column="3" Text="&#xf105;" TextColor="#00C1DF" FontSize="26" LineBreakMode="NoWrap" HorizontalTextAlignment="End" HorizontalOptions="End" VerticalTextAlignment="Center" VerticalOptions="Center" Margin="5,0">
+            <components:GradientProgressBar Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Progress="{Binding SpendPercentage}" Margin="0,3,0,5"/>
+
+            <Label x:Name="expandIcon" Grid.RowSpan="3" Grid.Column="3" Text="&#xf105;" TextColor="#00C1DF" FontSize="26" LineBreakMode="NoWrap" HorizontalTextAlignment="End" HorizontalOptions="End" VerticalTextAlignment="Center" VerticalOptions="Center" Margin="5,0">
                 <Label.FontFamily>
                     <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
                 </Label.FontFamily>
