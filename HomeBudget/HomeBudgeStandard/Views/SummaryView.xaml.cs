@@ -161,6 +161,7 @@ namespace HomeBudgeStandard.Views
                 HideCalcView();
                 _selectedCategory.RaisePropertyChanged();
                 _selectedCategory = null;
+                _lastClickedElem = null;
                 Navigation.PopPopupAsync();
             };
             _selectedCategory.Collapse();
