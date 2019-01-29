@@ -20,16 +20,6 @@
             <Image Source="{Binding IconFile}" Grid.RowSpan="3" Margin="10" />
             <Label Grid.Column="1" Text="{Binding CategoryName}" FontSize="16" TextColor="Black" LineBreakMode="NoWrap" VerticalTextAlignment="Center" VerticalOptions="Center" />
 
-            <!--<Label Grid.Column="2" FontSize="14" LineBreakMode="NoWrap" HorizontalTextAlignment="End" HorizontalOptions="End" VerticalTextAlignment="Center" VerticalOptions="Center">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="{Binding CategoryReal.TotalValues, Converter={StaticResource CurrencyValueConverter}}"/>
-                        <Span Text="/"/>
-                        <Span Text="{Binding CategoryPlanned.TotalValues, Converter={StaticResource CurrencyValueConverter}}"/>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>-->
-
             <Label Grid.Column="2" Text="{Binding SpendPercentage, StringFormat='{0:P1}'}" FontSize="14" LineBreakMode="NoWrap" VerticalTextAlignment="Center" HorizontalTextAlignment="End" />
             <Label Grid.Column="1" Grid.Row="2" Text="{Binding CategoryReal.TotalValues, Converter={StaticResource CurrencyValueConverter}}" FontSize="14" LineBreakMode="NoWrap" />
             <Label Grid.Column="2" Grid.Row="2" Text="{Binding CategoryPlanned.TotalValues, Converter={StaticResource CurrencyValueConverter}}" FontSize="14" LineBreakMode="NoWrap" HorizontalTextAlignment="End" />
