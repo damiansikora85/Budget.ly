@@ -25,6 +25,8 @@ namespace HomeBudget.Pages.Utils
         {
             if (BindingContext is BudgetSummaryDataViewModel element)
             {
+                if (element.IsExpanding) return;
+
                 if (element.IsExpanded)
                     expandIcon.RotateTo(0);
                 else

@@ -39,14 +39,14 @@ namespace HomeBudget.Pages.Utils
                     layout.IsVisible = true;
                     layout.TranslationX = -300;
                     layout.HeightRequest = 50;
-                    layout.Margin = new Thickness(8, 1);
+                    layout.Margin = new Thickness(5, 0);
                     ForceUpdateSize();
                     layout.TranslateTo(0, 0, 500, Easing.CubicInOut);
                 };
                 data.Collapse += () =>
                 {
                     layout.IsVisible = false;
-                    layout.Margin = new Thickness(8, 0);
+                    layout.Margin = new Thickness(5, 0);
                     ForceUpdateSize();
                 };
             }
