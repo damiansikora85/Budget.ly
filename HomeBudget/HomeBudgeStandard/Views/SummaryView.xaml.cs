@@ -40,12 +40,11 @@ namespace HomeBudgeStandard.Views
             MessagingCenter.Subscribe<SummaryGroupHeaderViewCell, BudgetSummaryDataViewModel>(this, "CategoryClicked", (sender, element) => ExpandCategory(element));
             MessagingCenter.Subscribe<AnimatedViewCell, SummaryListSubcat>(this, "SubcatClicked", (sender, subcat) => AddExpense(subcat));
 
-			InitializeComponent ();
+            InitializeComponent();
 
             BindingContext = this;
             var cultureInfoPL = new CultureInfo("pl-PL");
             var currentDate = DateTime.Now;
-            dateText.Text = currentDate.ToString("dd MMMM yyyy", cultureInfoPL);
 
             MainBudget.Instance.BudgetDataChanged += BudgetDataChanged;
 
