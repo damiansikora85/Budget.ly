@@ -35,6 +35,7 @@
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="16.3.0.36" />
     <PackageReference Include="Syncfusion.Xamarin.Calculate" Version="16.3.0.36" />
     <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="16.4.0.42" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="16.4.0.42" />
     <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.6" />
@@ -68,7 +69,13 @@
     <EmbeddedResource Update="Pages\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Utils\AnimatedViewCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\Utils\BudgetChart.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Utils\SummaryGroupHeaderViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Utils\SummaryListViewCell.xaml">

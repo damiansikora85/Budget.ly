@@ -2,117 +2,80 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:utils="clr-namespace:HomeBudget.Pages.Utils"
+             xmlns:components="clr-namespace:HomeBudget.Components"
              x:Class="HomeBudgeStandard.Views.SummaryView"
-             Title="Podsumowanie">
+             x:Name="ThisPage" Icon="homeTab.png">
 
     <ContentPage.Content>
-        <Grid>
+        <Grid BackgroundColor="#EAEAEA" RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="1"/>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
 
-            <Grid.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding GridClicked}" />
-            </Grid.GestureRecognizers>
+            <components:GradientView StartColor="#00A9FF" EndColor="#00D7C4" Margin="0,1"/>
 
-            <Label x:Name="dateText" Grid.Row="0" HorizontalTextAlignment="Center" FontSize="Large" LineBreakMode="NoWrap"/>
-
-            <Grid Grid.Row="1" Margin="20,10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+            <Grid ColumnSpacing="0" Margin="5,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                
-                <Label Grid.Row="0" Grid.Column="1" Text="Rzeczywiste" HorizontalTextAlignment="Center" LineBreakMode="NoWrap"/>
-                <Label Grid.Row="0" Grid.Column="2" Text="Planowane" HorizontalTextAlignment="Center" LineBreakMode="NoWrap"/>
 
-                <Label Grid.Row="1" Text="Dochód:" HorizontalTextAlignment="Start" LineBreakMode="NoWrap"/>
-                <Label Grid.Row="2" Text="Wydatki:" HorizontalTextAlignment="Start" LineBreakMode="NoWrap"/>
+                <StackLayout VerticalOptions="Center">
+                    <Label Text="Pozostało:" HorizontalTextAlignment="Center" FontSize="22" TextColor="White" LineBreakMode="NoWrap"/>
+                    <Label Text="{Binding DiffReal, Converter={StaticResource CurrencyValueConverter}}" FontSize="28" TextColor="White" HorizontalTextAlignment="Center" LineBreakMode="NoWrap"/>
+                </StackLayout>
 
-                <Label Margin="12,0" Grid.Column="1" Grid.Row="1" Text="{Binding RealIncomes, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
-                <Label Margin="12,0" Grid.Column="1" Grid.Row="2" Text="{Binding RealExpenses, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
-                <Label Margin="12,0" Grid.Column="1" Grid.Row="3" Text="{Binding DiffReal, Converter={StaticResource CurrencyValueConverter}}" FontAttributes="Bold" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
+                <Grid Grid.Column="1" Margin="0, 32">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <Label Margin="12,0" Grid.Column="2" Grid.Row="1" Text="{Binding ExpectedIncomes, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
-                <Label Margin="12,0" Grid.Column="2" Grid.Row="2" Text="{Binding ExpectedExpenses, Converter={StaticResource CurrencyValueConverter}}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
-                <Label Margin="12,0" Grid.Column="2" Grid.Row="3" Text="{Binding DiffExpected, Converter={StaticResource CurrencyValueConverter}}" FontAttributes="Bold" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
+                    <Label Text="&#xf30C;" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="End">
+                        <Label.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                        </Label.FontFamily>
+                    </Label>
+
+                    <Label Grid.Row="1" Text="&#xf309;" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="End">
+                        <Label.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                        </Label.FontFamily>
+                    </Label>
+
+                    <Label Grid.Column="1" Text="{Binding RealIncomes, Converter={StaticResource CurrencyValueConverter}}" VerticalTextAlignment="Center" HorizontalTextAlignment="End" TextColor="White" LineBreakMode="NoWrap"/>
+                    <Label Grid.Column="1" Grid.Row="1" Text="{Binding RealExpenses, Converter={StaticResource CurrencyValueConverter}}" VerticalTextAlignment="Center" HorizontalTextAlignment="End" TextColor="White" LineBreakMode="NoWrap"/>
+
+                    <Label Grid.Column="2" Text="{Binding ExpectedIncomes, Converter={StaticResource CurrencyValueConverter}}" VerticalTextAlignment="Center" HorizontalTextAlignment="End" TextColor="#9FFFFFFF" LineBreakMode="NoWrap"/>
+                    <Label Grid.Column="2" Grid.Row="1" Text="{Binding ExpectedExpenses, Converter={StaticResource CurrencyValueConverter}}" VerticalTextAlignment="Center" TextColor="#9FFFFFFF" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
+
+                </Grid>
             </Grid>
 
-            <StackLayout Grid.Row="2">
+            <StackLayout Grid.Row="1">
                 <ActivityIndicator x:Name="loader"/>
             </StackLayout>
 
-            <BoxView Grid.Row="2" BackgroundColor="Beige" Color="DarkGray" Margin="12, 0" HeightRequest="1" WidthRequest="100"/>
+            <ListView x:Name="summaryList" Grid.Row="1" ItemSelected="Summary_ItemSelected" SeparatorVisibility="None" SeparatorColor="#D2E3F3"
+                        IsGroupingEnabled="True" GroupDisplayBinding="{Binding CategoryName}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <utils:AnimatedViewCell/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
 
-            <AbsoluteLayout Grid.Row="3">
-                <ListView x:Name="summaryList" AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All" ItemSelected="Summary_ItemSelected">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="utils:BudgetSummaryDataViewModel">
-                            <ViewCell>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="35"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="55"/>
-                                        <ColumnDefinition Width="50"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Source="{Binding IconFile}"/>
-                                    <Label Grid.Column="1" Text="{Binding CategoryName}" FontSize="12" LineBreakMode="NoWrap" VerticalTextAlignment="Center"/>
-                                    <Label Grid.Column="2" Text="{Binding CategoryReal.TotalValues, Converter={StaticResource CurrencyValueConverter}}" FontSize="12" HorizontalTextAlignment="End" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
-                                    <ProgressBar Grid.Column="3" Progress="{Binding SpendPercentage}"/>
-                                    <Label Grid.Column="4" Text="{Binding SpendPercentage, StringFormat='{0:P1}'}" FontSize="12" LineBreakMode="NoWrap" VerticalTextAlignment="Center"/>
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <Button AbsoluteLayout.LayoutBounds=".95,.95,60,60" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="DodgerBlue" Text="+" CornerRadius="30" FontAttributes="Bold" TextColor="White" FontSize="Large" Clicked="AddButton_Clicked" />
-                
-            </AbsoluteLayout>
-
-            <AbsoluteLayout Grid.RowSpan="4" InputTransparent="True">
-                <BoxView x:Name="blocker" InputTransparent="True" Color="Black" Opacity="0.0" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All"/>
-            </AbsoluteLayout>
-
-            <AbsoluteLayout x:Name="categories" Grid.RowSpan="4" TranslationX="660" >
-                <StackLayout AbsoluteLayout.LayoutBounds="1, 1, 0.66, 1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White">
-                    <ListView x:Name="listViewCategories" ItemSelected="listView_ItemSelected" >
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="utils:BudgetSummaryDataViewModel">
-                                <ViewCell>
-                                <StackLayout Orientation="Horizontal">
-                                    <Image Source="{Binding IconFile}"/>
-                                    <Label Text="{Binding CategoryName}" LineBreakMode="NoWrap" VerticalTextAlignment="Center"/>
-                                </StackLayout>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
-            </AbsoluteLayout>
-
-            <AbsoluteLayout x:Name="subcats" Grid.RowSpan="4" TranslationX="660" >
-                <StackLayout AbsoluteLayout.LayoutBounds="1, 1, 0.66, 1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White">
-                    <ListView x:Name="listViewSubcats" ItemSelected="Subcat_ItemSelected" >
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <TextCell Text="{Binding Name}" TextColor="DimGray"/>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
-            </AbsoluteLayout>
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <utils:SummaryGroupHeaderViewCell/>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+            </ListView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
