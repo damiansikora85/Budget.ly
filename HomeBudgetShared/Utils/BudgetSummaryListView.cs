@@ -41,9 +41,8 @@ namespace HomeBudget.Pages.Utils
                 _sublist.Add(new SummaryListSubcat
                 {
                     Name = subcat.Name,
-                    AmountReal = subcat.Value,
-                    AmountPlanned = subcatPlanned.Value,
-                    SpendPercentage = subcatPlanned.Value > 0 ? Math.Min((subcat.Value / subcatPlanned.Value), 1) : 0,
+                    SubcatReal = (RealSubcat)subcat,
+                    SubcatPlan = (PlannedSubcat)subcatPlanned,
                     Id = subcat.Id,
                     Icon = IconFile
                 });
