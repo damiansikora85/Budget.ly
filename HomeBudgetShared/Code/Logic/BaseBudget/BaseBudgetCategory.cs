@@ -68,7 +68,7 @@ namespace HomeBudget.Code.Logic
 
         protected void OnSubcatChanged(object sender, PropertyChangedEventArgs e)
         {
-            RaisePropertyChanged("TotalValues");
+            RaisePropertyChanged(nameof(TotalValues));
         }
 
         protected void RaisePropertyChanged(string name)

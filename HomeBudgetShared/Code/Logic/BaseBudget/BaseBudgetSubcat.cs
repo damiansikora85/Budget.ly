@@ -32,7 +32,7 @@ namespace HomeBudget.Code.Logic
 
         protected void RaiseValueChanged()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Value"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Value)));
         }
 
         protected void RaiseValueChanged(string name)
