@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HomeBudget.Code.Logic;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +7,7 @@ namespace HomeBudget.Pages.Utils
 {
     public class SummaryListSubcat
     {
-        public double SpendPercentage { get; set; }
+        public double SpendPercentage => SubcatPlan.Value > 0 ? Math.Min((SubcatReal.Value / SubcatPlan.Value), 1) : 0;
         public int SpendPercentageInt
         {
             get
@@ -15,8 +16,8 @@ namespace HomeBudget.Pages.Utils
             }
         }
         public string Name { get; set; }
-        public double AmountReal { get; set; }
-        public double AmountPlanned { get; set; }
+        public RealSubcat SubcatReal { get; set; }
+        public PlannedSubcat SubcatPlan { get; set; }
         public int Id { get; set; }
         public string Icon { get; set; }
 
