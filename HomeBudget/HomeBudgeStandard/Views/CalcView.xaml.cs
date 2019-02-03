@@ -90,7 +90,7 @@ namespace HomeBudgeStandard.Views
                     if (float.TryParse(value, style, CultureInfo.CurrentCulture.NumberFormat, out var result))
                     {
                         calculationResultText = result < float.MaxValue ? value : "0";
-                        calculationResultText = result > float.MinValue ? calculationResultText : "0";
+                        calculationResultText = result > 0 ? calculationResultText : "0";
                     }
                     else
                         calculationResultText = "0";
