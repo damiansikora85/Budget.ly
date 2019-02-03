@@ -53,6 +53,7 @@ namespace HomeBudget.Pages.Utils
         {
             IsExpanded = true;
             IsExpanding = true;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsExpanded)));
 
             foreach (var subcat in _sublist)
             {
@@ -73,6 +74,7 @@ namespace HomeBudget.Pages.Utils
             if (IsExpanding) return;
 
             IsExpanded = false;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsExpanded)));
             foreach (var subcat in this)
                 subcat.Collapse();
             this.Clear();

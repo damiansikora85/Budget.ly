@@ -21,16 +21,30 @@ namespace HomeBudget.Pages.Utils
             });
         }
 
+        protected override void OnBindingContextChanged()
+        {
+            if (BindingContext is BudgetSummaryDataViewModel element)
+            {
+                element.PropertyChanged += (sender, args) =>
+                {
+                    if(args.PropertyName == nameof(BudgetSummaryDataViewModel.IsExpanded))
+                    {
+                        if(element.IsExpanded)
+                            expandIcon.RotateTo(90);
+                        else
+                            expandIcon.RotateTo(0);
+                    }
+                };
+            }
+
+            base.OnBindingContextChanged();
+        }
+
         private void ExpandCategory()
         {
             if (BindingContext is BudgetSummaryDataViewModel element)
             {
                 if (element.IsExpanding) return;
-
-                if (element.IsExpanded)
-                    expandIcon.RotateTo(0);
-                else
-                    expandIcon.RotateTo(90);
 
                 MessagingCenter.Send(this, "CategoryClicked", element);
             }
