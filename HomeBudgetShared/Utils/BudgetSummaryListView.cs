@@ -83,6 +83,7 @@ namespace HomeBudget.Pages.Utils
         private void OnCategoryChanged(object sender, PropertyChangedEventArgs e)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CategoryReal.TotalValues"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CategoryPlanned.TotalValues"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SpendPercentage)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SpendPercentageInt)));
         }
@@ -107,6 +108,7 @@ namespace HomeBudget.Pages.Utils
         public void RaisePropertyChanged()
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CategoryReal.TotalValues"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CategoryPlanned.TotalValues"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SpendPercentage)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SpendPercentageInt)));
         }
