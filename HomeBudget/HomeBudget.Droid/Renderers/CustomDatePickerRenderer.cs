@@ -23,6 +23,29 @@ namespace HomeBudget.Droid.Renderers
 
         }
 
+        protected override DatePickerDialog CreateDatePickerDialog(int year, int month, int day)
+        {
+            var view = Element;
+            var dialog = new DatePickerDialog(Context, (o, e) =>
+            {
+                view.Date = e.Date;
+                ((IElementController)view).SetValueFromRenderer(VisualElement.IsFocusedPropertyKey, false);
+            }, year, month, day);
+
+
+            dialog.SetButton("OK", (o, e) =>
+            {
+                if(Element is CustomDatePicker datePicker)
+                {
+                    datePicker.SelectedDateConfirmed?.Invoke();
+                }
+            });
+
+            return dialog;
+        }
+
+
+
         protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.DatePicker> e)
         {
             base.OnElementChanged(e);

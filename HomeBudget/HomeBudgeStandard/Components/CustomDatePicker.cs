@@ -7,5 +7,6 @@ namespace HomeBudgeStandard.Components
 {
     public class CustomDatePicker : DatePicker
     {
+        public Action SelectedDateConfirmed { get; set; }
     }
 }
