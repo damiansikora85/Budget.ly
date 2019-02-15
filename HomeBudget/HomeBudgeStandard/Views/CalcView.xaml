@@ -48,7 +48,7 @@
                         <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions>
 
-                    <components:CustomDatePicker x:Name="Calendar" MaximumDate="{x:Static sys:DateTime.Now}" TextColor="DodgerBlue" FontSize="20" Format="&#xf073; " HorizontalOptions="Center" DateSelected="Calendar_DateSelected" >
+                    <components:CustomDatePicker x:Name="Calendar" MaximumDate="{x:Static sys:DateTime.Now}" TextColor="DodgerBlue" FontSize="20" Format="&#xf073; " HorizontalOptions="Center" >
                         <DatePicker.FontFamily>
                             <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free Regular" />
                         </DatePicker.FontFamily>
