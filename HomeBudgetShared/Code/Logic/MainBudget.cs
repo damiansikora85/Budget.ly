@@ -261,6 +261,7 @@ namespace HomeBudget.Code
 				month = BudgetMonth.Create(BudgetDescription.Categories, date);
                 month.onBudgetPlannedChanged += OnPlannedBudgetChanged;
                 month.UpdatePlannedBudget(budgetPlanned);
+                month.Setup();
                 _months.Add(month);
                 //??
                 //Save();

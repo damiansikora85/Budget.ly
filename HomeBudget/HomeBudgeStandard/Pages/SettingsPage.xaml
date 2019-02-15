@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:sf="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:components="clr-namespace:HomeBudget.Components"
              x:Class="HomeBudgeStandard.Pages.SettingsPage">
     <ContentPage.Content>
         <StackLayout>
@@ -18,17 +18,17 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 
-                <sf:SfCheckBox Text="Poniedziałek" x:Name="NotificationMonday"/>
-                <sf:SfCheckBox Text="Wtorek" x:Name="NotificationTuesday" Grid.Column="1"/>
-                <sf:SfCheckBox Text="Środa" x:Name="NotificationWednesday" Grid.Column="2"/>
-                <sf:SfCheckBox Text="Czwartek" x:Name="NotificationThursday" Grid.Row="1"/>
-                <sf:SfCheckBox Text="Piątek" x:Name="NotificationFriday" Grid.Row="1" Grid.Column="1"/>
-                <sf:SfCheckBox Text="Sobota" x:Name="NotificationSaturday" Grid.Row="1" Grid.Column="2"/>
-                <sf:SfCheckBox Text="Niedziela" x:Name="NotificationSunday" Grid.Row="2" />
+                <components:CustomCheckbox Text="Poniedziałek" x:Name="NotificationMonday"/>
+                <components:CustomCheckbox Text="Wtorek" x:Name="NotificationTuesday" Grid.Column="1"/>
+                <components:CustomCheckbox Text="Środa" x:Name="NotificationWednesday" Grid.Column="2"/>
+                <components:CustomCheckbox Text="Czwartek" x:Name="NotificationThursday" Grid.Row="1"/>
+                <components:CustomCheckbox Text="Piątek" x:Name="NotificationFriday" Grid.Row="1" Grid.Column="1"/>
+                <components:CustomCheckbox Text="Sobota" x:Name="NotificationSaturday" Grid.Row="1" Grid.Column="2"/>
+                <components:CustomCheckbox Text="Niedziela" x:Name="NotificationSunday" Grid.Row="2" />
             </Grid>
             <Label Text="O której godzinie wysyłać powiadomienia:" LineBreakMode="NoWrap"/>
             <TimePicker x:Name="NotificationTimePicker" Format="HH:mm"/>
-            <sf:SfCheckBox x:Name="NotificationsCheckbox" Text="Wyłącz powiadomienia" StateChanged="DisableNotificationChanged" />
+            <components:CustomCheckbox x:Name="NotificationsCheckbox" HorizontalOptions="FillAndExpand" Text="Wyłącz powiadomienia" CheckedCommandParameter="{Binding .}" CheckedCommand="{Binding DisableNotificationCommand}" />
             <Button Text="Zapisz" Clicked="OnSaveClicked"/>
         </StackLayout>
     </ContentPage.Content>

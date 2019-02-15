@@ -43,14 +43,5 @@ namespace HomeBudget.Code.Logic
 
             return category;
         }
-
-        /*public override void Prepare()
-        {
-            foreach (var subcat in subcats)
-            {
-                subcat.Prepare();
-                subcat.PropertyChanged += OnSubcatChanged;
-            }
-        }*/
     }
 }

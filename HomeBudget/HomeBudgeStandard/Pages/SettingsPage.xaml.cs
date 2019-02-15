@@ -12,9 +12,16 @@ namespace HomeBudgeStandard.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsPage : ContentPage, INotifyPropertyChanged
     {
+        public Command<bool> DisableNotificationCommand { get; set; }
+
         public SettingsPage ()
 		{
-			InitializeComponent ();
+            DisableNotificationCommand = new Command<bool>(isChecked =>
+            {
+                NotificationsSetEnabled(!isChecked);
+            });
+
+            InitializeComponent ();
             BindingContext = this;
 		}
 
@@ -90,16 +97,16 @@ namespace HomeBudgeStandard.Pages
 
         private async void SaveNotificationSettings()
         {
-            SaveSetting("NotificationsDisabled", NotificationsCheckbox.IsChecked.HasValue ? NotificationsCheckbox.IsChecked.Value : false);
+            SaveSetting("NotificationsDisabled", NotificationsCheckbox.IsChecked);
             SaveSetting("NotificationsTime", NotificationTimePicker.Time);
 
-            SaveSetting("NotificationsMonday", NotificationMonday.IsChecked.HasValue ? NotificationMonday.IsChecked.Value : false);
-            SaveSetting("NotificationsTuesday", NotificationTuesday.IsChecked.HasValue ? NotificationTuesday.IsChecked.Value : false);
-            SaveSetting("NotificationsWednesday", NotificationWednesday.IsChecked.HasValue ? NotificationWednesday.IsChecked.Value : false);
-            SaveSetting("NotificationsThursday", NotificationThursday.IsChecked.HasValue ? NotificationThursday.IsChecked.Value : false);
-            SaveSetting("NotificationsFriday", NotificationFriday.IsChecked.HasValue ? NotificationFriday.IsChecked.Value : false);
-            SaveSetting("NotificationsSaturday", NotificationSaturday.IsChecked.HasValue ? NotificationSaturday.IsChecked.Value : false);
-            SaveSetting("NotificationsSunday", NotificationSunday.IsChecked.HasValue ? NotificationSunday.IsChecked.Value : false);
+            SaveSetting("NotificationsMonday", NotificationMonday.IsChecked);
+            SaveSetting("NotificationsTuesday", NotificationTuesday.IsChecked);
+            SaveSetting("NotificationsWednesday", NotificationWednesday.IsChecked);
+            SaveSetting("NotificationsThursday", NotificationThursday.IsChecked);
+            SaveSetting("NotificationsFriday", NotificationFriday.IsChecked);
+            SaveSetting("NotificationsSaturday", NotificationSaturday.IsChecked);
+            SaveSetting("NotificationsSunday", NotificationSunday.IsChecked);
             
             await App.Current.SavePropertiesAsync();
         }
