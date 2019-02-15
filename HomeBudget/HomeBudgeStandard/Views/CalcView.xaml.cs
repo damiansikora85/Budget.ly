@@ -75,7 +75,6 @@ namespace HomeBudgeStandard.Views
         }
 
         private String calculationResultText;
-
         public string CalculationResultText
         {
             get
@@ -109,6 +108,9 @@ namespace HomeBudgeStandard.Views
 
         public String DecimalSeparator => _cultureInfoPL.NumberFormat.NumberDecimalSeparator;
 
+        private bool _dateSelected;
+        private bool _saveAfterDateSelected;
+
         public CalcView ()
 		{
             KeyPressed = new Command<string>(HandleKeyPressed);
@@ -116,6 +118,7 @@ namespace HomeBudgeStandard.Views
             InitializeComponent ();
             BindingContext = this;
             dateLabel.Text = Calendar.Date.ToString("dd.MM.yyyy");
+            Calendar.SelectedDateConfirmed += Calendar_DateSelected;
         }
 
         void HandleKeyPressed(string value)
@@ -191,16 +194,30 @@ namespace HomeBudgeStandard.Views
 
         private void OnSave(object sender, EventArgs e)
         {
-            using (var calcQuick = new CalcQuickBase() { ThrowCircularException = true })
+            if (_dateSelected)
             {
-                CalculationResultText = calcQuick.ParseAndCompute(formulaText);
-                OnPropertyChanged("CategoryReal.TotalValues");
-                OnSaveValue?.Invoke(double.Parse(calculationResultText), Calendar.Date);
+                using (var calcQuick = new CalcQuickBase { ThrowCircularException = true })
+                {
+                    CalculationResultText = calcQuick.ParseAndCompute(formulaText);
+                    OnPropertyChanged("CategoryReal.TotalValues");
+                    OnSaveValue?.Invoke(double.Parse(calculationResultText), Calendar.Date);
+                }
+            }
+            else
+            {
+                _saveAfterDateSelected = true;
+                Calendar.Unfocus();
+                Calendar.Focus();
             }
         }
 
         public void Reset()
         {
+            //don't chanage order
+            _saveAfterDateSelected = false;
+            Calendar.Date = DateTime.Now;
+            _dateSelected = false;
+
             FormulaText = string.Empty;
             CalculationResultText = "0";
             OnPropertyChanged(nameof(Category));
@@ -212,9 +229,20 @@ namespace HomeBudgeStandard.Views
             OnCancel?.Invoke();
         }
 
-        private void Calendar_DateSelected(object sender, DateChangedEventArgs e)
+        private void Calendar_DateSelected()
         {
             dateLabel.Text = Calendar.Date.ToString("dd.MM.yyyy");
+            _dateSelected = true;
+
+            if (_saveAfterDateSelected)
+            {
+                using (var calcQuick = new CalcQuickBase { ThrowCircularException = true })
+                {
+                    CalculationResultText = calcQuick.ParseAndCompute(formulaText);
+                    OnPropertyChanged("CategoryReal.TotalValues");
+                    OnSaveValue?.Invoke(double.Parse(calculationResultText), Calendar.Date);
+                }
+            }
         }
     }
 }

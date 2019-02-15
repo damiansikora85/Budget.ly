@@ -83,6 +83,7 @@
     <Compile Include="Native\AndroidNotificationService.cs" />
     <Compile Include="Native\HUDTutorial.cs" />
     <Compile Include="Native\NotificationBroadcastReceiver.cs" />
+    <Compile Include="Renderers\CustomCheckboxRenderer.cs" />
     <Compile Include="Renderers\CustomDatePickerRenderer.cs" />
     <Compile Include="Renderers\GradientViewRenderer.cs" />
     <Compile Include="Renderers\GradientProgressBarRenderer.cs" />
