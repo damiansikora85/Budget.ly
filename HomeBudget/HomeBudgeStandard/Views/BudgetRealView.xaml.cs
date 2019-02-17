@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using HomeBudgeStandard.Converters;
 using HomeBudgeStandard.Effects;
 using HomeBudgeStandard.Interfaces;
 using HomeBudgeStandard.Utils;
@@ -164,7 +165,8 @@ namespace HomeBudgeStandard.Views
                 SelectionMode = SelectionMode.SingleDeselect,
                 NavigationMode = NavigationMode.Cell,
                 FrozenColumnsCount = 2,
-                EditTapAction = TapAction.OnTap
+                EditTapAction = TapAction.OnTap,
+                GridStyle = new BudgetDataGridStyle()
             };
 
             _dataGrid.SortComparers.Add(new SortComparer
@@ -176,7 +178,7 @@ namespace HomeBudgeStandard.Views
             _dataGrid.CurrentCellEndEdit += DataGrid_CurrentCellEndEdit;
             _dataGrid.GroupColumnDescriptions.Add(new GroupColumnDescription
             {
-                ColumnName = "Category.Name"
+                ColumnName = "Category.Name",
             });
 
             var gridSummaryRow = new GridGroupSummaryRow
@@ -191,29 +193,50 @@ namespace HomeBudgeStandard.Views
                         MappingName="Subcat.Value",
                         SummaryType= SummaryType.Custom,
                         CustomAggregate = new CurrencyDataGridHeader(),
-                        Format = "{Currency}"
+                        Format = "{Currency}",
                     }
-                }
+                },
             };
             _dataGrid.CaptionSummaryRow = gridSummaryRow;
+
+            _dataGrid.CaptionSummaryTemplate = new DataTemplate(() =>
+            {
+                var stackLayout = new StackLayout { Orientation = StackOrientation.Horizontal, Margin = new Thickness(5,0) };
+                var label = new Label { FontFamily = "FiraSans-Regular.otf#Fira Sans Regular", VerticalTextAlignment = TextAlignment.Center, FontSize = 16, TextColor = Color.Black };
+
+                var icon = new Image { HeightRequest = 25 };
+                icon.SetBinding(Image.SourceProperty, new Binding(".", BindingMode.Default, new BudgetGridIconConverter(), _dataGrid));
+
+                var converter = new BudgetDataGridSummaryConverter();
+                var binding = new Binding(".", BindingMode.Default, converter, _dataGrid);
+                label.SetBinding(Label.TextProperty, binding);
+
+                stackLayout.Children.Add(icon);
+                stackLayout.Children.Add(label);
+
+                return new ViewCell { View = stackLayout };
+            });
 
             _dataGrid.Columns.Add(new GridTextColumn
             {
                 MappingName = "Subcat.Name",
                 HeaderText = "Kategoria",
-                HeaderFontAttribute = FontAttributes.Bold,
-                FontAttribute = FontAttributes.Bold,
-                Width = 100
+                Width = 100,
+                HeaderFont = "FiraSans-Bold.otf#Fira Sans Bold",
+                RecordFont = "FiraSans-Regular.otf#Fira Sans Regular",
+                HeaderCellTextSize = 16,
+                LoadUIView = true
             });
 
             _dataGrid.Columns.Add(new GridNumericColumn
             {
                 MappingName = "SubcatReal.Value",
                 HeaderText = "Suma",
-                HeaderFontAttribute = FontAttributes.Bold,
-                //Width = 80,
+                HeaderFont = "FiraSans-Bold.otf#Fira Sans Bold",
+                RecordFont = "FiraSans-Bold.otf#Fira Sans Bold",
+                LoadUIView = true,
                 CellTextSize = 10,
-                FontAttribute = FontAttributes.Bold,
+                HeaderCellTextSize = 16,
                 DisplayBinding = new Binding() { Path = "SubcatReal.Value", Converter = new CurrencyValueConverter() }
             });
 
@@ -224,8 +247,11 @@ namespace HomeBudgeStandard.Views
                     MappingName = $"SubcatReal.Values[{i}].Value",
                     HeaderText = (i+1).ToString(),
                     AllowEditing = true,
-                    //Width = 80,
+                    LoadUIView = true,
+                    HeaderFont = "FiraSans-Bold.otf#Fira Sans Bold",
+                    RecordFont = "FiraSans-Regular.otf#Fira Sans Regular",
                     CellTextSize = 10,
+                    HeaderCellTextSize = 16,
                     HeaderFontAttribute = FontAttributes.Bold,
                     DisplayBinding = new Binding() { Path = $"SubcatReal.Values[{i}].Value", Converter = new CurrencyValueConverter() }
                 });

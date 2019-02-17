@@ -1,5 +1,6 @@
 ﻿//using Acr.UserDialogs;
 using Acr.UserDialogs;
+using HomeBudgeStandard.Converters;
 using HomeBudgeStandard.Interfaces;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
@@ -151,7 +152,8 @@ namespace HomeBudgeStandard.Views
                 LiveDataUpdateMode = LiveDataUpdateMode.AllowSummaryUpdate,
                 SelectionMode = SelectionMode.Single,
                 NavigationMode = NavigationMode.Cell,
-                EditTapAction = TapAction.OnTap
+                EditTapAction = TapAction.OnTap,
+                GridStyle = new BudgetDataGridStyle()
             };
 
             _dataGrid.SortComparers.Add(new SortComparer
@@ -164,6 +166,24 @@ namespace HomeBudgeStandard.Views
             _dataGrid.GroupColumnDescriptions.Add(new GroupColumnDescription
             {
                 ColumnName = "Category.Name"
+            });
+
+            _dataGrid.CaptionSummaryTemplate = new DataTemplate(() =>
+            {
+                var stackLayout = new StackLayout { Orientation = StackOrientation.Horizontal, Margin = new Thickness(5, 0) };
+                var label = new Label { FontFamily = "FiraSans-Regular.otf#Fira Sans Regular", VerticalTextAlignment = TextAlignment.Center, FontSize = 16, TextColor = Color.Black };
+
+                var icon = new Image { HeightRequest = 25 };
+                icon.SetBinding(Image.SourceProperty, new Binding(".", BindingMode.Default, new BudgetGridIconConverter(), _dataGrid));
+
+                var converter = new BudgetDataGridSummaryConverter();
+                var binding = new Binding(".", BindingMode.Default, converter, _dataGrid);
+                label.SetBinding(Label.TextProperty, binding);
+
+                stackLayout.Children.Add(icon);
+                stackLayout.Children.Add(label);
+
+                return new ViewCell { View = stackLayout };
             });
 
             var gridSummaryRow = new GridGroupSummaryRow
@@ -188,7 +208,10 @@ namespace HomeBudgeStandard.Views
             {
                 MappingName = "Subcat.Name",
                 HeaderText = "Kategoria",
-                HeaderFontAttribute = FontAttributes.Bold,
+                HeaderFont = "FiraSans-Bold.otf#Fira Sans Bold",
+                RecordFont = "FiraSans-Regular.otf#Fira Sans Regular",
+                HeaderCellTextSize = 16,
+                LoadUIView = true,
                 Width = 100
             });
 
@@ -197,7 +220,11 @@ namespace HomeBudgeStandard.Views
                 MappingName = "SubcatPlanned.Value",
                 HeaderText = "Suma",
                 AllowEditing = true,
-                HeaderFontAttribute = FontAttributes.Bold,
+                HeaderFont = "FiraSans-Bold.otf#Fira Sans Bold",
+                RecordFont = "FiraSans-Bold.otf#Fira Sans Bold",
+                LoadUIView = true,
+                CellTextSize = 10,
+                HeaderCellTextSize = 16,
                 ColumnSizer = ColumnSizer.Star,
                 DisplayBinding = new Binding() { Path = "SubcatPlanned.Value", Converter = new CurrencyValueConverter() }
         });
