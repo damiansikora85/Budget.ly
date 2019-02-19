@@ -18,11 +18,12 @@ namespace HomeBudgeStandard.Pages
             LinkCommand = new Command(() => OpenLink());
 			InitializeComponent ();
             BindingContext = this;
+            version.Text = $"Wersja: {Xamarin.Essentials.VersionTracking.CurrentVersion}({Xamarin.Essentials.VersionTracking.CurrentBuild})";
 		}
 
         private void OpenLink()
         {
-            Device.OpenUri(new Uri("https://jakoszczedzacpieniadze.pl"));
+            Device.OpenUri(new Uri("https://jakoszczedzacpieniadze.pl/darmowy-szablon-budzetu-domowego"));
         }
     }
 }

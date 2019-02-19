@@ -4,10 +4,10 @@
              x:Class="HomeBudgeStandard.Pages.AboutPage">
     <ContentPage.Content>
         <StackLayout Margin="20,10">
-            <Image Source="icon"/>
-            <Label Text="Budget.ly" TextColor="CornflowerBlue" FontSize="26" HorizontalTextAlignment="Center" LineBreakMode="NoWrap"/>
-            <Label Text="Budget.ly to aplikacja do łatwego zarządzania Twoim budżetem domowym."/>
-            <Label >
+            <Image Source="icon" HeightRequest="100"/>
+            <Label Text="Budget.ly" TextColor="DodgerBlue" FontSize="26" HorizontalTextAlignment="Center" LineBreakMode="NoWrap"/>
+            <Label Text="Budget.ly to aplikacja do łatwego zarządzania Twoim budżetem domowym." TextColor="Black"/>
+            <Label TextColor="Black">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="Wzorzec kategorii pochodzi z bloga: "/>
@@ -19,6 +19,7 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
+            <Label x:Name="version"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
