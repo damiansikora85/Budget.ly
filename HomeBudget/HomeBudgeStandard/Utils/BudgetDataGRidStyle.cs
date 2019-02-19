@@ -23,12 +23,12 @@ namespace HomeBudget.Utils
 
         public override ImageSource GetGroupCollapseIcon()
         {
-            return base.GetGroupCollapseIcon();//ImageSource.FromFile("forward.png");
+            return ImageSource.FromFile("collapse.png");
         }
 
         public override ImageSource GetGroupExpanderIcon()
         {
-            return ImageSource.FromFile("forward.png");
+            return ImageSource.FromFile("expand.png");
         }
 
         public override Color GetHeaderBackgroundColor()
