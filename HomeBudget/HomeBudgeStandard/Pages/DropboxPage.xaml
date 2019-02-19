@@ -4,10 +4,10 @@
              x:Class="HomeBudgeStandard.Pages.DropboxPage">
     <ContentPage.Content>
         <StackLayout Margin="25,25">
-            <Label Text="Synchronizacja danych z Dropbox" FontSize="Large" FontAttributes="Bold"/>
+            <Label Text="Synchronizacja danych z Dropbox" FontSize="Large" TextColor="Black"/>
             
             <Image Source="dropboxInfo.png" HeightRequest="150" Margin="0,20"/>
-            <Label Text="Dzięki synchronizacji możesz współdzielić budżet na kilku urządzeniach"/>
+            <Label Text="Dzięki synchronizacji możesz współdzielić budżet na kilku urządzeniach" TextColor="Black"/>
             <Grid x:Name="iapLayout" IsVisible="false">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="55"/>
@@ -31,8 +31,8 @@
                 <Button Text="Synchronizuj z Dropbox" Style="{StaticResource ButtonStyle}" Clicked="OnLoginDropbox" Margin="0,15"/>
                 
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Synchronizacja włączona" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
-                    <Label Text="{Binding SynchronizationStatus}" FontSize="35" LineBreakMode="NoWrap">
+                    <Label Text="Synchronizacja włączona" VerticalTextAlignment="Center" LineBreakMode="NoWrap" TextColor="Black"/>
+                    <Label Text="{Binding SynchronizationStatus}" FontSize="35" LineBreakMode="NoWrap" TextColor="Black">
                         <Label.FontFamily>
                             <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free Regular" />
                         </Label.FontFamily>
