@@ -153,7 +153,8 @@ namespace HomeBudgeStandard.Views
                 SelectionMode = SelectionMode.Single,
                 NavigationMode = NavigationMode.Cell,
                 EditTapAction = TapAction.OnTap,
-                GridStyle = new BudgetDataGridStyle()
+                GridStyle = new BudgetDataGridStyle(),
+                Margin = new Thickness(12, 0)
             };
 
             _dataGrid.SortComparers.Add(new SortComparer
@@ -212,7 +213,8 @@ namespace HomeBudgeStandard.Views
                 RecordFont = "FiraSans-Regular.otf#Fira Sans Regular",
                 HeaderCellTextSize = 16,
                 LoadUIView = true,
-                Width = 100
+                ColumnSizer = ColumnSizer.Star,
+                //Width = 100
             });
 
             _dataGrid.Columns.Add(new GridNumericColumn
@@ -221,9 +223,9 @@ namespace HomeBudgeStandard.Views
                 HeaderText = "Suma",
                 AllowEditing = true,
                 HeaderFont = "FiraSans-Bold.otf#Fira Sans Bold",
-                RecordFont = "FiraSans-Bold.otf#Fira Sans Bold",
+                RecordFont = "FiraSans-Regular.otf#Fira Sans Regular",
                 LoadUIView = true,
-                CellTextSize = 10,
+                CellTextSize = 14,
                 HeaderCellTextSize = 16,
                 ColumnSizer = ColumnSizer.Star,
                 DisplayBinding = new Binding() { Path = "SubcatPlanned.Value", Converter = new CurrencyValueConverter() }
@@ -232,14 +234,14 @@ namespace HomeBudgeStandard.Views
             _dataGrid.SetBinding(SfDataGrid.ItemsSourceProperty, nameof(Budget));
 
             var grid = new Grid();
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(3, GridUnitType.Star) });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(3, GridUnitType.Star) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = 50 });
 
             grid.Children.Add(_dataGrid);
-            var button = new Button { Text = "Użyj w kolejnych miesiącach", BackgroundColor = Color.DodgerBlue, TextColor = Color.White, VerticalOptions = LayoutOptions.End, Margin= new Thickness(12, 12) };
+            var button = new Button { Text = "Użyj w kolejnych miesiącach", BackgroundColor = Color.DodgerBlue, TextColor = Color.White, VerticalOptions = LayoutOptions.End, Margin= new Thickness(12, 3) };
             button.Clicked += OnSave;
             grid.Children.Add(button);
-            Grid.SetColumn(button, 1);
+            Grid.SetRow(button, 1);
 
             Grid.SetRow(grid, 2);
             _mainGrid.Children.Add(grid);
