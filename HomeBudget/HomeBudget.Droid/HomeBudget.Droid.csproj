@@ -466,6 +466,9 @@
     <PackageReference Include="Xamarin.Android.Support.Vector.Drawable">
       <Version>28.0.0.1</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Essentials">
+      <Version>1.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading">
       <Version>2.4.3.840</Version>
     </PackageReference>
