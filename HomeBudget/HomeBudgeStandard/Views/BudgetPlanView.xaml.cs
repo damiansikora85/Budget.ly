@@ -1,6 +1,5 @@
 ﻿//using Acr.UserDialogs;
 using Acr.UserDialogs;
-using HomeBudgeStandard.Converters;
 using HomeBudgeStandard.Interfaces;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
@@ -154,7 +153,7 @@ namespace HomeBudgeStandard.Views
                 NavigationMode = NavigationMode.Cell,
                 EditTapAction = TapAction.OnTap,
                 GridStyle = new BudgetDataGridStyle(),
-                Margin = new Thickness(12, 0)
+                Margin = new Thickness(12, 0),
             };
 
             _dataGrid.SortComparers.Add(new SortComparer

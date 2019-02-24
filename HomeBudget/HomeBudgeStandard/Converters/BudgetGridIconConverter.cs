@@ -7,7 +7,7 @@ using System.Globalization;
 using System.Text;
 using Xamarin.Forms;
 
-namespace HomeBudgeStandard.Converters
+namespace HomeBudget.Converters
 {
     class BudgetGridIconConverter : IValueConverter
     {
