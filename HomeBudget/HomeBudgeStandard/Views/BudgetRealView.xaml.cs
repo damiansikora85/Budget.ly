@@ -153,6 +153,12 @@ namespace HomeBudgeStandard.Views
             _nextMonthButton = this.Content.FindByName<Button>("NextMonthButton");
         }
 
+        private async void OnDetailsClick(object sender, EventArgs args)
+        {
+            //MessagingCenter.Send(this, "Landscape");
+            await Navigation.PushAsync(new BudgetDataGridPage());
+        }
+
         private void CreateDataGrid()
         {
             _dataGrid = new SfDataGrid()
