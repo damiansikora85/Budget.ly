@@ -1,6 +1,7 @@
 ﻿using OxyPlot.Series;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,15 +23,16 @@ namespace HomeBudget.Utils
     {
         public List<OxyPlot.OxyColor> Colors = new List<OxyPlot.OxyColor>
         {
-            OxyPlot.OxyColor.Parse("#f1c40f"), OxyPlot.OxyColor.Parse("#2ecc71"), OxyPlot.OxyColor.Parse("#3498db"),
-            OxyPlot.OxyColor.Parse("#9b59b6"), OxyPlot.OxyColor.Parse("#1abc9c"), OxyPlot.OxyColor.Parse("#d35400"),
-            OxyPlot.OxyColor.Parse("#e74c3c"), OxyPlot.OxyColor.Parse("#34495e"), OxyPlot.OxyColor.Parse("#7f8c8d"),
-            OxyPlot.OxyColor.Parse("#bdc3c7"), OxyPlot.OxyColor.Parse("#f39c12"), OxyPlot.OxyColor.Parse("#8e44ad")
+            OxyPlot.OxyColor.Parse("#5CBAE6"), OxyPlot.OxyColor.Parse("#B6D957"), OxyPlot.OxyColor.Parse("#FAC364"),
+            OxyPlot.OxyColor.Parse("#8CD3FF"), OxyPlot.OxyColor.Parse("#D998CB"), OxyPlot.OxyColor.Parse("#F2D249"),
+            OxyPlot.OxyColor.Parse("#93B9C6"), OxyPlot.OxyColor.Parse("#CCC5A8"), OxyPlot.OxyColor.Parse("#D32030"),
+            OxyPlot.OxyColor.Parse("#DBDB46"), OxyPlot.OxyColor.Parse("#98AAFB"), OxyPlot.OxyColor.Parse("#8e44ad")
         };
 
         public BudgetChart ()
 		{
 			InitializeComponent ();
+            BindingContext = this;
         }
 
         public void SetData(List<ChartData> data)
@@ -40,18 +42,24 @@ namespace HomeBudget.Utils
                 data.Sort((el1, el2) => el2.Value.CompareTo(el1.Value));
                 var series = new PieSeries
                 {
-                    InsideLabelFormat = null,
-                    OutsideLabelFormat = null,//"{2:f0}%",
-                    StartAngle = 270
+                    InsideLabelFormat = "{2:f0}%",
+                    //OutsideLabelFormat = "{1}({2:f0}%)",//"{2:f0}%",
+                    OutsideLabelFormat = null,
+                    StartAngle = 270,
+                    Diameter=0.90,
+                    InnerDiameter = 0.5,
+                    InsideLabelPosition = 1.2
                 };
 
                 var model = new OxyPlot.PlotModel();
 
                 if (data.Sum(el => el.Value) == 0)
                 {
-                    series.Slices.Add(new PieSlice("Brak danych", 1));
+                    series.Slices.Add(new PieSlice("", 1));
                     series.InsideLabelFormat = "{1}";
                     model.DefaultColors = new List<OxyPlot.OxyColor> { OxyPlot.OxyColor.Parse("#ACACAC") };
+                    legend.IsVisible = false;
+                    noDataLabel.IsVisible = true;
                 }
                 else
                 {
@@ -61,7 +69,11 @@ namespace HomeBudget.Utils
                         data[i].Color = ToColor(Colors[i]);
                     }
                     model.DefaultColors = Colors;
-                    legend.ItemsSource = data;
+                    //legend.ItemsSource = data;
+                    CreateLegend(data);
+
+                    legend.IsVisible = true;
+                    noDataLabel.IsVisible = false;
                 }
 
                 model.Series.Add(series);
@@ -69,7 +81,22 @@ namespace HomeBudget.Utils
             });
         }
 
+        private void CreateLegend(List<ChartData> data)
+        {
+            legend.Children.Clear();
+            for(var i=0; i<data.Count; i++)
+            {
+                var layout = new StackLayout { Orientation = StackOrientation.Horizontal, HeightRequest = 20 };
+                var box = new BoxView { Color = data[i].Color, WidthRequest = 10, HeightRequest = 10 };
+                var label = new Label { Text = data[i].Label, FontSize = 12 };
+                layout.Children.Add(box);
+                layout.Children.Add(label);
+                Grid.SetColumn(layout, i%2);
+                Grid.SetRow(layout, i/2);
+                legend.Children.Add(layout);
+            }
+        }
+
         private static Color ToColor(OxyPlot.OxyColor oxyColor) => Color.FromRgb(oxyColor.R, oxyColor.G, oxyColor.B);
-        
 	}
 }

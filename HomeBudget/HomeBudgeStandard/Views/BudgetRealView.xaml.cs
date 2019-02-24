@@ -1,11 +1,9 @@
 ﻿using Acr.UserDialogs;
-using HomeBudgeStandard.Converters;
-using HomeBudgeStandard.Effects;
 using HomeBudgeStandard.Interfaces;
-using HomeBudgeStandard.Utils;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Converters;
+using HomeBudget.Pages;
 using HomeBudget.Utils;
 using Syncfusion.Data;
 using Syncfusion.SfDataGrid.XForms;
@@ -14,7 +12,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -113,7 +110,7 @@ namespace HomeBudgeStandard.Views
             this.Content = view;
 
             SetupVariables();
-            CreateDataGrid();
+            //CreateDataGrid();
 
             var tapGesture = new TapGestureRecognizer();
             tapGesture.Tapped += SwitchChart;
@@ -161,7 +158,7 @@ namespace HomeBudgeStandard.Views
 
         private void CreateDataGrid()
         {
-            _dataGrid = new SfDataGrid()
+            _dataGrid = new SfDataGrid
             {
                 EnableDataVirtualization = true,
                 AutoGenerateColumns = false,

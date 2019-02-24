@@ -4,13 +4,14 @@
       xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
       xmlns:local="clr-namespace:HomeBudget.Utils"
       x:Class="HomeBudget.Utils.BudgetChart">
-    <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="3*"/>
-        <ColumnDefinition Width="2*"/>
-    </Grid.ColumnDefinitions>
+    
+    <Grid.RowDefinitions>
+        <RowDefinition Height="3*"/>
+        <RowDefinition Height="2*"/>
+    </Grid.RowDefinitions>
     
     <oxy:PlotView x:Name="chart" VerticalOptions="Center" HorizontalOptions="Center" />
-    <ListView x:Name="legend" Grid.Column="1" RowHeight="35">
+    <!--<ListView x:Name="legend" Grid.Row="1" RowHeight="35" >
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="local:ChartData">
                 <ViewCell>
@@ -21,5 +22,24 @@
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
-    </ListView>
+    </ListView>-->
+    <Label x:Name="noDataLabel" Text="Brak danych" Grid.Row="1" FontSize="20" HorizontalTextAlignment="Center"/>
+    <Grid x:Name="legend" Grid.Row="1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+    </Grid>
+
+
 </Grid>
