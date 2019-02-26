@@ -223,7 +223,7 @@ namespace HomeBudgeStandard.Views
                 AllowEditing = true,
                 HeaderFont = "FiraSans-Bold.otf#Fira Sans Bold",
                 RecordFont = "FiraSans-Regular.otf#Fira Sans Regular",
-                LoadUIView = true,
+                //LoadUIView = true,
                 CellTextSize = 14,
                 HeaderCellTextSize = 16,
                 ColumnSizer = ColumnSizer.Star,
