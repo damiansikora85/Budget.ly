@@ -59,10 +59,7 @@ namespace HomeBudget.Code.Logic
 
         public RealSubcat()
         {
-            values = new ObservableCollection<SubcatValue>
-            {
-                new SubcatValue(0)
-            };
+            values = new ObservableCollection<SubcatValue>();
         }
 
         public override void Prepare()
