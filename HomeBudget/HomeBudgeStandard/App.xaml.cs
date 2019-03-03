@@ -6,6 +6,7 @@ using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using HomeBudgeStandard.Utils;
 using Xamarin.Forms.Xaml;
+using Microsoft.AppCenter.Push;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace HomeBudget
@@ -26,7 +27,7 @@ namespace HomeBudget
             Microsoft.AppCenter.AppCenter.Start("android=d788ef5d-e265-4c16-abbf-2e9469285d52;" +
                   "uwp={Your UWP App secret here};" +
                   "ios={Your iOS App secret here}",
-                  typeof(Analytics), typeof(Crashes));
+                  typeof(Analytics), typeof(Crashes), typeof(Push));
 
             //NotificationManager.ClearAllNotifications();
             //NotificationManager.ReScheduleNotificationsBySettings();
