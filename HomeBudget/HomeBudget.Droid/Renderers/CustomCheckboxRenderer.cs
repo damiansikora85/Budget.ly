@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using Android.Content;
 using Android.Content.Res;
+using Android.OS;
 using Android.Widget;
 using HomeBudget.Components;
 using Xamarin.Forms;
@@ -47,8 +48,11 @@ namespace HomeBudget.Droid.Renderers
                 //var bc = Control.ButtonTintList;
                 Control.SetTextColor(Color.Black.ToAndroid());
 
-                var myList = new ColorStateList(states, colors);
-                Control.ButtonTintList = myList;
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+                {
+                    var myList = new ColorStateList(states, colors);
+                    Control.ButtonTintList = myList;
+                }
             }
         }
 

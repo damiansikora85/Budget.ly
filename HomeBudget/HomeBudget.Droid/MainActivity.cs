@@ -7,7 +7,9 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using HomeBudget.Droid.Native;
+using HomeBudget.Pages;
 using Plugin.InAppBilling;
+using Xamarin.Forms;
 
 namespace HomeBudget.Droid
 {
@@ -39,6 +41,15 @@ namespace HomeBudget.Droid
             LoadApplication(_theApp);
 
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity = this;
+
+            MessagingCenter.Subscribe<BudgetDataGridPage>(this, "Landscape", Page =>
+            {
+                RequestedOrientation = ScreenOrientation.Landscape;
+            });
+            MessagingCenter.Subscribe<BudgetDataGridPage>(this, "Portrait", Page =>
+            {
+                RequestedOrientation = ScreenOrientation.Portrait;
+            });
         }
 
         public override void OnBackPressed()

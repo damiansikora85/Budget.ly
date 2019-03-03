@@ -17,7 +17,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
@@ -34,29 +34,34 @@
                         </Button>
                     </StackLayout>
 
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="1" Margin="12,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
+                        
+                        
+                        <Label x:Name="ExpensesChartSwitch" Text="Wydatki" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="NoWrap">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label x:Name="IncomeChartSwitch" Grid.Column="1" Text="Dochody" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
+                        
 
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-
-                            <Label x:Name="ExpensesChartSwitch" Text="Wydatki" FontAttributes="Bold" Rotation="270" Grid.Row="0" VerticalTextAlignment="Center" LineBreakMode="NoWrap">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                            <Label x:Name="IncomeChartSwitch" Text="Dochody" FontAttributes="Bold" Rotation="270" Grid.Row="1" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
-                        </Grid>
-
-                        <utils:BudgetChart Grid.Column="1" x:Name="chartExpense"/>
-                        <utils:BudgetChart Grid.Column="1" x:Name="chartIncome"/>
+                        <utils:BudgetChart x:Name="chartExpense" Grid.Row="1" Grid.ColumnSpan="2" LegendPosition="Bottom"/>
+                        <utils:BudgetChart x:Name="chartIncome" IsVisible="False" Grid.Row="1" Grid.ColumnSpan="2" LegendPosition="Bottom"/>
                     </Grid>
+
+                    <Button Grid.Row="2" Text="&#xf002;" Margin="12,5" Style="{StaticResource ButtonStyle}" Clicked="OnDetailsClick">
+                        <Button.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                        </Button.FontFamily>
+                    </Button>
 
                 </Grid>
 
