@@ -1,6 +1,5 @@
 ﻿//using Acr.UserDialogs;
 using Acr.UserDialogs;
-using HomeBudgeStandard.Converters;
 using HomeBudgeStandard.Interfaces;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
@@ -8,6 +7,7 @@ using HomeBudget.Converters;
 using HomeBudget.Utils;
 using Syncfusion.Data;
 using Syncfusion.SfDataGrid.XForms;
+using Syncfusion.SfNumericTextBox.XForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -154,7 +154,7 @@ namespace HomeBudgeStandard.Views
                 NavigationMode = NavigationMode.Cell,
                 EditTapAction = TapAction.OnTap,
                 GridStyle = new BudgetDataGridStyle(),
-                Margin = new Thickness(12, 0)
+                Margin = new Thickness(12, 0),
             };
 
             _dataGrid.SortComparers.Add(new SortComparer
@@ -169,7 +169,7 @@ namespace HomeBudgeStandard.Views
                 ColumnName = "Category.Name"
             });
 
-            _dataGrid.CaptionSummaryTemplate = new DataTemplate(() =>
+            /*_dataGrid.CaptionSummaryTemplate = new DataTemplate(() =>
             {
                 var stackLayout = new StackLayout { Orientation = StackOrientation.Horizontal, Margin = new Thickness(5, 0) };
                 var label = new Label { FontFamily = "FiraSans-Regular.otf#Fira Sans Regular", VerticalTextAlignment = TextAlignment.Center, FontSize = 16, TextColor = Color.Black };
@@ -185,7 +185,7 @@ namespace HomeBudgeStandard.Views
                 stackLayout.Children.Add(label);
 
                 return new ViewCell { View = stackLayout };
-            });
+            });*/
 
             var gridSummaryRow = new GridGroupSummaryRow
             {
@@ -224,10 +224,11 @@ namespace HomeBudgeStandard.Views
                 AllowEditing = true,
                 HeaderFont = "FiraSans-Bold.otf#Fira Sans Bold",
                 RecordFont = "FiraSans-Regular.otf#Fira Sans Regular",
-                LoadUIView = true,
+                //LoadUIView = true,
                 CellTextSize = 14,
                 HeaderCellTextSize = 16,
                 ColumnSizer = ColumnSizer.Star,
+                
                 DisplayBinding = new Binding() { Path = "SubcatPlanned.Value", Converter = new CurrencyValueConverter() }
         });
 

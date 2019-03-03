@@ -21,6 +21,11 @@ namespace HomeBudget.Utils
             return Color.White;
         }
 
+        public override Color GetCaptionSummaryRowForegroundColor()
+        {
+            return Color.Black;
+        }
+
         public override ImageSource GetGroupCollapseIcon()
         {
             return ImageSource.FromFile("collapse.png");
