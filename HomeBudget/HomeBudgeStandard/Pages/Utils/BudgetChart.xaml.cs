@@ -21,6 +21,22 @@ namespace HomeBudget.Utils
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BudgetChart : Grid
     {
+        public enum LegendPositionEnum
+        {
+            LeftSide,
+            RightSide,
+            Top,
+            Bottom
+        }
+
+        public static BindableProperty LegendPositionProperty = BindableProperty.Create(nameof(LegendPosition), typeof(LegendPositionEnum), typeof(BudgetChart), LegendPositionEnum.Bottom);
+
+        public LegendPositionEnum LegendPosition
+        {
+            get => (LegendPositionEnum)GetValue(LegendPositionProperty);
+            set => SetValue(LegendPositionProperty, value);
+        }
+
         public List<OxyPlot.OxyColor> Colors = new List<OxyPlot.OxyColor>
         {
             OxyPlot.OxyColor.Parse("#5CBAE6"), OxyPlot.OxyColor.Parse("#B6D957"), OxyPlot.OxyColor.Parse("#FAC364"),
@@ -28,6 +44,9 @@ namespace HomeBudget.Utils
             OxyPlot.OxyColor.Parse("#93B9C6"), OxyPlot.OxyColor.Parse("#CCC5A8"), OxyPlot.OxyColor.Parse("#D32030"),
             OxyPlot.OxyColor.Parse("#DBDB46"), OxyPlot.OxyColor.Parse("#98AAFB"), OxyPlot.OxyColor.Parse("#8e44ad")
         };
+
+        private bool _isGridCreated;
+        private View _legendView;
 
         public BudgetChart ()
 		{
@@ -37,6 +56,9 @@ namespace HomeBudget.Utils
 
         public void SetData(List<ChartData> data)
         {
+            if (!_isGridCreated)
+                CreateGrid();
+
             Device.BeginInvokeOnMainThread(() =>
             {
                 data.Sort((el1, el2) => el2.Value.CompareTo(el1.Value));
@@ -58,7 +80,6 @@ namespace HomeBudget.Utils
                     series.Slices.Add(new PieSlice("", 1));
                     series.InsideLabelFormat = "{1}";
                     model.DefaultColors = new List<OxyPlot.OxyColor> { OxyPlot.OxyColor.Parse("#ACACAC") };
-                    legend.IsVisible = false;
                     noDataLabel.IsVisible = true;
                 }
                 else
@@ -69,10 +90,8 @@ namespace HomeBudget.Utils
                         data[i].Color = ToColor(Colors[i]);
                     }
                     model.DefaultColors = Colors;
-                    //legend.ItemsSource = data;
-                    CreateLegend(data);
+                    SetupLegend(data);
 
-                    legend.IsVisible = true;
                     noDataLabel.IsVisible = false;
                 }
 
@@ -81,22 +100,120 @@ namespace HomeBudget.Utils
             });
         }
 
-        private void CreateLegend(List<ChartData> data)
+        private void CreateGrid()
         {
-            legend.Children.Clear();
-            for(var i=0; i<data.Count; i++)
+            Device.BeginInvokeOnMainThread(() =>
             {
-                var layout = new StackLayout { Orientation = StackOrientation.Horizontal, HeightRequest = 20 };
-                var box = new BoxView { Color = data[i].Color, WidthRequest = 10, HeightRequest = 10 };
-                var label = new Label { Text = data[i].Label, FontSize = 12 };
-                layout.Children.Add(box);
-                layout.Children.Add(label);
-                Grid.SetColumn(layout, i%2);
-                Grid.SetRow(layout, i/2);
-                legend.Children.Add(layout);
+                if (LegendPosition == LegendPositionEnum.Bottom || LegendPosition == LegendPositionEnum.Top)
+                {
+                    this.RowDefinitions.Add(new RowDefinition { Height = new GridLength(3, GridUnitType.Star) });
+                    this.RowDefinitions.Add(new RowDefinition { Height = new GridLength(2, GridUnitType.Star) });
+                    CreateLegendAsGrid();
+                }
+                else
+                {
+                    this.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                    this.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                    CreateLegendAsList();
+                }
+#pragma warning disable CC0120 // Your Switch maybe include default clause
+                switch (LegendPosition)
+                {
+                    case LegendPositionEnum.LeftSide:
+                        Grid.SetColumn(chart, 1);
+                        Grid.SetColumn(_legendView, 0);
+                        Grid.SetColumn(noDataLabel, 0);
+                        break;
+                    case LegendPositionEnum.RightSide:
+                        Grid.SetColumn(chart, 0);
+                        Grid.SetColumn(_legendView, 1);
+                        Grid.SetColumn(noDataLabel, 1);
+                        break;
+                    case LegendPositionEnum.Top:
+                        Grid.SetRow(noDataLabel, 0);
+                        Grid.SetRow(_legendView, 0);
+                        Grid.SetRow(chart, 1);
+                        break;
+                    case LegendPositionEnum.Bottom:
+                        Grid.SetRow(noDataLabel, 1);
+                        Grid.SetRow(_legendView, 1);
+                        Grid.SetRow(chart, 0);
+                        break;
+                }
+#pragma warning restore CC0120 // Your Switch maybe include default clause
+                Children.Add(_legendView);
+                _isGridCreated = true;
+            });
+        }
+
+        private void CreateLegendAsGrid()
+        {
+            var legendGrid = new Grid();
+            legendGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
+            legendGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
+
+            legendGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
+            legendGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
+            legendGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
+            legendGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
+            legendGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
+            legendGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
+            legendGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
+
+            _legendView = legendGrid;
+        }
+
+        private void CreateLegendAsList()
+        {
+            var listView = new ListView
+            {
+                RowHeight = 35,
+                ItemTemplate = new DataTemplate(() =>
+                  {
+                      var viewcell = new ViewCell();
+                      var layout = new StackLayout { Orientation = StackOrientation.Horizontal };
+                      var box = new BoxView { WidthRequest = 10, Margin = new Thickness(0, 11) };
+                      box.SetBinding(BoxView.ColorProperty, new Binding("Color"));
+                      var label = new Label { FontSize = 12, VerticalTextAlignment = TextAlignment.Center };
+                      label.SetBinding(Label.TextProperty, new Binding("Label"));
+
+                      layout.Children.Add(box);
+                      layout.Children.Add(label);
+
+                      viewcell.View = layout;
+                      return viewcell;
+                  })
+            };
+
+            _legendView = listView;
+        }
+
+        private void SetupLegend(List<ChartData> data)
+        {
+            if (LegendPosition == LegendPositionEnum.LeftSide || LegendPosition == LegendPositionEnum.RightSide)
+            {
+                if (_legendView is ListView legendList)
+                {
+                    legendList.ItemsSource = data;
+                }
+            }
+            else if(_legendView is Grid legendGrid)
+            {
+                legendGrid.Children.Clear();
+                for (var i = 0; i < data.Count; i++)
+                {
+                    var layout = new StackLayout { Orientation = StackOrientation.Horizontal, HeightRequest = 20 };
+                    var box = new BoxView { Color = data[i].Color, WidthRequest = 10, HeightRequest = 10 };
+                    var label = new Label { Text = data[i].Label, FontSize = 12 };
+                    layout.Children.Add(box);
+                    layout.Children.Add(label);
+                    Grid.SetColumn(layout, i % 2);
+                    Grid.SetRow(layout, i / 2);
+                    legendGrid.Children.Add(layout);
+                }
             }
         }
 
         private static Color ToColor(OxyPlot.OxyColor oxyColor) => Color.FromRgb(oxyColor.R, oxyColor.G, oxyColor.B);
-	}
+    }
 }

@@ -45,8 +45,8 @@
                             <Label x:Name="IncomeChartSwitch" Text="Dochody" FontAttributes="Bold" Rotation="270" Grid.Row="1" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
                         </Grid>
 
-                        <utils:BudgetChart Grid.Column="1" x:Name="chartExpense"/>
-                        <utils:BudgetChart Grid.Column="1" x:Name="chartIncome"/>
+                        <utils:BudgetChart Grid.Column="1" x:Name="chartExpense" LegendPosition="RightSide"/>
+                        <utils:BudgetChart Grid.Column="1" x:Name="chartIncome" LegendPosition="RightSide"/>
                     </Grid>
 
                 </Grid>
