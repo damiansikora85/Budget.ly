@@ -36,6 +36,7 @@ namespace HomeBudget.Droid
             OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init();
             Xamarin.Forms.DependencyService.Register<AndroidNotificationService>();
             Xamarin.Forms.DependencyService.Register<HUDTutorial>();
+            DependencyService.Register<CustomFirebaseRemoteConfig>();
 
             _theApp = new App();
             LoadApplication(_theApp);

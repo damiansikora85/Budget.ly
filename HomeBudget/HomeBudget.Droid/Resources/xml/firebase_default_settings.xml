@@ -2,6 +2,10 @@
 <defaultsMap>
   <entry>
     <key>active_inapp_product_name</key>
-    <value>inapp_default</value>
+    <value>com.darktower.homebudget.dropboxnormal</value>
+  </entry>
+  <entry>
+    <key>is_promo_active</key>
+    <value>false</value>
   </entry>
 </defaultsMap>

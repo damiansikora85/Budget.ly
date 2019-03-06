@@ -7,6 +7,7 @@ using Microsoft.AppCenter.Crashes;
 using HomeBudgeStandard.Utils;
 using Xamarin.Forms.Xaml;
 using Microsoft.AppCenter.Push;
+using HomeBudget.Standard;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace HomeBudget
@@ -28,6 +29,8 @@ namespace HomeBudget
                   "uwp={Your UWP App secret here};" +
                   "ios={Your iOS App secret here}",
                   typeof(Analytics), typeof(Crashes), typeof(Push));
+
+            DependencyService.Get<IRemoteConfig>().Init();
 
             //NotificationManager.ClearAllNotifications();
             //NotificationManager.ReScheduleNotificationsBySettings();

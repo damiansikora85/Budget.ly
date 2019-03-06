@@ -81,6 +81,7 @@
     <Compile Include="Effects\UnderlineEffect.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Native\AndroidNotificationService.cs" />
+    <Compile Include="Native\FirebaseRemoteConfig.cs" />
     <Compile Include="Native\HUDTutorial.cs" />
     <Compile Include="Native\NotificationBroadcastReceiver.cs" />
     <Compile Include="Renderers\CustomCheckboxRenderer.cs" />
