@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 x:Class="HomeBudgeStandard.Pages.RatePage">
+    <ContentPage.Content>
+        <Frame Margin="30,100" Padding="20" HeightRequest="300">
+            <StackLayout >
+                <Label Text="Czy podoba Ci się aplikacja?"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                       FontAttributes="Bold" FontSize="Large"/>
+
+                <Label Text="Twoja opinia jest dla nas bardzo ważna, dlatego proszę podziel się nią z nami. To zajmie Ci tylko chwilę. Dziekujemy za wsparcie!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
+
+                <Button Text="Później" Style="{StaticResource ButtonStyle}" Clicked="OnLaterClick"/>
+                <Button Text="Nie pokazuj więcej" Style="{StaticResource ButtonStyle}" Clicked="OnNotShowAgainClick"/>
+                <Button Text="Oceń teraz" Style="{StaticResource ButtonStyle}" Clicked="OnRateNowClick"/>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</pages:PopupPage>
