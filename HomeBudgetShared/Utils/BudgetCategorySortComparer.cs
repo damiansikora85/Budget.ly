@@ -13,7 +13,11 @@ namespace HomeBudget.Converters
         {
             if(x is BudgetViewModelData first && y is BudgetViewModelData second)
             {
-                return -1;
+                /*if (first.Category.Id != second.Category.Id)
+                    return second.Category.Id - first.Category.Id;
+                else
+                    return second.Subcat.Id - first.Subcat.Id;*/
+                return second.Category.Id - first.Category.Id;
             }
             else if(x is Group group1 && y is Group group2)
             {
