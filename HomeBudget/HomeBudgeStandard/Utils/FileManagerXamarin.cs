@@ -23,18 +23,24 @@ namespace HomeBudgeStandard.Utils
         {
             return await Task.Run(() =>
             {
-                var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                var filePath = Path.Combine(documentsPath, "budget.dat");
-                if (File.Exists(filePath))
+                try
                 {
-                    BudgetData data;
-                    using (var file = File.OpenRead(filePath))
+                    var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                    var filePath = Path.Combine(documentsPath, "budget.dat");
+                    if (File.Exists(filePath))
                     {
-                        data = Serializer.Deserialize<BudgetData>(file);
+                        BudgetData data;
+                        using (var file = File.OpenRead(filePath))
+                        {
+                            data = Serializer.Deserialize<BudgetData>(file);
+                        }
+                        return data;
                     }
-                    return data;
                 }
-
+                catch(Exception exc)
+                {
+                    var msg = exc.Message;
+                }
                 return null;
             });
         }

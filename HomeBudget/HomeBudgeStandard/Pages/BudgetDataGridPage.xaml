@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sf="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:utils="clr-namespace:HomeBudget.Utils"
+             xmlns:converters="clr-namespace:HomeBudget.Converters"
+             xmlns:data="clr-namespace:Syncfusion.Data;assembly=Syncfusion.Data.Portable"
+             xmlns:views="clr-namespace:HomeBudgeStandard.Views"
+             x:Class="HomeBudget.Pages.BudgetDataGridPage"
+             Title="Rzeczywista realizacja budżetu">
+    <!--<ContentPage.Resources>
+        <ResourceDictionary>
+            <utils:BudgetDataGridStyle x:Key="DataGridStyle"/>
+            <converters:BudgetCategorySortComparer x:Key="SortComparer"/>
+            <utils:CurrencyDataGridHeader x:Key="SummaryCaptionAgregate"/>
+            <views:BudgetDataGridSummaryConverter x:Key="CaptionCategoryNameConverter"/>
+            <converters:BudgetGridIconConverter x:Key="CaptionCategoryIconConverter"/>
+            <converters:CurrencyValueConverter x:Key="CurrencyValueConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>-->
+    
+    <ContentPage.Content>
+        <StackLayout x:Name="mainLayout">
+            <!--<Label Text="Rzeczywista realizacja budżetu" TextColor="Black" FontSize="18" HorizontalTextAlignment="Center"/>
+            <sf:SfDataGrid x:Name="dataGrid" EnableDataVirtualization="True" 
+                               AutoGenerateColumns="False" 
+                               AutoExpandGroups="False" 
+                               AllowGroupExpandCollapse="True"
+                               LiveDataUpdateMode="AllowSummaryUpdate"
+                               SelectionMode="SingleDeselect"
+                               NavigationMode="Cell"
+                               FrozenColumnsCount="2"
+                               EditTapAction="OnTap"
+                               CurrentCellEndEdit="DataGrid_CurrentCellEndEdit"
+                               GridStyle="DataGridStyle"
+                               ItemsSource="BudgetData">
+                <sf:SfDataGrid.SortComparers>
+                    <data:SortComparer Comparer="{StaticResource SortComparer}" PropertyName="Category.Name"/>
+                </sf:SfDataGrid.SortComparers>
+
+                <sf:SfDataGrid.GroupColumnDescriptions>
+                    <sf:GroupColumnDescription ColumnName="Category.Name" />
+                </sf:SfDataGrid.GroupColumnDescriptions>
+
+                <sf:SfDataGrid.CaptionSummaryRow>
+                    <sf:GridGroupSummaryRow Title="{}{Key}: {Total}"
+                           ShowSummaryInRow="True">
+                        <sf:GridGroupSummaryRow.SummaryColumns>
+                            <sf:GridSummaryColumn Name="Total"
+                                      Format="C"
+                                      MappingName="Subcat.Value"
+                                      SummaryType="Custom" 
+                                      CustomAggregate="{StaticResource SummaryCaptionAgregate}"/>
+                        </sf:GridGroupSummaryRow.SummaryColumns>
+                    </sf:GridGroupSummaryRow>
+                </sf:SfDataGrid.CaptionSummaryRow>
+
+                <sf:SfDataGrid.CaptionSummaryTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Margin="5,0">
+                            <Image Source="{Binding Converter=}" HeightRequest="25"/>
+                            <Label Text="{Binding Converter={StaticResource CaptionCategoryNameConverter}, ConverterParameter={Reference dataGrid}}"
+                                   FontSize="16" TextColor="Black" FontFamily="FiraSans-Regular.otf#Fira Sans Regular"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </sf:SfDataGrid.CaptionSummaryTemplate>
+
+                <sf:SfDataGrid.Columns>
+                    <sf:GridTextColumn MappingName="Subcat.Name"
+                                       HeaderText="Kategoria"
+                                       Width="100"
+                                       HeaderFont="FiraSans-Bold.otf#Fira Sans Bold"
+                                       RecordFont="FiraSans-Regular.otf#Fira Sans Regular"
+                                       HeaderCellTextSize="16"
+                                       LoadUIView="True"/>
+
+                    <sf:GridNumericColumn MappingName="SubcatReal.Value"
+                                          HeaderText="Suma"
+                                          HeaderFont="FiraSans-Bold.otf#Fira Sans Bold"
+                                          RecordFont="FiraSans-Bold.otf#Fira Sans Bold"
+                                          CellTextSize="10"
+                                          HeaderCellTextSize="16"
+                                          LoadUIView="True"
+                    DisplayBinding="{Binding SubcatReal.Value, Converter=CurrencyValueConverter}"/>
+                </sf:SfDataGrid.Columns>
+
+            </sf:SfDataGrid>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

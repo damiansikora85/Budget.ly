@@ -23,7 +23,7 @@
 
                 <StackLayout VerticalOptions="Center">
                     <Label Text="Pozostało:" HorizontalTextAlignment="Center" FontSize="22" TextColor="White" LineBreakMode="NoWrap"/>
-                    <Label Text="{Binding DiffReal, Converter={StaticResource CurrencyValueConverter}}" FontSize="28" TextColor="White" HorizontalTextAlignment="Center" LineBreakMode="NoWrap"/>
+                    <Label Text="{Binding DiffReal, Converter={StaticResource CurrencyValueConverter}}" FontSize="28" TextColor="White" HorizontalTextAlignment="Center" HorizontalOptions="Center" LineBreakMode="NoWrap"/>
                 </StackLayout>
 
                 <Grid Grid.Column="1" Margin="0, 16">

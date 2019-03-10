@@ -60,7 +60,7 @@
                     
                 </Grid>
 
-                <Entry Keyboard="Numeric" Grid.Row="1" Grid.ColumnSpan="4" Text="{Binding FormulaText}" HorizontalTextAlignment="Start"/>
+                <Editor Keyboard="Numeric" Grid.Row="1" Grid.ColumnSpan="4" Text="{Binding FormulaText}"  />
                 <Label x:Name="Result" TextColor="Black" FontSize="Large" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding CalculationResultText}" HorizontalTextAlignment="End" />
 
                 <Button Grid.Row="3" Text="←" Command="{Binding KeyPressed}" CommandParameter="Backspace" Style="{StaticResource calcButton}"/>

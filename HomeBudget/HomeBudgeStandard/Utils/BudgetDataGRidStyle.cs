@@ -1,4 +1,5 @@
-﻿using Syncfusion.SfDataGrid.XForms;
+﻿using Syncfusion.Data;
+using Syncfusion.SfDataGrid.XForms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,37 +11,34 @@ namespace HomeBudget.Utils
 {
     public class BudgetDataGridStyle : DataGridStyle
     {
-        public override Color GetHeaderBackgroundColor()
+        public override Color GetCaptionSummaryRowBackgroundColor()
         {
             return Color.White;
         }
 
-        public override Color GetCaptionSummaryRowBackgroundColor()
+        public override Color GetCaptionSummaryRowBackgroundColor(Group group)
         {
-            return Color.FromHex("f5f5f5"); 
+            return Color.White;
         }
 
         public override Color GetCaptionSummaryRowForegroundColor()
         {
-            return Color.FromHex("232825");
+            return Color.Black;
         }
 
-        public override GridLinesVisibility GetGridLinesVisibility()
+        public override ImageSource GetGroupCollapseIcon()
         {
-            return GridLinesVisibility.Horizontal;
+            return ImageSource.FromFile("collapse.png");
         }
 
-        public override Color GetRecordBackgroundColor()
+        public override ImageSource GetGroupExpanderIcon()
         {
-            return Color.FromHex("f5f5f5");
+            return ImageSource.FromFile("expand.png");
         }
 
-        public override Color GetAlternatingRowBackgroundColor()
+        public override Color GetHeaderBackgroundColor()
         {
-            
-            return Color.FromHex("f9f9f9");
+            return Color.White;
         }
-
-        
     }
 }

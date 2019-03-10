@@ -7,6 +7,7 @@ using HomeBudget.Converters;
 using HomeBudget.Utils;
 using Syncfusion.Data;
 using Syncfusion.SfDataGrid.XForms;
+using Syncfusion.SfNumericTextBox.XForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -151,7 +152,9 @@ namespace HomeBudgeStandard.Views
                 LiveDataUpdateMode = LiveDataUpdateMode.AllowSummaryUpdate,
                 SelectionMode = SelectionMode.Single,
                 NavigationMode = NavigationMode.Cell,
-                EditTapAction = TapAction.OnTap
+                EditTapAction = TapAction.OnTap,
+                GridStyle = new BudgetDataGridStyle(),
+                Margin = new Thickness(12, 0),
             };
 
             _dataGrid.SortComparers.Add(new SortComparer
@@ -165,6 +168,24 @@ namespace HomeBudgeStandard.Views
             {
                 ColumnName = "Category.Name"
             });
+
+            /*_dataGrid.CaptionSummaryTemplate = new DataTemplate(() =>
+            {
+                var stackLayout = new StackLayout { Orientation = StackOrientation.Horizontal, Margin = new Thickness(5, 0) };
+                var label = new Label { FontFamily = "FiraSans-Regular.otf#Fira Sans Regular", VerticalTextAlignment = TextAlignment.Center, FontSize = 16, TextColor = Color.Black };
+
+                var icon = new Image { HeightRequest = 25 };
+                icon.SetBinding(Image.SourceProperty, new Binding(".", BindingMode.Default, new BudgetGridIconConverter(), _dataGrid));
+
+                var converter = new BudgetDataGridSummaryConverter();
+                var binding = new Binding(".", BindingMode.Default, converter, _dataGrid);
+                label.SetBinding(Label.TextProperty, binding);
+
+                stackLayout.Children.Add(icon);
+                stackLayout.Children.Add(label);
+
+                return new ViewCell { View = stackLayout };
+            });*/
 
             var gridSummaryRow = new GridGroupSummaryRow
             {
@@ -188,8 +209,12 @@ namespace HomeBudgeStandard.Views
             {
                 MappingName = "Subcat.Name",
                 HeaderText = "Kategoria",
-                HeaderFontAttribute = FontAttributes.Bold,
-                Width = 100
+                HeaderFont = "FiraSans-Bold.otf#Fira Sans Bold",
+                RecordFont = "FiraSans-Regular.otf#Fira Sans Regular",
+                HeaderCellTextSize = 16,
+                LoadUIView = true,
+                ColumnSizer = ColumnSizer.Star,
+                //Width = 100
             });
 
             _dataGrid.Columns.Add(new GridNumericColumn
@@ -197,22 +222,27 @@ namespace HomeBudgeStandard.Views
                 MappingName = "SubcatPlanned.Value",
                 HeaderText = "Suma",
                 AllowEditing = true,
-                HeaderFontAttribute = FontAttributes.Bold,
+                HeaderFont = "FiraSans-Bold.otf#Fira Sans Bold",
+                RecordFont = "FiraSans-Regular.otf#Fira Sans Regular",
+                //LoadUIView = true,
+                CellTextSize = 14,
+                HeaderCellTextSize = 16,
                 ColumnSizer = ColumnSizer.Star,
+                
                 DisplayBinding = new Binding() { Path = "SubcatPlanned.Value", Converter = new CurrencyValueConverter() }
         });
 
             _dataGrid.SetBinding(SfDataGrid.ItemsSourceProperty, nameof(Budget));
 
             var grid = new Grid();
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(3, GridUnitType.Star) });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(3, GridUnitType.Star) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = 50 });
 
             grid.Children.Add(_dataGrid);
-            var button = new Button { Text = "Użyj w kolejnych miesiącach", BackgroundColor = Color.DodgerBlue, TextColor = Color.White, VerticalOptions = LayoutOptions.End, Margin= new Thickness(12, 12) };
+            var button = new Button { Text = "Użyj w kolejnych miesiącach", BackgroundColor = Color.DodgerBlue, TextColor = Color.White, VerticalOptions = LayoutOptions.End, Margin= new Thickness(12, 3) };
             button.Clicked += OnSave;
             grid.Children.Add(button);
-            Grid.SetColumn(button, 1);
+            Grid.SetRow(button, 1);
 
             Grid.SetRow(grid, 2);
             _mainGrid.Children.Add(grid);

@@ -44,8 +44,6 @@ namespace HomeBudget.Droid.Renderers
             return dialog;
         }
 
-
-
         protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.DatePicker> e)
         {
             base.OnElementChanged(e);

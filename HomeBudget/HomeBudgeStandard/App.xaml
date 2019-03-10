@@ -14,11 +14,17 @@
             <OnPlatform x:TypeArguments="x:String" x:Key="FiraSansBold">
                 <On Platform="Android" Value="FiraSans-Bold.otf#Fira Sans Bold" />
             </OnPlatform>
-            
+            <OnPlatform x:TypeArguments="x:String" x:Key="FiraSansItalic">
+                <On Platform="Android" Value="FiraSans-Italic.otf#Fira Sans Italic" />
+            </OnPlatform>
+
             <Style TargetType="Label">
                 <Style.Triggers>
                     <Trigger TargetType="Label" Property="FontAttributes" Value="Bold">
                         <Setter Property="FontFamily" Value="{StaticResource FiraSansBold}"/>
+                    </Trigger>
+                    <Trigger TargetType="Label" Property="FontAttributes" Value="Italic">
+                        <Setter Property="FontFamily" Value="{StaticResource FiraSansItalic}"/>
                     </Trigger>
                 </Style.Triggers>
                 <Setter Property="FontFamily" Value="{StaticResource FiraSans}"/>

@@ -4,21 +4,35 @@
              x:Class="HomeBudgeStandard.Pages.AboutPage">
     <ContentPage.Content>
         <StackLayout Margin="20,10">
-            <Image Source="icon"/>
-            <Label Text="Budget.ly" TextColor="CornflowerBlue" FontSize="26" HorizontalTextAlignment="Center" LineBreakMode="NoWrap"/>
-            <Label Text="Budget.ly to aplikacja do łatwego zarządzania Twoim budżetem domowym."/>
-            <Label >
+            <Image Source="Logo256" HeightRequest="100"/>
+            <Label Text="Budget.ly" TextColor="DodgerBlue" FontSize="26" HorizontalTextAlignment="Center" LineBreakMode="NoWrap"/>
+            <Label Text="Budget.ly to aplikacja do łatwego zarządzania Twoim budżetem domowym." TextColor="Black"/>
+            <Label TextColor="Black" >
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Wzorzec kategorii pochodzi z bloga: "/>
-                        <Span Text=" jakoszczedzacpieniadze.pl" FontAttributes="Bold" TextColor="Blue">
+                        <Span Text="Wzorzec kategorii pochodzi z bloga:&#x0a;"/>
+                        <Span Text="jakoszczedzacpieniadze.pl" FontAttributes="Bold" TextColor="Blue">
                             <Span.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding LinkCommand}"/>
+                                <TapGestureRecognizer Command="{Binding LinkJOP}"/>
                             </Span.GestureRecognizers>
                         </Span>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
+
+            <Label TextColor="Black" VerticalOptions="StartAndExpand">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Ikony pochodzą ze strony:&#x0a;"/>
+                        <Span Text="icons8.com" FontAttributes="Bold" TextColor="Blue">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LinkI8}"/>
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label x:Name="version" VerticalOptions="End"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
