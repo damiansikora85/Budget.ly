@@ -99,11 +99,11 @@
     <AndroidAsset Include="Assets\FiraSans-Regular.otf" />
     <AndroidAsset Include="Assets\FiraSans-Bold.otf" />
     <GoogleServicesJson Include="google-services.json" />
+    <AndroidAsset Include="Assets\FiraSans-Italic.otf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\icon.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
