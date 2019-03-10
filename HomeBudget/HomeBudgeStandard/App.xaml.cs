@@ -8,6 +8,7 @@ using HomeBudgeStandard.Utils;
 using Xamarin.Forms.Xaml;
 using Microsoft.AppCenter.Push;
 using HomeBudget.Standard;
+using System;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace HomeBudget
@@ -31,6 +32,11 @@ namespace HomeBudget
                   typeof(Analytics), typeof(Crashes), typeof(Push));
 
             DependencyService.Get<IRemoteConfig>().Init();
+
+            if (Xamarin.Essentials.Preferences.Get("firstLaunch", true))
+            {
+                Xamarin.Essentials.Preferences.Set("ratePopupDisplayDate", DateTime.Now); 
+            }
 
             //NotificationManager.ClearAllNotifications();
             //NotificationManager.ReScheduleNotificationsBySettings();
