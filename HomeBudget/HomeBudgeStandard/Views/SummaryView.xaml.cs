@@ -76,6 +76,7 @@ namespace HomeBudgeStandard.Views
             {
                 UpdateSummary();
                 _setupDone = true;
+                TryFirstLaunchInfo();
                 TryShowRatePopup();
             }
             else if (SummaryListViewItems == null)
@@ -92,6 +93,15 @@ namespace HomeBudgeStandard.Views
             }
 
             _setupDone = true;
+        }
+
+        private void TryFirstLaunchInfo()
+        {
+            if (Xamarin.Essentials.Preferences.Get("firstLaunch", true))
+            {
+                Xamarin.Essentials.Preferences.Set("firstLaunch", false);
+                Navigation.PushPopupAsync(new WelcomePopup());
+            }
         }
 
         protected override void OnDisappearing()
