@@ -12,18 +12,25 @@ namespace HomeBudgeStandard.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AboutPage : ContentPage
 	{
-        public Command LinkCommand { get; private set; }
-		public AboutPage ()
+        public Command LinkJOP { get; private set; }
+        public Command LinkI8 { get; private set; }
+        public AboutPage ()
 		{
-            LinkCommand = new Command(() => OpenLink());
-			InitializeComponent ();
+            LinkJOP = new Command(() => OpenJOP());
+            LinkJOP = new Command(() => OpenI8());
+            InitializeComponent ();
             BindingContext = this;
             version.Text = $"Wersja: {Xamarin.Essentials.VersionTracking.CurrentVersion}({Xamarin.Essentials.VersionTracking.CurrentBuild})";
 		}
 
-        private void OpenLink()
+        private void OpenJOP()
         {
             Device.OpenUri(new Uri("https://jakoszczedzacpieniadze.pl/darmowy-szablon-budzetu-domowego"));
+        }
+
+        private void OpenI8()
+        {
+            Device.OpenUri(new Uri("https://icons8.com"));
         }
     }
 }
