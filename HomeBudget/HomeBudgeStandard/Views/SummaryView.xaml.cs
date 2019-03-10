@@ -1,4 +1,6 @@
 ﻿using Acr.UserDialogs;
+using HomeBudgeStandard.Pages;
+using HomeBudget;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
@@ -54,12 +56,29 @@ namespace HomeBudgeStandard.Views
         private void BudgetDataChanged(bool isLoadedFromCloud)
         {
             UpdateSummary();
+            TryShowRatePopup();
+        }
+
+        private void TryShowRatePopup()
+        {
+            if (!_setupDone) return;
+            var lastRatePopupDisplayedDate = Xamarin.Essentials.Preferences.Get("ratePopupDisplayDate", DateTime.MinValue);
+            if ((DateTime.Now - lastRatePopupDisplayedDate).TotalDays >= 5 && Xamarin.Essentials.Preferences.Get("shouldShowRatePopup", true))
+            {
+                Navigation.PushPopupAsync(new RatePage());
+                Xamarin.Essentials.Preferences.Set("ratePopupDisplayDate", DateTime.Now);
+            }
         }
 
         protected override void OnAppearing()
         {
             if (MainBudget.Instance.IsDataLoaded && !_setupDone)
+            {
                 UpdateSummary();
+                _setupDone = true;
+                TryFirstLaunchInfo();
+                TryShowRatePopup();
+            }
             else if (SummaryListViewItems == null)
             {
                 loader.IsRunning = true;
@@ -74,6 +93,15 @@ namespace HomeBudgeStandard.Views
             }
 
             _setupDone = true;
+        }
+
+        private void TryFirstLaunchInfo()
+        {
+            if (Xamarin.Essentials.Preferences.Get("firstLaunch", true))
+            {
+                Xamarin.Essentials.Preferences.Set("firstLaunch", false);
+                Navigation.PushPopupAsync(new WelcomePopup());
+            }
         }
 
         protected override void OnDisappearing()

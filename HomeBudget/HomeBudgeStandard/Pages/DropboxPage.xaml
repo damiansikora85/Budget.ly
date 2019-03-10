@@ -38,7 +38,7 @@
                         </Label.FontFamily>
                     </Label>
                 </StackLayout>
-                <Button Text="Consume" Style="{StaticResource ButtonStyle}" Clicked="OnConsume" Margin="0,15"/>
+                <!--<Button Text="Consume" Style="{StaticResource ButtonStyle}" Clicked="OnConsume" Margin="0,15"/>-->
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

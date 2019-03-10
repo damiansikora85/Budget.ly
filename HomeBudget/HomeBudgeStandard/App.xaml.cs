@@ -6,6 +6,9 @@ using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using HomeBudgeStandard.Utils;
 using Xamarin.Forms.Xaml;
+using Microsoft.AppCenter.Push;
+using HomeBudget.Standard;
+using System;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace HomeBudget
@@ -26,7 +29,14 @@ namespace HomeBudget
             Microsoft.AppCenter.AppCenter.Start("android=d788ef5d-e265-4c16-abbf-2e9469285d52;" +
                   "uwp={Your UWP App secret here};" +
                   "ios={Your iOS App secret here}",
-                  typeof(Analytics), typeof(Crashes));
+                  typeof(Analytics), typeof(Crashes), typeof(Push));
+
+            DependencyService.Get<IRemoteConfig>().Init();
+
+            if (Xamarin.Essentials.Preferences.Get("firstLaunch", true))
+            {
+                Xamarin.Essentials.Preferences.Set("ratePopupDisplayDate", DateTime.Now); 
+            }
 
             //NotificationManager.ClearAllNotifications();
             //NotificationManager.ReScheduleNotificationsBySettings();

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "916660105888",
+    "firebase_url": "https://budgetly-f7c14.firebaseio.com",
+    "project_id": "budgetly-f7c14",
+    "storage_bucket": "budgetly-f7c14.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916660105888:android:6d7ad8800b972244",
+        "android_client_info": {
+          "package_name": "com.darktower.homebudget"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916660105888-0esgqkh6ajrtn0ec2as1vbkl6n1ld0lf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeVt0vttQ2a3GzHaZ7djgqyDAR0GyQgr4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
