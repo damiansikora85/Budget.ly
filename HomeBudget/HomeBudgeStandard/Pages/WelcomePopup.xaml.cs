@@ -20,6 +20,7 @@ namespace HomeBudgeStandard.Pages
             LinkCommand = new Command(() => OpenLink());
             InitializeComponent ();
             BindingContext = this;
+            CloseWhenBackgroundIsClicked = false;
 		}
 
         private void OpenLink()
@@ -67,6 +68,11 @@ namespace HomeBudgeStandard.Pages
         private async void LetsStart(object sender, EventArgs args)
         {
             await Navigation.PopPopupAsync();
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
         }
     }
 }
