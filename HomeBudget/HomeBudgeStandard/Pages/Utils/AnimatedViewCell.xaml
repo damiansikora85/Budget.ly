@@ -6,10 +6,10 @@
   <ViewCell.View>
         <Grid x:Name="layout" BackgroundColor="White" Margin="5,0" Padding="0,5" RowSpacing="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="40"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -25,8 +25,8 @@
 
             <components:GradientProgressBar Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Progress="{Binding SpendPercentage}" InputTransparent="True"/>
 
-            <Image Grid.RowSpan="3" Margin="13,13" Source="{Binding Icon}" InputTransparent="True"/>
-            <Image Grid.RowSpan="3" Grid.Column="3" Source="add.png" BackgroundColor="Transparent" Margin="10,10"/>
+            <Image Grid.RowSpan="3" Margin="0,13" Source="{Binding Icon}" InputTransparent="True"/>
+            <Image Grid.RowSpan="3" Grid.Column="3" Source="add.png" BackgroundColor="Transparent" Margin="5,10"/>
         </Grid>
     </ViewCell.View>
 </ViewCell>
