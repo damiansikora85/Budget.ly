@@ -4,6 +4,7 @@ using Dropbox.Api.Files;
 using HomeBudgeStandard.Interfaces.Impl;
 using HomeBudget.Code;
 using HomeBudget.Standard;
+using Microsoft.AppCenter.Crashes;
 using System;
 using System.Threading.Tasks;
 
@@ -71,51 +72,59 @@ namespace HomeBudgeStandard.Pages
         {
             UserDialogs.Instance.ShowLoading("");
 
-            _iapName = DependencyService.Get<IRemoteConfig>().GetActiveInappName();
-            _isPromo = DependencyService.Get<IRemoteConfig>().IsPromoActive();
+            try
+            {
+                _iapName = DependencyService.Get<IRemoteConfig>().GetActiveInappName();
+                _isPromo = DependencyService.Get<IRemoteConfig>().IsPromoActive();
 
-            if (await IsAnyProductBought())
-            {
-                iapLayout.IsVisible = false;
-                connectLayout.IsVisible = true;
-            }
-            else if(_isPromo)
-            {
-                iapLayout.IsVisible = true;
-                connectLayout.IsVisible = false;
-                var promoItemInfo = await _purchaseService.GetProductInfo(_iapName);
-                var regularItemInfo = await _purchaseService.GetProductInfo("com.darktower.homebudget.dropboxnormal");
-                if (promoItemInfo != null && regularItemInfo != null)
+                if (await IsAnyProductBought())
                 {
-                    PromoPrice = $"  {promoItemInfo.LocalizedPrice}";
-                    RegularPrice = regularItemInfo.LocalizedPrice;
+                    iapLayout.IsVisible = false;
+                    connectLayout.IsVisible = true;
+                }
+                else if (_isPromo)
+                {
+                    iapLayout.IsVisible = true;
+                    connectLayout.IsVisible = false;
+                    var promoItemInfo = await _purchaseService.GetProductInfo(_iapName);
+                    var regularItemInfo = await _purchaseService.GetProductInfo("com.darktower.homebudget.dropboxnormal");
+                    if (promoItemInfo != null && regularItemInfo != null)
+                    {
+                        PromoPrice = $"  {promoItemInfo.LocalizedPrice}";
+                        RegularPrice = regularItemInfo.LocalizedPrice;
 
-                    OnPropertyChanged(nameof(PromoPrice));
-                    OnPropertyChanged(nameof(RegularPrice));
+                        OnPropertyChanged(nameof(PromoPrice));
+                        OnPropertyChanged(nameof(RegularPrice));
+                    }
+                }
+                else
+                {
+                    iapLayout.IsVisible = true;
+                    connectLayout.IsVisible = false;
+
+                    var regularItemInfo = await _purchaseService.GetProductInfo("com.darktower.homebudget.dropboxnormal");
+                    if (regularItemInfo != null)
+                    {
+                        PromoPrice = regularItemInfo.LocalizedPrice;
+                        OnPropertyChanged(nameof(PromoPrice));
+                    }
                 }
             }
-            else
+            catch (Exception exc)
             {
-                iapLayout.IsVisible = true;
-                connectLayout.IsVisible = false;
-
-                var regularItemInfo = await _purchaseService.GetProductInfo("com.darktower.homebudget.dropboxnormal");
-                if (regularItemInfo != null)
-                {
-                    PromoPrice = regularItemInfo.LocalizedPrice;
-                    OnPropertyChanged(nameof(PromoPrice));
-                }
+                Crashes.TrackError(exc);
             }
-
-            UserDialogs.Instance.HideLoading();
-            base.OnAppearing();
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+            }
         }
 
         private async Task<bool> IsAnyProductBought()
         {
-            return await Task.FromResult(false);
-            //return await _purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropbox") ||
-              //              await _purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropboxnormal");
+            //return await Task.FromResult(false);
+            return await _purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropbox") ||
+                           await _purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropboxnormal");
         }
 
         private async void OnIapClick(object sender, EventArgs e)
