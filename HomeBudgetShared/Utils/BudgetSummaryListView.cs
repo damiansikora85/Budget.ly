@@ -1,4 +1,5 @@
 ﻿using HomeBudget.Code.Logic;
+using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -51,22 +52,32 @@ namespace HomeBudget.Pages.Utils
 
         public async void Expand()
         {
-            IsExpanded = true;
-            IsExpanding = true;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsExpanded)));
-
-            foreach (var subcat in _sublist)
+            try
             {
-                this.Add(subcat);
-            }
+                if (IsExpanding) return;
+                IsExpanded = true;
+                IsExpanding = true;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsExpanded)));
 
-            foreach(var subcat in this)
+                foreach (var subcat in _sublist)
+                {
+                    this.Add(subcat);
+                }
+
+                foreach (var subcat in this)
+                {
+                    subcat.Expand();
+                    await Task.Delay(100);
+                }
+
+                IsExpanding = false;
+            }
+            catch(Exception exc)
             {
-                subcat.Expand();
-                await Task.Delay(100);
+                Crashes.TrackError(exc);
+                IsExpanding = false;
+                IsExpanded = false;
             }
-
-            IsExpanding = false;
         }
 
         public void Collapse()
