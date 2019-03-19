@@ -1,11 +1,7 @@
 ﻿using OxyPlot.Series;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,6 +12,8 @@ namespace HomeBudget.Utils
         public string Label { get; set; }
         public double Value { get; set; }
         public Color Color { get; set; }
+        public double Percentage { get; set; }
+        public string LabelAndPercentage => $"{Label} ({Math.Round(Percentage*100, 1)}%)";
     }
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -64,7 +62,7 @@ namespace HomeBudget.Utils
                 data.Sort((el1, el2) => el2.Value.CompareTo(el1.Value));
                 var series = new PieSeries
                 {
-                    InsideLabelFormat = "{2:f0}%",
+                    InsideLabelFormat = null,//"{2:f0}%",
                     //OutsideLabelFormat = "{1}({2:f0}%)",//"{2:f0}%",
                     OutsideLabelFormat = null,
                     StartAngle = 270,
@@ -172,10 +170,10 @@ namespace HomeBudget.Utils
                   {
                       var viewcell = new ViewCell();
                       var layout = new StackLayout { Orientation = StackOrientation.Horizontal };
-                      var box = new BoxView { WidthRequest = 10, Margin = new Thickness(0, 11) };
+                      var box = new BoxView { WidthRequest = 20, Margin = new Thickness(0, 11) };
                       box.SetBinding(BoxView.ColorProperty, new Binding("Color"));
                       var label = new Label { FontSize = 12, VerticalTextAlignment = TextAlignment.Center };
-                      label.SetBinding(Label.TextProperty, new Binding("Label"));
+                      label.SetBinding(Label.TextProperty, new Binding("LabelAndPercentage"));
 
                       layout.Children.Add(box);
                       layout.Children.Add(label);
@@ -204,7 +202,7 @@ namespace HomeBudget.Utils
                 {
                     var layout = new StackLayout { Orientation = StackOrientation.Horizontal, HeightRequest = 20 };
                     var box = new BoxView { Color = data[i].Color, WidthRequest = 10, HeightRequest = 10 };
-                    var label = new Label { Text = data[i].Label, FontSize = 12 };
+                    var label = new Label { Text = $"{data[i].Label} ({Math.Round(data[i].Percentage*100, 1)}%)", FontSize = 12 };
                     layout.Children.Add(box);
                     layout.Children.Add(label);
                     Grid.SetColumn(layout, i % 2);
