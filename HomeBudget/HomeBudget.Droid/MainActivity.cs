@@ -6,6 +6,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
+using Firebase;
 using HomeBudget.Droid.Native;
 using HomeBudget.Pages;
 using Plugin.InAppBilling;
@@ -27,6 +28,7 @@ namespace HomeBudget.Droid
 
             base.OnCreate(bundle);
 
+            FirebaseApp.InitializeApp(this);
             Xamarin.Essentials.Platform.Init(this, bundle);
             Rg.Plugins.Popup.Popup.Init(this, bundle);
             UserDialogs.Init(this);
