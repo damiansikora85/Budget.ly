@@ -20,14 +20,14 @@
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
-                        <Button x:Name="PreviousMonthButton" BackgroundColor="Transparent" Text="&#xf104;" Clicked="OnPrevMonth">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="12,0">
+                        <Button x:Name="PreviousMonthButton" Text="&#xf104;" BackgroundColor="Transparent" Clicked="OnPrevMonth" WidthRequest="60" HorizontalOptions="Start">
                             <Button.FontFamily>
                                 <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
                             </Button.FontFamily>
                         </Button>
-                        <Label Text="{Binding Date}" HorizontalTextAlignment="Center" FontSize="Large" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
-                        <Button x:Name="NextMonthButton" BackgroundColor="Transparent" Text="&#xf105;" Clicked="OnNextMonth">
+                        <Label Text="{Binding Date}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" FontSize="Large" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
+                        <Button x:Name="NextMonthButton" BackgroundColor="Transparent" Text="&#xf105;" Clicked="OnNextMonth" WidthRequest="60" HorizontalOptions="End">
                             <Button.FontFamily>
                                 <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
                             </Button.FontFamily>
