@@ -186,13 +186,14 @@ namespace HomeBudgeStandard.Views
                 SetupBudgetSummary();
 
                 HideCalcView();
+                summaryList.ScrollTo(selectedSubcat, _selectedCategory, ScrollToPosition.Center, false);
+                _selectedCategory.Collapse();
                 _selectedCategory.RaisePropertyChanged();
                 _selectedCategory = null;
                 _lastClickedElem = null;
                 Navigation.PopPopupAsync();
             };
-            _selectedCategory.Collapse();
-
+            
             await Navigation.PushPopupAsync(_calcView);
         }
 
