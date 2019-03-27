@@ -101,7 +101,7 @@ namespace HomeBudget.Pages.Utils
         public string IconFile { get; set; }
         public double SpendPercentage =>
                 //Random rand = new Random();
-                CategoryPlanned.TotalValues > 0 ? Math.Min((CategoryReal.TotalValues / CategoryPlanned.TotalValues), 1) : 0; 
+                CategoryPlanned.TotalValues > 0 ? Math.Min((CategoryReal.TotalValues / CategoryPlanned.TotalValues), 1) : 1; 
 
         public int SpendPercentageInt
         {
