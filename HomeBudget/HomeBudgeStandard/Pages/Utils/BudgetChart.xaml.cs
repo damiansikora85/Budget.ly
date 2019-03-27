@@ -66,9 +66,9 @@ namespace HomeBudget.Utils
                     //OutsideLabelFormat = "{1}({2:f0}%)",//"{2:f0}%",
                     OutsideLabelFormat = null,
                     StartAngle = 270,
-                    Diameter=0.90,
+                    Diameter = 0.90,
                     InnerDiameter = 0.5,
-                    InsideLabelPosition = 1.2
+                    InsideLabelPosition = 0.8,
                 };
 
                 var model = new OxyPlot.PlotModel();
@@ -79,6 +79,7 @@ namespace HomeBudget.Utils
                     series.InsideLabelFormat = "{1}";
                     model.DefaultColors = new List<OxyPlot.OxyColor> { OxyPlot.OxyColor.Parse("#ACACAC") };
                     noDataLabel.IsVisible = true;
+                    _legendView.IsVisible = false;
                 }
                 else
                 {
@@ -104,8 +105,8 @@ namespace HomeBudget.Utils
             {
                 if (LegendPosition == LegendPositionEnum.Bottom || LegendPosition == LegendPositionEnum.Top)
                 {
-                    this.RowDefinitions.Add(new RowDefinition { Height = new GridLength(3, GridUnitType.Star) });
-                    this.RowDefinitions.Add(new RowDefinition { Height = new GridLength(2, GridUnitType.Star) });
+                    this.RowDefinitions.Add(new RowDefinition { Height = new GridLength(5, GridUnitType.Star) });
+                    this.RowDefinitions.Add(new RowDefinition { Height = new GridLength(4, GridUnitType.Star) });
                     CreateLegendAsGrid();
                 }
                 else
@@ -188,6 +189,7 @@ namespace HomeBudget.Utils
 
         private void SetupLegend(List<ChartData> data)
         {
+            _legendView.IsVisible = true;
             if (LegendPosition == LegendPositionEnum.LeftSide || LegendPosition == LegendPositionEnum.RightSide)
             {
                 if (_legendView is ListView legendList)

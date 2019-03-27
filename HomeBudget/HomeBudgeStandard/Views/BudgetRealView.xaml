@@ -17,7 +17,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="45"/>
                     </Grid.RowDefinitions>
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="12,0">
