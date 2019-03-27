@@ -30,7 +30,7 @@ namespace HomeBudget.Pages
 
         protected override async void OnAppearing()
         {
-            MessagingCenter.Send(this, "Landscape");
+            //MessagingCenter.Send(this, "Landscape");
             Device.BeginInvokeOnMainThread(async () =>
                 {
                     CreateDataGrid();
@@ -90,7 +90,7 @@ namespace HomeBudget.Pages
                 AutoExpandGroups = false,
                 AllowGroupExpandCollapse = true,
                 LiveDataUpdateMode = Syncfusion.Data.LiveDataUpdateMode.AllowSummaryUpdate,
-                SelectionMode = SelectionMode.SingleDeselect,
+                SelectionMode = Syncfusion.SfDataGrid.XForms.SelectionMode.SingleDeselect,
                 NavigationMode = NavigationMode.Cell,
                 FrozenColumnsCount = 2,
                 EditTapAction = TapAction.OnTap,
