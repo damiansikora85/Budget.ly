@@ -81,6 +81,18 @@ namespace HomeBudgeStandard.Pages
                 {
                     iapLayout.IsVisible = false;
                     connectLayout.IsVisible = true;
+                    if (string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken))
+                    {
+                        //if synchro bought but not active
+                        resyncButton.IsVisible = true;
+                        synchroStatusLabel.Text = "Synchronizacja nieaktywna";
+                    }
+                    else
+                    {
+                        //synchro is active
+                        resyncButton.IsVisible = false;
+                        synchroStatusLabel.Text = "Synchronizacja jest aktywna";
+                    }
                 }
                 else if (_isPromo)
                 {
