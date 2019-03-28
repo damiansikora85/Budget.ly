@@ -150,7 +150,7 @@ namespace HomeBudgeStandard.Views
                 AutoExpandGroups = false,
                 AllowGroupExpandCollapse = true,
                 LiveDataUpdateMode = LiveDataUpdateMode.AllowSummaryUpdate,
-                SelectionMode = SelectionMode.Single,
+                SelectionMode = Syncfusion.SfDataGrid.XForms.SelectionMode.Single,
                 NavigationMode = NavigationMode.Cell,
                 EditTapAction = TapAction.OnTap,
                 GridStyle = new BudgetDataGridStyle(),
@@ -253,27 +253,29 @@ namespace HomeBudgeStandard.Views
             Device.BeginInvokeOnMainThread(() =>
             {
                 var budgetPlanned = MainBudget.Instance.GetMonth(date).BudgetPlanned;
-                var chartDataExpenses = new List<ChartData>();
-                foreach (BudgetPlannedCategory category in budgetPlanned.Categories)
-                {
-                    if (!category.IsIncome && category.TotalValues > 0)
-                    {
-                        chartDataExpenses.Add(new ChartData { Label = category.Name, Value = category.TotalValues });
-                    }
-                }
-                _chartExpense.SetData(chartDataExpenses);
-
 
                 var chartDataIncome = new List<ChartData>();
                 var incomesCategories = budgetPlanned.GetIncomesCategories();
+                var totalIncome = incomesCategories.Sum(el => el.TotalValues);
                 foreach (BudgetPlannedCategory category in incomesCategories)
                 {
                     foreach (BaseBudgetSubcat subcat in category.subcats)
                     {
                         if (subcat.Value > 0)
-                            chartDataIncome.Add(new ChartData { Label = subcat.Name, Value = subcat.Value });
+                            chartDataIncome.Add(new ChartData { Label = subcat.Name, Value = subcat.Value, Percentage = subcat.Value/totalIncome });
+                    }
+
+                }
+                var chartDataExpenses = new List<ChartData>();
+                var totalExpense = budgetPlanned.Categories.Sum(el => el.TotalValues) - totalIncome;
+                foreach (BudgetPlannedCategory category in budgetPlanned.Categories)
+                {
+                    if (!category.IsIncome && category.TotalValues > 0)
+                    {
+                        chartDataExpenses.Add(new ChartData { Label = category.Name, Value = category.TotalValues, Percentage = category.TotalValues/totalExpense });
                     }
                 }
+                _chartExpense.SetData(chartDataExpenses);
 
                 _chartIncome.SetData(chartDataIncome);
             });

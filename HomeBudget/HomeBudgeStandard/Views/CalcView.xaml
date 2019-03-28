@@ -18,7 +18,7 @@
     </pages:PopupPage.Resources>
     
     <pages:PopupPage.Content>
-        <Frame HasShadow="False" BorderColor="#00C1DF" Margin="30,40" Padding="10" >
+        <Frame HasShadow="False" BackgroundColor="#DAFFFFFF" BorderColor="#00C1DF" Margin="30,40" Padding="10" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />
@@ -87,8 +87,8 @@
                 <Button Grid.Row="6" Grid.RowSpan="2" Grid.Column="3" Command="{Binding KeyPressed}" CommandParameter="Equal" Text="=" Style="{StaticResource calcButton}"/>
 
                 <FlexLayout Grid.Row="8" Grid.ColumnSpan="4" >
-                    <Button Text="Anuluj" Clicked="OnCancelClicked" FlexLayout.Grow="1" BackgroundColor="Transparent" TextColor="DodgerBlue" Margin="5,20,5,5"/>
-                    <Button Text="Zapisz" Clicked="OnSave" BackgroundColor="Transparent" TextColor="DodgerBlue" Margin="5,20,5,5"/>
+                    <Button Text="Anuluj" Clicked="OnCancelClicked" FlexLayout.Grow="1" BackgroundColor="Transparent" TextColor="DodgerBlue" Margin="5,20,5,0"/>
+                    <Button Text="Zapisz" Clicked="OnSave" BackgroundColor="Transparent" TextColor="DodgerBlue" Margin="5,20,5,0"/>
                 </FlexLayout>
             </Grid>
         </Frame>

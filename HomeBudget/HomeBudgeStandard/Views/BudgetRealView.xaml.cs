@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -159,24 +160,27 @@ namespace HomeBudgeStandard.Views
             await Task.Factory.StartNew(() =>
             {
                 var budgetReal = MainBudget.Instance.GetMonth(date).BudgetReal;
-                
-                foreach (BudgetRealCategory category in budgetReal.Categories)
-                {
-                    if (!category.IsIncome && category.TotalValues > 0)
-                    {
-                        chartDataExpenses.Add(new ChartData { Label = category.Name, Value = category.TotalValues });
-                    }
-                }
 
                 var incomesCategories = budgetReal.GetIncomesCategories();
+                var totalIncome = incomesCategories.Sum(el => el.TotalValues);
                 foreach (BudgetRealCategory category in incomesCategories)
                 {
                     foreach (BaseBudgetSubcat subcat in category.subcats)
                     {
                         if (subcat.Value > 0)
-                            chartDataIncome.Add(new ChartData { Label = subcat.Name, Value = subcat.Value });
+                            chartDataIncome.Add(new ChartData { Label = subcat.Name, Value = subcat.Value, Percentage = subcat.Value / totalIncome });
                     }
                 }
+
+                var totalExpenses = budgetReal.Categories.Sum(el => el.TotalValues) - totalIncome;
+                
+                foreach (BudgetRealCategory category in budgetReal.Categories)
+                {
+                    if (!category.IsIncome && category.TotalValues > 0)
+                    {
+                        chartDataExpenses.Add(new ChartData { Label = category.Name, Value = category.TotalValues, Percentage = category.TotalValues/totalExpenses });
+                    }
+                }  
             });
                 
             _chartExpense.SetData(chartDataExpenses);

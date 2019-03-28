@@ -193,7 +193,6 @@ namespace HomeBudget.Code
                 }
                 else
                 {
-                    LogsManager.Instance.WriteLine("Cloud save data: " + data.Months.Count);
                     lock (_updateLock)
                     {
                         _months.Clear();

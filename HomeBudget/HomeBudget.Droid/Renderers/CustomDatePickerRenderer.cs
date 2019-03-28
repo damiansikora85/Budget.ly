@@ -29,17 +29,12 @@ namespace HomeBudget.Droid.Renderers
             var dialog = new DatePickerDialog(Context, (o, e) =>
             {
                 view.Date = e.Date;
-                ((IElementController)view).SetValueFromRenderer(VisualElement.IsFocusedPropertyKey, false);
-            }, year, month, day);
-
-
-            dialog.SetButton("OK", (o, e) =>
-            {
-                if(Element is CustomDatePicker datePicker)
+                if (Element is CustomDatePicker datePicker)
                 {
                     datePicker.SelectedDateConfirmed?.Invoke();
                 }
-            });
+                ((IElementController)view).SetValueFromRenderer(VisualElement.IsFocusedPropertyKey, false);
+            }, year, month, day);
 
             return dialog;
         }
