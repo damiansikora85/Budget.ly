@@ -58,9 +58,10 @@ namespace HomeBudget.Droid.Native
 
                 var builder = new NotificationCompat.Builder(Android.App.Application.Context)
                     .SetSmallIcon(Resource.Drawable.LogoSmall)
-                    .SetContentTitle("budget.ly")
+                    .SetContentTitle("Budget.ly")
                     .SetContentText("Zapisz wydatki!")
                     .SetAutoCancel(true)
+                    .SetSound(RingtoneManager.GetDefaultUri(RingtoneType.Notification))
                     .SetContentIntent(resultPendingIntent);
 
 

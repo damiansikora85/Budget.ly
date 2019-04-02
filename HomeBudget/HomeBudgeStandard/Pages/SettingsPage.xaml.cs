@@ -78,11 +78,6 @@ namespace HomeBudgeStandard.Pages
                 NotificationSunday.IsChecked = notificationSundayValue;
         }
 
-        private void DisableNotificationChanged(object sender, Syncfusion.XForms.Buttons.StateChangedEventArgs e)
-        {
-            NotificationsSetEnabled(e.IsChecked.HasValue ? !e.IsChecked.Value : true);
-        }
-
         private void NotificationsSetEnabled(bool enabled)
         {
             NotificationTimePicker.IsEnabled = enabled;
