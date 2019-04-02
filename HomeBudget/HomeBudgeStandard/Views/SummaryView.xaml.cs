@@ -39,9 +39,6 @@ namespace HomeBudgeStandard.Views
 
         public SummaryView ()
 		{
-            MessagingCenter.Subscribe<SummaryGroupHeaderViewCell, BudgetSummaryDataViewModel>(this, "CategoryClicked", (sender, element) => ExpandCategory(element));
-            MessagingCenter.Subscribe<AnimatedViewCell, SummaryListSubcat>(this, "SubcatClicked", (sender, subcat) => AddExpense(subcat));
-
             InitializeComponent();
 
             BindingContext = this;
@@ -72,6 +69,10 @@ namespace HomeBudgeStandard.Views
 
         protected override void OnAppearing()
         {
+            MessagingCenter.Subscribe<SummaryGroupHeaderViewCell, BudgetSummaryDataViewModel>(this, "CategoryClicked", (sender, element) => ExpandCategory(element));
+            MessagingCenter.Subscribe<AnimatedViewCell, SummaryListSubcat>(this, "SubcatClicked", (sender, subcat) => AddExpense(subcat));
+
+
             if (MainBudget.Instance.IsDataLoaded && !_setupDone)
             {
                 UpdateSummary();
@@ -108,6 +109,9 @@ namespace HomeBudgeStandard.Views
         {
             base.OnDisappearing();
             MainBudget.Instance.BudgetDataChanged -= BudgetDataChanged;
+
+            MessagingCenter.Unsubscribe<SummaryGroupHeaderViewCell, BudgetSummaryDataViewModel>(this, "CategoryClicked");
+            MessagingCenter.Unsubscribe<AnimatedViewCell, SummaryListSubcat>(this, "SubcatClicked");
         }
 
         private async void UpdateSummary()
