@@ -38,7 +38,7 @@ namespace HomeBudget.Code
 
     public class MainBudget
 	{
-        private const string TEMPLATE_FILENAME = "templateOrg.json";
+        private const string TEMPLATE_FILENAME = "template.json";
         private const string SAVE_DIRECTORY_NAME = "save";
         private const string SAVE_FILE_NAME = "budget.data";
         public const int INCOME_CATEGORY_ID = 777;
