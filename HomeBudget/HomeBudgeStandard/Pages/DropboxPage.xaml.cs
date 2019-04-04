@@ -74,8 +74,13 @@ namespace HomeBudgeStandard.Pages
 
             try
             {
+#if (CUSTOM)
+                _iapName = "com.darktower.homebudget.dropboxnormal";
+                _isPromo = false;
+#else
                 _iapName = DependencyService.Get<IRemoteConfig>().GetActiveInappName();
                 _isPromo = DependencyService.Get<IRemoteConfig>().IsPromoActive();
+#endif
 
                 if (await IsAnyProductBought())
                 {
