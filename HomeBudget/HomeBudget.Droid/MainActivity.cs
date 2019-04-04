@@ -28,7 +28,7 @@ namespace HomeBudget.Droid
 
             base.OnCreate(bundle);
 
-            FirebaseApp.InitializeApp(this);
+            //FirebaseApp.InitializeApp(this);
             Xamarin.Essentials.Platform.Init(this, bundle);
             Rg.Plugins.Popup.Popup.Init(this, bundle);
             UserDialogs.Init(this);
