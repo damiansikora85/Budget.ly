@@ -139,9 +139,12 @@ namespace HomeBudgeStandard.Pages
 
         private async Task<bool> IsAnyProductBought()
         {
-            //return await Task.FromResult(false);
+#if CUSTOM
+            return await Task.FromResult(true);
+#else
             return await _purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropbox") ||
                            await _purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropboxnormal");
+#endif
         }
 
         private async void OnIapClick(object sender, EventArgs e)
