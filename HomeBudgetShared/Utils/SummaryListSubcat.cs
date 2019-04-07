@@ -7,7 +7,8 @@ namespace HomeBudget.Pages.Utils
 {
     public class SummaryListSubcat
     {
-        public double SpendPercentage => SubcatPlan.Value > 0 ? Math.Min((SubcatReal.Value / SubcatPlan.Value), 1) : 0;
+        public double SpendPercentage => SubcatReal.Value == 0 ? 0 :
+            SubcatPlan.Value > 0 ? Math.Min((SubcatReal.Value / SubcatPlan.Value), 1) : 1;
         public int SpendPercentageInt
         {
             get

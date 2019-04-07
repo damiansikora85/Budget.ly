@@ -31,7 +31,9 @@ namespace HomeBudget
                   "ios={Your iOS App secret here}",
                   typeof(Analytics), typeof(Crashes), typeof(Push));
 
+#if (!CUSTOM)
             DependencyService.Get<IRemoteConfig>().Init();
+#endif
 
             if (Xamarin.Essentials.Preferences.Get("firstLaunch", true))
             {
