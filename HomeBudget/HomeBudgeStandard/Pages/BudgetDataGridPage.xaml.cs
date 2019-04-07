@@ -18,11 +18,12 @@ namespace HomeBudget.Pages
 	public partial class BudgetDataGridPage : ContentPage
 	{
         public ObservableCollection<BudgetViewModelData> BudgetData { get; private set; }
-
         private SfDataGrid _dataGrid;
+        private DateTime _date;
 
-		public BudgetDataGridPage ()
+		public BudgetDataGridPage (DateTime date)
 		{
+            _date = date;
             BudgetData = new ObservableCollection<BudgetViewModelData>();
             InitializeComponent ();
             BindingContext = this;
@@ -34,7 +35,7 @@ namespace HomeBudget.Pages
             Device.BeginInvokeOnMainThread(async () =>
                 {
                     CreateDataGrid();
-                    await SetupDataGrid(DateTime.Now);
+                    await SetupDataGrid(_date);
                 });
         }
 

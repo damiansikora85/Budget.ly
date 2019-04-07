@@ -141,7 +141,7 @@ namespace HomeBudgeStandard.Views
         private async void OnDetailsClick(object sender, EventArgs args)
         {
             //MessagingCenter.Send(this, "Landscape");
-            await Navigation.PushAsync(new BudgetDataGridPage());
+            await Navigation.PushAsync(new BudgetDataGridPage(_currentMonth));
         }
 
         private async void Setup()
