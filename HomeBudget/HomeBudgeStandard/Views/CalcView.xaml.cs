@@ -216,6 +216,7 @@ namespace HomeBudgeStandard.Views
             //don't chanage order
             _saveAfterDateSelected = false;
             Calendar.Date = DateTime.Now;
+            dateLabel.Text = Calendar.Date.ToString("dd.MM.yyyy");
             _dateSelected = false;
 
             FormulaText = string.Empty;
