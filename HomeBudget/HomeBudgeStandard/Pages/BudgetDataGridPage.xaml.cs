@@ -88,10 +88,10 @@ namespace HomeBudget.Pages
             {
                 EnableDataVirtualization = true,
                 AutoGenerateColumns = false,
-                AutoExpandGroups = false,
+                AutoExpandGroups = true,
                 AllowGroupExpandCollapse = true,
-                LiveDataUpdateMode = Syncfusion.Data.LiveDataUpdateMode.AllowSummaryUpdate,
-                SelectionMode = Syncfusion.SfDataGrid.XForms.SelectionMode.SingleDeselect,
+                LiveDataUpdateMode = LiveDataUpdateMode.AllowSummaryUpdate,
+                SelectionMode = SelectionMode.SingleDeselect,
                 NavigationMode = NavigationMode.Cell,
                 FrozenColumnsCount = 2,
                 EditTapAction = TapAction.OnTap,
@@ -114,7 +114,7 @@ namespace HomeBudget.Pages
             {
                 ShowSummaryInRow = true,
                 Title = "{Key}: {Total}",
-                SummaryColumns = new ObservableCollection<Syncfusion.Data.ISummaryColumn>
+                SummaryColumns = new ObservableCollection<ISummaryColumn>
                 {
                     new GridSummaryColumn
                     {
