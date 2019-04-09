@@ -4,7 +4,7 @@
              xmlns:components="clr-namespace:HomeBudget.Components"
              x:Class="HomeBudgeStandard.Pages.SettingsPage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="6, 0">
             <Label Text="Powiadomienia" FontSize="Large" LineBreakMode="NoWrap" TextColor="Black"/>
             <Grid Margin="0, 10">
                 <Grid.RowDefinitions>
