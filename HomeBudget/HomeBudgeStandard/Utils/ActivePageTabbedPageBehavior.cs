@@ -37,8 +37,11 @@ namespace HomeBudget.Utils
             // Activate selected page
             if (tabbedPage.CurrentPage is IActiveAware activeAwarePage && !activeAwarePage.IsActive)
             {
-                activeAwarePage.IsActive = true;
-                Device.BeginInvokeOnMainThread(() => activeAwarePage.Activate());
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    activeAwarePage.Activate();
+                    activeAwarePage.IsActive = true;
+                });
             }
         }
     }
