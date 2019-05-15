@@ -88,7 +88,7 @@ namespace HomeBudget.Pages
             {
                 EnableDataVirtualization = true,
                 AutoGenerateColumns = false,
-                AutoExpandGroups = true,
+                AutoExpandGroups = false,
                 AllowGroupExpandCollapse = true,
                 LiveDataUpdateMode = LiveDataUpdateMode.AllowSummaryUpdate,
                 SelectionMode = SelectionMode.SingleDeselect,
@@ -128,7 +128,7 @@ namespace HomeBudget.Pages
             };
             _dataGrid.CaptionSummaryRow = gridSummaryRow;
 
-            /*_dataGrid.CaptionSummaryTemplate = new DataTemplate(() =>
+            _dataGrid.CaptionSummaryTemplate = new DataTemplate(() =>
             {
                 var stackLayout = new StackLayout { Orientation = StackOrientation.Horizontal, Margin = new Thickness(5, 0) };
                 var label = new Label { FontFamily = "FiraSans-Regular.otf#Fira Sans Regular", VerticalTextAlignment = TextAlignment.Center, FontSize = 16, TextColor = Color.Black };
@@ -144,7 +144,7 @@ namespace HomeBudget.Pages
                 stackLayout.Children.Add(label);
 
                 return new ViewCell { View = stackLayout };
-            });*/
+            });
 
             _dataGrid.Columns.Add(new GridTextColumn
             {
