@@ -169,7 +169,7 @@ namespace HomeBudgeStandard.Views
                 ColumnName = "Category.Name"
             });
 
-            /*_dataGrid.CaptionSummaryTemplate = new DataTemplate(() =>
+            _dataGrid.CaptionSummaryTemplate = new DataTemplate(() =>
             {
                 var stackLayout = new StackLayout { Orientation = StackOrientation.Horizontal, Margin = new Thickness(5, 0) };
                 var label = new Label { FontFamily = "FiraSans-Regular.otf#Fira Sans Regular", VerticalTextAlignment = TextAlignment.Center, FontSize = 16, TextColor = Color.Black };
@@ -185,7 +185,7 @@ namespace HomeBudgeStandard.Views
                 stackLayout.Children.Add(label);
 
                 return new ViewCell { View = stackLayout };
-            });*/
+            });
 
             var gridSummaryRow = new GridGroupSummaryRow
             {

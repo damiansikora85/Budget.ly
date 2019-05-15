@@ -39,7 +39,7 @@ namespace HomeBudgeStandard.Utils
                 }
                 catch(Exception exc)
                 {
-                    var msg = exc.Message;
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(exc);
                 }
                 return null;
             });
@@ -47,11 +47,20 @@ namespace HomeBudgeStandard.Utils
 
         public async Task Save(BudgetData saveData) => await Task.Run(() =>
         {
-            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            var filePath = Path.Combine(documentsPath, "budget.dat");
+            try
+            {
+                var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                var filePath = Path.Combine(documentsPath, "budget.dat");
 
-            using (var file = File.OpenWrite(filePath))
-                Serializer.Serialize<BudgetData>(file, saveData);
+                using (var file = File.OpenWrite(filePath))
+                {
+                    Serializer.Serialize<BudgetData>(file, saveData);
+                }
+            }
+            catch(Exception exc)
+            {
+                Microsoft.AppCenter.Crashes.Crashes.TrackError(exc);
+            }
         });
 
         public Task<string> ReadFile(string filename)
