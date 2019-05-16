@@ -1,4 +1,5 @@
 ﻿using HomeBudget.Code.Logic;
+using HomeBudgetShared.Utils;
 using ProtoBuf;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace HomeBudgeStandard.Utils
 {
     public class FileManagerXamarin : IFileManager
     {
+        private object lockFile = new object();
+
         public Task DeleteFile(string filename)
         {
             return Task.Run(() =>
@@ -25,21 +28,26 @@ namespace HomeBudgeStandard.Utils
             {
                 try
                 {
-                    var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                    var filePath = Path.Combine(documentsPath, "budget.dat");
-                    if (File.Exists(filePath))
+                    lock (lockFile)
                     {
-                        BudgetData data;
-                        using (var file = File.OpenRead(filePath))
+                        var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                        var filePath = Path.Combine(documentsPath, "budget.dat");
+                        if (File.Exists(filePath))
                         {
-                            data = Serializer.Deserialize<BudgetData>(file);
+                            BudgetData data;
+                            using (var file = File.OpenRead(filePath))
+                            {
+                                data = Serializer.Deserialize<BudgetData>(file);
+                            }
+                            return data;
                         }
-                        return data;
                     }
                 }
                 catch(Exception exc)
                 {
                     Microsoft.AppCenter.Crashes.Crashes.TrackError(exc);
+                    LogsManager.Instance.WriteLine(exc.Message);
+                    LogsManager.Instance.WriteLine(exc.StackTrace);
                 }
                 return null;
             });
@@ -49,17 +57,22 @@ namespace HomeBudgeStandard.Utils
         {
             try
             {
-                var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                var filePath = Path.Combine(documentsPath, "budget.dat");
-
-                using (var file = File.OpenWrite(filePath))
+                lock (lockFile)
                 {
-                    Serializer.Serialize<BudgetData>(file, saveData);
+                    var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                    var filePath = Path.Combine(documentsPath, "budget.dat");
+
+                    using (var file = File.OpenWrite(filePath))
+                    {
+                        Serializer.Serialize<BudgetData>(file, saveData);
+                    }
                 }
             }
             catch(Exception exc)
             {
                 Microsoft.AppCenter.Crashes.Crashes.TrackError(exc);
+                LogsManager.Instance.WriteLine(exc.Message);
+                LogsManager.Instance.WriteLine(exc.StackTrace);
             }
         });
 
@@ -67,10 +80,13 @@ namespace HomeBudgeStandard.Utils
         {
             return Task.Run(() =>
             {
-                var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                var filePath = Path.Combine(documentsPath, filename);
+                lock (lockFile)
+                {
+                    var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                    var filePath = Path.Combine(documentsPath, filename);
 
-                return File.ReadAllText(filePath);
+                    return File.ReadAllText(filePath);
+                }
             });
         }
 
@@ -78,10 +94,13 @@ namespace HomeBudgeStandard.Utils
         {
             return Task.Run(() =>
             {
-                var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                var filePath = Path.Combine(documentsPath, filename);
+                lock (lockFile)
+                {
+                    var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                    var filePath = Path.Combine(documentsPath, filename);
 
-                File.WriteAllText(filePath, message);
+                    File.WriteAllText(filePath, message);
+                }
             });
         }
     }
