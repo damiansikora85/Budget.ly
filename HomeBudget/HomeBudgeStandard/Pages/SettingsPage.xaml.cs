@@ -1,5 +1,6 @@
 ﻿
 using Acr.UserDialogs;
+using HomeBudgeStandard.Interfaces;
 using HomeBudgeStandard.Utils;
 using HomeBudget;
 using System;
@@ -122,6 +123,12 @@ namespace HomeBudgeStandard.Pages
             }
             else
                 return null;
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            var nextNotification = DependencyService.Get<INotificationService>().GetNextNotificationDateTime();
+            await UserDialogs.Instance.AlertAsync($"Nastepne powiadomienie: {nextNotification.ToString()}", "Powiadomienia");
         }
     }
 }

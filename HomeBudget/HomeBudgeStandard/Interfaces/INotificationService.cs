@@ -9,5 +9,6 @@ namespace HomeBudgeStandard.Interfaces
         void Initialize();
         void ScheduleNotification(string text, DayOfWeek[] days, TimeSpan dateTime);
         void ClearAllNotifications();
+        DateTime GetNextNotificationDateTime();
     }
 }
