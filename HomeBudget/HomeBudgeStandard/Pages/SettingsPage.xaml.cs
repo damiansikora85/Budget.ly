@@ -127,8 +127,9 @@ namespace HomeBudgeStandard.Pages
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            var nextNotification = DependencyService.Get<INotificationService>().GetNextNotificationDateTime();
-            await UserDialogs.Instance.AlertAsync($"Nastepne powiadomienie: {nextNotification.ToString()}", "Powiadomienia");
+            await EmailService.SendMessage();
+            //var nextNotification = DependencyService.Get<INotificationService>().GetNextNotificationDateTime();
+            //await UserDialogs.Instance.AlertAsync($"Nastepne powiadomienie: {nextNotification.ToString()}", "Powiadomienia");
         }
     }
 }

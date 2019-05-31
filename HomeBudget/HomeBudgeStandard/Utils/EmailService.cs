@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using Acr.UserDialogs;
 using MailKit.Net.Smtp;
 using MimeKit;
 
@@ -8,21 +10,18 @@ namespace HomeBudgeStandard.Utils
 {
     public class EmailService
     {
-        public static void SendMessage()
+        public static async Task SendMessage()
         {
             try
             {
                 var message = new MimeMessage();
-                message.From.Add(new MailboxAddress("SmartMonitor", "damiansikora@vivaldi.net"));
-                message.To.Add(new MailboxAddress("Certas", "dsikora85@gmail.com"));
-                message.Subject = "Smart Monitor - contact";
+                message.From.Add(new MailboxAddress("Budget.ly", "budgetlymobile@gmail.com"));
+                message.To.Add(new MailboxAddress("Dark Tower Lab", "darktowerlab@gmail.com"));
+                message.Subject = "[Budget.ly][Logi]";
 
                 message.Body = new TextPart("plain")
                 {
-                    Text = $"Name: {nameEntry.Text}\n" +
-                    $"Phone: {phoneEntry.Text}\n" +
-                    $"Email: {emailEntry.Text}\n" +
-                    $"Message: {messageEntry.Text}"
+                    Text = "test"
                 };
 
                 using (var client = new SmtpClient())
@@ -30,20 +29,20 @@ namespace HomeBudgeStandard.Utils
                     // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
                     client.ServerCertificateValidationCallback = (s, c, h, e) => true;
 
-                    client.Connect("smtp.vivaldi.net", 587, false);
+                    client.Connect("smtp.gmail.com", 587, false);
 
                     // Note: only needed if the SMTP server requires authentication
-                    client.Authenticate("damiansikora", "********");
+                    client.Authenticate("budgetlymobile", "damianiola");
 
                     client.Send(message);
                     client.Disconnect(true);
                 }
 
-                await UserDialogs.Instance.AlertAsync(AppResources.CONTACT_EMAIL_SEND, AppResources.SUCCESS_TITLE);
+                await UserDialogs.Instance.AlertAsync("Sukces", "Dane wysłane");
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync("Failed: " + ex.Message, AppResources.ERROR_TITLE);
+                await UserDialogs.Instance.AlertAsync("Nie można wysłać danych: " + ex.Message, "Błąd");
             }
         }
     }
