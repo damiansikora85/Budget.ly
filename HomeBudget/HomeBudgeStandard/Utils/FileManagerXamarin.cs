@@ -12,6 +12,8 @@ namespace HomeBudgeStandard.Utils
     public class FileManagerXamarin : IFileManager
     {
         private object lockFile = new object();
+        private const string BudgetFilename = "budget.dat";
+        private const string BudgetBackupFilename = "backup.dat";
 
         public Task DeleteFile(string filename)
         {
@@ -24,6 +26,18 @@ namespace HomeBudgeStandard.Utils
 
         public async Task<BudgetData> Load()
         {
+            var budgetData = await LoadFromFile(BudgetFilename);
+            if (budgetData == null)
+            {
+                budgetData = await LoadFromFile(BudgetBackupFilename);
+            }
+
+
+            return budgetData;
+        }
+
+        private async Task<BudgetData> LoadFromFile(string filename)
+        {
             return await Task.Run(() =>
             {
                 try
@@ -31,7 +45,7 @@ namespace HomeBudgeStandard.Utils
                     lock (lockFile)
                     {
                         var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                        var filePath = Path.Combine(documentsPath, "budget.dat");
+                        var filePath = Path.Combine(documentsPath, filename);
                         if (File.Exists(filePath))
                         {
                             BudgetData data;
@@ -43,7 +57,7 @@ namespace HomeBudgeStandard.Utils
                         }
                     }
                 }
-                catch(Exception exc)
+                catch (Exception exc)
                 {
                     Microsoft.AppCenter.Crashes.Crashes.TrackError(exc);
                     LogsManager.Instance.WriteLine(exc.Message);
@@ -53,28 +67,50 @@ namespace HomeBudgeStandard.Utils
             });
         }
 
-        public async Task Save(BudgetData saveData) => await Task.Run(() =>
+        private async Task SaveBackup()
         {
-            try
+            await Task.Factory.StartNew(() =>
             {
-                lock (lockFile)
-                {
-                    var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                    var filePath = Path.Combine(documentsPath, "budget.dat");
 
-                    using (var file = File.OpenWrite(filePath))
+            });
+        }
+
+        public Task Save(BudgetData saveData)
+        {
+            return SaveToFile(BudgetFilename, saveData);
+        }
+
+        private async Task SaveToFile(string filename, BudgetData saveData)
+        {
+            await Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    lock (lockFile)
                     {
-                        Serializer.Serialize<BudgetData>(file, saveData);
+                        var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                        var filePath = Path.Combine(documentsPath, filename);
+
+                        var fileMode = FileMode.Truncate;
+                        if (!File.Exists(filePath))
+                        {
+                            fileMode = FileMode.CreateNew;
+                        }
+
+                        using (var file = new FileStream(filePath, fileMode))
+                        {
+                            Serializer.Serialize<BudgetData>(file, saveData);
+                        }
                     }
                 }
-            }
-            catch(Exception exc)
-            {
-                Microsoft.AppCenter.Crashes.Crashes.TrackError(exc);
-                LogsManager.Instance.WriteLine(exc.Message);
-                LogsManager.Instance.WriteLine(exc.StackTrace);
-            }
-        });
+                catch (Exception exc)
+                {
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(exc);
+                    LogsManager.Instance.WriteLine(exc.Message);
+                    LogsManager.Instance.WriteLine(exc.StackTrace);
+                }
+            });
+        }
 
         public Task<string> ReadFile(string filename)
         {
