@@ -1,4 +1,5 @@
 ﻿using HomeBudget.Code.Logic;
+using HomeBudgetShared.Utils;
 using ProtoBuf;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,13 @@ namespace HomeBudgeStandard.Utils
 {
     public class FileManagerXamarin : IFileManager
     {
-        public Task DeleteFile(string filename)
+        private object lockFile = new object();
+        private const string BudgetFilename = "budget.dat";
+        private const string BudgetBackupFilename = "backup.dat";
+
+        public async Task DeleteFile(string filename)
         {
-            return Task.Run(() =>
+            await Task.Run(() =>
             {
                 var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
                 File.Delete(Path.Combine(documentsPath, filename));
@@ -21,56 +26,104 @@ namespace HomeBudgeStandard.Utils
 
         public async Task<BudgetData> Load()
         {
+            var budgetData = await LoadFromFile(BudgetFilename);
+            if (budgetData == null)
+            {
+                budgetData = await LoadFromFile(BudgetBackupFilename);
+            }
+
+
+            return budgetData;
+        }
+
+        private async Task<BudgetData> LoadFromFile(string filename)
+        {
             return await Task.Run(() =>
             {
                 try
                 {
-                    var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                    var filePath = Path.Combine(documentsPath, "budget.dat");
-                    if (File.Exists(filePath))
+                    lock (lockFile)
                     {
-                        BudgetData data;
-                        using (var file = File.OpenRead(filePath))
+                        var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                        var filePath = Path.Combine(documentsPath, filename);
+                        if (File.Exists(filePath))
                         {
-                            data = Serializer.Deserialize<BudgetData>(file);
+                            BudgetData data;
+                            using (var file = File.OpenRead(filePath))
+                            {
+                                data = Serializer.Deserialize<BudgetData>(file);
+                            }
+                            return data;
                         }
-                        return data;
                     }
                 }
-                catch(Exception exc)
+                catch (Exception exc)
                 {
                     Microsoft.AppCenter.Crashes.Crashes.TrackError(exc);
+                    LogsManager.Instance.WriteLine(exc.Message);
+                    LogsManager.Instance.WriteLine(exc.StackTrace);
+                    DeleteFile(filename);
                 }
                 return null;
             });
         }
 
-        public async Task Save(BudgetData saveData) => await Task.Run(() =>
+        private async Task SaveBackup()
         {
-            try
+            await Task.Factory.StartNew(() =>
             {
-                var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                var filePath = Path.Combine(documentsPath, "budget.dat");
 
-                using (var file = File.OpenWrite(filePath))
-                {
-                    Serializer.Serialize<BudgetData>(file, saveData);
-                }
-            }
-            catch(Exception exc)
+            });
+        }
+
+        public Task Save(BudgetData saveData)
+        {
+            return SaveToFile(BudgetFilename, saveData);
+        }
+
+        private async Task SaveToFile(string filename, BudgetData saveData)
+        {
+            await Task.Factory.StartNew(() =>
             {
-                Microsoft.AppCenter.Crashes.Crashes.TrackError(exc);
-            }
-        });
+                try
+                {
+                    lock (lockFile)
+                    {
+                        var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                        var filePath = Path.Combine(documentsPath, filename);
+
+                        var fileMode = FileMode.Truncate;
+                        if (!File.Exists(filePath))
+                        {
+                            fileMode = FileMode.CreateNew;
+                        }
+
+                        using (var file = new FileStream(filePath, fileMode))
+                        {
+                            Serializer.Serialize<BudgetData>(file, saveData);
+                        }
+                    }
+                }
+                catch (Exception exc)
+                {
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(exc);
+                    LogsManager.Instance.WriteLine(exc.Message);
+                    LogsManager.Instance.WriteLine(exc.StackTrace);
+                }
+            });
+        }
 
         public Task<string> ReadFile(string filename)
         {
             return Task.Run(() =>
             {
-                var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                var filePath = Path.Combine(documentsPath, filename);
+                lock (lockFile)
+                {
+                    var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                    var filePath = Path.Combine(documentsPath, filename);
 
-                return File.ReadAllText(filePath);
+                    return File.ReadAllText(filePath);
+                }
             });
         }
 
@@ -78,10 +131,13 @@ namespace HomeBudgeStandard.Utils
         {
             return Task.Run(() =>
             {
-                var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                var filePath = Path.Combine(documentsPath, filename);
+                lock (lockFile)
+                {
+                    var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                    var filePath = Path.Combine(documentsPath, filename);
 
-                File.WriteAllText(filePath, message);
+                    File.WriteAllText(filePath, message);
+                }
             });
         }
     }

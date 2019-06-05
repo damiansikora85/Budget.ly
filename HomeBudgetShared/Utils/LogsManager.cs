@@ -33,7 +33,7 @@ namespace HomeBudgetShared.Utils
         public void WriteLine(string message)
         {
             if (_fileManager == null) return;
-            _fileManager.WriteLine(FILENAME, message);
+            _fileManager.WriteLine(FILENAME, $"{DateTime.Now.ToString()} {message}");
         }
 
         public async Task<string> ReadAll()

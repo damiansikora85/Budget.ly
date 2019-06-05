@@ -59,33 +59,33 @@ namespace HomeBudget.Code
 
         public BudgetData ActualBudgetData { get; private set; }
 
-		static MainBudget instance;
-		public static MainBudget Instance
-		{
-			get
-			{
-				if (instance == null)
-					instance = new MainBudget();
+        static MainBudget instance;
+        public static MainBudget Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new MainBudget();
 
-				return instance;
-			}
-		}
+                return instance;
+            }
+        }
 
-		private MainBudget()
-		{
-			_months = new List<BudgetMonth>();
+        private MainBudget()
+        {
+            _months = new List<BudgetMonth>();
             budgetPlanned = new BudgetPlanned();
             IsDataLoaded = false;
-		}
+        }
 
         public void OnCloudStorageConnected(bool overwriteLocal)
         {
             IsDataLoaded = !overwriteLocal;
             _budgetSynchronizer.ShouldSave = !overwriteLocal;
             _budgetSynchronizer.Start();
-            
-            if(overwriteLocal)
-                 Task.Run(async() => UpdateData(null, await _budgetSynchronizer.ForceLoad()));
+
+            if (overwriteLocal)
+                Task.Run(async () => UpdateData(null, await _budgetSynchronizer.ForceLoad()));
         }
 
         public void Init(IFileManager fileManager, IBudgetSynchronizer budgetSynchronizer)
@@ -122,11 +122,12 @@ namespace HomeBudget.Code
                         Task.Run(() => LoadAsync());
                     }
                 }
-                catch(Exception exc)
+                catch (Exception exc)
                 {
                     var msg = exc.Message;
+                    LogsManager.Instance.WriteLine(exc.Message);
+                    LogsManager.Instance.WriteLine(exc.StackTrace);
                 }
-
             });
 
             LogsManager.Instance.Init(fileManager);
@@ -151,30 +152,39 @@ namespace HomeBudget.Code
                     _budgetSynchronizer.ShouldSave = true;
 
             }
-            catch (Exception e)
+            catch (Exception exc)
             {
-                LogsManager.Instance.WriteLine("Save data error: "+e.InnerException.Message);
-                Console.WriteLine(e);
+                LogsManager.Instance.WriteLine("Save data error: " + exc.InnerException != null ? exc.InnerException.Message : string.Empty);
+                LogsManager.Instance.WriteLine(exc.Message);
+                LogsManager.Instance.WriteLine(exc.StackTrace);
             }
 
             return true;
-        }                                                                                                                                                                                                         
+        }
 
         public async Task LoadAsync()
         {
-            LogsManager.Instance.WriteLine("Load data");
-            var data = await _fileManager.Load();
-            if (data != null)
+            try
             {
-                budgetPlanned = data.BudgetPlanned;
-                _months = data.Months;
-                foreach (var month in _months)
-                    month.Setup();
-            }
+                LogsManager.Instance.WriteLine("Load data");
+                var data = await _fileManager.Load();
+                if (data != null)
+                {
+                    budgetPlanned = data.BudgetPlanned;
+                    _months = data.Months;
+                    foreach (var month in _months)
+                        month.Setup();
+                }
 
-            IsDataLoaded = true;
-            //onBudgetLoaded?.Invoke();
-            BudgetDataChanged?.Invoke(false);
+                IsDataLoaded = true;
+                //onBudgetLoaded?.Invoke();
+                BudgetDataChanged?.Invoke(false);
+            }
+            catch (Exception exc)
+            {
+                LogsManager.Instance.WriteLine(exc.Message);
+                LogsManager.Instance.WriteLine(exc.StackTrace);
+            }
         }
 
         private void OnPlannedBudgetChanged()
@@ -211,9 +221,10 @@ namespace HomeBudget.Code
                     Task.Run(() => Save(false));
                 }
             }
-            catch(Exception e)
+            catch (Exception exc)
             {
-                LogsManager.Instance.WriteLine("SynchronizeData exception: "+e.Message);
+                LogsManager.Instance.WriteLine("SynchronizeData exception: " + exc.Message);
+                LogsManager.Instance.WriteLine(exc.StackTrace);
             }
         }
 
@@ -253,28 +264,28 @@ namespace HomeBudget.Code
         }
 
         public BudgetMonth GetMonth(DateTime date)
-		{
-			var month = _months.Find(x => x.Month == date.Month && x.Year == date.Year);
-			if (month == null)
-			{
-				month = BudgetMonth.Create(BudgetDescription.Categories, date);
+        {
+            var month = _months.Find(x => x.Month == date.Month && x.Year == date.Year);
+            if (month == null)
+            {
+                month = BudgetMonth.Create(BudgetDescription.Categories, date);
                 month.onBudgetPlannedChanged += OnPlannedBudgetChanged;
                 month.UpdatePlannedBudget(budgetPlanned);
                 month.Setup();
                 _months.Add(month);
                 //??
                 //Save();
-			}
+            }
 
-			return month;
-		}
+            return month;
+        }
 
         public bool HasMonthData(DateTime date) => _months.Find(x => x.Month == date.Month && x.Year == date.Year) != null;
 
         public ObservableCollection<BudgetMonth.BudgetChartData> GetCurrentMonthChartData()
-		{
-			return GetMonth(DateTime.Now).GetData();
-		}
+        {
+            return GetMonth(DateTime.Now).GetData();
+        }
 
         public BudgetMonth GetCurrentMonthData()
         {
