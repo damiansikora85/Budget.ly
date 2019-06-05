@@ -15,9 +15,9 @@ namespace HomeBudgeStandard.Utils
         private const string BudgetFilename = "budget.dat";
         private const string BudgetBackupFilename = "backup.dat";
 
-        public Task DeleteFile(string filename)
+        public async Task DeleteFile(string filename)
         {
-            return Task.Run(() =>
+            await Task.Run(() =>
             {
                 var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
                 File.Delete(Path.Combine(documentsPath, filename));
@@ -62,6 +62,7 @@ namespace HomeBudgeStandard.Utils
                     Microsoft.AppCenter.Crashes.Crashes.TrackError(exc);
                     LogsManager.Instance.WriteLine(exc.Message);
                     LogsManager.Instance.WriteLine(exc.StackTrace);
+                    DeleteFile(filename);
                 }
                 return null;
             });
