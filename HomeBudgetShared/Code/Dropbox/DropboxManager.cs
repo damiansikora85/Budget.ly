@@ -81,13 +81,46 @@ namespace HomeBudget.Code
                     var bytes = await response.GetContentAsByteArrayAsync();
                     var stream = new MemoryStream(bytes, 0, bytes.Length);
                     budgetData = Serializer.Deserialize<BudgetData>(stream);
-                    
+
+
+                    /*var protoReader = new ProtoReader(stream, null, new SerializationContext { });
+
+                    while (protoReader.ReadFieldHeader() > 0)
+                    {
+                        switch (protoReader.WireType)
+                        {
+                            case WireType.None:
+                                break;
+                            case WireType.Variant:
+                                protoReader.SkipField();
+                                break;
+                            case WireType.Fixed64:
+                                protoReader.SkipField();
+                                break;
+                            case WireType.String:
+                                var s = protoReader.ReadString();
+                                break;
+                            case WireType.StartGroup:
+                                protoReader.SkipField();
+                                break;
+                            case WireType.EndGroup:
+                                protoReader.SkipField();
+                                break;
+                            case WireType.Fixed32:
+                                protoReader.SkipField();
+                                break;
+                            case WireType.SignedVariant:
+                                protoReader.SkipField();
+                                break;
+                        }
+                    }*/
+
                     //OnDownloadFinished?.Invoke(this, budgetData);
                     //OnDownloadFinished?.Invoke(null);
                 }
                 return budgetData;
-            }      
-            catch(ApiException<GetMetadataError>)
+            }
+            catch (ApiException<GetMetadataError>)
             {
                 LogsManager.Instance.WriteLine("Dropbox file not found");
                 //file not found
