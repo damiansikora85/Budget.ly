@@ -11,9 +11,6 @@ namespace HomeBudget.Code
 	{
 		public string name { get; set; }
 
-        [JsonProperty("incomes")]
-        public List<BudgetIncomeTemplate> Incomes { get; set; }
-
 		[JsonProperty("categories")]
 		public List<BudgetCategoryTemplate> Categories { get; set; }
 	}

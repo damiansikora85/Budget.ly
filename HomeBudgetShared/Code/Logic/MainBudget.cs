@@ -282,11 +282,6 @@ namespace HomeBudget.Code
 
         public bool HasMonthData(DateTime date) => _months.Find(x => x.Month == date.Month && x.Year == date.Year) != null;
 
-        public ObservableCollection<BudgetMonth.BudgetChartData> GetCurrentMonthChartData()
-        {
-            return GetMonth(DateTime.Now).GetData();
-        }
-
         public BudgetMonth GetCurrentMonthData()
         {
             return GetMonth(DateTime.Now);

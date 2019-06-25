@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using ProtoBuf;
+using System.Linq;
 
 namespace HomeBudget.Code
 {
@@ -51,16 +52,6 @@ namespace HomeBudget.Code
             BudgetReal.AddIncome(value, date, incomeCategoryID);
         }
 
-        public void SetPlannedIncome(float value, int incomeCategoryID)
-        {
-            //GetIncomeByID(incomeCategoryID).SetPlannedIncome(value);
-        }
-
-        public void SetPlannedExpense(float value, int categoryID, int subcatID)
-        {
-            //GetCategoryByID(categoryID).SetPlannedExpense(value, subcatID);
-        }
-
 		private BudgetMonth()
 		{
             BudgetReal = new BudgetReal();
@@ -69,7 +60,7 @@ namespace HomeBudget.Code
 
         private void OnBudgetPlannedChanged()
         {
-            onBudgetPlannedChanged();
+            onBudgetPlannedChanged?.Invoke();
         }
 
         private void SetupDate(DateTime date)
@@ -82,17 +73,6 @@ namespace HomeBudget.Code
 		{
             BudgetPlanned.Setup(categoriesDesc);
             BudgetReal.Setup(categoriesDesc);
-		}
-
-        public ObservableCollection<BudgetChartData> GetData()
-		{
-			var monthData = new ObservableCollection<BudgetChartData>();
-			/*foreach (ExpenseCategory category in Categories)
-			{
-				monthData.Add(new BudgetChartData(category.Name, category.GetExpensesSum()));
-			}*/
-
-			return monthData;
 		}
 
         public double GetTotalIncomeReal()
@@ -125,5 +105,27 @@ namespace HomeBudget.Code
             BudgetPlanned.Prepare();
             BudgetReal.Prepare();
         }
+
+        public List<BudgetCategoryForEdit> GetBudgetTemplateEdit()
+        {
+            var result = BudgetReal.Categories.Select(category =>
+            {
+                var item = new BudgetCategoryForEdit { Name = category.Name };
+                item.AddRange(category.subcats.Select(subcat => new BudgetSubcatEdit { Name = subcat.Name }));
+                return item;
+            }).ToList();
+
+            return result;
+        }
+    }
+
+    public class BudgetSubcatEdit
+    {
+        public string Name { get; set; }
+    }
+
+    public class BudgetCategoryForEdit : List<BudgetSubcatEdit>
+    {
+        public string Name { get; set; }
     }
 }
