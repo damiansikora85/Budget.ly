@@ -4,7 +4,7 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                  xmlns:components="clr-namespace:HomeBudgeStandard.Components"
-                 x:Class="HomeBudgeStandard.Views.CalcView" Padding="5">
+                 x:Class="HomeBudgeStandard.Views.CalcView" Padding="5" HasKeyboardOffset="False">
     <pages:PopupPage.Resources>
         <ResourceDictionary>
             <Style x:Key="calcButton" TargetType="Button">
@@ -60,7 +60,7 @@
                     
                 </Grid>
 
-                <Editor Keyboard="Numeric" Grid.Row="1" Grid.ColumnSpan="4" Text="{Binding FormulaText}"  />
+                <Editor Keyboard="Numeric" Grid.Row="1" Grid.ColumnSpan="4" Text="{Binding FormulaText}" IsTabStop="False" />
                 <Label x:Name="Result" TextColor="Black" FontSize="Large" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding CalculationResultText}" HorizontalTextAlignment="End" />
 
                 <Button Grid.Row="3" Text="←" Command="{Binding KeyPressed}" CommandParameter="Backspace" Style="{StaticResource calcButton}"/>

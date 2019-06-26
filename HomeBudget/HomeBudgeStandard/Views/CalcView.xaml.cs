@@ -205,9 +205,16 @@ namespace HomeBudgeStandard.Views
             }
             else
             {
-                _saveAfterDateSelected = true;
-                Calendar.Unfocus();
-                Calendar.Focus();
+                try
+                {
+                    _saveAfterDateSelected = true;
+                    Calendar.Unfocus();
+                    Calendar.Focus();
+                }
+                catch(Exception exc)
+                {
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(exc);
+                }
             }
         }
 

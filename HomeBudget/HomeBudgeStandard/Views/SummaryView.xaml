@@ -49,11 +49,11 @@
                         </Label.FontFamily>
                     </Label>
 
-                    <Label Grid.Column="1" Text="{Binding RealIncomes, Converter={StaticResource CurrencyValueConverter}}" VerticalTextAlignment="End" HorizontalTextAlignment="End" TextColor="White" LineBreakMode="NoWrap"/>
-                    <Label Grid.Column="1" Grid.Row="1" Text="{Binding RealExpenses, Converter={StaticResource CurrencyValueConverter}}" VerticalTextAlignment="Start" HorizontalTextAlignment="End" TextColor="White" LineBreakMode="NoWrap"/>
+                    <Label Grid.Column="1" Text="{Binding RealIncomes, Converter={StaticResource CurrencyValueConverter}}" VerticalTextAlignment="End" HorizontalTextAlignment="End" TextColor="White" LineBreakMode="NoWrap" FontSize="13"/>
+                    <Label Grid.Column="1" Grid.Row="1" Text="{Binding RealExpenses, Converter={StaticResource CurrencyValueConverter}}" VerticalTextAlignment="Start" HorizontalTextAlignment="End" TextColor="White" LineBreakMode="NoWrap" FontSize="13"/>
 
-                    <Label Grid.Column="2" Text="{Binding ExpectedIncomes, Converter={StaticResource CurrencyValueConverter}}" VerticalTextAlignment="End" HorizontalTextAlignment="End" TextColor="#9FFFFFFF" LineBreakMode="NoWrap"/>
-                    <Label Grid.Column="2" Grid.Row="1" Text="{Binding ExpectedExpenses, Converter={StaticResource CurrencyValueConverter}}" VerticalTextAlignment="Start" TextColor="#9FFFFFFF" HorizontalTextAlignment="End" LineBreakMode="NoWrap"/>
+                    <Label Grid.Column="2" Text="{Binding ExpectedIncomes, Converter={StaticResource CurrencyValueConverter}}" VerticalTextAlignment="End" HorizontalTextAlignment="End" TextColor="#9FFFFFFF" LineBreakMode="NoWrap" FontSize="13"/>
+                    <Label Grid.Column="2" Grid.Row="1" Text="{Binding ExpectedExpenses, Converter={StaticResource CurrencyValueConverter}}" VerticalTextAlignment="Start" TextColor="#9FFFFFFF" HorizontalTextAlignment="End" LineBreakMode="NoWrap" FontSize="13"/>
 
                 </Grid>
             </Grid>
