@@ -90,6 +90,11 @@ namespace HomeBudget.Code
 
         public void Init(IFileManager fileManager, IBudgetSynchronizer budgetSynchronizer)
         {
+            LogsManager.Instance.Init(fileManager);
+
+            LogsManager.Instance.WriteLine("***********************************");
+            LogsManager.Instance.WriteLine("MainBudget - Init");
+
             _fileManager = fileManager;
             _budgetSynchronizer = budgetSynchronizer;
             _budgetSynchronizer.DataDownloaded += UpdateData;
@@ -130,7 +135,7 @@ namespace HomeBudget.Code
                 }
             });
 
-            LogsManager.Instance.Init(fileManager);
+            
         }
 
         public async Task<bool> Save(bool upload = true)

@@ -136,7 +136,7 @@ namespace HomeBudgeStandard.Utils
                     var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
                     var filePath = Path.Combine(documentsPath, filename);
 
-                    File.WriteAllText(filePath, message);
+                    File.AppendAllLines(filePath, new List<string> { message });
                 }
             });
         }

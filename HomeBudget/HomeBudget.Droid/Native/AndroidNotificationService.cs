@@ -24,6 +24,13 @@ namespace HomeBudget.Droid.Native
             _notificationId = 0;
         }
 
+        public DateTime GetNextNotificationDateTime()
+        {
+            var context = Android.App.Application.Context;
+            var alarmManager = context.GetSystemService(Context.AlarmService) as AlarmManager;
+            return DateTime.FromFileTimeUtc(alarmManager.NextAlarmClock != null ? alarmManager.NextAlarmClock.TriggerTime : 0);
+        }
+
         public void ClearAllNotifications()
         {
             var context = Android.App.Application.Context;

@@ -49,7 +49,6 @@ namespace HomeBudget.Code
 
             try
             {
-                LogsManager.Instance.WriteLine("Dropbox loading");
                 var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH) as FileMetadata;
                 return metadata.ServerModified;
 
@@ -73,7 +72,7 @@ namespace HomeBudget.Code
             var cloudFileModifiedDate = await GetCloudFileModifiedTime();
             try
             {
-                LogsManager.Instance.WriteLine("Dropbox loading");
+                LogsManager.Instance.WriteLine("DownloadData - Dropbox loading");
                 //var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH) as FileMetadata;
                
                 using (var response = await DropboxClient.Files.DownloadAsync(DROPBOX_DATA_FILE_PATH))
@@ -81,13 +80,46 @@ namespace HomeBudget.Code
                     var bytes = await response.GetContentAsByteArrayAsync();
                     var stream = new MemoryStream(bytes, 0, bytes.Length);
                     budgetData = Serializer.Deserialize<BudgetData>(stream);
-                    
+
+
+                    /*var protoReader = new ProtoReader(stream, null, new SerializationContext { });
+
+                    while (protoReader.ReadFieldHeader() > 0)
+                    {
+                        switch (protoReader.WireType)
+                        {
+                            case WireType.None:
+                                break;
+                            case WireType.Variant:
+                                protoReader.SkipField();
+                                break;
+                            case WireType.Fixed64:
+                                protoReader.SkipField();
+                                break;
+                            case WireType.String:
+                                var s = protoReader.ReadString();
+                                break;
+                            case WireType.StartGroup:
+                                protoReader.SkipField();
+                                break;
+                            case WireType.EndGroup:
+                                protoReader.SkipField();
+                                break;
+                            case WireType.Fixed32:
+                                protoReader.SkipField();
+                                break;
+                            case WireType.SignedVariant:
+                                protoReader.SkipField();
+                                break;
+                        }
+                    }*/
+
                     //OnDownloadFinished?.Invoke(this, budgetData);
                     //OnDownloadFinished?.Invoke(null);
                 }
                 return budgetData;
-            }      
-            catch(ApiException<GetMetadataError>)
+            }
+            catch (ApiException<GetMetadataError>)
             {
                 LogsManager.Instance.WriteLine("Dropbox file not found");
                 //file not found
@@ -140,7 +172,7 @@ namespace HomeBudget.Code
 
             try
             {
-                LogsManager.Instance.WriteLine("Dropbox loading");
+                LogsManager.Instance.WriteLine("HasStoredData - Dropbox loading");
                 var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH);
                 
                 return metadata.IsFile;
