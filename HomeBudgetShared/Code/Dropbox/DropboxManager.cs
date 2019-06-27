@@ -49,7 +49,6 @@ namespace HomeBudget.Code
 
             try
             {
-                LogsManager.Instance.WriteLine("Dropbox loading");
                 var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH) as FileMetadata;
                 return metadata.ServerModified;
 
@@ -73,7 +72,7 @@ namespace HomeBudget.Code
             var cloudFileModifiedDate = await GetCloudFileModifiedTime();
             try
             {
-                LogsManager.Instance.WriteLine("Dropbox loading");
+                LogsManager.Instance.WriteLine("DownloadData - Dropbox loading");
                 //var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH) as FileMetadata;
                
                 using (var response = await DropboxClient.Files.DownloadAsync(DROPBOX_DATA_FILE_PATH))
@@ -173,7 +172,7 @@ namespace HomeBudget.Code
 
             try
             {
-                LogsManager.Instance.WriteLine("Dropbox loading");
+                LogsManager.Instance.WriteLine("HasStoredData - Dropbox loading");
                 var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH);
                 
                 return metadata.IsFile;

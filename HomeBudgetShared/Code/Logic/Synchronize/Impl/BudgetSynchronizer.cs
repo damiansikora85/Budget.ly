@@ -2,6 +2,7 @@
 using HomeBudget.Code.Logic;
 using HomeBudgetShared.Code.Interfaces;
 using HomeBudgetShared.Code.Synchronize;
+using HomeBudgetShared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -88,14 +89,14 @@ namespace HomeBudgetShared.Code.Synchronize
                         }
                         catch(Exception exc)
                         {
-                            var msg = exc.Message;
+                            LogsManager.Instance.WriteLine($"Synchronize error (while) - {exc.Message}");
                         }
                         await Task.Delay(SYNC_DELAY);
                     }
                 }
                 catch (Exception exc)
                 {
-                    var msg = exc.Message;
+                    LogsManager.Instance.WriteLine($"Synchronize error - {exc.Message}");
                 }
                 finally
                 {
