@@ -3,6 +3,7 @@ using Acr.UserDialogs;
 using HomeBudgeStandard.Interfaces;
 using HomeBudgeStandard.Utils;
 using HomeBudget;
+using HomeBudgetShared.Utils;
 using System;
 using System.ComponentModel;
 using Xamarin.Forms;
@@ -127,7 +128,7 @@ namespace HomeBudgeStandard.Pages
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            await EmailService.SendMessage();
+            await EmailService.SendMessage(await LogsManager.Instance.ReadAll());
             //var nextNotification = DependencyService.Get<INotificationService>().GetNextNotificationDateTime();
             //await UserDialogs.Instance.AlertAsync($"Nastepne powiadomienie: {nextNotification.ToString()}", "Powiadomienia");
         }

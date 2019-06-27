@@ -10,7 +10,7 @@ namespace HomeBudgeStandard.Utils
 {
     public class EmailService
     {
-        public static async Task SendMessage()
+        public static async Task SendMessage(string messageText)
         {
             try
             {
@@ -21,7 +21,7 @@ namespace HomeBudgeStandard.Utils
 
                 message.Body = new TextPart("plain")
                 {
-                    Text = "test"
+                    Text = messageText
                 };
 
                 using (var client = new SmtpClient())
