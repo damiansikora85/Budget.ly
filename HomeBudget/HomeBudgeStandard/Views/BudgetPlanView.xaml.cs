@@ -239,7 +239,7 @@ namespace HomeBudgeStandard.Views
             grid.RowDefinitions.Add(new RowDefinition { Height = 50 });
 
             grid.Children.Add(_dataGrid);
-            var button = new Button { Text = "Użyj w kolejnych miesiącach", BackgroundColor = Color.DodgerBlue, TextColor = Color.White, VerticalOptions = LayoutOptions.End, Margin= new Thickness(12, 3) };
+            var button = new Button { Text = "Użyj w kolejnych miesiącach", Style = (Style)Application.Current.Resources["ButtonStyle"], VerticalOptions = LayoutOptions.End, Margin= new Thickness(12, 3) };
             button.Clicked += OnSave;
             grid.Children.Add(button);
             Grid.SetRow(button, 1);
