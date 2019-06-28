@@ -10,8 +10,12 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Name}" VerticalOptions="StartAndExpand"/>
-                                <Button Text="Usuń" VerticalOptions="End"/>
+                                <Label Text="{Binding Name}" HorizontalOptions="StartAndExpand"/>
+                                <Button Text="&#xf1f8; " HorizontalOptions="End">
+                                    <Button.FontFamily>
+                                        <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                                    </Button.FontFamily>
+                                </Button>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
