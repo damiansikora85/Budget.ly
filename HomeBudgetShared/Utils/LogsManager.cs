@@ -15,7 +15,7 @@ namespace HomeBudgetShared.Utils
         public void Init(IFileManager fileManager)
         {
             _fileManager = fileManager;
-            _fileManager.DeleteFile(FILENAME);
+            //_fileManager.DeleteFile(FILENAME);
         }
 
         private LogsManager() { }
