@@ -355,7 +355,7 @@ namespace HomeBudgeStandard.Views
 
         private void DataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
         {
-            Task.Run(() => MainBudget.Instance.Save());
+            Task.Factory.StartNew(() => MainBudget.Instance.Save());
 
             Device.BeginInvokeOnMainThread(async () =>
             {
