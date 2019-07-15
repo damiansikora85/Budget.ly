@@ -1,5 +1,7 @@
-﻿using HomeBudget.Code.Logic;
+﻿using HomeBudget.Code;
+using HomeBudget.Code.Logic;
 using HomeBudgetShared.Utils;
+using Newtonsoft.Json;
 using ProtoBuf;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,7 @@ namespace HomeBudgeStandard.Utils
         private object lockFile = new object();
         private const string BudgetFilename = "budget.dat";
         private const string BudgetBackupFilename = "backup.dat";
+        private const string BudgetTemplateFilename = "budgetTemplate.json";
 
         public async Task DeleteFile(string filename)
         {
@@ -139,6 +142,51 @@ namespace HomeBudgeStandard.Utils
                     File.WriteAllText(filePath, message);
                 }
             });
+        }
+
+        public bool HasCustomTemplate()
+        {
+            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var filePath = Path.Combine(documentsPath, BudgetTemplateFilename);
+            return File.Exists(filePath);
+        }
+
+        public Task<BudgetDescription> ReadCustomTemplate()
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                BudgetDescription data = null;
+                var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                var filePath = Path.Combine(documentsPath, BudgetTemplateFilename);
+                if (File.Exists(filePath))
+                {
+                    var jsonString = File.ReadAllText(filePath);
+                    data = JsonConvert.DeserializeObject<BudgetDescription>(jsonString);
+                }
+
+                return data;
+            });
+        }
+
+        public async Task WriteCustomTemplate(BudgetDescription templateData)
+        {
+            try
+            {
+                var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                var filePath = Path.Combine(documentsPath, BudgetTemplateFilename);
+
+                using (var file = File.OpenWrite(filePath))
+                {
+                    var jsonString = JsonConvert.SerializeObject(templateData);
+                    var info = new UTF8Encoding(true).GetBytes(jsonString);
+
+                    await file.WriteAsync(info, 0, info.Length);
+                }
+            }
+            catch 
+            {
+                throw;
+            }
         }
     }
 }

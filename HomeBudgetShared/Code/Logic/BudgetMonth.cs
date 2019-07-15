@@ -110,22 +110,40 @@ namespace HomeBudget.Code
         {
             var result = BudgetReal.Categories.Select(category =>
             {
-                var item = new BudgetCategoryForEdit { Name = category.Name };
-                item.AddRange(category.subcats.Select(subcat => new BudgetSubcatEdit { Name = subcat.Name }));
+                var item = new BudgetCategoryForEdit { Name = category.Name, Id = category.Id };
+                item.AddRange(category.subcats.Select(subcat => new BudgetSubcatEdit { Name = subcat.Name, Id = subcat.Id }));
                 return item;
             }).ToList();
 
             return result;
+        }
+
+        public void UpdateBudgetCategories(List<BudgetCategoryForEdit> categoriesUpdated)
+        {
+            foreach(var category in categoriesUpdated)
+            {
+                var categoryReal = BudgetReal.GetBudgetCategory(category.Id);
+                var categoryPlan = BudgetPlanned.GetBudgetCategory(category.Id);
+                foreach(var subcat in category)
+                {
+                    var subcatPlan = categoryPlan.GetSubcat(subcat.Id);
+                    var subcatReal = categoryReal.GetSubcat(subcat.Id);
+                    subcatPlan.Name = subcat.Name;
+                    subcatReal.Name = subcat.Name;
+                }
+            }
         }
     }
 
     public class BudgetSubcatEdit
     {
         public string Name { get; set; }
+        public int Id { get; set; }
     }
 
     public class BudgetCategoryForEdit : List<BudgetSubcatEdit>
     {
         public string Name { get; set; }
+        public int Id { get; set; }
     }
 }

@@ -13,5 +13,9 @@ namespace HomeBudget.Code.Logic
         Task WriteLine(string filename, string message);
         Task<string> ReadFile(string filename);
         Task DeleteFile(string filename);
+
+        bool HasCustomTemplate();
+        Task<BudgetDescription> ReadCustomTemplate();
+        Task WriteCustomTemplate(BudgetDescription templateData);
     }
 }

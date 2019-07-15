@@ -40,6 +40,7 @@ namespace HomeBudget.Code
 	{
         private const string TEMPLATE_FILENAME = "templateOrg.json";
         private const string SAVE_DIRECTORY_NAME = "save";
+
         private const string SAVE_FILE_NAME = "budget.data";
         public const int INCOME_CATEGORY_ID = 777;
         private const int VERSION = 1;
@@ -94,21 +95,30 @@ namespace HomeBudget.Code
             _budgetSynchronizer = budgetSynchronizer;
             _budgetSynchronizer.DataDownloaded += UpdateData;
 
-            Task.Factory.StartNew(() =>
+            Task.Factory.StartNew(async() =>
             {
                 try
                 {
-                    var assembly = typeof(MainBudget).GetTypeInfo().Assembly;
-                    //var name = assembly.GetName();
-                    //var names = assembly.GetManifestResourceNames();
-                    var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{TEMPLATE_FILENAME}");
-                    var jsonString = "";
-                    using (var reader = new System.IO.StreamReader(stream))
+                    if (_fileManager.HasCustomTemplate())
                     {
-                        jsonString = reader.ReadToEnd();
-                        BudgetDescription = JsonConvert.DeserializeObject<BudgetDescription>(jsonString);
-                        budgetPlanned.Setup(BudgetDescription.Categories);
+                        BudgetDescription = await _fileManager.ReadCustomTemplate();
                     }
+                    else
+                    {
+                        var assembly = typeof(MainBudget).GetTypeInfo().Assembly;
+                        //var name = assembly.GetName();
+                        //var names = assembly.GetManifestResourceNames();
+                        var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{TEMPLATE_FILENAME}");
+
+                        var jsonString = "";
+                        using (var reader = new System.IO.StreamReader(stream))
+                        {
+                            jsonString = reader.ReadToEnd();
+                            BudgetDescription = JsonConvert.DeserializeObject<BudgetDescription>(jsonString);
+                            
+                        }
+                    }
+                    budgetPlanned.Setup(BudgetDescription.Categories);
 
                     if (!string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken))
                     {
@@ -131,6 +141,21 @@ namespace HomeBudget.Code
             });
 
             LogsManager.Instance.Init(fileManager);
+        }
+
+        public void UpdateBudgetCategories(List<BudgetCategoryForEdit> updatedCategories)
+        {
+            try
+            {
+                BudgetDescription.UpdateCategories(updatedCategories);
+                _fileManager.WriteCustomTemplate(BudgetDescription);
+                GetCurrentMonthData().UpdateBudgetCategories(updatedCategories);
+                Task.Factory.StartNew(async () => await Save());
+            }
+            catch (Exception exc)
+            {
+                LogsManager.Instance.WriteLine($"Update template failed: {exc.Message}");
+            }
         }
 
         public async Task<bool> Save(bool upload = true)
@@ -218,7 +243,7 @@ namespace HomeBudget.Code
 
                     IsDataLoaded = true;
                     BudgetDataChanged?.Invoke(true);
-                    Task.Run(() => Save(false));
+                    Task.Factory.StartNew(async () => await Save(false));
                 }
             }
             catch (Exception exc)
