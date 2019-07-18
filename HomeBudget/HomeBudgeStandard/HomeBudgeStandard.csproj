@@ -45,9 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Pages\MainPageMenuItem.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Update="Pages\MainPageMenuItem.cs" />
   </ItemGroup>
 
   <ItemGroup>
