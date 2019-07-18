@@ -59,7 +59,8 @@
             <Style x:Key="ButtonStyle" TargetType="Button">
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="BackgroundColor" Value="DodgerBlue" />
-			</Style>
+                <Setter Property="CornerRadius" Value="25"/>
+            </Style>
 
 			<Style x:Key="ButtonStyleSub" TargetType="Button">
 				<Setter Property="HorizontalOptions" Value="FillAndExpand" />

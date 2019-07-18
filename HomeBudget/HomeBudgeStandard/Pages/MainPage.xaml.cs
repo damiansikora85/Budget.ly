@@ -4,6 +4,7 @@ using HomeBudget.Helpers;
 using HomeBudgetShared.Code.Synchronize;
 using Microsoft.AppCenter.Crashes;
 using System;
+using System.Collections;
 using System.Globalization;
 
 using Xamarin.Forms;
@@ -14,24 +15,39 @@ namespace HomeBudgeStandard.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : MasterDetailPage
     {
+        private Stack _pagesStack;
         public MainPage()
         {
+            _pagesStack = new Stack();
             CultureInfo.CurrentCulture = new CultureInfo("pl-PL");
             InitializeComponent();
             InitBudget();
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
 
+            _pagesStack.Push(Detail);
             Crashes.NotifyUserConfirmation(UserConfirmation.AlwaysSend);
-            
         }
 
         public bool OnBackPressed()
         {
-            if(Detail is NavigationPage navigationPage && navigationPage.RootPage is MainTabbedPage mainTabbedPage)
+            if (Detail is NavigationPage navigationPage && navigationPage.RootPage is MainTabbedPage mainTabbedPage)
             {
                 return mainTabbedPage.OnBackPressed();
             }
-            return false;
+            else if (_pagesStack.Count > 1)
+            {
+                _pagesStack.Pop();
+                if (_pagesStack.Peek() is NavigationPage page)
+                {
+                    Detail = page;
+                }
+                
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private void InitBudget()
@@ -61,9 +77,9 @@ namespace HomeBudgeStandard.Pages
             try
             {
                 var page = (Page)Activator.CreateInstance(item.TargetType);
-                //page.Title = item.Title;
 
                 Detail = new NavigationPage(page);
+                _pagesStack.Push(Detail);
                 IsPresented = false;
             }
             catch(Exception exc)
@@ -77,6 +93,11 @@ namespace HomeBudgeStandard.Pages
         {
             await Crashes.SetEnabledAsync(true);
             var didAppCrash = await Crashes.HasCrashedInLastSessionAsync();
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return _pagesStack.Count > 1;
         }
     }
 }
