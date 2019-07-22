@@ -27,6 +27,8 @@ namespace HomeBudgeStandard.Pages
             RemoveElementCommand = new Command<BudgetSubcatEdit>( (subcat)=>
             {
                 var name = subcat.Name;
+                var toRemove = BudgetTemplate.Where(elem => elem.)
+                BudgetTemplate.Remove()
             });
             InitializeComponent();
             BindingContext = this;
