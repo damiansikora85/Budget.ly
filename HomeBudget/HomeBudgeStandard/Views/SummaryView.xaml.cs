@@ -72,7 +72,6 @@ namespace HomeBudgeStandard.Views
             MessagingCenter.Subscribe<SummaryGroupHeaderViewCell, BudgetSummaryDataViewModel>(this, "CategoryClicked", (sender, element) => ExpandCategory(element));
             MessagingCenter.Subscribe<AnimatedViewCell, SummaryListSubcat>(this, "SubcatClicked", (sender, subcat) => AddExpense(subcat));
 
-
             if (MainBudget.Instance.IsDataLoaded && !_setupDone)
             {
                 UpdateSummary();
