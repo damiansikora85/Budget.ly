@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:components="clr-namespace:HomeBudget.Components"
-             x:Class="HomeBudgeStandard.Pages.SettingsPage">
+             x:Class="HomeBudgeStandard.Pages.SettingsPage"
+             Title="Ustawienia">
     <ContentPage.Content>
         <StackLayout Margin="6, 0">
             <Label Text="Powiadomienia" FontSize="Large" LineBreakMode="NoWrap" TextColor="Black"/>
