@@ -130,6 +130,10 @@ namespace HomeBudget.Code
             catch(Exception e)
             {
                 LogsManager.Instance.WriteLine("Dropbox other exception: "+e.Message);
+                if(e.InnerException != null)
+                {
+                    LogsManager.Instance.WriteLine("Dropbox other exception: " + e.InnerException.Message);
+                }
                 //OnDownloadError?.Invoke();
                 //OnDownloadFinished?.Invoke(this, null);
                 return null;
