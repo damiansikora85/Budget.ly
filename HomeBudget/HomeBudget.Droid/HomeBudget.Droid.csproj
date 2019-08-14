@@ -62,7 +62,6 @@
     <AndroidExplicitCrunch>true</AndroidExplicitCrunch>
     <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
     <AndroidDexTool>d8</AndroidDexTool>
-    <AndroidLinkTool>r8</AndroidLinkTool>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidPackageFormat>aab</AndroidPackageFormat>
   </PropertyGroup>
