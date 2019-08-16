@@ -223,7 +223,7 @@ namespace HomeBudget.Code
             {
                 if (data == null)
                 {
-                    LogsManager.Instance.WriteLine("Cloud save synchro - null");
+                    LogsManager.Instance.WriteLine("Cloud UpdateData == null");
                     Task.Run(() => LoadAsync());
                 }
                 else

@@ -4,6 +4,7 @@ using HomeBudget.Helpers;
 using HomeBudgetShared.Code.Synchronize;
 using Microsoft.AppCenter.Crashes;
 using System;
+using System.Collections;
 using System.Globalization;
 
 using Xamarin.Forms;
@@ -22,16 +23,18 @@ namespace HomeBudgeStandard.Pages
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
 
             Crashes.NotifyUserConfirmation(UserConfirmation.AlwaysSend);
-            
         }
 
         public bool OnBackPressed()
         {
-            if(Detail is NavigationPage navigationPage && navigationPage.RootPage is MainTabbedPage mainTabbedPage)
+            if (Detail is NavigationPage navigationPage && navigationPage.RootPage is MainTabbedPage mainTabbedPage)
             {
                 return mainTabbedPage.OnBackPressed();
             }
-            return false;
+            else
+            {
+                return false;
+            }
         }
 
         private void InitBudget()
@@ -60,10 +63,11 @@ namespace HomeBudgeStandard.Pages
 
             try
             {
-                var page = (Page)Activator.CreateInstance(item.TargetType);
-                //page.Title = item.Title;
-
-                Detail = new NavigationPage(page);
+                if (item.TargetType != typeof(MainTabbedPage))
+                {
+                    var page = (Page)Activator.CreateInstance(item.TargetType);
+                    Detail.Navigation.PushAsync(page);
+                }
                 IsPresented = false;
             }
             catch(Exception exc)

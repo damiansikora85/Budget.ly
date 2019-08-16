@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HomeBudgeStandard.Pages.DropboxPage">
+             x:Class="HomeBudgeStandard.Pages.DropboxPage"
+             Title="Synchronizacja">
     <ContentPage.Content>
         <StackLayout Margin="25,25">
             <Label Text="Synchronizacja danych z Dropbox" FontSize="Large" TextColor="Black"/>

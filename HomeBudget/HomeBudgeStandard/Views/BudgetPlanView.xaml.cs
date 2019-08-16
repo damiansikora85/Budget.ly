@@ -143,7 +143,7 @@ namespace HomeBudgeStandard.Views
 
         private void CreateDataGrid()
         {
-            _dataGrid = new SfDataGrid()
+            _dataGrid = new SfDataGrid
             {
                 EnableDataVirtualization = true,
                 AutoGenerateColumns = false,
