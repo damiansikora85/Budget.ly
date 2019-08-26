@@ -16,6 +16,7 @@ namespace HomeBudget.Code
 
         public void UpdateCategories(List<BudgetCategoryForEdit> updatedCategories)
         {
+
             foreach(var category in updatedCategories)
             {
                 var foundCategory = Categories.FirstOrDefault(cat => cat.Id == category.Id);

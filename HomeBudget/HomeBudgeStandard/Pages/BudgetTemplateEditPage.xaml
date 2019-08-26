@@ -6,12 +6,12 @@
              x:Name="currentPage">
     <ContentPage.Content>
         <StackLayout x:Name="mainLayout">
-            <ListView x:Name="listView" IsGroupingEnabled="True" GroupDisplayBinding="{Binding Name}" ItemSelected="ListView_ItemSelected">
+            <ListView x:Name="listView" IsGroupingEnabled="True" ItemsSource="{Binding BudgetTemplate}" GroupDisplayBinding="{Binding Name}" ItemSelected="ListView_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" Padding="12,0">
-                                <Entry Text="{Binding Name}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontSize="Small"/>
+                                <Entry Text="{Binding Name}" FontSize="Small" HorizontalOptions="FillAndExpand" />
                                 <Button Text="&#xf1f8; " HorizontalOptions="End" Style="{StaticResource ButtonStyle}" Margin="0,6" Command="{Binding RemoveElementCommand, Source={x:Reference currentPage}}" CommandParameter="{Binding .}">
                                     <Button.FontFamily>
                                         <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />

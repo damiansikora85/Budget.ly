@@ -111,7 +111,11 @@ namespace HomeBudget.Code
             var result = BudgetReal.Categories.Select(category =>
             {
                 var item = new BudgetCategoryForEdit { Name = category.Name, Id = category.Id };
-                item.AddRange(category.subcats.Select(subcat => new BudgetSubcatEdit { Name = subcat.Name, Id = subcat.Id }));
+                var subcats = category.subcats.Select(subcat => new BudgetSubcatEdit { Name = subcat.Name, Id = subcat.Id });
+                foreach(var subcat in subcats)
+                {
+                    item.Add(subcat);
+                }
                 return item;
             }).ToList();
 
@@ -128,8 +132,19 @@ namespace HomeBudget.Code
                 {
                     var subcatPlan = categoryPlan.GetSubcat(subcat.Id);
                     var subcatReal = categoryReal.GetSubcat(subcat.Id);
-                    subcatPlan.Name = subcat.Name;
-                    subcatReal.Name = subcat.Name;
+                    if (subcatPlan != null && subcatReal != null)
+                    {
+                        subcatPlan.Name = subcat.Name;
+                        subcatReal.Name = subcat.Name;
+                    }
+                    else
+                    {
+                        //add new
+                        categoryReal.subcats.Add(new RealSubcat { Id = subcat.Id, Name = subcat.Name, Value = 0 });
+                        categoryPlan.subcats.Add(new PlannedSubcat { Id = subcat.Id, Name = subcat.Name, Value = 0 });
+                    }
+                    //TODO
+                    //remove subcat
                 }
             }
         }
@@ -141,7 +156,7 @@ namespace HomeBudget.Code
         public int Id { get; set; }
     }
 
-    public class BudgetCategoryForEdit : List<BudgetSubcatEdit>
+    public class BudgetCategoryForEdit : ObservableCollection<BudgetSubcatEdit>
     {
         public string Name { get; set; }
         public int Id { get; set; }

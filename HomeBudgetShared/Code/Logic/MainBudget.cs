@@ -124,12 +124,12 @@ namespace HomeBudget.Code
                     {
                         _budgetSynchronizer.Start();
                         LogsManager.Instance.WriteLine("Load data from cloud storage");
-                        Task.Run(async () => UpdateData(null, await _budgetSynchronizer.ForceLoad()));
+                        UpdateData(null, await _budgetSynchronizer.ForceLoad());
                     }
                     else
                     {
                         LogsManager.Instance.WriteLine("Load data from local device");
-                        Task.Run(() => LoadAsync());
+                        await LoadAsync();
                     }
                 }
                 catch (Exception exc)

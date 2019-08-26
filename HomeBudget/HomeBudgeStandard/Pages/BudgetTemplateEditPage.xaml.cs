@@ -1,15 +1,7 @@
-﻿using HomeBudgeStandard.Views;
-using HomeBudget.Code;
-using HomeBudget.Converters;
-using HomeBudget.Utils;
-using Syncfusion.Data;
-using Syncfusion.SfDataGrid.XForms;
+﻿using HomeBudget.Code;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -27,24 +19,30 @@ namespace HomeBudgeStandard.Pages
             RemoveElementCommand = new Command<BudgetSubcatEdit>( (subcat)=>
             {
                 var name = subcat.Name;
-                var toRemove = BudgetTemplate.Where(elem => elem.)
-                BudgetTemplate.Remove()
+                foreach(var category in BudgetTemplate)
+                {
+                    var foundSubcat = category.FirstOrDefault(elem => elem.Id == subcat.Id && elem.Name == subcat.Name);
+                    if (foundSubcat != null)
+                    {
+                        category.Remove(foundSubcat);
+                    }
+                }
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    OnPropertyChanged(nameof(BudgetTemplate));
+                });
             });
-            InitializeComponent();
-            BindingContext = this;
 
             BudgetTemplate = MainBudget.Instance.GetCurrentMonthData().GetBudgetTemplateEdit();
-            listView.ItemsSource = BudgetTemplate;
+
+            InitializeComponent();
+            BindingContext = this;
         }
 
-        private void OnSaveClicked(object sender, EventArgs e)
+        private async void OnSaveClicked(object sender, EventArgs e)
         {
-            MainBudget.Instance.UpdateBudgetCategories(BudgetTemplate);
-        }
-
-        private void RemoveElement(object sender, EventArgs e)
-        {
-
+            //MainBudget.Instance.UpdateBudgetCategories(BudgetTemplate);
+            await Navigation.PopAsync();
         }
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
