@@ -168,22 +168,16 @@ namespace HomeBudgeStandard.Utils
             });
         }
 
-        public async Task WriteCustomTemplate(BudgetDescription templateData)
+        public void WriteCustomTemplate(BudgetDescription templateData)
         {
             try
             {
                 var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
                 var filePath = Path.Combine(documentsPath, BudgetTemplateFilename);
-
-                using (var file = File.OpenWrite(filePath))
-                {
-                    var jsonString = JsonConvert.SerializeObject(templateData);
-                    var info = new UTF8Encoding(true).GetBytes(jsonString);
-
-                    await file.WriteAsync(info, 0, info.Length);
-                }
+                var jsonString = JsonConvert.SerializeObject(templateData);
+                File.WriteAllText(filePath, jsonString);
             }
-            catch 
+            catch
             {
                 throw;
             }

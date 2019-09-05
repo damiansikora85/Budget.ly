@@ -41,7 +41,7 @@ namespace HomeBudgeStandard.Pages
 
         private async void OnSaveClicked(object sender, EventArgs e)
         {
-            //MainBudget.Instance.UpdateBudgetCategories(BudgetTemplate);
+            MainBudget.Instance.UpdateBudgetCategories(BudgetTemplate);
             await Navigation.PopAsync();
         }
 

@@ -16,6 +16,6 @@ namespace HomeBudget.Code.Logic
 
         bool HasCustomTemplate();
         Task<BudgetDescription> ReadCustomTemplate();
-        Task WriteCustomTemplate(BudgetDescription templateData);
+        void WriteCustomTemplate(BudgetDescription templateData);
     }
 }

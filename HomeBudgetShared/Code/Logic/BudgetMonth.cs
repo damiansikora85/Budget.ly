@@ -143,8 +143,28 @@ namespace HomeBudget.Code
                         categoryReal.subcats.Add(new RealSubcat { Id = subcat.Id, Name = subcat.Name, Value = 0 });
                         categoryPlan.subcats.Add(new PlannedSubcat { Id = subcat.Id, Name = subcat.Name, Value = 0 });
                     }
-                    //TODO
-                    //remove subcat
+                }
+
+                //check if any subcat was removed
+                if(category.Count < categoryReal.subcats.Count)
+                {
+                    var toRemove = new List<BaseBudgetSubcat>();
+                    foreach(var existingSubcat in categoryReal.subcats)
+                    {
+                        if(category.FirstOrDefault( subcat => subcat.Id == existingSubcat.Id) == null)
+                        {
+                            toRemove.Add(existingSubcat);
+                        }
+                    }
+
+                    if (toRemove.Count > 0)
+                    {
+                        foreach (var subcatRemove in toRemove)
+                        {
+                            categoryReal.subcats.Remove(subcatRemove);
+                            categoryPlan.subcats.RemoveAt(categoryPlan.subcats.FindIndex( item => item.Id == subcatRemove.Id));
+                        }
+                    }
                 }
             }
         }

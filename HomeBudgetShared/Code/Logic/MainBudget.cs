@@ -115,9 +115,11 @@ namespace HomeBudget.Code
                         {
                             jsonString = reader.ReadToEnd();
                             BudgetDescription = JsonConvert.DeserializeObject<BudgetDescription>(jsonString);
-                            
                         }
                     }
+
+                    //TODO
+                    //if BudgetDescription == null
                     budgetPlanned.Setup(BudgetDescription.Categories);
 
                     if (!string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken))
@@ -151,6 +153,7 @@ namespace HomeBudget.Code
                 _fileManager.WriteCustomTemplate(BudgetDescription);
                 GetCurrentMonthData().UpdateBudgetCategories(updatedCategories);
                 Task.Factory.StartNew(async () => await Save());
+                BudgetDataChanged?.Invoke(false);
             }
             catch (Exception exc)
             {
