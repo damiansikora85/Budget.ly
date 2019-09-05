@@ -40,12 +40,7 @@ namespace HomeBudgeStandard.Views
         public SummaryView ()
 		{
             InitializeComponent();
-
             BindingContext = this;
-            var cultureInfoPL = new CultureInfo("pl-PL");
-            var currentDate = DateTime.Now;
-
-            MainBudget.Instance.BudgetDataChanged += BudgetDataChanged;
 
             SelectedCategorySubcats = new ObservableCollection<BaseBudgetSubcat>();
         }
@@ -69,6 +64,8 @@ namespace HomeBudgeStandard.Views
 
         protected override void OnAppearing()
         {
+            MainBudget.Instance.BudgetDataChanged += BudgetDataChanged;
+            MainBudget.Instance.BudgetDataChanged -= MarkBudgetChanged;
             MessagingCenter.Subscribe<SummaryGroupHeaderViewCell, BudgetSummaryDataViewModel>(this, "CategoryClicked", (sender, element) => ExpandCategory(element));
             MessagingCenter.Subscribe<AnimatedViewCell, SummaryListSubcat>(this, "SubcatClicked", (sender, subcat) => AddExpense(subcat));
 
@@ -108,9 +105,15 @@ namespace HomeBudgeStandard.Views
         {
             base.OnDisappearing();
             MainBudget.Instance.BudgetDataChanged -= BudgetDataChanged;
+            MainBudget.Instance.BudgetDataChanged += MarkBudgetChanged;
 
             MessagingCenter.Unsubscribe<SummaryGroupHeaderViewCell, BudgetSummaryDataViewModel>(this, "CategoryClicked");
             MessagingCenter.Unsubscribe<AnimatedViewCell, SummaryListSubcat>(this, "SubcatClicked");
+        }
+
+        private void MarkBudgetChanged(bool arg)
+        {
+            _setupDone = false;
         }
 
         private async void UpdateSummary()
@@ -196,7 +199,7 @@ namespace HomeBudgeStandard.Views
                 _lastClickedElem = null;
                 Navigation.PopPopupAsync();
             };
-            
+
             await Navigation.PushPopupAsync(_calcView);
         }
 
@@ -211,7 +214,7 @@ namespace HomeBudgeStandard.Views
 
                 element.Expand();
                 //summaryList.ScrollTo(element[0], element, ScrollToPosition.MakeVisible, false);
-                
+
                 _lastClickedElem = element;
 
                 if (_calcView == null)
