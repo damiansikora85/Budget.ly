@@ -45,10 +45,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Components\SubcatEditViewCell.xaml.cs">
+      <DependentUpon>SubcatEditViewCell.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\MainPageMenuItem.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Components\SubcatEditViewCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\AboutPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

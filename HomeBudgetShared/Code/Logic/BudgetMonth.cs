@@ -110,7 +110,7 @@ namespace HomeBudget.Code
         {
             var result = BudgetReal.Categories.Select(category =>
             {
-                var item = new BudgetCategoryForEdit { Name = category.Name, Id = category.Id };
+                var item = new BudgetCategoryForEdit { Name = category.Name, Id = category.Id, IconFile = category.IconName };
                 var subcats = category.subcats.Select(subcat => new BudgetSubcatEdit { Name = subcat.Name, Id = subcat.Id });
                 foreach(var subcat in subcats)
                 {
@@ -174,11 +174,13 @@ namespace HomeBudget.Code
     {
         public string Name { get; set; }
         public int Id { get; set; }
+        public bool IsNew { get; set; }
     }
 
     public class BudgetCategoryForEdit : ObservableCollection<BudgetSubcatEdit>
     {
         public string Name { get; set; }
+        public string IconFile { get; set; }
         public int Id { get; set; }
     }
 }

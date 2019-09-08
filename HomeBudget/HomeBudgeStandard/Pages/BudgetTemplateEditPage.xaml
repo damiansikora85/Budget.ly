@@ -2,23 +2,27 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sf="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:components="clr-namespace:HomeBudgeStandard.Components"
              x:Class="HomeBudgeStandard.Pages.BudgetTemplateEditPage"
              x:Name="currentPage">
     <ContentPage.Content>
         <StackLayout x:Name="mainLayout">
             <ListView x:Name="listView" IsGroupingEnabled="True" ItemsSource="{Binding BudgetTemplate}" GroupDisplayBinding="{Binding Name}" ItemSelected="ListView_ItemSelected">
-                <ListView.ItemTemplate>
+                <ListView.GroupHeaderTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal" Padding="12,0">
-                                <Entry Text="{Binding Name}" FontSize="Small" HorizontalOptions="FillAndExpand" />
-                                <Button Text="&#xf1f8; " HorizontalOptions="End" Style="{StaticResource ButtonStyle}" Margin="0,6" Command="{Binding RemoveElementCommand, Source={x:Reference currentPage}}" CommandParameter="{Binding .}">
-                                    <Button.FontFamily>
-                                        <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
-                                    </Button.FontFamily>
-                                </Button>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding IconFile}" Margin="10" />
+                                <Label Text="{Binding Name}" FontSize="16" TextColor="Black" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
+                                <ImageButton Source="add.png" HorizontalOptions="End" BackgroundColor="Transparent" Margin="5"
+                                             Command="{Binding AddSubcatCommand, Source={x:Reference currentPage}}" CommandParameter="{Binding .}"/>
                             </StackLayout>
                         </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <components:SubcatEditViewCell OnRemove="SubcatEditViewCell_OnRemove"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

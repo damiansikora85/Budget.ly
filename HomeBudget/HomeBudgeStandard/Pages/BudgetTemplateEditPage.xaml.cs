@@ -12,20 +12,16 @@ namespace HomeBudgeStandard.Pages
     public partial class BudgetTemplateEditPage : ContentPage
     {
         public List<BudgetCategoryForEdit> BudgetTemplate { get; private set; }
-        public Command<BudgetSubcatEdit> RemoveElementCommand { get; set; }
+        public Command<BudgetCategoryForEdit> AddSubcatCommand { get; set; }
 
         public BudgetTemplateEditPage()
         {
-            RemoveElementCommand = new Command<BudgetSubcatEdit>( (subcat)=>
+            AddSubcatCommand = new Command<BudgetCategoryForEdit>(category =>
             {
-                var name = subcat.Name;
-                foreach(var category in BudgetTemplate)
+                var foundCategory = BudgetTemplate.FirstOrDefault(element => category.Id == element.Id);
+                if(foundCategory != null)
                 {
-                    var foundSubcat = category.FirstOrDefault(elem => elem.Id == subcat.Id && elem.Name == subcat.Name);
-                    if (foundSubcat != null)
-                    {
-                        category.Remove(foundSubcat);
-                    }
+                    foundCategory.Add(new BudgetSubcatEdit { Id = foundCategory.Count, IsNew = true });
                 }
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -48,6 +44,23 @@ namespace HomeBudgeStandard.Pages
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             listView.SelectedItem = null;
+        }
+
+        private void SubcatEditViewCell_OnRemove(object sender, BudgetSubcatEdit subcat)
+        {
+            var name = subcat.Name;
+            foreach (var category in BudgetTemplate)
+            {
+                var foundSubcat = category.FirstOrDefault(elem => elem.Id == subcat.Id && elem.Name == subcat.Name);
+                if (foundSubcat != null)
+                {
+                    category.Remove(foundSubcat);
+                }
+            }
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                OnPropertyChanged(nameof(BudgetTemplate));
+            });
         }
     }
 }
