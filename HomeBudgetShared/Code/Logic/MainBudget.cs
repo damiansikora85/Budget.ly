@@ -86,7 +86,22 @@ namespace HomeBudget.Code
             _budgetSynchronizer.Start();
 
             if (overwriteLocal)
-                Task.Run(async () => UpdateData(null, await _budgetSynchronizer.ForceLoad()));
+            {
+                Task.Run(async () =>
+                {
+                    try
+                    {
+                        BudgetDescription = await _budgetSynchronizer.DownloadBudgetTemplate();
+                        UpdateData(null, await _budgetSynchronizer.ForceLoad());
+                        _fileManager.WriteCustomTemplate(BudgetDescription);
+                    }
+                    catch(Exception exc)
+                    {
+                        LogsManager.Instance.WriteLine(exc.Message);
+                        var msg = exc.Message;
+                    }
+                });
+            }
         }
 
         public void Init(IFileManager fileManager, IBudgetSynchronizer budgetSynchronizer)
@@ -151,6 +166,10 @@ namespace HomeBudget.Code
             {
                 BudgetDescription.UpdateCategories(updatedCategories);
                 _fileManager.WriteCustomTemplate(BudgetDescription);
+                if (!string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken))
+                {
+                    _budgetSynchronizer.UploadBudgetTemplate(BudgetDescription);
+                }
                 GetCurrentMonthData().UpdateBudgetCategories(updatedCategories);
                 Task.Factory.StartNew(async () => await Save());
                 BudgetDataChanged?.Invoke(false);

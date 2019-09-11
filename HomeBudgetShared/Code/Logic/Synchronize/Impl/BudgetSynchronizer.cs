@@ -108,7 +108,17 @@ namespace HomeBudgetShared.Code.Synchronize
         {
             _dataSynchroTime = await _cloudStorage.GetCloudFileModifiedTime();
             var downloadData = await _cloudStorage.DownloadData();
-            return downloadData; 
+            return downloadData;
+        }
+
+        public async Task UploadBudgetTemplate(BudgetDescription data)
+        {
+            await _cloudStorage.UploadBudgetTemplate(data);
+        }
+
+        public async Task<BudgetDescription> DownloadBudgetTemplate()
+        {
+            return await _cloudStorage.DownloadBudgetTemplate();
         }
     }
 }
