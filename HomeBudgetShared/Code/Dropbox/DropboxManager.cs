@@ -186,18 +186,25 @@ namespace HomeBudget.Code
             try
             {
                 LogsManager.Instance.WriteLine("Template loading");
-
-                BudgetDescription budgetTemplate;
-                using (var response = await DropboxClient.Files.DownloadAsync(DROPBOX_TEMPLATE_FILE_PATH))
+                var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_TEMPLATE_FILE_PATH);
+                if (metadata.IsFile)
                 {
-                    var templateJson = await response.GetContentAsStringAsync();
-                    budgetTemplate = JsonConvert.DeserializeObject<BudgetDescription>(templateJson);
+                    BudgetDescription budgetTemplate;
+                    using (var response = await DropboxClient.Files.DownloadAsync(DROPBOX_TEMPLATE_FILE_PATH))
+                    {
+                        var templateJson = await response.GetContentAsStringAsync();
+                        budgetTemplate = JsonConvert.DeserializeObject<BudgetDescription>(templateJson);
+                    }
+                    return budgetTemplate;
                 }
-                return budgetTemplate;
+                else
+                {
+                    return null;
+                }
             }
             catch (ApiException<GetMetadataError>)
             {
-                LogsManager.Instance.WriteLine("Dropbox file not found");
+                LogsManager.Instance.WriteLine("Template file not found");
                 //file not found
                 return null;
             }

@@ -91,9 +91,13 @@ namespace HomeBudget.Code
                 {
                     try
                     {
-                        BudgetDescription = await _budgetSynchronizer.DownloadBudgetTemplate();
+                        var budgetTemplate = await _budgetSynchronizer.DownloadBudgetTemplate();
                         UpdateData(null, await _budgetSynchronizer.ForceLoad());
-                        _fileManager.WriteCustomTemplate(BudgetDescription);
+                        if (budgetTemplate != null)
+                        {
+                            BudgetDescription = budgetTemplate;
+                            _fileManager.WriteCustomTemplate(BudgetDescription);
+                        }
                     }
                     catch(Exception exc)
                     {
@@ -114,11 +118,20 @@ namespace HomeBudget.Code
             {
                 try
                 {
-                    if (_fileManager.HasCustomTemplate())
+                    if (!string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken))
+                    {
+                        var budgetTemplate = await _budgetSynchronizer.DownloadBudgetTemplate();
+                        if (budgetTemplate != null)
+                        {
+                            BudgetDescription = budgetTemplate;
+                            _fileManager.WriteCustomTemplate(BudgetDescription);
+                        }
+                    }
+                    if (BudgetDescription == null && _fileManager.HasCustomTemplate())
                     {
                         BudgetDescription = await _fileManager.ReadCustomTemplate();
                     }
-                    else
+                    if (BudgetDescription == null)
                     {
                         var assembly = typeof(MainBudget).GetTypeInfo().Assembly;
                         //var name = assembly.GetName();
