@@ -29,7 +29,7 @@ namespace HomeBudgeStandard.Pages
                 });
             });
 
-            BudgetTemplate = MainBudget.Instance.GetCurrentMonthData().GetBudgetTemplateEdit();
+            BudgetTemplate = MainBudget.Instance.BudgetDescription.GetBudgetTemplateEdit();
 
             InitializeComponent();
             BindingContext = this;

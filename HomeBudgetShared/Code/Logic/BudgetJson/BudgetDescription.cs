@@ -27,9 +27,21 @@ namespace HomeBudget.Code
             }
         }
 
-        public string ToJson()
+        public List<BudgetCategoryForEdit> GetBudgetTemplateEdit()
         {
-            return string.Empty;
+            var result = Categories.Select(category =>
+            {
+                int id = 0;
+                var item = new BudgetCategoryForEdit { Name = category.Name, Id = category.Id, IconFile = category.IconFileName };
+                var subcats = category.subcategories.Select(subcat => new BudgetSubcatEdit { Name = subcat, Id = id++ });
+                foreach (var subcat in subcats)
+                {
+                    item.Add(subcat);
+                }
+                return item;
+            }).ToList();
+
+            return result;
         }
     }
 }
