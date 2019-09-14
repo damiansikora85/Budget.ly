@@ -25,7 +25,12 @@ namespace HomeBudgeStandard.Components
             base.OnBindingContextChanged();
             if(BindingContext is BudgetSubcatEdit data && data.IsNew)
             {
-                Device.BeginInvokeOnMainThread(() => entry.Focus());
+                Device.BeginInvokeOnMainThread(async() =>
+                {
+                    await Task.Delay(100);
+                    entry.Focus();
+                });
+                data.IsNew = false;
             }
         }
 

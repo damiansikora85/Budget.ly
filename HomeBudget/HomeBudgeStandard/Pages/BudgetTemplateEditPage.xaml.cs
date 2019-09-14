@@ -19,14 +19,17 @@ namespace HomeBudgeStandard.Pages
             AddSubcatCommand = new Command<BudgetCategoryForEdit>(category =>
             {
                 var foundCategory = BudgetTemplate.FirstOrDefault(element => category.Id == element.Id);
-                if(foundCategory != null)
+                if (foundCategory != null)
                 {
-                    foundCategory.Add(new BudgetSubcatEdit { Id = foundCategory.Count, IsNew = true });
+                    var newElement = new BudgetSubcatEdit { Id = foundCategory.Count, IsNew = true };
+                    foundCategory.Add(newElement);
+
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        listView.ScrollTo(newElement, ScrollToPosition.Center, false);
+                        OnPropertyChanged(nameof(BudgetTemplate));
+                    });
                 }
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    OnPropertyChanged(nameof(BudgetTemplate));
-                });
             });
 
             BudgetTemplate = MainBudget.Instance.BudgetDescription.GetBudgetTemplateEdit();
