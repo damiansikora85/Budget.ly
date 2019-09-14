@@ -10,7 +10,7 @@
   <ViewCell.View>
         <StackLayout Orientation="Horizontal" Padding="12,0">
             <Entry x:Name="entry" Text="{Binding Name}" FontSize="Small" HorizontalOptions="FillAndExpand" />
-            <Button Text="&#xf1f8; " HorizontalOptions="End" Style="{StaticResource ButtonStyle}" Margin="0,6"
+            <Button Text="&#xf1f8; " HorizontalOptions="End" BackgroundColor="Transparent" FontSize="Large" TextColor="Gray" Padding="0"
                     Clicked="Button_Clicked">
                 <Button.FontFamily>
                     <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
