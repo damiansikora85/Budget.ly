@@ -178,6 +178,7 @@ namespace HomeBudget.Code
             try
             {
                 BudgetDescription.UpdateCategories(updatedCategories);
+                budgetPlanned.Setup(BudgetDescription.Categories);
                 _fileManager.WriteCustomTemplate(BudgetDescription);
                 if (!string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken))
                 {
