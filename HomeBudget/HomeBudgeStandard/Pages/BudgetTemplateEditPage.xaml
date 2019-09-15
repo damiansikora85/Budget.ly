@@ -4,6 +4,7 @@
              xmlns:sf="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
              xmlns:components="clr-namespace:HomeBudgeStandard.Components"
              x:Class="HomeBudgeStandard.Pages.BudgetTemplateEditPage"
+             Title="Edycja kategorii"
              x:Name="currentPage">
     <ContentPage.Content>
         <StackLayout x:Name="mainLayout">

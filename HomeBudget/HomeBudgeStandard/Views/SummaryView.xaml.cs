@@ -48,6 +48,7 @@ namespace HomeBudgeStandard.Views
         private void BudgetDataChanged(bool isLoadedFromCloud)
         {
             UpdateSummary();
+            TryNewFeatureInfo();
             TryShowRatePopup();
         }
 
@@ -74,6 +75,7 @@ namespace HomeBudgeStandard.Views
                 UpdateSummary();
                 _setupDone = true;
                 TryFirstLaunchInfo();
+                TryNewFeatureInfo();
                 TryShowRatePopup();
             }
             else if (SummaryListViewItems == null)
@@ -92,11 +94,30 @@ namespace HomeBudgeStandard.Views
             _setupDone = true;
         }
 
+        private void TryNewFeatureInfo()
+        {
+            if (Xamarin.Essentials.Preferences.Get("categoryEdit", true))
+            {
+                Xamarin.Essentials.Preferences.Set("categoryEdit", false);
+
+                Navigation.PushPopupAsync(new NewFeaturePopup("Edycja kategorii", "Zarządzaj swoimi wydatkami i dochodami tak jak chcesz. Teraz możesz dostosować szablon kategorii do swoich potrzeb. Stwórz prawdziwy budżet osobisty!",
+                async () =>
+                {
+                    if (Parent is MainTabbedPage tabbedPage)
+                    {
+                        await tabbedPage.Navigation.PushAsync(new BudgetTemplateEditPage());
+                    }
+                })
+                { CloseWhenBackgroundIsClicked = false });
+            }
+        }
+
         private void TryFirstLaunchInfo()
         {
             if (Xamarin.Essentials.Preferences.Get("firstLaunch", true))
             {
                 Xamarin.Essentials.Preferences.Set("firstLaunch", false);
+                Xamarin.Essentials.Preferences.Set("categoryEdit", false);
                 Navigation.PushPopupAsync(new WelcomePopup());
             }
         }
