@@ -1,42 +1,5 @@
 {
 	"name": "template",
-	"incomes": [
-		{
-			"name": "Wynagrodzenie",
-			"id": "0",
-			"icon": "incomes.png"
-		},
-		{
-			"name": "Wynagrodzenie Partnera",
-			"id": "1",
-			"icon": "incomes.png"
-		},
-		{
-			"name": "Premia",
-			"id": "2",
-			"icon": "incomes.png"
-		},
-        {
-			"name": "Premia bankowa",
-			"id": "3",
-			"icon": "incomes.png"
-		},
-		{
-			"name": "Odsetki bankowe",
-			"id": "4",
-			"icon": "incomes.png"
-		},
-		{
-			"name": "Sprzedaż np.Allegro",
-			"id": "5",
-			"icon": "incomes.png"
-		},
-		{
-			"name": "Inne",
-			"id": "6",
-			"icon": "incomes.png"
-		}
-	],
 	"categories": [
 			{
 				"name": "Dochód",

@@ -37,7 +37,8 @@ namespace HomeBudgeStandard.Pages
                     new MainPageMenuItem { Id = 0, Title = "Budżet", Icon=FontAwesomeIcons.FileInvoiceDollar, TargetType = typeof(MainTabbedPage) },
                     new MainPageMenuItem { Id = 1, Title = "Synchronizacja", Icon=FontAwesomeIcons.Sync, TargetType = typeof(DropboxPage) },
                     new MainPageMenuItem { Id = 2, Title = "Ustawienia", Icon=FontAwesomeIcons.Cog, TargetType = typeof(SettingsPage) },
-                    new MainPageMenuItem { Id = 3, Title = "O Aplikacji", Icon=FontAwesomeIcons.QuestionCircle, TargetType = typeof(AboutPage) }
+                    new MainPageMenuItem { Id = 3, Title = "Edycja kategorii", Icon = FontAwesomeIcons.Edit, TargetType = typeof(BudgetTemplateEditPage)},
+                    new MainPageMenuItem { Id = 4, Title = "O Aplikacji", Icon=FontAwesomeIcons.QuestionCircle, TargetType = typeof(AboutPage) }
                 });
             }
             

@@ -45,14 +45,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Components\SubcatEditViewCell.xaml.cs">
+      <DependentUpon>SubcatEditViewCell.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\MainPageMenuItem.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Components\SubcatEditViewCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\AboutPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\BudgetDataGridPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\BudgetTemplateEditPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\DropboxPage.xaml">
@@ -65,6 +74,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\MainPageMaster.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\NewFeaturePopup.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\RatePage.xaml">

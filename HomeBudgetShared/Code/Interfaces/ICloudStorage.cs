@@ -1,4 +1,5 @@
-﻿using HomeBudget.Code.Logic;
+﻿using HomeBudget.Code;
+using HomeBudget.Code.Logic;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,6 +14,8 @@ namespace HomeBudgetShared.Code.Interfaces
         Task<BudgetData> DownloadData();
         Task<bool> HasStoredData();
         Task<DateTime> GetCloudFileModifiedTime();
+        Task<DateTime> UploadBudgetTemplate(BudgetDescription budgetTemplate);
+        Task<BudgetDescription> DownloadBudgetTemplate();
 
         event EventHandler<BudgetData> OnDownloadFinished;
         event EventHandler OnDownloadError;

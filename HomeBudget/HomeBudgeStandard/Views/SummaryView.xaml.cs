@@ -40,12 +40,7 @@ namespace HomeBudgeStandard.Views
         public SummaryView ()
 		{
             InitializeComponent();
-
             BindingContext = this;
-            var cultureInfoPL = new CultureInfo("pl-PL");
-            var currentDate = DateTime.Now;
-
-            MainBudget.Instance.BudgetDataChanged += BudgetDataChanged;
 
             SelectedCategorySubcats = new ObservableCollection<BaseBudgetSubcat>();
         }
@@ -53,6 +48,7 @@ namespace HomeBudgeStandard.Views
         private void BudgetDataChanged(bool isLoadedFromCloud)
         {
             UpdateSummary();
+            TryNewFeatureInfo();
             TryShowRatePopup();
         }
 
@@ -69,6 +65,8 @@ namespace HomeBudgeStandard.Views
 
         protected override void OnAppearing()
         {
+            MainBudget.Instance.BudgetDataChanged += BudgetDataChanged;
+            MainBudget.Instance.BudgetDataChanged -= MarkBudgetChanged;
             MessagingCenter.Subscribe<SummaryGroupHeaderViewCell, BudgetSummaryDataViewModel>(this, "CategoryClicked", (sender, element) => ExpandCategory(element));
             MessagingCenter.Subscribe<AnimatedViewCell, SummaryListSubcat>(this, "SubcatClicked", (sender, subcat) => AddExpense(subcat));
 
@@ -77,6 +75,7 @@ namespace HomeBudgeStandard.Views
                 UpdateSummary();
                 _setupDone = true;
                 TryFirstLaunchInfo();
+                TryNewFeatureInfo();
                 TryShowRatePopup();
             }
             else if (SummaryListViewItems == null)
@@ -95,11 +94,30 @@ namespace HomeBudgeStandard.Views
             _setupDone = true;
         }
 
+        private void TryNewFeatureInfo()
+        {
+            if (Xamarin.Essentials.Preferences.Get("categoryEdit", true))
+            {
+                Xamarin.Essentials.Preferences.Set("categoryEdit", false);
+
+                Navigation.PushPopupAsync(new NewFeaturePopup("Edycja kategorii", "Zarządzaj swoimi wydatkami i dochodami tak jak chcesz. Teraz możesz dostosować szablon kategorii do swoich potrzeb. Stwórz prawdziwy budżet osobisty!",
+                async () =>
+                {
+                    if (Parent is MainTabbedPage tabbedPage)
+                    {
+                        await tabbedPage.Navigation.PushAsync(new BudgetTemplateEditPage());
+                    }
+                })
+                { CloseWhenBackgroundIsClicked = false });
+            }
+        }
+
         private void TryFirstLaunchInfo()
         {
             if (Xamarin.Essentials.Preferences.Get("firstLaunch", true))
             {
                 Xamarin.Essentials.Preferences.Set("firstLaunch", false);
+                Xamarin.Essentials.Preferences.Set("categoryEdit", false);
                 Navigation.PushPopupAsync(new WelcomePopup());
             }
         }
@@ -108,9 +126,15 @@ namespace HomeBudgeStandard.Views
         {
             base.OnDisappearing();
             MainBudget.Instance.BudgetDataChanged -= BudgetDataChanged;
+            MainBudget.Instance.BudgetDataChanged += MarkBudgetChanged;
 
             MessagingCenter.Unsubscribe<SummaryGroupHeaderViewCell, BudgetSummaryDataViewModel>(this, "CategoryClicked");
             MessagingCenter.Unsubscribe<AnimatedViewCell, SummaryListSubcat>(this, "SubcatClicked");
+        }
+
+        private void MarkBudgetChanged(bool arg)
+        {
+            _setupDone = false;
         }
 
         private async void UpdateSummary()
@@ -196,7 +220,7 @@ namespace HomeBudgeStandard.Views
                 _lastClickedElem = null;
                 Navigation.PopPopupAsync();
             };
-            
+
             await Navigation.PushPopupAsync(_calcView);
         }
 
@@ -211,7 +235,7 @@ namespace HomeBudgeStandard.Views
 
                 element.Expand();
                 //summaryList.ScrollTo(element[0], element, ScrollToPosition.MakeVisible, false);
-                
+
                 _lastClickedElem = element;
 
                 if (_calcView == null)

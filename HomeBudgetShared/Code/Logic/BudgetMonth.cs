@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using ProtoBuf;
+using System.Linq;
 
 namespace HomeBudget.Code
 {
@@ -51,16 +52,6 @@ namespace HomeBudget.Code
             BudgetReal.AddIncome(value, date, incomeCategoryID);
         }
 
-        public void SetPlannedIncome(float value, int incomeCategoryID)
-        {
-            //GetIncomeByID(incomeCategoryID).SetPlannedIncome(value);
-        }
-
-        public void SetPlannedExpense(float value, int categoryID, int subcatID)
-        {
-            //GetCategoryByID(categoryID).SetPlannedExpense(value, subcatID);
-        }
-
 		private BudgetMonth()
 		{
             BudgetReal = new BudgetReal();
@@ -69,7 +60,7 @@ namespace HomeBudget.Code
 
         private void OnBudgetPlannedChanged()
         {
-            onBudgetPlannedChanged();
+            onBudgetPlannedChanged?.Invoke();
         }
 
         private void SetupDate(DateTime date)
@@ -82,17 +73,6 @@ namespace HomeBudget.Code
 		{
             BudgetPlanned.Setup(categoriesDesc);
             BudgetReal.Setup(categoriesDesc);
-		}
-
-        public ObservableCollection<BudgetChartData> GetData()
-		{
-			var monthData = new ObservableCollection<BudgetChartData>();
-			/*foreach (ExpenseCategory category in Categories)
-			{
-				monthData.Add(new BudgetChartData(category.Name, category.GetExpensesSum()));
-			}*/
-
-			return monthData;
 		}
 
         public double GetTotalIncomeReal()
@@ -125,5 +105,82 @@ namespace HomeBudget.Code
             BudgetPlanned.Prepare();
             BudgetReal.Prepare();
         }
+
+        public List<BudgetCategoryForEdit> GetBudgetTemplateEdit()
+        {
+            var result = BudgetReal.Categories.Select(category =>
+            {
+                var item = new BudgetCategoryForEdit { Name = category.Name, Id = category.Id, IconFile = category.IconName };
+                var subcats = category.subcats.Select(subcat => new BudgetSubcatEdit { Name = subcat.Name, Id = subcat.Id });
+                foreach(var subcat in subcats)
+                {
+                    item.Add(subcat);
+                }
+                return item;
+            }).ToList();
+
+            return result;
+        }
+
+        public void UpdateBudgetCategories(List<BudgetCategoryForEdit> categoriesUpdated)
+        {
+            foreach(var category in categoriesUpdated)
+            {
+                var categoryReal = BudgetReal.GetBudgetCategory(category.Id);
+                var categoryPlan = BudgetPlanned.GetBudgetCategory(category.Id);
+                foreach(var subcat in category)
+                {
+                    var subcatPlan = categoryPlan.GetSubcat(subcat.Id);
+                    var subcatReal = categoryReal.GetSubcat(subcat.Id);
+                    if (subcatPlan != null && subcatReal != null)
+                    {
+                        subcatPlan.Name = subcat.Name;
+                        subcatReal.Name = subcat.Name;
+                    }
+                    else
+                    {
+                        //add new
+                        categoryReal.subcats.Add(new RealSubcat { Id = subcat.Id, Name = subcat.Name, Value = 0 });
+                        categoryPlan.subcats.Add(new PlannedSubcat { Id = subcat.Id, Name = subcat.Name, Value = 0 });
+                    }
+                }
+
+                //check if any subcat was removed
+                if(category.Count < categoryReal.subcats.Count)
+                {
+                    var toRemove = new List<BaseBudgetSubcat>();
+                    foreach(var existingSubcat in categoryReal.subcats)
+                    {
+                        if(category.FirstOrDefault( subcat => subcat.Id == existingSubcat.Id) == null)
+                        {
+                            toRemove.Add(existingSubcat);
+                        }
+                    }
+
+                    if (toRemove.Count > 0)
+                    {
+                        foreach (var subcatRemove in toRemove)
+                        {
+                            categoryReal.subcats.Remove(subcatRemove);
+                            categoryPlan.subcats.RemoveAt(categoryPlan.subcats.FindIndex( item => item.Id == subcatRemove.Id));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public class BudgetSubcatEdit
+    {
+        public string Name { get; set; }
+        public int Id { get; set; }
+        public bool IsNew { get; set; }
+    }
+
+    public class BudgetCategoryForEdit : ObservableCollection<BudgetSubcatEdit>
+    {
+        public string Name { get; set; }
+        public string IconFile { get; set; }
+        public int Id { get; set; }
     }
 }

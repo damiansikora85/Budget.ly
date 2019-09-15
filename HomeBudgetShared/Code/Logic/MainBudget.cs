@@ -40,6 +40,7 @@ namespace HomeBudget.Code
 	{
         private const string TEMPLATE_FILENAME = "templateOrg.json";
         private const string SAVE_DIRECTORY_NAME = "save";
+
         private const string SAVE_FILE_NAME = "budget.data";
         public const int INCOME_CATEGORY_ID = 777;
         private const int VERSION = 1;
@@ -85,7 +86,26 @@ namespace HomeBudget.Code
             _budgetSynchronizer.Start();
 
             if (overwriteLocal)
-                Task.Run(async () => UpdateData(null, await _budgetSynchronizer.ForceLoad()));
+            {
+                Task.Run(async () =>
+                {
+                    try
+                    {
+                        var budgetTemplate = await _budgetSynchronizer.DownloadBudgetTemplate();
+                        UpdateData(null, await _budgetSynchronizer.ForceLoad());
+                        if (budgetTemplate != null)
+                        {
+                            BudgetDescription = budgetTemplate;
+                            _fileManager.WriteCustomTemplate(BudgetDescription);
+                        }
+                    }
+                    catch(Exception exc)
+                    {
+                        LogsManager.Instance.WriteLine(exc.Message);
+                        var msg = exc.Message;
+                    }
+                });
+            }
         }
 
         public void Init(IFileManager fileManager, IBudgetSynchronizer budgetSynchronizer)
@@ -94,32 +114,52 @@ namespace HomeBudget.Code
             _budgetSynchronizer = budgetSynchronizer;
             _budgetSynchronizer.DataDownloaded += UpdateData;
 
-            Task.Factory.StartNew(() =>
+            Task.Factory.StartNew(async() =>
             {
                 try
                 {
-                    var assembly = typeof(MainBudget).GetTypeInfo().Assembly;
-                    //var name = assembly.GetName();
-                    //var names = assembly.GetManifestResourceNames();
-                    var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{TEMPLATE_FILENAME}");
-                    var jsonString = "";
-                    using (var reader = new System.IO.StreamReader(stream))
+                    if (!string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken))
                     {
-                        jsonString = reader.ReadToEnd();
-                        BudgetDescription = JsonConvert.DeserializeObject<BudgetDescription>(jsonString);
-                        budgetPlanned.Setup(BudgetDescription.Categories);
+                        var budgetTemplate = await _budgetSynchronizer.DownloadBudgetTemplate();
+                        if (budgetTemplate != null)
+                        {
+                            BudgetDescription = budgetTemplate;
+                            _fileManager.WriteCustomTemplate(BudgetDescription);
+                        }
                     }
+                    if (BudgetDescription == null && _fileManager.HasCustomTemplate())
+                    {
+                        BudgetDescription = await _fileManager.ReadCustomTemplate();
+                    }
+                    if (BudgetDescription == null)
+                    {
+                        var assembly = typeof(MainBudget).GetTypeInfo().Assembly;
+                        //var name = assembly.GetName();
+                        //var names = assembly.GetManifestResourceNames();
+                        var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{TEMPLATE_FILENAME}");
+
+                        var jsonString = "";
+                        using (var reader = new System.IO.StreamReader(stream))
+                        {
+                            jsonString = reader.ReadToEnd();
+                            BudgetDescription = JsonConvert.DeserializeObject<BudgetDescription>(jsonString);
+                        }
+                    }
+
+                    //TODO
+                    //if BudgetDescription == null
+                    budgetPlanned.Setup(BudgetDescription.Categories);
 
                     if (!string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken))
                     {
                         _budgetSynchronizer.Start();
                         LogsManager.Instance.WriteLine("Load data from cloud storage");
-                        Task.Run(async () => UpdateData(null, await _budgetSynchronizer.ForceLoad()));
+                        UpdateData(null, await _budgetSynchronizer.ForceLoad());
                     }
                     else
                     {
                         LogsManager.Instance.WriteLine("Load data from local device");
-                        Task.Run(() => LoadAsync());
+                        await LoadAsync();
                     }
                 }
                 catch (Exception exc)
@@ -131,6 +171,27 @@ namespace HomeBudget.Code
             });
 
             LogsManager.Instance.Init(fileManager);
+        }
+
+        public void UpdateBudgetCategories(List<BudgetCategoryForEdit> updatedCategories)
+        {
+            try
+            {
+                BudgetDescription.UpdateCategories(updatedCategories);
+                budgetPlanned.Setup(BudgetDescription.Categories);
+                _fileManager.WriteCustomTemplate(BudgetDescription);
+                if (!string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken))
+                {
+                    _budgetSynchronizer.UploadBudgetTemplate(BudgetDescription);
+                }
+                GetCurrentMonthData().UpdateBudgetCategories(updatedCategories);
+                Task.Factory.StartNew(async () => await Save());
+                BudgetDataChanged?.Invoke(false);
+            }
+            catch (Exception exc)
+            {
+                LogsManager.Instance.WriteLine($"Update template failed: {exc.Message}");
+            }
         }
 
         public async Task<bool> Save(bool upload = true)
@@ -218,7 +279,7 @@ namespace HomeBudget.Code
 
                     IsDataLoaded = true;
                     BudgetDataChanged?.Invoke(true);
-                    Task.Run(() => Save(false));
+                    Task.Factory.StartNew(async () => await Save(false));
                 }
             }
             catch (Exception exc)
@@ -281,11 +342,6 @@ namespace HomeBudget.Code
         }
 
         public bool HasMonthData(DateTime date) => _months.Find(x => x.Month == date.Month && x.Year == date.Year) != null;
-
-        public ObservableCollection<BudgetMonth.BudgetChartData> GetCurrentMonthChartData()
-        {
-            return GetMonth(DateTime.Now).GetData();
-        }
 
         public BudgetMonth GetCurrentMonthData()
         {

@@ -26,10 +26,17 @@ namespace HomeBudget
 		protected override void OnStart()
 		{
             // Handle when your app starts
+#if DEBUG
+            Microsoft.AppCenter.AppCenter.Start("android=d788ef5d-e265-4c16-abbf-2e9469285d52;" +
+                  "uwp={Your UWP App secret here};" +
+                  "ios={Your iOS App secret here}",
+                  typeof(Crashes), typeof(Push));
+#else
             Microsoft.AppCenter.AppCenter.Start("android=d788ef5d-e265-4c16-abbf-2e9469285d52;" +
                   "uwp={Your UWP App secret here};" +
                   "ios={Your iOS App secret here}",
                   typeof(Analytics), typeof(Crashes), typeof(Push));
+#endif
 
 #if (!CUSTOM)
             DependencyService.Get<IRemoteConfig>().Init();

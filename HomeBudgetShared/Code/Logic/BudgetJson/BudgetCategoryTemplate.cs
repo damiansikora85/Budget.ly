@@ -23,5 +23,10 @@ namespace HomeBudget.Code
 
         [JsonProperty("sub")]
 		public List<string> subcategories;
-	}
+
+        public void Update(BudgetCategoryForEdit category)
+        {
+            subcategories = category.Select(subcat => subcat.Name).ToList();
+        }
+    }
 }

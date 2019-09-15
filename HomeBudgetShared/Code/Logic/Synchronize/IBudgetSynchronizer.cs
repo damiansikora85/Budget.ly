@@ -1,4 +1,5 @@
-﻿using HomeBudget.Code.Logic;
+﻿using HomeBudget.Code;
+using HomeBudget.Code.Logic;
 using HomeBudgetShared.Code.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -20,5 +21,7 @@ namespace HomeBudgetShared.Code.Synchronize
         void Stop();
 
         Task<BudgetData> ForceLoad();
+        Task UploadBudgetTemplate(BudgetDescription data);
+        Task<BudgetDescription> DownloadBudgetTemplate();
     }
 }
