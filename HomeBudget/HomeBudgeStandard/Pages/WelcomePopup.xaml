@@ -11,10 +11,10 @@
                         <Image Source="Logo256" HeightRequest="100"/>
 
                         <Label Text="Dziękuję za pobranie Budget.ly!" HorizontalTextAlignment="Center" FontSize="Large" FontAttributes="Bold" Margin="0,10"/>
-                        <Label Text="Pozwól, że krótko przedstawię Ci możliwości aplikacji" 
+                        <Label Text="Pozwól, że krótko przedstawię Ci możliwości aplikacji"
                            HorizontalTextAlignment="Center" VerticalOptions="StartAndExpand"/>
 
-                        <Label Text="&quot;Tworzenie budżetu to pokazywanie Twoim pieniądzom, dokąd mają iść, zamiast zastanawiania się, gdzie się rozeszły &quot;" 
+                        <Label Text="&quot;Tworzenie budżetu to pokazywanie Twoim pieniądzom, dokąd mają iść, zamiast zastanawiania się, gdzie się rozeszły &quot;"
                            FontAttributes="Italic"
                            HorizontalTextAlignment="Center" VerticalOptions="End"/>
                         <Label Text="Dave Ramsey" FontAttributes="Bold" HorizontalTextAlignment="End"/>
@@ -23,12 +23,9 @@
                     </StackLayout>
 
                     <StackLayout x:Name="howTo">
-                        <Label Text="Szablon budżetu"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" 
-                       FontAttributes="Bold" FontSize="Large"/>
+                        <Label Text="Szablon budżetu" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Large"/>
 
-                        <Label Text="Szablon budżetu został podzielony na kategorie oraz podkategorie - umożliwi Ci to dokładną analizę co dzieję się z Twoimi pieniędzmi." 
+                        <Label Text="Szablon budżetu został podzielony na kategorie oraz podkategorie - umożliwi Ci to dokładną analizę co dzieję się z Twoimi pieniędzmi. Dostosuj szablon do Twoich potrzeb i stwórz prawdziwy budżet osobisty!"
                            VerticalOptions="Start"/>
 
                         <Label VerticalOptions="StartAndExpand" Margin="0,12">
@@ -50,17 +47,17 @@
 
                     <StackLayout x:Name="planning">
                         <Label Text="Jak zacząć?"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" 
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="CenterAndExpand"
                        FontAttributes="Bold" FontSize="Large"/>
 
-                        <Label Text="Na początek ułóż plan wydatków i zarobków na bieżący miesiąc." 
+                        <Label Text="Na początek ułóż plan wydatków i zarobków na bieżący miesiąc."
                            VerticalOptions="Start"/>
 
-                        <Label Text="Dodawaj na bieżąco wydatki w aplikacji - np. raz w tygodniu. Zbieraj paragony!" 
+                        <Label Text="Dodawaj na bieżąco wydatki w aplikacji - np. raz w tygodniu. Zbieraj paragony!"
                            VerticalOptions="Start"/>
 
-                        <Label Text="Możesz ustawić przypomnienie w aplikacji aby nie zapomnieć - sprawdź ustawienia." 
+                        <Label Text="Możesz ustawić przypomnienie w aplikacji aby nie zapomnieć - sprawdź ustawienia."
                            VerticalOptions="StartAndExpand"/>
 
                         <Button Text="Wróć" Style="{StaticResource ButtonStyle}" Clicked="SwitchToHowTo" Margin="0,20,0,12"/>
@@ -69,14 +66,14 @@
 
                     <StackLayout x:Name="dropbox">
                         <Label Text="Synchronizacja"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" 
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="CenterAndExpand"
                        FontAttributes="Bold" FontSize="Large"/>
 
                         <Image Source="dropboxInfo.png" HeightRequest="120" Margin="0,10"/>
-                        <Label Text="Możesz współdzielić swój budżet z innymi urządzeniami Android - sprawdź opcje synchronizacji." 
+                        <Label Text="Możesz współdzielić swój budżet z innymi urządzeniami Android - sprawdź opcje synchronizacji."
                             VerticalOptions="Start"/>
-                        <Label Text="Dane będą zapisywane na Twoim koncie Dropbox - tylko Ty będziesz miał do nich dostęp." 
+                        <Label Text="Dane będą zapisywane na Twoim koncie Dropbox - tylko Ty będziesz miał do nich dostęp."
                             VerticalOptions="StartAndExpand"/>
 
                         <Button Text="Wróć" Style="{StaticResource ButtonStyle}" Clicked="SwitchToPlanning" Margin="0,12"/>

@@ -100,7 +100,7 @@ namespace HomeBudgeStandard.Views
             {
                 Xamarin.Essentials.Preferences.Set("categoryEdit", false);
 
-                Navigation.PushPopupAsync(new NewFeaturePopup("Edycja kategorii", "Zarządzaj swoimi wydatkami i dochodami tak jak chcesz. Teraz możesz dostosować szablon kategorii do swoich potrzeb. Stwórz prawdziwy budżet osobisty!",
+                Navigation.PushPopupAsync(new NewFeaturePopup("Edycja kategorii", "Zarządzaj swoimi wydatkami i dochodami tak jak chcesz. Teraz możesz dostosować szablon kategorii do Twoich potrzeb. Stwórz prawdziwy budżet osobisty!",
                 async () =>
                 {
                     if (Parent is MainTabbedPage tabbedPage)
