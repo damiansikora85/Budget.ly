@@ -140,8 +140,8 @@ namespace HomeBudget.Code
                     else
                     {
                         //add new
-                        categoryReal.subcats.Add(new RealSubcat { Id = subcat.Id, Name = subcat.Name, Value = 0 });
-                        categoryPlan.subcats.Add(new PlannedSubcat { Id = subcat.Id, Name = subcat.Name, Value = 0 });
+                        categoryReal.AddNewSubcat(subcat);
+                        categoryPlan.AddNewSubcat(subcat);
                     }
                 }
 

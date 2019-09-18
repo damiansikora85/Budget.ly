@@ -41,7 +41,7 @@ namespace HomeBudget.Code.Logic
             var subcat = new RealSubcat
             {
                 Name = subcatName,
-                Id = id   
+                Id = id
             };
 
             for (int i = 0; i < 31; i++)
@@ -92,8 +92,36 @@ namespace HomeBudget.Code.Logic
 
         public void AddValue(double value, DateTime date)
         {
+            if (Values.Count < 31)
+            {
+                for (int i = Values.Count; i < 31; i++)
+                {
+                    var subcatVal = new SubcatValue(i)
+                    {
+                        Value = 0
+                    };
+                    subcatVal.PropertyChanged += OnValueChanged;
+                    Values.Add(subcatVal);
+                }
+            }
             Values[date.Day-1].Value += value;
             RaiseValueChanged();
+        }
+
+        public override void CheckIfValid()
+        {
+            if(Values.Count < 31)
+            {
+                for (int i = Values.Count; i < 31; i++)
+                {
+                    var subcatVal = new SubcatValue(i)
+                    {
+                        Value = 0
+                    };
+                    subcatVal.PropertyChanged += OnValueChanged;
+                    Values.Add(subcatVal);
+                }
+            }
         }
     }
 }

@@ -31,6 +31,13 @@ namespace HomeBudget.Code.Logic
             return category;
         }
 
+        public override void AddNewSubcat(BudgetSubcatEdit subcat)
+        {
+            var newSubcat = RealSubcat.Create(subcat.Name, subcat.Id);
+            newSubcat.PropertyChanged += OnSubcatChanged;
+            subcats.Add(newSubcat);
+        }
+
         public void AddValue(double value, DateTime date, int subcatId)
         {
             var subcat = subcats.Find(elem => elem.Id == subcatId) as RealSubcat;

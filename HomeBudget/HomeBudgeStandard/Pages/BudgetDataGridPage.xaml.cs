@@ -57,6 +57,7 @@ namespace HomeBudget.Pages
                     {
                         foreach (var subcat in category.subcats)
                         {
+                            subcat.CheckIfValid();
                             var model = new BudgetViewModelData
                             {
                                 Category = category,
