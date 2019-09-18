@@ -43,5 +43,12 @@ namespace HomeBudget.Code.Logic
 
             return category;
         }
+
+        public override void AddNewSubcat(BudgetSubcatEdit subcat)
+        {
+            var newSubcat = PlannedSubcat.Create(subcat.Name, subcat.Id);
+            newSubcat.PropertyChanged += OnSubcatChanged;
+            subcats.Add(newSubcat);
+        }
     }
 }
