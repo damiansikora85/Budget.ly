@@ -10,6 +10,18 @@ namespace HomeBudget.Code.Logic
     [ProtoContract]
     public sealed class BudgetRealCategory : BaseBudgetCategory
     {
+        public BudgetRealCategory() : base()
+        {
+        }
+
+        public BudgetRealCategory(BaseBudgetCategory category) : base(category)
+        {
+            foreach (var subcat in category.subcats)
+            {
+                subcats.Add(new RealSubcat(subcat));
+            }
+        }
+
         public static BudgetRealCategory Create(BudgetCategoryTemplate categoryDesc)
         {
             var category = new BudgetRealCategory()
