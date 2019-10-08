@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -203,10 +204,11 @@ namespace HomeBudget.Code
                 {
                     Version = VERSION,
                     TimeStamp = DateTime.Now,
-                    BudgetPlanned = budgetPlanned,
-                    Months = _months,
+                    BudgetPlanned = new BudgetPlanned(budgetPlanned),
+                    Months = _months.Select(item => (BudgetMonth)item.Clone()).ToList(),
                     IsSynchronized = false
                 };
+
                 await _fileManager.Save(ActualBudgetData);
 
                 if (upload)
@@ -231,10 +233,16 @@ namespace HomeBudget.Code
                 var data = await _fileManager.Load();
                 if (data != null)
                 {
-                    budgetPlanned = data.BudgetPlanned;
-                    _months = data.Months;
-                    foreach (var month in _months)
-                        month.Setup();
+                    if (data.BudgetPlanned != null)
+                    {
+                        budgetPlanned = data.BudgetPlanned;
+                    }
+                    if (data.Months != null)
+                    {
+                        _months = data.Months;
+                        foreach (var month in _months)
+                            month.Setup();
+                    }
                 }
 
                 IsDataLoaded = true;

@@ -62,6 +62,23 @@ namespace HomeBudget.Code.Logic
             values = new ObservableCollection<SubcatValue>();
         }
 
+        public RealSubcat(BaseBudgetSubcat subcat) : base(subcat)
+        {
+            Value = subcat.Value;
+            values = new ObservableCollection<SubcatValue>();
+            if (subcat is RealSubcat realsubcat)
+            {
+                for (int i = 0; i < realsubcat.Values.Count; i++)
+                {
+                    var subcatVal = new SubcatValue(i)
+                    {
+                        Value = realsubcat.Values[i].Value
+                    };
+                    Values.Add(subcatVal);
+                }
+            }
+        }
+
         public override void Prepare()
         {
             foreach (var val in Values)

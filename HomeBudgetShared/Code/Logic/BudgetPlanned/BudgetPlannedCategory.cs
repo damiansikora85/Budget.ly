@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProtoBuf;
+﻿using ProtoBuf;
 
 namespace HomeBudget.Code.Logic
 {
@@ -17,8 +11,9 @@ namespace HomeBudget.Code.Logic
         {
             foreach (var subcat in category.subcats)
             {
-                var plannedSubcat = new PlannedSubcat(subcat);
-                plannedSubcat.PropertyChanged += OnSubcatChanged;
+                //??
+                //var plannedSubcat = new PlannedSubcat(subcat);
+                //plannedSubcat.PropertyChanged += OnSubcatChanged;
                 subcats.Add(new PlannedSubcat(subcat));
             }
         }

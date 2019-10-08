@@ -8,8 +8,8 @@ using System.Linq;
 namespace HomeBudget.Code
 {
     [ProtoContract]
-    public class BudgetMonth
-	{
+    public class BudgetMonth : ICloneable
+    {
         [ProtoMember(1)]
         public BudgetPlanned BudgetPlanned { get; set; }
         [ProtoMember(2)]
@@ -33,7 +33,12 @@ namespace HomeBudget.Code
             }
         }
 
-		public static BudgetMonth Create(List<BudgetCategoryTemplate> categories, DateTime date)
+        public object Clone()
+        {
+            return new BudgetMonth(this);
+        }
+
+        public static BudgetMonth Create(List<BudgetCategoryTemplate> categories, DateTime date)
 		{
 			var month = new BudgetMonth();
 			month.SetupCategories(categories);
@@ -56,6 +61,14 @@ namespace HomeBudget.Code
 		{
             BudgetReal = new BudgetReal();
             BudgetPlanned = new BudgetPlanned();
+        }
+
+        public BudgetMonth(BudgetMonth budgetMonth)
+        {
+            Month = budgetMonth.Month;
+            Year = budgetMonth.Year;
+            BudgetReal = new BudgetReal(budgetMonth.BudgetReal);
+            BudgetPlanned = new BudgetPlanned(budgetMonth.BudgetPlanned);
         }
 
         private void OnBudgetPlannedChanged()
@@ -97,7 +110,7 @@ namespace HomeBudget.Code
 
         public void UpdatePlannedBudget(BudgetPlanned newBudgetPlanned)
         {
-            BudgetPlanned = new BudgetPlanned(newBudgetPlanned);
+             BudgetPlanned = new BudgetPlanned(newBudgetPlanned);
         }
 
         public void Setup()
