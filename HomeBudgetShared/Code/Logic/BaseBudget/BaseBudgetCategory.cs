@@ -11,7 +11,7 @@ namespace HomeBudget.Code.Logic
     [ProtoContract]
     [ProtoInclude(7, typeof(BudgetPlannedCategory))]
     [ProtoInclude(8, typeof(BudgetRealCategory))]
-    public class BaseBudgetCategory : INotifyPropertyChanged
+    public abstract class BaseBudgetCategory : INotifyPropertyChanged
     {
         [ProtoMember(1)]
         public string Name { get; set; }
@@ -75,5 +75,7 @@ namespace HomeBudget.Code.Logic
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        public abstract void AddNewSubcat(BudgetSubcatEdit subcat);
     }
 }

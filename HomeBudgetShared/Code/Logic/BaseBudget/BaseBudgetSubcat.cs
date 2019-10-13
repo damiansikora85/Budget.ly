@@ -39,5 +39,10 @@ namespace HomeBudget.Code.Logic
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        public virtual void CheckIfValid()
+        {
+
+        }
     }
 }

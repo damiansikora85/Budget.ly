@@ -1,15 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProtoBuf;
+﻿using ProtoBuf;
+using System;
 
 namespace HomeBudget.Code.Logic
 {
     [ProtoContract]
     public sealed class BudgetRealCategory : BaseBudgetCategory
     {
+        public BudgetRealCategory() : base()
+        {
+        }
+
+        public BudgetRealCategory(BaseBudgetCategory category) : base(category)
+        {
+            foreach (var subcat in category.subcats)
+            {
+                subcats.Add(new RealSubcat(subcat));
+            }
+        }
+
         public static BudgetRealCategory Create(BudgetCategoryTemplate categoryDesc)
         {
             var category = new BudgetRealCategory()
@@ -29,6 +37,13 @@ namespace HomeBudget.Code.Logic
             }
 
             return category;
+        }
+
+        public override void AddNewSubcat(BudgetSubcatEdit subcat)
+        {
+            var newSubcat = RealSubcat.Create(subcat.Name, subcat.Id);
+            newSubcat.PropertyChanged += OnSubcatChanged;
+            subcats.Add(newSubcat);
         }
 
         public void AddValue(double value, DateTime date, int subcatId)

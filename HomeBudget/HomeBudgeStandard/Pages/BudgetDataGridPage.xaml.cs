@@ -57,6 +57,7 @@ namespace HomeBudget.Pages
                     {
                         foreach (var subcat in category.subcats)
                         {
+                            subcat.CheckIfValid();
                             var model = new BudgetViewModelData
                             {
                                 Category = category,
@@ -193,7 +194,7 @@ namespace HomeBudget.Pages
 
         private void DataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
         {
-            Task.Run(() => MainBudget.Instance.Save());
+            Task.Factory.StartNew(() => MainBudget.Instance.Save());
 
             Device.BeginInvokeOnMainThread(async () =>
             {

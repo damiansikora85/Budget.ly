@@ -26,6 +26,7 @@ namespace HomeBudget.Code.Logic
 
         public void Setup(List<BudgetCategoryTemplate> categoriesDesc)
         {
+            Categories.Clear();
             foreach (BudgetCategoryTemplate categoryDesc in categoriesDesc)
             {
                 var plannedCategory = BudgetPlannedCategory.Create(categoryDesc);
