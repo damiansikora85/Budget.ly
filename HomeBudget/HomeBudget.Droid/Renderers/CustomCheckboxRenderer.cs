@@ -10,7 +10,7 @@ using Xamarin.Forms.Platform.Android;
 [assembly: ExportRenderer(typeof(CustomCheckbox), typeof(HomeBudget.Droid.Renderers.CustomCheckboxRenderer))]
 namespace HomeBudget.Droid.Renderers
 {
-    public class CustomCheckboxRenderer : ViewRenderer<CustomCheckbox, CheckBox>, CompoundButton.IOnCheckedChangeListener
+    public class CustomCheckboxRenderer : ViewRenderer<CustomCheckbox, Android.Widget.CheckBox>, CompoundButton.IOnCheckedChangeListener
     {
         private const int DEFAULT_SIZE = 28;
 
@@ -37,7 +37,7 @@ namespace HomeBudget.Droid.Renderers
             {
                 if (Control == null)
                 {
-                    var checkbox = new CheckBox(Android.App.Application.Context);
+                    var checkbox = new Android.Widget.CheckBox(Android.App.Application.Context);
                     checkbox.SetOnCheckedChangeListener(this);
                     SetNativeControl(checkbox);
                 }
