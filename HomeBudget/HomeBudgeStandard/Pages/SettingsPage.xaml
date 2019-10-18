@@ -62,7 +62,7 @@
                 <Label Text="Wyłącz powiadomienia" VerticalTextAlignment="Center"/>
             </StackLayout>
             <Button Text="Zapisz" Clicked="OnSaveClicked" Margin="12,5" Style="{StaticResource ButtonStyle}"/>
-            <Button Text="Wyślij dane" Margin="12,5" Style="{StaticResource ButtonStyle}" Clicked="Button_Clicked"/>
+            <!--<Button Text="Wyślij dane" Margin="12,5" Style="{StaticResource ButtonStyle}" Clicked="Button_Clicked"/>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
