@@ -139,7 +139,7 @@ namespace HomeBudgeStandard.Pages
 
         private async Task<bool> IsAnyProductBought()
         {
-            //return await Task.FromResult(false);
+//            return await Task.FromResult(false);
             return await _purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropbox") ||
                            await _purchaseService.IsProductAlreadyBought("com.darktower.homebudget.dropboxnormal");
         }
@@ -147,6 +147,8 @@ namespace HomeBudgeStandard.Pages
         private async void OnIapClick(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(_iapName)) return;
+
+            _checkDropboxFileExist = false;
 
             var result = await _purchaseService.MakePurchase(_iapName);
             if (result)
@@ -164,7 +166,7 @@ namespace HomeBudgeStandard.Pages
         {
             if (!e.Url.StartsWith(_redirectUri.ToString(), StringComparison.OrdinalIgnoreCase))
             {
-                // we need to ignore all navigation that isn't to the redirect uri.  
+                // we need to ignore all navigation that isn't to the redirect uri.
                 return;
             }
 
@@ -181,7 +183,7 @@ namespace HomeBudgeStandard.Pages
 
                 await Application.Current.MainPage.Navigation.PopModalAsync();
 
-                if (await HasDropboxData())
+                if (await HasDropboxData() && _checkDropboxFileExist)
                 {
                     if (await UserDialogs.Instance.ConfirmAsync("Wykryto zapisane dane aplikacji Budget.ly na Twoim koncie Dropbox. Czy chcesz nadpisać dane lokalne w telefonie?", "Uwaga", "Użyj danych z Dropbox", "Użyj danych z  telefonu"))
                     {
@@ -196,6 +198,15 @@ namespace HomeBudgeStandard.Pages
                         MainBudget.Instance.OnCloudStorageConnected(false);
                         var mainPage = Application.Current.MainPage as MainPage;
                         mainPage.AfterCloudLogin();
+                    }
+                }
+                else if(_checkDropboxFileExist)
+                {
+                    HomeBudget.Helpers.Settings.DropboxAccessToken = "";
+                    UserDialogs.Instance.HideLoading();
+                    if(await UserDialogs.Instance.ConfirmAsync("Podane dane są nieprawidłowe", "Uwaga", "Spróbuj ponownie", "Anuluj"))
+                    {
+                        await LoginToDropbox();
                     }
                 }
                 else
@@ -220,6 +231,11 @@ namespace HomeBudgeStandard.Pages
 
         private async Task<bool> HasDropboxData()
         {
+            if(string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken))
+            {
+                return false;
+            }
+
             var accessToken = HomeBudget.Helpers.Settings.DropboxAccessToken;
             var hasData = false;
             using (var dropboxClient = new DropboxClient(accessToken))
