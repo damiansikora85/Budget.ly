@@ -14,15 +14,8 @@ namespace HomeBudgeStandard.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsPage : ContentPage, INotifyPropertyChanged
     {
-        public Command<bool> DisableNotificationCommand { get; set; }
-
         public SettingsPage ()
 		{
-            DisableNotificationCommand = new Command<bool>(isChecked =>
-            {
-                NotificationsSetEnabled(!isChecked);
-            });
-
             InitializeComponent ();
             BindingContext = this;
 		}
@@ -125,12 +118,9 @@ namespace HomeBudgeStandard.Pages
             else
                 return null;
         }
-
-        private async void Button_Clicked(object sender, EventArgs e)
+        private void NotificationsCheckbox_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            await EmailService.SendMessage(await LogsManager.Instance.ReadAll());
-            //var nextNotification = DependencyService.Get<INotificationService>().GetNextNotificationDateTime();
-            //await UserDialogs.Instance.AlertAsync($"Nastepne powiadomienie: {nextNotification.ToString()}", "Powiadomienia");
+            NotificationsSetEnabled(!e.Value);
         }
     }
 }
