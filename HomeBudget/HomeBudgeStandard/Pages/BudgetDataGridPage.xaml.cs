@@ -92,7 +92,7 @@ namespace HomeBudget.Pages
                 AutoExpandGroups = false,
                 AllowGroupExpandCollapse = true,
                 LiveDataUpdateMode = LiveDataUpdateMode.AllowSummaryUpdate,
-                SelectionMode = SelectionMode.SingleDeselect,
+                SelectionMode = Syncfusion.SfDataGrid.XForms.SelectionMode.SingleDeselect,
                 NavigationMode = NavigationMode.Cell,
                 FrozenColumnsCount = 2,
                 EditTapAction = TapAction.OnTap,

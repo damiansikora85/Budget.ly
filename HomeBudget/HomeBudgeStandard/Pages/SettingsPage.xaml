@@ -18,18 +18,49 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                
-                <components:CustomCheckbox Text="Poniedziałek" x:Name="NotificationMonday"/>
-                <components:CustomCheckbox Text="Wtorek" x:Name="NotificationTuesday" Grid.Column="1"/>
-                <components:CustomCheckbox Text="Środa" x:Name="NotificationWednesday" Grid.Column="2"/>
-                <components:CustomCheckbox Text="Czwartek" x:Name="NotificationThursday" Grid.Row="1"/>
-                <components:CustomCheckbox Text="Piątek" x:Name="NotificationFriday" Grid.Row="1" Grid.Column="1"/>
-                <components:CustomCheckbox Text="Sobota" x:Name="NotificationSaturday" Grid.Row="1" Grid.Column="2"/>
-                <components:CustomCheckbox Text="Niedziela" x:Name="NotificationSunday" Grid.Row="2" />
+
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox x:Name="NotificationMonday"/>
+                    <Label Text="Poniedziałek" VerticalTextAlignment="Center"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Column="1">
+                    <CheckBox x:Name="NotificationTuesday" />
+                    <Label Text="Wtorek" VerticalTextAlignment="Center"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Column="2">
+                    <CheckBox x:Name="NotificationWednesday" />
+                    <Label Text="Środa" VerticalTextAlignment="Center"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="1">
+                    <CheckBox x:Name="NotificationThursday" />
+                    <Label Text="Czwartek" VerticalTextAlignment="Center"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                    <CheckBox x:Name="NotificationFriday" />
+                    <Label Text="Piątek" VerticalTextAlignment="Center"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="2">
+                    <CheckBox x:Name="NotificationSaturday" />
+                    <Label Text="Sobota" VerticalTextAlignment="Center"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="2">
+                    <CheckBox x:Name="NotificationSunday"  />
+                    <Label Text="Niedziela" VerticalTextAlignment="Center"/>
+                </StackLayout>
             </Grid>
+
             <Label Text="O której godzinie wysyłać powiadomienia:" LineBreakMode="NoWrap" TextColor="Black"/>
             <TimePicker x:Name="NotificationTimePicker" Format="HH:mm"/>
-            <components:CustomCheckbox x:Name="NotificationsCheckbox" HorizontalOptions="FillAndExpand" Text="Wyłącz powiadomienia" CheckedCommandParameter="{Binding .}" CheckedCommand="{Binding DisableNotificationCommand}" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <CheckBox x:Name="NotificationsCheckbox" CheckedChanged="NotificationsCheckbox_CheckedChanged"/>
+                <Label Text="Wyłącz powiadomienia" VerticalTextAlignment="Center"/>
+            </StackLayout>
             <Button Text="Zapisz" Clicked="OnSaveClicked" Margin="12,5" Style="{StaticResource ButtonStyle}"/>
         </StackLayout>
     </ContentPage.Content>
