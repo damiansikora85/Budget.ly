@@ -33,6 +33,8 @@ namespace HomeBudgeStandard.Views
         private BudgetSummaryDataViewModel _selectedCategory;
         private BudgetSummaryDataViewModel _lastClickedElem;
 
+        private bool _isPopupDisplaying;
+
         public System.Windows.Input.ICommand GridClicked { get; set; }
 
         private CalcView _calcView;
@@ -48,13 +50,17 @@ namespace HomeBudgeStandard.Views
         private void BudgetDataChanged(bool isLoadedFromCloud)
         {
             UpdateSummary();
-            TryNewFeatureInfo();
-            TryShowRatePopup();
+            if (!_isPopupDisplaying)
+            {
+                TryNewFeatureInfo();
+                TryShowRatePopup();
+            }
         }
 
         private void TryShowRatePopup()
         {
             if (!_setupDone) return;
+            _isPopupDisplaying = true;
             var lastRatePopupDisplayedDate = Xamarin.Essentials.Preferences.Get("ratePopupDisplayDate", DateTime.MinValue);
             if ((DateTime.Now - lastRatePopupDisplayedDate).TotalDays >= 5 && Xamarin.Essentials.Preferences.Get("shouldShowRatePopup", true))
             {
@@ -70,13 +76,17 @@ namespace HomeBudgeStandard.Views
             MessagingCenter.Subscribe<SummaryGroupHeaderViewCell, BudgetSummaryDataViewModel>(this, "CategoryClicked", (sender, element) => ExpandCategory(element));
             MessagingCenter.Subscribe<AnimatedViewCell, SummaryListSubcat>(this, "SubcatClicked", (sender, subcat) => AddExpense(subcat));
 
+            _isPopupDisplaying = false;
             if (MainBudget.Instance.IsDataLoaded && !_setupDone)
             {
                 UpdateSummary();
                 _setupDone = true;
                 TryFirstLaunchInfo();
-                TryNewFeatureInfo();
-                TryShowRatePopup();
+                if (!_isPopupDisplaying)
+                {
+                    TryNewFeatureInfo();
+                    TryShowRatePopup();
+                }
             }
             else if (SummaryListViewItems == null)
             {
