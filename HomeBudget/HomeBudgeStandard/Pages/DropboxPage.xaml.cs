@@ -46,7 +46,7 @@ namespace HomeBudgeStandard.Pages
 
         private async void OnLoginDropbox(object sender, EventArgs e)
         {
-            _checkDropboxFileExist = false;
+            _checkDropboxFileExist = true;
             await LoginToDropbox();
         }
 
@@ -183,7 +183,7 @@ namespace HomeBudgeStandard.Pages
 
                 await Application.Current.MainPage.Navigation.PopModalAsync();
 
-                if (await HasDropboxData() && _checkDropboxFileExist)
+                if (await HasDropboxData())
                 {
                     if (await UserDialogs.Instance.ConfirmAsync("Wykryto zapisane dane aplikacji Budget.ly na Twoim koncie Dropbox. Czy chcesz nadpisać dane lokalne w telefonie?", "Uwaga", "Użyj danych z Dropbox", "Użyj danych z  telefonu"))
                     {
