@@ -38,6 +38,7 @@ namespace HomeBudgeStandard.Views
         public System.Windows.Input.ICommand GridClicked { get; set; }
 
         private CalcView _calcView;
+        private bool _isAddingExpenseInProgress;
 
         public SummaryView ()
 		{
@@ -203,6 +204,12 @@ namespace HomeBudgeStandard.Views
 
         private async void AddExpense(SummaryListSubcat selectedSubcat)
         {
+            if(_isAddingExpenseInProgress)
+            {
+                return;
+            }
+
+            _isAddingExpenseInProgress = true;
             _calcView.Reset();
             _calcView.Subcat = selectedSubcat.Name;
             _calcView.OnSaveValue = (double calculationResult, DateTime date) =>
@@ -228,6 +235,7 @@ namespace HomeBudgeStandard.Views
                 _selectedCategory.RaisePropertyChanged();
                 _selectedCategory = null;
                 _lastClickedElem = null;
+                _isAddingExpenseInProgress = false;
                 Navigation.PopPopupAsync();
             };
 
