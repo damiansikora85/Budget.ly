@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -15,7 +16,8 @@ namespace HomeBudget.Utils
 
         }
         public string Currency { get; set; }
-        public Action<IEnumerable, string, PropertyInfo> CalculateAggregateFunc()
+
+        Action<IEnumerable, string, PropertyDescriptor> ISummaryAggregate.CalculateAggregateFunc()
         {
             return (items, property, pd) =>
             {
