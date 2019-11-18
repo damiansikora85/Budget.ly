@@ -6,18 +6,24 @@
     <ContentPage.Content>
         <Frame Margin="12,0" VerticalOptions="Center">
             <StackLayout VerticalOptions="Center" Orientation="Horizontal">
-                <Image Source="Logo256" HeightRequest="128" HorizontalOptions="Start"/>
+                <StackLayout>
+                    <Image Source="Logo256" HeightRequest="128" HorizontalOptions="Start"/>
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox x:Name="donotShowAgain"/>
+                        <Label Text="Nie pokazuj ponownie" FontSize="Micro"/>
+                    </StackLayout>
+                </StackLayout>
                 <StackLayout x:Name="first" Spacing="32">
-                    <Label Text="Czy podoba Ci się aplikacja?" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Large"/>
+                    <Label Text="Czy podoba Ci się aplikacja?" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Large" VerticalOptions="StartAndExpand"/>
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="End">
                         <Button Text="Nie" Style="{StaticResource ButtonStyle}" HorizontalOptions="Start" Clicked="DontLikeClicked"/>
                         <Button Text="Tak" Style="{StaticResource ButtonStyle}" HorizontalOptions="End" Clicked="LikeClicked"/>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout x:Name="second" IsVisible="False" Spacing="32">
-                    <Label Text="Twoja opinia jest dla nas bardzo ważna, dlatego proszę podziel się nią z nami. To zajmie Ci tylko chwilę!"/>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Label Text="Twoja opinia jest dla nas bardzo ważna, dlatego proszę podziel się nią z nami. To zajmie Ci tylko chwilę!" VerticalOptions="StartAndExpand"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="End">
                         <Button Text="Później" BackgroundColor="Transparent" TextColor="DodgerBlue" Clicked="OnLaterClick"/>
                         <Button Text="Oceń teraz" Style="{StaticResource ButtonStyle}" Clicked="OnRateNowClick"/>
                     </StackLayout>

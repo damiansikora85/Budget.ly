@@ -23,8 +23,7 @@ namespace HomeBudgeStandard.Pages
 
         private async void OnLaterClick(object sender, EventArgs args)
         {
-            Analytics.TrackEvent("RateLater");
-            Xamarin.Essentials.Preferences.Set("shouldShowRatePopup", true);
+            Analytics.TrackEvent("RateLater", new Dictionary<string, string> { { "donotShowAgain", donotShowAgain.IsChecked ? "true" : "false" } });
             await Navigation.PopPopupAsync();
         }
 
@@ -37,21 +36,22 @@ namespace HomeBudgeStandard.Pages
 
         private async void OnRateNowClick(object sender, EventArgs args)
         {
-            Analytics.TrackEvent("RateNow");
-            Xamarin.Essentials.Preferences.Set("shouldShowRatePopup", false);
+            Analytics.TrackEvent("RateNow", new Dictionary<string, string> { { "donotShowAgain", donotShowAgain.IsChecked ? "true" : "false" } });
             await Navigation.PopPopupAsync();
             Device.OpenUri(new Uri("market://details?id=com.darktower.homebudget"));
         }
 
         private async void DontLikeClicked(object sender, EventArgs e)
         {
-            Analytics.TrackEvent("DontLikeClicked");
+            Analytics.TrackEvent("DontLikeClicked", new Dictionary<string, string> { { "donotShowAgain", donotShowAgain.IsChecked ? "true" : "false" } });
+            Xamarin.Essentials.Preferences.Set("shouldShowRatePopup", !donotShowAgain.IsChecked);
             await Navigation.PopPopupAsync();
         }
 
         private void LikeClicked(object sender, EventArgs e)
         {
-            Analytics.TrackEvent("LikeClicked");
+            Analytics.TrackEvent("LikeClicked", new Dictionary<string, string> { { "donotShowAgain", donotShowAgain.IsChecked ? "true" : "false" } });
+            Xamarin.Essentials.Preferences.Set("shouldShowRatePopup", !donotShowAgain.IsChecked);
             first.IsVisible = false;
             second.IsVisible = true;
         }
