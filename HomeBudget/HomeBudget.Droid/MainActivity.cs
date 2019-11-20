@@ -34,12 +34,10 @@ namespace HomeBudget.Droid
             Xamarin.Essentials.Platform.Init(this, bundle);
             Rg.Plugins.Popup.Popup.Init(this, bundle);
             UserDialogs.Init(this);
-            HUDTutorial.MainActivity = this;
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init();
             Xamarin.Forms.DependencyService.Register<AndroidNotificationService>();
-            Xamarin.Forms.DependencyService.Register<HUDTutorial>();
             DependencyService.Register<CustomFirebaseRemoteConfig>();
 
             _theApp = new App();
