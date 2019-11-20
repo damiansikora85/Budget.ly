@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HomeBudgeStandard.Pages.DropboxPage">
+             x:Class="HomeBudgeStandard.Pages.DropboxPage"
+             Title="Synchronizacja">
     <ContentPage.Content>
         <StackLayout Margin="25,25">
             <Label Text="Synchronizacja danych z Dropbox" FontSize="Large" TextColor="Black"/>
-            
+
             <Image Source="dropboxInfo.png" HeightRequest="150" Margin="0,20"/>
             <Label Text="Dzięki synchronizacji możesz współdzielić budżet na kilku urządzeniach" TextColor="Black"/>
             <Grid x:Name="iapLayout" IsVisible="false">
@@ -15,6 +16,8 @@
                 </Grid.RowDefinitions>
 
                 <Button Clicked="OnIapClick" Style="{StaticResource ButtonStyle}"/>
+                <Button Grid.Row="1" Text="Kliknij tu jeśli wykupiłeś już na innym urządzeniu" BackgroundColor="Transparent" TextColor="DodgerBlue" Clicked="OnLoginDropboxWithDataCheck" />
+
                 <Label InputTransparent="True" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
                     <Label.FormattedText>
                         <FormattedString>
@@ -25,11 +28,11 @@
                     </Label.FormattedText>
                 </Label>
 
-                <!--<Button Grid.Row="1" Text="Wykupione wcześniej" Style="{StaticResource ButtonStyle}" Clicked="OnLoginDropboxWithDataCheck"  />-->
+
             </Grid>
             <StackLayout x:Name="connectLayout" IsVisible="false">
                 <Button x:Name="resyncButton" Text="Synchronizuj z Dropbox" Style="{StaticResource ButtonStyle}" Clicked="OnLoginDropbox" Margin="0,15"/>
-                
+
                 <StackLayout Orientation="Horizontal">
                     <Label x:Name="synchroStatusLabel" Text="Synchronizacja nieaktywna" VerticalTextAlignment="Center" LineBreakMode="NoWrap" TextColor="Black"/>
                     <Label x:Name="synchroStatusIcon" Text="{Binding SynchronizationStatus}" FontSize="35" LineBreakMode="NoWrap" TextColor="Black">

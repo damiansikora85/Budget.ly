@@ -33,19 +33,17 @@ namespace HomeBudgeStandard.Views
         private BudgetSummaryDataViewModel _selectedCategory;
         private BudgetSummaryDataViewModel _lastClickedElem;
 
+        private bool _isPopupDisplaying;
+
         public System.Windows.Input.ICommand GridClicked { get; set; }
 
         private CalcView _calcView;
+        private bool _isAddingExpenseInProgress;
 
         public SummaryView ()
 		{
             InitializeComponent();
-
             BindingContext = this;
-            var cultureInfoPL = new CultureInfo("pl-PL");
-            var currentDate = DateTime.Now;
-
-            MainBudget.Instance.BudgetDataChanged += BudgetDataChanged;
 
             SelectedCategorySubcats = new ObservableCollection<BaseBudgetSubcat>();
         }
@@ -53,12 +51,17 @@ namespace HomeBudgeStandard.Views
         private void BudgetDataChanged(bool isLoadedFromCloud)
         {
             UpdateSummary();
-            TryShowRatePopup();
+            if (!_isPopupDisplaying)
+            {
+                TryNewFeatureInfo();
+                TryShowRatePopup();
+            }
         }
 
         private void TryShowRatePopup()
         {
             if (!_setupDone) return;
+            _isPopupDisplaying = true;
             var lastRatePopupDisplayedDate = Xamarin.Essentials.Preferences.Get("ratePopupDisplayDate", DateTime.MinValue);
             if ((DateTime.Now - lastRatePopupDisplayedDate).TotalDays >= 5 && Xamarin.Essentials.Preferences.Get("shouldShowRatePopup", true))
             {
@@ -69,15 +72,22 @@ namespace HomeBudgeStandard.Views
 
         protected override void OnAppearing()
         {
+            MainBudget.Instance.BudgetDataChanged += BudgetDataChanged;
+            MainBudget.Instance.BudgetDataChanged -= MarkBudgetChanged;
             MessagingCenter.Subscribe<SummaryGroupHeaderViewCell, BudgetSummaryDataViewModel>(this, "CategoryClicked", (sender, element) => ExpandCategory(element));
             MessagingCenter.Subscribe<AnimatedViewCell, SummaryListSubcat>(this, "SubcatClicked", (sender, subcat) => AddExpense(subcat));
 
+            _isPopupDisplaying = false;
             if (MainBudget.Instance.IsDataLoaded && !_setupDone)
             {
                 UpdateSummary();
                 _setupDone = true;
                 TryFirstLaunchInfo();
-                TryShowRatePopup();
+                if (!_isPopupDisplaying)
+                {
+                    TryNewFeatureInfo();
+                    TryShowRatePopup();
+                }
             }
             else if (SummaryListViewItems == null)
             {
@@ -95,11 +105,30 @@ namespace HomeBudgeStandard.Views
             _setupDone = true;
         }
 
+        private void TryNewFeatureInfo()
+        {
+            if (Xamarin.Essentials.Preferences.Get("categoryEdit", true))
+            {
+                Xamarin.Essentials.Preferences.Set("categoryEdit", false);
+
+                Navigation.PushPopupAsync(new NewFeaturePopup("Edycja kategorii", "Zarządzaj swoimi wydatkami i dochodami tak jak chcesz. Teraz możesz dostosować szablon kategorii do Twoich potrzeb. Stwórz prawdziwy budżet osobisty!",
+                async () =>
+                {
+                    if (Parent is MainTabbedPage tabbedPage)
+                    {
+                        await tabbedPage.Navigation.PushAsync(new BudgetTemplateEditPage());
+                    }
+                })
+                { CloseWhenBackgroundIsClicked = false });
+            }
+        }
+
         private void TryFirstLaunchInfo()
         {
             if (Xamarin.Essentials.Preferences.Get("firstLaunch", true))
             {
                 Xamarin.Essentials.Preferences.Set("firstLaunch", false);
+                Xamarin.Essentials.Preferences.Set("categoryEdit", false);
                 Navigation.PushPopupAsync(new WelcomePopup());
             }
         }
@@ -108,9 +137,15 @@ namespace HomeBudgeStandard.Views
         {
             base.OnDisappearing();
             MainBudget.Instance.BudgetDataChanged -= BudgetDataChanged;
+            MainBudget.Instance.BudgetDataChanged += MarkBudgetChanged;
 
             MessagingCenter.Unsubscribe<SummaryGroupHeaderViewCell, BudgetSummaryDataViewModel>(this, "CategoryClicked");
             MessagingCenter.Unsubscribe<AnimatedViewCell, SummaryListSubcat>(this, "SubcatClicked");
+        }
+
+        private void MarkBudgetChanged(bool arg)
+        {
+            _setupDone = false;
         }
 
         private async void UpdateSummary()
@@ -169,6 +204,12 @@ namespace HomeBudgeStandard.Views
 
         private async void AddExpense(SummaryListSubcat selectedSubcat)
         {
+            if(_isAddingExpenseInProgress)
+            {
+                return;
+            }
+
+            _isAddingExpenseInProgress = true;
             _calcView.Reset();
             _calcView.Subcat = selectedSubcat.Name;
             _calcView.OnSaveValue = (double calculationResult, DateTime date) =>
@@ -194,9 +235,10 @@ namespace HomeBudgeStandard.Views
                 _selectedCategory.RaisePropertyChanged();
                 _selectedCategory = null;
                 _lastClickedElem = null;
+                _isAddingExpenseInProgress = false;
                 Navigation.PopPopupAsync();
             };
-            
+
             await Navigation.PushPopupAsync(_calcView);
         }
 
@@ -211,7 +253,7 @@ namespace HomeBudgeStandard.Views
 
                 element.Expand();
                 //summaryList.ScrollTo(element[0], element, ScrollToPosition.MakeVisible, false);
-                
+
                 _lastClickedElem = element;
 
                 if (_calcView == null)

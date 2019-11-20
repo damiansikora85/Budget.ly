@@ -69,6 +69,8 @@ namespace HomeBudgeStandard.Views
 
         protected override void OnAppearing()
         {
+            MainBudget.Instance.BudgetDataChanged -= MarkDataChanged;
+
             if (!IsActive) return;
             try
             {
@@ -89,6 +91,16 @@ namespace HomeBudgeStandard.Views
             {
                 Debug.WriteLine(e.Message);
             }
+        }
+
+        protected override void OnDisappearing()
+        {
+            MainBudget.Instance.BudgetDataChanged += MarkDataChanged;
+        }
+
+        private void MarkDataChanged(bool obj)
+        {
+            _setupDone = false;
         }
 
         public async Task Activate()

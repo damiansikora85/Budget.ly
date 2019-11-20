@@ -12,15 +12,8 @@ namespace HomeBudgeStandard.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsPage : ContentPage, INotifyPropertyChanged
     {
-        public Command<bool> DisableNotificationCommand { get; set; }
-
         public SettingsPage ()
 		{
-            DisableNotificationCommand = new Command<bool>(isChecked =>
-            {
-                NotificationsSetEnabled(!isChecked);
-            });
-
             InitializeComponent ();
             BindingContext = this;
 		}
@@ -122,6 +115,11 @@ namespace HomeBudgeStandard.Pages
             }
             else
                 return null;
+        }
+
+        private void NotificationsCheckbox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            NotificationsSetEnabled(!e.Value);
         }
     }
 }

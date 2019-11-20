@@ -3,6 +3,7 @@ using Dropbox.Api.Files;
 using HomeBudget.Code.Logic;
 using HomeBudgetShared.Code.Interfaces;
 using HomeBudgetShared.Utils;
+using Newtonsoft.Json;
 using ProtoBuf;
 using System;
 using System.IO;
@@ -27,6 +28,7 @@ namespace HomeBudget.Code
             }
         }
         public static string DROPBOX_DATA_FILE_PATH = "/budget_data.dat";
+        public static string DROPBOX_TEMPLATE_FILE_PATH = "/budget_template.json";
 
         public Action onLogedIn;
         public Action onUploadFinished;
@@ -69,54 +71,16 @@ namespace HomeBudget.Code
             if (DropboxClient == null)
                 return null;
 
-            var budgetData = new BudgetData();
-            var cloudFileModifiedDate = await GetCloudFileModifiedTime();
             try
             {
                 LogsManager.Instance.WriteLine("Dropbox loading");
-                //var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH) as FileMetadata;
-               
+
+                BudgetData budgetData;
                 using (var response = await DropboxClient.Files.DownloadAsync(DROPBOX_DATA_FILE_PATH))
                 {
                     var bytes = await response.GetContentAsByteArrayAsync();
                     var stream = new MemoryStream(bytes, 0, bytes.Length);
                     budgetData = Serializer.Deserialize<BudgetData>(stream);
-
-
-                    /*var protoReader = new ProtoReader(stream, null, new SerializationContext { });
-
-                    while (protoReader.ReadFieldHeader() > 0)
-                    {
-                        switch (protoReader.WireType)
-                        {
-                            case WireType.None:
-                                break;
-                            case WireType.Variant:
-                                protoReader.SkipField();
-                                break;
-                            case WireType.Fixed64:
-                                protoReader.SkipField();
-                                break;
-                            case WireType.String:
-                                var s = protoReader.ReadString();
-                                break;
-                            case WireType.StartGroup:
-                                protoReader.SkipField();
-                                break;
-                            case WireType.EndGroup:
-                                protoReader.SkipField();
-                                break;
-                            case WireType.Fixed32:
-                                protoReader.SkipField();
-                                break;
-                            case WireType.SignedVariant:
-                                protoReader.SkipField();
-                                break;
-                        }
-                    }*/
-
-                    //OnDownloadFinished?.Invoke(this, budgetData);
-                    //OnDownloadFinished?.Invoke(null);
                 }
                 return budgetData;
             }
@@ -124,7 +88,6 @@ namespace HomeBudget.Code
             {
                 LogsManager.Instance.WriteLine("Dropbox file not found");
                 //file not found
-                //OnDownloadFinished?.Invoke(this, null);
                 return null;
             }
             catch(Exception e)
@@ -134,8 +97,6 @@ namespace HomeBudget.Code
                 {
                     LogsManager.Instance.WriteLine("Dropbox other exception: " + e.InnerException.Message);
                 }
-                //OnDownloadError?.Invoke();
-                //OnDownloadFinished?.Invoke(this, null);
                 return null;
             }
         }
@@ -153,7 +114,6 @@ namespace HomeBudget.Code
                     Serializer.Serialize(stream, budgetData);
                     await stream.FlushAsync();
                     var bytes = stream.GetBuffer();
-                    
                     using (var memoryStream = new MemoryStream(bytes, 0, (int)stream.Length))
                     {
                         var metadata = await DropboxClient.Files.UploadAsync(DROPBOX_DATA_FILE_PATH, WriteMode.Overwrite.Instance, body: memoryStream);
@@ -179,7 +139,6 @@ namespace HomeBudget.Code
             {
                 LogsManager.Instance.WriteLine("Dropbox loading");
                 var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH);
-                
                 return metadata.IsFile;
             }
             catch (ApiException<GetMetadataError>)
@@ -192,6 +151,72 @@ namespace HomeBudget.Code
             }
         }
 
+        public async Task<DateTime> UploadBudgetTemplate(BudgetDescription budgetTemplate)
+        {
+            if (DropboxClient == null)
+                return DateTime.MinValue;
 
+            DateTime cloudFileModifedDate = DateTime.MinValue;
+            try
+            {
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    var templateJson = JsonConvert.SerializeObject(budgetTemplate);
+
+                    using (var memoryStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(templateJson)))
+                    {
+                        var metadata = await DropboxClient.Files.UploadAsync(DROPBOX_TEMPLATE_FILE_PATH, WriteMode.Overwrite.Instance, body: memoryStream);
+                        cloudFileModifedDate = metadata.ServerModified;
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                var msg = exc.Message;
+            }
+
+            return cloudFileModifedDate;
+        }
+
+        public async Task<BudgetDescription> DownloadBudgetTemplate()
+        {
+            if (DropboxClient == null)
+                return null;
+
+            try
+            {
+                LogsManager.Instance.WriteLine("Template loading");
+                var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_TEMPLATE_FILE_PATH);
+                if (metadata.IsFile)
+                {
+                    BudgetDescription budgetTemplate;
+                    using (var response = await DropboxClient.Files.DownloadAsync(DROPBOX_TEMPLATE_FILE_PATH))
+                    {
+                        var templateJson = await response.GetContentAsStringAsync();
+                        budgetTemplate = JsonConvert.DeserializeObject<BudgetDescription>(templateJson);
+                    }
+                    return budgetTemplate;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (ApiException<GetMetadataError>)
+            {
+                LogsManager.Instance.WriteLine("Template file not found");
+                //file not found
+                return null;
+            }
+            catch (Exception e)
+            {
+                LogsManager.Instance.WriteLine("Dropbox other exception: " + e.Message);
+                if (e.InnerException != null)
+                {
+                    LogsManager.Instance.WriteLine("Dropbox other exception: " + e.InnerException.Message);
+                }
+                return null;
+            }
+        }
     }
 }

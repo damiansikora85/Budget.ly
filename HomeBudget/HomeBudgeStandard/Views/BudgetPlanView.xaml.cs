@@ -73,6 +73,8 @@ namespace HomeBudgeStandard.Views
         {
             if (!IsActive) return;
 
+            MainBudget.Instance.BudgetDataChanged -= MarkDataChanged;
+
             if (MainBudget.Instance.IsDataLoaded && !_setupDone)
             {
                 Task.Run(async () => await Setup());
@@ -84,6 +86,16 @@ namespace HomeBudgeStandard.Views
             }
 
             _setupDone = true;
+        }
+
+        protected override void OnDisappearing()
+        {
+            MainBudget.Instance.BudgetDataChanged += MarkDataChanged;
+        }
+
+        private void MarkDataChanged(bool obj)
+        {
+            _setupDone = false;
         }
 
         public async Task Activate()
@@ -355,7 +367,7 @@ namespace HomeBudgeStandard.Views
 
         private void DataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
         {
-            Task.Run(() => MainBudget.Instance.Save());
+            Task.Factory.StartNew(() => MainBudget.Instance.Save());
 
             Device.BeginInvokeOnMainThread(async () =>
             {

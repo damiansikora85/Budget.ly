@@ -26,7 +26,7 @@
 
             <components:GradientProgressBar Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Progress="{Binding SpendPercentage}"/>
 
-            <Label x:Name="expandIcon" Grid.RowSpan="3" Grid.Column="3" Text="&#xf105;" TextColor="#00C1DF" FontSize="32" LineBreakMode="NoWrap" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalTextAlignment="Center" VerticalOptions="Center" Margin="5,0">
+            <Label x:Name="expandIcon" Grid.RowSpan="3" Grid.Column="3" Text="&#xf105;" TextColor="DodgerBlue" FontSize="32" LineBreakMode="NoWrap" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalTextAlignment="Center" VerticalOptions="Center" Margin="5,0">
                 <Label.FontFamily>
                     <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
                 </Label.FontFamily>

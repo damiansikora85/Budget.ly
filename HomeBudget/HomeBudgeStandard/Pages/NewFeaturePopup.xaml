@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HomeBudgeStandard.Pages.NewFeaturePopup">
+    <ContentPage.Content>
+        <Frame Margin="12,0" VerticalOptions="Center">
+            <StackLayout VerticalOptions="Center" Spacing="32" >
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="Logo256" HeightRequest="64" HorizontalOptions="Start"/>
+                    <StackLayout HorizontalOptions="FillAndExpand" Spacing="0">
+                        <Label Text="Nowa funkcja" Style="{StaticResource BudgetFont}" FontSize="28" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Start"/>
+                        <Label Text="{Binding FeatureName}" Style="{StaticResource BudgetFont}" FontSize="Large" TextColor="DodgerBlue" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Start"/>
+                    </StackLayout>
+                </StackLayout>
+                <Label Text="{Binding FeatureDescription}" Style="{StaticResource BudgetFont}" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                    <Button Text="Sprawdź później" BackgroundColor="Transparent" TextColor="DodgerBlue" Clicked="OnCheckLaterClicked" HorizontalOptions="StartAndExpand"/>
+                    <Button Text="Sprawdź teraz"  Style="{StaticResource ButtonStyle}" Clicked="OnTryNowClicked" HorizontalOptions="End" />
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</pages:PopupPage>

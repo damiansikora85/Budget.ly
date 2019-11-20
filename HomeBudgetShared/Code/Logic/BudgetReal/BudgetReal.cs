@@ -1,11 +1,6 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProtoBuf;
 
 namespace HomeBudget.Code.Logic
 {
@@ -13,6 +8,19 @@ namespace HomeBudget.Code.Logic
     public sealed class BudgetReal : BaseBudget.BaseBudget
     {
         public List<BudgetTransaction> Transactions { get; set; }
+        public BudgetReal(BudgetReal budgetReal) : base()
+        {
+            foreach (BudgetRealCategory category in budgetReal.Categories)
+            {
+                var newCategory = new BudgetRealCategory(category);
+                newCategory.PropertyChanged += OnCategoryModified;
+                Categories.Add(newCategory);
+            }
+        }
+
+        public BudgetReal() : base()
+        {
+        }
 
         public void Setup(List<BudgetCategoryTemplate> categoriesDesc)
         {

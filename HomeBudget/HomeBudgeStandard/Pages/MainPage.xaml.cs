@@ -15,16 +15,13 @@ namespace HomeBudgeStandard.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : MasterDetailPage
     {
-        private Stack _pagesStack;
         public MainPage()
         {
-            _pagesStack = new Stack();
             CultureInfo.CurrentCulture = new CultureInfo("pl-PL");
             InitializeComponent();
             InitBudget();
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
 
-            _pagesStack.Push(Detail);
             Crashes.NotifyUserConfirmation(UserConfirmation.AlwaysSend);
         }
 
@@ -33,16 +30,6 @@ namespace HomeBudgeStandard.Pages
             if (Detail is NavigationPage navigationPage && navigationPage.RootPage is MainTabbedPage mainTabbedPage)
             {
                 return mainTabbedPage.OnBackPressed();
-            }
-            else if (_pagesStack.Count > 1)
-            {
-                _pagesStack.Pop();
-                if (_pagesStack.Peek() is NavigationPage page)
-                {
-                    Detail = page;
-                }
-                
-                return true;
             }
             else
             {
@@ -76,10 +63,11 @@ namespace HomeBudgeStandard.Pages
 
             try
             {
-                var page = (Page)Activator.CreateInstance(item.TargetType);
-
-                Detail = new NavigationPage(page);
-                _pagesStack.Push(Detail);
+                if (item.TargetType != typeof(MainTabbedPage))
+                {
+                    var page = (Page)Activator.CreateInstance(item.TargetType);
+                    Detail.Navigation.PushAsync(page);
+                }
                 IsPresented = false;
             }
             catch(Exception exc)
@@ -93,11 +81,6 @@ namespace HomeBudgeStandard.Pages
         {
             await Crashes.SetEnabledAsync(true);
             var didAppCrash = await Crashes.HasCrashedInLastSessionAsync();
-        }
-
-        protected override bool OnBackButtonPressed()
-        {
-            return _pagesStack.Count > 1;
         }
     }
 }
