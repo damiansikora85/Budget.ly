@@ -24,7 +24,7 @@
     <JavaOptions />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidKeyStore>false</AndroidKeyStore>
     <AndroidSigningKeyStore>C:\Projekty\XamarinTest\HomeBudget\keystore.jks</AndroidSigningKeyStore>
     <AndroidSigningStorePass>darktower</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>upload</AndroidSigningKeyAlias>
