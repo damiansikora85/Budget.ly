@@ -157,10 +157,17 @@ namespace HomeBudgeStandard.Views
 
                 SummaryListViewItems = summaryData;
                 summaryList.ItemsSource = summaryData;
+                summaryList.Scrolled += SummaryList_Scrolled;
 
                 loader.IsRunning = false;
                 UserDialogs.Instance.HideLoading();
             });
+        }
+
+        private void SummaryList_Scrolled(object sender, ScrolledEventArgs e)
+        {
+            debugScroll.Text = e.ScrollY.ToString();
+            header.HeightRequest -= e.ScrollY;
         }
 
         private void SetupBudgetSummary()
