@@ -164,10 +164,17 @@ namespace HomeBudgeStandard.Views
             });
         }
 
+        private double _currentScrollPos;
         private void SummaryList_Scrolled(object sender, ScrolledEventArgs e)
         {
             debugScroll.Text = e.ScrollY.ToString();
-            header.HeightRequest -= e.ScrollY;
+
+            var newHeight = header.HeightRequest - (e.ScrollY - _currentScrollPos);
+            if (newHeight > header.MinimumHeightRequest)
+            {
+                header.HeightRequest = newHeight;
+                _currentScrollPos = e.ScrollY;
+            }
         }
 
         private void SetupBudgetSummary()
@@ -192,6 +199,19 @@ namespace HomeBudgeStandard.Views
                 var budgetReal = MainBudget.Instance.GetCurrentMonthData().BudgetReal;
                 var categoriesDesc = MainBudget.Instance.BudgetDescription.Categories;
                 var budgetPlanned = MainBudget.Instance.GetCurrentMonthData().BudgetPlanned;
+
+                var emptyElem1 = new BudgetSummaryDataViewModel();
+                emptyElem1.Init();
+                budgetSummaryCollection.Add(emptyElem1);
+
+                var emptyElem2 = new BudgetSummaryDataViewModel();
+                emptyElem2.Init();
+                budgetSummaryCollection.Add(emptyElem2);
+
+                //var emptyElem3 = new BudgetSummaryDataViewModel();
+                //emptyElem3.Init();
+                //budgetSummaryCollection.Add(emptyElem3);
+
                 for (int i = 0; i < budgetReal.Categories.Count; i++)
                 {
                     var budgetSummaryData = new BudgetSummaryDataViewModel

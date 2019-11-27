@@ -10,7 +10,7 @@ namespace HomeBudget.Pages.Utils
 {
     public class BudgetSummaryDataViewModel : ObservableCollection<SummaryListSubcat>, INotifyPropertyChanged
     {
-        public string CategoryName => CategoryReal.Name;
+        public string CategoryName => CategoryReal != null ? CategoryReal.Name : "";
         public event PropertyChangedEventHandler PropertyChanged;
         public bool IsExpanded { get; private set; }
         public bool IsExpanding { get; private set; }
@@ -35,18 +35,21 @@ namespace HomeBudget.Pages.Utils
 
         public void Init()
         {
-            _sublist = new List<SummaryListSubcat>();
-            foreach (var subcat in categoryReal.subcats)
+            if (categoryReal != null)
             {
-                var subcatPlanned = CategoryPlanned.GetSubcat(subcat.Id);
-                _sublist.Add(new SummaryListSubcat
+                _sublist = new List<SummaryListSubcat>();
+                foreach (var subcat in categoryReal.subcats)
                 {
-                    Name = subcat.Name,
-                    SubcatReal = (RealSubcat)subcat,
-                    SubcatPlan = (PlannedSubcat)subcatPlanned,
-                    Id = subcat.Id,
-                    Icon = IconFile
-                });
+                    var subcatPlanned = CategoryPlanned.GetSubcat(subcat.Id);
+                    _sublist.Add(new SummaryListSubcat
+                    {
+                        Name = subcat.Name,
+                        SubcatReal = (RealSubcat)subcat,
+                        SubcatPlan = (PlannedSubcat)subcatPlanned,
+                        Id = subcat.Id,
+                        Icon = IconFile
+                    });
+                }
             }
         }
 
@@ -72,7 +75,7 @@ namespace HomeBudget.Pages.Utils
 
                 IsExpanding = false;
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 Crashes.TrackError(exc);
                 IsExpanding = false;
@@ -99,10 +102,22 @@ namespace HomeBudget.Pages.Utils
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SpendPercentageInt)));
         }
         public string IconFile { get; set; }
-        public double SpendPercentage =>
+        public double SpendPercentage
+        {
+            get
+            {
                 //Random rand = new Random();
-                CategoryReal.TotalValues == 0 ? 0 :
-                CategoryPlanned.TotalValues > 0 ? Math.Min((CategoryReal.TotalValues / CategoryPlanned.TotalValues), 1) : 1; 
+                if (categoryReal == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return CategoryReal.TotalValues == 0 ? 0 :
+                    CategoryPlanned.TotalValues > 0 ? Math.Min((CategoryReal.TotalValues / CategoryPlanned.TotalValues), 1) : 1;
+                }
+            }
+        }
 
         public int SpendPercentageInt
         {

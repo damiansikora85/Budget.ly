@@ -13,9 +13,29 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <components:GradientView StartColor="#00A9FF" EndColor="#00D7C4" Margin="0,1"/>
+            <components:GradientView StartColor="#00A9FF" EndColor="#00D7C4" HeightRequest="64" InputTransparent="True"/>
+            <BoxView CornerRadius="32" Color="White" HeightRequest="64" VerticalOptions="End"/>
+            <BoxView Color="White" HeightRequest="32" VerticalOptions="End"/>
+            
+            <ListView x:Name="summaryList" Grid.RowSpan="2" ItemSelected="Summary_ItemSelected" SeparatorVisibility="None" SeparatorColor="#D2E3F3"
+                        IsGroupingEnabled="True" GroupDisplayBinding="{Binding CategoryName}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <utils:AnimatedViewCell/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
 
-            <Grid x:Name="header" ColumnSpacing="0" Margin="5,0" HeightRequest="128" MinimumHeightRequest="64">
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <utils:SummaryGroupHeaderViewCell/>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+            </ListView>
+
+            <components:GradientView StartColor="#00A9FF" EndColor="#00D7C4" Margin="0,0,0,1"  VerticalOptions="Start" InputTransparent="True"/>
+            
+
+            <Grid x:Name="header" ColumnSpacing="0" Margin="5,0" HeightRequest="200" MinimumHeightRequest="100" InputTransparent="True">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -58,24 +78,11 @@
                 </Grid>
             </Grid>
 
-            <StackLayout Grid.Row="1">
+            <StackLayout Grid.Row="1" InputTransparent="True">
                 <ActivityIndicator x:Name="loader"/>
             </StackLayout>
 
-            <ListView x:Name="summaryList" Grid.Row="1" ItemSelected="Summary_ItemSelected" SeparatorVisibility="None" SeparatorColor="#D2E3F3"
-                        IsGroupingEnabled="True" GroupDisplayBinding="{Binding CategoryName}" HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <utils:AnimatedViewCell/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
 
-                <ListView.GroupHeaderTemplate>
-                    <DataTemplate>
-                        <utils:SummaryGroupHeaderViewCell/>
-                    </DataTemplate>
-                </ListView.GroupHeaderTemplate>
-            </ListView>
 
             <StackLayout x:Name="debugLayer" Grid.RowSpan="2" InputTransparent="True">
                 <Label x:Name="debugScroll" TextColor="Red"/>
