@@ -38,15 +38,21 @@ namespace HomeBudget.Pages.Utils
             _sublist = new List<SummaryListSubcat>();
             foreach (var subcat in categoryReal.subcats)
             {
-                var subcatPlanned = CategoryPlanned.GetSubcat(subcat.Id);
-                _sublist.Add(new SummaryListSubcat
+                if (subcat != null)
                 {
-                    Name = subcat.Name,
-                    SubcatReal = (RealSubcat)subcat,
-                    SubcatPlan = (PlannedSubcat)subcatPlanned,
-                    Id = subcat.Id,
-                    Icon = IconFile
-                });
+                    var subcatPlanned = CategoryPlanned.GetSubcat(subcat.Id);
+                    if (subcatPlanned != null)
+                    {
+                        _sublist.Add(new SummaryListSubcat
+                        {
+                            Name = subcat.Name,
+                            SubcatReal = (RealSubcat)subcat,
+                            SubcatPlan = (PlannedSubcat)subcatPlanned,
+                            Id = subcat.Id,
+                            Icon = IconFile
+                        });
+                    }
+                }
             }
         }
 
@@ -102,7 +108,7 @@ namespace HomeBudget.Pages.Utils
         public double SpendPercentage =>
                 //Random rand = new Random();
                 CategoryReal.TotalValues == 0 ? 0 :
-                CategoryPlanned.TotalValues > 0 ? Math.Min((CategoryReal.TotalValues / CategoryPlanned.TotalValues), 1) : 1; 
+                CategoryPlanned.TotalValues > 0 ? Math.Min((CategoryReal.TotalValues / CategoryPlanned.TotalValues), 1) : 1;
 
         public int SpendPercentageInt
         {
