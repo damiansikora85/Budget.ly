@@ -214,25 +214,29 @@ namespace HomeBudgeStandard.Views
             _calcView.Subcat = selectedSubcat.Name;
             _calcView.OnSaveValue = (double calculationResult, DateTime date) =>
             {
-                var budgetMonth = MainBudget.Instance.GetMonth(date);
-                var category = budgetMonth.BudgetReal.GetBudgetCategory(_selectedCategory.CategoryReal.Id);
-                if (category != null)
+                if (_selectedCategory?.CategoryReal != null)
                 {
-                    var subcat = category.GetSubcat(selectedSubcat.Id);
-                    if (subcat is RealSubcat realSubcat)
-                        realSubcat.AddValue(calculationResult, date);
+                    var budgetMonth = MainBudget.Instance.GetMonth(date);
+                    var category = budgetMonth.BudgetReal.GetBudgetCategory(_selectedCategory.CategoryReal.Id);
+                    if (category != null)
+                    {
+                        var subcat = category.GetSubcat(selectedSubcat.Id);
+                        if (subcat is RealSubcat realSubcat)
+                            realSubcat.AddValue(calculationResult, date);
+                    }
+                    Task.Run(async () =>
+                    {
+                        await MainBudget.Instance.Save();
+                    });
+
+                    SetupBudgetSummary();
+
+                    HideCalcView();
+                    summaryList.ScrollTo(selectedSubcat, _selectedCategory, ScrollToPosition.Center, false);
+                    _selectedCategory.Collapse();
+                    _selectedCategory.RaisePropertyChanged();
                 }
-                Task.Run(async () =>
-                {
-                    await MainBudget.Instance.Save();
-                });
 
-                SetupBudgetSummary();
-
-                HideCalcView();
-                summaryList.ScrollTo(selectedSubcat, _selectedCategory, ScrollToPosition.Center, false);
-                _selectedCategory.Collapse();
-                _selectedCategory.RaisePropertyChanged();
                 _selectedCategory = null;
                 _lastClickedElem = null;
                 _isAddingExpenseInProgress = false;
