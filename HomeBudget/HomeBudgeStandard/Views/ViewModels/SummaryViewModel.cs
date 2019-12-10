@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace HomeBudgeStandard.Views
 {
@@ -106,7 +107,7 @@ namespace HomeBudgeStandard.Views
                 SummaryListViewItems = await GetBudgetSummaryDataAsync(_currentBudgetMonth).ConfigureAwait(false);
             }
             OnPropertyChanged();
-            UserDialogs.Instance.HideLoading();
+            Device.BeginInvokeOnMainThread(() => UserDialogs.Instance.HideLoading());
         }
 
         private async static Task<ObservableCollection<BudgetSummaryDataViewModel>> GetBudgetSummaryDataAsync(BudgetMonth budgetData) =>
