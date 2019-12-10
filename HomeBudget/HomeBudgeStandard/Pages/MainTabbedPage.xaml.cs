@@ -18,8 +18,6 @@ namespace HomeBudgeStandard.Pages
         {
             InitializeComponent();
 
-            
-            CurrentPageChanged += OnTabChanged;
             MainBudget.Instance.BudgetDataChanged += BudgetDataChanged;
             Connectivity.ConnectivityChanged += NetworkStateChanged;
         }
@@ -49,11 +47,6 @@ namespace HomeBudgeStandard.Pages
             }
         }
 
-        private void OnTabChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         public bool OnBackPressed()
         {
             return false;
@@ -73,15 +66,6 @@ namespace HomeBudgeStandard.Pages
             {
                 UserDialogs.Instance.Toast(new ToastConfig("Brak połączenia z Internetem") { MessageTextColor = Color.Red });
             }
-            /*if (!wasOnline && _isOnline)
-            {
-                UserDialogs.Instance.ShowLoading("");
-                _waitingForSync = true;
-            }
-            if(!_isOnline)
-            {
-                UserDialogs.Instance.HideLoading();
-            }*/
         }
     }
 }
