@@ -4,7 +4,7 @@ using System.ComponentModel;
 namespace HomeBudget.Code.Logic
 {
     [ProtoContract]
-    [ProtoInclude(7, typeof(PlannedSubcat))] 
+    [ProtoInclude(7, typeof(PlannedSubcat))]
     [ProtoInclude(8, typeof(RealSubcat))]
     public class BaseBudgetSubcat : INotifyPropertyChanged
     {
