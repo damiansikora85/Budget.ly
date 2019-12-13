@@ -101,29 +101,12 @@ namespace HomeBudgeStandard.Views
             _calcView.Subcat = selectedSubcat.Name;
             _calcView.OnSaveValue = (double result, DateTime date) =>
             {
-                var budgetMonth = MainBudget.Instance.GetMonth(date);
-                if (_selectedCategory.CategoryReal.IsIncome)
-                {
-                    budgetMonth.AddIncome(result, date, selectedSubcat.Id);
-                }
-                else
-                {
-                    budgetMonth.AddExpense(result, date, _selectedCategory.CategoryReal.Id, selectedSubcat.Id);
-                }
+                _viewModel.AddExpenseAsync(result, date, _selectedCategory.CategoryReal, selectedSubcat.Id);
 
-                //var category = budgetMonth.BudgetReal.GetBudgetCategory(_selectedCategory.CategoryReal.Id);
-                //if (category != null)
-                //{
-                //    var subcat = category.GetSubcat(selectedSubcat.Id);
-                //    if (subcat is RealSubcat realSubcat)
-                //        realSubcat.AddValue(calculationResult, date);
-                //}
                 Task.Run(async () =>
                 {
-                    await MainBudget.Instance.Save();
+                    await MainBudget.Instance.Save().ConfigureAwait(false);
                 });
-
-                _viewModel.RefreshAsync();
 
                 HideCalcView();
                 summaryList.ScrollTo(selectedSubcat, _selectedCategory, ScrollToPosition.Center, false);

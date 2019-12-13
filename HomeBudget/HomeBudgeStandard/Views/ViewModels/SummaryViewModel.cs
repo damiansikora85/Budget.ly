@@ -1,11 +1,10 @@
 ﻿using Acr.UserDialogs;
 using HomeBudget.Code;
+using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -107,7 +106,6 @@ namespace HomeBudgeStandard.Views
                 SummaryListViewItems = await GetBudgetSummaryDataAsync(_currentBudgetMonth).ConfigureAwait(false);
             }
             OnPropertyChanged();
-            Device.BeginInvokeOnMainThread(() => UserDialogs.Instance.HideLoading());
         }
 
         private async static Task<ObservableCollection<BudgetSummaryDataViewModel>> GetBudgetSummaryDataAsync(BudgetMonth budgetData) =>
@@ -136,12 +134,28 @@ namespace HomeBudgeStandard.Views
 
                 return budgetSummaryCollection;
             }).ConfigureAwait(false);
+
+        public async void AddExpenseAsync(double value, DateTime date, BaseBudgetCategory category, int subcatId)
+        {
+            var budgetMonth = MainBudget.Instance.GetMonth(date);
+            if (category.IsIncome)
+            {
+                budgetMonth.AddIncome(value, date, subcatId);
+            }
+            else
+            {
+                budgetMonth.AddExpense(value, date, category.Id, subcatId);
+            }
+
+            await RefreshAsync().ConfigureAwait(false);
+        }
 #pragma warning restore CA2008 // Do not create tasks without passing a TaskScheduler
 
         private async void BudgetDataChanged(bool isLoadedFromCloud)
         {
             _currentBudgetMonth = MainBudget.Instance.GetMonth(_currentDateTime);
             await RefreshAsync().ConfigureAwait(false);
+            Device.BeginInvokeOnMainThread(() => UserDialogs.Instance.HideLoading());
         }
 
         private void MarkBudgetChanged(bool arg)
