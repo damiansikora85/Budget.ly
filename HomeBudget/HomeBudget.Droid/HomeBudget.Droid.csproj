@@ -67,6 +67,8 @@
     <AndroidDexTool>d8</AndroidDexTool>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidSupportedAbis>armeabi-v7a;arm64-v8a</AndroidSupportedAbis>
+    <AndroidPackageFormat>aab</AndroidPackageFormat>
+    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Java.Interop" />
@@ -92,7 +94,6 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Native\AndroidNotificationService.cs" />
     <Compile Include="Native\FirebaseRemoteConfig.cs" />
-    <Compile Include="Native\HUDTutorial.cs" />
     <Compile Include="Native\NotificationBroadcastReceiver.cs" />
     <Compile Include="Renderers\CustomDatePickerRenderer.cs" />
     <Compile Include="Renderers\GradientViewRenderer.cs" />

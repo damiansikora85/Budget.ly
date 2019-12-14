@@ -1,69 +1,32 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:utils="clr-namespace:HomeBudget.Pages.Utils"
              xmlns:components="clr-namespace:HomeBudget.Components"
+             xmlns:local="clr-namespace:HomeBudgeStandard.Converters"
              x:Class="HomeBudgeStandard.Views.SummaryView"
              x:Name="ThisPage" Icon="homeTab.png">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ToCapitalLetterConverter x:Key="ToCapital" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
-        <Grid BackgroundColor="#EAEAEA" RowSpacing="0">
+        <Grid BackgroundColor="White" RowSpacing="0">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="64"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
 
-            <components:GradientView StartColor="#00A9FF" EndColor="#00D7C4" Margin="0,1"/>
+            <components:GradientView StartColor="#00A9FF" Grid.Row="1" EndColor="#00D7C4" HeightRequest="64" InputTransparent="True"/>
+            <BoxView Grid.Row="1" CornerRadius="32" Color="White" HeightRequest="64" VerticalOptions="End"/>
+            <BoxView Grid.Row="1" Color="White" HeightRequest="32" VerticalOptions="End"/>
 
-            <Grid ColumnSpacing="0" Margin="5,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <StackLayout VerticalOptions="Center">
-                    <Label Text="Pozostało:" HorizontalTextAlignment="Center" FontSize="22" TextColor="White" LineBreakMode="NoWrap"/>
-                    <Label Text="{Binding DiffReal, Converter={StaticResource CurrencyValueConverter}}" FontSize="28" TextColor="White" HorizontalTextAlignment="Center" HorizontalOptions="Center" LineBreakMode="NoWrap"/>
-                </StackLayout>
-
-                <Grid Grid.Column="1" Margin="0, 16">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="20"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Label Text="&#xf30C;" FontSize="18" TextColor="White" VerticalTextAlignment="End" HorizontalTextAlignment="End">
-                        <Label.FontFamily>
-                            <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
-                        </Label.FontFamily>
-                    </Label>
-
-                    <Label Grid.Row="1" FontSize="18" Text="&#xf309;" TextColor="White" VerticalTextAlignment="Start" HorizontalTextAlignment="End">
-                        <Label.FontFamily>
-                            <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
-                        </Label.FontFamily>
-                    </Label>
-
-                    <Label Grid.Column="1" Text="{Binding RealIncomes, Converter={StaticResource CurrencyValueConverter}}" VerticalTextAlignment="End" HorizontalTextAlignment="End" TextColor="White" LineBreakMode="NoWrap" FontSize="13"/>
-                    <Label Grid.Column="1" Grid.Row="1" Text="{Binding RealExpenses, Converter={StaticResource CurrencyValueConverter}}" VerticalTextAlignment="Start" HorizontalTextAlignment="End" TextColor="White" LineBreakMode="NoWrap" FontSize="13"/>
-
-                    <Label Grid.Column="2" Text="{Binding ExpectedIncomes, Converter={StaticResource CurrencyValueConverter}}" VerticalTextAlignment="End" HorizontalTextAlignment="End" TextColor="#9FFFFFFF" LineBreakMode="NoWrap" FontSize="13"/>
-                    <Label Grid.Column="2" Grid.Row="1" Text="{Binding ExpectedExpenses, Converter={StaticResource CurrencyValueConverter}}" VerticalTextAlignment="Start" TextColor="#9FFFFFFF" HorizontalTextAlignment="End" LineBreakMode="NoWrap" FontSize="13"/>
-
-                </Grid>
-            </Grid>
-
-            <StackLayout Grid.Row="1">
-                <ActivityIndicator x:Name="loader"/>
-            </StackLayout>
-
-            <ListView x:Name="summaryList" Grid.Row="1" ItemSelected="Summary_ItemSelected" SeparatorVisibility="None" SeparatorColor="#D2E3F3"
-                        IsGroupingEnabled="True" GroupDisplayBinding="{Binding CategoryName}" HasUnevenRows="True">
+            <ListView x:Name="summaryList" Grid.RowSpan="3" ItemsSource="{Binding SummaryListViewItems}" ItemSelected="Summary_ItemSelected" SeparatorVisibility="None" SeparatorColor="#D2E3F3"
+                        IsGroupingEnabled="True" GroupDisplayBinding="{Binding CategoryName}" HasUnevenRows="True" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <utils:AnimatedViewCell/>
@@ -76,6 +39,94 @@
                     </DataTemplate>
                 </ListView.GroupHeaderTemplate>
             </ListView>
+
+            <components:GradientView StartColor="#00A9FF" EndColor="#00D7C4" InputTransparent="True"/>
+
+            <Grid x:Name="header" RowSpacing="0" Margin="5,0" HeightRequest="200" MinimumHeightRequest="100" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="Start" Opacity="{Binding ScrollProgress}" Padding="0,6" Margin="0,0" >
+                    <Button x:Name="PreviousMonthButton" Text="&#xf104;" FontSize="Large" BackgroundColor="Transparent" TextColor="White"  Clicked="OnPrevMonth" WidthRequest="60" HorizontalOptions="Start">
+                        <Button.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                        </Button.FontFamily>
+                    </Button>
+
+                    <Label Text="{Binding Date, Converter={StaticResource ToCapital}}" TextColor="White" HorizontalOptions="FillAndExpand" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+                    <Button x:Name="NextMonthButton" BackgroundColor="Transparent" FontSize="Large" TextColor="White" Text="&#xf105;" Clicked="OnNextMonth" WidthRequest="60" HorizontalOptions="End">
+                        <Button.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                        </Button.FontFamily>
+                    </Button>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="1" VerticalOptions="FillAndExpand" Margin="0,0" >
+                    <Label Text="Pozostało:" VerticalTextAlignment="Center" TextColor="White"/>
+                    <Label Text="{Binding RemainedMoney, StringFormat='{}{0:C}'}" TextColor="White" VerticalTextAlignment="Center" FontSize="48" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+                <Grid Grid.Row="2" VerticalOptions="End" Opacity="{Binding ScrollProgress}" Padding="6,0" Margin="0,0,0,4" RowSpacing="0" ColumnSpacing="16" IsVisible="{Binding IsBudgetPlanned}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Wydatki" TextColor="White" HorizontalTextAlignment="Center"/>
+                    <ProgressBar Grid.Row="1" Grid.ColumnSpan="2" ProgressColor="White" Progress="{Binding  ExpensesProgress}" HorizontalOptions="FillAndExpand" Margin="0"/>
+                    <Label Grid.Row="2" Text="{Binding Expenses, StringFormat='{}{0:C}'}" TextColor="White"/>
+                    <Label Grid.Row="2" Grid.Column="1" Text="{Binding ExpensesProgress, StringFormat='{0:P0}'}" TextColor="White"/>
+
+                    <Label Text="Dochód" Grid.Column="2" TextColor="White" HorizontalTextAlignment="Center"/>
+                    <ProgressBar Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" ProgressColor="White" Progress="{Binding IncomesProgress}" HorizontalOptions="FillAndExpand"/>
+                    <Label Grid.Row="2" Grid.Column="2" Text="{Binding Incomes, StringFormat='{}{0:C}'}" TextColor="White"/>
+                    <Label Grid.Row="2" Grid.Column="3" Text="{Binding IncomesProgress, StringFormat='{0:P0}'}" TextColor="White"/>
+                </Grid>
+
+                <Grid Grid.Row="2" VerticalOptions="End" Opacity="{Binding ScrollProgress}" Padding="6,0" Margin="0,0,0,4" IsVisible="{Binding NoBudgetPlanned}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="64"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="64"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.ColumnSpan="2" Text="Wydatki" TextColor="White" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                    <Label Text="Dochód" Grid.Column="2" Grid.ColumnSpan="2" TextColor="White" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+
+                    <Button Grid.RowSpan="2" BackgroundColor="Transparent" TextColor="White" Text="&#xf059;" HorizontalOptions="Start" Clicked="OnNoPlanClick">
+                        <Button.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                        </Button.FontFamily>
+                    </Button>
+                    <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Expenses, StringFormat='{}{0:C}'}" TextColor="White" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"/>
+
+                    <Button Grid.RowSpan="2" BackgroundColor="Transparent" Grid.Column="3" TextColor="White" Text="&#xf059;" HorizontalOptions="End" Clicked="OnNoPlanClick" >
+                        <Button.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                        </Button.FontFamily>
+                    </Button>
+                    <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Incomes, StringFormat='{}{0:C}'}" TextColor="White" HorizontalTextAlignment="Center"/>
+                </Grid>
+            </Grid>
+            <StackLayout x:Name="debugLayer" Grid.RowSpan="2" InputTransparent="True" IsVisible="False">
+                <Label x:Name="debugScroll" TextColor="Red"/>
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

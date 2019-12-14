@@ -26,6 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BudgetPlanned\PlannedSubcat.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BudgetReal\BudgetReal.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BudgetReal\BudgetRealCategory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BudgetReal\BudgetTransaction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BudgetReal\RealSubcat.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\IFileManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\IMainBudget.cs" />
