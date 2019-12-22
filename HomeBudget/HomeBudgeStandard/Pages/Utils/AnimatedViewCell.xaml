@@ -4,7 +4,7 @@
           xmlns:components="clr-namespace:HomeBudgeStandard.Components"
           x:Class="HomeBudget.Pages.Utils.AnimatedViewCell">
   <ViewCell.View>
-        <Grid x:Name="layout" BackgroundColor="White" Margin="5,0" Padding="0,5" RowSpacing="0">
+        <Grid x:Name="layout" BackgroundColor="Transparent" Margin="5,0" Padding="0,5" RowSpacing="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="*"/>
