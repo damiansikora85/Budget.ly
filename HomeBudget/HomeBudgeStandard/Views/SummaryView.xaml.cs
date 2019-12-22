@@ -29,7 +29,6 @@ namespace HomeBudgeStandard.Views
         private BudgetSummaryDataViewModel _lastClickedElem;
         private BudgetPopupManager _popupManager;
 
-        private bool _isPopupDisplaying;
 
         public SummaryView ()
 		{
@@ -49,7 +48,6 @@ namespace HomeBudgeStandard.Views
             MessagingCenter.Subscribe<SummaryGroupHeaderViewCell, BudgetSummaryDataViewModel>(this, "CategoryClicked", (sender, element) => ExpandCategory(element));
             MessagingCenter.Subscribe<AnimatedViewCell, SummaryListSubcat>(this, "SubcatClicked", (sender, subcat) => AddExpense(subcat));
 
-            _isPopupDisplaying = false;
             if (MainBudget.Instance.IsDataLoaded)
             {
                 _popupManager.TryDisplayPopup();
