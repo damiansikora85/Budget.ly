@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-namespace HomeBudgeStandard.Components
+namespace HomeBudget.Components
 {
     public class CustomListView : ListView
     {
@@ -20,8 +20,6 @@ namespace HomeBudgeStandard.Components
             get => (int)GetValue(ScrollPositionProperty);
             set => SetValue(ScrollPositionProperty, value);
         }
-
-        public int Test { get; set; }
 
         public event EventHandler OnScroll;
 

@@ -1,5 +1,5 @@
 ﻿using Android.Content;
-using HomeBudgeStandard.Components;
+using HomeBudget.Components;
 using HomeBudget.Droid.Renderers;
 using System;
 using Xamarin.Forms.Platform.Android;
@@ -33,7 +33,7 @@ namespace HomeBudget.Droid.Renderers
 
         private void Control_ScrollChange(object sender, ScrollChangeEventArgs e)
         {
-            float visiblePercentage = 0;
+            float visiblePercentage = 1;
             var firstElement = Control.GetChildAt(0);
             if (_firstElementHeight <= 0 && firstElement != null)
             {
@@ -54,7 +54,6 @@ namespace HomeBudget.Droid.Renderers
             }
             _myListView.FirstElementVisibiltyPerc = visiblePercentage;
             _myListView.ScrollPosition = topY;
-            _myListView.Test = Control.FirstVisiblePosition;
             _myListView.WasScrolled();
         }
     }

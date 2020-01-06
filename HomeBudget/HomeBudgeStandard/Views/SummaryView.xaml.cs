@@ -87,7 +87,7 @@ namespace HomeBudgeStandard.Views
                 header.HeightRequest = header.MinimumHeightRequest;
             }
             _viewModel.ScrollProgress = 1-summaryList.FirstElementVisibiltyPerc;
-            debugScroll.Text = $"{summaryList.ScrollPosition} {summaryList.Test}";
+            debugScroll.Text = $"{summaryList.ScrollPosition}";
         }
 
         private async void AddExpense(SummaryListSubcat selectedSubcat)
