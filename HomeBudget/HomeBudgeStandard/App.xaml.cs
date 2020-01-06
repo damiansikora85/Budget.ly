@@ -17,7 +17,7 @@ namespace HomeBudget
 	{
         public App()
 		{
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTcyNjQ2QDMxMzcyZTMzMmUzMEQ1eUZNajVLMit0MFhKUVp4L0FNQkZPZ0hqaUFPYXBTTE9GOGQ2MkNJV289;MTcyNjQ3QDMxMzcyZTMzMmUzMEtkS3Z3ODFiL0p5ay82azNlV1lVVSt4SFNybE9kazFTbERpeW5XYTdVL0k9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTkyNTY1QDMxMzcyZTM0MmUzMGpiOEJDRWQ1TjRadGFRenpLL3BENTNrOTM2dEVDYytVOUZIT3BBS0hQOUU9;MTkyNTY2QDMxMzcyZTM0MmUzMFBNRmNyZ2ZXVjlrL1pZSEdWUGk3NEhpTVc3VkxrQnNXNG9lcFNJMzdMMW89");
             InitializeComponent();
 
             MainPage = new MainPage();
@@ -44,7 +44,7 @@ namespace HomeBudget
 
             if (Xamarin.Essentials.Preferences.Get("firstLaunch", true))
             {
-                Xamarin.Essentials.Preferences.Set("ratePopupDisplayDate", DateTime.Now); 
+                Xamarin.Essentials.Preferences.Set("ratePopupDisplayDate", DateTime.Now);
             }
 
             //NotificationManager.ClearAllNotifications();
