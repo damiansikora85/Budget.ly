@@ -4,6 +4,8 @@
              xmlns:utils="clr-namespace:HomeBudget.Pages.Utils"
              xmlns:components="clr-namespace:HomeBudget.Components"
              xmlns:local="clr-namespace:HomeBudgeStandard.Converters"
+             xmlns:components1="clr-namespace:HomeBudgeStandard.Components"
+             xmlns:utils1="clr-namespace:HomeBudgeStandard.Utils"
              x:Class="HomeBudgeStandard.Views.SummaryView"
              x:Name="ThisPage" Icon="homeTab.png">
 
@@ -11,6 +13,16 @@
         <ResourceDictionary>
             <local:ToCapitalLetterConverter x:Key="ToCapital" />
         </ResourceDictionary>
+        <DataTemplate x:Key="groupHeaderViewCell">
+            <utils:SummaryGroupHeaderViewCell/>
+        </DataTemplate>
+        <DataTemplate x:Key="emptyViewCell">
+            <ViewCell>
+                <BoxView HeightRequest="110"/>
+            </ViewCell>
+        </DataTemplate>
+        <utils1:SummaryListViewTemplateSelector x:Key="templateSelector"
+         EmptyCellDataTemplate="{StaticResource emptyViewCell}" BudgetCellDataTemplate="{StaticResource groupHeaderViewCell}"/>
     </ContentPage.Resources>
 
     <ContentPage.Content>
@@ -25,24 +37,20 @@
             <BoxView Grid.Row="1" CornerRadius="32" Color="White" HeightRequest="64" VerticalOptions="End"/>
             <BoxView Grid.Row="1" Color="White" HeightRequest="32" VerticalOptions="End"/>
 
-            <ListView x:Name="summaryList" Grid.RowSpan="3" ItemsSource="{Binding SummaryListViewItems}" ItemSelected="Summary_ItemSelected" SeparatorVisibility="None" SeparatorColor="#D2E3F3"
-                        IsGroupingEnabled="True" GroupDisplayBinding="{Binding CategoryName}" HasUnevenRows="True" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
-                <ListView.ItemTemplate>
+            <components1:CustomListView x:Name="summaryList" Grid.RowSpan="3" ItemsSource="{Binding SummaryListViewItems}" ItemSelected="Summary_ItemSelected" SeparatorVisibility="None" SeparatorColor="Black"
+                        IsGroupingEnabled="True" GroupDisplayBinding="{Binding CategoryName}" HasUnevenRows="True" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never"
+                                        GroupHeaderTemplate="{StaticResource templateSelector}">
+                
+                <components1:CustomListView.ItemTemplate>
                     <DataTemplate>
                         <utils:AnimatedViewCell/>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-
-                <ListView.GroupHeaderTemplate>
-                    <DataTemplate>
-                        <utils:SummaryGroupHeaderViewCell/>
-                    </DataTemplate>
-                </ListView.GroupHeaderTemplate>
-            </ListView>
+                </components1:CustomListView.ItemTemplate>
+            </components1:CustomListView>
 
             <components:GradientView StartColor="#00A9FF" EndColor="#00D7C4" InputTransparent="True"/>
 
-            <Grid x:Name="header" RowSpacing="0" Margin="5,0" HeightRequest="200" MinimumHeightRequest="100" >
+            <Grid x:Name="header" RowSpacing="0" Margin="5,0" HeightRequest="200" MinimumHeightRequest="100">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="80"/>
@@ -124,7 +132,7 @@
                     <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Incomes, StringFormat='{}{0:C}'}" TextColor="White" HorizontalTextAlignment="Center"/>
                 </Grid>
             </Grid>
-            <StackLayout x:Name="debugLayer" Grid.RowSpan="2" InputTransparent="True" IsVisible="False">
+            <StackLayout x:Name="debugLayer" Grid.RowSpan="2" InputTransparent="True" IsVisible="True">
                 <Label x:Name="debugScroll" TextColor="Red"/>
             </StackLayout>
         </Grid>

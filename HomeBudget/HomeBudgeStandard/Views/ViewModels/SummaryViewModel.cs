@@ -35,7 +35,7 @@ namespace HomeBudgeStandard.Views
             get => _scrollProgress;
             set
             {
-                _scrollProgress = 1-value / 100;
+                _scrollProgress = value;
                 OnPropertyChanged(nameof(ScrollProgress));
             }
         }
@@ -61,7 +61,7 @@ namespace HomeBudgeStandard.Views
             if(_needRefreshData && MainBudget.Instance.IsDataLoaded)
             {
                 _needRefreshData = false;
-                await RefreshAsync().ConfigureAwait(false);
+                await RefreshAsync(true).ConfigureAwait(false);
             }
             else if(_needRefreshData)
             {
@@ -87,7 +87,7 @@ namespace HomeBudgeStandard.Views
             await RefreshAsync().ConfigureAwait(false);
         }
 
-        public async Task RefreshAsync()
+        public async Task RefreshAsync(bool full = false)
         {
             _currentBudgetMonth = MainBudget.Instance.GetMonth(_currentDateTime);
             if (_currentBudgetMonth != null)
@@ -103,7 +103,10 @@ namespace HomeBudgeStandard.Views
 
                 IsBudgetPlanned = expectedExpenses != 0 && expectedIncomes != 0;
 
-                SummaryListViewItems = await GetBudgetSummaryDataAsync(_currentBudgetMonth).ConfigureAwait(false);
+                if (full)
+                {
+                    SummaryListViewItems = await GetBudgetSummaryDataAsync(_currentBudgetMonth).ConfigureAwait(false);
+                }
             }
             OnPropertyChanged();
         }
@@ -117,7 +120,7 @@ namespace HomeBudgeStandard.Views
 
                 var budgetReal = budgetData.BudgetReal;
                 var budgetPlanned = budgetData.BudgetPlanned;
-                AddEmptyElements(budgetSummaryCollection, 3);
+                AddEmptyElements(budgetSummaryCollection, 2);
 
                 for (int i = 0; i < budgetReal.Categories.Count; i++)
                 {
@@ -125,7 +128,8 @@ namespace HomeBudgeStandard.Views
                     {
                         CategoryReal = budgetReal.Categories[i],
                         CategoryPlanned = budgetPlanned.Categories[i],
-                        IconFile = categoriesDesc[i].IconFileName
+                        IconFile = categoriesDesc[i].IconFileName,
+                        IsEmpty = false
                     };
 
                     budgetSummaryData.Init();
@@ -154,7 +158,7 @@ namespace HomeBudgeStandard.Views
         private async void BudgetDataChanged(bool isLoadedFromCloud)
         {
             _currentBudgetMonth = MainBudget.Instance.GetMonth(_currentDateTime);
-            await RefreshAsync().ConfigureAwait(false);
+            await RefreshAsync(true).ConfigureAwait(false);
             Device.BeginInvokeOnMainThread(() => UserDialogs.Instance.HideLoading());
         }
 
@@ -169,6 +173,7 @@ namespace HomeBudgeStandard.Views
             {
                 var emptyElem = new BudgetSummaryDataViewModel();
                 emptyElem.Init();
+                emptyElem.IsEmpty = true;
                 budgetSummaryCollection.Add(emptyElem);
             }
         }

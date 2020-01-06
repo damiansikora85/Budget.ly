@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace HomeBudget.Pages.Utils
 {
@@ -126,6 +127,8 @@ namespace HomeBudget.Pages.Utils
                 return (int)(SpendPercentage * 100);
             }
         }
+
+        public bool IsEmpty { get; internal set; }
 
         public override string ToString()
         {

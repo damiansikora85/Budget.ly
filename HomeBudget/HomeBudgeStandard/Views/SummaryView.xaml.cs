@@ -28,14 +28,15 @@ namespace HomeBudgeStandard.Views
         private BudgetSummaryDataViewModel _selectedCategory;
         private BudgetSummaryDataViewModel _lastClickedElem;
         private BudgetPopupManager _popupManager;
-
+        private double _baseHeaderHeight;
 
         public SummaryView ()
 		{
             InitializeComponent();
             _viewModel = new SummaryViewModel();
             BindingContext = _viewModel;
-            summaryList.Scrolled += SummaryList_Scrolled;
+            summaryList.OnScroll += SummaryList_Scrolled;
+            _baseHeaderHeight = -1;
 
             _popupManager = new BudgetPopupManager(Parent as Page, Navigation);
             SelectedCategorySubcats = new ObservableCollection<BaseBudgetSubcat>();
@@ -68,23 +69,25 @@ namespace HomeBudgeStandard.Views
             MessagingCenter.Unsubscribe<AnimatedViewCell, SummaryListSubcat>(this, "SubcatClicked");
         }
 
-        private void SummaryList_Scrolled(object sender, ScrolledEventArgs e)
+        private void SummaryList_Scrolled(object sender, EventArgs e)
         {
-            var newHeight = header.HeightRequest - (e.ScrollY - _currentScrollPos);
+            if(_baseHeaderHeight < 0)
+            {
+                _baseHeaderHeight = header.Height;
+            }
+            var newHeight = _baseHeaderHeight - summaryList.ScrollPosition/3;
 
             newHeight = Math.Max(newHeight, header.MinimumHeightRequest);
             if (newHeight > header.MinimumHeightRequest)
             {
                 header.HeightRequest = newHeight;
-                _currentScrollPos = e.ScrollY;
             }
             else
             {
-                _currentScrollPos += (header.HeightRequest - header.MinimumHeightRequest);
                 header.HeightRequest = header.MinimumHeightRequest;
             }
-            _viewModel.ScrollProgress = _currentScrollPos;
-            debugScroll.Text = _currentScrollPos.ToString();
+            _viewModel.ScrollProgress = 1-summaryList.FirstElementVisibiltyPerc;
+            debugScroll.Text = $"{summaryList.ScrollPosition} {summaryList.Test}";
         }
 
         private async void AddExpense(SummaryListSubcat selectedSubcat)
@@ -103,6 +106,8 @@ namespace HomeBudgeStandard.Views
 
                 Task.Run(async () => await MainBudget.Instance.Save().ConfigureAwait(false));
 
+                _selectedCategory.Collapse();
+
                 _selectedCategory = null;
                 _lastClickedElem = null;
                 _isAddingExpenseInProgress = false;
@@ -119,7 +124,9 @@ namespace HomeBudgeStandard.Views
             if (element != _lastClickedElem)
             {
                 if (_lastClickedElem != null)
+                {
                     _lastClickedElem.Collapse();
+                }
 
                 element.Expand();
                 //summaryList.ScrollTo(element[0], element, ScrollToPosition.MakeVisible, false);
