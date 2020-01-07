@@ -11,11 +11,17 @@ namespace HomeBudgeStandard.Views
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var data = value != null ? value as Group : null;
-            if (data != null)
+            if (data != null && parameter is SfDataGrid dataGrid && value is Group group && dataGrid.View != null)
             {
-                var dataGrid = (SfDataGrid)parameter;
-                var summaryText = SummaryCreator.GetSummaryDisplayTextForRow((value as Group).SummaryDetails, dataGrid.View);
+                var summaryText = "";
+                try
+                {
+                    summaryText = SummaryCreator.GetSummaryDisplayTextForRow(group.SummaryDetails, dataGrid.View);
+                }
+                catch (NullReferenceException)
+                {
 
+                }
                 return summaryText;
             }
             return string.Empty;
