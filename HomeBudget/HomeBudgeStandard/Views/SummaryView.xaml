@@ -17,7 +17,7 @@
         </DataTemplate>
         <DataTemplate x:Key="emptyViewCell">
             <ViewCell>
-                <BoxView HeightRequest="110"/>
+                <BoxView HeightRequest="120"/>
             </ViewCell>
         </DataTemplate>
         <utils1:SummaryListViewTemplateSelector x:Key="templateSelector"
@@ -35,6 +35,10 @@
             <components:GradientView StartColor="#00A9FF" Grid.Row="1" EndColor="#00D7C4" HeightRequest="64" InputTransparent="True"/>
             <BoxView Grid.Row="1" CornerRadius="32" Color="White" HeightRequest="64" VerticalOptions="End"/>
             <BoxView Grid.Row="1" Color="White" HeightRequest="32" VerticalOptions="End"/>
+            <StackLayout Grid.Row="1" Orientation="Horizontal" HeightRequest="32" HorizontalOptions="FillAndExpand">
+                <Label Text="Budżet" TextDecorations="Underline" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+                <Label Text="Transakcje" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
 
             <components:CustomListView x:Name="summaryList" Grid.RowSpan="3" ItemsSource="{Binding SummaryListViewItems}" ItemSelected="Summary_ItemSelected" SeparatorVisibility="None" SeparatorColor="Black"
                         IsGroupingEnabled="True" GroupDisplayBinding="{Binding CategoryName}" HasUnevenRows="True" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never"
