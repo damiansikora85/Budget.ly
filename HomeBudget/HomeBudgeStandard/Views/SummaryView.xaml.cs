@@ -157,6 +157,7 @@ namespace HomeBudgeStandard.Views
 
         private void HideCalcView()
         {
+            _isAddingExpenseInProgress = false;
             Navigation.PopPopupAsync();
         }
 
