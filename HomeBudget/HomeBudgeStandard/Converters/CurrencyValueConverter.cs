@@ -8,10 +8,13 @@ namespace HomeBudget.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var valueDouble = (double)value;
-
             var cultureInfoPL = new CultureInfo("pl-PL");
-            return string.Format(cultureInfoPL, "{0:c}", valueDouble);
+            if (value != null)
+            {
+                var valueDouble = (double)value;
+                return string.Format(cultureInfoPL, "{0:c}", valueDouble);
+            }
+            return string.Format(cultureInfoPL, "{0:c}", 0);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
