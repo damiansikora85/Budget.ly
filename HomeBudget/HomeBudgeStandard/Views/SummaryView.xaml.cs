@@ -157,6 +157,7 @@ namespace HomeBudgeStandard.Views
 
         private void HideCalcView()
         {
+            _isAddingExpenseInProgress = false;
             Navigation.PopPopupAsync();
         }
 
@@ -174,10 +175,13 @@ namespace HomeBudgeStandard.Views
         {
             if(await UserDialogs.Instance.ConfirmAsync("Ułóż swój plan wydatków i zarobków - kontroluj swoje finanse", "Planowanie budżetu", "Planuj teraz", "Może później").ConfigureAwait(false))
             {
-                if(Parent is TabbedPage tabbedPage)
+                Device.BeginInvokeOnMainThread(() =>
                 {
-                    tabbedPage.CurrentPage = tabbedPage.Children[tabbedPage.Children.Count - 1];
-                }
+                    if (Parent is TabbedPage tabbedPage)
+                    {
+                        tabbedPage.CurrentPage = tabbedPage.Children[tabbedPage.Children.Count - 1];
+                    }
+                });
             }
         }
     }

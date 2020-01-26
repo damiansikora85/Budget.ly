@@ -73,18 +73,19 @@ namespace HomeBudgeStandard.Views
         {
             MainBudget.Instance.BudgetDataChanged -= BudgetDataChanged;
             MainBudget.Instance.BudgetDataChanged += MarkBudgetChanged;
+            _needRefreshData = true;
         }
 
         public async void DecreaseMonth()
         {
             _currentDateTime = _currentDateTime.AddMonths(-1);
-            await RefreshAsync().ConfigureAwait(false);
+            await RefreshAsync(true).ConfigureAwait(false);
         }
 
         public async void IncreaseMonth()
         {
             _currentDateTime = _currentDateTime.AddMonths(1);
-            await RefreshAsync().ConfigureAwait(false);
+            await RefreshAsync(true).ConfigureAwait(false);
         }
 
         public async Task RefreshAsync(bool full = false)
@@ -164,7 +165,7 @@ namespace HomeBudgeStandard.Views
 
         private void MarkBudgetChanged(bool arg)
         {
-            _needRefreshData = false;
+            _needRefreshData = true;
         }
 
         private static void AddEmptyElements(ObservableCollection<BudgetSummaryDataViewModel> budgetSummaryCollection, int itemsNum)
