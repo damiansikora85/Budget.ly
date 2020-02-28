@@ -1,10 +1,16 @@
 ﻿using Acr.UserDialogs;
+using HomeBudgeStandard.Providers;
+using HomeBudgeStandard.Views.ViewModels;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
+using HomeBudgetShared.Code.Interfaces;
+using MvvmHelpers;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -20,10 +26,12 @@ namespace HomeBudgeStandard.Views
         public double IncomesProgress { get; private set; }
 
         public ObservableCollection<BudgetSummaryDataViewModel> SummaryListViewItems { get; private set; }
+        public ObservableRangeCollection<TransactionsGroupViewModel> TransactionList { get; private set; }
 
         private DateTime _currentDateTime = DateTime.Now;
         private BudgetMonth _currentBudgetMonth;
         private bool _needRefreshData = true;
+        private IBudgetTemplateProvider _budgetTemplateProvider;
 
         public bool IsBudgetPlanned { get; private set; }
         public bool NoBudgetPlanned => !IsBudgetPlanned;
@@ -48,6 +56,7 @@ namespace HomeBudgeStandard.Views
 
         public SummaryViewModel()
         {
+            _budgetTemplateProvider = new BudgetTemplateProvider();
             if (MainBudget.Instance.IsDataLoaded)
             {
                 _currentBudgetMonth = MainBudget.Instance.GetMonth(_currentDateTime);
@@ -107,6 +116,19 @@ namespace HomeBudgeStandard.Views
                 if (full)
                 {
                     SummaryListViewItems = await GetBudgetSummaryDataAsync(_currentBudgetMonth).ConfigureAwait(false);
+                    var groupped = _currentBudgetMonth.BudgetReal.Transactions.GroupBy(t => t.Date);
+                    TransactionList = new ObservableRangeCollection<TransactionsGroupViewModel>
+                    {
+                        new TransactionsGroupViewModel { IsEmpty = true },
+                        new TransactionsGroupViewModel { IsEmpty = true }
+                    };
+                    var budgetDesc = _budgetTemplateProvider.GetTemplate();
+                    var tempList = new List<TransactionsGroupViewModel>();
+                    foreach (var group in groupped)
+                    {
+                        tempList.Add(new TransactionsGroupViewModel(group, budgetDesc));
+                    }
+                    TransactionList.AddRange(tempList.OrderBy(el => el.Date));
                 }
             }
             OnPropertyChanged();

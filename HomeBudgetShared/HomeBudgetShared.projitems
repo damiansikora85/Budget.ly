@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Code\Dropbox\DropboxManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Dropbox\IDropbox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Interfaces\IBudgetTemplateProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Interfaces\ICloudStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BaseBudget\BaseBudget.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BaseBudget\BaseBudgetCategory.cs" />

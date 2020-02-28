@@ -27,6 +27,7 @@ namespace HomeBudget.Droid.Renderers
             if (e.NewElement is CustomListView)
             {
                 _myListView = Element as CustomListView;
+                _myListView.OnScrollToElement += ScrollToElementAt;
                 Control.ScrollChange += Control_ScrollChange;
             }
         }
@@ -52,9 +53,15 @@ namespace HomeBudget.Droid.Renderers
             {
                 topY = _firstElementHeight;
             }
+            var s = Control.ScrollY;
             _myListView.FirstElementVisibiltyPerc = visiblePercentage;
             _myListView.ScrollPosition = topY;
             _myListView.WasScrolled();
+        }
+
+        public void ScrollToElementAt(int elementAt)
+        {
+            Control.SetSelection(elementAt);
         }
     }
 }

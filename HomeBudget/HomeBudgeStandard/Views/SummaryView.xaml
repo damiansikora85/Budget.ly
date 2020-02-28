@@ -17,11 +17,17 @@
         </DataTemplate>
         <DataTemplate x:Key="emptyViewCell">
             <ViewCell>
-                <BoxView HeightRequest="120"/>
+                <BoxView HeightRequest="135"/>
+            </ViewCell>
+        </DataTemplate>
+        <DataTemplate x:Key="transactionViewCell">
+            <ViewCell>
+                <Label Text="{Binding Date, StringFormat='{0:dd MMMM, dddd}'}" FontSize="Large"/>
             </ViewCell>
         </DataTemplate>
         <utils1:SummaryListViewTemplateSelector x:Key="templateSelector"
          EmptyCellDataTemplate="{StaticResource emptyViewCell}" BudgetCellDataTemplate="{StaticResource groupHeaderViewCell}"/>
+        <utils1:TransactionViewTemplateSelector x:Key="transactionTemplateSelector" EmptyCellDataTemplate="{StaticResource emptyViewCell}" TransactionDataTemplate="{StaticResource transactionViewCell}"/>
     </ContentPage.Resources>
 
     <ContentPage.Content>
@@ -32,15 +38,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <components:GradientView StartColor="#00A9FF" Grid.Row="1" EndColor="#00D7C4" HeightRequest="64" InputTransparent="True"/>
-            <BoxView Grid.Row="1" CornerRadius="32" Color="White" HeightRequest="64" VerticalOptions="End"/>
-            <BoxView Grid.Row="1" Color="White" HeightRequest="32" VerticalOptions="End"/>
-            <StackLayout Grid.Row="1" Orientation="Horizontal" HeightRequest="32" HorizontalOptions="FillAndExpand">
-                <Label Text="Budżet" TextDecorations="Underline" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
-                <Label Text="Transakcje" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
-            </StackLayout>
-
-            <components:CustomListView x:Name="summaryList" Grid.RowSpan="3" ItemsSource="{Binding SummaryListViewItems}" ItemSelected="Summary_ItemSelected" SeparatorVisibility="None" SeparatorColor="Black"
+            <components:CustomListView x:Name="summaryListView" Grid.RowSpan="3" ItemsSource="{Binding SummaryListViewItems}" ItemSelected="Summary_ItemSelected" SeparatorVisibility="None"
                         IsGroupingEnabled="True" GroupDisplayBinding="{Binding CategoryName}" HasUnevenRows="True" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never"
                                         GroupHeaderTemplate="{StaticResource templateSelector}">
                 <components:CustomListView.ItemTemplate>
@@ -49,6 +47,49 @@
                     </DataTemplate>
                 </components:CustomListView.ItemTemplate>
             </components:CustomListView>
+
+            <components:CustomListView x:Name="transactionsListView" Grid.RowSpan="3" IsGroupingEnabled="True" ItemsSource="{Binding TransactionList}" ItemSelected="Transaction_ItemSelected" SeparatorVisibility="None"
+                        HasUnevenRows="True" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never" IsVisible="False" GroupHeaderTemplate="{StaticResource transactionTemplateSelector}" >
+                <components:CustomListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="6,4">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.RowSpan="2" Source="{Binding Icon}" Margin="0,8"/>
+                                <Label Grid.Column="2" Grid.RowSpan="2" Text="{Binding Amount, StringFormat='{}{0:C}'}" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                                <Label Grid.Column="1" Text="{Binding CategoryName}" VerticalTextAlignment="End"/>
+                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding SubcatName}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </components:CustomListView.ItemTemplate>
+            </components:CustomListView>
+
+
+            <components:GradientView StartColor="#00A9FF" Grid.Row="1" EndColor="#00D7C4" HeightRequest="64" InputTransparent="True"/>
+            <BoxView Grid.Row="1" CornerRadius="32" Color="White" HeightRequest="64" VerticalOptions="End"/>
+            <BoxView Grid.Row="1" Color="White" HeightRequest="32" VerticalOptions="End"/>
+            <StackLayout Grid.Row="1" Orientation="Horizontal" HeightRequest="32" HorizontalOptions="FillAndExpand">
+                <Label x:Name="budgetTabLabel" Text="Budżet" TextDecorations="Underline" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBudgetTabClicked"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label x:Name="transactionsTabLabel" Text="Transakcje" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTransationTabClicked"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
 
             <components:GradientView StartColor="#00A9FF" EndColor="#00D7C4" InputTransparent="True"/>
 

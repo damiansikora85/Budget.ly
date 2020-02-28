@@ -24,7 +24,6 @@ namespace HomeBudgeStandard.Views
         private CalcView _calcView;
         private bool _isAddingExpenseInProgress;
         private SummaryViewModel _viewModel;
-        private double _currentScrollPos;
         private BudgetSummaryDataViewModel _selectedCategory;
         private BudgetSummaryDataViewModel _lastClickedElem;
         private BudgetPopupManager _popupManager;
@@ -35,7 +34,8 @@ namespace HomeBudgeStandard.Views
             InitializeComponent();
             _viewModel = new SummaryViewModel();
             BindingContext = _viewModel;
-            summaryList.OnScroll += SummaryList_Scrolled;
+            summaryListView.OnScroll += SummaryList_Scrolled;
+            transactionsListView.OnScroll += TransactionsList_Scrolled;
             _baseHeaderHeight = -1;
 
             _popupManager = new BudgetPopupManager(Parent as Page, Navigation);
@@ -75,7 +75,7 @@ namespace HomeBudgeStandard.Views
             {
                 _baseHeaderHeight = header.Height;
             }
-            var newHeight = _baseHeaderHeight - summaryList.ScrollPosition/3;
+            var newHeight = _baseHeaderHeight - summaryListView.ScrollPosition/3;
 
             newHeight = Math.Max(newHeight, header.MinimumHeightRequest);
             if (newHeight > header.MinimumHeightRequest)
@@ -86,8 +86,29 @@ namespace HomeBudgeStandard.Views
             {
                 header.HeightRequest = header.MinimumHeightRequest;
             }
-            _viewModel.ScrollProgress = 1-summaryList.FirstElementVisibiltyPerc;
-            debugScroll.Text = $"{summaryList.ScrollPosition}";
+            _viewModel.ScrollProgress = 1- summaryListView.FirstElementVisibiltyPerc;
+            debugScroll.Text = $"{summaryListView.ScrollPosition}";
+        }
+
+        private void TransactionsList_Scrolled(object sender, EventArgs e)
+        {
+            if (_baseHeaderHeight < 0)
+            {
+                _baseHeaderHeight = header.Height;
+            }
+            var newHeight = _baseHeaderHeight - transactionsListView.ScrollPosition / 3;
+
+            newHeight = Math.Max(newHeight, header.MinimumHeightRequest);
+            if (newHeight > header.MinimumHeightRequest)
+            {
+                header.HeightRequest = newHeight;
+            }
+            else
+            {
+                header.HeightRequest = header.MinimumHeightRequest;
+            }
+            _viewModel.ScrollProgress = 1 - transactionsListView.FirstElementVisibiltyPerc;
+            debugScroll.Text = $"{transactionsListView.ScrollPosition}";
         }
 
         private async void AddExpense(SummaryListSubcat selectedSubcat)
@@ -145,14 +166,14 @@ namespace HomeBudgeStandard.Views
                 element.Collapse();
             else
             {
-                summaryList.ScrollTo(element, ScrollToPosition.Start, false);
+                summaryListView.ScrollTo(element, ScrollToPosition.Start, false);
                 element.Expand();
             }
         }
 
         private void Summary_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            summaryList.SelectedItem = null;
+            summaryListView.SelectedItem = null;
         }
 
         private void HideCalcView()
@@ -183,6 +204,27 @@ namespace HomeBudgeStandard.Views
                     }
                 });
             }
+        }
+
+        private void OnBudgetTabClicked(object sender, EventArgs e)
+        {
+            summaryListView.IsVisible = true;
+            transactionsListView.IsVisible = false;
+            budgetTabLabel.TextDecorations = TextDecorations.Underline;
+            transactionsTabLabel.TextDecorations = TextDecorations.None;
+        }
+
+        private void OnTransationTabClicked(object sender, EventArgs e)
+        {
+            summaryListView.IsVisible = false;
+            transactionsListView.IsVisible = true;
+            budgetTabLabel.TextDecorations = TextDecorations.None;
+            transactionsTabLabel.TextDecorations = TextDecorations.Underline;
+        }
+
+        private void Transaction_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            transactionsListView.SelectedItem = null;
         }
     }
 }
