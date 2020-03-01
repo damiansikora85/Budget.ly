@@ -12,6 +12,7 @@ namespace HomeBudgeStandard.Pages
         public string Title { get; set; }
         public string Icon { get; set; }
         public Type TargetType { get; set; }
+        public Action OnClick { get; set; }
         public bool UseBrandsIcon { get; set; }
     }
 }

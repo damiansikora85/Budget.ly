@@ -63,7 +63,11 @@ namespace HomeBudgeStandard.Pages
 
             try
             {
-                if (item.TargetType != typeof(MainTabbedPage))
+                if(item.OnClick != null)
+                {
+                    item.OnClick.Invoke();
+                }
+                else if (item.TargetType != typeof(MainTabbedPage))
                 {
                     var page = (Page)Activator.CreateInstance(item.TargetType);
                     Detail.Navigation.PushAsync(page);

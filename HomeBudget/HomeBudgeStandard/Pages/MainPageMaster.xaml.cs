@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
 
 namespace HomeBudgeStandard.Pages
 {
@@ -29,7 +30,7 @@ namespace HomeBudgeStandard.Pages
         class MainPageMasterViewModel : INotifyPropertyChanged
         {
             public ObservableCollection<MainPageMenuItem> MenuItems { get; set; }
-            
+
             public MainPageMasterViewModel()
             {
                 MenuItems = new ObservableCollection<MainPageMenuItem>(new[]
@@ -38,10 +39,32 @@ namespace HomeBudgeStandard.Pages
                     new MainPageMenuItem { Id = 1, Title = "Synchronizacja", Icon=FontAwesomeIcons.Sync, TargetType = typeof(DropboxPage) },
                     new MainPageMenuItem { Id = 2, Title = "Ustawienia", Icon=FontAwesomeIcons.Cog, TargetType = typeof(SettingsPage) },
                     new MainPageMenuItem { Id = 3, Title = "Edycja kategorii", Icon = FontAwesomeIcons.Edit, TargetType = typeof(BudgetTemplateEditPage)},
-                    new MainPageMenuItem { Id = 4, Title = "O Aplikacji", Icon=FontAwesomeIcons.QuestionCircle, TargetType = typeof(AboutPage) }
+                    new MainPageMenuItem { Id = 4, Title = "Kontakt", Icon = FontAwesomeIcons.Envelope, OnClick = OpenContact },
+                    new MainPageMenuItem { Id = 5, Title = "O Aplikacji", Icon=FontAwesomeIcons.QuestionCircle, TargetType = typeof(AboutPage) }
                 });
             }
-            
+
+            private async void OpenContact()
+            {
+                try
+                {
+                    var message = new EmailMessage
+                    {
+                        Subject = "Budget.ly",
+                        To = new List<string> { "darktowerlab@gmail.com" },
+                    };
+                    await Email.ComposeAsync(message);
+                }
+                catch (FeatureNotSupportedException fbsEx)
+                {
+                    // Email is not supported on this device
+                }
+                catch (Exception ex)
+                {
+                    // Some other exception occurred
+                }
+            }
+
             #region INotifyPropertyChanged Implementation
             public event PropertyChangedEventHandler PropertyChanged;
             void OnPropertyChanged([CallerMemberName] string propertyName = "")
