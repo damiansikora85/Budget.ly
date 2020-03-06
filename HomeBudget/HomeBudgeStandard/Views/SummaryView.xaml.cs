@@ -210,6 +210,7 @@ namespace HomeBudgeStandard.Views
         {
             summaryListView.IsVisible = true;
             transactionsListView.IsVisible = false;
+            summaryListView.ScrollToTop?.Invoke();
             budgetTabLabel.TextDecorations = TextDecorations.Underline;
             transactionsTabLabel.TextDecorations = TextDecorations.None;
         }
@@ -218,6 +219,7 @@ namespace HomeBudgeStandard.Views
         {
             summaryListView.IsVisible = false;
             transactionsListView.IsVisible = true;
+            transactionsListView.ScrollToTop?.Invoke();
             budgetTabLabel.TextDecorations = TextDecorations.None;
             transactionsTabLabel.TextDecorations = TextDecorations.Underline;
         }

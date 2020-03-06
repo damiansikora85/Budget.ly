@@ -28,15 +28,21 @@ namespace HomeBudget.Droid.Renderers
             {
                 _myListView = Element as CustomListView;
                 _myListView.OnScrollToElement += ScrollToElementAt;
+                _myListView.ScrollToTop = ScrollToTop;
                 Control.ScrollChange += Control_ScrollChange;
             }
         }
 
+        private void ScrollToTop()
+        {
+            Control.SetSelection(0);
+        }
+
         private void Control_ScrollChange(object sender, ScrollChangeEventArgs e)
         {
-            float visiblePercentage = 1;
+            float visiblePercentage = 0;
             var firstElement = Control.GetChildAt(0);
-            if (_firstElementHeight <= 0 && firstElement != null)
+            if (_firstElementHeight <= 0 && firstElement != null && firstElement.Height > 0)
             {
                 _firstElementHeight = firstElement.Height;
             }
@@ -53,7 +59,6 @@ namespace HomeBudget.Droid.Renderers
             {
                 topY = _firstElementHeight;
             }
-            var s = Control.ScrollY;
             _myListView.FirstElementVisibiltyPerc = visiblePercentage;
             _myListView.ScrollPosition = topY;
             _myListView.WasScrolled();
