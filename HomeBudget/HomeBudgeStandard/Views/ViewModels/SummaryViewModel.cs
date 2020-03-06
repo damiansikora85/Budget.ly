@@ -5,6 +5,7 @@ using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
 using HomeBudgetShared.Code.Interfaces;
+using HomeBudgetShared.Code.UseCases;
 using MvvmHelpers;
 using System;
 using System.Collections.Generic;
@@ -36,15 +37,15 @@ namespace HomeBudgeStandard.Views
         public bool IsBudgetPlanned { get; private set; }
         public bool NoBudgetPlanned => !IsBudgetPlanned;
 
-        private double _scrollProgress = 1.0;
+        private double _headerScrollProgress = 1.0;
 
-        public double ScrollProgress
+        public double HeaderScrollProgress
         {
-            get => _scrollProgress;
+            get => _headerScrollProgress;
             set
             {
-                _scrollProgress = value;
-                OnPropertyChanged(nameof(ScrollProgress));
+                _headerScrollProgress = value;
+                OnPropertyChanged(nameof(HeaderScrollProgress));
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -116,22 +117,28 @@ namespace HomeBudgeStandard.Views
                 if (full)
                 {
                     SummaryListViewItems = await GetBudgetSummaryDataAsync(_currentBudgetMonth).ConfigureAwait(false);
-                    var groupped = _currentBudgetMonth.BudgetReal.Transactions.GroupBy(t => t.Date);
-                    TransactionList = new ObservableRangeCollection<TransactionsGroupViewModel>
-                    {
-                        new TransactionsGroupViewModel { IsEmpty = true },
-                        new TransactionsGroupViewModel { IsEmpty = true }
-                    };
-                    var budgetDesc = _budgetTemplateProvider.GetTemplate();
-                    var tempList = new List<TransactionsGroupViewModel>();
-                    foreach (var group in groupped)
-                    {
-                        tempList.Add(new TransactionsGroupViewModel(group, budgetDesc));
-                    }
-                    TransactionList.AddRange(tempList.OrderBy(el => el.Date));
                 }
+
+                CreateTransactionsList();
             }
             OnPropertyChanged();
+        }
+
+        private void CreateTransactionsList()
+        {
+            var groupped = _currentBudgetMonth.BudgetReal.Transactions.GroupBy(t => t.Date);
+            TransactionList = new ObservableRangeCollection<TransactionsGroupViewModel>
+            {
+                new TransactionsGroupViewModel { IsEmpty = true },
+                new TransactionsGroupViewModel { IsEmpty = true }
+            };
+            var budgetDesc = _budgetTemplateProvider.GetTemplate();
+            var tempList = new List<TransactionsGroupViewModel>();
+            foreach (var group in groupped)
+            {
+                tempList.Add(new TransactionsGroupViewModel(group, budgetDesc));
+            }
+            TransactionList.AddRange(tempList.OrderByDescending(el => el.Date));
         }
 
         private async static Task<ObservableCollection<BudgetSummaryDataViewModel>> GetBudgetSummaryDataAsync(BudgetMonth budgetData) =>
@@ -164,15 +171,7 @@ namespace HomeBudgeStandard.Views
 
         public async void AddExpenseAsync(double value, DateTime date, BaseBudgetCategory category, int subcatId)
         {
-            var budgetMonth = MainBudget.Instance.GetMonth(date);
-            if (category.IsIncome)
-            {
-                budgetMonth.AddIncome(value, date, subcatId);
-            }
-            else
-            {
-                budgetMonth.AddExpense(value, date, category.Id, subcatId);
-            }
+            AddExpenseUseCase.AddExpense(value, date, category, subcatId);
 
             await RefreshAsync().ConfigureAwait(false);
         }
