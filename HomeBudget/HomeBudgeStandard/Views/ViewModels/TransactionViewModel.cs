@@ -24,15 +24,18 @@ namespace HomeBudgeStandard.Views.ViewModels
                 CategoryName = category.Name;
                 Icon = category.IconFileName;
                 SubcatName = category.subcategories[transaction.SubcatId];
+                IsIncome = category.IsIncome;
             }
         }
 
         public DateTime Date => _transaction.Date;
-        public double Amount => _transaction.Amount;
+        public string Amount => IsIncome ? $"+{_transaction.Amount:F2}" : $"-{_transaction.Amount:F2}";
 
         public string Icon { get; set; }
         public string CategoryName { get; set; }
         public string SubcatName { get; set; }
+        public string Note => _transaction.Note;
+        public bool IsIncome { get; private set; }
 
         public bool IsEmpty { get; internal set; }
     }

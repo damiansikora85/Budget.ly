@@ -36,18 +36,18 @@ namespace HomeBudget.Code.Logic
             }
         }
 
-        public void AddExpense(double value, DateTime date, int categoryId, int subcatId)
+        public void AddExpense(double value, DateTime date, int categoryId, int subcatId, string note)
         {
             var category = (BudgetRealCategory)GetBudgetCategory(categoryId);
             category.AddValue(value, date, subcatId);
-            AddTransaction(value, date, categoryId, subcatId, "");
+            AddTransaction(value, date, categoryId, subcatId, note);
         }
 
-        public void AddIncome(double value, DateTime date, int incomeCategoryId)
+        public void AddIncome(double value, DateTime date, int incomeCategoryId, string note)
         {
             var category = (BudgetRealCategory)GetIncomesCategories()[0];
             category.AddValue(value, date, incomeCategoryId);
-            AddTransaction(value, date, category.Id, incomeCategoryId, "");
+            AddTransaction(value, date, category.Id, incomeCategoryId, note);
         }
 
         private void AddTransaction(double value, DateTime date, int categoryId, int subcatId, string note)

@@ -121,9 +121,9 @@ namespace HomeBudgeStandard.Views
             _isAddingExpenseInProgress = true;
             _calcView.Reset();
             _calcView.Subcat = selectedSubcat.Name;
-            _calcView.OnSaveValue = (double result, DateTime date) =>
+            _calcView.OnSaveValue = (double result, string note, DateTime date) =>
             {
-                _viewModel.AddExpenseAsync(result, date, _selectedCategory.CategoryReal, selectedSubcat.Id);
+                _viewModel.AddExpenseAsync(result, date, _selectedCategory.CategoryReal, selectedSubcat.Id, note);
                 _selectedCategory.RaisePropertyChanged();
 
                 Task.Run(async () => await MainBudget.Instance.Save().ConfigureAwait(false));

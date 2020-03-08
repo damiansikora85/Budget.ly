@@ -302,19 +302,19 @@ namespace HomeBudget.Code
             LoadAsync();
         }
 
-        public async Task AddExpense(float value, DateTime date, int categoryID, int subcatID)
-        {
-            var month = GetMonth(date);
-            month.AddExpense(value, date, categoryID, subcatID);
-            await Save().ConfigureAwait(false);
-        }
+        //public async Task AddExpense(float value, DateTime date, int categoryID, int subcatID)
+        //{
+        //    var month = GetMonth(date);
+        //    month.AddExpense(value, date, categoryID, subcatID);
+        //    await Save().ConfigureAwait(false);
+        //}
 
-        public async Task AddIncome(float value, DateTime date, int incomeCategoryId)
-        {
-            var month = GetMonth(date);
-            month.AddIncome(value, date, incomeCategoryId);
-            await Save().ConfigureAwait(false);
-        }
+        //public async Task AddIncome(float value, DateTime date, int incomeCategoryId)
+        //{
+        //    var month = GetMonth(date);
+        //    month.AddIncome(value, date, incomeCategoryId);
+        //    await Save().ConfigureAwait(false);
+        //}
 
         public async Task UpdateMainPlannedBudget()
         {

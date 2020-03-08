@@ -169,9 +169,9 @@ namespace HomeBudgeStandard.Views
                 return budgetSummaryCollection;
             }).ConfigureAwait(false);
 
-        public async void AddExpenseAsync(double value, DateTime date, BaseBudgetCategory category, int subcatId)
+        public async void AddExpenseAsync(double value, DateTime date, BaseBudgetCategory category, int subcatId, string note)
         {
-            AddExpenseUseCase.AddExpense(value, date, category, subcatId);
+            AddExpenseUseCase.AddExpense(value, date, category, subcatId, note);
 
             await RefreshAsync().ConfigureAwait(false);
         }

@@ -48,7 +48,7 @@
                 </components:CustomListView.ItemTemplate>
             </components:CustomListView>
 
-            <components:CustomListView x:Name="transactionsListView" Grid.RowSpan="3" IsGroupingEnabled="True" ItemsSource="{Binding TransactionList}" ItemSelected="Transaction_ItemSelected" SeparatorVisibility="None"
+            <components:CustomListView x:Name="transactionsListView" Grid.RowSpan="3" IsGroupingEnabled="True" ItemsSource="{Binding TransactionList}" ItemSelected="Transaction_ItemSelected" SeparatorVisibility="Default"
                         HasUnevenRows="True" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never" IsVisible="False" GroupHeaderTemplate="{StaticResource transactionTemplateSelector}" >
                 <components:CustomListView.ItemTemplate>
                     <DataTemplate>
@@ -65,9 +65,10 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Image Grid.RowSpan="2" Source="{Binding Icon}" Margin="0,8"/>
-                                <Label Grid.Column="2" Grid.RowSpan="2" Text="{Binding Amount, StringFormat='{}{0:C}'}" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
-                                <Label Grid.Column="1" Text="{Binding CategoryName}" VerticalTextAlignment="End"/>
-                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding SubcatName}"/>
+                                <Label Grid.Column="2" Text="{Binding Amount, StringFormat='{}{0:C}'}" FontSize="16" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                                <Label Grid.Column="2" Grid.Row="1" Text="{Binding Note}" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                                <Label Grid.Column="1" Text="{Binding SubcatName}" FontSize="16"/>
+                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding CategoryName}" VerticalTextAlignment="End"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

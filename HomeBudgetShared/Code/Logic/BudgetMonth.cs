@@ -47,14 +47,14 @@ namespace HomeBudget.Code
 			return month;
 		}
 
-        public void AddExpense(double value, DateTime date, int categoryID, int subcatID)
+        public void AddExpense(double value, DateTime date, int categoryID, int subcatID, string note)
         {
-            BudgetReal.AddExpense(value, date, categoryID, subcatID);
+            BudgetReal.AddExpense(value, date, categoryID, subcatID, note);
         }
 
-        public void AddIncome(double value, DateTime date, int incomeCategoryID)
+        public void AddIncome(double value, DateTime date, int incomeCategoryID, string note)
         {
-            BudgetReal.AddIncome(value, date, incomeCategoryID);
+            BudgetReal.AddIncome(value, date, incomeCategoryID, note);
         }
 
 		private BudgetMonth()
