@@ -212,6 +212,8 @@ namespace HomeBudget.Code
             await _saveSemaphore.WaitAsync();
             try
             {
+                await _saveSemaphore.WaitAsync();
+
                 LogsManager.Instance.WriteLine("Save data");
                 ActualBudgetData = new BudgetData
                 {
@@ -234,9 +236,13 @@ namespace HomeBudget.Code
                 LogsManager.Instance.WriteLine("Save data error: " + exc.InnerException != null ? exc.InnerException.Message : string.Empty);
                 LogsManager.Instance.WriteLine(exc.Message);
                 LogsManager.Instance.WriteLine(exc.StackTrace);
+            }
+            finally
                 _crashReporter.Report(exc);
             }
             finally
+            {
+                _saveSemaphore.Release();
             {
                 _saveSemaphore.Release();
             }
