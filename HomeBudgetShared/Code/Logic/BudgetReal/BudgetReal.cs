@@ -1,6 +1,7 @@
 ﻿using ProtoBuf;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HomeBudget.Code.Logic
 {
@@ -18,7 +19,7 @@ namespace HomeBudget.Code.Logic
                 newCategory.PropertyChanged += OnCategoryModified;
                 Categories.Add(newCategory);
             }
-            Transactions = new List<BudgetTransaction>(budgetReal.Transactions);
+            Transactions = new List<BudgetTransaction>(budgetReal.Transactions.Select(t => t.Clone()));
         }
 
         public BudgetReal() : base()
@@ -34,6 +35,18 @@ namespace HomeBudget.Code.Logic
                 realCategory.PropertyChanged += OnCategoryModified;
                 Categories.Add(realCategory);
             }
+        }
+
+        public BudgetReal Clone()
+        {
+            var clone = new BudgetReal();
+            foreach (BudgetRealCategory category in Categories)
+            {
+                var newCategory = new BudgetRealCategory(category);
+                clone.Categories.Add(newCategory);
+            }
+            clone.Transactions = new List<BudgetTransaction>(Transactions.Select(t => t.Clone()));
+            return clone;
         }
 
         public void AddExpense(double value, DateTime date, int categoryId, int subcatId)

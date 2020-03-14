@@ -205,7 +205,7 @@ namespace HomeBudget.Code
                     Version = VERSION,
                     TimeStamp = DateTime.Now,
                     BudgetPlanned = new BudgetPlanned(budgetPlanned),
-                    Months = _months.Select(item => (BudgetMonth)item.Clone()).ToList(),
+                    Months = _months.Select(item => item.Clone()).ToList(),
                     IsSynchronized = false
                 };
 
