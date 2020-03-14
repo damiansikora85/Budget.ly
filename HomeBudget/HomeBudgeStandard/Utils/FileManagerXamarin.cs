@@ -92,19 +92,27 @@ namespace HomeBudgeStandard.Utils
                 {
                     lock (lockFile)
                     {
+                        var tempFileName = "tempData.dat";
                         var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                        var filePath = Path.Combine(documentsPath, filename);
+                        var tempFilePath = Path.Combine(documentsPath, tempFileName);
 
                         var fileMode = FileMode.Truncate;
-                        if (!File.Exists(filePath))
+                        if (!File.Exists(tempFilePath))
                         {
                             fileMode = FileMode.CreateNew;
                         }
 
-                        using (var file = new FileStream(filePath, fileMode))
+                        using (var file = new FileStream(tempFilePath, fileMode))
                         {
-                            Serializer.Serialize<BudgetData>(file, saveData);
+                            Serializer.Serialize(file, saveData);
                         }
+                        var filePath = Path.Combine(documentsPath, filename);
+                        if (File.Exists(filePath))
+                        {
+                            File.Delete(filePath);
+                        }
+                        File.Move(tempFilePath, filePath);
+                        File.Delete(tempFilePath);
                     }
                 }
                 catch (Exception exc)
