@@ -103,6 +103,7 @@ namespace HomeBudgeStandard.Views
             _calcView.OnSaveValue = (double result, DateTime date) =>
             {
                 _viewModel.AddExpenseAsync(result, date, _selectedCategory.CategoryReal, selectedSubcat.Id);
+                _selectedCategory.RaisePropertyChanged();
 
                 Task.Run(async () => await MainBudget.Instance.Save().ConfigureAwait(false));
 
