@@ -8,7 +8,7 @@ using System.Linq;
 namespace HomeBudget.Code
 {
     [ProtoContract]
-    public class BudgetMonth : ICloneable
+    public class BudgetMonth
     {
         [ProtoMember(1)]
         public BudgetPlanned BudgetPlanned { get; set; }
@@ -33,9 +33,11 @@ namespace HomeBudget.Code
             }
         }
 
-        public object Clone()
+        public BudgetMonth Clone()
         {
-            return new BudgetMonth(this);
+            var clone = (BudgetMonth)MemberwiseClone();
+            clone.BudgetReal = BudgetReal.Clone();
+            return clone;
         }
 
         public static BudgetMonth Create(List<BudgetCategoryTemplate> categories, DateTime date)

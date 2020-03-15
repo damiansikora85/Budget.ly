@@ -16,5 +16,11 @@ namespace HomeBudget.Code.Logic
         public int SubcatId { get; set; }
         [ProtoMember(5)]
         public double Amount { get; set; }
+
+        public BudgetTransaction Clone()
+        {
+            var clone = (BudgetTransaction)MemberwiseClone();
+            return clone;
+        }
     }
 }
