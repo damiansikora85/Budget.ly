@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeBudget.Droid", "HomeBudget\HomeBudget.Droid\HomeBudget.Droid.csproj", "{3B766B47-4CA0-4352-84AC-40C4420E15AD}"
 EndProject
@@ -19,6 +19,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HomeBudgetShared", "HomeBud
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		HomeBudgetShared\HomeBudgetShared.projitems*{27e2bc12-14a4-4811-9a83-a349e4608287}*SharedItemsImports = 5
 		HomeBudgetShared\HomeBudgetShared.projitems*{ce69fa3f-90b4-4f8f-8f90-64913d25a155}*SharedItemsImports = 13
 		HomeBudgetShared\HomeBudgetShared.projitems*{fce03966-2366-4666-af73-137733edfb00}*SharedItemsImports = 4
 	EndGlobalSection

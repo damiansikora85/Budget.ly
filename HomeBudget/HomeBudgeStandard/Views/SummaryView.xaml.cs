@@ -38,6 +38,9 @@ namespace HomeBudgeStandard.Views
             transactionsListView.OnScroll += TransactionsList_Scrolled;
             _baseHeaderHeight = -1;
 
+            VisualStateManager.GoToState(budgetTabLabel, "Selected");
+            VisualStateManager.GoToState(transactionsTabLabel, "UnSelected");
+
             _popupManager = new BudgetPopupManager(Parent as Page, Navigation);
             SelectedCategorySubcats = new ObservableCollection<BaseBudgetSubcat>();
         }
@@ -209,20 +212,20 @@ namespace HomeBudgeStandard.Views
 
         private void OnBudgetTabClicked(object sender, EventArgs e)
         {
+            VisualStateManager.GoToState((Label)sender, "Selected");
+            VisualStateManager.GoToState(transactionsTabLabel, "UnSelected");
             summaryListView.IsVisible = true;
             transactionsListView.IsVisible = false;
             summaryListView.ScrollToTop?.Invoke();
-            budgetTabLabel.TextDecorations = TextDecorations.Underline;
-            transactionsTabLabel.TextDecorations = TextDecorations.None;
         }
 
         private void OnTransationTabClicked(object sender, EventArgs e)
         {
+            VisualStateManager.GoToState((Label)sender, "Selected");
+            VisualStateManager.GoToState(budgetTabLabel, "UnSelected");
             summaryListView.IsVisible = false;
             transactionsListView.IsVisible = true;
             transactionsListView.ScrollToTop?.Invoke();
-            budgetTabLabel.TextDecorations = TextDecorations.None;
-            transactionsTabLabel.TextDecorations = TextDecorations.Underline;
         }
 
         private void Transaction_ItemSelected(object sender, SelectedItemChangedEventArgs e)

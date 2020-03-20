@@ -28,6 +28,7 @@
         <utils1:SummaryListViewTemplateSelector x:Key="templateSelector"
          EmptyCellDataTemplate="{StaticResource emptyViewCell}" BudgetCellDataTemplate="{StaticResource groupHeaderViewCell}"/>
         <utils1:TransactionViewTemplateSelector x:Key="transactionTemplateSelector" EmptyCellDataTemplate="{StaticResource emptyViewCell}" TransactionDataTemplate="{StaticResource transactionViewCell}"/>
+
     </ContentPage.Resources>
 
     <ContentPage.Content>
@@ -81,11 +82,43 @@
             <BoxView Grid.Row="1" Color="White" HeightRequest="32" VerticalOptions="End"/>
             <StackLayout Grid.Row="1" Orientation="Horizontal" HeightRequest="32" HorizontalOptions="FillAndExpand">
                 <Label x:Name="budgetTabLabel" Text="Budżet" TextDecorations="Underline" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="Black" />
+                                    <Setter Property="TextDecorations" Value="Underline"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="UnSelected">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="Gray" />
+                                    <Setter Property="TextDecorations" Value="None"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnBudgetTabClicked"/>
                     </Label.GestureRecognizers>
                 </Label>
-                <Label x:Name="transactionsTabLabel" Text="Transakcje" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center">
+                <Label x:Name="transactionsTabLabel" Text="Transakcje" TextDecorations="Underline" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="Black" />
+                                    <Setter Property="TextDecorations" Value="Underline"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="UnSelected">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="Gray" />
+                                    <Setter Property="TextDecorations" Value="None"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnTransationTabClicked"/>
                     </Label.GestureRecognizers>
