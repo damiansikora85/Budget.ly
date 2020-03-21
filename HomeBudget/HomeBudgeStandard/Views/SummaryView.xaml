@@ -78,16 +78,29 @@
 
 
             <components:GradientView StartColor="#00A9FF" Grid.Row="1" EndColor="#00D7C4" HeightRequest="64" InputTransparent="True"/>
-            <BoxView Grid.Row="1" CornerRadius="32" Color="White" HeightRequest="64" VerticalOptions="End"/>
-            <BoxView Grid.Row="1" Color="White" HeightRequest="32" VerticalOptions="End"/>
-            <StackLayout Grid.Row="1" Orientation="Horizontal" HeightRequest="32" HorizontalOptions="FillAndExpand">
+            <!--<BoxView Grid.Row="1" CornerRadius="32" Color="White" HeightRequest="64" VerticalOptions="End"/>
+            <BoxView Grid.Row="1" Color="White" HeightRequest="32" VerticalOptions="End"/>-->
+            <Grid Grid.Row="1" ColumnSpacing="0" HorizontalOptions="FillAndExpand" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <BoxView Color="LightGray" CornerRadius="32" Grid.ColumnSpan="2" />
+                
+                <BoxView Color="White" CornerRadius="32" />
+                <BoxView Color="White" HeightRequest="32" VerticalOptions="End" />
                 <Label x:Name="budgetTabLabel" Text="Budżet" TextDecorations="Underline" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand">
                     <VisualStateManager.VisualStateGroups>
                         <VisualStateGroup>
                             <VisualState x:Name="Selected">
                                 <VisualState.Setters>
-                                    <Setter Property="TextColor" Value="Black" />
-                                    <Setter Property="TextDecorations" Value="Underline"/>
+                                    <Setter Property="TextColor" Value="DodgerBlue" />
+                                    <Setter Property="TextDecorations" Value="None"/>
+                                    <Setter Property="FontAttributes" Value="Bold"/>
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="UnSelected">
@@ -102,12 +115,15 @@
                         <TapGestureRecognizer Tapped="OnBudgetTabClicked"/>
                     </Label.GestureRecognizers>
                 </Label>
-                <Label x:Name="transactionsTabLabel" Text="Transakcje" TextDecorations="Underline" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center">
+
+                <BoxView Color="White" Grid.Column="1" CornerRadius="32" IsVisible="False"/>
+                <BoxView Color="LightGray" Grid.Column="1" HeightRequest="32" VerticalOptions="End" />
+                <Label x:Name="transactionsTabLabel" Grid.Column="1" Text="Transakcje" TextDecorations="Underline" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center">
                     <VisualStateManager.VisualStateGroups>
                         <VisualStateGroup>
                             <VisualState x:Name="Selected">
                                 <VisualState.Setters>
-                                    <Setter Property="TextColor" Value="Black" />
+                                    <Setter Property="TextColor" Value="DodgerBlue" />
                                     <Setter Property="TextDecorations" Value="Underline"/>
                                 </VisualState.Setters>
                             </VisualState>
@@ -123,7 +139,7 @@
                         <TapGestureRecognizer Tapped="OnTransationTabClicked"/>
                     </Label.GestureRecognizers>
                 </Label>
-            </StackLayout>
+            </Grid>
 
             <components:GradientView StartColor="#00A9FF" EndColor="#00D7C4" InputTransparent="True"/>
 
