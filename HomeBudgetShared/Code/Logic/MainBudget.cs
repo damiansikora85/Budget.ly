@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HomeBudget.Code
@@ -49,6 +50,7 @@ namespace HomeBudget.Code
         private BudgetPlanned budgetPlanned;
 
         private object _updateLock = new object();
+        private SemaphoreSlim _saveSemaphore = new SemaphoreSlim(1, 1);
 
         private IFileManager _fileManager;
         private IBudgetSynchronizer _budgetSynchronizer;
@@ -197,6 +199,7 @@ namespace HomeBudget.Code
 
         public async Task<bool> Save(bool upload = true)
         {
+            await _saveSemaphore.WaitAsync();
             try
             {
                 LogsManager.Instance.WriteLine("Save data");
@@ -212,14 +215,19 @@ namespace HomeBudget.Code
                 await _fileManager.Save(ActualBudgetData);
 
                 if (upload)
+                {
                     _budgetSynchronizer.ShouldSave = true;
-
+                }
             }
             catch (Exception exc)
             {
                 LogsManager.Instance.WriteLine("Save data error: " + exc.InnerException != null ? exc.InnerException.Message : string.Empty);
                 LogsManager.Instance.WriteLine(exc.Message);
                 LogsManager.Instance.WriteLine(exc.StackTrace);
+            }
+            finally
+            {
+                _saveSemaphore.Release();
             }
 
             return true;

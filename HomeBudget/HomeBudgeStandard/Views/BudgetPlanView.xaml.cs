@@ -367,6 +367,8 @@ namespace HomeBudgeStandard.Views
 
         private void DataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
         {
+            if (e.OldValue is double oldValue && e.NewValue is double newValue && oldValue == newValue) return;
+
             Task.Factory.StartNew(() => MainBudget.Instance.Save());
 
             Device.BeginInvokeOnMainThread(async () =>
