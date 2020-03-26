@@ -38,9 +38,6 @@ namespace HomeBudgeStandard.Views
             transactionsListView.OnScroll += TransactionsList_Scrolled;
             _baseHeaderHeight = -1;
 
-            VisualStateManager.GoToState(budgetTabLabel, "Selected");
-            VisualStateManager.GoToState(transactionsTabLabel, "UnSelected");
-
             _popupManager = new BudgetPopupManager(Parent as Page, Navigation);
             SelectedCategorySubcats = new ObservableCollection<BaseBudgetSubcat>();
         }
@@ -210,27 +207,22 @@ namespace HomeBudgeStandard.Views
             }
         }
 
-        private void OnBudgetTabClicked(object sender, EventArgs e)
-        {
-            VisualStateManager.GoToState((Label)sender, "Selected");
-            VisualStateManager.GoToState(transactionsTabLabel, "UnSelected");
-            summaryListView.IsVisible = true;
-            transactionsListView.IsVisible = false;
-            summaryListView.ScrollToTop?.Invoke();
-        }
-
-        private void OnTransationTabClicked(object sender, EventArgs e)
-        {
-            VisualStateManager.GoToState((Label)sender, "Selected");
-            VisualStateManager.GoToState(budgetTabLabel, "UnSelected");
-            summaryListView.IsVisible = false;
-            transactionsListView.IsVisible = true;
-            transactionsListView.ScrollToTop?.Invoke();
-        }
+        
 
         private void Transaction_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             transactionsListView.SelectedItem = null;
+        }
+
+        private void SummaryTabsView_SelectionChanged(object sender, SummaryTabsChangedEventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                summaryListView.IsVisible = e.SelectedMode == SummaryTabsView.Mode.Budget;
+                transactionsListView.IsVisible = e.SelectedMode == SummaryTabsView.Mode.Transactions;
+                summaryListView.ScrollToTop?.Invoke();
+                transactionsListView.ScrollToTop?.Invoke();
+            });
         }
     }
 }
