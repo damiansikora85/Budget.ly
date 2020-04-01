@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:HomeBudgeStandard.Converters"
              xmlns:utils1="clr-namespace:HomeBudgeStandard.Utils"
              x:Class="HomeBudgeStandard.Views.SummaryView"
-             x:Name="ThisPage" Icon="homeTab.png">
+             x:Name="ThisPage" Icon="homeTab.png" xmlns:views="clr-namespace:HomeBudgeStandard.Views">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -17,26 +17,29 @@
         </DataTemplate>
         <DataTemplate x:Key="emptyViewCell">
             <ViewCell>
-                <BoxView HeightRequest="110"/>
+                <BoxView HeightRequest="135"/>
+            </ViewCell>
+        </DataTemplate>
+        <DataTemplate x:Key="transactionViewCell">
+            <ViewCell>
+                <Label Text="{Binding Date, StringFormat='{0:dd MMMM, dddd}'}" TextColor="Black" FontSize="Large"/>
             </ViewCell>
         </DataTemplate>
         <utils1:SummaryListViewTemplateSelector x:Key="templateSelector"
          EmptyCellDataTemplate="{StaticResource emptyViewCell}" BudgetCellDataTemplate="{StaticResource groupHeaderViewCell}"/>
+        <utils1:TransactionViewTemplateSelector x:Key="transactionTemplateSelector" EmptyCellDataTemplate="{StaticResource emptyViewCell}" TransactionDataTemplate="{StaticResource transactionViewCell}"/>
+
     </ContentPage.Resources>
 
     <ContentPage.Content>
         <Grid BackgroundColor="White" RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="64"/>
+                <RowDefinition Height="48"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <components:GradientView StartColor="#00A9FF" Grid.Row="1" EndColor="#00D7C4" HeightRequest="64" InputTransparent="True"/>
-            <BoxView Grid.Row="1" CornerRadius="32" Color="White" HeightRequest="64" VerticalOptions="End"/>
-            <BoxView Grid.Row="1" Color="White" HeightRequest="32" VerticalOptions="End"/>
-
-            <components:CustomListView x:Name="summaryList" Grid.RowSpan="3" ItemsSource="{Binding SummaryListViewItems}" ItemSelected="Summary_ItemSelected" SeparatorVisibility="None" SeparatorColor="Black"
+            <components:CustomListView x:Name="summaryListView" Grid.RowSpan="3" ItemsSource="{Binding SummaryListViewItems}" ItemSelected="Summary_ItemSelected" SeparatorVisibility="None"
                         IsGroupingEnabled="True" GroupDisplayBinding="{Binding CategoryName}" HasUnevenRows="True" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never"
                                         GroupHeaderTemplate="{StaticResource templateSelector}">
                 <components:CustomListView.ItemTemplate>
@@ -46,19 +49,51 @@
                 </components:CustomListView.ItemTemplate>
             </components:CustomListView>
 
+            <components:CustomListView x:Name="transactionsListView" Grid.RowSpan="3" IsGroupingEnabled="True" ItemsSource="{Binding TransactionList}" ItemSelected="Transaction_ItemSelected" SeparatorVisibility="Default"
+                        HasUnevenRows="True" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never" IsVisible="False" GroupHeaderTemplate="{StaticResource transactionTemplateSelector}" >
+                <components:CustomListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="6,4">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.RowSpan="2" Source="{Binding Icon}" Margin="0,8"/>
+                                <Label Grid.Column="2" Text="{Binding Amount, Converter={StaticResource CurrencyValueWithSignConverter}" FontSize="16" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                                <Label Grid.Column="2" Grid.Row="1" Text="{Binding Note}" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                                <Label Grid.Column="1" Text="{Binding SubcatName}" FontSize="16"/>
+                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding CategoryName}" VerticalTextAlignment="End"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </components:CustomListView.ItemTemplate>
+            </components:CustomListView>
+
+            <components:GradientView StartColor="#00A9FF" Grid.Row="1" EndColor="#00D7C4" HeightRequest="48" InputTransparent="True"/>
+            <views:SummaryTabsView Grid.Row="1" SelectionChanged="SummaryTabsView_SelectionChanged"  HorizontalOptions="FillAndExpand" />
+
             <components:GradientView StartColor="#00A9FF" EndColor="#00D7C4" InputTransparent="True"/>
 
-            <Grid x:Name="header" RowSpacing="0" Margin="5,0" HeightRequest="200" MinimumHeightRequest="100">
+            <Grid x:Name="header" RowSpacing="0" Margin="5,8" HeightRequest="200" MinimumHeightRequest="100">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="80"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <StackLayout Orientation="Horizontal" VerticalOptions="Start" Opacity="{Binding ScrollProgress}" Padding="0,6" Margin="0,0" >
+                <StackLayout Orientation="Horizontal" VerticalOptions="Start" Opacity="{Binding HeaderScrollProgress}" Padding="0,6" Margin="0,0" >
                     <Button x:Name="PreviousMonthButton" Text="&#xf104;" FontSize="Large" BackgroundColor="Transparent" TextColor="White"  Clicked="OnPrevMonth" WidthRequest="60" HorizontalOptions="Start">
                         <Button.FontFamily>
-                            <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                            <OnPlatform x:TypeArguments="x:String" >
+                                <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"/>
+                            </OnPlatform>
                         </Button.FontFamily>
                     </Button>
 
@@ -66,7 +101,9 @@
 
                     <Button x:Name="NextMonthButton" BackgroundColor="Transparent" FontSize="Large" TextColor="White" Text="&#xf105;" Clicked="OnNextMonth" WidthRequest="60" HorizontalOptions="End">
                         <Button.FontFamily>
-                            <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                            <OnPlatform x:TypeArguments="x:String" >
+                                <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"/>
+                            </OnPlatform>
                         </Button.FontFamily>
                     </Button>
                 </StackLayout>
@@ -76,7 +113,7 @@
                     <Label Text="{Binding RemainedMoney, StringFormat='{}{0:C}'}" TextColor="White" VerticalTextAlignment="Center" FontSize="48" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
 
-                <Grid Grid.Row="2" VerticalOptions="End" Opacity="{Binding ScrollProgress}" Padding="6,0" Margin="0,0,0,4" RowSpacing="0" ColumnSpacing="16" IsVisible="{Binding IsBudgetPlanned}">
+                <Grid Grid.Row="2" VerticalOptions="End" Opacity="{Binding HeaderScrollProgress}" Padding="6,0" Margin="0,0,0,4" RowSpacing="0" ColumnSpacing="16" IsVisible="{Binding IsBudgetPlanned}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
@@ -100,7 +137,7 @@
                     <Label Grid.Row="2" Grid.Column="3" Text="{Binding IncomesProgress, StringFormat='{0:P0}'}" TextColor="White"/>
                 </Grid>
 
-                <Grid Grid.Row="2" VerticalOptions="End" Opacity="{Binding ScrollProgress}" Padding="6,0" Margin="0,0,0,4" IsVisible="{Binding NoBudgetPlanned}">
+                <Grid Grid.Row="2" VerticalOptions="End" Opacity="{Binding HeaderScrollProgress}" Padding="6,0" Margin="0,0,0,4" IsVisible="{Binding NoBudgetPlanned}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="64"/>
                         <ColumnDefinition Width="*"/>
@@ -117,14 +154,18 @@
 
                     <Button Grid.RowSpan="2" BackgroundColor="Transparent" TextColor="White" Text="&#xf059;" HorizontalOptions="Start" Clicked="OnNoPlanClick">
                         <Button.FontFamily>
-                            <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"/>
+                            </OnPlatform>
                         </Button.FontFamily>
                     </Button>
                     <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Expenses, StringFormat='{}{0:C}'}" TextColor="White" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"/>
 
                     <Button Grid.RowSpan="2" BackgroundColor="Transparent" Grid.Column="3" TextColor="White" Text="&#xf059;" HorizontalOptions="End" Clicked="OnNoPlanClick" >
                         <Button.FontFamily>
-                            <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                            <OnPlatform x:TypeArguments="x:String" >
+                                <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"/>
+                            </OnPlatform>
                         </Button.FontFamily>
                     </Button>
                     <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Incomes, StringFormat='{}{0:C}'}" TextColor="White" HorizontalTextAlignment="Center"/>

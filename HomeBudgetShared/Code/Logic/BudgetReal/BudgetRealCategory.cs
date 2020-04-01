@@ -48,8 +48,10 @@ namespace HomeBudget.Code.Logic
 
         public void AddValue(double value, DateTime date, int subcatId)
         {
-            var subcat = subcats.Find(elem => elem.Id == subcatId) as RealSubcat;
-            subcat.AddValue(value, date);
+            if (subcats != null && subcats.Find(elem => elem.Id == subcatId) is RealSubcat subcat)
+            {
+                subcat.AddValue(value, date);
+            }
         }
     }
 }

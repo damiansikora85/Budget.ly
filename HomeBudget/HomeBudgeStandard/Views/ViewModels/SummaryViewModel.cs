@@ -1,10 +1,17 @@
 ﻿using Acr.UserDialogs;
+using HomeBudgeStandard.Providers;
+using HomeBudgeStandard.Views.ViewModels;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
+using HomeBudgetShared.Code.Interfaces;
+using HomeBudgetShared.Code.UseCases;
+using MvvmHelpers;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -20,23 +27,25 @@ namespace HomeBudgeStandard.Views
         public double IncomesProgress { get; private set; }
 
         public ObservableCollection<BudgetSummaryDataViewModel> SummaryListViewItems { get; private set; }
+        public ObservableRangeCollection<TransactionsGroupViewModel> TransactionList { get; private set; }
 
         private DateTime _currentDateTime = DateTime.Now;
         private BudgetMonth _currentBudgetMonth;
         private bool _needRefreshData = true;
+        private IBudgetTemplateProvider _budgetTemplateProvider;
 
         public bool IsBudgetPlanned { get; private set; }
         public bool NoBudgetPlanned => !IsBudgetPlanned;
 
-        private double _scrollProgress = 1.0;
+        private double _headerScrollProgress = 1.0;
 
-        public double ScrollProgress
+        public double HeaderScrollProgress
         {
-            get => _scrollProgress;
+            get => _headerScrollProgress;
             set
             {
-                _scrollProgress = value;
-                OnPropertyChanged(nameof(ScrollProgress));
+                _headerScrollProgress = value;
+                OnPropertyChanged(nameof(HeaderScrollProgress));
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -48,6 +57,7 @@ namespace HomeBudgeStandard.Views
 
         public SummaryViewModel()
         {
+            _budgetTemplateProvider = new BudgetTemplateProvider();
             if (MainBudget.Instance.IsDataLoaded)
             {
                 _currentBudgetMonth = MainBudget.Instance.GetMonth(_currentDateTime);
@@ -108,8 +118,27 @@ namespace HomeBudgeStandard.Views
                 {
                     SummaryListViewItems = await GetBudgetSummaryDataAsync(_currentBudgetMonth).ConfigureAwait(false);
                 }
+
+                CreateTransactionsList();
             }
             OnPropertyChanged();
+        }
+
+        private void CreateTransactionsList()
+        {
+            var groupped = _currentBudgetMonth.BudgetReal.Transactions.GroupBy(t => t.Date);
+            TransactionList = new ObservableRangeCollection<TransactionsGroupViewModel>
+            {
+                new TransactionsGroupViewModel { IsEmpty = true },
+                new TransactionsGroupViewModel { IsEmpty = true }
+            };
+            var budgetDesc = _budgetTemplateProvider.GetTemplate();
+            var tempList = new List<TransactionsGroupViewModel>();
+            foreach (var group in groupped)
+            {
+                tempList.Add(new TransactionsGroupViewModel(group, budgetDesc));
+            }
+            TransactionList.AddRange(tempList.OrderByDescending(el => el.Date));
         }
 
         private async static Task<ObservableCollection<BudgetSummaryDataViewModel>> GetBudgetSummaryDataAsync(BudgetMonth budgetData) =>
@@ -140,17 +169,9 @@ namespace HomeBudgeStandard.Views
                 return budgetSummaryCollection;
             }).ConfigureAwait(false);
 
-        public async void AddExpenseAsync(double value, DateTime date, BaseBudgetCategory category, int subcatId)
+        public async void AddExpenseAsync(double value, DateTime date, BaseBudgetCategory category, int subcatId, string note)
         {
-            var budgetMonth = MainBudget.Instance.GetMonth(date);
-            if (category.IsIncome)
-            {
-                budgetMonth.AddIncome(value, date, subcatId);
-            }
-            else
-            {
-                budgetMonth.AddExpense(value, date, category.Id, subcatId);
-            }
+            AddExpenseUseCase.AddExpense(value, date, category, subcatId, note);
 
             await RefreshAsync().ConfigureAwait(false);
         }

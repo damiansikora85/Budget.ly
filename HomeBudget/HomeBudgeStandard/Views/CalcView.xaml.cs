@@ -43,10 +43,11 @@ namespace HomeBudgeStandard.Views
 
         public ICommand KeyPressed { get; private set; }
         public Action OnCancel;
-        public Action<double, DateTime> OnSaveValue;
+        public Action<double, string, DateTime> OnSaveValue;
 
         private CultureInfo _cultureInfoPL = new CultureInfo("pl-PL");
 
+        public string Note { get; set; }
         public string Category { get; set; }
         private string _subcat;
         public string Subcat
@@ -146,7 +147,7 @@ namespace HomeBudgeStandard.Views
                     {
                         using (var calcQuick = new CalcQuickBase() { ThrowCircularException = true })
                         {
-                            
+
                             CalculationResultText = calcQuick.ParseAndCompute(formulaText);
                             OnPropertyChanged(nameof(CalculationResultText));
                             break;
@@ -200,7 +201,7 @@ namespace HomeBudgeStandard.Views
                 {
                     CalculationResultText = calcQuick.ParseAndCompute(formulaText);
                     OnPropertyChanged("CategoryReal.TotalValues");
-                    OnSaveValue?.Invoke(double.Parse(calculationResultText), Calendar.Date);
+                    OnSaveValue?.Invoke(double.Parse(calculationResultText), Note, Calendar.Date);
                 }
             }
             else
@@ -228,8 +229,10 @@ namespace HomeBudgeStandard.Views
 
             FormulaText = string.Empty;
             CalculationResultText = "0";
+            Note = "";
             OnPropertyChanged(nameof(Category));
             OnPropertyChanged(nameof(Subcat));
+            OnPropertyChanged(nameof(Note));
         }
 
         private void OnCancelClicked(object sender, EventArgs e)
@@ -248,7 +251,7 @@ namespace HomeBudgeStandard.Views
                 {
                     CalculationResultText = calcQuick.ParseAndCompute(formulaText);
                     OnPropertyChanged("CategoryReal.TotalValues");
-                    OnSaveValue?.Invoke(double.Parse(calculationResultText), Calendar.Date);
+                    OnSaveValue?.Invoke(double.Parse(calculationResultText), Note, Calendar.Date);
                 }
             }
         }

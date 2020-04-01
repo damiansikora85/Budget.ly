@@ -20,6 +20,8 @@ namespace HomeBudget.Components
             get => (int)GetValue(ScrollPositionProperty);
             set => SetValue(ScrollPositionProperty, value);
         }
+        public Action<int> OnScrollToElement { get; set; }
+        public Action ScrollToTop { get; set; }
 
         public event EventHandler OnScroll;
 

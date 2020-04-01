@@ -24,7 +24,6 @@ namespace HomeBudgeStandard.Views
         private CalcView _calcView;
         private bool _isAddingExpenseInProgress;
         private SummaryViewModel _viewModel;
-        private double _currentScrollPos;
         private BudgetSummaryDataViewModel _selectedCategory;
         private BudgetSummaryDataViewModel _lastClickedElem;
         private BudgetPopupManager _popupManager;
@@ -35,7 +34,8 @@ namespace HomeBudgeStandard.Views
             InitializeComponent();
             _viewModel = new SummaryViewModel();
             BindingContext = _viewModel;
-            summaryList.OnScroll += SummaryList_Scrolled;
+            summaryListView.OnScroll += SummaryList_Scrolled;
+            transactionsListView.OnScroll += TransactionsList_Scrolled;
             _baseHeaderHeight = -1;
 
             _popupManager = new BudgetPopupManager(Parent as Page, Navigation);
@@ -75,7 +75,7 @@ namespace HomeBudgeStandard.Views
             {
                 _baseHeaderHeight = header.Height;
             }
-            var newHeight = _baseHeaderHeight - summaryList.ScrollPosition/3;
+            var newHeight = _baseHeaderHeight - summaryListView.ScrollPosition/3;
 
             newHeight = Math.Max(newHeight, header.MinimumHeightRequest);
             if (newHeight > header.MinimumHeightRequest)
@@ -86,8 +86,29 @@ namespace HomeBudgeStandard.Views
             {
                 header.HeightRequest = header.MinimumHeightRequest;
             }
-            _viewModel.ScrollProgress = 1-summaryList.FirstElementVisibiltyPerc;
-            debugScroll.Text = $"{summaryList.ScrollPosition}";
+            _viewModel.HeaderScrollProgress = 1- summaryListView.FirstElementVisibiltyPerc;
+            debugScroll.Text = $"{summaryListView.ScrollPosition}";
+        }
+
+        private void TransactionsList_Scrolled(object sender, EventArgs e)
+        {
+            if (_baseHeaderHeight < 0)
+            {
+                _baseHeaderHeight = header.Height;
+            }
+            var newHeight = _baseHeaderHeight - transactionsListView.ScrollPosition / 3;
+
+            newHeight = Math.Max(newHeight, header.MinimumHeightRequest);
+            if (newHeight > header.MinimumHeightRequest)
+            {
+                header.HeightRequest = newHeight;
+            }
+            else
+            {
+                header.HeightRequest = header.MinimumHeightRequest;
+            }
+            _viewModel.HeaderScrollProgress = 1 - transactionsListView.FirstElementVisibiltyPerc;
+            debugScroll.Text = $"{transactionsListView.ScrollPosition}";
         }
 
         private async void AddExpense(SummaryListSubcat selectedSubcat)
@@ -100,9 +121,9 @@ namespace HomeBudgeStandard.Views
             _isAddingExpenseInProgress = true;
             _calcView.Reset();
             _calcView.Subcat = selectedSubcat.Name;
-            _calcView.OnSaveValue = (double result, DateTime date) =>
+            _calcView.OnSaveValue = (double result, string note, DateTime date) =>
             {
-                _viewModel.AddExpenseAsync(result, date, _selectedCategory.CategoryReal, selectedSubcat.Id);
+                _viewModel.AddExpenseAsync(result, date, _selectedCategory.CategoryReal, selectedSubcat.Id, note);
                 _selectedCategory.RaisePropertyChanged();
 
                 Task.Run(async () => await MainBudget.Instance.Save().ConfigureAwait(false));
@@ -146,14 +167,14 @@ namespace HomeBudgeStandard.Views
                 element.Collapse();
             else
             {
-                summaryList.ScrollTo(element, ScrollToPosition.Start, false);
+                summaryListView.ScrollTo(element, ScrollToPosition.Start, false);
                 element.Expand();
             }
         }
 
         private void Summary_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            summaryList.SelectedItem = null;
+            summaryListView.SelectedItem = null;
         }
 
         private void HideCalcView()
@@ -184,6 +205,24 @@ namespace HomeBudgeStandard.Views
                     }
                 });
             }
+        }
+
+        
+
+        private void Transaction_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            transactionsListView.SelectedItem = null;
+        }
+
+        private void SummaryTabsView_SelectionChanged(object sender, SummaryTabsChangedEventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                summaryListView.IsVisible = e.SelectedMode == SummaryTabsView.Mode.Budget;
+                transactionsListView.IsVisible = e.SelectedMode == SummaryTabsView.Mode.Transactions;
+                summaryListView.ScrollToTop?.Invoke();
+                transactionsListView.ScrollToTop?.Invoke();
+            });
         }
     }
 }
