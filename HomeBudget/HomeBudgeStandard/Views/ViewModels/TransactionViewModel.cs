@@ -29,7 +29,7 @@ namespace HomeBudgeStandard.Views.ViewModels
         }
 
         public DateTime Date => _transaction.Date;
-        public string Amount => IsIncome ? $"+{_transaction.Amount:F2}" : $"-{_transaction.Amount:F2}";
+        public double Amount => IsIncome ? _transaction.Amount : _transaction.Amount *-1;
 
         public string Icon { get; set; }
         public string CategoryName { get; set; }

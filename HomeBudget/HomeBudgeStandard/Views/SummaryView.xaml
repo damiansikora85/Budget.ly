@@ -22,7 +22,7 @@
         </DataTemplate>
         <DataTemplate x:Key="transactionViewCell">
             <ViewCell>
-                <Label Text="{Binding Date, StringFormat='{0:dd MMMM, dddd}'}" FontSize="Large"/>
+                <Label Text="{Binding Date, StringFormat='{0:dd MMMM, dddd}'}" TextColor="Black" FontSize="Large"/>
             </ViewCell>
         </DataTemplate>
         <utils1:SummaryListViewTemplateSelector x:Key="templateSelector"
@@ -66,7 +66,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Image Grid.RowSpan="2" Source="{Binding Icon}" Margin="0,8"/>
-                                <Label Grid.Column="2" Text="{Binding Amount, StringFormat='{}{0:C}'}" FontSize="16" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                                <Label Grid.Column="2" Text="{Binding Amount, Converter={StaticResource CurrencyValueWithSignConverter}" FontSize="16" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
                                 <Label Grid.Column="2" Grid.Row="1" Text="{Binding Note}" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
                                 <Label Grid.Column="1" Text="{Binding SubcatName}" FontSize="16"/>
                                 <Label Grid.Column="1" Grid.Row="1" Text="{Binding CategoryName}" VerticalTextAlignment="End"/>

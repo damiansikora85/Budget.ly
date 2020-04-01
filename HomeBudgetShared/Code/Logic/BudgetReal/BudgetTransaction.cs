@@ -20,6 +20,7 @@ namespace HomeBudget.Code.Logic
         public BudgetTransaction Clone()
         {
             var clone = (BudgetTransaction)MemberwiseClone();
+            clone.Note = string.Copy(Note);
             return clone;
         }
     }

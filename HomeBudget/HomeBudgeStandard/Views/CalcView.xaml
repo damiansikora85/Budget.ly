@@ -18,7 +18,7 @@
     </pages:PopupPage.Resources>
 
     <pages:PopupPage.Content>
-        <Frame HasShadow="False" BackgroundColor="#DAFFFFFF" BorderColor="DodgerBlue" Margin="30,40" Padding="10" CornerRadius="10" >
+        <Frame HasShadow="False" BackgroundColor="#EEFFFFFF" BorderColor="DodgerBlue" Margin="30,40" Padding="10" CornerRadius="32" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="55" />
@@ -62,15 +62,21 @@
                     <Label Text="{Binding Subcat}" Grid.Column="1" Grid.Row="1" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
                 </Grid>
 
-                <Editor Keyboard="Numeric" Grid.Row="1" Grid.ColumnSpan="4" Text="{Binding FormulaText}" IsTabStop="False" BackgroundColor="LightPink" VerticalOptions="End" />
+                <Editor x:Name="test" Keyboard="Numeric" Grid.Row="1" Grid.ColumnSpan="4" TextColor="#666" Text="{Binding FormulaText}" IsTabStop="False" VerticalOptions="End" />
                 <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" BorderColor="Gray" CornerRadius="10" Padding="6,0">
                     <Label x:Name="Result" TextColor="Black" FontSize="Large"  Text="{Binding CalculationResultText}" VerticalTextAlignment="Center" HorizontalTextAlignment="End" />
                 </Frame>
 
-                    <StackLayout Spacing="0" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4">
-                        <Label Text="Notatka" FontSize="Small"/>
-                        <Entry Text="{Binding Note}" FontSize="Small" />
-                    </StackLayout>
+                <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal">
+                    <Label Text="&#xf249;" FontSize="Body" VerticalTextAlignment="Center">
+                        <DatePicker.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String" >
+                                <On Platform="Android" Value="Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free Regular"/>
+                            </OnPlatform>
+                        </DatePicker.FontFamily>
+                    </Label>
+                    <Entry Text="{Binding Note}" Placeholder="Dodaj notatkę" FontSize="Small" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
 
 
                 <Button Grid.Row="4" Text="←" Command="{Binding KeyPressed}" CommandParameter="Backspace" Style="{StaticResource calcButton}"/>
@@ -97,8 +103,8 @@
                 <Button Grid.Row="7" Grid.RowSpan="2" Grid.Column="3" Command="{Binding KeyPressed}" CommandParameter="Equal" Text="=" Style="{StaticResource calcButton}"/>
 
                 <FlexLayout Grid.Row="9" Grid.ColumnSpan="4" >
-                    <Button Text="Anuluj" Clicked="OnCancelClicked" FlexLayout.Grow="1" BackgroundColor="Transparent" TextColor="DodgerBlue" Margin="5,20,5,0"/>
-                    <Button Text="Zapisz" Clicked="OnSave" BackgroundColor="Transparent" TextColor="DodgerBlue" Margin="5,20,5,0"/>
+                    <Button Text="Anuluj" Clicked="OnCancelClicked" FlexLayout.Grow="1" BackgroundColor="Transparent" FontSize="Body" TextColor="DodgerBlue" Margin="5,20,5,0"/>
+                    <Button Text="Zapisz" Clicked="OnSave" BackgroundColor="Transparent" FontSize="Body" TextColor="DodgerBlue" Margin="5,20,5,0"/>
                 </FlexLayout>
             </Grid>
         </Frame>

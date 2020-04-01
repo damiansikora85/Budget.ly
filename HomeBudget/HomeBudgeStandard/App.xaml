@@ -80,6 +80,7 @@
             </Style>
 
             <converters:CurrencyValueConverter x:Key="CurrencyValueConverter" />
+            <converters:CurrencyValueWithSignConverter x:Key="CurrencyValueWithSignConverter" />
 
         </ResourceDictionary>
 
