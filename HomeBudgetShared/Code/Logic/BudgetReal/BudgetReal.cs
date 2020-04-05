@@ -8,7 +8,7 @@ namespace HomeBudget.Code.Logic
     [ProtoContract]
     public sealed class BudgetReal : BaseBudget.BaseBudget
     {
-        //[ProtoMember(1)]
+        [ProtoMember(1)]
         public List<BudgetTransaction> Transactions;
 
         public BudgetReal(BudgetReal budgetReal) : base()
