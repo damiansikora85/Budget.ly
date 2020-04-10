@@ -15,8 +15,11 @@
                             <StackLayout Orientation="Horizontal">
                                 <Image Source="{Binding IconFile}" Margin="10" />
                                 <Label Text="{Binding Name}" FontSize="16" TextColor="Black" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
-                                <ImageButton Source="add.png" HorizontalOptions="End" BackgroundColor="Transparent" Margin="5"
-                                             Command="{Binding AddSubcatCommand, Source={x:Reference currentPage}}" CommandParameter="{Binding .}"/>
+                                <Image Source="add.png" HorizontalOptions="End" BackgroundColor="Transparent" Margin="5">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding AddSubcatCommand, Source={x:Reference currentPage}}" CommandParameter="{Binding .}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
