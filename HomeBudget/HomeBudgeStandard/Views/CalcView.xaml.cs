@@ -255,5 +255,11 @@ namespace HomeBudgeStandard.Views
                 }
             }
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            OnCancel?.Invoke();
+            return base.OnBackButtonPressed();
+        }
     }
 }

@@ -4,7 +4,7 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                  xmlns:components="clr-namespace:HomeBudgeStandard.Components"
-                 x:Class="HomeBudgeStandard.Views.CalcView" Padding="5" HasKeyboardOffset="False">
+                 x:Class="HomeBudgeStandard.Views.CalcView" Padding="5" HasKeyboardOffset="False" CloseWhenBackgroundIsClicked="False">
     <pages:PopupPage.Resources>
         <ResourceDictionary>
             <Style x:Key="calcButton" TargetType="Button">
