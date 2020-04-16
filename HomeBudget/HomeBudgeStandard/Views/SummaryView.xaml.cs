@@ -71,6 +71,10 @@ namespace HomeBudgeStandard.Views
 
         private void SummaryList_Scrolled(object sender, EventArgs e)
         {
+            if(!summaryListView.IsVisible)
+            {
+                return;
+            }
             if(_baseHeaderHeight < 0)
             {
                 _baseHeaderHeight = header.Height;
@@ -92,6 +96,10 @@ namespace HomeBudgeStandard.Views
 
         private void TransactionsList_Scrolled(object sender, EventArgs e)
         {
+            if(!transactionsListView.IsVisible)
+            {
+                return;
+            }
             if (_baseHeaderHeight < 0)
             {
                 _baseHeaderHeight = header.Height;
