@@ -58,6 +58,7 @@ namespace HomeBudget.Droid.Renderers
             else
             {
                 topY = _firstElementHeight;
+                visiblePercentage = 1;
             }
             _myListView.FirstElementVisibiltyPerc = visiblePercentage;
             _myListView.ScrollPosition = topY;
