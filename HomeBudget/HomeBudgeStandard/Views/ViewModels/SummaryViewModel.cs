@@ -169,13 +169,15 @@ namespace HomeBudgeStandard.Views
                 return budgetSummaryCollection;
             }).ConfigureAwait(false);
 
+#pragma warning restore CA2008 // Do not create tasks without passing a TaskScheduler
+
         public async void AddExpenseAsync(double value, DateTime date, BaseBudgetCategory category, int subcatId, string note)
         {
             AddExpenseUseCase.AddExpense(value, date, category, subcatId, note);
 
             await RefreshAsync().ConfigureAwait(false);
         }
-#pragma warning restore CA2008 // Do not create tasks without passing a TaskScheduler
+
 
         private async void BudgetDataChanged(bool isLoadedFromCloud)
         {
