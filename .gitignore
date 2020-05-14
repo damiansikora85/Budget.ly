@@ -348,3 +348,6 @@ HomeBudget/HomeBudgeStandard/Pages/Test/
 fira-sans/
 .mfractor/
 HomeBudget/HomeBudget.Droid/HomeBudget.Droid.csproj.user
+HomeBudget/HomeBudget.Droid/keypass
+keystore.jks
+upload_certificate.pem
