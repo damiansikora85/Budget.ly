@@ -236,6 +236,7 @@ namespace HomeBudget.Code
                 LogsManager.Instance.WriteLine("Save data error: " + exc.InnerException != null ? exc.InnerException.Message : string.Empty);
                 LogsManager.Instance.WriteLine(exc.Message);
                 LogsManager.Instance.WriteLine(exc.StackTrace);
+                _crashReporter.Report(exc);
             }
             finally
                 _crashReporter.Report(exc);
