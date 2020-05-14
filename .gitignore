@@ -344,3 +344,6 @@ bld/
 [Oo]bj/
 .vs/
 dropbox-sdk-dotnet-master/
+HomeBudget/HomeBudgeStandard/Pages/Test/
+fira-sans/
+.mfractor/
