@@ -1,4 +1,5 @@
-﻿using HomeBudgeStandard.Utils;
+﻿using HomeBudgeStandard.Interfaces.Impl;
+using HomeBudgeStandard.Utils;
 using HomeBudget.Code;
 using HomeBudget.Helpers;
 using HomeBudgetShared.Code.Synchronize;
@@ -39,7 +40,8 @@ namespace HomeBudgeStandard.Pages
 
         private void InitBudget()
         {
-            MainBudget.Instance.Init(new FileManagerXamarin(), new BudgetSynchronizer(new DropboxCloudStorage()));
+            var crashReporter = new XamarinCrashReporter();
+            MainBudget.Instance.Init(new FileManagerXamarin(), new BudgetSynchronizer(new DropboxCloudStorage(crashReporter)), crashReporter);
             if(Settings.FirstLaunch)
             {
                 NotificationManager.ScheduleDefaultNotifications();

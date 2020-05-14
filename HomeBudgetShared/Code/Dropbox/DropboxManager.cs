@@ -39,9 +39,12 @@ namespace HomeBudget.Code
         public event EventHandler<BudgetData> OnDownloadFinished;
         public event EventHandler OnDownloadError;
 
-        public DropboxCloudStorage()
+        private ICrashReporter _crashReporter;
+
+        public DropboxCloudStorage(ICrashReporter crashReporter)
         {
             _dropboxClient = null;
+            _crashReporter = crashReporter;
         }
 
         public async Task<DateTime> GetCloudFileModifiedTime()
@@ -56,12 +59,14 @@ namespace HomeBudget.Code
                 return metadata.ServerModified;
 
             }
-            catch (ApiException<GetMetadataError>)
+            catch (ApiException<GetMetadataError> apiExc)
             {
+                _crashReporter.Report(apiExc);
                 return DateTime.MinValue;
             }
-            catch (Exception)
+            catch (Exception exc)
             {
+                _crashReporter.Report(exc);
                 return DateTime.MinValue;
             }
         }
@@ -84,18 +89,20 @@ namespace HomeBudget.Code
                 }
                 return budgetData;
             }
-            catch (ApiException<GetMetadataError>)
+            catch (ApiException<GetMetadataError> apiExc)
             {
+                _crashReporter.Report(apiExc);
                 LogsManager.Instance.WriteLine("Dropbox file not found");
                 //file not found
                 return null;
             }
-            catch(Exception e)
+            catch(Exception exc)
             {
-                LogsManager.Instance.WriteLine("Dropbox other exception: "+e.Message);
-                if(e.InnerException != null)
+                _crashReporter.Report(exc);
+                LogsManager.Instance.WriteLine("Dropbox other exception: "+exc.Message);
+                if(exc.InnerException != null)
                 {
-                    LogsManager.Instance.WriteLine("Dropbox other exception: " + e.InnerException.Message);
+                    LogsManager.Instance.WriteLine("Dropbox other exception: " + exc.InnerException.Message);
                 }
                 return null;
             }
@@ -124,7 +131,7 @@ namespace HomeBudget.Code
             }
             catch(Exception exc)
             {
-                var msg = exc.Message;
+                _crashReporter.Report(exc);
             }
 
             return cloudFileModifedDate;
@@ -141,12 +148,14 @@ namespace HomeBudget.Code
                 var metadata = await DropboxClient.Files.GetMetadataAsync(DROPBOX_DATA_FILE_PATH);
                 return metadata.IsFile;
             }
-            catch (ApiException<GetMetadataError>)
+            catch (ApiException<GetMetadataError> apiExc)
             {
+                _crashReporter.Report(apiExc);
                 return false;
             }
-            catch (Exception)
+            catch (Exception exc)
             {
+                _crashReporter.Report(exc);
                 return false;
             }
         }
@@ -172,7 +181,7 @@ namespace HomeBudget.Code
             }
             catch (Exception exc)
             {
-                var msg = exc.Message;
+                _crashReporter.Report(exc);
             }
 
             return cloudFileModifedDate;
@@ -202,18 +211,20 @@ namespace HomeBudget.Code
                     return null;
                 }
             }
-            catch (ApiException<GetMetadataError>)
+            catch (ApiException<GetMetadataError> apiExc)
             {
+                _crashReporter.Report(apiExc);
                 LogsManager.Instance.WriteLine("Template file not found");
                 //file not found
                 return null;
             }
-            catch (Exception e)
+            catch (Exception exc)
             {
-                LogsManager.Instance.WriteLine("Dropbox other exception: " + e.Message);
-                if (e.InnerException != null)
+                _crashReporter.Report(exc);
+                LogsManager.Instance.WriteLine("Dropbox other exception: " + exc.Message);
+                if (exc.InnerException != null)
                 {
-                    LogsManager.Instance.WriteLine("Dropbox other exception: " + e.InnerException.Message);
+                    LogsManager.Instance.WriteLine("Dropbox other exception: " + exc.InnerException.Message);
                 }
                 return null;
             }

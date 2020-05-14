@@ -54,6 +54,7 @@ namespace HomeBudget.Code
 
         private IFileManager _fileManager;
         private IBudgetSynchronizer _budgetSynchronizer;
+        private ICrashReporter _crashReporter;
         public bool IsDataLoaded { get; private set; }
 
         public event Action onPlannedBudgetChanged;
@@ -82,37 +83,9 @@ namespace HomeBudget.Code
             IsDataLoaded = false;
         }
 
-        public void OnCloudStorageConnected(bool overwriteLocal)
+        public void Init(IFileManager fileManager, IBudgetSynchronizer budgetSynchronizer, ICrashReporter crashReporter)
         {
-            IsDataLoaded = !overwriteLocal;
-            _budgetSynchronizer.ShouldSave = !overwriteLocal;
-            _budgetSynchronizer.Start();
-
-            if (overwriteLocal)
-            {
-                Task.Run(async () =>
-                {
-                    try
-                    {
-                        var budgetTemplate = await _budgetSynchronizer.DownloadBudgetTemplate();
-                        UpdateData(null, await _budgetSynchronizer.ForceLoad());
-                        if (budgetTemplate != null)
-                        {
-                            BudgetDescription = budgetTemplate;
-                            _fileManager.WriteCustomTemplate(BudgetDescription);
-                        }
-                    }
-                    catch(Exception exc)
-                    {
-                        LogsManager.Instance.WriteLine(exc.Message);
-                        var msg = exc.Message;
-                    }
-                });
-            }
-        }
-
-        public void Init(IFileManager fileManager, IBudgetSynchronizer budgetSynchronizer)
-        {
+            _crashReporter = crashReporter;
             _fileManager = fileManager;
             _budgetSynchronizer = budgetSynchronizer;
             _budgetSynchronizer.DataDownloaded += UpdateData;
@@ -171,11 +144,38 @@ namespace HomeBudget.Code
                       var msg = exc.Message;
                       LogsManager.Instance.WriteLine(exc.Message);
                       LogsManager.Instance.WriteLine(exc.StackTrace);
+                      _crashReporter.Report(exc);
                   }
               });
 #pragma warning restore CA2008 // Do not create tasks without passing a TaskScheduler
 
             LogsManager.Instance.Init(fileManager);
+        }
+
+        public async Task OnCloudStorageConnected(bool overwriteLocal)
+        {
+            IsDataLoaded = !overwriteLocal;
+            _budgetSynchronizer.ShouldSave = !overwriteLocal;
+
+            if (overwriteLocal)
+            {
+                try
+                {
+                    var budgetTemplate = await _budgetSynchronizer.DownloadBudgetTemplate();
+                    UpdateData(null, await _budgetSynchronizer.ForceLoad());
+                    if (budgetTemplate != null)
+                    {
+                        BudgetDescription = budgetTemplate;
+                        _fileManager.WriteCustomTemplate(BudgetDescription);
+                    }
+                    _budgetSynchronizer.Start();
+                }
+                catch (Exception exc)
+                {
+                    LogsManager.Instance.WriteLine(exc.Message);
+                    _crashReporter.Report(exc);
+                }
+            }
         }
 
         public void UpdateBudgetCategories(List<BudgetCategoryForEdit> updatedCategories)
@@ -196,6 +196,7 @@ namespace HomeBudget.Code
             catch (Exception exc)
             {
                 LogsManager.Instance.WriteLine($"Update template failed: {exc.Message}");
+                _crashReporter.Report(exc);
             }
         }
 
@@ -226,6 +227,7 @@ namespace HomeBudget.Code
                 LogsManager.Instance.WriteLine("Save data error: " + exc.InnerException != null ? exc.InnerException.Message : string.Empty);
                 LogsManager.Instance.WriteLine(exc.Message);
                 LogsManager.Instance.WriteLine(exc.StackTrace);
+                _crashReporter.Report(exc);
             }
             finally
             {
@@ -263,6 +265,7 @@ namespace HomeBudget.Code
             {
                 LogsManager.Instance.WriteLine(exc.Message);
                 LogsManager.Instance.WriteLine(exc.StackTrace);
+                _crashReporter.Report(exc);
             }
         }
 
@@ -304,6 +307,7 @@ namespace HomeBudget.Code
             {
                 LogsManager.Instance.WriteLine("SynchronizeData exception: " + exc.Message);
                 LogsManager.Instance.WriteLine(exc.StackTrace);
+                _crashReporter.Report(exc);
             }
         }
 
@@ -311,20 +315,6 @@ namespace HomeBudget.Code
         {
             LoadAsync();
         }
-
-        //public async Task AddExpense(float value, DateTime date, int categoryID, int subcatID)
-        //{
-        //    var month = GetMonth(date);
-        //    month.AddExpense(value, date, categoryID, subcatID);
-        //    await Save().ConfigureAwait(false);
-        //}
-
-        //public async Task AddIncome(float value, DateTime date, int incomeCategoryId)
-        //{
-        //    var month = GetMonth(date);
-        //    month.AddIncome(value, date, incomeCategoryId);
-        //    await Save().ConfigureAwait(false);
-        //}
 
         public async Task UpdateMainPlannedBudget()
         {
@@ -352,8 +342,6 @@ namespace HomeBudget.Code
                 month.UpdatePlannedBudget(budgetPlanned);
                 month.Setup();
                 _months.Add(month);
-                //??
-                //Save();
             }
 
             return month;

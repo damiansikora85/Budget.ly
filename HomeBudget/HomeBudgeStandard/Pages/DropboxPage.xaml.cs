@@ -187,15 +187,16 @@ namespace HomeBudgeStandard.Pages
                 {
                     if (await UserDialogs.Instance.ConfirmAsync("Wykryto zapisane dane aplikacji Budget.ly na Twoim koncie Dropbox. Czy chcesz nadpisać dane lokalne w telefonie?", "Uwaga", "Użyj danych z Dropbox", "Użyj danych z  telefonu"))
                     {
+                        UserDialogs.Instance.ShowLoading("");
+                        await MainBudget.Instance.OnCloudStorageConnected(true);
                         UserDialogs.Instance.HideLoading();
-                        MainBudget.Instance.OnCloudStorageConnected(true);
                         var mainPage = Application.Current.MainPage as MainPage;
                         mainPage.AfterCloudLogin();
                     }
                     else
                     {
                         UserDialogs.Instance.HideLoading();
-                        MainBudget.Instance.OnCloudStorageConnected(false);
+                        await MainBudget.Instance.OnCloudStorageConnected(false);
                         var mainPage = Application.Current.MainPage as MainPage;
                         mainPage.AfterCloudLogin();
                     }
@@ -212,7 +213,7 @@ namespace HomeBudgeStandard.Pages
                 else
                 {
                     UserDialogs.Instance.HideLoading();
-                    MainBudget.Instance.OnCloudStorageConnected(false);
+                    await MainBudget.Instance.OnCloudStorageConnected(false);
                     var mainPage = Application.Current.MainPage as MainPage;
                     mainPage.AfterCloudLogin();
                 }
