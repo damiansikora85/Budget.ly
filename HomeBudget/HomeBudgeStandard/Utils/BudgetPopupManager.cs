@@ -12,6 +12,7 @@ namespace HomeBudget.Utils
         private bool _isPopupDisplaying;
         private readonly INavigation _navigation;
         private Page _parentPage;
+        private object _displayLock = new object();
 
         public BudgetPopupManager(Page parentPage, INavigation navigation)
         {
@@ -21,11 +22,14 @@ namespace HomeBudget.Utils
 
         public void TryDisplayPopup()
         {
-            TryFirstLaunchInfo();
-            if (!_isPopupDisplaying)
+            lock (_displayLock)
             {
-                TryNewFeatureInfo();
-                TryShowRatePopup();
+                TryFirstLaunchInfo();
+                if (!_isPopupDisplaying)
+                {
+                    TryNewFeatureInfo();
+                    TryShowRatePopup();
+                }
             }
         }
 
