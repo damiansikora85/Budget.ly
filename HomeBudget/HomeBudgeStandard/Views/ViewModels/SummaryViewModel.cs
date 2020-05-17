@@ -6,6 +6,7 @@ using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
 using HomeBudgetShared.Code.Interfaces;
 using HomeBudgetShared.Code.UseCases;
+using Microsoft.AppCenter.Crashes;
 using MvvmHelpers;
 using System;
 using System.Collections.Generic;
@@ -136,7 +137,14 @@ namespace HomeBudgeStandard.Views
             var tempList = new List<TransactionsGroupViewModel>();
             foreach (var group in groupped)
             {
-                tempList.Add(new TransactionsGroupViewModel(group, budgetDesc));
+                try
+                {
+                    tempList.Add(new TransactionsGroupViewModel(group, budgetDesc));
+                }
+                catch(Exception exc)
+                {
+                    Crashes.TrackError(exc);
+                }
             }
             TransactionList.AddRange(tempList.OrderByDescending(el => el.Date));
         }

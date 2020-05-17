@@ -1,5 +1,6 @@
 ﻿using HomeBudget.Code;
 using HomeBudget.Code.Logic;
+using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,18 @@ namespace HomeBudgeStandard.Views.ViewModels
             Date = group.Key;
             foreach(var transaction in group)
             {
-                Add(new TransactionViewModel(transaction, budgetDescription));
+                try
+                {
+                    var category = budgetDescription.Categories.FirstOrDefault(c => c.Id == transaction.CategoryId);
+                    if (category != null)
+                    {
+                        Add(TransactionViewModel.Create(transaction, category));
+                    }
+                }
+                catch(Exception exc)
+                {
+                    Crashes.TrackError(exc);
+                }
             }
         }
 

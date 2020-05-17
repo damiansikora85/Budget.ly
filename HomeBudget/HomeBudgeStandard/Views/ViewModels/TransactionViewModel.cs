@@ -11,14 +11,16 @@ namespace HomeBudgeStandard.Views.ViewModels
     {
         private BudgetTransaction _transaction;
 
-        public TransactionViewModel()
+        internal static TransactionViewModel Create(BudgetTransaction transaction, BudgetCategoryTemplate category)
         {
+            var transactionViewModel = new TransactionViewModel();
+            transactionViewModel.Setup(transaction, category);
+            return transactionViewModel;
         }
 
-        public TransactionViewModel(BudgetTransaction transaction, BudgetDescription budgetDesc)
+        private void Setup(BudgetTransaction transaction, BudgetCategoryTemplate category)
         {
             _transaction = transaction;
-            var category = budgetDesc.Categories.Where(c => c.Id == transaction.CategoryId).FirstOrDefault();
             if (category != null)
             {
                 CategoryName = category.Name;
