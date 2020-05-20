@@ -4,31 +4,55 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  x:Class="HomeBudgeStandard.Pages.RatePage">
     <ContentPage.Content>
-        <Frame Margin="12,0" VerticalOptions="Center">
-            <StackLayout VerticalOptions="Center" Orientation="Horizontal">
-                <StackLayout>
-                    <Image Source="Logo256" HeightRequest="128" HorizontalOptions="Start"/>
-                    <StackLayout Orientation="Horizontal">
-                        <CheckBox x:Name="donotShowAgain"/>
-                        <Label Text="Nie pokazuj ponownie" FontSize="Micro"/>
-                    </StackLayout>
+        <Frame Margin="12,0" VerticalOptions="Center" Padding="8,12" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Image Source="Logo256" HeightRequest="128" HorizontalOptions="Start"/>
+
+                <StackLayout Grid.Row="1" Orientation="Horizontal">
+                    <CheckBox x:Name="donotShowAgain"/>
+                    <Label Text="Nie pokazuj ponownie" FontSize="Micro" VerticalTextAlignment="Center"/>
                 </StackLayout>
-                <StackLayout x:Name="first" Spacing="32">
+
+                <StackLayout Grid.Column="1" Grid.RowSpan="2"  x:Name="first" Spacing="32">
                     <Label Text="Czy podoba Ci się aplikacja?" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Large" VerticalOptions="StartAndExpand"/>
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="End">
-                        <Button Text="Nie" Style="{StaticResource ButtonStyle}" HorizontalOptions="Start" Clicked="DontLikeClicked"/>
-                        <Button Text="Tak" Style="{StaticResource ButtonStyle}" HorizontalOptions="End" Clicked="LikeClicked"/>
-                    </StackLayout>
+                    <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="End">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Text="Nie" Style="{StaticResource ButtonStyle}" HorizontalOptions="Center" Clicked="DontLikeClicked"/>
+                        <Button Grid.Column="1" Text="Tak" Style="{StaticResource ButtonStyle}" HorizontalOptions="Center" Clicked="LikeClicked"/>
+                    </Grid>
                 </StackLayout>
-                <StackLayout x:Name="second" IsVisible="False" Spacing="32">
+                <StackLayout Grid.Column="1" Grid.RowSpan="2" x:Name="second" IsVisible="False" Spacing="32">
+                    <Label Text="&#xf005;&#xf005;&#xf005;&#xf005;&#xf005;" TextColor="Gold" CharacterSpacing="10" VerticalTextAlignment="End" HorizontalTextAlignment="Center">
+                        <Label.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String" >
+                                <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"/>
+                            </OnPlatform>
+                        </Label.FontFamily>
+                    </Label>
                     <Label Text="Twoja opinia jest dla nas bardzo ważna, dlatego proszę podziel się nią z nami. To zajmie Ci tylko chwilę!" VerticalOptions="StartAndExpand"/>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="End">
+                    <Grid  HorizontalOptions="CenterAndExpand" VerticalOptions="End" ColumnSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
                         <Button Text="Później" BackgroundColor="Transparent" TextColor="DodgerBlue" Clicked="OnLaterClick"/>
-                        <Button Text="Oceń teraz" Style="{StaticResource ButtonStyle}" Clicked="OnRateNowClick"/>
-                    </StackLayout>
+                        <Button Grid.Column="1" Text="Oceń teraz" Style="{StaticResource ButtonStyle}" Clicked="OnRateNowClick" Padding="0"/>
+                    </Grid>
                 </StackLayout>
-            </StackLayout>
+            </Grid>
         </Frame>
     </ContentPage.Content>
 </pages:PopupPage>
