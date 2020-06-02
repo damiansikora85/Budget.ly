@@ -54,6 +54,9 @@
                 <components:CustomListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Usuń"/>
+                            </ViewCell.ContextActions>
                             <Grid Padding="6,4">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
