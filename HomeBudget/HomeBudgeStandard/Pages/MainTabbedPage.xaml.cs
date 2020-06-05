@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using HomeBudgeStandard.Views;
 using HomeBudget.Code;
+using HomeBudget.Code.Interfaces;
 using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -13,13 +14,19 @@ namespace HomeBudgeStandard.Pages
     {
         private bool _isOnline;
         private bool _waitingForSync;
+        private ISettings _settings;
+        private ISettings settings;
 
         public MainTabbedPage ()
         {
             InitializeComponent();
-
             MainBudget.Instance.BudgetDataChanged += BudgetDataChanged;
             Connectivity.ConnectivityChanged += NetworkStateChanged;
+        }
+
+        public void SetSettings(ISettings settings)
+        {
+            _settings = settings;
         }
 
         private void NetworkStateChanged(object sender, ConnectivityChangedEventArgs e)
@@ -60,9 +67,9 @@ namespace HomeBudgeStandard.Pages
 
         private void HandleNetworkState()
         {
-            var wasOnline = _isOnline;
+             var wasOnline = _isOnline;
             _isOnline = Connectivity.NetworkAccess == NetworkAccess.Internet;
-            if (!string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken) && !_isOnline)
+            if (!string.IsNullOrEmpty(_settings.CloudAccessToken) && !_isOnline)
             {
                 UserDialogs.Instance.Toast(new ToastConfig("Brak połączenia z Internetem") { MessageTextColor = Color.Red });
             }

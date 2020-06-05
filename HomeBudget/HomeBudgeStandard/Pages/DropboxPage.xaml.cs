@@ -3,6 +3,7 @@ using Dropbox.Api;
 using Dropbox.Api.Files;
 using HomeBudgeStandard.Interfaces.Impl;
 using HomeBudget.Code;
+using HomeBudget.Code.Interfaces;
 using HomeBudget.Standard;
 using Microsoft.AppCenter.Crashes;
 using System;
@@ -22,23 +23,25 @@ namespace HomeBudgeStandard.Pages
         private bool _checkDropboxFileExist;
         private bool _waitingForDropboxResponse;
 
-        public string SynchronizationStatus => string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken)?"\uf057":"\uf058";
+        public string SynchronizationStatus => string.IsNullOrEmpty(_settings.CloudAccessToken)?"\uf057":"\uf058";
         public string RegularPrice { get; private set; }
         public string PromoPrice { get; private set; }
-        public bool DropboxConnected => !string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken);
-        public bool DropboxNotConnected => string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken);
+        public bool DropboxConnected => !string.IsNullOrEmpty(_settings.CloudAccessToken);
+        public bool DropboxNotConnected => string.IsNullOrEmpty(_settings.CloudAccessToken);
 
         private PurchaseService _purchaseService;
         private string _iapName;
         private bool _isPromo;
+        private ISettings _settings;
 
         public bool HasAccessToken
         {
-            get => !string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken);
+            get => !string.IsNullOrEmpty(_settings.CloudAccessToken);
         }
 
-        public DropboxPage()
+        public DropboxPage(ISettings settings)
         {
+            _settings = settings;
             InitializeComponent();
             BindingContext = this;
             _purchaseService = new PurchaseService();
@@ -86,7 +89,7 @@ namespace HomeBudgeStandard.Pages
                 {
                     iapLayout.IsVisible = false;
                     connectLayout.IsVisible = true;
-                    if (string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken))
+                    if (string.IsNullOrEmpty(_settings.CloudAccessToken))
                     {
                         //if synchro bought but not active
                         resyncButton.IsVisible = true;
@@ -179,7 +182,7 @@ namespace HomeBudgeStandard.Pages
                 {
                     return;
                 }
-                HomeBudget.Helpers.Settings.DropboxAccessToken = result.AccessToken;
+                _settings.CloudAccessToken = result.AccessToken;
 
                 await Application.Current.MainPage.Navigation.PopModalAsync();
 
@@ -203,7 +206,7 @@ namespace HomeBudgeStandard.Pages
                 }
                 else if(_checkDropboxFileExist)
                 {
-                    HomeBudget.Helpers.Settings.DropboxAccessToken = "";
+                    _settings.CloudAccessToken = "";
                     UserDialogs.Instance.HideLoading();
                     if(await UserDialogs.Instance.ConfirmAsync("Podane dane są nieprawidłowe", "Uwaga", "Spróbuj ponownie", "Anuluj"))
                     {
@@ -232,12 +235,12 @@ namespace HomeBudgeStandard.Pages
 
         private async Task<bool> HasDropboxData()
         {
-            if(string.IsNullOrEmpty(HomeBudget.Helpers.Settings.DropboxAccessToken))
+            if(string.IsNullOrEmpty(_settings.CloudAccessToken))
             {
                 return false;
             }
 
-            var accessToken = HomeBudget.Helpers.Settings.DropboxAccessToken;
+            var accessToken = _settings.CloudAccessToken;
             var hasData = false;
             using (var dropboxClient = new DropboxClient(accessToken))
             {

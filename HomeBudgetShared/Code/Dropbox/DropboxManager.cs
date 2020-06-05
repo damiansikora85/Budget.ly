@@ -1,5 +1,6 @@
 ﻿using Dropbox.Api;
 using Dropbox.Api.Files;
+using HomeBudget.Code.Interfaces;
 using HomeBudget.Code.Logic;
 using HomeBudgetShared.Code.Interfaces;
 using HomeBudgetShared.Utils;
@@ -19,9 +20,9 @@ namespace HomeBudget.Code
         {
             get
             {
-                if (Helpers.Settings.DropboxAccessToken != string.Empty && _dropboxClient == null)
+                if (_settings.CloudAccessToken != string.Empty && _dropboxClient == null)
                 {
-                    var accessToken = Helpers.Settings.DropboxAccessToken;
+                    var accessToken = _settings.CloudAccessToken;
                     _dropboxClient = new DropboxClient(accessToken);
                 }
                 return _dropboxClient;
@@ -40,11 +41,13 @@ namespace HomeBudget.Code
         public event EventHandler OnDownloadError;
 
         private ICrashReporter _crashReporter;
+        private ISettings _settings;
 
-        public DropboxCloudStorage(ICrashReporter crashReporter)
+        public DropboxCloudStorage(ICrashReporter crashReporter, ISettings settings)
         {
             _dropboxClient = null;
             _crashReporter = crashReporter;
+            _settings = settings;
         }
 
         public async Task<DateTime> GetCloudFileModifiedTime()

@@ -1,4 +1,6 @@
-﻿using HomeBudget.Code.Logic;
+﻿using HomeBudget.Code.Interfaces;
+using HomeBudget.Code.Logic;
+using HomeBudget.Helpers;
 using HomeBudgetShared.Code.Interfaces;
 using HomeBudgetShared.Code.Synchronize;
 using HomeBudgetShared.Utils;
@@ -55,6 +57,7 @@ namespace HomeBudget.Code
         private IFileManager _fileManager;
         private IBudgetSynchronizer _budgetSynchronizer;
         private ICrashReporter _crashReporter;
+        private ISettings _settings;
         public bool IsDataLoaded { get; private set; }
 
         public event Action onPlannedBudgetChanged;
@@ -83,19 +86,23 @@ namespace HomeBudget.Code
             IsDataLoaded = false;
         }
 
-        public void Init(IFileManager fileManager, IBudgetSynchronizer budgetSynchronizer, ICrashReporter crashReporter)
+        public void Init(IFileManager fileManager, IBudgetSynchronizer budgetSynchronizer, ICrashReporter crashReporter, ISettings settings)
         {
             _crashReporter = crashReporter;
             _fileManager = fileManager;
-            _budgetSynchronizer = budgetSynchronizer;
-            _budgetSynchronizer.DataDownloaded += UpdateData;
+            if (budgetSynchronizer != null)
+            {
+                _budgetSynchronizer = budgetSynchronizer;
+                _budgetSynchronizer.DataDownloaded += UpdateData;
+            }
+            _settings = settings;
 
 #pragma warning disable CA2008 // Do not create tasks without passing a TaskScheduler
             _ = Task.Factory.StartNew(async () =>
               {
                   try
                   {
-                      if (!string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken))
+                      if (!string.IsNullOrEmpty(_settings.CloudAccessToken))
                       {
                           var budgetTemplate = await _budgetSynchronizer.DownloadBudgetTemplate();
                           if (budgetTemplate != null)
@@ -127,7 +134,7 @@ namespace HomeBudget.Code
                     //if BudgetDescription == null
                     budgetPlanned.Setup(BudgetDescription.Categories);
 
-                      if (!string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken))
+                      if (!string.IsNullOrEmpty(_settings.CloudAccessToken))
                       {
                           _budgetSynchronizer.Start();
                           LogsManager.Instance.WriteLine("Load data from cloud storage");
@@ -185,7 +192,7 @@ namespace HomeBudget.Code
                 BudgetDescription.UpdateCategories(updatedCategories);
                 budgetPlanned.Setup(BudgetDescription.Categories);
                 _fileManager.WriteCustomTemplate(BudgetDescription);
-                if (!string.IsNullOrEmpty(Helpers.Settings.DropboxAccessToken))
+                if (!string.IsNullOrEmpty(_settings.CloudAccessToken))
                 {
                     _budgetSynchronizer.UploadBudgetTemplate(BudgetDescription);
                 }

@@ -1,6 +1,7 @@
 ﻿using HomeBudgeStandard.Interfaces.Impl;
 using HomeBudgeStandard.Utils;
 using HomeBudget.Code;
+using HomeBudget.Code.Interfaces;
 using HomeBudget.Helpers;
 using HomeBudgetShared.Code.Synchronize;
 using Microsoft.AppCenter.Crashes;
@@ -16,8 +17,11 @@ namespace HomeBudgeStandard.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : MasterDetailPage
     {
+        private ISettings _settings;
+
         public MainPage()
         {
+            _settings = new Settings();
             CultureInfo.CurrentCulture = new CultureInfo("pl-PL");
             InitializeComponent();
             InitBudget();
@@ -41,11 +45,12 @@ namespace HomeBudgeStandard.Pages
         private void InitBudget()
         {
             var crashReporter = new XamarinCrashReporter();
-            MainBudget.Instance.Init(new FileManagerXamarin(), new BudgetSynchronizer(new DropboxCloudStorage(crashReporter)), crashReporter);
-            if(Settings.FirstLaunch)
+
+            MainBudget.Instance.Init(new FileManagerXamarin(), new BudgetSynchronizer(new DropboxCloudStorage(crashReporter, _settings)), crashReporter, _settings);
+            if(_settings.FirstLaunch)
             {
                 NotificationManager.ScheduleDefaultNotifications();
-                Settings.FirstLaunch = false;
+                _settings.FirstLaunch = false;
             }
         }
 
@@ -53,7 +58,9 @@ namespace HomeBudgeStandard.Pages
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                Detail = new NavigationPage(new MainTabbedPage());
+                var mainTabbedPage = new MainTabbedPage();
+                mainTabbedPage.SetSettings(_settings);
+                Detail = new NavigationPage(mainTabbedPage);
                 IsPresented = false;
             });
         }
@@ -71,7 +78,15 @@ namespace HomeBudgeStandard.Pages
                 }
                 else if (item.TargetType != typeof(MainTabbedPage))
                 {
-                    var page = (Page)Activator.CreateInstance(item.TargetType);
+                    Page page;
+                    if (item.TargetType == typeof(DropboxPage))
+                    {
+                        page = (Page)Activator.CreateInstance(item.TargetType, new object[] { _settings });
+                    }
+                    else
+                    {
+                        page = (Page)Activator.CreateInstance(item.TargetType);
+                    }
                     Detail.Navigation.PushAsync(page);
                 }
                 IsPresented = false;
@@ -85,6 +100,10 @@ namespace HomeBudgeStandard.Pages
 
         protected async override void OnAppearing()
         {
+            if(Detail is NavigationPage navigationPage && navigationPage.CurrentPage is MainTabbedPage mainTabbedPage)
+            {
+                mainTabbedPage.SetSettings(_settings);
+            }
             await Crashes.SetEnabledAsync(true);
             var didAppCrash = await Crashes.HasCrashedInLastSessionAsync();
         }

@@ -364,9 +364,6 @@
     <PackageReference Include="Syncfusion.SfShared.UWP">
       <Version>16.3.0.21</Version>
     </PackageReference>
-    <PackageReference Include="Xam.Plugins.Settings">
-      <Version>3.1.1</Version>
-    </PackageReference>
   </ItemGroup>
   <Import Project="..\..\HomeBudgetShared\HomeBudgetShared.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

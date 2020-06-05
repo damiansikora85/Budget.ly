@@ -51,7 +51,6 @@
     <PackageReference Include="Syncfusion.Xamarin.Calculate" Version="17.4.0.51" />
     <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="17.4.0.51" />
     <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
-    <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.0" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />

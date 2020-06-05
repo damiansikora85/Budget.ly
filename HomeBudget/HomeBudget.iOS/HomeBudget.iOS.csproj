@@ -90,7 +90,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CrossPieCharts\CrossPieChartsRenderer.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="app.config" />
@@ -160,17 +159,12 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="OpenTK-1.0" />
     <Reference Include="PCLStorage, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\PCLStorage.1.0.2\lib\portable-Xamarin.iOS+Xamarin.Mac\PCLStorage.dll</HintPath>
     </Reference>
     <Reference Include="PCLStorage.Abstractions, Version=1.0.2.0, Culture=neutral, PublicKeyToken=286fe515a2c35b64, processorArchitecture=MSIL">
       <HintPath>..\..\packages\PCLStorage.1.0.2\lib\portable-Xamarin.iOS+Xamarin.Mac\PCLStorage.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Settings, Version=2.6.0.12, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugins.Settings.2.6.0.12-beta\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Settings.Abstractions, Version=2.6.0.12, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugins.Settings.2.6.0.12-beta\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Rg.Plugins.Popup, Version=1.2.0.223, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Rg.Plugins.Popup.1.2.0.223\lib\Xamarin.IOS\Rg.Plugins.Popup.dll</HintPath>
@@ -202,6 +196,9 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WebP.Touch, Version=1.0.6230.37678, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\WebP.Touch.1.0.3\lib\Xamarin.iOS10\WebP.Touch.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Essentials, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Essentials.1.5.3.2\lib\xamarinios10\Xamarin.Essentials.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.4.3.0.991211\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>

@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Interfaces\IBudgetTemplateProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Interfaces\ICloudStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Interfaces\ICrashReporter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Interfaces\ISettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BaseBudget\BaseBudget.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BaseBudget\BaseBudgetCategory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\BaseBudget\BaseBudgetSubcat.cs" />
