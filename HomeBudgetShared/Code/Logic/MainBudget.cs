@@ -97,7 +97,6 @@ namespace HomeBudget.Code
             }
             _settings = settings;
 
-#pragma warning disable CA2008 // Do not create tasks without passing a TaskScheduler
             try
             {
                 if (!string.IsNullOrEmpty(_settings.CloudAccessToken))

@@ -8,7 +8,7 @@ using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections;
 using System.Globalization;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,14 +17,14 @@ namespace HomeBudgeStandard.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : MasterDetailPage
     {
-        private ISettings _settings;
+        private readonly ISettings _settings;
 
         public MainPage()
         {
             _settings = new Settings();
             CultureInfo.CurrentCulture = new CultureInfo("pl-PL");
             InitializeComponent();
-            InitBudget();
+            Task.Factory.StartNew(async () => await InitBudget());
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
 
             Crashes.NotifyUserConfirmation(UserConfirmation.AlwaysSend);
@@ -42,11 +42,11 @@ namespace HomeBudgeStandard.Pages
             }
         }
 
-        private void InitBudget()
+        private async Task InitBudget()
         {
             var crashReporter = new XamarinCrashReporter();
 
-            MainBudget.Instance.Init(new FileManagerXamarin(), new BudgetSynchronizer(new DropboxCloudStorage(crashReporter, _settings)), crashReporter, _settings);
+            await MainBudget.Instance.Init(new FileManagerXamarin(), new BudgetSynchronizer(new DropboxCloudStorage(crashReporter, _settings)), crashReporter, _settings);
             if(_settings.FirstLaunch)
             {
                 NotificationManager.ScheduleDefaultNotifications();
