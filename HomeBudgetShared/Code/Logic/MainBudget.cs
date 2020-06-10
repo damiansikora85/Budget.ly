@@ -86,7 +86,7 @@ namespace HomeBudget.Code
             IsDataLoaded = false;
         }
 
-        public void Init(IFileManager fileManager, IBudgetSynchronizer budgetSynchronizer, ICrashReporter crashReporter, ISettings settings)
+        public async Task Init(IFileManager fileManager, IBudgetSynchronizer budgetSynchronizer, ICrashReporter crashReporter, ISettings settings)
         {
             _crashReporter = crashReporter;
             _fileManager = fileManager;
@@ -98,63 +98,59 @@ namespace HomeBudget.Code
             _settings = settings;
 
 #pragma warning disable CA2008 // Do not create tasks without passing a TaskScheduler
-            _ = Task.Factory.StartNew(async () =>
-              {
-                  try
-                  {
-                      if (!string.IsNullOrEmpty(_settings.CloudAccessToken))
-                      {
-                          var budgetTemplate = await _budgetSynchronizer.DownloadBudgetTemplate();
-                          if (budgetTemplate != null)
-                          {
-                              BudgetDescription = budgetTemplate;
-                              _fileManager.WriteCustomTemplate(BudgetDescription);
-                          }
-                      }
-                      if (BudgetDescription == null && _fileManager.HasCustomTemplate())
-                      {
-                          BudgetDescription = await _fileManager.ReadCustomTemplate();
-                      }
-                      if (BudgetDescription == null)
-                      {
-                          var assembly = typeof(MainBudget).GetTypeInfo().Assembly;
-                        //var name = assembly.GetName();
-                        //var names = assembly.GetManifestResourceNames();
-                        var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{TEMPLATE_FILENAME}");
+            try
+            {
+                if (!string.IsNullOrEmpty(_settings.CloudAccessToken))
+                {
+                    var budgetTemplate = await _budgetSynchronizer.DownloadBudgetTemplate();
+                    if (budgetTemplate != null)
+                    {
+                        BudgetDescription = budgetTemplate;
+                        _fileManager.WriteCustomTemplate(BudgetDescription);
+                    }
+                }
+                if (BudgetDescription == null && _fileManager.HasCustomTemplate())
+                {
+                    BudgetDescription = await _fileManager.ReadCustomTemplate();
+                }
+                if (BudgetDescription == null)
+                {
+                    var assembly = typeof(MainBudget).GetTypeInfo().Assembly;
+                    //var name = assembly.GetName();
+                    //var names = assembly.GetManifestResourceNames();
+                    var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{TEMPLATE_FILENAME}");
 
-                          var jsonString = "";
-                          using (var reader = new System.IO.StreamReader(stream))
-                          {
-                              jsonString = reader.ReadToEnd();
-                              BudgetDescription = JsonConvert.DeserializeObject<BudgetDescription>(jsonString);
-                          }
-                      }
+                    var jsonString = "";
+                    using (var reader = new System.IO.StreamReader(stream))
+                    {
+                        jsonString = reader.ReadToEnd();
+                        BudgetDescription = JsonConvert.DeserializeObject<BudgetDescription>(jsonString);
+                    }
+                }
 
-                    //TODO
-                    //if BudgetDescription == null
-                    budgetPlanned.Setup(BudgetDescription.Categories);
+                //TODO
+                //if BudgetDescription == null
+                budgetPlanned.Setup(BudgetDescription.Categories);
 
-                      if (!string.IsNullOrEmpty(_settings.CloudAccessToken))
-                      {
-                          _budgetSynchronizer.Start();
-                          LogsManager.Instance.WriteLine("Load data from cloud storage");
-                          UpdateData(null, await _budgetSynchronizer.ForceLoad());
-                      }
-                      else
-                      {
-                          LogsManager.Instance.WriteLine("Load data from local device");
-                          await LoadAsync();
-                      }
-                  }
-                  catch (Exception exc)
-                  {
-                      var msg = exc.Message;
-                      LogsManager.Instance.WriteLine(exc.Message);
-                      LogsManager.Instance.WriteLine(exc.StackTrace);
-                      _crashReporter.Report(exc);
-                  }
-              });
-#pragma warning restore CA2008 // Do not create tasks without passing a TaskScheduler
+                if (!string.IsNullOrEmpty(_settings.CloudAccessToken))
+                {
+                    _budgetSynchronizer.Start();
+                    LogsManager.Instance.WriteLine("Load data from cloud storage");
+                    UpdateData(null, await _budgetSynchronizer.ForceLoad());
+                }
+                else
+                {
+                    LogsManager.Instance.WriteLine("Load data from local device");
+                    await LoadAsync();
+                }
+            }
+            catch (Exception exc)
+            {
+                var msg = exc.Message;
+                LogsManager.Instance.WriteLine(exc.Message);
+                LogsManager.Instance.WriteLine(exc.StackTrace);
+                _crashReporter.Report(exc);
+            }
 
             LogsManager.Instance.Init(fileManager);
         }
