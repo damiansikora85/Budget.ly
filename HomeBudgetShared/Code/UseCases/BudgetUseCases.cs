@@ -6,7 +6,7 @@ using System.Text;
 
 namespace HomeBudget.UseCases
 {
-    public class AddExpenseUseCase
+    public class BudgetUseCases
     {
         public static void AddExpense(double value, DateTime date, BaseBudgetCategory category, int subcatId, string note)
         {
@@ -19,6 +19,12 @@ namespace HomeBudget.UseCases
             {
                 budgetMonth.AddExpense(value, date, category.Id, subcatId, note);
             }
+        }
+
+        public static void RemoveTransaction(BudgetTransaction transaction)
+        {
+            var budgetMonth = MainBudget.Instance.GetMonth(transaction.Date);
+            budgetMonth.RemoveTransaction(transaction);
         }
     }
 }

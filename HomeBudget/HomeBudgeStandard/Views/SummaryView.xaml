@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:HomeBudgeStandard.Converters"
              xmlns:utils1="clr-namespace:HomeBudgeStandard.Utils"
              x:Class="HomeBudgeStandard.Views.SummaryView"
-             x:Name="ThisPage" Icon="homeTab.png" xmlns:views="clr-namespace:HomeBudgeStandard.Views">
+             x:Name="ThisPage" Icon="homeTab.png" xmlns:views="clr-namespace:HomeBudgeStandard.Views" xmlns:effects="clr-namespace:HomeBudget.Effects">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -50,30 +50,33 @@
             </components:CustomListView>
 
             <components:CustomListView x:Name="transactionsListView" Grid.RowSpan="3" IsGroupingEnabled="True" ItemsSource="{Binding TransactionList}" ItemSelected="Transaction_ItemSelected" SeparatorVisibility="Default"
-                        HasUnevenRows="True" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never" IsVisible="False" GroupHeaderTemplate="{StaticResource transactionTemplateSelector}" >
+                        HasUnevenRows="True" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never" IsVisible="False" GroupHeaderTemplate="{StaticResource transactionTemplateSelector}"  >
                 <components:CustomListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem Text="Usuń"/>
-                            </ViewCell.ContextActions>
-                            <Grid Padding="6,4">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="40"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                            <ViewCell.View>
+                                <Grid Padding="6,4">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                                <Image Grid.RowSpan="2" Source="{Binding Icon}" Margin="0,8"/>
-                                <Label Grid.Column="2" Text="{Binding Amount, Converter={StaticResource CurrencyValueWithSignConverter}}" FontSize="16" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
-                                <Label Grid.Column="2" Grid.Row="1" Text="{Binding Note}" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
-                                <Label Grid.Column="1" Text="{Binding SubcatName}" FontSize="16"/>
-                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding CategoryName}" VerticalTextAlignment="End"/>
-                            </Grid>
+                                    <Grid.GestureRecognizers>
+                                        <SwipeGestureRecognizer Direction="Left" Swiped="SwipeGestureRecognizer_Swiped"/>
+                                    </Grid.GestureRecognizers>
+                                    
+                                    <Image Grid.RowSpan="2" Source="{Binding Icon}" Margin="0,8"/>
+                                    <Label Grid.Column="2" Text="{Binding Amount, Converter={StaticResource CurrencyValueWithSignConverter}}" FontSize="16" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                                    <Label Grid.Column="2" Grid.Row="1" Text="{Binding Note}" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                                    <Label Grid.Column="1" Text="{Binding SubcatName}" FontSize="16"/>
+                                    <Label Grid.Column="1" Grid.Row="1" Text="{Binding CategoryName}" VerticalTextAlignment="End"/>
+                                </Grid>
+                            </ViewCell.View>
                         </ViewCell>
                     </DataTemplate>
                 </components:CustomListView.ItemTemplate>

@@ -1,10 +1,12 @@
 ﻿using Acr.UserDialogs;
 using HomeBudgeStandard.Pages;
 using HomeBudgeStandard.Utils;
+using HomeBudgeStandard.Views.ViewModels;
 using HomeBudget.Code;
 using HomeBudget.Code.Interfaces;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
+using HomeBudget.UseCases;
 using HomeBudget.Utils;
 using Rg.Plugins.Popup.Extensions;
 using System;
@@ -218,8 +220,6 @@ namespace HomeBudgeStandard.Views
             }
         }
 
-
-
         private void Transaction_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             transactionsListView.SelectedItem = null;
@@ -234,6 +234,20 @@ namespace HomeBudgeStandard.Views
                 summaryListView.ScrollToTop?.Invoke();
                 transactionsListView.ScrollToTop?.Invoke();
             });
+        }
+
+        private void RemoveTransactionClicked(object sender, EventArgs e)
+        {
+            if(sender is MenuItem menuItem && menuItem.CommandParameter is TransactionViewModel transactionViewModel)
+            {
+                _viewModel.RemoveTransaction(transactionViewModel);
+                Task.Run(async () => await MainBudget.Instance.Save().ConfigureAwait(false));
+            }
+        }
+
+        private void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
+        {
+            var test = e.Parameter;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace HomeBudgeStandard.Views.ViewModels
 {
     public class TransactionViewModel
     {
-        private BudgetTransaction _transaction;
+        public BudgetTransaction Transaction { get; private set; }
 
         internal static TransactionViewModel Create(BudgetTransaction transaction, BudgetCategoryTemplate category)
         {
@@ -20,7 +20,7 @@ namespace HomeBudgeStandard.Views.ViewModels
 
         private void Setup(BudgetTransaction transaction, BudgetCategoryTemplate category)
         {
-            _transaction = transaction;
+            Transaction = transaction;
             if (category != null)
             {
                 CategoryName = category.Name;
@@ -30,13 +30,13 @@ namespace HomeBudgeStandard.Views.ViewModels
             }
         }
 
-        public DateTime Date => _transaction.Date;
-        public double Amount => IsIncome ? _transaction.Amount : _transaction.Amount *-1;
+        public DateTime Date => Transaction.Date;
+        public double Amount => IsIncome ? Transaction.Amount : Transaction.Amount *-1;
 
         public string Icon { get; set; }
         public string CategoryName { get; set; }
         public string SubcatName { get; set; }
-        public string Note => _transaction.Note;
+        public string Note => Transaction.Note;
         public bool IsIncome { get; private set; }
 
         public bool IsEmpty { get; internal set; }

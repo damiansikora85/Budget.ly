@@ -3,12 +3,13 @@ using HomeBudget.Code.Logic;
 using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
 namespace HomeBudgeStandard.Views.ViewModels
 {
-    public class TransactionsGroupViewModel : List<TransactionViewModel>
+    public class TransactionsGroupViewModel : ObservableCollection<TransactionViewModel>
     {
         public TransactionsGroupViewModel()
         {

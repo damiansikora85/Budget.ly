@@ -53,5 +53,13 @@ namespace HomeBudget.Code.Logic
                 subcat.AddValue(value, date);
             }
         }
+
+        internal void RemoveValue(double value, DateTime date, int subcatId)
+        {
+            if (subcats != null && subcats.Find(elem => elem.Id == subcatId) is RealSubcat subcat)
+            {
+                subcat.RemoveValue(value, date);
+            }
+        }
     }
 }

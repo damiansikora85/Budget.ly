@@ -59,7 +59,12 @@ namespace HomeBudget.Code
             BudgetReal.AddIncome(value, date, incomeCategoryID, note);
         }
 
-		private BudgetMonth()
+        internal void RemoveTransaction(BudgetTransaction transaction)
+        {
+            BudgetReal.RemoveTransaction(transaction);
+        }
+
+        private BudgetMonth()
 		{
             BudgetReal = new BudgetReal();
             BudgetPlanned = new BudgetPlanned();

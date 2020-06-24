@@ -181,7 +181,7 @@ namespace HomeBudgeStandard.Views
 
         public async void AddExpenseAsync(double value, DateTime date, BaseBudgetCategory category, int subcatId, string note)
         {
-            AddExpenseUseCase.AddExpense(value, date, category, subcatId, note);
+            BudgetUseCases.AddExpense(value, date, category, subcatId, note);
 
             await RefreshAsync().ConfigureAwait(false);
         }
@@ -208,6 +208,22 @@ namespace HomeBudgeStandard.Views
                 emptyElem.IsEmpty = true;
                 budgetSummaryCollection.Add(emptyElem);
             }
+        }
+
+        internal void RemoveTransaction(BudgetTransaction transaction)
+        {
+            BudgetUseCases.RemoveTransaction(transaction);
+        }
+
+        internal void RemoveTransaction(TransactionViewModel transactionViewModel)
+        {
+            var tvm = TransactionList.First(p => p.Contains(transactionViewModel));
+            tvm.Remove(transactionViewModel);
+            if(tvm.Count == 0)
+            {
+                TransactionList.Remove(tvm);
+            }
+            BudgetUseCases.RemoveTransaction(transactionViewModel.Transaction);
         }
     }
 }

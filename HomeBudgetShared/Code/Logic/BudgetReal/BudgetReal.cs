@@ -56,6 +56,17 @@ namespace HomeBudget.Code.Logic
             AddTransaction(value, date, categoryId, subcatId, note);
         }
 
+        internal void RemoveTransaction(BudgetTransaction transaction)
+        {
+            var transactionToRemove = Transactions.FirstOrDefault(t => t.Date == transaction.Date && t.CategoryId == transaction.CategoryId && t.SubcatId == transaction.SubcatId);
+            var category = (BudgetRealCategory)GetBudgetCategory(transaction.CategoryId);
+            if (transactionToRemove != null && category != null)
+            {
+                Transactions.Remove(transactionToRemove);
+                category.RemoveValue(transactionToRemove.Amount, transaction.Date, transaction.SubcatId);
+            }
+        }
+
         public void AddIncome(double value, DateTime date, int incomeCategoryId, string note)
         {
             var category = (BudgetRealCategory)GetIncomesCategories()[0];

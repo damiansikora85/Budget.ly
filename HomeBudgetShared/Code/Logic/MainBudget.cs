@@ -100,6 +100,8 @@ namespace HomeBudget.Code
             }
             _settings = settings;
 
+            _months.Clear();
+
             try
             {
                 if (!string.IsNullOrEmpty(_settings.CloudAccessToken))

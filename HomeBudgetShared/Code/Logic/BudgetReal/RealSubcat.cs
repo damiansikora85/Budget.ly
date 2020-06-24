@@ -125,6 +125,12 @@ namespace HomeBudget.Code.Logic
             RaiseValueChanged();
         }
 
+        internal void RemoveValue(double value, DateTime date)
+        {
+            Values[date.Day - 1].Value -= value;
+            RaiseValueChanged();
+        }
+
         public override void CheckIfValid()
         {
             if(Values.Count < 31)

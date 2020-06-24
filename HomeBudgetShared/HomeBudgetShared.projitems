@@ -39,7 +39,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\Synchronize\Impl\BudgetSynchronizer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\Temp\OrderInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Logic\Temp\OrderInfoRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\UseCases\AddExpenseUseCase.cs" />
+    <Compile Include="..\..\HomeBudgetShared\Code\UseCases\BudgetUseCases.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\BudgetCategorySortComparer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\BudgetSummaryListView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\BudgetViewModelData.cs" />
