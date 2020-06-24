@@ -4,7 +4,7 @@ using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ResolutionGroupName(HomeBudgeStandard.Effects.UnderlineEffect.EffectNamespace)]
+[assembly: ResolutionGroupName(HomeBudget.Effects.BudgetBaseEffect.EffectsNamespace)]
 [assembly: ExportEffect(typeof(HomeBudget.Droid.Effects.UnderlineEffect), nameof(HomeBudget.Droid.Effects.UnderlineEffect))]
 namespace HomeBudget.Droid.Effects
 {

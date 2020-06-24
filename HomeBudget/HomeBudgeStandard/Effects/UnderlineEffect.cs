@@ -1,12 +1,10 @@
 ﻿using Xamarin.Forms;
 
-namespace HomeBudgeStandard.Effects
+namespace HomeBudget.Effects
 {
-    public class UnderlineEffect : RoutingEffect
+    public class UnderlineEffect : BudgetBaseEffect
     {
-        public const string EffectNamespace = "HomeBudgeStandard.Effects";
-
-        public UnderlineEffect() : base($"{EffectNamespace}.{nameof(UnderlineEffect)}")
+        public UnderlineEffect() : base($"{EffectsNamespace}.{nameof(UnderlineEffect)}")
         {
         }
     }
