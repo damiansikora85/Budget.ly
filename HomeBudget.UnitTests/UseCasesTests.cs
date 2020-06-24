@@ -39,8 +39,27 @@ namespace HomeBudget.UnitTests
             var currentMonth = MainBudget.Instance.GetCurrentMonthData();
             var category = currentMonth.BudgetReal.GetIncomesCategories()[0];
             var income = 5000;
-            AddExpenseUseCase.AddExpense(income, DateTime.Now, category, 0, "test");
+            BudgetUseCases.AddExpense(income, DateTime.Now, category, 0, "test");
             Assert.AreEqual(income, category.GetSubcat(0).Value);
+            Assert.AreEqual(1, currentMonth.BudgetReal.Transactions.Count());
+        }
+
+        [TestMethod]
+        public async Task RemoveTransactionTest()
+        {
+            await MainBudget.Instance.Init(new Mock<IFileManager>().Object, new Mock<IBudgetSynchronizer>().Object, new Mock<ICrashReporter>().Object, new Mock<ISettings>().Object);
+            var currentMonth = MainBudget.Instance.GetCurrentMonthData();
+            var category = currentMonth.BudgetReal.GetExpensesCategories()[0];
+            var expense = 5000;
+
+            BudgetUseCases.AddExpense(expense, DateTime.Now, category, 0, "test");
+            Assert.AreEqual(1, currentMonth.BudgetReal.Transactions.Count());
+            Assert.AreEqual(expense, category.TotalValues);
+
+            var transaction = currentMonth.BudgetReal.Transactions.FirstOrDefault();
+            BudgetUseCases.RemoveTransaction(transaction);
+            Assert.AreEqual(0, currentMonth.BudgetReal.Transactions.Count());
+            Assert.AreEqual(0, category.TotalValues);
         }
     }
 }
