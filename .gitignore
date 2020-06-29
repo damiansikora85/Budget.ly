@@ -352,3 +352,4 @@ HomeBudget/HomeBudget.Droid/keypass
 keystore.jks
 upload_certificate.pem
 HomeBudget/HomeBudget.Droid/HomeBudget.Droid.csproj.user
+.sonarqube/
