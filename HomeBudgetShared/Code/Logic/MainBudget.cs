@@ -58,6 +58,7 @@ namespace HomeBudget.Code
         private IBudgetSynchronizer _budgetSynchronizer;
         private ICrashReporter _crashReporter;
         private ISettings _settings;
+        private IFeatureSwitch _featureSwitch;
         public bool IsDataLoaded { get; private set; }
 
         public event Action onPlannedBudgetChanged;
@@ -86,10 +87,12 @@ namespace HomeBudget.Code
             IsDataLoaded = false;
         }
 
-        public async Task Init(IFileManager fileManager, IBudgetSynchronizer budgetSynchronizer, ICrashReporter crashReporter, ISettings settings)
+        public async Task Init(IFileManager fileManager, IBudgetSynchronizer budgetSynchronizer, ICrashReporter crashReporter, ISettings settings, IFeatureSwitch featureSwitch)
         {
             _crashReporter = crashReporter;
             _fileManager = fileManager;
+            _featureSwitch = featureSwitch;
+
             if (budgetSynchronizer != null)
             {
                 _budgetSynchronizer = budgetSynchronizer;

@@ -8,4 +8,8 @@
     <key>is_promo_active</key>
     <value>false</value>
   </entry>
+  <entry>
+    <key>feature_delete_transactions</key>
+    <value>true</value>
+  </entry>
 </defaultsMap>

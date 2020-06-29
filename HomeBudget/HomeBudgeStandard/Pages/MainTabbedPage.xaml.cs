@@ -15,7 +15,6 @@ namespace HomeBudgeStandard.Pages
         private bool _isOnline;
         private bool _waitingForSync;
         private ISettings _settings;
-        private ISettings settings;
 
         public MainTabbedPage ()
         {

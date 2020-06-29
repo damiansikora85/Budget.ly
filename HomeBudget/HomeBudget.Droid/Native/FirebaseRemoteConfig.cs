@@ -1,4 +1,5 @@
 ﻿using Firebase.RemoteConfig;
+using HomeBudget.Code.Interfaces;
 using HomeBudget.Standard;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -21,7 +22,7 @@ namespace HomeBudget.Droid.Native
 #if DEBUG
             var configSettings = new FirebaseRemoteConfigSettings.Builder().SetDeveloperModeEnabled(true).Build();
             _firebaseRemoteConfig.SetConfigSettings(configSettings);
-            long cacheExpiration = 0; 
+            long cacheExpiration = 0;
 #else
             var configSettings = new FirebaseRemoteConfigSettings.Builder().SetDeveloperModeEnabled(false).Build();
             _firebaseRemoteConfig.SetConfigSettings(configSettings);
@@ -34,6 +35,11 @@ namespace HomeBudget.Droid.Native
                 await _firebaseRemoteConfig.FetchAsync(cacheExpiration);
                 _firebaseRemoteConfig.ActivateFetched();
             });
+        }
+
+        public bool IsFeatureEnabled(string featureName)
+        {
+            return _firebaseRemoteConfig.GetBoolean(featureName);
         }
 
         public bool IsPromoActive()

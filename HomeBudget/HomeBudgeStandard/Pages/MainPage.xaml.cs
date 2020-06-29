@@ -44,13 +44,21 @@ namespace HomeBudgeStandard.Pages
 
         private async Task InitBudget()
         {
-            var crashReporter = new XamarinCrashReporter();
-
-            await MainBudget.Instance.Init(new FileManagerXamarin(), new BudgetSynchronizer(new DropboxCloudStorage(crashReporter, _settings)), crashReporter, _settings);
-            if(_settings.FirstLaunch)
+            try
             {
-                NotificationManager.ScheduleDefaultNotifications();
-                _settings.FirstLaunch = false;
+                var crashReporter = new XamarinCrashReporter();
+                var featureSwitch = TinyIoC.TinyIoCContainer.Current.Resolve<IFeatureSwitch>();
+
+                await MainBudget.Instance.Init(new FileManagerXamarin(), new BudgetSynchronizer(new DropboxCloudStorage(crashReporter, _settings)), crashReporter, _settings, featureSwitch);
+                if (_settings.FirstLaunch)
+                {
+                    NotificationManager.ScheduleDefaultNotifications();
+                    _settings.FirstLaunch = false;
+                }
+            }
+            catch(Exception exc)
+            {
+                var msg = exc.Message;
             }
         }
 
@@ -100,7 +108,7 @@ namespace HomeBudgeStandard.Pages
 
         protected async override void OnAppearing()
         {
-            if(Detail is NavigationPage navigationPage && navigationPage.CurrentPage is MainTabbedPage mainTabbedPage)
+            if (Detail is NavigationPage navigationPage && navigationPage.CurrentPage is MainTabbedPage mainTabbedPage)
             {
                 mainTabbedPage.SetSettings(_settings);
             }

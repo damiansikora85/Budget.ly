@@ -9,5 +9,6 @@ namespace HomeBudget.Standard
         void Init();
         string GetActiveInappName();
         bool IsPromoActive();
+        bool IsFeatureEnabled(string v);
     }
 }

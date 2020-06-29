@@ -9,6 +9,12 @@ using Xamarin.Forms.Xaml;
 using Microsoft.AppCenter.Push;
 using HomeBudget.Standard;
 using System;
+using TinyIoC;
+using HomeBudget.Code.Interfaces;
+using HomeBudgeStandard.Interfaces.Impl;
+using System.Threading.Tasks;
+using HomeBudget.Code;
+using HomeBudgetShared.Code.Synchronize;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace HomeBudget
@@ -19,11 +25,12 @@ namespace HomeBudget
 		{
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTkyNTY1QDMxMzcyZTM0MmUzMGpiOEJDRWQ1TjRadGFRenpLL3BENTNrOTM2dEVDYytVOUZIT3BBS0hQOUU9;MTkyNTY2QDMxMzcyZTM0MmUzMFBNRmNyZ2ZXVjlrL1pZSEdWUGk3NEhpTVc3VkxrQnNXNG9lcFNJMzdMMW89");
             InitializeComponent();
+            RegisterServices(TinyIoCContainer.Current);
 
             MainPage = new MainPage();
         }
 
-		protected override void OnStart()
+        protected override void OnStart()
 		{
             // Handle when your app starts
 #if DEBUG
@@ -38,7 +45,7 @@ namespace HomeBudget
                   typeof(Analytics), typeof(Crashes), typeof(Push));
 #endif
 
-#if (!CUSTOM)
+#if !CUSTOM
             DependencyService.Get<IRemoteConfig>().Init();
 #endif
 
@@ -51,7 +58,12 @@ namespace HomeBudget
             //NotificationManager.ReScheduleNotificationsBySettings();
         }
 
-		protected override void OnSleep()
+        private void RegisterServices(TinyIoCContainer container)
+        {
+            container.Register<IFeatureSwitch, FeatureSwitch>().AsSingleton();
+        }
+
+        protected override void OnSleep()
 		{
 			// Handle when your app sleeps
 		}

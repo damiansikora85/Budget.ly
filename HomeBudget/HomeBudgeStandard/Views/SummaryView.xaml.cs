@@ -2,6 +2,7 @@
 using HomeBudgeStandard.Pages;
 using HomeBudgeStandard.Utils;
 using HomeBudget.Code;
+using HomeBudget.Code.Interfaces;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
 using HomeBudget.Utils;
@@ -126,6 +127,8 @@ namespace HomeBudgeStandard.Views
                 return;
             }
 
+            var featureSwitch = TinyIoC.TinyIoCContainer.Current.Resolve<IFeatureSwitch>();
+
             _isAddingExpenseInProgress = true;
             _calcView.Reset();
             _calcView.Subcat = selectedSubcat.Name;
@@ -215,7 +218,7 @@ namespace HomeBudgeStandard.Views
             }
         }
 
-        
+
 
         private void Transaction_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
