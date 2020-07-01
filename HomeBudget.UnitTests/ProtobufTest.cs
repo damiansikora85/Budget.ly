@@ -1,18 +1,18 @@
 ﻿using HomeBudget.Code;
 using HomeBudget.Code.Logic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using ProtoBuf;
 using System;
 using System.IO;
 using System.Reflection;
+using NUnit.Framework;
 
 namespace HomeBudget.UnitTests
 {
-    [TestClass]
+    [TestFixture]
     public class ProtobufTest
     {
-        [TestMethod]
+        [Test]
         public void PlannedSubcatTest()
         {
             var subcat = PlannedSubcat.Create("test", 5);
@@ -30,7 +30,7 @@ namespace HomeBudget.UnitTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void RealSubcatTest()
         {
             var subcat = RealSubcat.Create("test", 5);
@@ -52,7 +52,7 @@ namespace HomeBudget.UnitTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void PlannedCategoryTest()
         {
             var assembly = typeof(MainBudget).GetTypeInfo().Assembly;
@@ -79,7 +79,7 @@ namespace HomeBudget.UnitTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void RealCategoryTest()
         {
             var assembly = typeof(MainBudget).GetTypeInfo().Assembly;
@@ -106,7 +106,7 @@ namespace HomeBudget.UnitTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void BudgetMonthTest()
         {
             var assembly = typeof(MainBudget).GetTypeInfo().Assembly;

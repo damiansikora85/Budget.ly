@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,31 +10,32 @@ using HomeBudgetShared.Code.Synchronize;
 using HomeBudgetShared.Code.Interfaces;
 using HomeBudget.Code.Interfaces;
 using HomeBudget.UseCases;
+using NUnit.Framework;
 
 namespace HomeBudget.UnitTests
 {
-    [TestClass]
+    [TestFixture]
     public class UseCasesTests
     {
-        [TestMethod]
+        [Test]
         public async Task MainBudgetInitTest()
         {
-            await MainBudget.Instance.Init(new Mock<IFileManager>().Object, new Mock<IBudgetSynchronizer>().Object, new Mock<ICrashReporter>().Object, new Mock<ISettings>().Object);
+            await MainBudget.Instance.Init(new Mock<IFileManager>().Object, new Mock<IBudgetSynchronizer>().Object, new Mock<ICrashReporter>().Object, new Mock<ISettings>().Object, new Mock<IFeatureSwitch>().Object);
             Assert.IsTrue(true);
         }
 
-        [TestMethod]
+        [Test]
         public async Task GetCurrentMonthTest()
         {
-            await MainBudget.Instance.Init(new Mock<IFileManager>().Object, new Mock<IBudgetSynchronizer>().Object, new Mock<ICrashReporter>().Object, new Mock<ISettings>().Object);
+            await MainBudget.Instance.Init(new Mock<IFileManager>().Object, new Mock<IBudgetSynchronizer>().Object, new Mock<ICrashReporter>().Object, new Mock<ISettings>().Object, new Mock<IFeatureSwitch>().Object);
             var currentMonth = MainBudget.Instance.GetCurrentMonthData();
             Assert.IsNotNull(currentMonth);
         }
 
-        [TestMethod]
+        [Test]
         public async Task AddIncomeTest()
         {
-            await MainBudget.Instance.Init(new Mock<IFileManager>().Object, new Mock<IBudgetSynchronizer>().Object, new Mock<ICrashReporter>().Object, new Mock<ISettings>().Object);
+            await MainBudget.Instance.Init(new Mock<IFileManager>().Object, new Mock<IBudgetSynchronizer>().Object, new Mock<ICrashReporter>().Object, new Mock<ISettings>().Object, new Mock<IFeatureSwitch>().Object);
             var currentMonth = MainBudget.Instance.GetCurrentMonthData();
             var category = currentMonth.BudgetReal.GetIncomesCategories()[0];
             var income = 5000;
