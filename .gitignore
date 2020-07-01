@@ -353,3 +353,4 @@ keystore.jks
 upload_certificate.pem
 HomeBudget/HomeBudget.Droid/HomeBudget.Droid.csproj.user
 .sonarqube/
+*.csproj.user
