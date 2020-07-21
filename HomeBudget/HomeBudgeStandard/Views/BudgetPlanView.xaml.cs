@@ -240,7 +240,7 @@ namespace HomeBudgeStandard.Views
                 CellTextSize = 14,
                 HeaderCellTextSize = 16,
                 ColumnSizer = ColumnSizer.Star,
-                
+
                 DisplayBinding = new Binding() { Path = "SubcatPlanned.Value", Converter = new CurrencyValueConverter() }
         });
 
@@ -356,7 +356,9 @@ namespace HomeBudgeStandard.Views
         private void SwitchChart(object sender, EventArgs e)
         {
             if (sender is View view && view.Effects.Count == 0)
+            {
                 ForceSwitchChart(sender as Label);
+            }
         }
 
         private async void OnSave(object sender, EventArgs e)
@@ -378,7 +380,7 @@ namespace HomeBudgeStandard.Views
                 _dataGrid.View.TopLevelGroup.UpdateCaptionSummaries();
                 _dataGrid.View.Refresh();
 
-                UpdateCharts(_currentMonth);   
+                UpdateCharts(_currentMonth);
             });
         }
 
