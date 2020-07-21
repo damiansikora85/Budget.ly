@@ -7,7 +7,7 @@ namespace HomeBudget.Effects
 {
     public abstract class BudgetBaseEffect : RoutingEffect
     {
-        public const string EffectsNamespace = "HomeBudget.Effects";
+        public const string GroupName = "HomeBudget.Effects";
 
         protected BudgetBaseEffect(string effectId) : base(effectId)
         {

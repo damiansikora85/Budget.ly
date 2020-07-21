@@ -1,22 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using HomeBudget.Effects;
+﻿using HomeBudget.Effects;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportEffect(typeof(HomeBudget.Droid.Effects.AndroidLongPressedEffect), nameof(HomeBudget.Droid.Effects.AndroidLongPressedEffect))]
+[assembly: ResolutionGroupName(BudgetBaseEffect.GroupName)]
+[assembly: ExportEffect(typeof(HomeBudget.Droid.Effects.LongPressedEffect), nameof(HomeBudget.Droid.Effects.LongPressedEffect))]
 namespace HomeBudget.Droid.Effects
 {
-    public class AndroidLongPressedEffect : PlatformEffect
+    public class LongPressedEffect : PlatformEffect
     {
         private bool _attached;
 
@@ -30,7 +21,7 @@ namespace HomeBudget.Droid.Effects
         /// <see cref="T:Yukon.Application.AndroidComponents.Effects.AndroidLongPressedEffect"/> class.
         /// Empty constructor required for the odd Xamarin.Forms reflection constructor search
         /// </summary>
-        public AndroidLongPressedEffect()
+        public LongPressedEffect()
         {
         }
 
@@ -64,8 +55,9 @@ namespace HomeBudget.Droid.Effects
         private void Control_LongClick(object sender, Android.Views.View.LongClickEventArgs e)
         {
             Console.WriteLine("Invoking long click command");
-            var command = LongPressedEffect.GetCommand(Element);
-            command?.Execute(LongPressedEffect.GetCommandParameter(Element));
+            var command = HomeBudget.Effects.LongPressedEffect.GetCommand(Element);
+            var parameter = HomeBudget.Effects.LongPressedEffect.GetCommandParameter(Element);
+            command?.Execute(parameter);
         }
 
         /// <summary>

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace HomeBudget.Effects
 {
     public class LongPressedEffect : BudgetBaseEffect
     {
-        public LongPressedEffect() : base($"{EffectsNamespace}.{nameof(LongPressedEffect)}")
+        public LongPressedEffect() : base($"{GroupName}.{nameof(LongPressedEffect)}")
         {
         }
 
@@ -22,7 +19,6 @@ namespace HomeBudget.Effects
         {
             view.SetValue(CommandProperty, value);
         }
-
 
         public static readonly BindableProperty CommandParameterProperty = BindableProperty.CreateAttached("CommandParameter", typeof(object), typeof(LongPressedEffect), (object)null);
         public static object GetCommandParameter(BindableObject view)

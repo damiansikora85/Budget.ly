@@ -4,7 +4,7 @@ namespace HomeBudget.Effects
 {
     public class UnderlineEffect : BudgetBaseEffect
     {
-        public UnderlineEffect() : base($"{EffectsNamespace}.{nameof(UnderlineEffect)}")
+        public UnderlineEffect() : base($"{GroupName}.{nameof(UnderlineEffect)}")
         {
         }
     }
