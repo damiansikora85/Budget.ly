@@ -210,12 +210,7 @@ namespace HomeBudgeStandard.Views
             }
         }
 
-        internal void RemoveTransaction(BudgetTransaction transaction)
-        {
-            BudgetUseCases.RemoveTransaction(transaction);
-        }
-
-        internal void RemoveTransaction(TransactionViewModel transactionViewModel)
+        internal async Task RemoveTransactionAsync(TransactionViewModel transactionViewModel)
         {
             var tvm = TransactionList.First(p => p.Contains(transactionViewModel));
             tvm.Remove(transactionViewModel);
@@ -224,6 +219,7 @@ namespace HomeBudgeStandard.Views
                 TransactionList.Remove(tvm);
             }
             BudgetUseCases.RemoveTransaction(transactionViewModel.Transaction);
+            await RefreshAsync().ConfigureAwait(false);
         }
     }
 }

@@ -14,15 +14,17 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Windows.Input;
 
 namespace HomeBudgeStandard.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SummaryView : ContentPage
 	{
+        public ICommand DeleteTransactionCommand { get; set; }
+
         public ObservableCollection<BaseBudgetSubcat> SelectedCategorySubcats { get; private set; }
-        public Command ExpandCategoryCommand;
-        public System.Windows.Input.ICommand GridClicked { get; set; }
+        public ICommand GridClicked { get; set; }
 
         private CalcView _calcView;
         private bool _isAddingExpenseInProgress;
@@ -34,6 +36,7 @@ namespace HomeBudgeStandard.Views
 
         public SummaryView ()
 		{
+            DeleteTransactionCommand = new Command<TransactionViewModel>(OnDeleteTransaction);
             InitializeComponent();
             _viewModel = new SummaryViewModel();
             BindingContext = _viewModel;
@@ -236,18 +239,13 @@ namespace HomeBudgeStandard.Views
             });
         }
 
-        private void RemoveTransactionClicked(object sender, EventArgs e)
+        private async void OnDeleteTransaction(TransactionViewModel transactionViewModel)
         {
-            if(sender is MenuItem menuItem && menuItem.CommandParameter is TransactionViewModel transactionViewModel)
+            if (await UserDialogs.Instance.ConfirmAsync($"Czy na pewno chcesz usunąć transakcje:\n{transactionViewModel.SubcatName}({transactionViewModel.CategoryName})\n{transactionViewModel.Transaction.Amount.ToString("C")}\n{transactionViewModel.Date.ToShortDateString()}?", "Usuń transakcje", "Usuń", "Anuluj"))
             {
-                _viewModel.RemoveTransaction(transactionViewModel);
+                await _viewModel.RemoveTransactionAsync(transactionViewModel);
                 Task.Run(async () => await MainBudget.Instance.Save().ConfigureAwait(false));
             }
-        }
-
-        private void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
-        {
-            var test = e.Parameter;
         }
     }
 }

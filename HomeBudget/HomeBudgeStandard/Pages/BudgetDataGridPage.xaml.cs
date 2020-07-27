@@ -176,7 +176,7 @@ namespace HomeBudget.Pages
                 {
                     MappingName = $"SubcatReal.Values[{i}].Value",
                     HeaderText = (i + 1).ToString(),
-                    AllowEditing = true,
+                    AllowEditing = false,
                     //LoadUIView = true,
                     HeaderFont = "FiraSans-Bold.otf#Fira Sans Bold",
                     RecordFont = "FiraSans-Regular.otf#Fira Sans Regular",
