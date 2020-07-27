@@ -44,10 +44,10 @@ namespace HomeBudget.UnitTests
             Assert.AreEqual(1, currentMonth.BudgetReal.Transactions.Count());
         }
 
-        [TestMethod]
+        [Test]
         public async Task RemoveTransactionTest()
         {
-            await MainBudget.Instance.Init(new Mock<IFileManager>().Object, new Mock<IBudgetSynchronizer>().Object, new Mock<ICrashReporter>().Object, new Mock<ISettings>().Object);
+            await MainBudget.Instance.Init(new Mock<IFileManager>().Object, new Mock<IBudgetSynchronizer>().Object, new Mock<ICrashReporter>().Object, new Mock<ISettings>().Object, new Mock<IFeatureSwitch>().Object);
             var currentMonth = MainBudget.Instance.GetCurrentMonthData();
             var category = currentMonth.BudgetReal.GetExpensesCategories()[0];
             var expense = 5000;
