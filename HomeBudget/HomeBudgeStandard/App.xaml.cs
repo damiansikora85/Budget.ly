@@ -23,7 +23,7 @@ namespace HomeBudget
 	{
         public App()
 		{
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTkyNTY1QDMxMzcyZTM0MmUzMGpiOEJDRWQ1TjRadGFRenpLL3BENTNrOTM2dEVDYytVOUZIT3BBS0hQOUU9;MTkyNTY2QDMxMzcyZTM0MmUzMFBNRmNyZ2ZXVjlrL1pZSEdWUGk3NEhpTVc3VkxrQnNXNG9lcFNJMzdMMW89");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjkzNzE4QDMxMzgyZTMyMmUzME0vV2dZcW96VnB4L2tQZmhoR29oSWpHL21yN2p1cEQ0b0Q5SzZIQ0srdlE9;MjkzNzE5QDMxMzgyZTMyMmUzMFE0TnpJQ3kxb1hDQnF4aUljVTlpcDcvOExUV05vVTlEVE1IU3A1cVdnVTA9");
             InitializeComponent();
             RegisterServices(TinyIoCContainer.Current);
 
