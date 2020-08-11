@@ -11,8 +11,8 @@
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="128"/>
+                    <RowDefinition Height="128"/>
                 </Grid.RowDefinitions>
 
                 <Image Source="Logo256" HeightRequest="128" HorizontalOptions="Start"/>
@@ -43,7 +43,7 @@
                         </Label.FontFamily>
                     </Label>
                     <Label Text="Twoja opinia jest dla nas bardzo ważna, dlatego proszę podziel się nią z nami. To zajmie Ci tylko chwilę!" VerticalOptions="StartAndExpand"/>
-                    <Grid  HorizontalOptions="CenterAndExpand" VerticalOptions="End" ColumnSpacing="0">
+                    <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="End" ColumnSpacing="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="3*"/>
