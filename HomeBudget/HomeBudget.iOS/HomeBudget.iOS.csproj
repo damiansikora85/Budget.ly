@@ -119,9 +119,6 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Dropbox.Api, Version=4.0.0.0, Culture=neutral, PublicKeyToken=310f0e82fbb45d01, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Dropbox.Api.4.3.1\lib\portable-net40+sl5+wp80+win8+wpa81\Dropbox.Api.dll</HintPath>
-    </Reference>
     <Reference Include="ExifLib, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ExifLib.PCL.1.0.1\lib\portable-net45+sl50+win+WindowsPhoneApp81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\ExifLib.dll</HintPath>
       <Private>True</Private>
@@ -143,14 +140,6 @@
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net45+win8+wpa81\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Mobile, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Azure.Mobile.Client.3.1.0\lib\Xamarin.iOS10\Microsoft.WindowsAzure.Mobile.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Mobile.Ext, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Azure.Mobile.Client.3.1.0\lib\Xamarin.iOS10\Microsoft.WindowsAzure.Mobile.Ext.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
@@ -212,7 +201,9 @@
     <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
     <Error Condition="!Exists('..\..\packages\Xamarin.Forms.4.8.0.1269\build\Xamarin.Forms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.4.8.0.1269\build\Xamarin.Forms.props'))" />
     <Error Condition="!Exists('..\..\packages\Xamarin.Forms.4.8.0.1269\build\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.4.8.0.1269\build\Xamarin.Forms.targets'))" />
+    <Error Condition="!Exists('..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
   </Target>
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Import Project="..\..\packages\Xamarin.Forms.4.8.0.1269\build\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.4.8.0.1269\build\Xamarin.Forms.targets')" />
+  <Import Project="..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
 </Project>
