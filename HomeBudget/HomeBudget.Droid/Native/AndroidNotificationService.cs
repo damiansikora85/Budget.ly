@@ -7,6 +7,9 @@ using Android.Support.V4.App;
 using HomeBudgeStandard.Interfaces;
 using System;
 using Xamarin.Forms;
+using Xamarin.Essentials;
+using Android.Widget;
+using Android.Util;
 
 [assembly: Dependency(typeof(HomeBudget.Droid.Native.AndroidNotificationService))]
 namespace HomeBudget.Droid.Native
@@ -42,7 +45,7 @@ namespace HomeBudget.Droid.Native
 
         public void Initialize()
         {
-            
+
         }
 
         public static void ShowNotification()
@@ -70,7 +73,7 @@ namespace HomeBudget.Droid.Native
                 {
                     if (notificationManager.GetNotificationChannel(CHANNEL_ID) == null)
                     {
-                        CreateNotificationChannel();                  
+                        CreateNotificationChannel();
                     }
                     builder.SetChannelId(CHANNEL_ID);
                 }
@@ -83,23 +86,52 @@ namespace HomeBudget.Droid.Native
             }
         }
 
-        public void ScheduleNotification(string text, DayOfWeek[] days, TimeSpan time)
+        public void ScheduleNotifications(string text, DayOfWeek[] days, TimeSpan time)
         {
             var context = Android.App.Application.Context;
             var alarmManager = context.GetSystemService(Context.AlarmService) as AlarmManager;
 
             foreach (var day in days)
             {
-                var notificationDateTime = (GetNextWeekday(DateTime.Now, day).Date.ToUniversalTime() - _jan1st1970 + time);
+                ScheduleNotification(time, context, alarmManager, day);
+            }
+        }
 
-                var intent = new Intent(context, typeof(NotificationBroadcastReceiver));
-                intent.SetData(Android.Net.Uri.Parse($"notification: {day.ToString()}"));
+        private void ScheduleNotification(TimeSpan time, Context context, AlarmManager alarmManager, DayOfWeek day)
+        {
+            var notificationDateTime = (GetNextWeekday(DateTime.Now, day).Date.ToUniversalTime() - _jan1st1970 + time);
 
-                var pendingIntent = PendingIntent.GetBroadcast(context, 0, intent, PendingIntentFlags.Immutable);
+            var intent = new Intent(context, typeof(NotificationBroadcastReceiver));
+            intent.SetData(Android.Net.Uri.Parse($"notification: {day}"));
 
-                var totalMilliSeconds = (long)(DateTime.Now.Date.ToUniversalTime() - _jan1st1970 + time).TotalMilliseconds;
+            var pendingIntent = PendingIntent.GetBroadcast(context, 0, intent, PendingIntentFlags.Immutable);
+            alarmManager.SetRepeating(AlarmType.RtcWakeup, (long)notificationDateTime.TotalMilliseconds, AlarmManager.IntervalDay * 7, pendingIntent);
+            Preferences.Set($"notification_{day}", true);
+        }
 
-                alarmManager.SetRepeating(AlarmType.RtcWakeup, (long)notificationDateTime.TotalMilliseconds, AlarmManager.IntervalDay * 7, pendingIntent);
+        public void ReScheduleNotificationAfterRestart()
+        {
+            var context = Android.App.Application.Context;
+            var alarmManager = context.GetSystemService(Context.AlarmService) as AlarmManager;
+            var notificationTimeMilisec = Preferences.Get("NotificationsTime", -1.0);
+            if (notificationTimeMilisec < 0) return;
+
+            var notificationTime = TimeSpan.FromMilliseconds(notificationTimeMilisec);
+
+            foreach (var day in Enum.GetValues(typeof(DayOfWeek)))
+            {
+                try
+                {
+                    var notificationForDayEnabled = Preferences.Get($"notification_{day}", false);
+                    if (notificationForDayEnabled)
+                    {
+                        ScheduleNotification(notificationTime, context, alarmManager, (DayOfWeek)day);
+                    }
+                }
+                catch(Exception exc)
+                {
+                    Log.Error("Budget", exc.Message);
+                }
             }
         }
 

@@ -4,6 +4,7 @@ using HomeBudgeStandard.Utils;
 using HomeBudget;
 using System;
 using System.ComponentModel;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -34,39 +35,39 @@ namespace HomeBudgeStandard.Pages
 
         private void RestoreFromSettings()
         {
-            var notificationsDisabled = GetFromSettings("NotificationsDisabled");
+            var notificationsDisabled = GetFromSettings("NotificationsDisabled", false);
             if (notificationsDisabled is bool check)
                 NotificationsCheckbox.IsChecked = check;
 
-            var notificationTime = GetFromSettings("NotificationsTime");
-            if (notificationTime is TimeSpan notificationTimeValue)
-                NotificationTimePicker.Time = notificationTimeValue;
+            var notificationTime = GetFromSettings("NotificationsTime", 0.0);
+            if (notificationTime is double notificationTimeValue)
+                NotificationTimePicker.Time = TimeSpan.FromMilliseconds(notificationTimeValue);
 
-            var notificationMonday = GetFromSettings("NotificationsMonday");
+            var notificationMonday = GetFromSettings($"notification_{DayOfWeek.Monday}", false);
             if (notificationMonday is bool notificationMondayValue)
                 NotificationMonday.IsChecked = notificationMondayValue;
 
-            var notificationTuesday = GetFromSettings("NotificationsTuesday");
+            var notificationTuesday = GetFromSettings($"notification_{DayOfWeek.Tuesday}", false);
             if (notificationTuesday is bool notificationTuesdayValue)
                 NotificationTuesday.IsChecked = notificationTuesdayValue;
 
-            var notificationWednesday = GetFromSettings("NotificationsWednesday");
+            var notificationWednesday = GetFromSettings($"notification_{DayOfWeek.Wednesday}", false);
             if (notificationWednesday is bool notificationWednesdayValue)
                 NotificationWednesday.IsChecked = notificationWednesdayValue;
 
-            var notificationThursday = GetFromSettings("NotificationsThursday");
+            var notificationThursday = GetFromSettings($"notification_{DayOfWeek.Thursday}", false);
             if (notificationThursday is bool notificationThursdayValue)
                 NotificationThursday.IsChecked = notificationThursdayValue;
 
-            var notificationFriday = GetFromSettings("NotificationsFriday");
+            var notificationFriday = GetFromSettings($"notification_{DayOfWeek.Friday}", false);
             if (notificationFriday is bool notificationFridayValue)
                 NotificationFriday.IsChecked = notificationFridayValue;
 
-            var notificationSaturday = GetFromSettings("NotificationsSaturday");
+            var notificationSaturday = GetFromSettings($"notification_{DayOfWeek.Saturday}", false);
             if (notificationSaturday is bool notificationSaturdayValue)
                 NotificationSaturday.IsChecked = notificationSaturdayValue;
 
-            var notificationSunday = GetFromSettings("NotificationsSunday");
+            var notificationSunday = GetFromSettings($"notification_{DayOfWeek.Sunday}", false);
             if (notificationSunday is bool notificationSundayValue)
                 NotificationSunday.IsChecked = notificationSundayValue;
         }
@@ -83,38 +84,40 @@ namespace HomeBudgeStandard.Pages
             NotificationSunday.IsEnabled = enabled;
         }
 
-        private async void SaveNotificationSettings()
+        private void SaveNotificationSettings()
         {
             SaveSetting("NotificationsDisabled", NotificationsCheckbox.IsChecked);
-            SaveSetting("NotificationsTime", NotificationTimePicker.Time);
+            SaveSetting("NotificationsTime", NotificationTimePicker.Time.TotalMilliseconds);
 
-            SaveSetting("NotificationsMonday", NotificationMonday.IsChecked);
-            SaveSetting("NotificationsTuesday", NotificationTuesday.IsChecked);
-            SaveSetting("NotificationsWednesday", NotificationWednesday.IsChecked);
-            SaveSetting("NotificationsThursday", NotificationThursday.IsChecked);
-            SaveSetting("NotificationsFriday", NotificationFriday.IsChecked);
-            SaveSetting("NotificationsSaturday", NotificationSaturday.IsChecked);
-            SaveSetting("NotificationsSunday", NotificationSunday.IsChecked);
-            
-            await App.Current.SavePropertiesAsync();
+            SaveSetting($"notification_{DayOfWeek.Monday}", NotificationMonday.IsChecked);
+            SaveSetting($"notification_{DayOfWeek.Tuesday}", NotificationTuesday.IsChecked);
+            SaveSetting($"notification_{DayOfWeek.Wednesday}", NotificationWednesday.IsChecked);
+            SaveSetting($"notification_{DayOfWeek.Thursday}", NotificationThursday.IsChecked);
+            SaveSetting($"notification_{DayOfWeek.Friday}", NotificationFriday.IsChecked);
+            SaveSetting($"notification_{DayOfWeek.Saturday}", NotificationSaturday.IsChecked);
+            SaveSetting($"notification_{DayOfWeek.Sunday}", NotificationSunday.IsChecked);
+
+            //await App.Current.SavePropertiesAsync();
         }
 
-        private void SaveSetting(string settingName, object value)
+        private void SaveSetting(string settingName, bool value)
         {
-            if (App.Current.Properties.ContainsKey(settingName))
-                App.Current.Properties[settingName] = value;
-            else
-                App.Current.Properties.Add(settingName, value);
+            Preferences.Set(settingName, value);
         }
 
-        private object GetFromSettings(string settingName)
+        private bool GetFromSettings(string settingName, bool defaultValue)
         {
-            if (App.Current.Properties.ContainsKey(settingName))
-            {
-                return App.Current.Properties[settingName];
-            }
-            else
-                return null;
+            return Preferences.Get(settingName, defaultValue);
+        }
+
+        private void SaveSetting(string settingName, double value)
+        {
+            Preferences.Set(settingName, value);
+        }
+
+        private double GetFromSettings(string settingName, double defaultValue)
+        {
+            return Preferences.Get(settingName, defaultValue);
         }
 
         private void NotificationsCheckbox_CheckedChanged(object sender, CheckedChangedEventArgs e)

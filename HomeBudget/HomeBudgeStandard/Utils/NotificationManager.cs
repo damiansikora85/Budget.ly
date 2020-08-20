@@ -1,7 +1,7 @@
 ﻿using HomeBudgeStandard.Interfaces;
-using HomeBudget;
 using System;
 using System.Collections.Generic;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace HomeBudgeStandard.Utils
@@ -11,40 +11,45 @@ namespace HomeBudgeStandard.Utils
         public static void ReScheduleNotificationsBySettings()
         {
             ClearAllNotifications();
-            if (GetFromSettings("NotificationsDisabled") is bool notificationsDisabled && !notificationsDisabled)
+            if (GetFromSettings("NotificationsDisabled", false) is bool notificationsDisabled && !notificationsDisabled)
             {
-                if (GetFromSettings("NotificationsTime") is TimeSpan notificationTime)
+                if (GetFromSettings("NotificationsTime", 0.0) is double notificationTimeMilisec && notificationTimeMilisec > 0)
                 {
                     var notificationDays = new List<DayOfWeek>();
-                    if (GetFromSettings("NotificationsMonday") is bool notificationsMonday && notificationsMonday)
+                    if (GetFromSettings($"notification_{DayOfWeek.Monday}", false) is bool notificationsMonday && notificationsMonday)
                         notificationDays.Add(DayOfWeek.Monday);
 
-                    if (GetFromSettings("NotificationsTuesday") is bool notificationsTuesday && notificationsTuesday)
+                    if (GetFromSettings($"notification_{DayOfWeek.Tuesday}", false) is bool notificationsTuesday && notificationsTuesday)
                         notificationDays.Add(DayOfWeek.Tuesday);
 
-                    if (GetFromSettings("NotificationsWednesday") is bool notificationsWednesday && notificationsWednesday)
+                    if (GetFromSettings($"notification_{DayOfWeek.Wednesday}", false) is bool notificationsWednesday && notificationsWednesday)
                         notificationDays.Add(DayOfWeek.Wednesday);
 
-                    if (GetFromSettings("NotificationsThursday") is bool notificationsThursday && notificationsThursday)
+                    if (GetFromSettings($"notification_{DayOfWeek.Thursday}", false) is bool notificationsThursday && notificationsThursday)
                         notificationDays.Add(DayOfWeek.Thursday);
 
-                    if (GetFromSettings("NotificationsFriday") is bool notificationsFriday && notificationsFriday)
+                    if (GetFromSettings($"notification_{DayOfWeek.Friday}", false) is bool notificationsFriday && notificationsFriday)
                         notificationDays.Add(DayOfWeek.Friday);
 
-                    if (GetFromSettings("NotificationsSaturday") is bool notificationsSaturday && notificationsSaturday)
+                    if (GetFromSettings($"notification_{DayOfWeek.Saturday}", false) is bool notificationsSaturday && notificationsSaturday)
                         notificationDays.Add(DayOfWeek.Saturday);
 
-                    if (GetFromSettings("NotificationsSunday") is bool notificationsSunday && notificationsSunday)
+                    if (GetFromSettings($"notification_{DayOfWeek.Sunday}", false) is bool notificationsSunday && notificationsSunday)
                         notificationDays.Add(DayOfWeek.Sunday);
 
-                    ScheduleNotification(notificationDays.ToArray(), notificationTime);
+                    ScheduleNotification(notificationDays.ToArray(), TimeSpan.FromMilliseconds(notificationTimeMilisec));
                 }
             }
         }
 
-        private static object GetFromSettings(string settingName)
+        private static bool GetFromSettings(string settingName, bool defaultValue)
         {
-            return App.Current.Properties.ContainsKey(settingName) ? App.Current.Properties[settingName] : null;
+            return Preferences.Get(settingName, defaultValue);
+        }
+
+        private static double GetFromSettings(string settingName, double defaultValue)
+        {
+            return Preferences.Get(settingName, defaultValue);
         }
 
         public static void ClearAllNotifications()
@@ -56,19 +61,15 @@ namespace HomeBudgeStandard.Utils
         {
             if (days.Length == 0) return;
 
+            Preferences.Set("NotificationsTime", time.TotalMilliseconds);
             var notificationService = DependencyService.Get<INotificationService>();
-            var now = DateTime.Now;
-
-            notificationService.ScheduleNotification("Zapisz wydatki!", days, time);
+            notificationService.ScheduleNotifications("Pora uzupełnić budżet", days, time);
         }
 
         public static void ScheduleDefaultNotifications()
         {
             var notificationTime = TimeSpan.Parse("20:00");
-            App.Current.Properties.Add("NotificationsWednesday", true);
-            App.Current.Properties.Add("NotificationsSaturday", true);
-            App.Current.Properties.Add("NotificationsTime", notificationTime);
-
+            Preferences.Set("NotificationsTime", notificationTime.TotalMilliseconds);
             ScheduleNotification(new DayOfWeek[] {DayOfWeek.Wednesday, DayOfWeek.Saturday }, notificationTime);
         }
     }

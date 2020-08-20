@@ -7,7 +7,7 @@ namespace HomeBudgeStandard.Interfaces
     public interface INotificationService
     {
         void Initialize();
-        void ScheduleNotification(string text, DayOfWeek[] days, TimeSpan dateTime);
+        void ScheduleNotifications(string text, DayOfWeek[] days, TimeSpan dateTime);
         void ClearAllNotifications();
     }
 }
