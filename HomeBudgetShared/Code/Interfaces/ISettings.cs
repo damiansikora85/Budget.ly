@@ -8,6 +8,7 @@ namespace HomeBudget.Code.Interfaces
     {
         string CloudAccessToken { get; set; }
         bool FirstLaunch { get; set; }
+        bool NeedSetupDefaultNotifications { get; set; }
 
     }
 }

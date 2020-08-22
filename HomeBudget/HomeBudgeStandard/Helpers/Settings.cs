@@ -14,6 +14,7 @@ namespace HomeBudget.Helpers
         private const string DropboxAccessTokenKey = "dropboxAccessToken_key";
         private const string DropboxAccessTokenDefault = "";
         private const string FirstLaunchKey = "first_launch";
+        private const string NeedSetupNotificationsKey = "setup_notifications";
 
         public string CloudAccessToken
         {
@@ -25,6 +26,11 @@ namespace HomeBudget.Helpers
         {
             get => Preferences.Get(FirstLaunchKey, true);
             set => Preferences.Set(FirstLaunchKey, value);
+        }
+        public bool NeedSetupDefaultNotifications
+        {
+            get => Preferences.Get(NeedSetupNotificationsKey, true);
+            set => Preferences.Set(NeedSetupNotificationsKey, value);
         }
     }
 }

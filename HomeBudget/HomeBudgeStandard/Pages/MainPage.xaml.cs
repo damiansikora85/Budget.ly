@@ -50,10 +50,11 @@ namespace HomeBudgeStandard.Pages
                 var featureSwitch = TinyIoC.TinyIoCContainer.Current.Resolve<IFeatureSwitch>();
 
                 await MainBudget.Instance.Init(new FileManagerXamarin(), new BudgetSynchronizer(new DropboxCloudStorage(crashReporter, _settings)), crashReporter, _settings, featureSwitch);
-                if (_settings.FirstLaunch)
+                if (_settings.FirstLaunch || _settings.NeedSetupDefaultNotifications)
                 {
                     NotificationManager.ScheduleDefaultNotifications();
                     _settings.FirstLaunch = false;
+                    _settings.NeedSetupDefaultNotifications = false;
                 }
             }
             catch(Exception exc)

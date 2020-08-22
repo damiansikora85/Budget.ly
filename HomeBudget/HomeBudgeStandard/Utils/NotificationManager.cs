@@ -54,6 +54,11 @@ namespace HomeBudgeStandard.Utils
 
         public static void ClearAllNotifications()
         {
+            Preferences.Set("NotificationsTime", -1.0);
+            foreach (var day in Enum.GetValues(typeof(DayOfWeek)))
+            {
+                Preferences.Set($"notification_{day}", false);
+            }
             DependencyService.Get<INotificationService>().ClearAllNotifications();
         }
 
@@ -68,6 +73,7 @@ namespace HomeBudgeStandard.Utils
 
         public static void ScheduleDefaultNotifications()
         {
+            ClearAllNotifications();
             var notificationTime = TimeSpan.Parse("20:00");
             Preferences.Set("NotificationsTime", notificationTime.TotalMilliseconds);
             ScheduleNotification(new DayOfWeek[] {DayOfWeek.Wednesday, DayOfWeek.Saturday }, notificationTime);
