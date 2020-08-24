@@ -27,6 +27,7 @@
     <PackageReference Include="Acr.UserDialogs" Version="7.1.0.446" />
     <PackageReference Include="AppCenter.Analytics.Metrics" Version="1.1.0" />
     <PackageReference Include="codecracker.CSharp" Version="1.1.0" />
+    <PackageReference Include="Dropbox.Api" Version="5.0.0" />
     <PackageReference Include="Microsoft.AppCenter" Version="3.4.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.4.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.4.0" />
@@ -58,7 +59,6 @@
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />
-    <PackageReference Include="XamarinDropboxPlugin" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
