@@ -40,7 +40,7 @@ namespace HomeBudgeStandard.Pages
                 NotificationsCheckbox.IsChecked = check;
 
             var notificationTime = GetFromSettings("NotificationsTime", 0.0);
-            if (notificationTime is double notificationTimeValue)
+            if (notificationTime is double notificationTimeValue && notificationTimeValue > 0)
                 NotificationTimePicker.Time = TimeSpan.FromMilliseconds(notificationTimeValue);
 
             var notificationMonday = GetFromSettings($"notification_{DayOfWeek.Monday}", false);
