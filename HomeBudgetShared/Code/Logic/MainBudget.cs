@@ -104,7 +104,7 @@ namespace HomeBudget.Code
 
             try
             {
-                if (!string.IsNullOrEmpty(_settings.CloudAccessToken))
+                if (!string.IsNullOrEmpty(_settings.CloudRefreshToken))
                 {
                     var budgetTemplate = await _budgetSynchronizer.DownloadBudgetTemplate();
                     if (budgetTemplate != null)
@@ -136,7 +136,7 @@ namespace HomeBudget.Code
                 //if BudgetDescription == null
                 budgetPlanned.Setup(BudgetDescription.Categories);
 
-                if (!string.IsNullOrEmpty(_settings.CloudAccessToken))
+                if (!string.IsNullOrEmpty(_settings.CloudRefreshToken))
                 {
                     _budgetSynchronizer.Start();
                     LogsManager.Instance.WriteLine("Load data from cloud storage");
@@ -192,7 +192,7 @@ namespace HomeBudget.Code
                 BudgetDescription.UpdateCategories(updatedCategories);
                 budgetPlanned.Setup(BudgetDescription.Categories);
                 _fileManager.WriteCustomTemplate(BudgetDescription);
-                if (!string.IsNullOrEmpty(_settings.CloudAccessToken))
+                if (!string.IsNullOrEmpty(_settings.CloudRefreshToken))
                 {
                     _budgetSynchronizer.UploadBudgetTemplate(BudgetDescription);
                 }

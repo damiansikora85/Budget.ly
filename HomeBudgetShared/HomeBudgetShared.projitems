@@ -9,7 +9,7 @@
     <Import_RootNamespace>HomeBudgetShared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Dropbox\DropboxManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Dropbox\DropboxCloudStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Dropbox\IDropbox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Interfaces\IBudgetTemplateProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Interfaces\ICloudStorage.cs" />

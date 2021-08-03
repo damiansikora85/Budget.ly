@@ -23,11 +23,11 @@ namespace HomeBudgeStandard.Pages
         private bool _checkDropboxFileExist;
         private bool _waitingForDropboxResponse;
 
-        public string SynchronizationStatus => string.IsNullOrEmpty(_settings.CloudAccessToken)?"\uf057":"\uf058";
+        public string SynchronizationStatus => string.IsNullOrEmpty(_settings.CloudRefreshToken)?"\uf057":"\uf058";
         public string RegularPrice { get; private set; }
         public string PromoPrice { get; private set; }
-        public bool DropboxConnected => !string.IsNullOrEmpty(_settings.CloudAccessToken);
-        public bool DropboxNotConnected => string.IsNullOrEmpty(_settings.CloudAccessToken);
+        public bool DropboxConnected => !string.IsNullOrEmpty(_settings.CloudRefreshToken);
+        public bool DropboxNotConnected => string.IsNullOrEmpty(_settings.CloudRefreshToken);
 
         private PurchaseService _purchaseService;
         private string _iapName;
@@ -62,8 +62,8 @@ namespace HomeBudgeStandard.Pages
         private async Task LoginToDropbox()
         {
             _oauth2State = Guid.NewGuid().ToString("N");
-            var authorizeUri = DropboxOAuth2Helper.GetAuthorizeUri(OAuthResponseType.Token, _appKey, new Uri(_redirectUri), state: _oauth2State);
-
+            var authorizeUri = DropboxOAuth2Helper.GetAuthorizeUri(OAuthResponseType.Code, _appKey, new Uri(_redirectUri), state: _oauth2State, tokenAccessType:TokenAccessType.Offline);
+            //DropboxOAuth2Helper.ProcessCodeFlowAsync
             var webView = new WebView { Source = new UrlWebViewSource { Url = authorizeUri.AbsoluteUri } };
             webView.Navigating += WebViewOnNavigating;
             var contentPage = new ContentPage { Content = webView };
@@ -89,7 +89,7 @@ namespace HomeBudgeStandard.Pages
                 {
                     iapLayout.IsVisible = false;
                     connectLayout.IsVisible = true;
-                    if (string.IsNullOrEmpty(_settings.CloudAccessToken))
+                    if (string.IsNullOrEmpty(_settings.CloudRefreshToken))
                     {
                         //if synchro bought but not active
                         resyncButton.IsVisible = true;
@@ -179,13 +179,12 @@ namespace HomeBudgeStandard.Pages
             try
             {
                 UserDialogs.Instance.ShowLoading("");
-                var result = DropboxOAuth2Helper.ParseTokenFragment(new Uri(e.Url));
+                var code = GetCodeFromUrl(e.Url);
+                var result = await DropboxOAuth2Helper.ProcessCodeFlowAsync(code, DropboxCloudStorage.AppKey, DropboxCloudStorage.AppSecret, _redirectUri);
+                //DropboxOAuth2Helper.ParseTokenFragment(new Uri(e.Url));
 
-                if (result.State != _oauth2State)
-                {
-                    return;
-                }
                 _settings.CloudAccessToken = result.AccessToken;
+                _settings.CloudRefreshToken = result.RefreshToken;
 
                 await Application.Current.MainPage.Navigation.PopModalAsync();
 
@@ -210,6 +209,7 @@ namespace HomeBudgeStandard.Pages
                 else if(_checkDropboxFileExist)
                 {
                     _settings.CloudAccessToken = "";
+                    _settings.CloudRefreshToken = "";
                     UserDialogs.Instance.HideLoading();
                     if(await UserDialogs.Instance.ConfirmAsync("Podane dane są nieprawidłowe", "Uwaga", "Spróbuj ponownie", "Anuluj"))
                     {
@@ -236,16 +236,29 @@ namespace HomeBudgeStandard.Pages
             }
         }
 
+        private string GetCodeFromUrl(string url)
+        {
+            foreach (string item in url.Split('&'))
+            {
+                string[] parts = item.Replace("?", "").Split('=');
+                if (parts[0] == "code")
+                {
+                    return parts[1];
+                }
+            }
+            return string.Empty;
+        }
+
         private async Task<bool> HasDropboxData()
         {
-            if(string.IsNullOrEmpty(_settings.CloudAccessToken))
+            if(string.IsNullOrEmpty(_settings.CloudRefreshToken))
             {
                 return false;
             }
 
-            var accessToken = _settings.CloudAccessToken;
+            var refreshToken = _settings.CloudRefreshToken;
             var hasData = false;
-            using (var dropboxClient = new DropboxClient(accessToken))
+            using (var dropboxClient = new DropboxClient(refreshToken, DropboxCloudStorage.AppKey, DropboxCloudStorage.AppSecret))
             {
                 try
                 {

@@ -68,7 +68,7 @@ namespace HomeBudgeStandard.Pages
         {
              var wasOnline = _isOnline;
             _isOnline = Connectivity.NetworkAccess == NetworkAccess.Internet;
-            if (!string.IsNullOrEmpty(_settings.CloudAccessToken) && !_isOnline)
+            if (!string.IsNullOrEmpty(_settings.CloudRefreshToken) && !_isOnline)
             {
                 UserDialogs.Instance.Toast(new ToastConfig("Brak połączenia z Internetem") { MessageTextColor = Color.Red });
             }
