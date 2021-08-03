@@ -363,7 +363,7 @@ namespace HomeBudgeStandard.Views
 
         private async void OnSave(object sender, EventArgs e)
         {
-            await MainBudget.Instance.UpdateMainPlannedBudget();
+            await MainBudget.Instance.UpdateMainPlannedBudget(_currentMonth);
             UserDialogs.Instance.Toast("Ten plan budżetu będzie używany w kolejnych miesiącach");
         }
 

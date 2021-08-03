@@ -324,9 +324,10 @@ namespace HomeBudget.Code
             LoadAsync();
         }
 
-        public async Task UpdateMainPlannedBudget()
+        public async Task UpdateMainPlannedBudget(DateTime date)
         {
-            budgetPlanned = GetCurrentMonthData().BudgetPlanned;
+            budgetPlanned = GetMonth(date).BudgetPlanned;
+            GetCurrentMonthData().BudgetPlanned = budgetPlanned;
             await Save().ConfigureAwait(false);
         }
 
