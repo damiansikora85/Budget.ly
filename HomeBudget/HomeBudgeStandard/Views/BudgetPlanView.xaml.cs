@@ -1,6 +1,7 @@
 ﻿//using Acr.UserDialogs;
 using Acr.UserDialogs;
 using HomeBudgeStandard.Interfaces;
+using HomeBudgeStandard.Views.ViewModels;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Converters;
@@ -24,6 +25,7 @@ namespace HomeBudgeStandard.Views
 	public partial class BudgetPlanView : ContentPage, IActiveAware
     {
         public ObservableCollection<BudgetViewModelData> Budget { get; set; }
+        private BudgetPlanViewModel _viewModel;
 
         private bool _setupDone;
         private bool _hasIncomes;
@@ -31,11 +33,11 @@ namespace HomeBudgeStandard.Views
         private DateTime _currentMonth;
         private SfDataGrid _dataGrid;
 
-        private Label _expensesChartSwitch;
+        //private Label _expensesChartSwitch;
         private Label _incomeChartSwitch;
         private Grid _mainGrid;
-        private BudgetChart _chartExpense;
-        private BudgetChart _chartIncome;
+        //private BudgetChart _chartExpense;
+        //private BudgetChart _chartIncome;
         private Button _previousMonthButton;
         private Button _nextMonthButton;
 
@@ -65,7 +67,8 @@ namespace HomeBudgeStandard.Views
 		{
             _currentMonth = DateTime.Now;
             Budget = new ObservableCollection<BudgetViewModelData>();
-            BindingContext = this;
+            _viewModel = new BudgetPlanViewModel();
+            BindingContext = _viewModel;
             InitializeComponent();
         }
 
@@ -82,7 +85,7 @@ namespace HomeBudgeStandard.Views
             else
             {
                 UpdateCharts(_currentMonth);
-                ForceSwitchChart(_expensesChartSwitch);
+                ForceSwitchChart();
             }
 
             _setupDone = true;
@@ -113,10 +116,10 @@ namespace HomeBudgeStandard.Views
             SetupVariables();
             CreateDataGrid();
 
-            var tapGesture = new TapGestureRecognizer();
-            tapGesture.Tapped += SwitchChart;
-            _expensesChartSwitch.GestureRecognizers.Add(tapGesture);
-            _incomeChartSwitch.GestureRecognizers.Add(tapGesture);
+            //var tapGesture = new TapGestureRecognizer();
+            //tapGesture.Tapped += SwitchChart;
+            //_expensesChartSwitch.GestureRecognizers.Add(tapGesture);
+            //_incomeChartSwitch.GestureRecognizers.Add(tapGesture);
 
             if (MainBudget.Instance.IsDataLoaded && !_setupDone)
             {
@@ -125,7 +128,7 @@ namespace HomeBudgeStandard.Views
             else
             {
                 UpdateCharts(_currentMonth);
-                ForceSwitchChart(_expensesChartSwitch);
+                ForceSwitchChart();
             }
 
             _setupDone = true;
@@ -135,11 +138,11 @@ namespace HomeBudgeStandard.Views
 
         private void SetupVariables()
         {
-            _expensesChartSwitch = this.Content.FindByName<Label>("ExpensesChartSwitch");
-            _incomeChartSwitch = this.Content.FindByName<Label>("IncomeChartSwitch");
+            //_expensesChartSwitch = this.Content.FindByName<Label>("ExpensesChartSwitch");
+            //_incomeChartSwitch = this.Content.FindByName<Label>("IncomeChartSwitch");
             _mainGrid = this.Content.FindByName<Grid>("mainGrid");
-            _chartExpense = this.Content.FindByName<BudgetChart>("chartExpense");
-            _chartIncome = this.Content.FindByName<BudgetChart>("chartIncome");
+            //_chartExpense = this.Content.FindByName<BudgetChart>("chartExpense");
+            //_chartIncome = this.Content.FindByName<BudgetChart>("chartIncome");
             _previousMonthButton = this.Content.FindByName<Button>("PreviousMonthButton");
             _nextMonthButton = this.Content.FindByName<Button>("NextMonthButton");
         }
@@ -150,7 +153,7 @@ namespace HomeBudgeStandard.Views
 
             await SetupDataGrid(_currentMonth);
             UpdateCharts(_currentMonth);
-            ForceSwitchChart(_expensesChartSwitch);
+            ForceSwitchChart();
         }
 
         private void CreateDataGrid()
@@ -262,6 +265,8 @@ namespace HomeBudgeStandard.Views
 
         private void UpdateCharts(DateTime date)
         {
+            _viewModel.UpdateCharts(date);
+
             Device.BeginInvokeOnMainThread(() =>
             {
                 var budgetPlanned = MainBudget.Instance.GetMonth(date).BudgetPlanned;
@@ -274,7 +279,7 @@ namespace HomeBudgeStandard.Views
                     foreach (BaseBudgetSubcat subcat in category.subcats)
                     {
                         if (subcat.Value > 0)
-                            chartDataIncome.Add(new ChartData { Label = subcat.Name, Value = subcat.Value, Percentage = subcat.Value/totalIncome });
+                            chartDataIncome.Add(new ChartData { Label = subcat.Name, Value = subcat.Value, Percentage = subcat.Value / totalIncome });
                     }
 
                 }
@@ -284,7 +289,7 @@ namespace HomeBudgeStandard.Views
                 {
                     if (!category.IsIncome && category.TotalValues > 0)
                     {
-                        chartDataExpenses.Add(new ChartData { Label = category.Name, Value = category.TotalValues, Percentage = category.TotalValues/totalExpense });
+                        chartDataExpenses.Add(new ChartData { Label = category.Name, Value = category.TotalValues, Percentage = category.TotalValues / totalExpense });
                     }
                 }
                 _chartExpense.SetData(chartDataExpenses);
@@ -333,31 +338,33 @@ namespace HomeBudgeStandard.Views
             });
         }
 
-        private void ForceSwitchChart(Label label)
+        private void ForceSwitchChart()//Label label)
         {
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                label.TextDecorations = TextDecorations.Underline;
-                if (label == _expensesChartSwitch)
-                {
-                    _incomeChartSwitch.TextDecorations = TextDecorations.None;
-                    _chartExpense.IsVisible = true;
-                    _chartIncome.IsVisible = false;
-                }
-                else
-                {
-                    _expensesChartSwitch.TextDecorations = TextDecorations.None;
-                    _chartExpense.IsVisible = false;
-                    _chartIncome.IsVisible = true;
-                }
-            });
+            _viewModel.ForceSwitchChart();
+
+            //Device.BeginInvokeOnMainThread(() =>
+            //{
+            //    label.TextDecorations = TextDecorations.Underline;
+            //    if (label == _expensesChartSwitch)
+            //    {
+            //        _incomeChartSwitch.TextDecorations = TextDecorations.None;
+            //        _chartExpense.IsVisible = true;
+            //        _chartIncome.IsVisible = false;
+            //    }
+            //    else
+            //    {
+            //        _expensesChartSwitch.TextDecorations = TextDecorations.None;
+            //        _chartExpense.IsVisible = false;
+            //        _chartIncome.IsVisible = true;
+            //    }
+            //});
         }
 
         private void SwitchChart(object sender, EventArgs e)
         {
             if (sender is View view && view.Effects.Count == 0)
             {
-                ForceSwitchChart(sender as Label);
+                ForceSwitchChart();
             }
         }
 

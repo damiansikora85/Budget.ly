@@ -41,12 +41,20 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <Label x:Name="ExpensesChartSwitch" Text="Wydatki" FontAttributes="Bold" Rotation="270" Grid.Row="0" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
-                            <Label x:Name="IncomeChartSwitch" Text="Dochody" FontAttributes="Bold" Rotation="270" Grid.Row="1" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
+                            <Label x:Name="ExpensesChartSwitch" Text="Wydatki" FontAttributes="Bold" TextDecorations="{Binding ExpensesChartTextDecorations}" Rotation="270" Grid.Row="0" VerticalTextAlignment="Center" LineBreakMode="NoWrap">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ExpensesChartCommand}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label x:Name="IncomeChartSwitch" Text="Dochody" FontAttributes="Bold" TextDecorations="{Binding IncomesChartTextDecorations}" Rotation="270" Grid.Row="1" VerticalTextAlignment="Center" LineBreakMode="NoWrap">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding IncomesChartCommand}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
                         </Grid>
 
-                        <utils:BudgetChart Grid.Column="1" x:Name="chartExpense" LegendPosition="RightSide"/>
-                        <utils:BudgetChart Grid.Column="1" x:Name="chartIncome" LegendPosition="RightSide"/>
+                        <utils:BudgetChart Grid.Column="1" x:Name="chartExpense" LegendPosition="RightSide" IsVisible="{Binding ExpensesVisible}"/>
+                        <utils:BudgetChart Grid.Column="1" x:Name="chartIncome" LegendPosition="RightSide" IsVisible="{Binding IncomesVisible}"/>
                     </Grid>
 
                 </Grid>
