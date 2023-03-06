@@ -239,11 +239,6 @@ namespace HomeBudget.Code
                 _crashReporter.Report(exc);
             }
             finally
-                _crashReporter.Report(exc);
-            }
-            finally
-            {
-                _saveSemaphore.Release();
             {
                 _saveSemaphore.Release();
             }
