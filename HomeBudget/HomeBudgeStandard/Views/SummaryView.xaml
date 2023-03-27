@@ -17,7 +17,7 @@
         </DataTemplate>
         <DataTemplate x:Key="emptyViewCell">
             <ViewCell>
-                <BoxView HeightRequest="135"/>
+                <BoxView HeightRequest="270"/>
             </ViewCell>
         </DataTemplate>
         <DataTemplate x:Key="transactionViewCell">
@@ -181,7 +181,7 @@
                     <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Incomes, StringFormat='{}{0:C}'}" TextColor="White" HorizontalTextAlignment="Center"/>
                 </Grid>
             </Grid>
-            <StackLayout x:Name="debugLayer" Grid.RowSpan="2" InputTransparent="True" IsVisible="False">
+            <StackLayout x:Name="debugLayer" Grid.RowSpan="2" InputTransparent="True" IsVisible="false">
                 <Label x:Name="debugScroll" TextColor="Red"/>
             </StackLayout>
         </Grid>
