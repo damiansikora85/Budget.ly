@@ -24,11 +24,6 @@
     <JavaOptions />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AndroidKeyStore>false</AndroidKeyStore>
-    <AndroidSigningKeyStore>C:\Projekty\XamarinTest\HomeBudget\keystore.jks</AndroidSigningKeyStore>
-    <AndroidSigningStorePass>darktower</AndroidSigningStorePass>
-    <AndroidSigningKeyAlias>upload</AndroidSigningKeyAlias>
-    <AndroidSigningKeyPass>darktower</AndroidSigningKeyPass>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
