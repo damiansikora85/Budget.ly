@@ -1,20 +1,13 @@
 ﻿
-using HomeBudgeStandard.Pages;
-using Xamarin.Forms;
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
-using HomeBudgeStandard.Utils;
-using Xamarin.Forms.Xaml;
-using Microsoft.AppCenter.Push;
-using HomeBudget.Standard;
 using System;
-using TinyIoC;
-using HomeBudget.Code.Interfaces;
 using HomeBudgeStandard.Interfaces.Impl;
-using System.Threading.Tasks;
-using HomeBudget.Code;
-using HomeBudgetShared.Code.Synchronize;
+using HomeBudgeStandard.Pages;
+using HomeBudget.Code.Interfaces;
+using HomeBudget.Standard;
+using Microsoft.AppCenter.Crashes;
+using TinyIoC;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace HomeBudget
@@ -37,12 +30,12 @@ namespace HomeBudget
             Microsoft.AppCenter.AppCenter.Start("android=d788ef5d-e265-4c16-abbf-2e9469285d52;" +
                   "uwp={Your UWP App secret here};" +
                   "ios={Your iOS App secret here}",
-                  typeof(Crashes), typeof(Push));
+                  typeof(Crashes));
 #else
             Microsoft.AppCenter.AppCenter.Start("android=d788ef5d-e265-4c16-abbf-2e9469285d52;" +
                   "uwp={Your UWP App secret here};" +
                   "ios={Your iOS App secret here}",
-                  typeof(Analytics), typeof(Crashes), typeof(Push));
+                  typeof(Analytics), typeof(Crashes));
 #endif
 
 #if !CUSTOM

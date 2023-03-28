@@ -96,8 +96,8 @@ namespace HomeBudgeStandard.Views
             {
                 header.HeightRequest = header.MinimumHeightRequest;
             }
-            _viewModel.HeaderScrollProgress = 1- summaryListView.FirstElementVisibiltyPerc;
-            debugScroll.Text = $"{summaryListView.ScrollPosition}";
+            _viewModel.HeaderScrollProgress = 1 - (_baseHeaderHeight / header.Height ); //1- summaryListView.FirstElementVisibiltyPerc;
+            debugScroll.Text = $"{summaryListView.FirstElementVisibiltyPerc}";
         }
 
         private void TransactionsList_Scrolled(object sender, EventArgs e)

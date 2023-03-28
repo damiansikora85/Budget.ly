@@ -24,9 +24,9 @@ namespace HomeBudget.Droid.Renderers
             {
                 _myListView = null;
             }
-            if (e.NewElement is CustomListView)
+            if (e.NewElement is CustomListView customListView)
             {
-                _myListView = Element as CustomListView;
+                _myListView = customListView;
                 _myListView.OnScrollToElement += ScrollToElementAt;
                 _myListView.ScrollToTop = ScrollToTop;
                 Control.ScrollChange += Control_ScrollChange;
@@ -42,12 +42,13 @@ namespace HomeBudget.Droid.Renderers
         {
             float visiblePercentage = 0;
             var firstElement = Control.GetChildAt(0);
+
             if (_firstElementHeight <= 0 && firstElement != null && firstElement.Height > 0)
             {
                 _firstElementHeight = firstElement.Height;
             }
             var topY = _firstElementHeight;
-            if (Control.FirstVisiblePosition == 1 || Control.FirstVisiblePosition == 0)
+            if (Control.FirstVisiblePosition == 0)
             {
                 if (firstElement != null)
                 {

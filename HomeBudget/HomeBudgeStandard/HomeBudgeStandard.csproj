@@ -31,16 +31,15 @@
     <PackageReference Include="Microsoft.AppCenter" Version="4.1.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.1.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.1.0" />
-    <PackageReference Include="Microsoft.AppCenter.Push" Version="3.4.3" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="OxyPlot.Xamarin.Forms" Version="1.0.0" />
     <PackageReference Include="Plugin.InAppBilling" Version="2.0.0" />
     <PackageReference Include="protobuf-net" Version="3.0.29" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
-    <PackageReference Include="Syncfusion.Xamarin.Calculate" Version="18.2.0.48" />
-    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="18.2.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.Calculate" Version="20.4.0.53" />
+    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="20.4.0.53" />
     <PackageReference Include="TinyIoC" Version="1.3.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -48,7 +47,7 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2578" />
   </ItemGroup>
 
   <ItemGroup>

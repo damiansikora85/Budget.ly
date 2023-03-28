@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 using Android.Widget;
 using Android.Util;
+using AndroidX.Core.App;
 
 [assembly: Dependency(typeof(HomeBudget.Droid.Native.AndroidNotificationService))]
 namespace HomeBudget.Droid.Native
