@@ -24,8 +24,8 @@ namespace HomeBudget.Droid.Native
             //_firebaseRemoteConfig.SetConfigSettings(configSettings);
             long cacheExpiration = 0;
 #else
-            var configSettings = new FirebaseRemoteConfigSettings.Builder().SetDeveloperModeEnabled(false).Build();
-            _firebaseRemoteConfig.SetConfigSettings(configSettings);
+            //var configSettings = new FirebaseRemoteConfigSettings.Builder().SetDeveloperModeEnabled(false).Build();
+            //_firebaseRemoteConfig.SetConfigSettings(configSettings);
             long cacheExpiration = 3600; // 1 hour in seconds.
 #endif
 
