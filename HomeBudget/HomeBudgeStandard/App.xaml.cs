@@ -35,7 +35,7 @@ namespace HomeBudget
             Microsoft.AppCenter.AppCenter.Start("android=d788ef5d-e265-4c16-abbf-2e9469285d52;" +
                   "uwp={Your UWP App secret here};" +
                   "ios={Your iOS App secret here}",
-                  typeof(Analytics), typeof(Crashes));
+                 typeof(Crashes));
 #endif
 
 #if !CUSTOM
