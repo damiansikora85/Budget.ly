@@ -43,8 +43,6 @@ namespace HomeBudget.Droid
             _theApp = new App();
             LoadApplication(_theApp);
 
-            Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity = this;
-
             MessagingCenter.Subscribe<BudgetDataGridPage>(this, "Landscape", Page =>
             {
                 RequestedOrientation = ScreenOrientation.Landscape;
@@ -68,7 +66,6 @@ namespace HomeBudget.Droid
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
-            InAppBillingImplementation.HandleActivityResult(requestCode, resultCode, data);
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
