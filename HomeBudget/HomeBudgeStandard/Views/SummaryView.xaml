@@ -6,7 +6,10 @@
              xmlns:local="clr-namespace:HomeBudgeStandard.Converters"
              xmlns:utils1="clr-namespace:HomeBudgeStandard.Utils"
              x:Class="HomeBudgeStandard.Views.SummaryView"
-             x:Name="ThisPage" Icon="homeTab.png" xmlns:views="clr-namespace:HomeBudgeStandard.Views" xmlns:effects="clr-namespace:HomeBudget.Effects">
+             x:Name="ThisPage" 
+             Icon="homeTab.png" 
+             xmlns:views="clr-namespace:HomeBudgeStandard.Views" 
+             xmlns:effects="clr-namespace:HomeBudget.Effects">
 
     <ContentPage.Resources>
         <ResourceDictionary>
