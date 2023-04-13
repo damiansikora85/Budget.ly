@@ -234,10 +234,10 @@
       <Version>2.0.0.3</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Calculate">
-      <Version>20.4.0.53</Version>
+      <Version>21.1.39</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfDataGrid">
-      <Version>20.4.0.53</Version>
+      <Version>21.1.39</Version>
     </PackageReference>
     <PackageReference Include="System.AppContext">
       <Version>4.3.0</Version>
