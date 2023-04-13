@@ -15,7 +15,7 @@ using Xamarin.Forms.Xaml;
 namespace HomeBudgeStandard.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage : MasterDetailPage
+    public partial class MainPage : FlyoutPage
     {
         private readonly ISettings _settings;
 

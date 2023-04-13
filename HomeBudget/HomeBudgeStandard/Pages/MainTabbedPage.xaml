@@ -9,6 +9,15 @@
     <TabbedPage.Behaviors>
         <utils:ActivePageTabbedPageBehavior />
     </TabbedPage.Behaviors>
+    <TabbedPage.BarBackground>
+        <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="1,0">
+            <GradientStop Color="#00A9FF"
+                          Offset="0.1"/>
+            <GradientStop Color="#00D7C4"
+                          Offset="1.0"/>
+        </LinearGradientBrush>
+    </TabbedPage.BarBackground>
 
     <views:SummaryView/>
     <views:BudgetRealView/>

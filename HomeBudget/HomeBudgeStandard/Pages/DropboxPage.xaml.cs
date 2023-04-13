@@ -4,9 +4,11 @@ using Dropbox.Api.Files;
 using HomeBudgeStandard.Interfaces.Impl;
 using HomeBudget.Code;
 using HomeBudget.Code.Interfaces;
+//using HomeBudget.Helpers;
 using HomeBudget.Standard;
 using Microsoft.AppCenter.Crashes;
 using System;
+using System.Net;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -19,6 +21,7 @@ namespace HomeBudgeStandard.Pages
     {
         private const string _redirectUri = "https://localhost/authorize";
         private string _appKey = "p6cayskxetnkx1a";
+        private const string LoopbackHost = "http://127.0.0.1:52475/";
         private string _oauth2State;
         private bool _checkDropboxFileExist;
         private bool _waitingForDropboxResponse;
@@ -62,7 +65,7 @@ namespace HomeBudgeStandard.Pages
         private async Task LoginToDropbox()
         {
             _oauth2State = Guid.NewGuid().ToString("N");
-            var authorizeUri = DropboxOAuth2Helper.GetAuthorizeUri(OAuthResponseType.Code, _appKey, new Uri(_redirectUri), state: _oauth2State, tokenAccessType:TokenAccessType.Offline);
+            var authorizeUri = DropboxOAuth2Helper.GetAuthorizeUri(OAuthResponseType.Code, _appKey, new Uri(_redirectUri), state: _oauth2State, tokenAccessType: TokenAccessType.Offline);
             //DropboxOAuth2Helper.ProcessCodeFlowAsync
             var webView = new WebView { Source = new UrlWebViewSource { Url = authorizeUri.AbsoluteUri } };
             webView.Navigating += WebViewOnNavigating;
@@ -181,7 +184,6 @@ namespace HomeBudgeStandard.Pages
                 UserDialogs.Instance.ShowLoading("");
                 var code = GetCodeFromUrl(e.Url);
                 var result = await DropboxOAuth2Helper.ProcessCodeFlowAsync(code, DropboxCloudStorage.AppKey, DropboxCloudStorage.AppSecret, _redirectUri);
-                //DropboxOAuth2Helper.ParseTokenFragment(new Uri(e.Url));
 
                 _settings.CloudAccessToken = result.AccessToken;
                 _settings.CloudRefreshToken = result.RefreshToken;
@@ -238,14 +240,13 @@ namespace HomeBudgeStandard.Pages
 
         private string GetCodeFromUrl(string url)
         {
-            foreach (string item in url.Split('&'))
+            var uri = new Uri(url);
+            var queryDictionary = System.Web.HttpUtility.ParseQueryString(uri.Query);
+            if (queryDictionary["code"] != null)
             {
-                string[] parts = item.Replace("?", "").Split('=');
-                if (parts[0] == "code")
-                {
-                    return parts[1];
-                }
+                return queryDictionary["code"];
             }
+
             return string.Empty;
         }
 

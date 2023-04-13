@@ -1,4 +1,7 @@
-﻿using Dropbox.Api;
+﻿using System;
+using System.IO;
+using System.Threading.Tasks;
+using Dropbox.Api;
 using Dropbox.Api.Files;
 using HomeBudget.Code.Interfaces;
 using HomeBudget.Code.Logic;
@@ -6,10 +9,6 @@ using HomeBudgetShared.Code.Interfaces;
 using HomeBudgetShared.Utils;
 using Newtonsoft.Json;
 using ProtoBuf;
-using System;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace HomeBudget.Code
 {

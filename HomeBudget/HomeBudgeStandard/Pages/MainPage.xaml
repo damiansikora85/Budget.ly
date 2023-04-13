@@ -1,17 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HomeBudgeStandard.Pages.MainPage"
-             xmlns:pages="clr-namespace:HomeBudgeStandard.Pages"
-                  xmlns:test="clr-namespace:HomeBudgeStandard.Pages.Test">
-  <MasterDetailPage.Master>
-    <pages:MainPageMaster x:Name="MasterPage" />
-  </MasterDetailPage.Master>
-    <MasterDetailPage.Detail>
+<FlyoutPage
+    x:Class="HomeBudgeStandard.Pages.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:HomeBudgeStandard.Pages">
+
+    <FlyoutPage.Flyout>
+        <pages:MainPageMaster x:Name="MasterPage" />
+    </FlyoutPage.Flyout>
+    <FlyoutPage.Detail>
         <NavigationPage>
+            <NavigationPage.BarBackground>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Offset="0.1" Color="#00A9FF" />
+                    <GradientStop Offset="1.0" Color="#00D7C4" />
+                </LinearGradientBrush>
+            </NavigationPage.BarBackground>
+
             <x:Arguments>
                 <pages:MainTabbedPage />
             </x:Arguments>
         </NavigationPage>
-    </MasterDetailPage.Detail>
-</MasterDetailPage>
+    </FlyoutPage.Detail>
+</FlyoutPage>

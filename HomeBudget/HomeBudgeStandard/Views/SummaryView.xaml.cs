@@ -96,7 +96,7 @@ namespace HomeBudgeStandard.Views
             {
                 header.HeightRequest = header.MinimumHeightRequest;
             }
-            _viewModel.HeaderScrollProgress = 1 - (_baseHeaderHeight / header.Height ); //1- summaryListView.FirstElementVisibiltyPerc;
+            _viewModel.HeaderScrollProgress = (newHeight - header.MinimumHeightRequest) / (_baseHeaderHeight - header.MinimumHeightRequest);
             debugScroll.Text = $"{summaryListView.FirstElementVisibiltyPerc}";
         }
 
