@@ -209,7 +209,6 @@ namespace HomeBudget.Code
 
         public async Task<bool> Save(bool upload = true)
         {
-            await _saveSemaphore.WaitAsync();
             try
             {
                 await _saveSemaphore.WaitAsync();
