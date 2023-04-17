@@ -131,7 +131,6 @@ namespace HomeBudgeStandard.Views
             TransactionList = new ObservableRangeCollection<TransactionsGroupViewModel>
             {
                 new TransactionsGroupViewModel { IsEmpty = true },
-                new TransactionsGroupViewModel { IsEmpty = true }
             };
             var budgetDesc = _budgetTemplateProvider.GetTemplate();
             var tempList = new List<TransactionsGroupViewModel>();
