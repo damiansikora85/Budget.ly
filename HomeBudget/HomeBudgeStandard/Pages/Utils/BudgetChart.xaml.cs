@@ -35,7 +35,24 @@ namespace HomeBudget.Utils
             set => SetValue(LegendPositionProperty, value);
         }
 
-        public List<OxyPlot.OxyColor> Colors = new List<OxyPlot.OxyColor>
+        public IList<ChartData> Data
+        {
+            get => (IList<ChartData>)GetValue(DataProperty);
+            set
+            {
+                SetValue(DataProperty, value);
+                UpdateData();
+            }
+        }
+        public static BindableProperty DataProperty = BindableProperty.Create(nameof(Data), typeof(IList<ChartData>), typeof(BudgetChart), Enumerable.Empty<ChartData>(), defaultBindingMode:BindingMode.TwoWay, propertyChanged: DataPropertyChanged);
+
+        private static void DataPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            int a = 0;
+            a = 5;
+        }
+
+        public List<OxyPlot.OxyColor> Colors => new List<OxyPlot.OxyColor>
         {
             OxyPlot.OxyColor.Parse("#5CBAE6"), OxyPlot.OxyColor.Parse("#B6D957"), OxyPlot.OxyColor.Parse("#FAC364"),
             OxyPlot.OxyColor.Parse("#8CD3FF"), OxyPlot.OxyColor.Parse("#D998CB"), OxyPlot.OxyColor.Parse("#F2D249"),
@@ -52,13 +69,16 @@ namespace HomeBudget.Utils
             BindingContext = this;
         }
 
-        public void SetData(List<ChartData> data)
+        private void UpdateData()
         {
             if (!_isGridCreated)
+            {
                 CreateGrid();
+            }
 
             Device.BeginInvokeOnMainThread(() =>
             {
+                var data = Data.ToList();
                 data.Sort((el1, el2) => el2.Value.CompareTo(el1.Value));
                 var series = new PieSeries
                 {
@@ -83,7 +103,7 @@ namespace HomeBudget.Utils
                 }
                 else
                 {
-                    for (int i = 0; i < data.Count; i++)
+                    for (var i = 0; i < data.Count; i++)
                     {
                         series.Slices.Add(new PieSlice(data[i].Label, data[i].Value));
                         data[i].Color = ToColor(Colors[i]);

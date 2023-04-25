@@ -1,28 +1,50 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:utils="clr-namespace:HomeBudget.Utils"
-             x:Class="HomeBudgeStandard.Views.BudgetPlanView"
-             Title="Planowanie">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="HomeBudgeStandard.Views.BudgetPlanView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:utils="clr-namespace:HomeBudget.Utils"
+    Title="Planowanie">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="ContentTemplate">
                 <Grid x:Name="mainGrid">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="2*" />
                     </Grid.RowDefinitions>
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="12,0">
-                        <Button x:Name="PreviousMonthButton" BackgroundColor="Transparent" Text="&#xf104;" Clicked="OnPrevMonth" WidthRequest="60" HorizontalOptions="Start">
+                    <StackLayout
+                        Margin="12,0"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal">
+                        <Button
+                            x:Name="PreviousMonthButton"
+                            BackgroundColor="Transparent"
+                            Clicked="OnPrevMonth"
+                            HorizontalOptions="Start"
+                            Text="&#xf104;"
+                            WidthRequest="60">
                             <Button.FontFamily>
                                 <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
                             </Button.FontFamily>
                         </Button>
-                        <Label Text="{Binding Date}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" FontSize="Large" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
-                        <Button x:Name="NextMonthButton" BackgroundColor="Transparent" Text="&#xf105;" Clicked="OnNextMonth" WidthRequest="60" HorizontalOptions="End">
+                        <Label
+                            FontSize="Large"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="NoWrap"
+                            Text="{Binding Date}"
+                            VerticalTextAlignment="Center" />
+                        <Button
+                            x:Name="NextMonthButton"
+                            BackgroundColor="Transparent"
+                            Clicked="OnNextMonth"
+                            HorizontalOptions="End"
+                            Text="&#xf105;"
+                            WidthRequest="60">
                             <Button.FontFamily>
                                 <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
                             </Button.FontFamily>
@@ -31,36 +53,58 @@
 
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="60"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
-                            <Label x:Name="ExpensesChartSwitch" Text="Wydatki" FontAttributes="Bold" TextDecorations="{Binding ExpensesChartTextDecorations}" Rotation="270" Grid.Row="0" VerticalTextAlignment="Center" LineBreakMode="NoWrap">
+                            <Label
+                                x:Name="ExpensesChartSwitch"
+                                Grid.Row="0"
+                                FontAttributes="Bold"
+                                LineBreakMode="NoWrap"
+                                Rotation="270"
+                                Text="Wydatki"
+                                TextDecorations="{Binding ExpensesChartTextDecorations}"
+                                VerticalTextAlignment="Center">
                                 <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding ExpensesChartCommand}"/>
+                                    <TapGestureRecognizer Command="{Binding ExpensesChartCommand}" />
                                 </Label.GestureRecognizers>
                             </Label>
-                            <Label x:Name="IncomeChartSwitch" Text="Dochody" FontAttributes="Bold" TextDecorations="{Binding IncomesChartTextDecorations}" Rotation="270" Grid.Row="1" VerticalTextAlignment="Center" LineBreakMode="NoWrap">
+                            <Label
+                                x:Name="IncomeChartSwitch"
+                                Grid.Row="1"
+                                FontAttributes="Bold"
+                                LineBreakMode="NoWrap"
+                                Rotation="270"
+                                Text="Dochody"
+                                TextDecorations="{Binding IncomesChartTextDecorations}"
+                                VerticalTextAlignment="Center">
                                 <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding IncomesChartCommand}"/>
+                                    <TapGestureRecognizer Command="{Binding IncomesChartCommand}" />
                                 </Label.GestureRecognizers>
                             </Label>
                         </Grid>
 
-                        <utils:BudgetChart Grid.Column="1" x:Name="chartExpense" LegendPosition="RightSide" IsVisible="{Binding ExpensesVisible}"/>
-                        <utils:BudgetChart Grid.Column="1" x:Name="chartIncome" LegendPosition="RightSide" IsVisible="{Binding IncomesVisible}"/>
+                        <utils:BudgetChart
+                            Grid.Column="1"
+                            IsVisible="{Binding ExpensesVisible}"
+                            LegendPosition="RightSide"
+                            Data="{Binding ExpensesChartData}"/>
+                        <utils:BudgetChart
+                            Grid.Column="1"
+                            IsVisible="{Binding IncomesVisible}"
+                            LegendPosition="RightSide"
+                            Data="{Binding IncomesChartData}"/>
                     </Grid>
 
                 </Grid>
             </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
-    
 </ContentPage>

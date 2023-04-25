@@ -1,10 +1,18 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<Grid xmlns="http://xamarin.com/schemas/2014/forms" 
-      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-      xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
-      xmlns:local="clr-namespace:HomeBudget.Utils"
-      x:Class="HomeBudget.Utils.BudgetChart">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Grid
+    x:Class="HomeBudget.Utils.BudgetChart"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms">
 
-    <oxy:PlotView x:Name="chart" VerticalOptions="Center" HorizontalOptions="Center" />
-    <Label x:Name="noDataLabel" Text="Brak danych" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+    <oxy:PlotView
+        x:Name="chart"
+        HorizontalOptions="Center"
+        VerticalOptions="Center" />
+    <Label
+        x:Name="noDataLabel"
+        FontSize="20"
+        HorizontalTextAlignment="Center"
+        Text="Brak danych"
+        VerticalTextAlignment="Center" />
 </Grid>

@@ -195,8 +195,8 @@ namespace HomeBudgeStandard.Views
                 }  
             });
                 
-            _chartExpense.SetData(chartDataExpenses);
-            _chartIncome.SetData(chartDataIncome);
+            //_chartExpense.SetData(chartDataExpenses);
+            //_chartIncome.SetData(chartDataIncome);
         }
 
         private void ForceSwitchChart(Label label)

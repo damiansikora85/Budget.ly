@@ -1,19 +1,23 @@
-﻿using HomeBudget.Code;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Utils;
 using MvvmHelpers;
-using MvvmHelpers.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace HomeBudgeStandard.Views.ViewModels
 {
     public class BudgetPlanViewModel : BaseViewModel
     {
+        public ObservableCollection<BudgetViewModelData> Budget
+        {
+            get; set;
+        }
         public bool ExpensesVisible { get; private set; } = true;
         public bool IncomesVisible { get; private set; } = false;
         public TextDecorations ExpensesChartTextDecorations { get; private set; } = TextDecorations.Underline;
@@ -21,18 +25,25 @@ namespace HomeBudgeStandard.Views.ViewModels
         public ICommand ExpensesChartCommand { get; private set; }
         public ICommand IncomesChartCommand { get; private set; }
 
-        private List<ChartData> _expensesChartData;
-        private List<ChartData> _incomesChartData;
-        public List<ChartData> ExpensesChartData => _expensesChartData;
-        public List<ChartData> IncomesChartData => _incomesChartData;
+        //private List<ChartData> _expensesChartData;
+        //private List<ChartData> _incomesChartData;
+        public List<ChartData> ExpensesChartData
+        {
+            get; private set;
+        }
+        public List<ChartData> IncomesChartData
+        {
+            get; private set;
+        }
 
         public BudgetPlanViewModel()
         {
             ExpensesChartCommand = new MvvmHelpers.Commands.Command(ForceSwitchChart);
             IncomesChartCommand = new MvvmHelpers.Commands.Command(ForceSwitchChart);
+            Budget = new ObservableCollection<BudgetViewModelData>();
         }
 
-        internal void ForceSwitchChart()
+        public void ForceSwitchChart()
         {
             ExpensesVisible = !ExpensesVisible;
             IncomesVisible = !IncomesVisible;
@@ -49,31 +60,77 @@ namespace HomeBudgeStandard.Views.ViewModels
         {
             var budgetPlanned = MainBudget.Instance.GetMonth(date).BudgetPlanned;
 
-            _incomesChartData = new List<ChartData>();
+            IncomesChartData = new List<ChartData>();
             var incomesCategories = budgetPlanned.GetIncomesCategories();
             var totalIncome = incomesCategories.Sum(el => el.TotalValues);
-            foreach (BudgetPlannedCategory category in incomesCategories)
+            foreach (var category in incomesCategories.Cast<BudgetPlannedCategory>())
             {
-                foreach (BaseBudgetSubcat subcat in category.subcats)
+                foreach (var subcat in category.subcats)
                 {
                     if (subcat.Value > 0)
                     {
-                        _incomesChartData.Add(new ChartData { Label = subcat.Name, Value = subcat.Value, Percentage = subcat.Value / totalIncome });
+                        IncomesChartData.Add(new ChartData { Label = subcat.Name, Value = subcat.Value, Percentage = subcat.Value / totalIncome });
                     }
                 }
 
             }
-            _expensesChartData = new List<ChartData>();
+            ExpensesChartData = new List<ChartData>();
             var totalExpense = budgetPlanned.Categories.Sum(el => el.TotalValues) - totalIncome;
-            foreach (BudgetPlannedCategory category in budgetPlanned.Categories)
+            foreach (var category in budgetPlanned.Categories.Cast<BudgetPlannedCategory>())
             {
                 if (!category.IsIncome && category.TotalValues > 0)
                 {
-                    _expensesChartData.Add(new ChartData { Label = category.Name, Value = category.TotalValues, Percentage = category.TotalValues / totalExpense });
+                    ExpensesChartData.Add(new ChartData { Label = category.Name, Value = category.TotalValues, Percentage = category.TotalValues / totalExpense });
                 }
             }
+            OnPropertyChanged(nameof(IncomesChartData));
+            OnPropertyChanged(nameof(ExpensesChartData));
             //_chartExpense.SetData(chartDataExpenses);
             //_chartIncome.SetData(chartDataIncome);
+        }
+
+        private void SetupDataGrid(DateTime date)
+        {
+            var budget = new ObservableCollection<BudgetViewModelData>();
+            try
+            {
+                var budgetPlanned = MainBudget.Instance.GetMonth(date).BudgetPlanned;
+
+                foreach (var category in budgetPlanned.Categories)
+                {
+                    foreach (var subcat in category.subcats)
+                    {
+                        var model = new BudgetViewModelData
+                        {
+                            Category = category,
+                            Subcat = subcat,
+                            SubcatPlanned = subcat as PlannedSubcat,
+                        };
+                        budget.Add(model);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                var msg = e.Message;
+                return;
+            }
+
+            Budget = budget;
+            OnPropertyChanged(nameof(Budget));
+
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                
+
+                //_previousMonthButton.IsEnabled = MainBudget.Instance.HasMonthData(_currentMonth.AddMonths(-1));
+                //_nextMonthButton.IsEnabled = MainBudget.Instance.HasMonthData(_currentMonth.AddMonths(1));
+            });
+        }
+
+        public void Setup()
+        {
+            SetupDataGrid(DateTime.Now);
         }
     }
 }
