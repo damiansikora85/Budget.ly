@@ -1,5 +1,6 @@
 ﻿using OxyPlot.Series;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Forms;
@@ -35,21 +36,23 @@ namespace HomeBudget.Utils
             set => SetValue(LegendPositionProperty, value);
         }
 
-        public IList<ChartData> Data
+        public IEnumerable Data
         {
-            get => (IList<ChartData>)GetValue(DataProperty);
+            get => (IEnumerable)GetValue(DataProperty);
             set
             {
                 SetValue(DataProperty, value);
                 UpdateData();
             }
         }
-        public static BindableProperty DataProperty = BindableProperty.Create(nameof(Data), typeof(IList<ChartData>), typeof(BudgetChart), Enumerable.Empty<ChartData>(), defaultBindingMode:BindingMode.TwoWay, propertyChanged: DataPropertyChanged);
+        public static BindableProperty DataProperty = BindableProperty.Create(nameof(Data), typeof(IEnumerable), typeof(BudgetChart), null,  propertyChanged: DataPropertyChanged);
 
         private static void DataPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            int a = 0;
-            a = 5;
+            if(bindable is BudgetChart chart) 
+            {
+                chart.UpdateData();
+            }
         }
 
         public List<OxyPlot.OxyColor> Colors => new List<OxyPlot.OxyColor>
@@ -66,7 +69,6 @@ namespace HomeBudget.Utils
         public BudgetChart ()
 		{
 			InitializeComponent ();
-            BindingContext = this;
         }
 
         private void UpdateData()
@@ -78,7 +80,7 @@ namespace HomeBudget.Utils
 
             Device.BeginInvokeOnMainThread(() =>
             {
-                var data = Data.ToList();
+                var data = new List<ChartData>((IEnumerable<ChartData>)Data);
                 data.Sort((el1, el2) => el2.Value.CompareTo(el1.Value));
                 var series = new PieSeries
                 {

@@ -23,12 +23,14 @@
                         <Button
                             x:Name="PreviousMonthButton"
                             BackgroundColor="Transparent"
-                            Clicked="OnPrevMonth"
+                            Command="{Binding PrevMonthCommand}"
                             HorizontalOptions="Start"
                             Text="&#xf104;"
                             WidthRequest="60">
                             <Button.FontFamily>
-                                <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"/>
+                                </OnPlatform>
                             </Button.FontFamily>
                         </Button>
                         <Label
@@ -41,12 +43,14 @@
                         <Button
                             x:Name="NextMonthButton"
                             BackgroundColor="Transparent"
-                            Clicked="OnNextMonth"
+                            Command="{Binding NextMonthCommand}"
                             HorizontalOptions="End"
                             Text="&#xf105;"
                             WidthRequest="60">
                             <Button.FontFamily>
-                                <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"/>
+                                </OnPlatform>
                             </Button.FontFamily>
                         </Button>
                     </StackLayout>

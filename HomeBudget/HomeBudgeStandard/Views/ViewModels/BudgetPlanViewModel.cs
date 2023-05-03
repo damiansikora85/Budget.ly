@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -22,11 +23,14 @@ namespace HomeBudgeStandard.Views.ViewModels
         public bool IncomesVisible { get; private set; } = false;
         public TextDecorations ExpensesChartTextDecorations { get; private set; } = TextDecorations.Underline;
         public TextDecorations IncomesChartTextDecorations { get; private set; } = TextDecorations.None;
+
         public ICommand ExpensesChartCommand { get; private set; }
         public ICommand IncomesChartCommand { get; private set; }
+        public ICommand PrevMonthCommand { get; private set; }
+        public ICommand NextMonthCommand { get; private set; }
+        public ICommand SaveCommand { get; private set; }
 
-        //private List<ChartData> _expensesChartData;
-        //private List<ChartData> _incomesChartData;
+       
         public List<ChartData> ExpensesChartData
         {
             get; private set;
@@ -36,11 +40,30 @@ namespace HomeBudgeStandard.Views.ViewModels
             get; private set;
         }
 
+        private DateTime _currentMonth;
+
+        private CultureInfo _cultureInfoPL = new CultureInfo("pl-PL");
+        public string Date
+        {
+            get => _currentMonth.ToString("MMMM yyyy", _cultureInfoPL);
+        }
+
         public BudgetPlanViewModel()
         {
+            _currentMonth = DateTime.Now;
             ExpensesChartCommand = new MvvmHelpers.Commands.Command(ForceSwitchChart);
             IncomesChartCommand = new MvvmHelpers.Commands.Command(ForceSwitchChart);
+            PrevMonthCommand = new MvvmHelpers.Commands.AsyncCommand(OnPrevMonth);
+            NextMonthCommand = new MvvmHelpers.Commands.AsyncCommand(OnNextMonth);
+            SaveCommand = new MvvmHelpers.Commands.AsyncCommand(OnSave);
             Budget = new ObservableCollection<BudgetViewModelData>();
+        }
+
+        public void Setup()
+        {
+            _currentMonth = DateTime.Now;
+            SetupDataGrid(DateTime.Now);
+            UpdateCharts();
         }
 
         public void ForceSwitchChart()
@@ -56,9 +79,9 @@ namespace HomeBudgeStandard.Views.ViewModels
             OnPropertyChanged(nameof(IncomesChartTextDecorations));
         }
 
-        internal void UpdateCharts(DateTime date)
+        public void UpdateCharts()
         {
-            var budgetPlanned = MainBudget.Instance.GetMonth(date).BudgetPlanned;
+            var budgetPlanned = MainBudget.Instance.GetMonth(_currentMonth).BudgetPlanned;
 
             IncomesChartData = new List<ChartData>();
             var incomesCategories = budgetPlanned.GetIncomesCategories();
@@ -83,10 +106,33 @@ namespace HomeBudgeStandard.Views.ViewModels
                     ExpensesChartData.Add(new ChartData { Label = category.Name, Value = category.TotalValues, Percentage = category.TotalValues / totalExpense });
                 }
             }
+
             OnPropertyChanged(nameof(IncomesChartData));
             OnPropertyChanged(nameof(ExpensesChartData));
-            //_chartExpense.SetData(chartDataExpenses);
-            //_chartIncome.SetData(chartDataIncome);
+        }
+
+        private async Task OnSave()
+        {
+            await MainBudget.Instance.UpdateMainPlannedBudget(_currentMonth);
+            //UserDialogs.Instance.Toast("Ten plan budżetu będzie używany w kolejnych miesiącach");
+        }
+
+        private async Task OnNextMonth()
+        {
+            _currentMonth = _currentMonth.AddMonths(1);
+            await RefreshAsync();
+        }
+
+        private async Task OnPrevMonth()
+        {
+            _currentMonth = _currentMonth.AddMonths(-1);
+            await RefreshAsync();
+        }
+        private async Task RefreshAsync()
+        {
+            OnPropertyChanged(nameof(Date));
+            //await SetupDataGrid(_currentMonth);
+            UpdateCharts();
         }
 
         private void SetupDataGrid(DateTime date)
@@ -121,16 +167,9 @@ namespace HomeBudgeStandard.Views.ViewModels
 
             Device.BeginInvokeOnMainThread(() =>
             {
-                
-
                 //_previousMonthButton.IsEnabled = MainBudget.Instance.HasMonthData(_currentMonth.AddMonths(-1));
                 //_nextMonthButton.IsEnabled = MainBudget.Instance.HasMonthData(_currentMonth.AddMonths(1));
             });
-        }
-
-        public void Setup()
-        {
-            SetupDataGrid(DateTime.Now);
         }
     }
 }
