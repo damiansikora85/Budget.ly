@@ -27,7 +27,11 @@ namespace HomeBudgeStandard.Views
         bool _isActive;
         public virtual bool IsActive
         {
-            get => _isActive;
+            get
+            {
+                return _isActive;
+            }
+
             set
             {
                 if (_isActive != value)

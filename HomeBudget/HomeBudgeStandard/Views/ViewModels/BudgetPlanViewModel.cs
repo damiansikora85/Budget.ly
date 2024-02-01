@@ -42,7 +42,7 @@ namespace HomeBudgeStandard.Views.ViewModels
 
         private DateTime _currentMonth;
 
-        private CultureInfo _cultureInfoPL = new CultureInfo("pl-PL");
+        private readonly CultureInfo _cultureInfoPL = new CultureInfo("pl-PL");
         public string Date
         {
             get => _currentMonth.ToString("MMMM yyyy", _cultureInfoPL);
