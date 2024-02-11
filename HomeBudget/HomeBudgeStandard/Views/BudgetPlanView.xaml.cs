@@ -66,7 +66,7 @@ namespace HomeBudgeStandard.Views
             else
             {
                 _viewModel.UpdateCharts();
-                ForceSwitchChart();
+                _viewModel.ForceSwitchChart();
             }
 
             _setupDone = true;
@@ -105,7 +105,7 @@ namespace HomeBudgeStandard.Views
             else
             {
                 _viewModel.UpdateCharts();
-                ForceSwitchChart();
+                _viewModel.ForceSwitchChart();
             }
 
             _setupDone = true;
@@ -115,7 +115,7 @@ namespace HomeBudgeStandard.Views
 
         private void SetupVariables()
         {
-            _mainGrid = this.Content.FindByName<Grid>("mainGrid");
+            _mainGrid = Content.FindByName<Grid>("mainGrid");
         }
 
         private void Setup()
@@ -228,11 +228,6 @@ namespace HomeBudgeStandard.Views
 
             Grid.SetRow(grid, 2);
             _mainGrid.Children.Add(grid);
-        }
-
-        private void ForceSwitchChart()
-        {
-            _viewModel.ForceSwitchChart();
         }
 
         private void DataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)

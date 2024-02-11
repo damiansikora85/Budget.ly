@@ -21,7 +21,6 @@
                         HorizontalOptions="FillAndExpand"
                         Orientation="Horizontal">
                         <Button
-                            x:Name="PreviousMonthButton"
                             BackgroundColor="Transparent"
                             Command="{Binding PrevMonthCommand}"
                             HorizontalOptions="Start"
@@ -29,7 +28,7 @@
                             WidthRequest="60">
                             <Button.FontFamily>
                                 <OnPlatform x:TypeArguments="x:String">
-                                    <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"/>
+                                    <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
                                 </OnPlatform>
                             </Button.FontFamily>
                         </Button>
@@ -41,7 +40,6 @@
                             Text="{Binding Date}"
                             VerticalTextAlignment="Center" />
                         <Button
-                            x:Name="NextMonthButton"
                             BackgroundColor="Transparent"
                             Command="{Binding NextMonthCommand}"
                             HorizontalOptions="End"
@@ -49,7 +47,7 @@
                             WidthRequest="60">
                             <Button.FontFamily>
                                 <OnPlatform x:TypeArguments="x:String">
-                                    <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"/>
+                                    <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
                                 </OnPlatform>
                             </Button.FontFamily>
                         </Button>
@@ -68,7 +66,6 @@
                             </Grid.RowDefinitions>
 
                             <Label
-                                x:Name="ExpensesChartSwitch"
                                 Grid.Row="0"
                                 FontAttributes="Bold"
                                 LineBreakMode="NoWrap"
@@ -81,7 +78,6 @@
                                 </Label.GestureRecognizers>
                             </Label>
                             <Label
-                                x:Name="IncomeChartSwitch"
                                 Grid.Row="1"
                                 FontAttributes="Bold"
                                 LineBreakMode="NoWrap"
@@ -97,14 +93,14 @@
 
                         <utils:BudgetChart
                             Grid.Column="1"
+                            Data="{Binding ExpensesChartData}"
                             IsVisible="{Binding ExpensesVisible}"
-                            LegendPosition="RightSide"
-                            Data="{Binding ExpensesChartData}"/>
+                            LegendPosition="RightSide" />
                         <utils:BudgetChart
                             Grid.Column="1"
+                            Data="{Binding IncomesChartData}"
                             IsVisible="{Binding IncomesVisible}"
-                            LegendPosition="RightSide"
-                            Data="{Binding IncomesChartData}"/>
+                            LegendPosition="RightSide" />
                     </Grid>
 
                 </Grid>
