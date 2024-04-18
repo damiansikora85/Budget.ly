@@ -128,6 +128,7 @@ namespace HomeBudgeStandard.Views.ViewModels
             _currentMonth = _currentMonth.AddMonths(-1);
             await RefreshAsync();
         }
+
         private async Task RefreshAsync()
         {
             OnPropertyChanged(nameof(Date));

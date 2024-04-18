@@ -1,13 +1,10 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:converters="clr-namespace:HomeBudget.Converters"
-             xmlns:utils="clr-namespace:HomeBudget.Utils"
-             xmlns:sf="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
-             xmlns:data="clr-namespace:Syncfusion.Data;assembly=Syncfusion.Data.Portable"
-             xmlns:effects="clr-namespace:HomeBudgeStandard.Effects"
-             x:Class="HomeBudgeStandard.Views.BudgetRealView"
-             Title="Rzeczywiste wydatki">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="HomeBudgeStandard.Views.BudgetRealView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:utils="clr-namespace:HomeBudget.Utils"
+    Title="Rzeczywiste wydatki">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -15,51 +12,108 @@
 
                 <Grid x:Name="mainGrid">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="45" />
                     </Grid.RowDefinitions>
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="12,0">
-                        <Button x:Name="PreviousMonthButton" Text="&#xf104;" BackgroundColor="Transparent" Clicked="OnPrevMonth" WidthRequest="60" HorizontalOptions="Start">
+                    <StackLayout
+                        Margin="12,0"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal">
+                        <Button
+                            BackgroundColor="Transparent"
+                            Command="{Binding PrevMonthCommand}"
+                            HorizontalOptions="Start"
+                            Text="&#xf104;"
+                            WidthRequest="60">
                             <Button.FontFamily>
-                                <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                                </OnPlatform>
                             </Button.FontFamily>
                         </Button>
-                        <Label Text="{Binding Date}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" FontSize="Large" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
-                        <Button x:Name="NextMonthButton" BackgroundColor="Transparent" Text="&#xf105;" Clicked="OnNextMonth" WidthRequest="60" HorizontalOptions="End">
+                        <Label
+                            FontSize="Large"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="NoWrap"
+                            Text="{Binding Date}"
+                            VerticalTextAlignment="Center" />
+                        <Button
+                            BackgroundColor="Transparent"
+                            Command="{Binding NextMonthCommand}"
+                            HorizontalOptions="End"
+                            Text="&#xf105;"
+                            WidthRequest="60">
                             <Button.FontFamily>
-                                <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"/>
+                                </OnPlatform>
                             </Button.FontFamily>
                         </Button>
                     </StackLayout>
 
                     <Grid Grid.Row="1" Margin="12,0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        
-                        
-                        <Label x:Name="ExpensesChartSwitch" Text="Wydatki" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="NoWrap">
+
+
+                        <Label
+                            FontSize="18"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="NoWrap"
+                            Text="Wydatki"
+                            TextDecorations="{Binding ExpensesChartTextDecorations}"
+                            VerticalTextAlignment="Center">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer/>
+                                <TapGestureRecognizer Command="{Binding ExpensesChartCommand}" />
                             </Label.GestureRecognizers>
                         </Label>
-                        <Label x:Name="IncomeChartSwitch" Grid.Column="1" Text="Dochody" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
-                        
+                        <Label
+                            Grid.Column="1"
+                            FontSize="18"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="NoWrap"
+                            Text="Dochody"
+                            TextDecorations="{Binding IncomesChartTextDecorations}"
+                            VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding IncomesChartCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
 
-                        <utils:BudgetChart x:Name="chartExpense" Grid.Row="1" Grid.ColumnSpan="2" LegendPosition="Bottom"/>
-                        <utils:BudgetChart x:Name="chartIncome" IsVisible="False" Grid.Row="1" Grid.ColumnSpan="2" LegendPosition="Bottom"/>
+
+                        <utils:BudgetChart
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            Data="{Binding ExpensesChartData}"
+                            IsVisible="{Binding ExpensesVisible}"
+                            LegendPosition="Bottom" />
+                        <utils:BudgetChart
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            Data="{Binding IncomesChartData}"
+                            IsVisible="{Binding IncomesVisible}"
+                            LegendPosition="Bottom" />
                     </Grid>
 
-                    <Button Grid.Row="2" Text="&#xf002;" Margin="12,5" Style="{StaticResource ButtonStyle}" Clicked="OnDetailsClick">
+                    <Button
+                        Grid.Row="2"
+                        Margin="12,5"
+                        Clicked="OnDetailsClick"
+                        Style="{StaticResource ButtonStyle}"
+                        Text="&#xf002;">
                         <Button.FontFamily>
-                            <OnPlatform x:TypeArguments="x:String" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"/>
+                            </OnPlatform>
                         </Button.FontFamily>
                     </Button>
 

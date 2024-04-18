@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:sf="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
-             xmlns:utils="clr-namespace:HomeBudget.Utils"
-             xmlns:converters="clr-namespace:HomeBudget.Converters"
-             xmlns:data="clr-namespace:Syncfusion.Data;assembly=Syncfusion.Data.Portable"
-             xmlns:views="clr-namespace:HomeBudgeStandard.Views"
-             x:Class="HomeBudget.Pages.BudgetDataGridPage"
-             Title="Rzeczywista realizacja budżetu">
+<ContentPage
+    x:Class="HomeBudget.Pages.BudgetDataGridPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:HomeBudget.Converters"
+    xmlns:data="clr-namespace:Syncfusion.Data;assembly=Syncfusion.Data.Portable"
+    xmlns:sf="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+    xmlns:utils="clr-namespace:HomeBudget.Utils"
+    xmlns:views="clr-namespace:HomeBudgeStandard.Views"
+    Title="Rzeczywista realizacja budżetu">
     <!--<ContentPage.Resources>
         <ResourceDictionary>
             <utils:BudgetDataGridStyle x:Key="DataGridStyle"/>
@@ -18,13 +19,13 @@
             <converters:CurrencyValueConverter x:Key="CurrencyValueConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>-->
-    
+
     <ContentPage.Content>
         <StackLayout x:Name="mainLayout">
             <!--<Label Text="Rzeczywista realizacja budżetu" TextColor="Black" FontSize="18" HorizontalTextAlignment="Center"/>
-            <sf:SfDataGrid x:Name="dataGrid" EnableDataVirtualization="True" 
-                               AutoGenerateColumns="False" 
-                               AutoExpandGroups="False" 
+            <sf:SfDataGrid x:Name="dataGrid" EnableDataVirtualization="True"
+                               AutoGenerateColumns="False"
+                               AutoExpandGroups="False"
                                AllowGroupExpandCollapse="True"
                                LiveDataUpdateMode="AllowSummaryUpdate"
                                SelectionMode="SingleDeselect"
@@ -49,7 +50,7 @@
                             <sf:GridSummaryColumn Name="Total"
                                       Format="C"
                                       MappingName="Subcat.Value"
-                                      SummaryType="Custom" 
+                                      SummaryType="Custom"
                                       CustomAggregate="{StaticResource SummaryCaptionAgregate}"/>
                         </sf:GridGroupSummaryRow.SummaryColumns>
                     </sf:GridGroupSummaryRow>
