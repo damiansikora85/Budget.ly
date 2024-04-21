@@ -124,6 +124,8 @@
     <Folder Include="TinyIoC\" />
   </ItemGroup>
 
-  <Import Project="..\..\HomeBudgetShared\HomeBudgetShared.projitems" Label="Shared" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\HomeBudget.Shared\HomeBudget.Shared.csproj" />
+  </ItemGroup>
 
 </Project>

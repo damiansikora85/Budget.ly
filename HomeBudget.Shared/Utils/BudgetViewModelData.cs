@@ -1,0 +1,43 @@
+﻿using System;
+using System.ComponentModel;
+using HomeBudget.Code.Logic;
+
+namespace HomeBudget.Utils
+{
+    public class BudgetViewModelData : INotifyPropertyChanged
+    {
+        public string Name { get; set; }
+        public BaseBudgetCategory Category { get; set; }
+        public BaseBudgetSubcat Subcat { get; set; }
+        public RealSubcat SubcatReal { get; set; }
+        public PlannedSubcat SubcatPlanned { get; set; }
+
+        public BudgetRealCategory CategoryReal { get; set; }
+        public bool IsIncome => Category.IsIncome;
+
+        private int test;
+        public int Test
+        {
+            get => test;
+            set
+            {
+                test = value;
+                RaisePropertyChanged(nameof(Test));
+            }
+        }
+
+        public BudgetViewModelData()
+        {
+            var rand = new Random();
+            test = rand.Next(100);
+        }
+
+        public BudgetViewModelData Thiz { get { return this; } }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void RaisePropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+    }
+}
