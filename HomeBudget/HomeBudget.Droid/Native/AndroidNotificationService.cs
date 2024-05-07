@@ -6,8 +6,6 @@ using Android.OS;
 using Android.Support.V4.App;
 using HomeBudgeStandard.Interfaces;
 using System;
-using Xamarin.Forms;
-using Xamarin.Essentials;
 using Android.Widget;
 using Android.Util;
 using AndroidX.Core.App;

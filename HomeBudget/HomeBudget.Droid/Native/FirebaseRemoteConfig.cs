@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Firebase.RemoteConfig;
 using HomeBudget.Standard;
-using Xamarin.Forms;
 
 [assembly: Dependency(typeof(HomeBudget.Droid.Native.CustomFirebaseRemoteConfig))]
 namespace HomeBudget.Droid.Native

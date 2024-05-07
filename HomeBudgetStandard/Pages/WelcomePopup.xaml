@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="HomeBudgeStandard.Pages.WelcomePopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    CanBeDismissedByTappingOutsideOfPopup="False">
+
+    <StackLayout VerticalOptions="Center">
+        <Frame Margin="12,0" VerticalOptions="Center">
+            <Grid>
+                <StackLayout x:Name="welcome">
+                    <Image HeightRequest="100" Source="Logo256" />
+
+                    <Label
+                        Margin="0,10"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        Text="Dziękuję za pobranie Budget.ly!" />
+                    <Label
+                        HorizontalTextAlignment="Center"
+                        Text="Pozwól, że krótko przedstawię Ci możliwości aplikacji"
+                        VerticalOptions="StartAndExpand" />
+
+                    <Label
+                        FontAttributes="Italic"
+                        HorizontalTextAlignment="Center"
+                        Text="&quot;Tworzenie budżetu to pokazywanie Twoim pieniądzom, dokąd mają iść, zamiast zastanawiania się, gdzie się rozeszły &quot;"
+                        VerticalOptions="End" />
+                    <Label
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="End"
+                        Text="Dave Ramsey" />
+
+                    <Button
+                        Margin="12,10,12,0"
+                        Clicked="SwitchToHowTo"
+                        Style="{StaticResource ButtonStyle}"
+                        Text="Dalej" />
+                </StackLayout>
+
+                <StackLayout x:Name="howTo">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Szablon budżetu"
+                        VerticalOptions="CenterAndExpand" />
+
+                    <Label Text="Szablon budżetu został podzielony na kategorie oraz podkategorie - umożliwi Ci to dokładną analizę co dzieję się z Twoimi pieniędzmi. Dostosuj szablon do Twoich potrzeb i stwórz prawdziwy budżet osobisty!" VerticalOptions="Start" />
+
+                    <Label Margin="0,12" VerticalOptions="StartAndExpand">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Szablon pochodzi ze strony:&#x0a;" />
+                                <Span
+                                    FontAttributes="Bold"
+                                    Text="jakoszczedzacpieniadze.pl"
+                                    TextColor="Blue">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding LinkCommand}" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Button
+                        Clicked="SwitchToWelcome"
+                        Style="{StaticResource ButtonStyle}"
+                        Text="Wróć" />
+                    <Button
+                        Margin="0,12"
+                        Clicked="SwitchToPlanning"
+                        Style="{StaticResource ButtonStyle}"
+                        Text="Dalej" />
+                </StackLayout>
+
+                <StackLayout x:Name="planning">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Jak zacząć?"
+                        VerticalOptions="CenterAndExpand" />
+
+                    <Label Text="Na początek ułóż plan wydatków i zarobków na bieżący miesiąc." VerticalOptions="Start" />
+
+                    <Label Text="Dodawaj na bieżąco wydatki w aplikacji - np. raz w tygodniu. Zbieraj paragony!" VerticalOptions="Start" />
+
+                    <Label Text="Możesz ustawić przypomnienie w aplikacji aby nie zapomnieć - sprawdź ustawienia." VerticalOptions="StartAndExpand" />
+
+                    <Button
+                        Margin="0,20,0,12"
+                        Clicked="SwitchToHowTo"
+                        Style="{StaticResource ButtonStyle}"
+                        Text="Wróć" />
+                    <Button
+                        Clicked="SwitchToSynchro"
+                        Style="{StaticResource ButtonStyle}"
+                        Text="Dalej" />
+                </StackLayout>
+
+                <StackLayout x:Name="dropbox">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Synchronizacja"
+                        VerticalOptions="CenterAndExpand" />
+
+                    <Image
+                        Margin="0,10"
+                        HeightRequest="120"
+                        Source="dropboxInfo.png" />
+                    <Label Text="Możesz współdzielić swój budżet z innymi urządzeniami Android - sprawdź opcje synchronizacji." VerticalOptions="Start" />
+                    <Label Text="Dane będą zapisywane na Twoim koncie Dropbox - tylko Ty będziesz miał do nich dostęp." VerticalOptions="StartAndExpand" />
+
+                    <Button
+                        Margin="0,12"
+                        Clicked="SwitchToPlanning"
+                        Style="{StaticResource ButtonStyle}"
+                        Text="Wróć" />
+                    <Button
+                        Clicked="LetsStart"
+                        Style="{StaticResource ButtonStyle}"
+                        Text="Zaczynamy!" />
+                </StackLayout>
+            </Grid>
+        </Frame>
+    </StackLayout>
+</toolkit:Popup>

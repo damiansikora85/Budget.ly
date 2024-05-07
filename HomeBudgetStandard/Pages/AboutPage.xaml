@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HomeBudgeStandard.Pages.AboutPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="O Aplikacji">
+
+    <StackLayout Margin="20,10">
+        <Image HeightRequest="100" Source="Logo256" />
+        <Label
+            FontSize="26"
+            HorizontalTextAlignment="Center"
+            LineBreakMode="NoWrap"
+            Text="Budget.ly"
+            TextColor="DodgerBlue" />
+        <Label Text="Budget.ly to aplikacja do łatwego zarządzania Twoim budżetem domowym." TextColor="Black" />
+        <Label TextColor="Black">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Wzorzec kategorii pochodzi z bloga:&#x0a;" />
+                    <Span
+                        FontAttributes="Bold"
+                        Text="jakoszczedzacpieniadze.pl"
+                        TextColor="Blue">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LinkJOP}" />
+                        </Span.GestureRecognizers>
+                    </Span>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <Label TextColor="Black" VerticalOptions="StartAndExpand">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Ikony pochodzą ze strony:&#x0a;" />
+                    <Span
+                        FontAttributes="Bold"
+                        Text="icons8.com"
+                        TextColor="Blue">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LinkI8}" />
+                        </Span.GestureRecognizers>
+                    </Span>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+        <Label x:Name="version" VerticalOptions="End" />
+    </StackLayout>
+
+</ContentPage>
