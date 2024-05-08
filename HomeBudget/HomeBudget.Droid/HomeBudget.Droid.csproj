@@ -261,6 +261,8 @@
     </PackageReference>-->
     <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.20" />
     <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.20" />
+    <PackageReference Include="Xamarin.AndroidX.Collection.Jvm" Version="1.4.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.Collection.Ktx" Version="1.4.0.1" />
     <PackageReference Include="Xamarin.Firebase.Config" Version="121.6.0.1" />
   </ItemGroup>
   <ItemGroup>

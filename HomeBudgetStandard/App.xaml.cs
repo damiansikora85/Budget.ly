@@ -38,7 +38,7 @@ namespace HomeBudget
 #endif
 
 #if !CUSTOM
-            DependencyService.Get<IRemoteConfig>().Init();
+            //DependencyService.Get<IRemoteConfig>().Init();
 #endif
 
             if (Preferences.Get("firstLaunch", true))
