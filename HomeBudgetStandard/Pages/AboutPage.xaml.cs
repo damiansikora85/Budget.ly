@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Microsoft.Maui;
 
-namespace HomeBudgeStandard.Pages
+namespace HomeBudgetStandard.Pages
 {
 	public partial class AboutPage : ContentPage
 	{

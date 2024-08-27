@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeBudgeStandard.Interfaces.Impl
+namespace HomeBudgetStandard.Interfaces.Impl
 {
     public class PurchaseService : IPurchaseService
     {

@@ -1,7 +1,7 @@
 ﻿using Acr.UserDialogs;
 using Dropbox.Api;
 using Dropbox.Api.Files;
-using HomeBudgeStandard.Interfaces.Impl;
+using HomeBudgetStandard.Interfaces.Impl;
 using HomeBudget.Code;
 using HomeBudget.Code.Interfaces;
 //using HomeBudget.Helpers;
@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 using Microsoft.Maui;
 
-namespace HomeBudgeStandard.Pages
+namespace HomeBudgetStandard.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DropboxPage : ContentPage

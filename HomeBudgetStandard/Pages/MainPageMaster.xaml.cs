@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using FontAwesome;
 
-namespace HomeBudgeStandard.Pages
+namespace HomeBudgetStandard.Pages
 {
     public partial class MainPageMaster : ContentPage
     {

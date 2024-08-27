@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
-    x:Class="HomeBudgeStandard.Views.SummaryView"
+    x:Class="HomeBudgetStandard.Views.SummaryView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:HomeBudget.Components"
-    xmlns:local="clr-namespace:HomeBudgeStandard.Converters"
+    xmlns:local="clr-namespace:HomeBudgetStandard.Converters"
     xmlns:utils="clr-namespace:HomeBudget.Pages.Utils"
-    xmlns:utils1="clr-namespace:HomeBudgeStandard.Utils"
-    xmlns:views="clr-namespace:HomeBudgeStandard.Views"
+    xmlns:utils1="clr-namespace:HomeBudgetStandard.Utils"
+    xmlns:views="clr-namespace:HomeBudgetStandard.Views"
+    IconImageSource="homeTab.png"
     x:Name="ThisPage">
 
     <ContentPage.Resources>
@@ -143,21 +144,27 @@
                 </components:CustomListView.ItemTemplate>
             </components:CustomListView>
 
-            <components:GradientView
-                Grid.Row="1"
-                EndColor="#00D7C4"
-                HeightRequest="48"
-                InputTransparent="True"
-                StartColor="#00A9FF" />
+            <BoxView Grid.Row="1" HeightRequest="48">
+                <BoxView.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Offset="0.0" Color="#00A9FF" />
+                        <GradientStop Offset="0.5" Color="#00D7C4" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
             <views:SummaryTabsView
                 Grid.Row="1"
                 HorizontalOptions="FillAndExpand"
                 SelectionChanged="SummaryTabsView_SelectionChanged" />
 
-            <components:GradientView
-                EndColor="#00D7C4"
-                InputTransparent="True"
-                StartColor="#00A9FF" />
+            <BoxView>
+                <BoxView.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Offset="0.0" Color="#00A9FF" />
+                        <GradientStop Offset="0.5" Color="#00D7C4" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
 
             <Grid
                 x:Name="header"

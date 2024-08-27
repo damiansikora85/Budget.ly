@@ -3,7 +3,7 @@ using System.Windows.Input;
 using CommunityToolkit.Maui.Views;
 using Syncfusion.Calculate;
 
-namespace HomeBudgeStandard.Views
+namespace HomeBudgetStandard.Views
 {
 	public partial class CalcView : Popup
     {

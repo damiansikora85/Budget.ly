@@ -9,7 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using HomeBudgeStandard.Components;
+using HomeBudgetStandard.Components;
 
 
 //[assembly: ExportRenderer(typeof(CustomDatePicker), typeof(HomeBudget.Droid.Renderers.CustomDatePickerRenderer))]

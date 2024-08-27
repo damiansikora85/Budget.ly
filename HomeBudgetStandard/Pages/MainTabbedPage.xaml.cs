@@ -1,11 +1,11 @@
 ﻿using Acr.UserDialogs;
-using HomeBudgeStandard.Views;
+using HomeBudgetStandard.Views;
 using HomeBudget.Code;
 using HomeBudget.Code.Interfaces;
 using System;
 using Microsoft.Maui;
 
-namespace HomeBudgeStandard.Pages
+namespace HomeBudgetStandard.Pages
 {
     public partial class MainTabbedPage : TabbedPage
     {

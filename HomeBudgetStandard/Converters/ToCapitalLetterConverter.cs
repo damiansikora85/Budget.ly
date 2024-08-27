@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Text;
 using Microsoft.Maui;
 
-namespace HomeBudgeStandard.Converters
+namespace HomeBudgetStandard.Converters
 {
     public class ToCapitalLetterConverter : IValueConverter
     {

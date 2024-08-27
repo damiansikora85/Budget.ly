@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Text;
 using Microsoft.Maui;
 
-namespace HomeBudgeStandard.Utils
+namespace HomeBudgetStandard.Utils
 {
     [ContentProperty(nameof(Source))]
     public class ImageResourceExtension : IMarkupExtension

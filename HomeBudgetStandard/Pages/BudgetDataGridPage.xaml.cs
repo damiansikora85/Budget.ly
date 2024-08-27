@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using HomeBudgeStandard.Views;
+using HomeBudgetStandard.Views;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Converters;

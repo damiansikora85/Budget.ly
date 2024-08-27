@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HomeBudgeStandard.Interfaces
+namespace HomeBudgetStandard.Interfaces
 {
     public interface INotificationService
     {

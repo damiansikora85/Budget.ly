@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeBudgeStandard.Pages
+namespace HomeBudgetStandard.Pages
 {
     public class MainPageMenuItem
     {

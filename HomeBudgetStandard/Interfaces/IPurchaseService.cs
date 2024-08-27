@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Plugin.InAppBilling;
 
-namespace HomeBudgeStandard.Interfaces
+namespace HomeBudgetStandard.Interfaces
 {
     public interface IPurchaseService
     {

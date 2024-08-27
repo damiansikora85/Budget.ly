@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Maui;
 
-namespace HomeBudgeStandard.Utils
+namespace HomeBudgetStandard.Utils
 {
     public class SummaryListViewTemplateSelector : DataTemplateSelector
     {

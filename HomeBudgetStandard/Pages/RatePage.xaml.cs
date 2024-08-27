@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Maui.Views;
 using Microsoft.AppCenter.Analytics;
 
-namespace HomeBudgeStandard.Pages
+namespace HomeBudgetStandard.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class RatePage : Popup

@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage
-    x:Class="HomeBudgeStandard.Pages.MainTabbedPage"
+    x:Class="HomeBudgetStandard.Pages.MainTabbedPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
     xmlns:utils="clr-namespace:HomeBudget.Utils"
-    xmlns:views="clr-namespace:HomeBudgeStandard.Views"
-    android:TabbedPage.IsSwipePagingEnabled="true">
+    xmlns:views="clr-namespace:HomeBudgetStandard.Views"
+    android:TabbedPage.IsSwipePagingEnabled="true"
+    BarTextColor="White">
     <TabbedPage.Behaviors>
         <utils:ActivePageTabbedPageBehavior />
     </TabbedPage.Behaviors>
@@ -20,6 +21,8 @@
     <views:SummaryView />
     <views:BudgetRealView />
     <views:BudgetPlanView />
+    
+
     <!--<views:TestPage Title="Test"/>-->
 
 </TabbedPage>

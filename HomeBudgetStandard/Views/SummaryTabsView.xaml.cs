@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Microsoft.Maui;
 
-namespace HomeBudgeStandard.Views
+namespace HomeBudgetStandard.Views
 {
     public partial class SummaryTabsView : Grid
     {

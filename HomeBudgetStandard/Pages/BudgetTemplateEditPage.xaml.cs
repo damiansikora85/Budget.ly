@@ -1,6 +1,6 @@
 ﻿using HomeBudget.Code;
 
-namespace HomeBudgeStandard.Pages
+namespace HomeBudgetStandard.Pages
 {
     public partial class BudgetTemplateEditPage : ContentPage
     {

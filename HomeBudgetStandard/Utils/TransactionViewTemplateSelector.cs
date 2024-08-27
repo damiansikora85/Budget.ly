@@ -1,11 +1,11 @@
-﻿using HomeBudgeStandard.Views.ViewModels;
+﻿using HomeBudgetStandard.Views.ViewModels;
 using HomeBudget.Code.Logic;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Maui;
 
-namespace HomeBudgeStandard.Utils
+namespace HomeBudgetStandard.Utils
 {
     public class TransactionViewTemplateSelector : DataTemplateSelector
     {

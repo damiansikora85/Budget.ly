@@ -1,6 +1,6 @@
 ﻿using Android.Content;
 using AndroidX.Core.Content.Resources;
-using HomeBudgeStandard.Components;
+using HomeBudgetStandard.Components;
 
 //[assembly: ExportRenderer(typeof(GradientProgressBar), typeof(HomeBudget.Droid.Renderers.GradientProgressBarRenderer))]
 //namespace HomeBudget.Droid.Renderers

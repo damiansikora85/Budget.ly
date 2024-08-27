@@ -2,14 +2,14 @@
 using System.Windows.Input;
 using Acr.UserDialogs;
 using CommunityToolkit.Maui.Views;
-using HomeBudgeStandard.Views.ViewModels;
+using HomeBudgetStandard.Views.ViewModels;
 using HomeBudget.Code;
 using HomeBudget.Code.Interfaces;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
 using HomeBudget.Utils;
 
-namespace HomeBudgeStandard.Views
+namespace HomeBudgetStandard.Views
 {
     public partial class SummaryView : ContentPage
 	{

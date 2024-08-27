@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
-using HomeBudgeStandard.Interfaces;
+using HomeBudgetStandard.Interfaces;
 using HomeBudget.Code;
 using HomeBudget.Pages;
 using HomeBudget.Utils;
@@ -37,7 +37,7 @@ namespace HomeBudgetStandard.Views
             Budget = new ObservableCollection<BudgetViewModelData>();
             _viewModel = new BudgetRealViewModel();
             BindingContext = _viewModel;
-            //InitializeComponent();
+            InitializeComponent();
         }
 
         protected override void OnAppearing()

@@ -1,14 +1,13 @@
 ﻿
 using System;
-using HomeBudgeStandard.Interfaces.Impl;
-using HomeBudgeStandard.Pages;
+using HomeBudgetStandard.Interfaces.Impl;
+using HomeBudgetStandard.Pages;
 using HomeBudget.Code.Interfaces;
 using HomeBudget.Standard;
 using Microsoft.AppCenter.Crashes;
 using TinyIoC;
 using Microsoft.Maui;
 
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace HomeBudget
 {
     public partial class App : Application

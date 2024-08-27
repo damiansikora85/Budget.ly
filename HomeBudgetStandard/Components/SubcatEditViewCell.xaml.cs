@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 using Microsoft.Maui;
 
-namespace HomeBudgeStandard.Components
+namespace HomeBudgetStandard.Components
 {
     public partial class SubcatEditViewCell : ViewCell
     {

@@ -1,16 +1,17 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Acr.UserDialogs;
-using HomeBudgeStandard.Providers;
-using HomeBudgeStandard.Views.ViewModels;
+using HomeBudgetStandard.Providers;
+using HomeBudgetStandard.Views.ViewModels;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
 using HomeBudget.UseCases;
 using HomeBudgetShared.Code.Interfaces;
 using Microsoft.AppCenter.Crashes;
+using HomeBudgeStandard;
 
-namespace HomeBudgeStandard.Views
+namespace HomeBudgetStandard.Views
 {
     public class SummaryViewModel : INotifyPropertyChanged
     {

@@ -1,6 +1,6 @@
-﻿using HomeBudgeStandard.Interfaces;
+﻿using HomeBudgetStandard.Interfaces;
 
-namespace HomeBudgeStandard.Utils
+namespace HomeBudgetStandard.Utils
 {
     public class NotificationManager
     {

@@ -1,12 +1,12 @@
 ﻿
 using Acr.UserDialogs;
-using HomeBudgeStandard.Utils;
+using HomeBudgetStandard.Utils;
 using HomeBudget;
 using System;
 using System.ComponentModel;
 using Microsoft.Maui;
 
-namespace HomeBudgeStandard.Pages
+namespace HomeBudgetStandard.Pages
 {
     public partial class SettingsPage : ContentPage, INotifyPropertyChanged
     {

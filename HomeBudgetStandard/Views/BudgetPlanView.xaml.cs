@@ -1,15 +1,14 @@
 ﻿using Acr.UserDialogs;
-using HomeBudgeStandard.Interfaces;
-using HomeBudgeStandard.Views.ViewModels;
+using HomeBudgetStandard.Interfaces;
+using HomeBudgetStandard.Views.ViewModels;
 using HomeBudget.Code;
 using HomeBudget.Converters;
 using HomeBudgetStandard.Views.ViewModels;
 using Syncfusion.Maui.Data;
 using Syncfusion.Maui.DataGrid;
 
-namespace HomeBudgeStandard.Views
+namespace HomeBudgetStandard.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class BudgetPlanView : ContentPage, IActiveAware
     {
         private BudgetPlanViewModel _viewModel;

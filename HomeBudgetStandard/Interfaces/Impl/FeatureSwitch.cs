@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Maui;
 
-namespace HomeBudgeStandard.Interfaces.Impl
+namespace HomeBudgetStandard.Interfaces.Impl
 {
     public class FeatureSwitch : IFeatureSwitch
     {

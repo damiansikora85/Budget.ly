@@ -1,13 +1,13 @@
 ﻿using System.Globalization;
-using HomeBudgeStandard.Interfaces.Impl;
-using HomeBudgeStandard.Utils;
+using HomeBudgetStandard.Interfaces.Impl;
+using HomeBudgetStandard.Utils;
 using HomeBudget.Code;
 using HomeBudget.Code.Interfaces;
 using HomeBudget.Helpers;
 using HomeBudgetShared.Code.Synchronize;
 using Microsoft.AppCenter.Crashes;
 
-namespace HomeBudgeStandard.Pages
+namespace HomeBudgetStandard.Pages
 {
     public partial class MainPage : FlyoutPage
     {
