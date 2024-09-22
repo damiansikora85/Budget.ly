@@ -1,11 +1,12 @@
 ﻿using System.Globalization;
 using System.Windows.Input;
 using CommunityToolkit.Maui.Views;
+using Mopups.Pages;
 using Syncfusion.Calculate;
 
 namespace HomeBudgetStandard.Views
 {
-	public partial class CalcView : Popup
+	public partial class CalcView : PopupPage
     {
         public enum CalculatorKey
         {
@@ -194,7 +195,7 @@ namespace HomeBudgetStandard.Views
                     CalculationResultText = calcQuick.ParseAndCompute(formulaText);
                     OnPropertyChanged("CategoryReal.TotalValues");
                     OnSaveValue?.Invoke(double.Parse(calculationResultText), Note, Calendar.Date);
-                    Close();
+                    //Close();
                 }
             }
             else
@@ -230,7 +231,7 @@ namespace HomeBudgetStandard.Views
 
         private void OnCancelClicked(object sender, EventArgs e)
         {
-            Close();
+            //Close();
             OnCancel?.Invoke();
         }
 

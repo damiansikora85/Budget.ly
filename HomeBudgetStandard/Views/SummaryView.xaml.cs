@@ -8,6 +8,7 @@ using HomeBudget.Code.Interfaces;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
 using HomeBudget.Utils;
+using Mopups.Services;
 
 namespace HomeBudgetStandard.Views
 {
@@ -143,7 +144,8 @@ namespace HomeBudgetStandard.Views
                 _isAddingExpenseInProgress = false;
             };
 
-            this.ShowPopup(_calcView);
+            await MopupService.Instance.PushAsync(_calcView);
+            //this.ShowPopup(_calcView);
         }
 
         private void ExpandCategory(BudgetSummaryDataViewModel element)
