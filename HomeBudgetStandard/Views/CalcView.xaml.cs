@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using CommunityToolkit.Maui.Views;
 using Mopups.Pages;
+using Mopups.Services;
 using Syncfusion.Calculate;
 
 namespace HomeBudgetStandard.Views
@@ -190,13 +191,14 @@ namespace HomeBudgetStandard.Views
         {
             if (_dateSelected)
             {
-                using (var calcQuick = new CalcQuickBase { ThrowCircularException = true })
-                {
-                    CalculationResultText = calcQuick.ParseAndCompute(formulaText);
-                    OnPropertyChanged("CategoryReal.TotalValues");
-                    OnSaveValue?.Invoke(double.Parse(calculationResultText), Note, Calendar.Date);
-                    //Close();
-                }
+                using var calcQuick = new CalcQuickBase { ThrowCircularException = true };
+
+                CalculationResultText = calcQuick.ParseAndCompute(formulaText);
+                OnPropertyChanged("CategoryReal.TotalValues");
+                OnSaveValue?.Invoke(double.Parse(calculationResultText), Note, Calendar.Date);
+
+                MopupService.Instance.PopAsync();
+
             }
             else
             {
@@ -231,7 +233,7 @@ namespace HomeBudgetStandard.Views
 
         private void OnCancelClicked(object sender, EventArgs e)
         {
-            //Close();
+            MopupService.Instance.PopAsync();
             OnCancel?.Invoke();
         }
 
@@ -251,10 +253,10 @@ namespace HomeBudgetStandard.Views
             }
         }
 
-        //protected override bool OnBackButtonPressed()
-        //{
-        //    OnCancel?.Invoke();
-        //    return base.OnBackButtonPressed();
-        //}
+        protected override bool OnBackButtonPressed()
+        {
+            OnCancel?.Invoke();
+            return base.OnBackButtonPressed();
+        }
     }
 }
