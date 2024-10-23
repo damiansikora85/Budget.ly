@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Windows.Input;
 using CommunityToolkit.Maui.Views;
+using Microsoft.Maui.Handlers;
 using Mopups.Pages;
 using Mopups.Services;
 using Syncfusion.Calculate;
@@ -207,6 +208,9 @@ namespace HomeBudgetStandard.Views
                     _saveAfterDateSelected = true;
                     Calendar.Unfocus();
                     Calendar.Focus();
+
+                    //var handler = Calendar.Handler as IDatePickerHandler;
+                    //handler.PlatformView.PerformClick();
                 }
                 catch(Exception exc)
                 {

@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    x:Class="HomeBudgetStandard.Views.CalcView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:HomeBudgetStandard.Components"
+    xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Padding="5">
+
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="calcButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="DodgerBlue" />
+                <Setter Property="BorderColor" Value="Gray" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="BorderWidth" Value="1" />
+            </Style>
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+
+    <Border
+        Margin="30,40"
+        Padding="10"
+        BackgroundColor="#EEFFFFFF"
+        Stroke="DodgerBlue"
+        StrokeShape="RoundRectangle 32">
+        <Grid
+            ColumnDefinitions="*,*,*,*"
+            ColumnSpacing="4"
+            RowDefinitions="65, 2*,2*,2*,2*,2*,2*,2*,2*,3*"
+            RowSpacing="4">
+            <Grid
+                Grid.ColumnSpan="4"
+                ColumnDefinitions="*,3*"
+                RowDefinitions="3*,2*">
+                <components:CustomDatePicker
+                    x:Name="Calendar"
+                    FontSize="20"
+                    Format="&#xf073; "
+                    HorizontalOptions="Center"
+                    MaximumDate="{x:Static sys:DateTime.Now}"
+                    TextColor="DodgerBlue">
+                    <DatePicker.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="Android" Value="Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free Regular" />
+                        </OnPlatform>
+                    </DatePicker.FontFamily>
+                </components:CustomDatePicker>
+
+                <Label
+                    x:Name="dateLabel"
+                    Grid.Row="1"
+                    Margin="8,2"
+                    FontSize="12"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    TextColor="DodgerBlue" />
+                <Label
+                    x:Name="Header"
+                    Grid.Column="1"
+                    FontSize="20"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    LineBreakMode="TailTruncation"
+                    Text="{Binding Category}"
+                    TextColor="Black" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Subcat}"
+                    TextColor="Black" />
+            </Grid>
+
+            <Editor
+                x:Name="test"
+                Grid.Row="1"
+                Grid.ColumnSpan="4"
+                Keyboard="Numeric"
+                Text="{Binding FormulaText}"
+                TextColor="#666"
+                VerticalOptions="End" />
+            <Border
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Padding="6,0"
+                Stroke="Gray">
+                <Label
+                    x:Name="Result"
+                    FontSize="Large"
+                    HorizontalTextAlignment="End"
+                    Text="{Binding CalculationResultText}"
+                    TextColor="Black"
+                    VerticalTextAlignment="Center" />
+            </Border>
+
+            <Grid
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                ColumnDefinitions="*,6*">
+                <Label
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    Text="&#xf249;"
+                    VerticalTextAlignment="Center">
+                    <Label.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="Android" Value="Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free Regular" />
+                        </OnPlatform>
+                    </Label.FontFamily>
+                </Label>
+                <Entry
+                    Grid.Column="1"
+                    VerticalTextAlignment="End"
+                    Placeholder="Dodaj notatkę"
+                    Text="{Binding Note}" />
+            </Grid>
+
+
+            <Button
+                Grid.Row="4"
+                Command="{Binding KeyPressed}"
+                CommandParameter="Backspace"
+                Style="{StaticResource calcButton}"
+                Text="←" />
+            <Button
+                Grid.Row="4"
+                Grid.Column="3"
+                Command="{Binding Path=KeyPressed}"
+                CommandParameter="Minus"
+                Style="{StaticResource calcButton}"
+                Text="-"
+                VerticalOptions="FillAndExpand" />
+            <Button
+                Grid.Row="4"
+                Grid.Column="1"
+                Command="{Binding KeyPressed}"
+                CommandParameter="Divide"
+                Style="{StaticResource calcButton}"
+                Text="÷" />
+
+            <Button
+                Grid.Row="5"
+                Grid.RowSpan="2"
+                Grid.Column="3"
+                Command="{Binding Path=KeyPressed}"
+                CommandParameter="Plus"
+                Style="{StaticResource calcButton}"
+                Text="+"
+                VerticalOptions="FillAndExpand" />
+
+            <Button
+                Grid.Row="5"
+                Grid.Column="0"
+                Command="{Binding KeyPressed}"
+                CommandParameter="Seven"
+                HorizontalOptions="Fill"
+                Style="{StaticResource calcButton}"
+                Text="7"
+                VerticalOptions="Fill" />
+            <Button
+                Grid.Row="5"
+                Grid.Column="1"
+                Command="{Binding KeyPressed}"
+                CommandParameter="Eight"
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource calcButton}"
+                Text="8"
+                VerticalOptions="FillAndExpand" />
+            <Button
+                Grid.Row="5"
+                Grid.Column="2"
+                Command="{Binding KeyPressed}"
+                CommandParameter="Nine"
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource calcButton}"
+                Text="9"
+                VerticalOptions="FillAndExpand" />
+            <Button
+                Grid.Row="4"
+                Grid.Column="2"
+                Command="{Binding KeyPressed}"
+                CommandParameter="Multiply"
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource calcButton}"
+                Text="*"
+                VerticalOptions="FillAndExpand" />
+
+            <Button
+                Grid.Row="6"
+                Grid.Column="0"
+                Command="{Binding Path=KeyPressed}"
+                CommandParameter="Four"
+                Style="{StaticResource calcButton}"
+                Text="4"
+                VerticalOptions="FillAndExpand" />
+            <Button
+                Grid.Row="6"
+                Grid.Column="1"
+                Command="{Binding Path=KeyPressed}"
+                CommandParameter="Five"
+                Style="{StaticResource calcButton}"
+                Text="5"
+                VerticalOptions="FillAndExpand" />
+            <Button
+                Grid.Row="6"
+                Grid.Column="2"
+                Command="{Binding Path=KeyPressed}"
+                CommandParameter="Six"
+                Style="{StaticResource calcButton}"
+                Text="6"
+                VerticalOptions="FillAndExpand" />
+
+            <Button
+                Grid.Row="7"
+                Grid.Column="0"
+                Command="{Binding Path=KeyPressed}"
+                CommandParameter="One"
+                Style="{StaticResource calcButton}"
+                Text="1"
+                VerticalOptions="FillAndExpand" />
+            <Button
+                Grid.Row="7"
+                Grid.Column="1"
+                Command="{Binding Path=KeyPressed}"
+                CommandParameter="Two"
+                Style="{StaticResource calcButton}"
+                Text="2"
+                VerticalOptions="FillAndExpand" />
+            <Button
+                Grid.Row="7"
+                Grid.Column="2"
+                Command="{Binding Path=KeyPressed}"
+                CommandParameter="Three"
+                Style="{StaticResource calcButton}"
+                Text="3"
+                VerticalOptions="FillAndExpand" />
+
+            <Button
+                Grid.Row="8"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Command="{Binding KeyPressed}"
+                CommandParameter="Zero"
+                Style="{StaticResource calcButton}"
+                Text="0" />
+            <Button
+                Grid.Row="8"
+                Grid.Column="2"
+                Command="{Binding KeyPressed}"
+                CommandParameter="Point"
+                Style="{StaticResource calcButton}"
+                Text="{Binding DecimalSeparator}" />
+            <Button
+                Grid.Row="7"
+                Grid.RowSpan="2"
+                Grid.Column="3"
+                Command="{Binding KeyPressed}"
+                CommandParameter="Equal"
+                Style="{StaticResource calcButton}"
+                Text="=" />
+
+            <HorizontalStackLayout Grid.Row="9" Grid.ColumnSpan="4" HorizontalOptions="End">
+                <Button
+                    Margin="5,20,5,0"
+                    BackgroundColor="Transparent"
+                    Clicked="OnCancelClicked"
+                    FlexLayout.Grow="1"
+                    FontSize="Body"
+                    HorizontalOptions="End"
+                    Text="Anuluj"
+                    TextColor="DodgerBlue" />
+                <Button
+                    Margin="5,20,5,0"
+                    BackgroundColor="Transparent"
+                    Clicked="OnSave"
+                    FontSize="Body"
+                    HorizontalOptions="End"
+                    Text="Zapisz"
+                    TextColor="DodgerBlue" />
+            </HorizontalStackLayout>
+
+        </Grid>
+    </Border>
+
+</pages:PopupPage>

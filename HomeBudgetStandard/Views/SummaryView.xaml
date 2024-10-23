@@ -8,8 +8,8 @@
     xmlns:utils="clr-namespace:HomeBudget.Pages.Utils"
     xmlns:utils1="clr-namespace:HomeBudgetStandard.Utils"
     xmlns:views="clr-namespace:HomeBudgetStandard.Views"
-    IconImageSource="homeTab.png"
-    x:Name="ThisPage">
+    x:Name="ThisPage"
+    IconImageSource="homeTab.png">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -185,7 +185,6 @@
                     Orientation="Horizontal"
                     VerticalOptions="Start">
                     <Button
-                        x:Name="PreviousMonthButton"
                         BackgroundColor="Transparent"
                         Clicked="OnPrevMonth"
                         FontSize="Large"
@@ -194,8 +193,11 @@
                         TextColor="White"
                         WidthRequest="60">
                         <Button.FontFamily>
-                            <OnPlatform x:TypeArguments="x:String">
+                            <!--<OnPlatform x:TypeArguments="x:String">
                                 <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                            </OnPlatform>-->
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="Android" Value="FontAwesomeSolid" />
                             </OnPlatform>
                         </Button.FontFamily>
                     </Button>

@@ -11,16 +11,15 @@
     </FlyoutPage.Flyout>
     <FlyoutPage.Detail>
         <NavigationPage>
+            <x:Arguments>
+                <pages:MainTabbedPage />
+            </x:Arguments>
             <NavigationPage.BarBackground>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                     <GradientStop Offset="0.1" Color="#00A9FF" />
                     <GradientStop Offset="1.0" Color="#00D7C4" />
                 </LinearGradientBrush>
             </NavigationPage.BarBackground>
-
-            <x:Arguments>
-                <pages:MainTabbedPage />
-            </x:Arguments>
         </NavigationPage>
     </FlyoutPage.Detail>
 </FlyoutPage>

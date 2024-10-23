@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:HomeBudget.Components"
+             x:Class="HomeBudgetStandard.Pages.SettingsPage"
+             Title="Ustawienia">
+    <ContentPage.Content>
+        <StackLayout Margin="6, 0">
+            <Label Text="Powiadomienia" FontSize="Large" LineBreakMode="NoWrap" TextColor="Black"/>
+            <Grid Margin="0, 10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox x:Name="NotificationMonday"/>
+                    <Label Text="Poniedziałek" VerticalTextAlignment="Center"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Column="1">
+                    <CheckBox x:Name="NotificationTuesday" />
+                    <Label Text="Wtorek" VerticalTextAlignment="Center"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Column="2">
+                    <CheckBox x:Name="NotificationWednesday" />
+                    <Label Text="Środa" VerticalTextAlignment="Center"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="1">
+                    <CheckBox x:Name="NotificationThursday" />
+                    <Label Text="Czwartek" VerticalTextAlignment="Center"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                    <CheckBox x:Name="NotificationFriday" />
+                    <Label Text="Piątek" VerticalTextAlignment="Center"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="2">
+                    <CheckBox x:Name="NotificationSaturday" />
+                    <Label Text="Sobota" VerticalTextAlignment="Center"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="2">
+                    <CheckBox x:Name="NotificationSunday"  />
+                    <Label Text="Niedziela" VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Grid>
+
+            <Label Text="O której godzinie wysyłać powiadomienia:" LineBreakMode="NoWrap" TextColor="Black"/>
+            <TimePicker x:Name="NotificationTimePicker" Format="HH:mm"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <CheckBox x:Name="NotificationsCheckbox" CheckedChanged="NotificationsCheckbox_CheckedChanged"/>
+                <Label Text="Wyłącz powiadomienia" VerticalTextAlignment="Center"/>
+            </StackLayout>
+            <Button Text="Zapisz" Clicked="OnSaveClicked" Margin="12,5" Style="{StaticResource ButtonStyle}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
