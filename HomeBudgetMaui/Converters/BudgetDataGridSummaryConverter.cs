@@ -5,7 +5,7 @@ using Microsoft.Maui;
 using Syncfusion.Maui.Data;
 using Syncfusion.Maui.DataGrid;
 
-namespace HomeBudgetStandard.Views
+namespace HomeBudget.Converters
 {
     public class BudgetDataGridSummaryConverter : IValueConverter
     {

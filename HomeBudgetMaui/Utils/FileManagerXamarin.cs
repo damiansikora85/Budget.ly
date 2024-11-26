@@ -174,17 +174,10 @@ namespace HomeBudgetStandard.Utils
 
         public void WriteCustomTemplate(BudgetDescription templateData)
         {
-            try
-            {
-                var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                var filePath = Path.Combine(documentsPath, BudgetTemplateFilename);
-                var jsonString = JsonConvert.SerializeObject(templateData);
-                File.WriteAllText(filePath, jsonString);
-            }
-            catch
-            {
-                throw;
-            }
+            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var filePath = Path.Combine(documentsPath, BudgetTemplateFilename);
+            var jsonString = JsonConvert.SerializeObject(templateData);
+            File.WriteAllText(filePath, jsonString);
         }
     }
 }

@@ -9,17 +9,17 @@
     <ContentPage.Resources>
         <DataTemplate x:Key="NormalTemplate">
             <ViewCell>
-                <StackLayout
+                <HorizontalStackLayout
                     Padding="15,10"
                     HorizontalOptions="FillAndExpand"
-                    Orientation="Horizontal">
+                    Spacing="4">
                     <Label
                         Text="{Binding Icon}"
                         VerticalOptions="FillAndExpand"
                         VerticalTextAlignment="Center">
                         <Label.FontFamily>
                             <OnPlatform x:TypeArguments="x:String">
-                                <On Platform="Android" Value="Font Awesome 5 Brands-Regular-400.otf#Font Awesome 5 Brands Regular" />
+                                <On Platform="Android" Value="FontAwesomeSolid" />
                             </OnPlatform>
                         </Label.FontFamily>
                     </Label>
@@ -27,23 +27,23 @@
                         Text="{Binding Title}"
                         VerticalOptions="FillAndExpand"
                         VerticalTextAlignment="Center" />
-                </StackLayout>
+                </HorizontalStackLayout>
             </ViewCell>
         </DataTemplate>
 
         <DataTemplate x:Key="DropboxTemplate">
             <ViewCell>
-                <StackLayout
+                <HorizontalStackLayout
                     Padding="15,10"
                     HorizontalOptions="FillAndExpand"
-                    Orientation="Horizontal">
+                    Spacing="2">
                     <Label
                         Text="{Binding Icon}"
                         VerticalOptions="FillAndExpand"
                         VerticalTextAlignment="Center">
                         <Label.FontFamily>
                             <OnPlatform x:TypeArguments="x:String">
-                                <On Platform="Android" Value="Font Awesome 5 Brands-Regular-400.otf#Font Awesome 5 Brands Regular" />
+                                <On Platform="Android" Value="FontAwesomeSolid" />
                             </OnPlatform>
                         </Label.FontFamily>
                     </Label>
@@ -51,7 +51,7 @@
                         Text="{Binding Title}"
                         VerticalOptions="FillAndExpand"
                         VerticalTextAlignment="Center" />
-                </StackLayout>
+                </HorizontalStackLayout>
             </ViewCell>
         </DataTemplate>
 
@@ -61,24 +61,22 @@
             NormalTemplate="{StaticResource NormalTemplate}" />
     </ContentPage.Resources>
 
-    <StackLayout>
-        <ListView
-            x:Name="MenuItemsListView"
-            HasUnevenRows="true"
-            ItemTemplate="{StaticResource templateSelector}"
-            ItemsSource="{Binding MenuItems}"
-            SeparatorVisibility="Default">
-            <ListView.Header>
-                <StackLayout Margin="5,14" Orientation="Horizontal">
-                    <Image HeightRequest="50" Source="{utils:ImageResourceExtension HomeBudgetStandard.Assets.Logo.png}" />
-                    <Label
-                        FontAttributes="Bold"
-                        FontSize="Large"
-                        Text="Budget.ly"
-                        TextColor="#00A9FF"
-                        VerticalTextAlignment="End" />
-                </StackLayout>
-            </ListView.Header>
-        </ListView>
-    </StackLayout>
+    <ListView
+        x:Name="MenuItemsListView"
+        HasUnevenRows="true"
+        ItemTemplate="{StaticResource templateSelector}"
+        ItemsSource="{Binding MenuItems}"
+        SeparatorVisibility="Default">
+        <ListView.Header>
+            <HorizontalStackLayout Padding="5,14">
+                <Image HeightRequest="50" Source="logo.png" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Text="Budget.ly"
+                    TextColor="#00A9FF"
+                    VerticalTextAlignment="End" />
+            </HorizontalStackLayout>
+        </ListView.Header>
+    </ListView>
 </ContentPage>

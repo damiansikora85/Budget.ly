@@ -24,4 +24,11 @@
     <item name="android:windowIsFloating">false</item>
     <item name="android:backgroundDimEnabled">true</item>
   </style>
+  <style name="CustomDatePickerDialog" parent="Theme.AppCompat.Light.Dialog">
+    <item name="colorPrimary">#512BD4</item>
+    <item name="colorPrimaryDark">#1976D2</item>
+    <item name="colorAccent">#1E90FF</item>
+    <item name="android:textColor">#4CAF50</item>
+    <item name="android:textColorPrimary">#3F51B5</item>
+</style>
 </resources>

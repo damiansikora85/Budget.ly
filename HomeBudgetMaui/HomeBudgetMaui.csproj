@@ -54,6 +54,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Platforms\Android\google-services.json" />
+	  <None Remove="Platforms\Android\Resources\xml\firebase_default_settings.xml" />
 	  <None Remove="Resources\Fonts\FiraSans-Bold.otf" />
 	  <None Remove="Resources\Fonts\FiraSans-Italic.otf" />
 	  <None Remove="Resources\Fonts\FiraSans-Regular.otf" />
@@ -72,6 +74,7 @@
 	  <None Remove="Resources\Images\home_tab.png" />
 	  <None Remove="Resources\Images\income.png" />
 	  <None Remove="Resources\Images\kids.png" />
+	  <None Remove="Resources\Images\Logo.png" />
 	  <None Remove="Resources\Images\logo_small.png" />
 	  <None Remove="Resources\Images\medicine.png" />
 	  <None Remove="Resources\Images\other.png" />
@@ -103,12 +106,15 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.91" />
 		<PackageReference Include="Mopups.Maui" Version="1.0.0" />
 		<PackageReference Include="OxyPlot.Maui.Skia" Version="1.0.1" />
-		<PackageReference Include="Plugin.InAppBilling" Version="8.0.4" />
+		<PackageReference Include="Plugin.InAppBilling" Version="8.0.5" />
 		<PackageReference Include="Plugin.Maui.DebugRainbows" Version="1.2.1" />
-		<PackageReference Include="Syncfusion.Maui.Core" Version="25.1.40" />
-		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="25.1.40" />
+		<PackageReference Include="Sharpnado.Tabs.Maui" Version="3.2.0" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="27.1.57" />
+		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="27.1.57" />
 		<PackageReference Include="Syncfusion.Xamarin.Calculate" Version="25.1.41" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="Xamarin.AndroidX.Collection.Jvm" Version="1.4.5.1" />
+		<PackageReference Include="Xamarin.Firebase.Config" Version="122.0.1.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -138,6 +144,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\MainTabbedPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\MainTabsPageNew.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\NewFeaturePopup.xaml">
@@ -185,6 +194,14 @@
 	  <MauiXaml Update="Views\SummaryView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Services\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <GoogleServicesJson Include="Platforms\Android\google-services.json" />
 	</ItemGroup>
 
 </Project>

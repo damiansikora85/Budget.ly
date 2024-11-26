@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HomeBudgetStandard.Pages.MainTabsPageNew"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:tabs="http://sharpnado.com"
+    xmlns:views="clr-namespace:HomeBudgetStandard.Views"
+    Title="MainTabsPageNew">
+
+    <ContentPage.Content>
+        <Grid Margin="16,0" RowDefinitions="60,*">
+            <ContentView>
+                <tabs:TabHostView SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}">
+                    <tabs:UnderlinedTabItem Label="Summary" Style="{StaticResource BottomTab}" />
+                    <tabs:UnderlinedTabItem Label="Budget Real" Style="{StaticResource BottomTab}" />
+                    <tabs:UnderlinedTabItem Label="Budget Planned" Style="{StaticResource BottomTab}" />
+                </tabs:TabHostView>
+            </ContentView>
+
+            <tabs:ViewSwitcher
+                x:Name="Switcher"
+                Grid.Row="1"
+                Margin="0"
+                Animate="True"
+                SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}">
+                <tabs:DelayedView
+                    x:TypeArguments="views:SummaryView"
+                    Animate="True"
+                    UseActivityIndicator="True" />
+                <!--<tabs:DelayedView
+                    x:TypeArguments="views:BudgetRealView"
+                    Animate="True"
+                    UseActivityIndicator="True" />
+                <tabs:DelayedView
+                    x:TypeArguments="views:BudgetPlanView"
+                    Animate="True"
+                    UseActivityIndicator="True" />-->
+            </tabs:ViewSwitcher>
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -9,7 +9,7 @@ using Controls.UserDialogs.Maui;
 
 namespace HomeBudgetStandard.Views
 {
-	public partial class BudgetPlanView : ContentPage, IActiveAware
+	public partial class BudgetPlanView : ContentPage//, IActiveAware
     {
         private BudgetPlanViewModel _viewModel;
         private bool _setupDone;   
@@ -40,14 +40,38 @@ namespace HomeBudgetStandard.Views
             _viewModel = new BudgetPlanViewModel();
             BindingContext = _viewModel;
             InitializeComponent();
+
+            SetupVariables();
+            //CreateDataGrid();
+
+            //try
+            //{
+
+            //    if (MainBudget.Instance.IsDataLoaded && !_setupDone)
+            //    {
+            //        Setup();
+            //    }
+            //    else
+            //    {
+            //        _viewModel.UpdateCharts();
+            //        _viewModel.ForceSwitchChart();
+            //    }
+
+            //}
+            //catch (Exception exc)
+            //{
+            //    var msg = exc.Message;
+            //}
+
+            //_setupDone = true;
         }
 
         protected override void OnAppearing()
         {
-            if (!IsActive)
-            {
-                return;
-            }
+            //if (!IsActive)
+            //{
+            //    return;
+            //}
 
             MainBudget.Instance.BudgetDataChanged -= MarkDataChanged;
 
@@ -78,33 +102,40 @@ namespace HomeBudgetStandard.Views
 
         public async Task Activate()
         {
-            UserDialogs.Instance.ShowLoading("");
-
-            var dataTemplate = (DataTemplate)Resources["ContentTemplate"];
-            View view = null;
-            await Task.Factory.StartNew(() =>
+            try
             {
-                view = (View)dataTemplate.CreateContent();
-            });
-            Content = view;
-            BindingContext = _viewModel;
+                UserDialogs.Instance.ShowLoading("");
 
-            SetupVariables();
-            CreateDataGrid();
+                var dataTemplate = (DataTemplate)Resources["ContentTemplate"];
+                View view = null;
+                await Task.Factory.StartNew(() =>
+                {
+                    view = (View)dataTemplate.CreateContent();
+                });
+                Content = view;
+                BindingContext = _viewModel;
 
-            if (MainBudget.Instance.IsDataLoaded && !_setupDone)
-            {
-                Setup();
+                SetupVariables();
+                CreateDataGrid();
+
+                if (MainBudget.Instance.IsDataLoaded && !_setupDone)
+                {
+                    Setup();
+                }
+                else
+                {
+                    _viewModel.UpdateCharts();
+                    _viewModel.ForceSwitchChart();
+                }
+
+                _setupDone = true;
+
+                UserDialogs.Instance.HideHud();
             }
-            else
+            catch (Exception ex)
             {
-                _viewModel.UpdateCharts();
-                _viewModel.ForceSwitchChart();
+                var msg = ex.Message;
             }
-
-            _setupDone = true;
-
-            UserDialogs.Instance.HideHud();
         }
 
         private void SetupVariables()
@@ -122,7 +153,7 @@ namespace HomeBudgetStandard.Views
             _dataGrid = new SfDataGrid
             {
                 //EnableDataVirtualization = true,
-                //AutoGenerateColumns = false,
+                AutoGenerateColumnsMode = AutoGenerateColumnsMode.None,
                 AutoExpandGroups = false,
                 AllowGroupExpandCollapse = true,
                 LiveDataUpdateMode = LiveDataUpdateMode.AllowSummaryUpdate,
@@ -163,7 +194,7 @@ namespace HomeBudgetStandard.Views
                 return new ViewCell { View = stackLayout };
             });
 
-            //var gridSummaryRow = new GridGroupSummaryRow
+            //ar gridSummaryRow = new GridGroupSummaryRow
             //{
             //    ShowSummaryInRow = true,
             //    Title = "{Key}: {Total}",
@@ -190,23 +221,33 @@ namespace HomeBudgetStandard.Views
                 //HeaderCellTextSize = 16,
                 //LoadUIView = true,
                 //ColumnSizer = ColumnSizer.Star,
-                //Width = 100
+                ColumnWidthMode = ColumnWidthMode.FitByCell,
+                Width = 100
             });
 
-            _dataGrid.Columns.Add(new DataGridNumericColumn
+            try
             {
-                MappingName = "SubcatPlanned.Value",
-                HeaderText = "Suma",
-                AllowEditing = true,
-                //HeaderFont = "FiraSans-Bold.otf#Fira Sans Bold",
-                //RecordFont = "FiraSans-Regular.otf#Fira Sans Regular",
-                ////LoadUIView = true,
-                //CellTextSize = 14,
-                //HeaderCellTextSize = 16,
-                //ColumnSizer = ColumnSizer.Star,
+                _dataGrid.Columns.Add(new DataGridNumericColumn
+                {
+                    MappingName = "SubcatPlanned.Value",
+                    HeaderText = "Suma",
+                    AllowEditing = true,
+                    //HeaderFont = "FiraSans-Bold.otf#Fira Sans Bold",
+                    //RecordFont = "FiraSans-Regular.otf#Fira Sans Regular",
+                    ////LoadUIView = true,
+                    //CellTextSize = 14,
+                    //HeaderCellTextSize = 16,
+                    //ColumnSizer = ColumnSizer.Star,
+                    ColumnWidthMode = ColumnWidthMode.FitByCell,
+                    Width = 100
 
-                DisplayBinding = new Binding() { Path = "SubcatPlanned.Value", Converter = new CurrencyValueConverter() }
-            });
+                    //DisplayBinding = new Binding() { Path = "SubcatPlanned.Value", Converter = new CurrencyValueConverter() }
+                });
+            }
+            catch (Exception exc)
+            {
+                var msg = exc.Message;
+            }
 
             _dataGrid.SetBinding(SfDataGrid.ItemsSourceProperty, new Binding(path: nameof(_viewModel.Budget), source: _viewModel));
 
@@ -231,17 +272,20 @@ namespace HomeBudgetStandard.Views
                 return;
             }
 
-            Task.Factory.StartNew(() => MainBudget.Instance.Save());
+            Task.Run(() => MainBudget.Instance.Save());
 
-            Device.BeginInvokeOnMainThread(async () =>
+            if (sender is SfDataGrid dataGrid)
             {
-                await Task.Delay(100);
+                MainThread.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(100);
 
-                _dataGrid.View.TopLevelGroup.UpdateCaptionSummaries();
-                _dataGrid.View.Refresh();
+                    dataGrid.View.TopLevelGroup.UpdateCaptionSummaries();
+                    dataGrid.View.Refresh();
 
-                _viewModel.UpdateCharts();
-            });
+                    _viewModel.UpdateCharts();
+                });
+            }
         }
     }
 }

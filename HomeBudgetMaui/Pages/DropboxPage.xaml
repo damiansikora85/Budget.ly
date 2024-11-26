@@ -14,7 +14,7 @@
             <Image
                 Margin="0,20"
                 HeightRequest="150"
-                Source="dropboxInfo.png" />
+                Source="dropbox_info.png" />
             <Label Text="Dzięki synchronizacji możesz współdzielić budżet na kilku urządzeniach" TextColor="Black" />
             <Grid x:Name="iapLayout" IsVisible="false">
                 <Grid.RowDefinitions>
@@ -66,13 +66,9 @@
                         FontSize="35"
                         LineBreakMode="NoWrap"
                         Text="{Binding SynchronizationStatus}"
-                        TextColor="Black">
-                        <Label.FontFamily>
-                            <OnPlatform x:TypeArguments="x:String">
-                                <On Platform="Android" Value="Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free Regular" />
-                            </OnPlatform>
-                        </Label.FontFamily>
-                    </Label>
+                        FontFamily="FontAwesomeRegular"
+                        TextColor="Black"/>
+                    
                 </StackLayout>
                 <!--<Button Text="Consume" Style="{StaticResource ButtonStyle}" Clicked="OnConsume" Margin="0,15"/>-->
             </StackLayout>

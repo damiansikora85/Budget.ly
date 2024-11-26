@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<defaultsMap>
+  <entry>
+    <key>active_inapp_product_name</key>
+    <value>com.darktower.homebudget.dropboxnormal</value>
+  </entry>
+  <entry>
+    <key>is_promo_active</key>
+    <value>false</value>
+  </entry>
+  <entry>
+    <key>feature_delete_transactions</key>
+    <value>true</value>
+  </entry>
+</defaultsMap>

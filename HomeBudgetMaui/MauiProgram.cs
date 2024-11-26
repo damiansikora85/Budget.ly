@@ -4,6 +4,9 @@ using HomeBudgetMaui.Platforms.Android.CustomHandlers;
 using HomeBudgetStandard.Components;
 using Microsoft.Extensions.Logging;
 using Mopups.Hosting;
+using Sharpnado.Tabs;
+using SkiaSharp.Views.Maui.Controls.Hosting;
+using Syncfusion.Maui.Core.Hosting;
 
 
 namespace HomeBudgetMaui
@@ -19,6 +22,10 @@ namespace HomeBudgetMaui
             .UseMauiCommunityToolkit()
             .UseUserDialogs()
             .ConfigureMopups()
+            .UseSkiaSharp()
+            //.UseOxyPlotSkia()
+            .UseSharpnadoTabs(loggerEnable: false)
+            .ConfigureSyncfusionCore()
             .ConfigureMauiHandlers(handlers =>
             {
                 handlers.AddHandler(typeof(CustomDatePicker), typeof(CustomDatePickerHandler));

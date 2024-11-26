@@ -1,5 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading;
 using System.Threading.Tasks;
 using Dropbox.Api;
 using Dropbox.Api.Files;
@@ -14,6 +17,18 @@ namespace HomeBudget.Code
 {
     public class DropboxCloudStorage : ICloudStorage
     {
+        public class MyAndroidMessageHandler : HttpClientHandler
+        {
+            protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+            {
+                if (request.RequestUri.AbsolutePath.Contains("files/download"))
+                {
+                    request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+                }
+                return await base.SendAsync(request, cancellationToken);
+            }
+        }
+
         public const string AppKey = "p6cayskxetnkx1a";
         public const string AppSecret = "4r9wjtiqkih1knr";
         private DropboxClient _dropboxClient;
@@ -23,7 +38,11 @@ namespace HomeBudget.Code
             {
                 if (_settings.CloudRefreshToken != string.Empty && _dropboxClient == null)
                 {
-                    _dropboxClient = new DropboxClient(_settings.CloudRefreshToken, AppKey, AppSecret);
+                    _dropboxClient = new DropboxClient(_settings.CloudRefreshToken, AppKey, AppSecret, new DropboxClientConfig()
+                    {
+                        HttpClient = new HttpClient(new MyAndroidMessageHandler())
+                    });
+                    //new DropboxClient(accessToken, new DropboxClientConfig() { HttpClient = new HttpClient(new HttpClientHandler()) }); 
                 }
                 return _dropboxClient;
             }

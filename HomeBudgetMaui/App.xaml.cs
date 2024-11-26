@@ -1,12 +1,8 @@
-﻿using System;
+﻿using HomeBudget.Code.Interfaces;
 using HomeBudgetStandard.Interfaces.Impl;
 using HomeBudgetStandard.Pages;
-using HomeBudget.Code.Interfaces;
-using HomeBudget.Standard;
 using Microsoft.AppCenter.Crashes;
 using TinyIoC;
-using Microsoft.Maui;
-using HomeBudgetMaui.Pages;
 
 namespace HomeBudgetMaui
 {
@@ -14,7 +10,7 @@ namespace HomeBudgetMaui
     {
         public App()
         {
-            //Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTcxNDE5NEAzMjMxMmUzMTJlMzMzOUc3M3NFTlJlblMzWGJXYTNjMHYxVnltZUVSYTlSNWJEaEV5dDZ1bnVLeXM9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzU2Mzk5OUAzMjM3MmUzMDJlMzBmL1V1RGhLWXl4MVFJZnNvSjRRc0lpNnM5VjJGR1IxeCtyS3Y4S1k2aGFRPQ==");
             InitializeComponent();
             RegisterServices(TinyIoCContainer.Current);
 
@@ -37,7 +33,7 @@ namespace HomeBudgetMaui
 #endif
 
 #if !CUSTOM
-            //DependencyService.Get<IRemoteConfig>().Init();
+            HomeBudget.Standard.RemoteConfig.Instance.Init();
 #endif
 
             if (Preferences.Get("firstLaunch", true))

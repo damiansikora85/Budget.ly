@@ -79,31 +79,39 @@ namespace HomeBudgetStandard.Views
 
         public async Task Activate()
         {
-            UserDialogs.Instance.ShowLoading("");
+            try
+            {
 
-            var dataTemplate = (DataTemplate)Resources["ContentTemplate"];
-            View view = null;
-            await Task.Factory.StartNew(() =>
-            {
-                view = (View)dataTemplate.CreateContent();
-            });
-            Content = view;
+                UserDialogs.Instance.ShowLoading("");
 
-            if (MainBudget.Instance.IsDataLoaded && !_setupDone)
-            {
-                Setup();
-            }
-            else
-            {
-                OnPropertyChanged(nameof(Budget));
-                _viewModel.UpdateCharts();
-                _viewModel.ForceSwitchChart();
-            }
+                var dataTemplate = (DataTemplate)Resources["ContentTemplate"];
+                View view = null;
+                await Task.Factory.StartNew(() =>
+                {
+                    view = (View)dataTemplate.CreateContent();
+                });
+                Content = view;
+
+                if (MainBudget.Instance.IsDataLoaded && !_setupDone)
+                {
+                    Setup();
+                }
+                else
+                {
+                    OnPropertyChanged(nameof(Budget));
+                    _viewModel.UpdateCharts();
+                    _viewModel.ForceSwitchChart();
+                }
 
 #if ANDROID
-            UserDialogs.Instance.HideHud();
+                UserDialogs.Instance.HideHud();
 #endif
-            _setupDone = true;
+                _setupDone = true;
+            }
+            catch (Exception exc)
+            {
+                var msg = exc.Message;
+            }
         }
 
         private async void OnDetailsClick(object sender, EventArgs args)

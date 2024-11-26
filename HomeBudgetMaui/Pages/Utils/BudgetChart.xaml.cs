@@ -122,7 +122,7 @@ namespace HomeBudget.Utils
 
         private void CreateGrid()
         {
-            Device.BeginInvokeOnMainThread(() =>
+            MainThread.BeginInvokeOnMainThread(() =>
             {
                 if (LegendPosition == LegendPositionEnum.Bottom || LegendPosition == LegendPositionEnum.Top)
                 {
@@ -191,7 +191,7 @@ namespace HomeBudget.Utils
                 ItemTemplate = new DataTemplate(() =>
                   {
                       var viewcell = new ViewCell();
-                      var layout = new StackLayout { Orientation = StackOrientation.Horizontal };
+                      var layout = new HorizontalStackLayout { Spacing = 4 };
                       var box = new BoxView { WidthRequest = 20, Margin = new Thickness(0, 11) };
                       box.SetBinding(BoxView.ColorProperty, new Binding("Color"));
                       var label = new Label { FontSize = 12, VerticalTextAlignment = TextAlignment.Center };
