@@ -174,7 +174,9 @@ namespace HomeBudgetStandard.Utils
 
         public void WriteCustomTemplate(BudgetDescription templateData)
         {
-            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            ///data/user/0/com.darktower.homebudget/files/budgetTemplate.json
+            var documentsPath = Platform.AppContext.FilesDir.AbsolutePath;
+            //var documentsPath = Android.OS.Environment.DataDirectory.AbsolutePath;//Environment.GetFolderPath(Environment.SpecialFolder.);
             var filePath = Path.Combine(documentsPath, BudgetTemplateFilename);
             var jsonString = JsonConvert.SerializeObject(templateData);
             File.WriteAllText(filePath, jsonString);
