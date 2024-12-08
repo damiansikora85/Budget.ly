@@ -77,7 +77,7 @@ namespace HomeBudget.Utils
                 CreateGrid();
             }
 
-            Device.BeginInvokeOnMainThread(() =>
+            MainThread.BeginInvokeOnMainThread(() =>
             {
                 var data = new List<ChartData>((IEnumerable<ChartData>)Data);
                 data.Sort((el1, el2) => el2.Value.CompareTo(el1.Value));
@@ -223,7 +223,7 @@ namespace HomeBudget.Utils
                 legendGrid.Children.Clear();
                 for (var i = 0; i < data.Count; i++)
                 {
-                    var layout = new StackLayout { Orientation = StackOrientation.Horizontal, HeightRequest = 20 };
+                    var layout = new HorizontalStackLayout { Spacing = 4, HeightRequest = 20 };
                     var box = new BoxView { Color = data[i].Color, WidthRequest = 10, HeightRequest = 10 };
                     var label = new Label { Text = $"{data[i].Label} ({Math.Round(data[i].Percentage*100, 1)}%)", FontSize = 12 };
                     layout.Children.Add(box);

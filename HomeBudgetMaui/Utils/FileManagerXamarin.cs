@@ -8,7 +8,7 @@ namespace HomeBudgetStandard.Utils
 {
     public class FileManagerXamarin : IFileManager
     {
-        private object lockFile = new object();
+        private readonly object lockFile = new object();
         private const string BudgetFilename = "budget.dat";
         private const string BudgetBackupFilename = "backup.dat";
         private const string BudgetTemplateFilename = "budgetTemplate.json";
@@ -174,9 +174,7 @@ namespace HomeBudgetStandard.Utils
 
         public void WriteCustomTemplate(BudgetDescription templateData)
         {
-            ///data/user/0/com.darktower.homebudget/files/budgetTemplate.json
             var documentsPath = Platform.AppContext.FilesDir.AbsolutePath;
-            //var documentsPath = Android.OS.Environment.DataDirectory.AbsolutePath;//Environment.GetFolderPath(Environment.SpecialFolder.);
             var filePath = Path.Combine(documentsPath, BudgetTemplateFilename);
             var jsonString = JsonConvert.SerializeObject(templateData);
             File.WriteAllText(filePath, jsonString);

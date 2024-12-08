@@ -24,15 +24,11 @@
                         <Button
                             BackgroundColor="Transparent"
                             Command="{Binding PrevMonthCommand}"
+                            FontFamily="FontAwesomeSolid"
                             HorizontalOptions="Start"
                             Text="&#xf104;"
-                            WidthRequest="60">
-                            <Button.FontFamily>
-                                <OnPlatform x:TypeArguments="x:String">
-                                    <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
-                                </OnPlatform>
-                            </Button.FontFamily>
-                        </Button>
+                            TextColor="#232825"
+                            WidthRequest="60" />
                         <Label
                             FontSize="Large"
                             HorizontalOptions="FillAndExpand"
@@ -43,15 +39,11 @@
                         <Button
                             BackgroundColor="Transparent"
                             Command="{Binding NextMonthCommand}"
+                            FontFamily="FontAwesomeSolid"
                             HorizontalOptions="End"
                             Text="&#xf105;"
-                            WidthRequest="60">
-                            <Button.FontFamily>
-                                <OnPlatform x:TypeArguments="x:String">
-                                    <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
-                                </OnPlatform>
-                            </Button.FontFamily>
-                        </Button>
+                            TextColor="#232825"
+                            WidthRequest="60" />
                     </StackLayout>
 
                     <Grid Grid.Row="1" Margin="12,0">
