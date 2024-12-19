@@ -62,7 +62,7 @@ jobs:
           env:
             NUM: ${{ github.run_number }}
           run: |
-            $version = (150+$($Env:GITHUB_RUN_NUMBER))
+            $version = (200000+$($Env:GITHUB_RUN_NUMBER))
             echo $version
             echo "VERSION_NUMBER=$version" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
 
@@ -72,7 +72,7 @@ jobs:
             android-manifest-path: './HomeBudgetMaui/Platforms/Android/AndroidManifest.xml'
             version-code: ${{ env.VERSION_NUMBER }}
             print-file: true
-            version-name: '6.0'
+            version-name: '2.0.0'
         
         - name: Build
           run: |
@@ -86,11 +86,11 @@ jobs:
             retention-days: 5
 
         - name: Upload build to Google Play
-          if: ${{ github.ref_name == 'master' }}
+          if: ${{ github.ref_name == 'maui' }}
           uses: KevinRohn/github-action-upload-play-store@v1.0.0
           with:
             service_account_json: ${{ secrets.SERVICE_ACCOUNT_JSON }}
-            package_name: "com.darktower.bus"
-            aab_file_path: "BusSchedule.Android/bin/Release/net8.0-android34.0/com.darktower.bus-Signed.aab"
+            package_name: "com.darktower.homebudget"
+            aab_file_path: "HomeBudgetMaui/bin/Release/net8.0-android/com.darktower.homebudget-Signed.aab"
             track: "beta"
             release_status: "draft"
