@@ -13,6 +13,7 @@ namespace HomeBudgetMaui
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzU2Mzk5OUAzMjM3MmUzMDJlMzBmL1V1RGhLWXl4MVFJZnNvSjRRc0lpNnM5VjJGR1IxeCtyS3Y4S1k2aGFRPQ==");
             InitializeComponent();
             RegisterServices(TinyIoCContainer.Current);
+            UserAppTheme = AppTheme.Light;
 
             MainPage = new MainPage();
         }
