@@ -7,7 +7,8 @@
     xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    Padding="5">
+    Padding="5"
+    CloseWhenBackgroundIsClicked="False">
 
     <pages:PopupPage.Resources>
         <ResourceDictionary>
@@ -117,9 +118,9 @@
                 </Label>
                 <Entry
                     Grid.Column="1"
-                    VerticalTextAlignment="End"
                     Placeholder="Dodaj notatkę"
-                    Text="{Binding Note}" />
+                    Text="{Binding Note}"
+                    VerticalTextAlignment="End" />
             </Grid>
 
 
@@ -266,7 +267,10 @@
                 Style="{StaticResource calcButton}"
                 Text="=" />
 
-            <HorizontalStackLayout Grid.Row="9" Grid.ColumnSpan="4" HorizontalOptions="End">
+            <HorizontalStackLayout
+                Grid.Row="9"
+                Grid.ColumnSpan="4"
+                HorizontalOptions="End">
                 <Button
                     Margin="5,20,5,0"
                     BackgroundColor="Transparent"
