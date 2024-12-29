@@ -1,32 +1,83 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ViewCell xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-          xmlns:components="clr-namespace:HomeBudgetStandard.Components"
-          x:Class="HomeBudget.Pages.Utils.AnimatedViewCell">
-  <ViewCell.View>
-        <Grid x:Name="layout" BackgroundColor="Transparent" Margin="5,0" Padding="0,5" RowSpacing="0">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ViewCell
+    x:Class="HomeBudget.Pages.Utils.AnimatedViewCell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:HomeBudgetStandard.Components">
+    <ViewCell.View>
+        <Grid
+            x:Name="layout"
+            Margin="5,0"
+            Padding="0,5"
+            BackgroundColor="Transparent"
+            RowSpacing="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="50" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="2"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="2" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Label Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Name}" TextColor="Black" FontSize="14" LineBreakMode="TailTruncation" VerticalTextAlignment="End" InputTransparent="True"/>
-            <Label Grid.Column="2" Text="{Binding SpendPercentage, StringFormat='{0:P1}'}" FontSize="12" LineBreakMode="NoWrap" HorizontalOptions="End" HorizontalTextAlignment="End" VerticalTextAlignment="End"/>
+            <Label
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                FontSize="14"
+                InputTransparent="True"
+                LineBreakMode="TailTruncation"
+                Text="{Binding Name}"
+                TextColor="Black"
+                VerticalTextAlignment="End" />
+            <Label
+                Grid.Column="2"
+                FontSize="12"
+                HorizontalOptions="End"
+                HorizontalTextAlignment="End"
+                LineBreakMode="NoWrap"
+                Text="{Binding SpendPercentage, StringFormat='{0:P1}'}"
+                VerticalTextAlignment="End" />
 
-            <Label Grid.Column="1" Grid.Row="2" Text="{Binding SubcatReal.Value, Converter={StaticResource CurrencyValueConverter}}" FontSize="12" VerticalTextAlignment="Start" LineBreakMode="NoWrap" InputTransparent="True"/>
-            <Label Grid.Column="2" Grid.Row="2" Text="{Binding SubcatPlan.Value, Converter={StaticResource CurrencyValueConverter}}" FontSize="12" HorizontalOptions="End" HorizontalTextAlignment="End" VerticalTextAlignment="Start" LineBreakMode="NoWrap" InputTransparent="True"/>
+            <Label
+                Grid.Row="2"
+                Grid.Column="1"
+                FontSize="12"
+                InputTransparent="True"
+                LineBreakMode="NoWrap"
+                Text="{Binding SubcatReal.Value, Converter={StaticResource CurrencyValueConverter}}"
+                VerticalTextAlignment="Start" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="2"
+                FontSize="12"
+                HorizontalOptions="End"
+                HorizontalTextAlignment="End"
+                InputTransparent="True"
+                LineBreakMode="NoWrap"
+                Text="{Binding SubcatPlan.Value, Converter={StaticResource CurrencyValueConverter}}"
+                VerticalTextAlignment="Start" />
 
-            <components:GradientProgressBar Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Progress="{Binding SpendPercentage}" InputTransparent="True"/>
+            <components:GradientProgressBar
+                Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                InputTransparent="True"
+                Progress="{Binding SpendPercentage}" />
 
-            <Image Grid.RowSpan="3" Margin="0,13" Source="{Binding Icon}" InputTransparent="True"/>
-            <Image Grid.RowSpan="3" Grid.Column="3" Source="add.png" BackgroundColor="Transparent" Margin="5,10"/>
+            <Image
+                Grid.RowSpan="3"
+                Margin="0,6"
+                InputTransparent="True"
+                Source="{Binding Icon}" />
+            <Image
+                Grid.RowSpan="3"
+                Grid.Column="3"
+                Margin="5,5"
+                BackgroundColor="Transparent"
+                Source="add.png" />
         </Grid>
     </ViewCell.View>
 </ViewCell>
