@@ -191,15 +191,8 @@
                         HorizontalOptions="Start"
                         Text="&#xf104;"
                         TextColor="White"
+                        FontFamily="FontAwesomeSolid"
                         WidthRequest="60">
-                        <Button.FontFamily>
-                            <!--<OnPlatform x:TypeArguments="x:String">
-                                <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
-                            </OnPlatform>-->
-                            <OnPlatform x:TypeArguments="x:String">
-                                <On Platform="Android" Value="FontAwesomeSolid" />
-                            </OnPlatform>
-                        </Button.FontFamily>
                     </Button>
 
                     <Label
@@ -218,12 +211,8 @@
                         HorizontalOptions="End"
                         Text="&#xf105;"
                         TextColor="White"
+                        FontFamily="FontAwesomeSolid"
                         WidthRequest="60">
-                        <Button.FontFamily>
-                            <OnPlatform x:TypeArguments="x:String">
-                                <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
-                            </OnPlatform>
-                        </Button.FontFamily>
                     </Button>
                 </StackLayout>
 

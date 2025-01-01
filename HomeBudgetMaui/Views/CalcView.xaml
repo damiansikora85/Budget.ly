@@ -8,6 +8,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Padding="5"
+    BackgroundColor="#88121212"
     CloseWhenBackgroundIsClicked="False">
 
     <pages:PopupPage.Resources>
@@ -25,7 +26,7 @@
     <Border
         Margin="30,40"
         Padding="10"
-        BackgroundColor="#EEFFFFFF"
+        BackgroundColor="#F9FFFFFF"
         Stroke="DodgerBlue"
         StrokeShape="RoundRectangle 32">
         <Grid
@@ -78,9 +79,9 @@
             </Grid>
 
             <Editor
-                x:Name="test"
                 Grid.Row="1"
                 Grid.ColumnSpan="4"
+                FontSize="20"
                 Keyboard="Numeric"
                 Text="{Binding FormulaText}"
                 TextColor="#666"
@@ -90,7 +91,9 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="4"
                 Padding="6,0"
-                Stroke="Gray">
+                BackgroundColor="White"
+                Stroke="Gray"
+                StrokeShape="RoundRectangle 8">
                 <Label
                     x:Name="Result"
                     FontSize="Large"
@@ -106,23 +109,17 @@
                 Grid.ColumnSpan="4"
                 ColumnDefinitions="*,6*">
                 <Label
+                    FontFamily="FontAwesomeRegular"
                     FontSize="20"
                     HorizontalTextAlignment="Center"
                     Text="&#xf249;"
-                    VerticalTextAlignment="Center">
-                    <Label.FontFamily>
-                        <OnPlatform x:TypeArguments="x:String">
-                            <On Platform="Android" Value="Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free Regular" />
-                        </OnPlatform>
-                    </Label.FontFamily>
-                </Label>
+                    VerticalTextAlignment="Center" />
                 <Entry
                     Grid.Column="1"
                     Placeholder="Dodaj notatkę"
                     Text="{Binding Note}"
-                    VerticalTextAlignment="End" />
+                    VerticalOptions="Center" />
             </Grid>
-
 
             <Button
                 Grid.Row="4"
@@ -278,7 +275,7 @@
                     FlexLayout.Grow="1"
                     FontSize="Body"
                     HorizontalOptions="End"
-                    Text="Anuluj"
+                    Text="ANULUJ"
                     TextColor="DodgerBlue" />
                 <Button
                     Margin="5,20,5,0"
@@ -286,7 +283,7 @@
                     Clicked="OnSave"
                     FontSize="Body"
                     HorizontalOptions="End"
-                    Text="Zapisz"
+                    Text="ZAPISZ"
                     TextColor="DodgerBlue" />
             </HorizontalStackLayout>
 
