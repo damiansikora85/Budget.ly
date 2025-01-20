@@ -13,7 +13,7 @@ namespace HomeBudget.Utils
         }
         public string Currency { get; set; }
 
-        Action<IEnumerable, string, PropertyDescriptor> ISummaryAggregate.CalculateAggregateFunc()
+        public Action<IEnumerable, string, PropertyDescriptor> CalculateAggregateFunc()
         {
             return (items, property, pd) =>
             {
