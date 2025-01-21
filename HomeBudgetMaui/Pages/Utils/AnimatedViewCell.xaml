@@ -3,7 +3,8 @@
     x:Class="HomeBudget.Pages.Utils.AnimatedViewCell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:components="clr-namespace:HomeBudgetStandard.Components">
+    xmlns:components="clr-namespace:HomeBudgetStandard.Components"
+    xmlns:progressBar="clr-namespace:Syncfusion.Maui.ProgressBar;assembly=Syncfusion.Maui.ProgressBar">
     <ViewCell.View>
         <Grid
             x:Name="layout"
@@ -50,13 +51,19 @@
                 LineBreakMode="NoWrap"
                 Text="{Binding SubcatPlan.Value, Converter={StaticResource CurrencyValueConverter}}"
                 VerticalTextAlignment="Start" />
-
-            <components:GradientProgressBar
+            
+            <progressBar:SfLinearProgressBar
                 Grid.Row="1"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
-                InputTransparent="True"
-                Progress="{Binding SpendPercentage}" />
+                Maximum="1"
+                Minimum="0"
+                Progress="{Binding SpendPercentage}" >
+                <progressBar:SfLinearProgressBar.GradientStops>
+                    <progressBar:ProgressGradientStop Color="#00A9FF" Value="0"/>
+                    <progressBar:ProgressGradientStop Color="#00D7C4" Value="100"/>
+                </progressBar:SfLinearProgressBar.GradientStops>
+            </progressBar:SfLinearProgressBar>
 
             <Image
                 Grid.RowSpan="3"
