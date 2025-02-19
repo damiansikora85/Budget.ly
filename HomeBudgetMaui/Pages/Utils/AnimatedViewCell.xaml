@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ViewCell
+    x:Class="HomeBudget.Pages.Utils.AnimatedViewCell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:HomeBudgetStandard.Components"
+    xmlns:progressBar="clr-namespace:Syncfusion.Maui.ProgressBar;assembly=Syncfusion.Maui.ProgressBar">
+    <ViewCell.View>
+        <Grid
+            x:Name="layout"
+            Margin="5"
+            Padding="0,5"
+            BackgroundColor="Transparent"
+            ColumnDefinitions="50,*,*,50"
+            RowDefinitions="*,2,*"
+            RowSpacing="0">
+
+            <Label
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                FontSize="14"
+                InputTransparent="True"
+                LineBreakMode="TailTruncation"
+                Text="{Binding Name}"
+                TextColor="Black"
+                VerticalTextAlignment="End" />
+            <Label
+                Grid.Column="2"
+                FontSize="12"
+                HorizontalOptions="End"
+                HorizontalTextAlignment="End"
+                LineBreakMode="NoWrap"
+                Text="{Binding SpendPercentage, StringFormat='{0:P1}'}"
+                VerticalTextAlignment="End" />
+
+            <Label
+                Grid.Row="2"
+                Grid.Column="1"
+                FontSize="12"
+                InputTransparent="True"
+                LineBreakMode="NoWrap"
+                Text="{Binding SubcatReal.Value, Converter={StaticResource CurrencyValueConverter}}"
+                VerticalTextAlignment="Start" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="2"
+                FontSize="12"
+                HorizontalOptions="End"
+                HorizontalTextAlignment="End"
+                InputTransparent="True"
+                LineBreakMode="NoWrap"
+                Text="{Binding SubcatPlan.Value, Converter={StaticResource CurrencyValueConverter}}"
+                VerticalTextAlignment="Start" />
+            
+            <progressBar:SfLinearProgressBar
+                Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Maximum="1"
+                Minimum="0"
+                Progress="{Binding SpendPercentage}" >
+                <progressBar:SfLinearProgressBar.GradientStops>
+                    <progressBar:ProgressGradientStop Color="#00A9FF" Value="0"/>
+                    <progressBar:ProgressGradientStop Color="#00D7C4" Value="100"/>
+                </progressBar:SfLinearProgressBar.GradientStops>
+            </progressBar:SfLinearProgressBar>
+
+            <Image
+                Grid.RowSpan="3"
+                Margin="0,6"
+                InputTransparent="True"
+                Source="{Binding Icon}" />
+            <Image
+                Grid.RowSpan="3"
+                Grid.Column="3"
+                Margin="5,5"
+                BackgroundColor="Transparent"
+                Source="add.png" />
+        </Grid>
+    </ViewCell.View>
+</ViewCell>

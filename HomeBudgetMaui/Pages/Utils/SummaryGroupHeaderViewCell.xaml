@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ViewCell
+    x:Class="HomeBudget.Pages.Utils.SummaryGroupHeaderViewCell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:HomeBudgetStandard.Components"
+    xmlns:progressBar="clr-namespace:Syncfusion.Maui.ProgressBar;assembly=Syncfusion.Maui.ProgressBar">
+    <ViewCell.View>
+        <Grid
+            x:Name="layout"
+            Padding="0,2"
+            BackgroundColor="Transparent"
+            HeightRequest="70"
+            RowSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="50" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="34" />
+                <RowDefinition Height="3" />
+                <RowDefinition Height="33" />
+            </Grid.RowDefinitions>
+
+            <Image
+                Grid.RowSpan="3"
+                Margin="10"
+                Source="{Binding IconFile}" />
+            <Label
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                FontSize="16"
+                LineBreakMode="NoWrap"
+                Text="{Binding CategoryName}"
+                TextColor="Black"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center" />
+
+            <Label
+                Grid.Column="2"
+                FontSize="14"
+                HorizontalTextAlignment="End"
+                LineBreakMode="NoWrap"
+                Text="{Binding SpendPercentage, StringFormat='{0:P1}'}"
+                VerticalTextAlignment="Center" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="1"
+                FontSize="14"
+                LineBreakMode="NoWrap"
+                Text="{Binding CategoryReal.TotalValues, Converter={StaticResource CurrencyValueConverter}}" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="2"
+                FontSize="14"
+                HorizontalTextAlignment="End"
+                LineBreakMode="NoWrap"
+                Text="{Binding CategoryPlanned.TotalValues, Converter={StaticResource CurrencyValueConverter}}" />
+
+            <progressBar:SfLinearProgressBar
+                Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Maximum="1"
+                Minimum="0"
+                Progress="{Binding SpendPercentage}">
+                <progressBar:SfLinearProgressBar.GradientStops>
+                    <progressBar:ProgressGradientStop Color="#00A9FF" Value="0" />
+                    <progressBar:ProgressGradientStop Color="#00D7C4" Value="100" />
+                </progressBar:SfLinearProgressBar.GradientStops>
+            </progressBar:SfLinearProgressBar>
+
+            <Label
+                x:Name="expandIcon"
+                Grid.RowSpan="3"
+                Grid.Column="3"
+                Margin="5,0"
+                FontSize="32"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                LineBreakMode="NoWrap"
+                Text="&#xf105;"
+                TextColor="DodgerBlue"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center">
+                <Label.FontFamily>
+                    <OnPlatform x:TypeArguments="x:String">
+                        <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                    </OnPlatform>
+                </Label.FontFamily>
+            </Label>
+        </Grid>
+    </ViewCell.View>
+</ViewCell>

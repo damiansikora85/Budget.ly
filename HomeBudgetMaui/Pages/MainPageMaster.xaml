@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HomeBudgetStandard.Pages.MainPageMaster"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:HomeBudgetStandard.Pages"
+    xmlns:utils="clr-namespace:HomeBudgetStandard.Utils"
+    Title="Master">
+    <ContentPage.Resources>
+        <DataTemplate x:Key="NormalTemplate">
+            <ViewCell>
+                <HorizontalStackLayout
+                    Padding="15,10"
+                    HorizontalOptions="FillAndExpand"
+                    Spacing="4">
+                    <Label
+                        Text="{Binding Icon}"
+                        VerticalOptions="FillAndExpand"
+                        VerticalTextAlignment="Center">
+                        <Label.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="Android" Value="FontAwesomeSolid" />
+                            </OnPlatform>
+                        </Label.FontFamily>
+                    </Label>
+                    <Label
+                        Text="{Binding Title}"
+                        VerticalOptions="FillAndExpand"
+                        VerticalTextAlignment="Center" />
+                </HorizontalStackLayout>
+            </ViewCell>
+        </DataTemplate>
+
+        <DataTemplate x:Key="DropboxTemplate">
+            <ViewCell>
+                <HorizontalStackLayout
+                    Padding="15,10"
+                    HorizontalOptions="FillAndExpand"
+                    Spacing="2">
+                    <Label
+                        Text="{Binding Icon}"
+                        VerticalOptions="FillAndExpand"
+                        VerticalTextAlignment="Center">
+                        <Label.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="Android" Value="FontAwesomeSolid" />
+                            </OnPlatform>
+                        </Label.FontFamily>
+                    </Label>
+                    <Label
+                        Text="{Binding Title}"
+                        VerticalOptions="FillAndExpand"
+                        VerticalTextAlignment="Center" />
+                </HorizontalStackLayout>
+            </ViewCell>
+        </DataTemplate>
+
+        <local:CellTemplateSelector
+            x:Key="templateSelector"
+            BrandsTemplate="{StaticResource DropboxTemplate}"
+            NormalTemplate="{StaticResource NormalTemplate}" />
+    </ContentPage.Resources>
+
+    <ListView
+        x:Name="MenuItemsListView"
+        HasUnevenRows="true"
+        ItemTemplate="{StaticResource templateSelector}"
+        ItemsSource="{Binding MenuItems}"
+        SeparatorVisibility="Default">
+        <ListView.Header>
+            <HorizontalStackLayout Padding="5,14">
+                <Image HeightRequest="50" Source="logo.png" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Text="Budget.ly"
+                    TextColor="#00A9FF"
+                    VerticalTextAlignment="End" />
+            </HorizontalStackLayout>
+        </ListView.Header>
+    </ListView>
+</ContentPage>

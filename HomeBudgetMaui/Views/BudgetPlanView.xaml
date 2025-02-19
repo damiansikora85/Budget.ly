@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="HomeBudgetStandard.Views.BudgetPlanView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:data="clr-namespace:Syncfusion.Maui.Data;assembly=Syncfusion.Maui.Data"
+    xmlns:local="clr-namespace:HomeBudget.Converters"
+    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+    xmlns:utils="clr-namespace:HomeBudget.Utils"
+    Title="Planowanie">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:CurrencyValueConverter x:Key="CurrencyValueConverter" />
+            <local:BudgetDataGridSummaryConverter x:Key="BudgetDataGridSummaryConverter" />
+            <local:BudgetGridIconConverter x:Key="BudgetGridIconConverter" />
+            <local:BudgetCategorySortComparer x:Key="BudgetCategorySortComparer" />
+            <utils:CurrencyDataGridHeader x:Key="CurrencyDataGridHeader" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid x:Name="mainGrid" RowDefinitions="40,*,2*,50">
+        <StackLayout
+            Margin="12,0"
+            HorizontalOptions="FillAndExpand"
+            Orientation="Horizontal">
+            <Button
+                BackgroundColor="Transparent"
+                Command="{Binding PrevMonthCommand}"
+                FontFamily="FontAwesomeSolid"
+                HorizontalOptions="Start"
+                Text="&#xf104;"
+                TextColor="#232825"
+                WidthRequest="60" />
+            <Label
+                FontSize="Large"
+                HorizontalOptions="FillAndExpand"
+                HorizontalTextAlignment="Center"
+                LineBreakMode="NoWrap"
+                Text="{Binding Date}"
+                VerticalTextAlignment="Center" />
+            <Button
+                BackgroundColor="Transparent"
+                Command="{Binding NextMonthCommand}"
+                FontFamily="FontAwesomeSolid"
+                HorizontalOptions="End"
+                Text="&#xf105;"
+                TextColor="#232825"
+                WidthRequest="60" />
+        </StackLayout>
+
+        <Grid Grid.Row="1" ColumnDefinitions="60,*">
+            <Grid RowDefinitions="*,*">
+                <Label
+                    Grid.Row="0"
+                    FontAttributes="Bold"
+                    LineBreakMode="NoWrap"
+                    Rotation="270"
+                    Text="Wydatki"
+                    TextDecorations="{Binding ExpensesChartTextDecorations}"
+                    VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ExpensesChartCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label
+                    Grid.Row="1"
+                    FontAttributes="Bold"
+                    LineBreakMode="NoWrap"
+                    Rotation="270"
+                    Text="Dochody"
+                    TextDecorations="{Binding IncomesChartTextDecorations}"
+                    VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding IncomesChartCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+            <utils:BudgetChart
+                Grid.Column="1"
+                Data="{Binding ExpensesChartData}"
+                IsVisible="{Binding ExpensesVisible}"
+                LegendPosition="RightSide" />
+            <utils:BudgetChart
+                Grid.Column="1"
+                Data="{Binding IncomesChartData}"
+                IsVisible="{Binding IncomesVisible}"
+                LegendPosition="RightSide" />
+        </Grid>
+
+        <syncfusion:SfDataGrid
+            x:Name="dataGrid"
+            Grid.Row="2"
+            AllowGroupExpandCollapse="True"
+            AutoExpandGroups="False"
+            AutoGenerateColumnsMode="None"
+            ColumnWidthMode="Fill"
+            CurrentCellEndEdit="DataGrid_CurrentCellEndEdit"
+            EditTapAction="OnTap"
+            ItemsSource="{Binding Budget}"
+            LiveDataUpdateMode="AllowSummaryUpdate"
+            NavigationMode="Cell"
+            SelectionMode="Single">
+
+            <syncfusion:SfDataGrid.SortComparers>
+                <data:SortComparer Comparer="{StaticResource BudgetCategorySortComparer}" PropertyName="Category.Name" />
+            </syncfusion:SfDataGrid.SortComparers>
+
+            <syncfusion:SfDataGrid.GroupColumnDescriptions>
+                <syncfusion:GroupColumnDescription ColumnName="Category.Name" />
+            </syncfusion:SfDataGrid.GroupColumnDescriptions>
+
+            <syncfusion:SfDataGrid.CaptionSummaryTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout>
+                        <Image Margin="4" Source="{Binding Converter={x:StaticResource BudgetGridIconConverter}, ConverterParameter={x:Reference dataGrid}}" />
+                        <Label Text="{Binding Converter={x:StaticResource BudgetDataGridSummaryConverter}, ConverterParameter={x:Reference dataGrid}}" VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </syncfusion:SfDataGrid.CaptionSummaryTemplate>
+
+            <syncfusion:SfDataGrid.CaptionSummaryRow>
+                <syncfusion:DataGridSummaryRow
+                    Name="CaptionSummary"
+                    Title="{}{Key}: {Total}"
+                    ShowSummaryInRow="True">
+                    <syncfusion:DataGridSummaryRow.SummaryColumns>
+                        <syncfusion:DataGridSummaryColumn
+                            Name="Total"
+                            Format="{}{Sum:C0}"
+                            MappingName="Subcat.Value"
+                            SummaryType="DoubleAggregate" />
+                        <!--
+                            Format="C"
+                            MappingName="Subcat.Value"
+                            SummaryType="Custom"
+                            CustomAggregate="{x:StaticResource CurrencyDataGridHeader}"/>
+                        -->
+                    </syncfusion:DataGridSummaryRow.SummaryColumns>
+                </syncfusion:DataGridSummaryRow>
+            </syncfusion:SfDataGrid.CaptionSummaryRow>
+
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:DataGridTextColumn
+                    HeaderText="Kategoria"
+                    HeaderTextAlignment="Center"
+                    MappingName="Subcat.Name" />
+                <syncfusion:DataGridNumericColumn
+                    AllowEditing="True"
+                    DisplayBinding="{Binding SubcatPlanned.Value, Converter={x:StaticResource CurrencyValueConverter}}"
+                    HeaderText="Suma"
+                    HeaderTextAlignment="Center"
+                    MappingName="SubcatPlanned.Value" />
+            </syncfusion:SfDataGrid.Columns>
+        </syncfusion:SfDataGrid>
+        <Button
+            Grid.Row="3"
+            Margin="12,3"
+            Command="{Binding SaveCommand}"
+            Style="{StaticResource ButtonStyle}"
+            Text="Użyj w kolejnych miesiącach"
+            VerticalOptions="End" />
+
+    </Grid>
+
+</ContentPage>

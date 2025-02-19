@@ -1,13 +1,12 @@
 ﻿using HomeBudget.Effects;
 using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
+
 
 [assembly: ResolutionGroupName(BudgetBaseEffect.GroupName)]
 [assembly: ExportEffect(typeof(HomeBudget.Droid.Effects.LongPressedEffect), nameof(HomeBudget.Droid.Effects.LongPressedEffect))]
 namespace HomeBudget.Droid.Effects
 {
-    public class LongPressedEffect : PlatformEffect
+    public class LongPressedEffect //: PlatformEffect
     {
         private bool _attached;
 
@@ -28,57 +27,57 @@ namespace HomeBudget.Droid.Effects
         /// <summary>
         /// Apply the handler
         /// </summary>
-        protected override void OnAttached()
-        {
-            //because an effect can be detached immediately after attached (happens in listview), only attach the handler one time.
-            if (!_attached)
-            {
-                if (Control != null)
-                {
-                    Control.LongClickable = true;
-                    Control.LongClick += Control_LongClick;
-                }
-                else
-                {
-                    Container.LongClickable = true;
-                    Container.LongClick += Control_LongClick;
-                }
-                _attached = true;
-            }
-        }
+        //protected override void OnAttached()
+        //{
+        //    //because an effect can be detached immediately after attached (happens in listview), only attach the handler one time.
+        //    if (!_attached)
+        //    {
+        //        if (Control != null)
+        //        {
+        //            Control.LongClickable = true;
+        //            Control.LongClick += Control_LongClick;
+        //        }
+        //        else
+        //        {
+        //            Container.LongClickable = true;
+        //            Container.LongClick += Control_LongClick;
+        //        }
+        //        _attached = true;
+        //    }
+        //}
 
         /// <summary>
         /// Invoke the command if there is one
         /// </summary>
         /// <param name="sender">Sender.</param>
         /// <param name="e">E.</param>
-        private void Control_LongClick(object sender, Android.Views.View.LongClickEventArgs e)
-        {
-            Console.WriteLine("Invoking long click command");
-            var command = HomeBudget.Effects.LongPressedEffect.GetCommand(Element);
-            var parameter = HomeBudget.Effects.LongPressedEffect.GetCommandParameter(Element);
-            command?.Execute(parameter);
-        }
+        //private void Control_LongClick(object sender, Android.Views.View.LongClickEventArgs e)
+        //{
+        //    Console.WriteLine("Invoking long click command");
+        //    var command = HomeBudget.Effects.LongPressedEffect.GetCommand(Element);
+        //    var parameter = HomeBudget.Effects.LongPressedEffect.GetCommandParameter(Element);
+        //    command?.Execute(parameter);
+        //}
 
         /// <summary>
         /// Clean the event handler on detach
         /// </summary>
-        protected override void OnDetached()
-        {
-            if (_attached)
-            {
-                if (Control != null)
-                {
-                    Control.LongClickable = true;
-                    Control.LongClick -= Control_LongClick;
-                }
-                else
-                {
-                    Container.LongClickable = true;
-                    Container.LongClick -= Control_LongClick;
-                }
-                _attached = false;
-            }
-        }
+        //protected override void OnDetached()
+        //{
+        //    if (_attached)
+        //    {
+        //        if (Control != null)
+        //        {
+        //            Control.LongClickable = true;
+        //            Control.LongClick -= Control_LongClick;
+        //        }
+        //        else
+        //        {
+        //            Container.LongClickable = true;
+        //            Container.LongClick -= Control_LongClick;
+        //        }
+        //        _attached = false;
+        //    }
+        //}
     }
 }

@@ -1,53 +1,52 @@
 ﻿using Android.Graphics;
 using Android.Widget;
 using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
+
 
 //[assembly: ResolutionGroupName(HomeBudget.Effects.BudgetBaseEffect.EffectsNamespace)]
 //[assembly: ExportEffect(typeof(HomeBudget.Droid.Effects.UnderlineEffect), nameof(HomeBudget.Droid.Effects.UnderlineEffect))]
 namespace HomeBudget.Droid.Effects
 {
-    public class UnderlineEffect : PlatformEffect
+    public class UnderlineEffect //: PlatformEffect
     {
-        protected override void OnAttached()
-        {
-            SetUnderline(true);
-        }
+        //protected override void OnAttached()
+        //{
+        //    SetUnderline(true);
+        //}
 
-        protected override void OnDetached()
-        {
-            SetUnderline(false);
-        }
+        //protected override void OnDetached()
+        //{
+        //    SetUnderline(false);
+        //}
 
-        protected override void OnElementPropertyChanged(System.ComponentModel.PropertyChangedEventArgs args)
-        {
-            base.OnElementPropertyChanged(args);
+        //protected override void OnElementPropertyChanged(System.ComponentModel.PropertyChangedEventArgs args)
+        //{
+        //    base.OnElementPropertyChanged(args);
 
-            if (args.PropertyName == Label.TextProperty.PropertyName || args.PropertyName == Label.FormattedTextProperty.PropertyName)
-            {
-                SetUnderline(true);
-            }
-        }
+        //    if (args.PropertyName == Label.TextProperty.PropertyName || args.PropertyName == Label.FormattedTextProperty.PropertyName)
+        //    {
+        //        SetUnderline(true);
+        //    }
+        //}
 
-        private void SetUnderline(bool underlined)
-        {
-            try
-            {
-                var textView = (TextView)Control;
-                if (underlined)
-                {
-                    textView.PaintFlags |= PaintFlags.UnderlineText;
-                }
-                else
-                {
-                    textView.PaintFlags &= ~PaintFlags.UnderlineText;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Cannot underline Label. Error: ", ex.Message);
-            }
-        }
+        //private void SetUnderline(bool underlined)
+        //{
+        //    try
+        //    {
+        //        var textView = (TextView)Control;
+        //        if (underlined)
+        //        {
+        //            textView.PaintFlags |= PaintFlags.UnderlineText;
+        //        }
+        //        else
+        //        {
+        //            textView.PaintFlags &= ~PaintFlags.UnderlineText;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("Cannot underline Label. Error: ", ex.Message);
+        //    }
+        //}
     }
 }

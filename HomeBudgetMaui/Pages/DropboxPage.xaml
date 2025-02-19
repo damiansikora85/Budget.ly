@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HomeBudgetStandard.Pages.DropboxPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Synchronizacja">
+    <ContentPage.Content>
+        <StackLayout Margin="25,25">
+            <Label
+                FontSize="Large"
+                Text="Synchronizacja danych z Dropbox"
+                TextColor="Black" />
+
+            <Image
+                Margin="0,20"
+                HeightRequest="150"
+                Source="dropbox_info.png" />
+            <Label Text="Dzięki synchronizacji możesz współdzielić budżet na kilku urządzeniach" TextColor="Black" />
+            <Grid x:Name="iapLayout" IsVisible="false">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="55" />
+                    <RowDefinition Height="55" />
+                </Grid.RowDefinitions>
+
+                <Button Clicked="OnIapClick" Style="{StaticResource ButtonStyle}" />
+                <Button
+                    Grid.Row="1"
+                    BackgroundColor="Transparent"
+                    Clicked="OnLoginDropboxWithDataCheck"
+                    Text="Kliknij tu jeśli wykupiłeś już na innym urządzeniu"
+                    TextColor="DodgerBlue" />
+
+                <Label
+                    HorizontalTextAlignment="Center"
+                    InputTransparent="True"
+                    TextColor="White"
+                    VerticalTextAlignment="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontAttributes="Bold" Text="Kup synchronizacje   " />
+                            <Span Text="{Binding RegularPrice, Mode=OneWay}" TextDecorations="Strikethrough" />
+                            <Span FontAttributes="Bold" Text="{Binding PromoPrice, Mode=OneWay}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+
+            </Grid>
+            <StackLayout x:Name="connectLayout" IsVisible="false">
+                <Button
+                    x:Name="resyncButton"
+                    Margin="0,15"
+                    Clicked="OnLoginDropbox"
+                    Style="{StaticResource ButtonStyle}"
+                    Text="Synchronizuj z Dropbox" />
+
+                <StackLayout Orientation="Horizontal">
+                    <Label
+                        x:Name="synchroStatusLabel"
+                        LineBreakMode="NoWrap"
+                        Text="Synchronizacja nieaktywna"
+                        TextColor="Black"
+                        VerticalTextAlignment="Center" />
+                    <Label
+                        x:Name="synchroStatusIcon"
+                        FontSize="35"
+                        LineBreakMode="NoWrap"
+                        Text="{Binding SynchronizationStatus}"
+                        FontFamily="FontAwesomeRegular"
+                        TextColor="Black"/>
+                    
+                </StackLayout>
+                <!--<Button Text="Consume" Style="{StaticResource ButtonStyle}" Clicked="OnConsume" Margin="0,15"/>-->
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

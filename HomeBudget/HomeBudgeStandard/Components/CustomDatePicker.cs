@@ -5,8 +5,9 @@ using Xamarin.Forms;
 
 namespace HomeBudgeStandard.Components
 {
-    public class CustomDatePicker : DatePicker
+    public partial class CustomDatePicker : DatePicker
     {
         public Action SelectedDateConfirmed { get; set; }
+        partial void Open();
     }
 }

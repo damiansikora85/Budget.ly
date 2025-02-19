@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="template.json" />
+    <None Remove="templateOrg.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="template.json" />
+    <EmbeddedResource Include="templateOrg.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dropbox.Api" Version="7.0.0" />
+    <PackageReference Include="protobuf-net" Version="3.2.30" />
+  </ItemGroup>
+
+</Project>
