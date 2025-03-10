@@ -1,7 +1,6 @@
 ﻿using System.Globalization;
 using System.Windows.Input;
-using CommunityToolkit.Maui.Views;
-using Microsoft.Maui.Handlers;
+using Firebase.Crashlytics;
 using Mopups.Pages;
 using Mopups.Services;
 using Syncfusion.Calculate;
@@ -210,7 +209,7 @@ namespace HomeBudgetStandard.Views
                 }
                 catch(Exception exc)
                 {
-                    Microsoft.AppCenter.Crashes.Crashes.TrackError(exc);
+                    FirebaseCrashlytics.Instance.RecordException(Java.Lang.Throwable.FromException(exc));
                 }
             }
         }

@@ -1,11 +1,7 @@
-﻿using HomeBudget.Code;
+﻿using System.Collections.ObjectModel;
+using Firebase.Crashlytics;
+using HomeBudget.Code;
 using HomeBudget.Code.Logic;
-using Microsoft.AppCenter.Crashes;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 
 namespace HomeBudgetStandard.Views.ViewModels
 {
@@ -30,7 +26,7 @@ namespace HomeBudgetStandard.Views.ViewModels
                 }
                 catch(Exception exc)
                 {
-                    Crashes.TrackError(exc);
+                    FirebaseCrashlytics.Instance.RecordException(Java.Lang.Throwable.FromException(exc));
                 }
             }
         }

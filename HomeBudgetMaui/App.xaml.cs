@@ -1,7 +1,6 @@
 ﻿using HomeBudget.Code.Interfaces;
 using HomeBudgetStandard.Interfaces.Impl;
 using HomeBudgetStandard.Pages;
-using Microsoft.AppCenter.Crashes;
 using TinyIoC;
 
 namespace HomeBudgetMaui
@@ -21,17 +20,6 @@ namespace HomeBudgetMaui
         protected override void OnStart()
         {
             // Handle when your app starts
-#if DEBUG
-            Microsoft.AppCenter.AppCenter.Start("android=d788ef5d-e265-4c16-abbf-2e9469285d52;" +
-                  "uwp={Your UWP App secret here};" +
-                  "ios={Your iOS App secret here}",
-                  typeof(Crashes));
-#else
-            Microsoft.AppCenter.AppCenter.Start("android=d788ef5d-e265-4c16-abbf-2e9469285d52;" +
-                  "uwp={Your UWP App secret here};" +
-                  "ios={Your iOS App secret here}",
-                 typeof(Crashes));
-#endif
 
 #if !CUSTOM
             HomeBudget.Standard.RemoteConfig.Instance.Init();

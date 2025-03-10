@@ -99,9 +99,6 @@
 		<PackageReference Include="CommunityToolkit.Maui" Version="8.0.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Controls.UserDialogs.Maui" Version="1.6.3" />
-		<PackageReference Include="Microsoft.AppCenter" Version="5.0.3" />
-		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.3" />
-		<PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.3" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.91" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.91" />
 		<PackageReference Include="Mopups.Maui" Version="1.0.0" />
@@ -114,8 +111,10 @@
 		<PackageReference Include="Syncfusion.Maui.ProgressBar" Version="27.1.57" />
 		<PackageReference Include="Syncfusion.Xamarin.Calculate" Version="25.1.41" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
-		<PackageReference Include="Xamarin.AndroidX.Collection.Jvm" Version="1.4.5.1" />
+		<PackageReference Include="Xamarin.AndroidX.Collection.Jvm" Version="1.4.5.2" />
+		<PackageReference Include="Xamarin.Firebase.Analytics" Version="122.2.0" />
 		<PackageReference Include="Xamarin.Firebase.Config" Version="122.0.1.1" />
+		<PackageReference Include="Xamarin.Firebase.Crashlytics" Version="119.4.0" />
 	</ItemGroup>
 
 	<ItemGroup>

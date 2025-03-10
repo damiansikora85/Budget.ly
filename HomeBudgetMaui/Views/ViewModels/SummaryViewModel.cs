@@ -1,15 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using HomeBudgetStandard.Providers;
-using HomeBudgetStandard.Views.ViewModels;
+using Controls.UserDialogs.Maui;
+using Firebase.Crashlytics;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
 using HomeBudget.UseCases;
 using HomeBudgetShared.Code.Interfaces;
-using Microsoft.AppCenter.Crashes;
-using HomeBudgeStandard;
-using Controls.UserDialogs.Maui;
+using HomeBudgetStandard.Providers;
+using HomeBudgetStandard.Views.ViewModels;
 
 namespace HomeBudgetStandard.Views
 {
@@ -137,7 +136,7 @@ namespace HomeBudgetStandard.Views
                 }
                 catch(Exception exc)
                 {
-                    Crashes.TrackError(exc);
+                    FirebaseCrashlytics.Instance.RecordException(Java.Lang.Throwable.FromException(exc));
                 }
             }
             TransactionList.AddRange(tempList.OrderByDescending(el => el.Date));

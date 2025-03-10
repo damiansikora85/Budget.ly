@@ -1,4 +1,5 @@
-﻿using HomeBudget.Code;
+﻿using Firebase.Crashlytics;
+using HomeBudget.Code;
 using HomeBudget.Code.Logic;
 using HomeBudgetShared.Utils;
 using Newtonsoft.Json;
@@ -57,7 +58,7 @@ namespace HomeBudgetStandard.Utils
                 }
                 catch (Exception exc)
                 {
-                    Microsoft.AppCenter.Crashes.Crashes.TrackError(exc);
+                    FirebaseCrashlytics.Instance.RecordException(Java.Lang.Throwable.FromException(exc));
                     LogsManager.Instance.WriteLine(exc.Message);
                     LogsManager.Instance.WriteLine(exc.StackTrace);
                     DeleteFile(filename);
@@ -113,7 +114,7 @@ namespace HomeBudgetStandard.Utils
                 }
                 catch (Exception exc)
                 {
-                    Microsoft.AppCenter.Crashes.Crashes.TrackError(exc);
+                    FirebaseCrashlytics.Instance.RecordException(Java.Lang.Throwable.FromException(exc));
                     LogsManager.Instance.WriteLine(exc.Message);
                     LogsManager.Instance.WriteLine(exc.StackTrace);
                 }

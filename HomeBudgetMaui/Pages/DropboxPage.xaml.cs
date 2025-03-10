@@ -1,17 +1,11 @@
-﻿using Dropbox.Api;
+﻿using Controls.UserDialogs.Maui;
+using Dropbox.Api;
 using Dropbox.Api.Files;
-using HomeBudgetStandard.Interfaces.Impl;
+using Firebase.Crashlytics;
 using HomeBudget.Code;
 using HomeBudget.Code.Interfaces;
-//using HomeBudget.Helpers;
 using HomeBudget.Standard;
-using Microsoft.AppCenter.Crashes;
-using System;
-using System.Net;
-using System.Threading.Tasks;
-
-using Microsoft.Maui;
-using Controls.UserDialogs.Maui;
+using HomeBudgetStandard.Interfaces.Impl;
 
 namespace HomeBudgetStandard.Pages
 {
@@ -135,7 +129,7 @@ namespace HomeBudgetStandard.Pages
             }
             catch (Exception exc)
             {
-                Crashes.TrackError(exc);
+                FirebaseCrashlytics.Instance.RecordException(Java.Lang.Throwable.FromException(exc));
             }
             finally
             {

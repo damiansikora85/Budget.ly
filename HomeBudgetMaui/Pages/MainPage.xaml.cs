@@ -1,11 +1,11 @@
 ﻿using System.Globalization;
-using HomeBudgetStandard.Interfaces.Impl;
-using HomeBudgetStandard.Utils;
+using Firebase.Crashlytics;
 using HomeBudget.Code;
 using HomeBudget.Code.Interfaces;
 using HomeBudget.Helpers;
 using HomeBudgetShared.Code.Synchronize;
-using Microsoft.AppCenter.Crashes;
+using HomeBudgetStandard.Interfaces.Impl;
+using HomeBudgetStandard.Utils;
 
 namespace HomeBudgetStandard.Pages
 {
@@ -20,8 +20,6 @@ namespace HomeBudgetStandard.Pages
             InitializeComponent();
             Task.Factory.StartNew(async () => await InitBudget());
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
-
-            Crashes.NotifyUserConfirmation(UserConfirmation.AlwaysSend);
         }
 
         public bool OnBackPressed()
@@ -113,8 +111,8 @@ namespace HomeBudgetStandard.Pages
             {
                 mainTabbedPage.SetSettings(_settings);
             }
-            await Crashes.SetEnabledAsync(true);
-            var didAppCrash = await Crashes.HasCrashedInLastSessionAsync();
+
+            FirebaseCrashlytics.Instance.CheckForUnsentReports();
         }
     }
 }
