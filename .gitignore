@@ -354,3 +354,4 @@ upload_certificate.pem
 HomeBudget/HomeBudget.Droid/HomeBudget.Droid.csproj.user
 .sonarqube/
 *.csproj.user
+HomeBudgetMaui/Platforms/Android/google-services.json
