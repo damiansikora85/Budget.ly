@@ -1,4 +1,4 @@
-﻿using Controls.UserDialogs.Maui;
+﻿using Acr.UserDialogs;
 using HomeBudget.Code;
 using HomeBudget.Code.Interfaces;
 
@@ -31,16 +31,16 @@ namespace HomeBudgetStandard.Pages
         {
             if (isLoadedFromCloud)
             {
-                Device.BeginInvokeOnMainThread(() =>
+                MainThread.BeginInvokeOnMainThread(() =>
                 {
                     if (CurrentPage != Children[0])
                     {
                         CurrentPage = Children[0];
                     }
-                    UserDialogs.Instance.ShowToast("Zaktualizowano dane z Dropbox");
+                    UserDialogs.Instance.Toast("Zaktualizowano dane z Dropbox");
                     if(_waitingForSync)
                     {
-                        UserDialogs.Instance.HideHud();
+                        UserDialogs.Instance.HideLoading();
                     }
                     _waitingForSync = false;
                 });
@@ -58,13 +58,13 @@ namespace HomeBudgetStandard.Pages
             //HandleNetworkState();
         }
 
-        private void HandleNetworkState()
+        private void  HandleNetworkState()
         {
              var wasOnline = _isOnline;
             _isOnline = Connectivity.NetworkAccess == NetworkAccess.Internet;
-            if (!string.IsNullOrEmpty(_settings.CloudRefreshToken) && !_isOnline)
+            if (_settings != null && !string.IsNullOrEmpty(_settings.CloudRefreshToken) && !_isOnline)
             {
-                UserDialogs.Instance.ShowToast(new ToastConfig() { Message = "Brak połączenia z Internetem", MessageColor = Colors.Red });
+                UserDialogs.Instance.Toast(new ToastConfig("Brak połączenia z Internetem") { MessageTextColor = System.Drawing.Color.Red });
             }
         }
     }

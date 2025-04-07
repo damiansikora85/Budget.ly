@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using Controls.UserDialogs.Maui;
+using Acr.UserDialogs;
 using Firebase.Crashlytics;
 using HomeBudget.Code;
 using HomeBudget.Code.Logic;
@@ -184,7 +184,7 @@ namespace HomeBudgetStandard.Views
         {
             _currentBudgetMonth = MainBudget.Instance.GetMonth(_currentDateTime);
             await RefreshAsync(true).ConfigureAwait(false);
-            Device.BeginInvokeOnMainThread(() => UserDialogs.Instance.HideHud());
+            Device.BeginInvokeOnMainThread(() => UserDialogs.Instance.HideLoading());
         }
 
         private void MarkBudgetChanged(bool arg)

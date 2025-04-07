@@ -1,11 +1,9 @@
-﻿using HomeBudgetStandard.Interfaces;
-using HomeBudgetStandard.Views.ViewModels;
+﻿using Acr.UserDialogs;
 using HomeBudget.Code;
 using HomeBudget.Converters;
 using HomeBudgetStandard.Views.ViewModels;
 using Syncfusion.Maui.Data;
 using Syncfusion.Maui.DataGrid;
-using Controls.UserDialogs.Maui;
 
 namespace HomeBudgetStandard.Views
 {
@@ -130,7 +128,7 @@ namespace HomeBudgetStandard.Views
 
                 _setupDone = true;
 
-                UserDialogs.Instance.HideHud();
+                UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {

@@ -1,4 +1,4 @@
-﻿using Controls.UserDialogs.Maui;
+﻿using Acr.UserDialogs;
 using Dropbox.Api;
 using Dropbox.Api.Files;
 using Firebase.Crashlytics;
@@ -133,7 +133,7 @@ namespace HomeBudgetStandard.Pages
             }
             finally
             {
-                UserDialogs.Instance.HideHud();
+                UserDialogs.Instance.HideLoading();
             }
         }
 
@@ -190,13 +190,13 @@ namespace HomeBudgetStandard.Pages
                     {
                         UserDialogs.Instance.ShowLoading("");
                         await MainBudget.Instance.OnCloudStorageConnected(true);
-                        UserDialogs.Instance.HideHud();
+                        UserDialogs.Instance.HideLoading();
                         var mainPage = Application.Current.MainPage as MainPage;
                         mainPage.AfterCloudLogin();
                     }
                     else
                     {
-                        UserDialogs.Instance.HideHud();
+                        UserDialogs.Instance.HideLoading();
                         await MainBudget.Instance.OnCloudStorageConnected(false);
                         var mainPage = Application.Current.MainPage as MainPage;
                         mainPage.AfterCloudLogin();
@@ -206,7 +206,7 @@ namespace HomeBudgetStandard.Pages
                 {
                     _settings.CloudAccessToken = "";
                     _settings.CloudRefreshToken = "";
-                    UserDialogs.Instance.HideHud();
+                    UserDialogs.Instance.HideLoading();
                     if(await UserDialogs.Instance.ConfirmAsync("Podane dane są nieprawidłowe", "Uwaga", "Spróbuj ponownie", "Anuluj"))
                     {
                         await LoginToDropbox();
@@ -214,7 +214,7 @@ namespace HomeBudgetStandard.Pages
                 }
                 else
                 {
-                    UserDialogs.Instance.HideHud();
+                    UserDialogs.Instance.HideLoading();
                     await MainBudget.Instance.OnCloudStorageConnected(false);
                     var mainPage = Application.Current.MainPage as MainPage;
                     mainPage.AfterCloudLogin();
@@ -222,12 +222,12 @@ namespace HomeBudgetStandard.Pages
             }
             catch (ArgumentException argExc)
             {
-                UserDialogs.Instance.HideHud();
+                UserDialogs.Instance.HideLoading();
                 await UserDialogs.Instance.AlertAsync(argExc.Message, "Uwaga", "Dalej");
             }
             catch (Exception exc)
             {
-                UserDialogs.Instance.HideHud();
+                UserDialogs.Instance.HideLoading();
                 await UserDialogs.Instance.AlertAsync(exc.Message, "Uwaga", "Dalej");
             }
         }

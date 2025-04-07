@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Maui;
-using Controls.UserDialogs.Maui;
 using HomeBudgetMaui.Platforms.Android.CustomHandlers;
 using HomeBudgetStandard.Components;
 using Microsoft.Extensions.Logging;
@@ -7,6 +6,7 @@ using Mopups.Hosting;
 using Sharpnado.Tabs;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using Syncfusion.Maui.Core.Hosting;
+using Acr.UserDialogs;
 
 
 namespace HomeBudgetMaui
@@ -20,7 +20,6 @@ namespace HomeBudgetMaui
             .UseMauiApp<App>()
             //.UseDebugRainbows()
             .UseMauiCommunityToolkit()
-            .UseUserDialogs()
             .ConfigureMopups()
             .UseSkiaSharp()
             //.UseOxyPlotSkia()
@@ -38,8 +37,13 @@ namespace HomeBudgetMaui
                 fonts.AddFont("Font Awesome 5 Free-Solid-900.otf", "FontAwesomeSolid");
             });
 
+#if ANDROID
+            UserDialogs.Init(() => Platform.CurrentActivity);
+            builder.Services.AddSingleton(UserDialogs.Instance);
+#endif
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

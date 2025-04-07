@@ -54,7 +54,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Platforms\Android\google-services.json" />
+	  <None Remove="Platforms\Android\Resources\values\strings.xml" />
 	  <None Remove="Platforms\Android\Resources\xml\firebase_default_settings.xml" />
 	  <None Remove="Resources\Fonts\FiraSans-Bold.otf" />
 	  <None Remove="Resources\Fonts\FiraSans-Italic.otf" />
@@ -96,9 +96,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Acr.UserDialogs" Version="9.2.1" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="8.0.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="Controls.UserDialogs.Maui" Version="1.6.3" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.91" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.91" />
 		<PackageReference Include="Mopups.Maui" Version="1.0.0" />
@@ -113,8 +113,8 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Xamarin.AndroidX.Collection.Jvm" Version="1.4.5.2" />
 		<PackageReference Include="Xamarin.Firebase.Analytics" Version="122.2.0" />
-		<PackageReference Include="Xamarin.Firebase.Config" Version="122.0.1.1" />
-		<PackageReference Include="Xamarin.Firebase.Crashlytics" Version="119.4.0" />
+		<PackageReference Include="Xamarin.Firebase.Config" Version="122.1.0" />
+		<PackageReference Include="Xamarin.Firebase.Crashlytics" Version="119.4.1" />
 	</ItemGroup>
 
 	<ItemGroup>

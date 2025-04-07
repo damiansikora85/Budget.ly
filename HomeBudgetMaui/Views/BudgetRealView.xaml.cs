@@ -1,11 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
-using HomeBudgetStandard.Interfaces;
+using Acr.UserDialogs;
 using HomeBudget.Code;
 using HomeBudget.Pages;
 using HomeBudget.Utils;
+using HomeBudgetStandard.Interfaces;
 using HomeBudgetStandard.Views.ViewModels;
-using Controls.UserDialogs.Maui;
 
 namespace HomeBudgetStandard.Views
 {
@@ -104,7 +104,7 @@ namespace HomeBudgetStandard.Views
                 }
 
 #if ANDROID
-                UserDialogs.Instance.HideHud();
+                UserDialogs.Instance.HideLoading();
 #endif
                 _setupDone = true;
             }

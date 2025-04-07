@@ -175,7 +175,7 @@ namespace HomeBudgetStandard.Views
                     {
                         if (!string.IsNullOrEmpty(FormulaText) && Char.IsDigit(FormulaText.Last()))
                             FormulaText += '+';
-                        break;
+                        break;                                                                                                                     
                     }
                 case CalculatorKey.Backspace:
                     if (!string.IsNullOrEmpty(FormulaText))
@@ -187,7 +187,7 @@ namespace HomeBudgetStandard.Views
             return;
         }
 
-        private void OnSave(object sender, EventArgs e)
+        private void OnSave(object sender, EventArgs e)                              
         {
             if (_dateSelected)
             {
@@ -206,6 +206,7 @@ namespace HomeBudgetStandard.Views
                 {
                     _saveAfterDateSelected = true;
                     Calendar.OpenDialog();
+
                 }
                 catch(Exception exc)
                 {
