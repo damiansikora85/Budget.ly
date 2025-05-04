@@ -235,7 +235,7 @@ namespace HomeBudgetStandard.Views
         {
             if (await UserDialogs.Instance.ConfirmAsync($"Czy na pewno chcesz usunąć transakcje:\n{transactionViewModel.SubcatName}({transactionViewModel.CategoryName})\n{transactionViewModel.Transaction.Amount.ToString("C")}\n{transactionViewModel.Date.ToShortDateString()}?", "Usuń transakcje", "Usuń", "Anuluj"))
             {
-                await _viewModel.RemoveTransactionAsync(transactionViewModel);
+                _viewModel.RemoveTransactionAsync(transactionViewModel);
                 Task.Run(async () => await MainBudget.Instance.Save().ConfigureAwait(false));
             }
         }

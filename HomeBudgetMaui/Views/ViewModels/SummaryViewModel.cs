@@ -28,6 +28,7 @@ namespace HomeBudgetStandard.Views
         private BudgetMonth _currentBudgetMonth;
         private bool _needRefreshData = true;
         private IBudgetTemplateProvider _budgetTemplateProvider;
+        private readonly object _refreshListDataLock = new object();
 
         public bool IsBudgetPlanned { get; private set; }
         public bool NoBudgetPlanned => !IsBudgetPlanned;
@@ -59,14 +60,14 @@ namespace HomeBudgetStandard.Views
             }
         }
 
-        public async Task ViewWillAppear()
+        public void ViewWillAppear()
         {
             MainBudget.Instance.BudgetDataChanged += BudgetDataChanged;
             MainBudget.Instance.BudgetDataChanged -= MarkBudgetChanged;
             if(_needRefreshData && MainBudget.Instance.IsDataLoaded)
             {
                 _needRefreshData = false;
-                await RefreshAsync(true).ConfigureAwait(false);
+                RefreshAsync(true);
             }
             else if(_needRefreshData)
             {
@@ -81,19 +82,19 @@ namespace HomeBudgetStandard.Views
             _needRefreshData = true;
         }
 
-        public async void DecreaseMonth()
+        public void DecreaseMonth()
         {
             _currentDateTime = _currentDateTime.AddMonths(-1);
-            await RefreshAsync(true).ConfigureAwait(false);
+            RefreshAsync(true);
         }
 
-        public async void IncreaseMonth()
+        public void IncreaseMonth()
         {
             _currentDateTime = _currentDateTime.AddMonths(1);
-            await RefreshAsync(true).ConfigureAwait(false);
+            RefreshAsync(true);
         }
 
-        public async Task RefreshAsync(bool full = false)
+        public void RefreshAsync(bool full = false)
         {
             _currentBudgetMonth = MainBudget.Instance.GetMonth(_currentDateTime);
             if (_currentBudgetMonth != null)
@@ -111,7 +112,10 @@ namespace HomeBudgetStandard.Views
 
                 if (full)
                 {
-                    SummaryListViewItems = await GetBudgetSummaryDataAsync(_currentBudgetMonth).ConfigureAwait(false);
+                    lock (_refreshListDataLock)
+                    {
+                        SummaryListViewItems = GetBudgetSummaryDataAsync(_currentBudgetMonth);
+                    }
                 }
 
                 CreateTransactionsList();
@@ -142,49 +146,45 @@ namespace HomeBudgetStandard.Views
             TransactionList.AddRange(tempList.OrderByDescending(el => el.Date));
         }
 
-        private async static Task<ObservableCollection<BudgetSummaryDataViewModel>> GetBudgetSummaryDataAsync(BudgetMonth budgetData) =>
-#pragma warning disable CA2008 // Do not create tasks without passing a TaskScheduler
-            await Task.Factory.StartNew(() =>
+        private static ObservableCollection<BudgetSummaryDataViewModel> GetBudgetSummaryDataAsync(BudgetMonth budgetData)
+        {
+            var budgetSummaryCollection = new ObservableCollection<BudgetSummaryDataViewModel>();
+            var categoriesDesc = MainBudget.Instance.BudgetDescription.Categories;
+
+            var budgetReal = budgetData.BudgetReal;
+            var budgetPlanned = budgetData.BudgetPlanned;
+            AddEmptyElements(budgetSummaryCollection, 1);
+
+            for (var i = 0; i < budgetReal.Categories.Count; i++)
             {
-                var budgetSummaryCollection = new ObservableCollection<BudgetSummaryDataViewModel>();
-                var categoriesDesc = MainBudget.Instance.BudgetDescription.Categories;
-
-                var budgetReal = budgetData.BudgetReal;
-                var budgetPlanned = budgetData.BudgetPlanned;
-                AddEmptyElements(budgetSummaryCollection, 1);
-
-                for (int i = 0; i < budgetReal.Categories.Count; i++)
+                var budgetSummaryData = new BudgetSummaryDataViewModel
                 {
-                    var budgetSummaryData = new BudgetSummaryDataViewModel
-                    {
-                        CategoryReal = budgetReal.Categories[i],
-                        CategoryPlanned = budgetPlanned.Categories[i],
-                        IconFile = categoriesDesc[i].IconFileName,
-                        IsEmpty = false
-                    };
+                    CategoryReal = budgetReal.Categories[i],
+                    CategoryPlanned = budgetPlanned.Categories[i],
+                    IconFile = categoriesDesc[i].IconFileName,
+                    IsEmpty = false
+                };
 
-                    budgetSummaryData.Init();
-                    budgetSummaryCollection.Add(budgetSummaryData);
-                }
+                budgetSummaryData.Init();
+                budgetSummaryCollection.Add(budgetSummaryData);
+            }
 
-                return budgetSummaryCollection;
-            }).ConfigureAwait(false);
+            return budgetSummaryCollection;
+        }
 
-#pragma warning restore CA2008 // Do not create tasks without passing a TaskScheduler
-
-        public async void AddExpenseAsync(double value, DateTime date, BaseBudgetCategory category, int subcatId, string note)
+        public void AddExpenseAsync(double value, DateTime date, BaseBudgetCategory category, int subcatId, string note)
         {
             BudgetUseCases.AddExpense(value, date, category, subcatId, note);
 
-            await RefreshAsync().ConfigureAwait(false);
+            RefreshAsync();
         }
 
 
-        private async void BudgetDataChanged(bool isLoadedFromCloud)
+        private void BudgetDataChanged(bool isLoadedFromCloud)
         {
             _currentBudgetMonth = MainBudget.Instance.GetMonth(_currentDateTime);
-            await RefreshAsync(true).ConfigureAwait(false);
-            Device.BeginInvokeOnMainThread(() => UserDialogs.Instance.HideLoading());
+            RefreshAsync(true);
+            MainThread.BeginInvokeOnMainThread(() => UserDialogs.Instance.HideLoading());
         }
 
         private void MarkBudgetChanged(bool arg)
@@ -203,7 +203,7 @@ namespace HomeBudgetStandard.Views
             }
         }
 
-        internal async Task RemoveTransactionAsync(TransactionViewModel transactionViewModel)
+        internal void RemoveTransactionAsync(TransactionViewModel transactionViewModel)
         {
             var tvm = TransactionList.First(p => p.Contains(transactionViewModel));
             tvm.Remove(transactionViewModel);
@@ -212,7 +212,7 @@ namespace HomeBudgetStandard.Views
                 TransactionList.Remove(tvm);
             }
             BudgetUseCases.RemoveTransaction(transactionViewModel.Transaction);
-            await RefreshAsync().ConfigureAwait(false);
+            RefreshAsync();
         }
     }
 }
