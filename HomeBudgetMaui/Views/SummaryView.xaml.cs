@@ -40,9 +40,9 @@ namespace HomeBudgetStandard.Views
             SelectedCategorySubcats = new ObservableCollection<BaseBudgetSubcat>();
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
-            await _viewModel.ViewWillAppear().ConfigureAwait(false);
+            _viewModel.ViewWillAppear();
             MainBudget.Instance.BudgetDataChanged += BudgetDataChanged;
             MessagingCenter.Subscribe<SummaryGroupHeaderViewCell, BudgetSummaryDataViewModel>(this, "CategoryClicked", (sender, element) => ExpandCategory(element));
             MessagingCenter.Subscribe<AnimatedViewCell, SummaryListSubcat>(this, "SubcatClicked", (sender, subcat) => AddExpense(subcat));
