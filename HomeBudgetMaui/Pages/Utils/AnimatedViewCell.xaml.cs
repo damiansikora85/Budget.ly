@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Microsoft.Maui;
-
-namespace HomeBudget.Pages.Utils
+﻿namespace HomeBudget.Pages.Utils
 {
 	public partial class AnimatedViewCell : ViewCell
 	{
-		public AnimatedViewCell ()
+        private SummaryListSubcat _previousContext;
+
+        public AnimatedViewCell ()
 		{
 			InitializeComponent ();
             layout.GestureRecognizers.Add(new TapGestureRecognizer
@@ -30,25 +24,47 @@ namespace HomeBudget.Pages.Utils
 
         protected override void OnBindingContextChanged()
         {
-            if(BindingContext is SummaryListSubcat data)
+            // Odłącz eventy z poprzedniego kontekstu
+            if (_previousContext != null)
             {
-                data.Expand += () =>
-                {
-                    layout.IsVisible = true;
-                    layout.TranslationX = -300;
-                    layout.HeightRequest = 50;
-                    layout.Margin = new Thickness(5, 0);
-                    ForceUpdateSize();
-                    layout.TranslateTo(0, 0, 500, Easing.CubicInOut);
-                };
-                data.Collapse += () =>
-                {
-                    layout.IsVisible = false;
-                    layout.Margin = new Thickness(5, 0);
-                    ForceUpdateSize();
-                };
+                _previousContext.Expand -= OnExpand;
+                _previousContext.Collapse -= OnCollapse;
             }
+
             base.OnBindingContextChanged();
+
+            // Przypisz nowy kontekst
+            if (BindingContext is SummaryListSubcat data)
+            {
+                _previousContext = data;
+
+                data.Expand += OnExpand;
+                data.Collapse += OnCollapse;
+            }
         }
+
+        private void OnExpand()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                layout.IsVisible = true;
+                layout.TranslationX = -300;
+                layout.HeightRequest = 50;
+                layout.Margin = new Thickness(5, 0);
+                ForceUpdateSize();
+                await layout.TranslateTo(0, 0, 500, Easing.CubicInOut);
+            });
+        }
+
+        private void OnCollapse()
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                layout.IsVisible = false;
+                layout.Margin = new Thickness(5, 0);
+                ForceUpdateSize();
+            });
+        }
+
     }
 }
