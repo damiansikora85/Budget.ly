@@ -86,7 +86,7 @@ jobs:
             retention-days: 5
 
         - name: Upload build to Google Play
-          if: ${{ github.ref_name == 'maui' }}
+          if: ${{ github.ref_name == 'master' }}
           uses: KevinRohn/github-action-upload-play-store@v1.0.0
           with:
             service_account_json: ${{ secrets.SERVICE_ACCOUNT_JSON }}
