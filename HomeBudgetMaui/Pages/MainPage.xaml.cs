@@ -19,7 +19,7 @@ namespace HomeBudgetStandard.Pages
             CultureInfo.CurrentCulture = new CultureInfo("pl-PL");
             InitializeComponent();
             Task.Factory.StartNew(async () => await InitBudget());
-            MasterPage.ListView.ItemSelected += ListView_ItemSelected;
+            MasterPage.ListView.SelectionChanged += ListView_ItemSelected;
         }
 
         public bool OnBackPressed()
@@ -66,10 +66,17 @@ namespace HomeBudgetStandard.Pages
             });
         }
 
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void ListView_ItemSelected(object? sender, SelectionChangedEventArgs e)
         {
-            if (!(e.SelectedItem is MainPageMenuItem item))
+            if(e.CurrentSelection.Count == 0)
+            {
                 return;
+            }
+
+            if (e.CurrentSelection[0] is not MainPageMenuItem item)
+            {
+                return;
+            }
 
             try
             {

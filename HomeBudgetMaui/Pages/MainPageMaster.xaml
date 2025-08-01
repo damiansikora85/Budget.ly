@@ -5,11 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:HomeBudgetStandard.Pages"
     xmlns:utils="clr-namespace:HomeBudgetStandard.Utils"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Master">
     <ContentPage.Resources>
         <DataTemplate x:Key="NormalTemplate">
-            <ViewCell>
-                <HorizontalStackLayout
+            <HorizontalStackLayout
                     Padding="15,10"
                     HorizontalOptions="FillAndExpand"
                     Spacing="4">
@@ -28,31 +28,28 @@
                         VerticalOptions="FillAndExpand"
                         VerticalTextAlignment="Center" />
                 </HorizontalStackLayout>
-            </ViewCell>
         </DataTemplate>
 
         <DataTemplate x:Key="DropboxTemplate">
-            <ViewCell>
-                <HorizontalStackLayout
+            <HorizontalStackLayout
                     Padding="15,10"
                     HorizontalOptions="FillAndExpand"
                     Spacing="2">
-                    <Label
+                <Label
                         Text="{Binding Icon}"
                         VerticalOptions="FillAndExpand"
                         VerticalTextAlignment="Center">
-                        <Label.FontFamily>
-                            <OnPlatform x:TypeArguments="x:String">
-                                <On Platform="Android" Value="FontAwesomeSolid" />
-                            </OnPlatform>
-                        </Label.FontFamily>
-                    </Label>
-                    <Label
+                    <Label.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="Android" Value="FontAwesomeSolid" />
+                        </OnPlatform>
+                    </Label.FontFamily>
+                </Label>
+                <Label
                         Text="{Binding Title}"
                         VerticalOptions="FillAndExpand"
                         VerticalTextAlignment="Center" />
-                </HorizontalStackLayout>
-            </ViewCell>
+            </HorizontalStackLayout>
         </DataTemplate>
 
         <local:CellTemplateSelector
@@ -61,15 +58,18 @@
             NormalTemplate="{StaticResource NormalTemplate}" />
     </ContentPage.Resources>
 
-    <ListView
+    <CollectionView
         x:Name="MenuItemsListView"
-        HasUnevenRows="true"
         ItemTemplate="{StaticResource templateSelector}"
         ItemsSource="{Binding MenuItems}"
-        SeparatorVisibility="Default">
-        <ListView.Header>
+        SelectionMode="Single">
+        <CollectionView.Header>
             <HorizontalStackLayout Padding="5,14">
-                <Image HeightRequest="50" Source="logo.png" />
+                <Image HeightRequest="50" Source="logo_small.png" >
+                    <Image.Behaviors>
+                        <toolkit:IconTintColorBehavior TintColor="#00A9FF" />
+                    </Image.Behaviors>
+                </Image>
                 <Label
                     FontAttributes="Bold"
                     FontSize="Large"
@@ -77,6 +77,6 @@
                     TextColor="#00A9FF"
                     VerticalTextAlignment="End" />
             </HorizontalStackLayout>
-        </ListView.Header>
-    </ListView>
+        </CollectionView.Header>
+    </CollectionView>
 </ContentPage>

@@ -7,7 +7,7 @@ namespace HomeBudgetStandard.Pages
 {
     public partial class MainPageMaster : ContentPage
     {
-        public ListView ListView;
+        public CollectionView ListView;
 
         public MainPageMaster()
         {

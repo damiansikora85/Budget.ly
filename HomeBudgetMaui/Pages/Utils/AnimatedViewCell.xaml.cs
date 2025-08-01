@@ -45,7 +45,7 @@
 
         private void OnExpand()
         {
-            Device.BeginInvokeOnMainThread(async () =>
+            MainThread.BeginInvokeOnMainThread(async () =>
             {
                 layout.IsVisible = true;
                 layout.TranslationX = -300;
@@ -58,7 +58,7 @@
 
         private void OnCollapse()
         {
-            Device.BeginInvokeOnMainThread(() =>
+            MainThread.BeginInvokeOnMainThread(() =>
             {
                 layout.IsVisible = false;
                 layout.Margin = new Thickness(5, 0);
