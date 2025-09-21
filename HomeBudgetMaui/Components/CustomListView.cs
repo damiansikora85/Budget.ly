@@ -9,6 +9,11 @@ namespace HomeBudget.Components
     {
         public static BindableProperty FirstElementVisibiltyPercProperty = BindableProperty.Create(nameof(FirstElementVisibiltyPerc), typeof(float), typeof(CustomListView));
         public static BindableProperty ScrollPositionProperty = BindableProperty.Create(nameof(ScrollPosition), typeof(int), typeof(CustomListView));
+
+        public CustomListView() : base(ListViewCachingStrategy.RecycleElement)
+        {
+        }
+
         public float FirstElementVisibiltyPerc
         {
             get => (float)GetValue(FirstElementVisibiltyPercProperty);

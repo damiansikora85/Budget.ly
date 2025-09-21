@@ -1,18 +1,19 @@
 ﻿namespace HomeBudget.Pages.Utils
 {
-	public partial class AnimatedViewCell : ViewCell
+	public partial class AnimatedViewCell : Grid
 	{
         private SummaryListSubcat _previousContext;
 
         public AnimatedViewCell ()
 		{
 			InitializeComponent ();
-            layout.GestureRecognizers.Add(new TapGestureRecognizer
+            this.GestureRecognizers.Add(new TapGestureRecognizer
             {
                 Command = new Command(OnClick)
             });
-            layout.IsVisible = false;
-		}
+            //this.IsVisible = false;
+            this.BindingContextChanged += (s, e) => OnContextChanged();  
+        }
 
         private void OnClick()
         {
@@ -22,7 +23,7 @@
             }
         }
 
-        protected override void OnBindingContextChanged()
+        private void OnContextChanged()
         {
             // Odłącz eventy z poprzedniego kontekstu
             if (_previousContext != null)
@@ -31,8 +32,6 @@
                 _previousContext.Collapse -= OnCollapse;
             }
 
-            base.OnBindingContextChanged();
-
             // Przypisz nowy kontekst
             if (BindingContext is SummaryListSubcat data)
             {
@@ -40,6 +39,7 @@
 
                 data.Expand += OnExpand;
                 data.Collapse += OnCollapse;
+                data.MarkAddedToList();
             }
         }
 
@@ -47,24 +47,26 @@
         {
             MainThread.BeginInvokeOnMainThread(async () =>
             {
-                layout.IsVisible = true;
-                layout.TranslationX = -300;
-                layout.HeightRequest = 50;
-                layout.Margin = new Thickness(5, 0);
-                ForceUpdateSize();
-                await layout.TranslateTo(0, 0, 500, Easing.CubicInOut);
+                IsVisible = true;
+                Opacity = 1;
+                HeightRequest = 50;
+                Margin = new Thickness(5, 0);
+                TranslationX = -500;
+                //this.ForceUpdateSize();
+                await this.TranslateTo(0, 0, 500, Easing.CubicInOut);
             });
         }
 
         private void OnCollapse()
         {
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                layout.IsVisible = false;
-                layout.Margin = new Thickness(5, 0);
-                ForceUpdateSize();
-            });
+            //MainThread.BeginInvokeOnMainThread(() =>
+            //{
+                IsVisible = false;
+                HeightRequest = 0;
+                Opacity = 0;
+                Margin = new Thickness(5, 0);
+                //ForceUpdateSize();
+            //});
         }
-
     }
 }

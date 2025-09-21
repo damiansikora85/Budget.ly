@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using HomeBudget.Code.Logic;
 
@@ -40,14 +41,16 @@ namespace HomeBudget.Pages.Utils
                 foreach (var subcat in categoryReal.subcats)
                 {
                     var subcatPlanned = CategoryPlanned.GetSubcat(subcat.Id);
-                    _sublist.Add(new SummaryListSubcat
+                    var s = new SummaryListSubcat
                     {
                         Name = subcat.Name,
                         SubcatReal = (RealSubcat)subcat,
                         SubcatPlan = (PlannedSubcat)subcatPlanned,
                         Id = subcat.Id,
                         Icon = IconFile
-                    });
+                    };
+                    _sublist.Add(s);
+                    //this.Add(s);
                 }
             }
         }
@@ -66,9 +69,10 @@ namespace HomeBudget.Pages.Utils
                     this.Add(subcat);
                 }
 
+                await Task.WhenAll(_sublist.Select(subcat => subcat.WaitForAddToList()));
                 foreach (var subcat in this)
                 {
-                    subcat.Expand();
+                    subcat.Expand?.Invoke();
                     await Task.Delay(100);
                 }
 
@@ -76,18 +80,24 @@ namespace HomeBudget.Pages.Utils
             }
             catch (Exception exc)
             {
+                var msg = exc.Message;
                 throw;
             }
         }
 
         public void Collapse()
         {
-            if (IsExpanding) return;
+            if (IsExpanding)
+            {
+                return;
+            }
 
             IsExpanded = false;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsExpanded)));
             foreach (var subcat in this)
-                subcat.Collapse();
+            {
+                subcat.Collapse?.Invoke();
+            }
             this.Clear();
         }
 

@@ -15,9 +15,6 @@
         <ResourceDictionary>
             <local:ToCapitalLetterConverter x:Key="ToCapital" />
         </ResourceDictionary>
-        <DataTemplate x:Key="groupHeaderViewCell">
-            <utils:SummaryGroupHeaderViewCell />
-        </DataTemplate>
         <DataTemplate x:Key="emptyViewCell">
             <ViewCell>
                 <BoxView HeightRequest="270" />
@@ -32,9 +29,7 @@
             </ViewCell>
         </DataTemplate>
         <utils1:SummaryListViewTemplateSelector
-            x:Key="templateSelector"
-            BudgetCellDataTemplate="{StaticResource groupHeaderViewCell}"
-            EmptyCellDataTemplate="{StaticResource emptyViewCell}" />
+            x:Key="templateSelector"/>
         <utils1:TransactionViewTemplateSelector
             x:Key="transactionTemplateSelector"
             EmptyCellDataTemplate="{StaticResource emptyViewCell}"
@@ -50,36 +45,35 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <components:CustomListView
+            <CollectionView
                 x:Name="summaryListView"
-                Grid.RowSpan="3"
-                GroupDisplayBinding="{Binding CategoryName}"
-                GroupHeaderTemplate="{StaticResource templateSelector}"
-                HasUnevenRows="True"
+                Grid.Row="2"
                 HorizontalScrollBarVisibility="Never"
-                IsGroupingEnabled="True"
-                ItemSelected="Summary_ItemSelected"
+                IsGrouped="True"
+                SelectionMode="Single"
                 ItemsSource="{Binding SummaryListViewItems}"
-                SeparatorVisibility="None"
                 VerticalScrollBarVisibility="Never">
-                <components:CustomListView.ItemTemplate>
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <utils:SummaryGroupHeaderViewCell />
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <utils:AnimatedViewCell />
                     </DataTemplate>
-                </components:CustomListView.ItemTemplate>
-            </components:CustomListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
             <components:CustomListView
                 x:Name="transactionsListView"
                 Grid.RowSpan="3"
                 GroupHeaderTemplate="{StaticResource transactionTemplateSelector}"
-                HasUnevenRows="True"
                 HorizontalScrollBarVisibility="Never"
                 IsGroupingEnabled="True"
                 IsVisible="False"
-                ItemSelected="Transaction_ItemSelected"
+                SelectionMode="Single"
                 ItemsSource="{Binding TransactionList}"
-                SeparatorVisibility="Default"
                 VerticalScrollBarVisibility="Never">
                 <components:CustomListView.ItemTemplate>
                     <DataTemplate>

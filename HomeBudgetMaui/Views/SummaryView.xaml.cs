@@ -1,11 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Acr.UserDialogs;
+using CommunityToolkit.Mvvm.Messaging;
 using HomeBudget.Code;
 using HomeBudget.Code.Interfaces;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
 using HomeBudget.Utils;
+using HomeBudgetMaui.Messages;
 using HomeBudgetStandard.Views.ViewModels;
 using Mopups.Services;
 
@@ -32,19 +34,24 @@ namespace HomeBudgetStandard.Views
             InitializeComponent();
             _viewModel = new SummaryViewModel();
             BindingContext = _viewModel;
-            summaryListView.OnScroll += SummaryList_Scrolled;
+            //summaryListView.OnScroll += SummaryList_Scrolled;
             transactionsListView.OnScroll += TransactionsList_Scrolled;
             _baseHeaderHeight = -1;
 
             _popupManager = new BudgetPopupManager(Parent as Page, Navigation);
             SelectedCategorySubcats = new ObservableCollection<BaseBudgetSubcat>();
+
+            WeakReferenceMessenger.Default.Register<CategoryClickedMessage>(this, (r, m) =>
+            {
+                ExpandCategory(m.Element);
+            });
         }
 
         protected override void OnAppearing()
         {
             _viewModel.ViewWillAppear();
             MainBudget.Instance.BudgetDataChanged += BudgetDataChanged;
-            MessagingCenter.Subscribe<SummaryGroupHeaderViewCell, BudgetSummaryDataViewModel>(this, "CategoryClicked", (sender, element) => ExpandCategory(element));
+
             MessagingCenter.Subscribe<AnimatedViewCell, SummaryListSubcat>(this, "SubcatClicked", (sender, subcat) => AddExpense(subcat));
 
             if (MainBudget.Instance.IsDataLoaded)
@@ -77,19 +84,19 @@ namespace HomeBudgetStandard.Views
             {
                 _baseHeaderHeight = header.Height;
             }
-            var newHeight = _baseHeaderHeight - summaryListView.ScrollPosition/3;
+            //var newHeight = _baseHeaderHeight - summaryListView.ScrollPosition/3;
 
-            newHeight = Math.Max(newHeight, header.MinimumHeightRequest);
-            if (newHeight > header.MinimumHeightRequest)
-            {
-                header.HeightRequest = newHeight;
-            }
-            else
-            {
-                header.HeightRequest = header.MinimumHeightRequest;
-            }
-            _viewModel.HeaderScrollProgress = (newHeight - header.MinimumHeightRequest) / (_baseHeaderHeight - header.MinimumHeightRequest);
-            debugScroll.Text = $"{summaryListView.FirstElementVisibiltyPerc}";
+            //newHeight = Math.Max(newHeight, header.MinimumHeightRequest);
+            //if (newHeight > header.MinimumHeightRequest)
+            //{
+            //    header.HeightRequest = newHeight;
+            //}
+            //else
+            //{
+            //    header.HeightRequest = header.MinimumHeightRequest;
+            //}
+            //_viewModel.HeaderScrollProgress = (newHeight - header.MinimumHeightRequest) / (_baseHeaderHeight - header.MinimumHeightRequest);
+            //debugScroll.Text = $"{summaryListView.FirstElementVisibiltyPerc}";
         }
 
         private void TransactionsList_Scrolled(object sender, EventArgs e)
@@ -172,10 +179,12 @@ namespace HomeBudgetStandard.Views
                 _selectedCategory = element;
             }
             else if (element.IsExpanded)
+            {
                 element.Collapse();
+            }
             else
             {
-                summaryListView.ScrollTo(element, ScrollToPosition.Start, false);
+                //summaryListView.ScrollTo(element, ScrollToPosition.Start, false);
                 element.Expand();
             }
         }
@@ -226,7 +235,7 @@ namespace HomeBudgetStandard.Views
             {
                 summaryListView.IsVisible = e.SelectedMode == SummaryTabsView.Mode.Budget;
                 transactionsListView.IsVisible = e.SelectedMode == SummaryTabsView.Mode.Transactions;
-                summaryListView.ScrollToTop?.Invoke();
+                //summaryListView.ScrollToTop?.Invoke();
                 transactionsListView.ScrollToTop?.Invoke();
             });
         }

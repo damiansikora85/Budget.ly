@@ -153,7 +153,7 @@ namespace HomeBudgetStandard.Views
 
             var budgetReal = budgetData.BudgetReal;
             var budgetPlanned = budgetData.BudgetPlanned;
-            AddEmptyElements(budgetSummaryCollection, 1);
+            //AddEmptyElements(budgetSummaryCollection, 1);
 
             for (var i = 0; i < budgetReal.Categories.Count; i++)
             {

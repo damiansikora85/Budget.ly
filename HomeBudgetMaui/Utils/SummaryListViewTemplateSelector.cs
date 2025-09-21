@@ -8,17 +8,22 @@ namespace HomeBudgetStandard.Utils
 {
     public class SummaryListViewTemplateSelector : DataTemplateSelector
     {
-        public DataTemplate EmptyCellDataTemplate { get; set; }
-        public DataTemplate BudgetCellDataTemplate { get;set; }
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
             if(item is BudgetSummaryDataViewModel data)
             {
-                return data.IsEmpty ? EmptyCellDataTemplate : BudgetCellDataTemplate;
+                return data.IsEmpty ? new DataTemplate(()=> new BoxView
+                {
+                        HeightRequest = 270
+                }) 
+                : new DataTemplate(() => new SummaryGroupHeaderViewCell());
             }
             else
             {
-                return EmptyCellDataTemplate;
+                return new DataTemplate(() => new BoxView
+                {
+                        HeightRequest = 270
+                });
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿using HomeBudget.Code.Logic;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
+
 
 namespace HomeBudget.Pages.Utils
 {
@@ -37,5 +37,22 @@ namespace HomeBudget.Pages.Utils
 
         public Action Expand;
         public Action Collapse;
+        private TaskCompletionSource _tcs;
+
+        public Task WaitForAddToList()
+        {
+            if(Expand != null && Collapse != null)
+            {
+                return Task.CompletedTask;
+            }
+            _tcs?.TrySetCanceled();
+            _tcs = new TaskCompletionSource();
+            return _tcs.Task;
+        }
+
+        public void MarkAddedToList()
+        {
+            _tcs.TrySetResult();
+        }
     }
 }

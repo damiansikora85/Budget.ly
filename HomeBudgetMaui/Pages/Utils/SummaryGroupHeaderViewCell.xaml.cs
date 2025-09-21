@@ -3,39 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using CommunityToolkit.Mvvm.Messaging;
+using HomeBudgetMaui.Messages;
 using Microsoft.Maui;
 
 namespace HomeBudget.Pages.Utils
 {
-	public partial class SummaryGroupHeaderViewCell : ViewCell
+	public partial class SummaryGroupHeaderViewCell : Grid
 	{
 		public SummaryGroupHeaderViewCell ()
 		{
 			InitializeComponent ();
-            layout.GestureRecognizers.Add(new TapGestureRecognizer
+            this.GestureRecognizers.Add(new TapGestureRecognizer
             {
                 Command = new Command(ExpandCategory)
             });
+            this.BindingContextChanged += (s, e) => OnContextChanged();
         }
 
-        protected override void OnBindingContextChanged()
+        private void OnContextChanged()
         {
             if (BindingContext is BudgetSummaryDataViewModel element)
             {
                 element.PropertyChanged += (sender, args) =>
                 {
-                    if(args.PropertyName == nameof(BudgetSummaryDataViewModel.IsExpanded))
+                    if (args.PropertyName == nameof(BudgetSummaryDataViewModel.IsExpanded))
                     {
-                        if(element.IsExpanded)
+                        if (element.IsExpanded)
+                        {
                             expandIcon.RotateTo(90);
+                        }
                         else
+                        {
                             expandIcon.RotateTo(0);
+                        }
                     }
                 };
             }
-
-            base.OnBindingContextChanged();
         }
 
         private void ExpandCategory()
@@ -44,7 +48,7 @@ namespace HomeBudget.Pages.Utils
             {
                 if (element.IsExpanding) return;
 
-                MessagingCenter.Send(this, "CategoryClicked", element);
+                WeakReferenceMessenger.Default.Send(new CategoryClickedMessage(element));
             }
         }
     }
