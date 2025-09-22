@@ -56,12 +56,7 @@
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HomeBudget\HomeBudgeStandard\HomeBudgeStandard.csproj">
-      <Project>{27e2bc12-14a4-4811-9a83-a349e4608287}</Project>
-      <Name>HomeBudgeStandard</Name>
-    </ProjectReference>
-  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Castle.Core">
       <Version>4.4.1</Version>
