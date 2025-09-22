@@ -82,7 +82,7 @@ jobs:
           uses: actions/upload-artifact@v4
           with:
             name: Bundle
-            path: HomeBudgetMaui/bin/Release/net8.0-android/com.darktower.homebudget-Signed.aab
+            path: HomeBudgetMaui/bin/Release/net9.0-android/com.darktower.homebudget-Signed.aab
             retention-days: 5
 
         - name: Upload build to Google Play
@@ -91,6 +91,6 @@ jobs:
           with:
             service_account_json: ${{ secrets.SERVICE_ACCOUNT_JSON }}
             package_name: "com.darktower.homebudget"
-            aab_file_path: "HomeBudgetMaui/bin/Release/net8.0-android/com.darktower.homebudget-Signed.aab"
+            aab_file_path: "HomeBudgetMaui/bin/Release/net9.0-android/com.darktower.homebudget-Signed.aab"
             track: "beta"
             release_status: "draft"
