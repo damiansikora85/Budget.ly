@@ -19,7 +19,10 @@ namespace HomeBudget.Code
         [ProtoMember(4)]
         public int Year { get; set; }
 
-        public event Action onBudgetPlannedChanged;
+        public Action OnBudgetPlannedChanged
+        {
+            get; set;
+        }
 
         public class BudgetChartData
         {
@@ -78,10 +81,10 @@ namespace HomeBudget.Code
             BudgetPlanned = new BudgetPlanned(budgetMonth.BudgetPlanned);
         }
 
-        private void OnBudgetPlannedChanged()
-        {
-            onBudgetPlannedChanged?.Invoke();
-        }
+        //private void OnBudgetPlannedChangedInternal()
+        //{
+        //    OnBudgetPlannedChanged?.Invoke();
+        //}
 
         private void SetupDate(DateTime date)
 		{
@@ -182,6 +185,11 @@ namespace HomeBudget.Code
                         foreach (var subcatRemove in toRemove)
                         {
                             categoryReal.subcats.Remove(subcatRemove);
+                            int idx = categoryPlan.subcats.FindIndex(item => item.Id == subcatRemove.Id);
+                            if (idx != -1)
+                            {
+                                categoryPlan.subcats.RemoveAt(idx);
+                            }
                             categoryPlan.subcats.RemoveAt(categoryPlan.subcats.FindIndex( item => item.Id == subcatRemove.Id));
                         }
                     }
@@ -204,3 +212,4 @@ namespace HomeBudget.Code
         public int Id { get; set; }
     }
 }
+

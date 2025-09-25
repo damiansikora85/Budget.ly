@@ -65,58 +65,63 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <components:CustomListView
+            <CollectionView
                 x:Name="transactionsListView"
-                Grid.RowSpan="3"
-                GroupHeaderTemplate="{StaticResource transactionTemplateSelector}"
+                Grid.Row="2"
                 HorizontalScrollBarVisibility="Never"
-                IsGroupingEnabled="True"
+                IsGrouped="True"
                 IsVisible="False"
                 SelectionMode="Single"
                 ItemsSource="{Binding TransactionList}"
                 VerticalScrollBarVisibility="Never">
-                <components:CustomListView.ItemTemplate>
+                <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.View>
-                                <Grid Padding="6,5">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="50" />
-                                    </Grid.ColumnDefinitions>
+                        <Label
+                        FontSize="Large"
+                        Text="{Binding Date, StringFormat='{0:dd MMMM, dddd}'}"
+                        TextColor="Black" />
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="6,5" HeightRequest="55">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
 
-                                    <Image
+                            <Image
                                         Grid.RowSpan="2"
                                         Margin="0,8"
                                         Source="{Binding Icon}" />
-                                    <Label
+                            <Label
                                         Grid.Column="2"
                                         FontSize="16"
                                         HorizontalTextAlignment="End"
                                         Text="{Binding Amount, Converter={StaticResource CurrencyValueWithSignConverter}}"
                                         VerticalTextAlignment="Center" />
-                                    <Label
+                            <Label
                                         Grid.Row="1"
                                         Grid.Column="2"
                                         HorizontalTextAlignment="End"
                                         Text="{Binding Note}"
                                         VerticalTextAlignment="Center" />
-                                    <Label
+                            <Label
                                         Grid.Column="1"
                                         FontSize="16"
                                         Text="{Binding SubcatName}" />
-                                    <Label
+                            <Label
                                         Grid.Row="1"
                                         Grid.Column="1"
                                         Text="{Binding CategoryName}"
                                         VerticalTextAlignment="End" />
-                                    <Button
+                            <Button
                                         Grid.RowSpan="2"
                                         Grid.Column="3"
                                         BackgroundColor="Transparent"
@@ -125,18 +130,16 @@
                                         FontSize="Large"
                                         Text="&#xf2ed;"
                                         TextColor="DimGray">
-                                        <Button.FontFamily>
-                                            <OnPlatform x:TypeArguments="x:String">
-                                                <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
-                                            </OnPlatform>
-                                        </Button.FontFamily>
-                                    </Button>
-                                </Grid>
-                            </ViewCell.View>
-                        </ViewCell>
+                                <Button.FontFamily>
+                                    <OnPlatform x:TypeArguments="x:String">
+                                        <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                                    </OnPlatform>
+                                </Button.FontFamily>
+                            </Button>
+                        </Grid>
                     </DataTemplate>
-                </components:CustomListView.ItemTemplate>
-            </components:CustomListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
             <BoxView Grid.Row="1" HeightRequest="48">
                 <BoxView.Background>

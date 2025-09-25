@@ -1,4 +1,7 @@
-﻿namespace HomeBudget.Pages.Utils
+﻿using CommunityToolkit.Mvvm.Messaging;
+using HomeBudgetMaui.Messages;
+
+namespace HomeBudget.Pages.Utils
 {
 	public partial class AnimatedViewCell : Grid
 	{
@@ -19,7 +22,7 @@
         {
             if(BindingContext is SummaryListSubcat subcat)
             {
-                MessagingCenter.Send(this, "SubcatClicked", subcat);
+                WeakReferenceMessenger.Default.Send(new SubcatClickedMessage(subcat));
             }
         }
 
@@ -59,14 +62,10 @@
 
         private void OnCollapse()
         {
-            //MainThread.BeginInvokeOnMainThread(() =>
-            //{
-                IsVisible = false;
-                HeightRequest = 0;
-                Opacity = 0;
-                Margin = new Thickness(5, 0);
-                //ForceUpdateSize();
-            //});
+            IsVisible = false;
+            HeightRequest = 0;
+            Opacity = 0;
+            Margin = new Thickness(5, 0);
         }
     }
 }

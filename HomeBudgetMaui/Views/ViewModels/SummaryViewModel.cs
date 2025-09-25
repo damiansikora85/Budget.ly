@@ -126,10 +126,10 @@ namespace HomeBudgetStandard.Views
         private void CreateTransactionsList()
         {
             var groupped = _currentBudgetMonth.BudgetReal.Transactions.GroupBy(t => t.Date);
-            TransactionList = new ObservableRangeCollection<TransactionsGroupViewModel>
-            {
-                new TransactionsGroupViewModel { IsEmpty = true },
-            };
+            TransactionList = new ObservableRangeCollection<TransactionsGroupViewModel>();
+            //{
+            //    new TransactionsGroupViewModel { IsEmpty = true },
+            //};
             var budgetDesc = _budgetTemplateProvider.GetTemplate();
             var tempList = new List<TransactionsGroupViewModel>();
             foreach (var group in groupped)

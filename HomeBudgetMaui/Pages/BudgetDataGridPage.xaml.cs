@@ -34,17 +34,16 @@ namespace HomeBudget.Pages
 
         protected override async void OnAppearing()
         {
-            //MessagingCenter.Send(this, "Landscape");
             MainThread.BeginInvokeOnMainThread(async () =>
                 {
                     await SetupDataGrid(_date);
                 });
         }
 
-        protected override void OnDisappearing()
-        {
-            MessagingCenter.Send(this, "Portrait");
-        }
+        //protected override void OnDisappearing()
+        //{
+        //    MessagingCenter.Send(this, "Portrait");
+        //}
 
         private async Task SetupDataGrid(DateTime date)
         {
