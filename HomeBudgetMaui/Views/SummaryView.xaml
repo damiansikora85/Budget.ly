@@ -51,6 +51,7 @@
                 HorizontalScrollBarVisibility="Never"
                 IsGrouped="True"
                 SelectionMode="Single"
+                Scrolled="OnListScrolled"
                 ItemsSource="{Binding SummaryListViewItems}"
                 VerticalScrollBarVisibility="Never">
                 <CollectionView.GroupHeaderTemplate>

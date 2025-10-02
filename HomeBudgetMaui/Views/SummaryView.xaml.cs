@@ -10,6 +10,7 @@ using HomeBudget.Utils;
 using HomeBudgetMaui.Messages;
 using HomeBudgetStandard.Views.ViewModels;
 using Mopups.Services;
+using static Microsoft.Maui.Controls.Platform.Compatibility.ShellFlyoutTemplatedContentRenderer;
 
 namespace HomeBudgetStandard.Views
 {
@@ -248,5 +249,34 @@ namespace HomeBudgetStandard.Views
                 Task.Run(async () => await MainBudget.Instance.Save().ConfigureAwait(false));
             }
         }
+
+        private double _maxHeaderHeight = 200;
+        private double _minHeaderHeight = 100;
+        private void OnListScrolled(object sender, ItemsViewScrolledEventArgs e)
+        {
+            //double offset = e.VerticalOffset;
+
+            //double t = Math.Min(1, offset / (_maxHeaderHeight - _minHeaderHeight));
+
+            //double newHeight = Lerp(_maxHeaderHeight, _minHeaderHeight, t);
+            //header.HeightRequest = newHeight;
+
+            // Use pixel offset, not item count
+            double offset = e.VerticalOffset;
+
+            // Clamp to our shrink range
+            double shrink = Math.Clamp(offset, 0, _maxHeaderHeight - _minHeaderHeight);
+
+            // New header height
+            double newHeight = _maxHeaderHeight - shrink;
+
+            // Only update if changed meaningfully (avoids micro-jumps)
+            if (Math.Abs(header.HeightRequest - newHeight) > 0.5)
+            {
+                header.HeightRequest = newHeight;
+            }
+        }
+
+        private double Lerp(double start, double end, double t) => start + (end - start) * t;
     }
 }
