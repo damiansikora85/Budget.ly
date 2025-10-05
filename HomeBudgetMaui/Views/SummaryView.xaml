@@ -40,20 +40,20 @@
     <ContentPage.Content>
         <Grid BackgroundColor="White" RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="48" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <CollectionView
                 x:Name="summaryListView"
-                Grid.Row="2"
                 HorizontalScrollBarVisibility="Never"
                 IsGrouped="True"
-                SelectionMode="Single"
-                Scrolled="OnListScrolled"
                 ItemsSource="{Binding SummaryListViewItems}"
+                Scrolled="OnListScrolled"
+                SelectionMode="Single"
                 VerticalScrollBarVisibility="Never">
+                <CollectionView.Header>
+                    <BoxView HeightRequest="250" />
+                </CollectionView.Header>
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
                         <utils:SummaryGroupHeaderViewCell />
@@ -68,19 +68,22 @@
 
             <CollectionView
                 x:Name="transactionsListView"
-                Grid.Row="2"
                 HorizontalScrollBarVisibility="Never"
                 IsGrouped="True"
                 IsVisible="False"
-                SelectionMode="Single"
                 ItemsSource="{Binding TransactionList}"
+                Scrolled="OnListScrolled"
+                SelectionMode="Single"
                 VerticalScrollBarVisibility="Never">
+                <CollectionView.Header>
+                    <BoxView HeightRequest="250" />
+                </CollectionView.Header>
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
                         <Label
-                        FontSize="Large"
-                        Text="{Binding Date, StringFormat='{0:dd MMMM, dddd}'}"
-                        TextColor="Black" />
+                            FontSize="Large"
+                            Text="{Binding Date, StringFormat='{0:dd MMMM, dddd}'}"
+                            TextColor="Black" />
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
                 <CollectionView.ItemTemplate>
@@ -98,42 +101,44 @@
                             </Grid.ColumnDefinitions>
 
                             <Image
-                                        Grid.RowSpan="2"
-                                        Margin="0,8"
-                                        Source="{Binding Icon}" />
+                                Grid.RowSpan="2"
+                                Margin="0,8"
+                                Source="{Binding Icon}" />
                             <Label
-                                        Grid.Column="2"
-                                        FontSize="16"
-                                        HorizontalTextAlignment="End"
-                                        Text="{Binding Amount, Converter={StaticResource CurrencyValueWithSignConverter}}"
-                                        VerticalTextAlignment="Center" />
+                                Grid.Column="2"
+                                FontSize="16"
+                                HorizontalTextAlignment="End"
+                                Text="{Binding Amount, Converter={StaticResource CurrencyValueWithSignConverter}}"
+                                VerticalTextAlignment="Center" />
                             <Label
-                                        Grid.Row="1"
-                                        Grid.Column="2"
-                                        HorizontalTextAlignment="End"
-                                        Text="{Binding Note}"
-                                        VerticalTextAlignment="Center" />
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                HorizontalTextAlignment="End"
+                                Text="{Binding Note}"
+                                VerticalTextAlignment="Center" />
                             <Label
-                                        Grid.Column="1"
-                                        FontSize="16"
-                                        Text="{Binding SubcatName}" />
+                                Grid.Column="1"
+                                FontSize="16"
+                                Text="{Binding SubcatName}" />
                             <Label
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Text="{Binding CategoryName}"
-                                        VerticalTextAlignment="End" />
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text="{Binding CategoryName}"
+                                VerticalTextAlignment="End" />
                             <Button
-                                        Grid.RowSpan="2"
-                                        Grid.Column="3"
-                                        BackgroundColor="Transparent"
-                                        Command="{Binding DeleteTransactionCommand, Source={x:Reference ThisPage}}"
-                                        CommandParameter="{Binding .}"
-                                        FontSize="Large"
-                                        Text="&#xf2ed;"
-                                        TextColor="DimGray">
+                                Grid.RowSpan="2"
+                                Grid.Column="3"
+                                BackgroundColor="Transparent"
+                                Command="{Binding DeleteTransactionCommand, Source={x:Reference ThisPage}}"
+                                CommandParameter="{Binding .}"
+                                FontSize="Large"
+                                Text="&#xf2ed;"
+                                TextColor="DimGray">
                                 <Button.FontFamily>
                                     <OnPlatform x:TypeArguments="x:String">
-                                        <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+                                        <On
+                                            Platform="Android"
+                                            Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
                                     </OnPlatform>
                                 </Button.FontFamily>
                             </Button>
@@ -142,40 +147,23 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <BoxView Grid.Row="1" HeightRequest="48">
-                <BoxView.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                        <GradientStop Offset="0.0" Color="#00A9FF" />
-                        <GradientStop Offset="1.0" Color="#00D7C4" />
-                    </LinearGradientBrush>
-                </BoxView.Background>
-            </BoxView>
-            <views:SummaryTabsView
-                Grid.Row="1"
-                HorizontalOptions="FillAndExpand"
-                SelectionChanged="SummaryTabsView_SelectionChanged" />
-
-            <BoxView>
-                <BoxView.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                        <GradientStop Offset="0.0" Color="#00A9FF" />
-                        <GradientStop Offset="1.0" Color="#00D7C4" />
-                    </LinearGradientBrush>
-                </BoxView.Background>
-            </BoxView>
-
             <Grid
                 x:Name="header"
-                Margin="5,8"
-                HeightRequest="200"
-                MinimumHeightRequest="100"
+                HeightRequest="250"
+                VerticalOptions="Start"
                 RowSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="80" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                        <GradientStop Color="#00A9FF" Offset="0.0" />
+                        <GradientStop Color="#00D7C4" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Grid.Background>
                 <StackLayout
                     Margin="0,0"
                     Padding="0,6"
@@ -213,6 +201,7 @@
                 </StackLayout>
 
                 <StackLayout
+                    x:Name="SummaryText"
                     Grid.Row="1"
                     Margin="0,0"
                     Orientation="Horizontal"
@@ -362,6 +351,18 @@
                         Text="{Binding Incomes, StringFormat='{}{0:C}'}"
                         TextColor="White" />
                 </Grid>
+                <views:SummaryTabsView
+                    Grid.Row="3"
+                    HeightRequest="48"
+                    HorizontalOptions="FillAndExpand"
+                    SelectionChanged="SummaryTabsView_SelectionChanged" >
+                    <views:SummaryTabsView.Background>
+                        <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                            <GradientStop Color="#00A9FF" Offset="0.0" />
+                            <GradientStop Color="#00D7C4" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </views:SummaryTabsView.Background>
+                </views:SummaryTabsView>
             </Grid>
             <StackLayout
                 x:Name="debugLayer"

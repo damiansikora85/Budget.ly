@@ -6,11 +6,9 @@ using HomeBudget.Code;
 using HomeBudget.Code.Interfaces;
 using HomeBudget.Code.Logic;
 using HomeBudget.Pages.Utils;
-using HomeBudget.Utils;
 using HomeBudgetMaui.Messages;
 using HomeBudgetStandard.Views.ViewModels;
 using Mopups.Services;
-using static Microsoft.Maui.Controls.Platform.Compatibility.ShellFlyoutTemplatedContentRenderer;
 
 namespace HomeBudgetStandard.Views
 {
@@ -26,20 +24,12 @@ namespace HomeBudgetStandard.Views
         private SummaryViewModel _viewModel;
         private BudgetSummaryDataViewModel _selectedCategory;
         private BudgetSummaryDataViewModel _lastClickedElem;
-        private BudgetPopupManager _popupManager;
-        private double _baseHeaderHeight;
-
         public SummaryView ()
 		{
             DeleteTransactionCommand = new Command<TransactionViewModel>(OnDeleteTransaction);
             InitializeComponent();
             _viewModel = new SummaryViewModel();
             BindingContext = _viewModel;
-            //summaryListView.OnScroll += SummaryList_Scrolled;
-            //transactionsListView.OnScroll += TransactionsList_Scrolled;
-            _baseHeaderHeight = -1;
-
-            _popupManager = new BudgetPopupManager(Parent as Page, Navigation);
             SelectedCategorySubcats = new ObservableCollection<BaseBudgetSubcat>();
 
             WeakReferenceMessenger.Default.Register<CategoryClickedMessage>(this, (r, m) =>
@@ -56,73 +46,11 @@ namespace HomeBudgetStandard.Views
         protected override void OnAppearing()
         {
             _viewModel.ViewWillAppear();
-            MainBudget.Instance.BudgetDataChanged += BudgetDataChanged;
-
-            if (MainBudget.Instance.IsDataLoaded)
-            {
-                _popupManager.TryDisplayPopup();
-            }
         }
-
-        private void BudgetDataChanged(bool obj)
-        {
-            _popupManager.TryDisplayPopup();
-        }
-
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
             _viewModel.ViewWillDisapear();
-        }
-
-        private void SummaryList_Scrolled(object sender, EventArgs e)
-        {
-            if(!summaryListView.IsVisible)
-            {
-                return;
-            }
-            if(_baseHeaderHeight < 0)
-            {
-                _baseHeaderHeight = header.Height;
-            }
-            //var newHeight = _baseHeaderHeight - summaryListView.ScrollPosition/3;
-
-            //newHeight = Math.Max(newHeight, header.MinimumHeightRequest);
-            //if (newHeight > header.MinimumHeightRequest)
-            //{
-            //    header.HeightRequest = newHeight;
-            //}
-            //else
-            //{
-            //    header.HeightRequest = header.MinimumHeightRequest;
-            //}
-            //_viewModel.HeaderScrollProgress = (newHeight - header.MinimumHeightRequest) / (_baseHeaderHeight - header.MinimumHeightRequest);
-            //debugScroll.Text = $"{summaryListView.FirstElementVisibiltyPerc}";
-        }
-
-        private void TransactionsList_Scrolled(object sender, EventArgs e)
-        {
-            //if(!transactionsListView.IsVisible)
-            //{
-            //    return;
-            //}
-            //if (_baseHeaderHeight < 0)
-            //{
-            //    _baseHeaderHeight = header.Height;
-            //}
-            //var newHeight = _baseHeaderHeight - transactionsListView.ScrollPosition / 3;
-
-            //newHeight = Math.Max(newHeight, header.MinimumHeightRequest);
-            //if (newHeight > header.MinimumHeightRequest)
-            //{
-            //    header.HeightRequest = newHeight;
-            //}
-            //else
-            //{
-            //    header.HeightRequest = header.MinimumHeightRequest;
-            //}
-            //_viewModel.HeaderScrollProgress = 1 - transactionsListView.FirstElementVisibiltyPerc;
-            //debugScroll.Text = $"{transactionsListView.ScrollPosition}";
         }
 
         private async void AddExpense(SummaryListSubcat selectedSubcat)
@@ -151,9 +79,7 @@ namespace HomeBudgetStandard.Views
                 _isAddingExpenseInProgress = false;
             };
 
-            await MopupService.Instance.PushAsync(_calcView);
-            //this.ShowPopup(_calcView);
-        }
+            await MopupService.Instance.PushAsync(_calcView);        }
 
         private void ExpandCategory(BudgetSummaryDataViewModel element)
         {
@@ -167,8 +93,6 @@ namespace HomeBudgetStandard.Views
                 }
 
                 element.Expand();
-                //summaryList.ScrollTo(element[0], element, ScrollToPosition.MakeVisible, false);
-
                 _lastClickedElem = element;
 
                 if (_calcView == null)
@@ -185,7 +109,6 @@ namespace HomeBudgetStandard.Views
             }
             else
             {
-                //summaryListView.ScrollTo(element, ScrollToPosition.Start, false);
                 element.Expand();
             }
         }
@@ -198,7 +121,6 @@ namespace HomeBudgetStandard.Views
         private void HideCalcView()
         {
             _isAddingExpenseInProgress = false;
-            //Navigation.PopPopupAsync();
         }
 
         private void OnPrevMonth(object sender, EventArgs e)
@@ -236,8 +158,6 @@ namespace HomeBudgetStandard.Views
             {
                 summaryListView.IsVisible = e.SelectedMode == SummaryTabsView.Mode.Budget;
                 transactionsListView.IsVisible = e.SelectedMode == SummaryTabsView.Mode.Transactions;
-                //summaryListView.ScrollToTop?.Invoke();
-                //transactionsListView.ScrollToTop?.Invoke();
             });
         }
 
@@ -250,33 +170,20 @@ namespace HomeBudgetStandard.Views
             }
         }
 
-        private double _maxHeaderHeight = 200;
-        private double _minHeaderHeight = 100;
         private void OnListScrolled(object sender, ItemsViewScrolledEventArgs e)
         {
-            //double offset = e.VerticalOffset;
+            var transY = Convert.ToSingle(e.VerticalOffset);
 
-            //double t = Math.Min(1, offset / (_maxHeaderHeight - _minHeaderHeight));
-
-            //double newHeight = Lerp(_maxHeaderHeight, _minHeaderHeight, t);
-            //header.HeightRequest = newHeight;
-
-            // Use pixel offset, not item count
-            double offset = e.VerticalOffset;
-
-            // Clamp to our shrink range
-            double shrink = Math.Clamp(offset, 0, _maxHeaderHeight - _minHeaderHeight);
-
-            // New header height
-            double newHeight = _maxHeaderHeight - shrink;
-
-            // Only update if changed meaningfully (avoids micro-jumps)
-            if (Math.Abs(header.HeightRequest - newHeight) > 0.5)
+            if (transY < 0)
             {
-                header.HeightRequest = newHeight;
+                transY = 0;
             }
-        }
 
-        private double Lerp(double start, double end, double t) => start + (end - start) * t;
+            var headerTranslation = Math.Max(-transY, -100);
+            header.TranslationY = headerTranslation;
+            SummaryText.TranslationY = -headerTranslation/2;
+
+            _viewModel.HeaderScrollProgress = 1.0 - Math.Min(Math.Abs(headerTranslation) / 70.0, 1.0);
+        }
     }
 }
