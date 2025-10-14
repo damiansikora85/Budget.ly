@@ -5,14 +5,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:HomeBudgetStandard.Components"
     xmlns:progressBar="clr-namespace:Syncfusion.Maui.ProgressBar;assembly=Syncfusion.Maui.ProgressBar"
+    xmlns:local="clr-namespace:HomeBudgetMaui.Extensions"
     Padding="0,5"
     BackgroundColor="Transparent"
     ColumnDefinitions="50,*,*,50"
     RowDefinitions="*,2,*"
     RowSpacing="0"
-    Opacity="0"
-    IsVisible="False"
-    HeightRequest="0">
+    Margin="5,0"
+    HeightRequest="50">
 
     <Label
             Grid.Column="1"
@@ -51,18 +51,12 @@
             Text="{Binding SubcatPlan.Value, Converter={StaticResource CurrencyValueConverter}}"
             VerticalTextAlignment="Start" />
 
-    <progressBar:SfLinearProgressBar
+    <ProgressBar
             Grid.Row="1"
             Grid.Column="1"
             Grid.ColumnSpan="2"
-            Maximum="1"
-            Minimum="0"
-            Progress="{Binding SpendPercentage}" >
-        <progressBar:SfLinearProgressBar.GradientStops>
-            <progressBar:ProgressGradientStop Color="#00A9FF" Value="0"/>
-            <progressBar:ProgressGradientStop Color="#00D7C4" Value="100"/>
-        </progressBar:SfLinearProgressBar.GradientStops>
-    </progressBar:SfLinearProgressBar>
+            Progress="{Binding SpendPercentage}"
+        local:ProgressBarExtensions.UseGradient="True"/>
 
     <Image
             Grid.RowSpan="3"

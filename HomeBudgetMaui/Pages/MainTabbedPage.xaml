@@ -6,7 +6,7 @@
     xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
     xmlns:utils="clr-namespace:HomeBudget.Utils"
     xmlns:views="clr-namespace:HomeBudgetStandard.Views"
-    android:TabbedPage.IsSwipePagingEnabled="true"
+    android:TabbedPage.IsSwipePagingEnabled="false"
     BarTextColor="White" SelectedTabColor="White">
     <TabbedPage.Behaviors>
         <utils:ActivePageTabbedPageBehavior />

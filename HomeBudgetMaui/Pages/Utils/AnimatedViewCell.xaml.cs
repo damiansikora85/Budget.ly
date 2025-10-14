@@ -50,10 +50,10 @@ namespace HomeBudget.Pages.Utils
         {
             MainThread.BeginInvokeOnMainThread(async () =>
             {
-                IsVisible = true;
-                Opacity = 1;
-                HeightRequest = 50;
-                Margin = new Thickness(5, 0);
+                //IsVisible = true;
+                //Opacity = 1;
+                //HeightRequest = 50;
+                //Margin = new Thickness(5, 0);
                 TranslationX = -500;
                 //this.ForceUpdateSize();
                 await this.TranslateTo(0, 0, 500, Easing.CubicInOut);
@@ -62,10 +62,11 @@ namespace HomeBudget.Pages.Utils
 
         private void OnCollapse()
         {
-            IsVisible = false;
-            HeightRequest = 0;
-            Opacity = 0;
-            Margin = new Thickness(5, 0);
+            //TranslationX = -500;
+            //IsVisible = false;
+            //HeightRequest = 0;
+            //Opacity = 0;
+            //Margin = new Thickness(5, 0);
         }
     }
 }

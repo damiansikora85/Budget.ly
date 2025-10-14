@@ -1,12 +1,15 @@
-﻿using CommunityToolkit.Maui;
+﻿using Acr.UserDialogs;
+using Android.Graphics.Drawables;
+using CommunityToolkit.Maui;
+using HomeBudgetMaui.Extensions;
 using HomeBudgetMaui.Platforms.Android.CustomHandlers;
 using HomeBudgetStandard.Components;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Handlers;
 using Mopups.Hosting;
 using Sharpnado.Tabs;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using Syncfusion.Maui.Core.Hosting;
-using Acr.UserDialogs;
 
 
 namespace HomeBudgetMaui
@@ -40,6 +43,45 @@ namespace HomeBudgetMaui
 #if ANDROID
             UserDialogs.Init(() => Platform.CurrentActivity);
             builder.Services.AddSingleton(UserDialogs.Instance);
+
+            ProgressBarHandler.Mapper.AppendToMapping("GradientProgress", (handler, view) =>
+            {
+                if (view is BindableObject bindable && !ProgressBarExtensions.GetUseGradient(bindable))
+                {
+                    return;
+                }
+
+                var nativeBar = handler.PlatformView as Android.Widget.ProgressBar;
+
+                var background = new GradientDrawable();
+                background.SetColor(Android.Graphics.Color.ParseColor("#E0E0E0")); // gray track
+                background.SetCornerRadius(20f);
+
+                // Create a horizontal gradient
+                var gradient = new GradientDrawable(
+                    GradientDrawable.Orientation.LeftRight,
+                    new int[] {
+                        Android.Graphics.Color.ParseColor("#00A9FF"), // start color (orange)
+                        Android.Graphics.Color.ParseColor("#00D7C4")  // end color (green)
+                    });
+
+                // Optional: round the corners
+                //gradient.SetCornerRadius(20f);
+
+                var progressClip = new ClipDrawable(gradient, Android.Views.GravityFlags.Left, ClipDrawableOrientation.Horizontal);
+
+                var layerDrawable = new LayerDrawable(new Drawable[] { background, progressClip });
+
+                // Assign Android layer IDs correctly
+                layerDrawable.SetId(0, Android.Resource.Id.Background);
+                layerDrawable.SetId(1, Android.Resource.Id.Progress);
+
+                // Apply the composed drawable
+                nativeBar.SetProgressDrawableTiled(layerDrawable);
+
+                // Set the background (track color)
+                //nativeBar.SetBackgroundColor(Android.Graphics.Color.ParseColor("#E0E0E0"));
+            });
 #endif
 
 #if DEBUG
