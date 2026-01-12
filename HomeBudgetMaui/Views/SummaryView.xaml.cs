@@ -34,6 +34,7 @@ namespace HomeBudgetStandard.Views
 
             WeakReferenceMessenger.Default.Register<CategoryClickedMessage>(this, (r, m) =>
             {
+                //summaryListView.ScrollTo(m.Element, position: ScrollToPosition.Center, animate: true);
                 ExpandCategory(m.Element);
             });
 
@@ -150,15 +151,50 @@ namespace HomeBudgetStandard.Views
         private void Transaction_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             transactionsListView.SelectedItem = null;
+            //transactionsListView.ScrollTo(1, position: ScrollToPosition.End, animate: false);
         }
 
         private void SummaryTabsView_SelectionChanged(object sender, SummaryTabsChangedEventArgs e)
         {
-            MainThread.BeginInvokeOnMainThread(() =>
+            summaryListView.IsVisible = e.SelectedMode == SummaryTabsView.Mode.Budget;
+            transactionsListView.IsVisible = e.SelectedMode == SummaryTabsView.Mode.Transactions;
+
+            if (summaryListView.IsVisible)
             {
-                summaryListView.IsVisible = e.SelectedMode == SummaryTabsView.Mode.Budget;
-                transactionsListView.IsVisible = e.SelectedMode == SummaryTabsView.Mode.Transactions;
-            });
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    //summaryListView.Scrolled -= OnListScrolled;
+                    summaryListView.ScrollTo(summaryListView.Header, position: ScrollToPosition.Start, animate: false);
+                    //summaryListView.Scrolled += OnListScrolled;
+                    OnListScrolled(summaryListView, new ItemsViewScrolledEventArgs
+                    {
+                        VerticalDelta = 0,
+                        VerticalOffset = 0
+                    });
+                });
+            }
+#if ANDROID
+            if (summaryListView.IsVisible)
+            {
+                var view = summaryListView.Handler?.PlatformView as AndroidX.RecyclerView.Widget.RecyclerView;
+                view.ScrollToPosition(0);
+                //summaryListView.ScrollTo(summaryListView.Header, position: ScrollToPosition.Start, animate: false);
+                OnListScrolled(summaryListView, new ItemsViewScrolledEventArgs
+                {
+                    VerticalDelta = 0,
+                    VerticalOffset = 0
+                });
+            }
+#endif
+
+            //if(summaryListView.IsVisible)
+            //{
+            //    _viewModel.ReloadBudgetData();
+            //}
+
+            //header.TranslationY = 0;
+            //SummaryText.TranslationY = 0;
+            //_viewModel.HeaderScrollProgress = 1;
         }
 
         private async void OnDeleteTransaction(TransactionViewModel transactionViewModel)
@@ -184,6 +220,7 @@ namespace HomeBudgetStandard.Views
             SummaryText.TranslationY = -headerTranslation/2;
 
             _viewModel.HeaderScrollProgress = 1.0 - Math.Min(Math.Abs(headerTranslation) / 70.0, 1.0);
+            debugScroll.Text = $"Offset: {e.VerticalOffset}, HeaderTransY: {headerTranslation}";
         }
     }
 }

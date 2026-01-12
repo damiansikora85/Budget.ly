@@ -60,8 +60,14 @@ namespace HomeBudget.Code
         private IFeatureSwitch _featureSwitch;
         public bool IsDataLoaded { get; private set; }
 
-        public event Action onPlannedBudgetChanged;
-        public event Action<bool> BudgetDataChanged = delegate { };
+        public Action OnPlannedBudgetChanged
+        {
+            get; set;
+        }
+        public Action<bool> BudgetDataChanged
+        {
+            get; set;
+        }
 
         public BudgetDescription BudgetDescription { get; private set; }
 
@@ -276,9 +282,9 @@ namespace HomeBudget.Code
             }
         }
 
-        private void OnPlannedBudgetChanged()
+        private void PlannedBudgetChanged()
         {
-            onPlannedBudgetChanged?.Invoke();
+            OnPlannedBudgetChanged?.Invoke();
         }
 
         private void UpdateData(object sender, BudgetData data)
@@ -346,7 +352,7 @@ namespace HomeBudget.Code
             if (month == null)
             {
                 month = BudgetMonth.Create(BudgetDescription.Categories, date);
-                month.OnBudgetPlannedChanged += OnPlannedBudgetChanged;
+                month.OnBudgetPlannedChanged += PlannedBudgetChanged;
                 month.UpdatePlannedBudget(budgetPlanned);
                 month.Setup();
                 _months.Add(month);

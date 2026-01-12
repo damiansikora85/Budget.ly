@@ -69,12 +69,12 @@ namespace HomeBudget.Pages.Utils
                     this.Add(subcat);
                 }
 
-                await Task.WhenAll(_sublist.Select(subcat => subcat.WaitForAddToList()));
-                foreach (var subcat in this)
-                {
-                    subcat.Expand?.Invoke();
-                    await Task.Delay(100);
-                }
+                //await Task.WhenAll(_sublist.Select(subcat => subcat.WaitForAddToList()));
+                //foreach (var subcat in this)
+                //{
+                //    subcat.Expand?.Invoke();
+                //    await Task.Delay(100);
+                //}
 
                 IsExpanding = false;
             }

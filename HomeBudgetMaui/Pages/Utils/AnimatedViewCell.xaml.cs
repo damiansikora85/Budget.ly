@@ -43,6 +43,7 @@ namespace HomeBudget.Pages.Utils
                 data.Expand += OnExpand;
                 data.Collapse += OnCollapse;
                 data.MarkAddedToList();
+                //data.Expand();
             }
         }
 

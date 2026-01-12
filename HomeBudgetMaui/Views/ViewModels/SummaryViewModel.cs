@@ -114,7 +114,7 @@ namespace HomeBudgetStandard.Views
                 {
                     lock (_refreshListDataLock)
                     {
-                        SummaryListViewItems = GetBudgetSummaryDataAsync(_currentBudgetMonth);
+                        SummaryListViewItems = GetBudgetSummaryData(_currentBudgetMonth);
                     }
                 }
 
@@ -146,7 +146,7 @@ namespace HomeBudgetStandard.Views
             TransactionList.AddRange(tempList.OrderByDescending(el => el.Date));
         }
 
-        private static ObservableCollection<BudgetSummaryDataViewModel> GetBudgetSummaryDataAsync(BudgetMonth budgetData)
+        private static ObservableCollection<BudgetSummaryDataViewModel> GetBudgetSummaryData(BudgetMonth budgetData)
         {
             var budgetSummaryCollection = new ObservableCollection<BudgetSummaryDataViewModel>();
             var categoriesDesc = MainBudget.Instance.BudgetDescription.Categories;
@@ -213,6 +213,14 @@ namespace HomeBudgetStandard.Views
             }
             BudgetUseCases.RemoveTransaction(transactionViewModel.Transaction);
             RefreshAsync();
+        }
+
+        internal void ReloadBudgetData()
+        {
+            lock (_refreshListDataLock)
+            {
+                SummaryListViewItems = GetBudgetSummaryData(_currentBudgetMonth);
+            }
         }
     }
 }

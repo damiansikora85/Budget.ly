@@ -52,7 +52,7 @@ namespace HomeBudget.Pages.Utils
 
         public void MarkAddedToList()
         {
-            _tcs.TrySetResult();
+            //_tcs.TrySetResult();
         }
     }
 }
